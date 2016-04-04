@@ -12,6 +12,7 @@ import org.w3c.dom.NodeList;
 import org.web.kyc.uri.UriBuilder;
 import org.web.kyc.utils.ReadProperties;
 import org.web.kyc.xml.XmlDocument;
+import org.web.kyc.xqueries.XQueryEnum;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,18 +55,18 @@ public class HttpRequest {
         return response;
     }
 
-    public Document getResultsFormDataBase(String xquery, List<NameValuePair> nvPairs){
+    public Document getResultsFormDataBase(XQueryEnum xqueryEnum, List<NameValuePair> nvPairs){
         try {
-            results = (executeDatabaseQuery(xquery, nvPairs)).getXmlDocument().toDomRepresentation().getDocument();
+            results = (executeDatabaseQuery(xqueryEnum.getXQueryName(), nvPairs)).getXmlDocument().toDomRepresentation().getDocument();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return results;
     }
 
-    public ArrayList getElementValuesByTagName(String xquery, List<NameValuePair> nvPairs, String tagName){
+    public ArrayList getElementValuesByTagName(XQueryEnum xqueryEnum, List<NameValuePair> nvPairs, String tagName){
         ArrayList values = new ArrayList();
-        NodeList nodes = getResultsFormDataBase(xquery, nvPairs).getElementsByTagName(tagName);
+        NodeList nodes = getResultsFormDataBase(xqueryEnum, nvPairs).getElementsByTagName(tagName);
         for(int i = 0; i<nodes.getLength(); i++){
             values.add(i, nodes.item(i).getTextContent());
         }
