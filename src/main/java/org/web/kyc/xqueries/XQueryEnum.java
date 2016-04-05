@@ -3,7 +3,7 @@ package org.web.kyc.xqueries;
 public enum XQueryEnum {
 
     ENTITY_DETAILS("qa-kyc-ubo-getEntityDetails.xqy"),
-    DIRECT_OWNERS("qa-kyc-ubo-get-DO-subs-List.xqy"),
+    DIRECT_OWNERS_LIST("qa-kyc-ubo-get-DO-subs-List.xqy"),
     SUBSIDIARIES("qa-kyc-ubo-get-DO-subs-List.xqy");
     private String xQueryName;
 

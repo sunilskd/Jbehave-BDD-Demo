@@ -1,6 +1,13 @@
 # KYC UBO Automated Functional Test
 Release UBO (In-Progress)
 
+## AFT development code convention
+### Initials and their meanings
+ - 'a' - actual
+ - 'e' - expected
+ - 's' - static
+ - 'd' - dynamic
+
 ## System Requirement
 - JDK 1.7 or less
 - Gradle latest version (recommended)
