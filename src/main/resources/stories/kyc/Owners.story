@@ -12,11 +12,11 @@ b. with percentage null
 c. KYC-166 - Respect date accuracy
 d. KYC-170 - No validation date
 Meta:@directOwners @dynamic
-Given the user is on the ubo home page
+Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the user should see the list of direct owners for the selected institution <fid> in the owners page
+Then the user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution <fid> in the owners page
 
 Examples:
 |fid|
@@ -27,11 +27,11 @@ Examples:
 
 Scenario: KYC user can view direct owners that are legal entities
 Meta:@directOwners @static
-Given the user is on the ubo home page
+Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the user should see the below list of direct owners for the selected institution in the owners page
+Then the user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
 |VTB Bank (public joint-stock company)|Russian Federation|12.736%|29 Mar 2011|
 |'Vitabank' PJSC|Russian Federation|10.967%|21 Aug 2005|
@@ -48,7 +48,7 @@ Examples:
 
 Scenario: Verify no data found message when there are no direct owners
 Meta:@directOwners @static
-Given the user is on the ubo home page
+Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab

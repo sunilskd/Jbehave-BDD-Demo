@@ -18,7 +18,7 @@ public class OwnersSteps {
         pages.ownersPage().clickOnOwnersTab();
     }
 
-    @Then("the user should see the list of direct owners for the selected institution <fid> in the owners page")
+    @Then("the user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution <fid> in the owners page")
     public void dVerifyDirectOwnersList(@Named("fid") String fid){
         pages.ownersPage().dVerifyDirectOwnersList(fid);
     }
@@ -28,7 +28,7 @@ public class OwnersSteps {
         pages.ownersPage().verifyNoDirectOwnersMsg();
     }
 
-    @Then("the user should see the below list of direct owners for the selected institution in the owners page $directOwnersListExamTable")
+    @Then("the user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page $directOwnersListExamTable")
     public void sVerifyDirectOwnersList(ExamplesTable directOwnersListExamTable){
         pages.ownersPage().sVerifyDirectOwnersList(directOwnersListExamTable);
     }

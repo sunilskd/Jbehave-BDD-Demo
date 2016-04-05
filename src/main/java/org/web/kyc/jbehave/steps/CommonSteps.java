@@ -12,7 +12,7 @@ public class CommonSteps {
         this.pages = pages;
     }
 
-    @Given("the user is on the ubo home page")
+    @Given("the kyc user is on the ubo home page")
     public void open(){
         pages.common().open();
     }
