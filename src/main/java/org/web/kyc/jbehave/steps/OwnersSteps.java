@@ -23,7 +23,7 @@ public class OwnersSteps {
         pages.ownersPage().dVerifyDirectOwnersList(fid);
     }
 
-    @Then("the user should see the message no data found for the selected institution in the owners page")
+    @Then("the user should see message displayed in place of list explaining there are no direct owners")
     public void verifyNoDirectOwnersMsg(){
         pages.ownersPage().verifyNoDirectOwnersMsg();
     }
@@ -31,5 +31,15 @@ public class OwnersSteps {
     @Then("the user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page $directOwnersListExamTable")
     public void sVerifyDirectOwnersList(ExamplesTable directOwnersListExamTable){
         pages.ownersPage().sVerifyDirectOwnersList(directOwnersListExamTable);
+    }
+
+    @Then("the user should see not see the percentage meter bar in the direct owners list")
+    public void verifyNoPercentageMeterBar(){
+        pages.ownersPage().verifyNoPercentageMeterBar();
+    }
+
+    @Then("the user should see the percentage meter bar in the direct owners list")
+    public void verifyPercentageMeterBar(){
+        pages.ownersPage().verifyPercentageMeterBar();
     }
 }

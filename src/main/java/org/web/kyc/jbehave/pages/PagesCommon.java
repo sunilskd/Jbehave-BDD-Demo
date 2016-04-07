@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.web.kyc.rest.HttpRequest;
 import org.web.kyc.utils.ReadProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* Contains common webdriver methods to be used in page classes */
@@ -47,11 +48,24 @@ public class PagesCommon extends WebDriverPage {
         return findElements(by);
     }
 
-    public void waitForElementToAppear(By by) {
+    public void waitForWebElementToAppear(By by) {
         try {
             WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 15);
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (org.openqa.selenium.NoSuchElementException e) {
         }
+    }
+
+    public Boolean isWebElementDisplayed(By by){
+        return findElements(by).size() == 0;
+    }
+
+    public List<String> getWebElementsAttributeValue(By by, String attribute){
+        List<WebElement> webElements = getWebElements(by);
+        ArrayList attributeValue = new ArrayList<>();
+        for(int i=0; i<webElements.size(); i++) {
+            attributeValue.add(webElements.get(i).getAttribute(attribute));
+        }
+        return attributeValue;
     }
 }
