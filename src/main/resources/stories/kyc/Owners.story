@@ -9,7 +9,6 @@ JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 Scenario: KYC user can view direct owners that are legal entities
 a. Display all data
 b. KYC-166 - Respect date accuracy
-c. KYC-170 - No validation date
 d. No country of operations
 Meta:@directOwners @dynamic
 Given the kyc user is on the ubo home page
@@ -23,10 +22,11 @@ Examples:
 |fid|
 |211|
 |284626|
-|91832|
 |179281|
 
-Scenario: KYC-172 - Do not display the meter when the percentage ownership is null
+Scenario: KYC-172 - Do not display the meter when the percentage ownership is null; KYC-189;
+a. No percentage ownership
+b. KYC-170 - No validation date
 Meta:@directOwners @dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -38,6 +38,7 @@ And the user should see not see the percentage meter bar in the direct owners li
 Examples:
 |fid|
 |94016|
+|91832|
 
 Scenario: KYC user can view direct owners that are legal entities
 Meta:@directOwners @static

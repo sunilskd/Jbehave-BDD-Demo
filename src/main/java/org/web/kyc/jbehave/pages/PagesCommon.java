@@ -50,7 +50,7 @@ public class PagesCommon extends WebDriverPage {
 
     public void waitForWebElementToAppear(By by) {
         try {
-            WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 15);
+            WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 3000);
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (org.openqa.selenium.NoSuchElementException e) {
         }
