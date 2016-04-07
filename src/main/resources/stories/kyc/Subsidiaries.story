@@ -22,7 +22,6 @@ Examples:
 |fid|
 |211|
 |815|
-||
 |200|
 
 Scenario: KYC user can view direct subsidiaries

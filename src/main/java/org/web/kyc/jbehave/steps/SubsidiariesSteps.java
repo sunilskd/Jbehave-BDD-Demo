@@ -25,7 +25,7 @@ public class SubsidiariesSteps {
 
     @Then("the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution <fid> in the subsidiaries page $subsidiariesListExamTable")
     public void sVerifySubsidiariesList(ExamplesTable subsidiariesListExamTable){
-        pages.ownersPage().sVerifyDirectOwnersList(subsidiariesListExamTable);
+        pages.subsidiariesPage().sVerifySubsidiariesList(subsidiariesListExamTable);
 
     }
 
