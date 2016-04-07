@@ -7,14 +7,12 @@ JIRA ID - KYC-45 - KYC user can view direct subsidiaries
 Scenario: KYC user can view direct subsidiaries
 a. with percentage ownership
 b. with percentage null (should not display percent)
-c. KYC-188- Validation date
-d. KYC-188 - No validation date (should not display validation date)
-e. with country of operations
-f. without country of operations (should not display country of operations)
-g. with active legal entity subsidiaries
-h. with inactive legal entity subsidiaries
-i. with active subsidiary relationships
-j. with inactive subsidiary relationships
+c. with country of operations
+d. without country of operations (should not display country of operations)
+e. with active legal entity subsidiaries
+f. with inactive legal entity subsidiaries
+g. with active subsidiary relationships
+h. with inactive subsidiary relationships
 
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -26,7 +24,7 @@ Examples:
 
 
 Scenario: Display message in place of subs list if no subsidiaries for entity user is viewing
-a. KYC-187 No subsidiaries
+a. No subsidiaries
 
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
