@@ -20,6 +20,7 @@ import org.web.kyc.browser.Browser;
 import org.web.kyc.jbehave.pages.Pages;
 import org.web.kyc.jbehave.steps.CommonSteps;
 import org.web.kyc.jbehave.steps.OwnersSteps;
+import org.web.kyc.jbehave.steps.SubsidiariesSteps;
 import org.web.kyc.utils.FileUtils;
 import org.web.kyc.utils.ReadProperties;
 import java.io.File;
@@ -120,6 +121,7 @@ public class StoriesRunner extends JUnitStories {
                 /* Add all step classes here */
                 new CommonSteps(pages),
                 new OwnersSteps(pages),
+                new SubsidiariesSteps(pages),
                 lifeCycleSteps,
                 new WebDriverScreenshotOnFailure(driverProvider, configuration.storyReporterBuilder()));
     }

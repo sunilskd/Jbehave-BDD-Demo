@@ -7,6 +7,7 @@ public class Pages {
     private final WebDriverProvider driverProvider;
     private OwnersPage ownersPage;
     private Common common;
+    private SubsidiariesPage subsidiariesPage;
 
     public Pages(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -24,6 +25,13 @@ public class Pages {
             common = new Common(driverProvider);
         }
         return common;
+    }
+
+    public SubsidiariesPage subsidiariesPage(){
+        if(subsidiariesPage == null){
+            subsidiariesPage = new SubsidiariesPage(driverProvider);
+        }
+        return subsidiariesPage;
     }
 
 }
