@@ -7,9 +7,9 @@ So that I can achieve a business goal
 JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 
 Scenario: KYC user can view direct owners that are legal entities
-a. Display all data
-b. KYC-166 - Respect date accuracy
-d. No country of operations
+a. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
+b. KYC-166 - If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
+c. If country of operations is not present then display records with no country
 Meta:@directOwners @dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -25,8 +25,8 @@ Examples:
 |179281|
 
 Scenario: KYC-172 - Do not display the meter when the percentage ownership is null; KYC-189;
-a. No percentage ownership
-b. KYC-170 - No validation date
+a. If percentage ownership is null then display record with no percentage ownership
+b. KYC-170 - If validation date is not present then display record with no validation date
 Meta:@directOwners @dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -62,9 +62,9 @@ Examples:
 |46637|
 
 Scenario: Verify no data found message when there are no direct owners
-a. No direct owners
-b. Inactive legal entity
-c. Inactive relationship
+a. If there are no direct owners display "no results" for now
+b. If legal entity direct owner are inactive do not display the records for inactive legal entity
+c. If direct owner relationships are inactive do not display the records for inactive direct ownership relationship
 Meta:@directOwners @static @dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
