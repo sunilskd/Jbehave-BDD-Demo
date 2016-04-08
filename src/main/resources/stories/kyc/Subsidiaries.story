@@ -18,14 +18,15 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution <fid> in the subsidiaries page
+And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
 
 Examples:
-|fid|
-|211|
-|815|
-|146115|
-|200|
-|1717|
+|fid|institutionLegalTitle|
+|211|Australia and New Zealand Banking Group Limited|
+|815|Banco Popular|
+|146115|Investec Holdings (Ireland) Ltd|
+|200|Public Bank (Hong Kong) Limited|
+|1717|Berliner Volksbank eG|
 
 Scenario: KYC user can view direct subsidiaries
 Meta:@static

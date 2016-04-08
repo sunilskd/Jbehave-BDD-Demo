@@ -14,25 +14,29 @@ public class SubsidiariesSteps {
     }
 
     @When("the user clicks on the subsidiaries tab")
-    public void clickOnSubsidiariesTab(){
+    public void clickOnSubsidiariesTab() {
         pages.subsidiariesPage().clickOnSubsidiariesTab();
     }
 
     @Then("the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution <fid> in the subsidiaries page")
-    public void dVerifySubsidiariesList(@Named("fid") String fid){
+    public void dVerifySubsidiariesList(@Named("fid") String fid) {
         pages.subsidiariesPage().dVerifySubsidiariesList(fid);
     }
 
     @Then("the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution <fid> in the subsidiaries page $subsidiariesListExamTable")
-    public void sVerifySubsidiariesList(ExamplesTable subsidiariesListExamTable){
+    public void sVerifySubsidiariesList(ExamplesTable subsidiariesListExamTable) {
         pages.subsidiariesPage().sVerifySubsidiariesList(subsidiariesListExamTable);
 
     }
 
     @Then("the user should see message displayed in place of list explaining there are no subsidiaries")
-    public void verifyNoSubsidiariesMsg(){
+    public void verifyNoSubsidiariesMsg() {
         pages.subsidiariesPage().verifyNoSubsidiariesMsg();
     }
 
+    @Then("the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page")
+    public void verifyInstitutionLegalTitle(@Named("institutionLegalTitle") String institutionLegalTitle) {
+        pages.subsidiariesPage().verifyInstitutionLegalTitle(institutionLegalTitle);
+    }
 
 }

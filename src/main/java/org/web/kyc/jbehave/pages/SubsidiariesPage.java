@@ -7,25 +7,20 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
 
-/**
- * Created by singirikondas on 4/7/2016.
- */
 public class SubsidiariesPage extends PagesCommon {
 
     private By subsidiaries_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[3]");
     private By subsidiaries_header_text_xpath = By.xpath("//*[@id='content-view'] /div/h1");
-    private By last_validated_subsidiaries_header_text_xpath = By.xpath("//*[@id='content-view'] /div/p");
     private By subsidiaries_entity_name_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='entity ng-binding']");
     private By subsidiaries_country_name_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='location ng-binding']");
     private By subsidiaries_percentage_owned_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='percentage ng-binding']");
     private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@class='notification']");
+    private By subsidiaries_institution_legal_title_text_xpath =By.xpath("//*[@id='content-view']/h2");
 
 
     public SubsidiariesPage(WebDriverProvider driverProvider) {
@@ -58,6 +53,11 @@ public class SubsidiariesPage extends PagesCommon {
     public void verifySubsidiariesHeaders(){
         assertEquals("Subsidiaries", getWebElementText(subsidiaries_header_text_xpath));
     }
+
+    public void verifyInstitutionLegalTitle(String institutionLegalTitle){
+        waitForWebElementToAppear(subsidiaries_institution_legal_title_text_xpath);
+        assertEquals("Institution name does not match at", getWebElementText(subsidiaries_institution_legal_title_text_xpath), institutionLegalTitle);
+        }
 
     public void verifyNoSubsidiariesMsg() {
         waitForWebElementToAppear(no_subsidiaries_msg_text_xpath);
