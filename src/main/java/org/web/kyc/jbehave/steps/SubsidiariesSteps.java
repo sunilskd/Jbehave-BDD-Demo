@@ -30,8 +30,8 @@ public class SubsidiariesSteps {
     }
 
     @Then("the user should see message displayed in place of list explaining there are no subsidiaries")
-    public void verifyNoDirectOwnersMsg(){
-        pages.subsidiariesPage().verifyNoDirectOwnersMsg();
+    public void verifyNoSubsidiariesMsg(){
+        pages.subsidiariesPage().verifyNoSubsidiariesMsg();
     }
 
 

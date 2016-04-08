@@ -11,6 +11,7 @@ a. with percentage ownership; with country of operations; with active legal enti
 b. with percentage null (should not display percent)
 c. without country of operations (should not display country of operations)
 d. with inactive legal entity subsidiaries
+e. With inactive subsidiary relationships
 Meta:@dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -22,7 +23,9 @@ Examples:
 |fid|
 |211|
 |815|
+|146115|
 |200|
+|1717|
 
 Scenario: KYC user can view direct subsidiaries
 Meta:@static
@@ -32,9 +35,8 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution <fid> in the subsidiaries page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Public Finance Ltd|Hong Kong|100%|
-|Public Financial Securities Ltd|Hong Kong|100%|
-||Hong Kong|100%|
+|Public Finance Ltd|Hong Kong|100|
+|Public Financial Securities Ltd|Hong Kong|100|
 
 Examples:
 |fid|
@@ -42,7 +44,6 @@ Examples:
 
 Scenario: Display message in place of subs list if no subsidiaries for entity user is viewing
 a. No subsidiaries
-a. With inactive subsidiary relationships
 Meta:@static @dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -53,4 +54,3 @@ Then the user should see message displayed in place of list explaining there are
 Examples:
 |fid|
 |269306|
-|8044|

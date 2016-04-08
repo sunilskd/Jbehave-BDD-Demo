@@ -25,7 +25,7 @@ public class SubsidiariesPage extends PagesCommon {
     private By subsidiaries_entity_name_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='entity ng-binding']");
     private By subsidiaries_country_name_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='location ng-binding']");
     private By subsidiaries_percentage_owned_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='percentage ng-binding']");
-    private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@id='content-view']/p");
+    private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@class='notification']");
 
 
     public SubsidiariesPage(WebDriverProvider driverProvider) {
@@ -56,12 +56,12 @@ public class SubsidiariesPage extends PagesCommon {
     }
 
     public void verifySubsidiariesHeaders(){
-        assertEquals("Direct Owners", getWebElementText(subsidiaries_header_text_xpath));
-        assertEquals("Last Validated",getWebElementText(last_validated_subsidiaries_header_text_xpath));
+        assertEquals("Subsidiaries", getWebElementText(subsidiaries_header_text_xpath));
     }
 
-    public void verifyNoDirectOwnersMsg() {
-        assertEquals("No data found.", getWebElementText(no_subsidiaries_msg_text_xpath));
+    public void verifyNoSubsidiariesMsg() {
+        waitForWebElementToAppear(no_subsidiaries_msg_text_xpath);
+        assertEquals("No results.", getWebElementText(no_subsidiaries_msg_text_xpath));
     }
 
     public void sVerifySubsidiariesList(ExamplesTable subsidiariesListExamTable) {
