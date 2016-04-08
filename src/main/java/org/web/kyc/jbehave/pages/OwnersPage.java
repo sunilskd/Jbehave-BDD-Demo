@@ -77,7 +77,9 @@ public class OwnersPage extends PagesCommon {
         for(int i=0; i<directOwnersListExamTable.getRowCount(); i++){
             assertEquals("Legal title does not match at" + i, aDirectOwnerEntityName.get(i).getText(), directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(0)));
             assertEquals("Country name does not match at" + i, aDirectOwnersCountryName.get(i).getText(), directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(1)));
-            assertEquals("Percentage owned does not match at" + i, aDirectOwnersPercentageOwned.get(i).getText(), directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(2))+"%");
+            if(!directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(2)).isEmpty()) {
+                assertEquals("Percentage owned does not match at" + i, aDirectOwnersPercentageOwned.get(i).getText(), directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(2)) + "%");
+            }
             assertEquals("Validated date does not match at" + i, aDirectOwnersLastValidatedDate.get(i).getText(), directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(3)));
         }
     }
