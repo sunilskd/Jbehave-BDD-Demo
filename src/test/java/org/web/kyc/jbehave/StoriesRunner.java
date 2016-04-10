@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave;
 
+import org.jbehave.asciidoctor.reporter.AsciidoctorStoryReporter;
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.embedder.executors.SameThreadExecutors;
@@ -111,7 +112,7 @@ public class StoriesRunner extends JUnitStories {
                 .useStoryReporterBuilder(new StoryReporterBuilder()
                         .withCodeLocation(codeLocationFromClass(embeddableClass))
                         .withDefaultFormats()
-                        .withFormats(CONSOLE, screenShootingFormat));
+                        .withFormats(CONSOLE, screenShootingFormat, AsciidoctorStoryReporter.ASCIIDOC));
     }
 
     @Override
