@@ -27,7 +27,7 @@ public class ScreenShootingHtmlOutput extends WebDriverHtmlOutput {
                     (UUIDExceptionWrapper) storyFailure;
             screenshotMaker.afterScenarioFailure(uuidWrappedFailure);
         } catch (Exception e) {
-            System.out.println("Screenshot failed");
+            System.out.println("Click here to view the snapshot of failed step");
         }
     }
 }

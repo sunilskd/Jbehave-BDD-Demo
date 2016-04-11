@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave;
 
+import org.jbehave.asciidoctor.reporter.AsciidoctorStoryReporter;
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.embedder.executors.SameThreadExecutors;
@@ -18,7 +19,9 @@ import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
 import org.web.kyc.jbehave.pages.Pages;
-import org.web.kyc.jbehave.steps.SampleSteps;
+import org.web.kyc.jbehave.steps.CommonSteps;
+import org.web.kyc.jbehave.steps.OwnersSteps;
+import org.web.kyc.jbehave.steps.SubsidiariesSteps;
 import org.web.kyc.utils.FileUtils;
 import org.web.kyc.utils.ReadProperties;
 import java.io.File;
@@ -109,7 +112,7 @@ public class StoriesRunner extends JUnitStories {
                 .useStoryReporterBuilder(new StoryReporterBuilder()
                         .withCodeLocation(codeLocationFromClass(embeddableClass))
                         .withDefaultFormats()
-                        .withFormats(CONSOLE, screenShootingFormat));
+                        .withFormats(CONSOLE, screenShootingFormat, AsciidoctorStoryReporter.ASCIIDOC));
     }
 
     @Override
@@ -117,7 +120,9 @@ public class StoriesRunner extends JUnitStories {
         Configuration configuration = configuration();
         return new InstanceStepsFactory(configuration,
                 /* Add all step classes here */
-                new SampleSteps(pages),
+                new CommonSteps(pages),
+                new OwnersSteps(pages),
+                new SubsidiariesSteps(pages),
                 lifeCycleSteps,
                 new WebDriverScreenshotOnFailure(driverProvider, configuration.storyReporterBuilder()));
     }

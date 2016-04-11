@@ -5,17 +5,33 @@ import org.jbehave.web.selenium.WebDriverProvider;
 public class Pages {
 
     private final WebDriverProvider driverProvider;
-    private SamplePage samplePage;
+    private OwnersPage ownersPage;
+    private Common common;
+    private SubsidiariesPage subsidiariesPage;
 
     public Pages(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
     }
 
-    public SamplePage samplePage(){
-        if(samplePage == null){
-            samplePage = new SamplePage(driverProvider);
+    public OwnersPage ownersPage(){
+        if(ownersPage == null){
+            ownersPage = new OwnersPage(driverProvider);
         }
-        return samplePage;
+        return ownersPage;
+    }
+
+    public Common common(){
+        if(common == null){
+            common = new Common(driverProvider);
+        }
+        return common;
+    }
+
+    public SubsidiariesPage subsidiariesPage(){
+        if(subsidiariesPage == null){
+            subsidiariesPage = new SubsidiariesPage(driverProvider);
+        }
+        return subsidiariesPage;
     }
 
 }
