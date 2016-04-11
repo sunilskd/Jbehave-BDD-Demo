@@ -21,7 +21,7 @@ j. without FATCA status value (display field label, no value)
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
-Then the user should see the Summary, Identifiers, and SWIFT/BIC sections with corresponding information on the entity details page for legal entity [fid]
+Then the user should see the Summary and Identifiers sections with corresponding information on the entity details page for legal entity [fid]
 And LEIs are sorted by issuer name alphabetically (ascending)
 
 
