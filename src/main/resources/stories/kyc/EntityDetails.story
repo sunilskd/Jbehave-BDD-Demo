@@ -2,6 +2,7 @@ Epic: Ownership
 
 KYC user is performing due dilligence on a potential business partner, so they need to see identifying information about the entity to make sure it is the one they are researching.
 Covers below features:
+
 Meta:@entitydetails @kyc
 
 Scenario: KYC user can view entity details
@@ -19,20 +20,21 @@ Meta:@dynamicentitydeails
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
-Then the user should see head office address with address line1 line2 line3 line 4 city subarea country zip <fid> And user should see giin value
+Then the user should see the summary with head office address (address line1 line2 line3 line 4, city, area, subarea, country) respecting the useInAddress flag for the selected institution in the entity details page
+And the user should see the identifiers with giin, lei and fatca status for the selected institution in the entity details page
 
 Examples:
 |fid|
 |186456|
 
-Scenario: KYC user can view lei and Factcs status for an entity details
+Scenario: KYC user can view lei , giin and Factcs status for an entity details
 a. with LEI
 b. with FATCA status value
 Meta:@dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
-Then the user should see lei and Factcs status
+Then the user should see the identifiers with giin, lei and fatca status for the selected institution in the entity details page
 
 Examples:
 |fid|
@@ -49,14 +51,14 @@ Then the user should see multiple leis associated to the entity
 
 Examples:
 |fid|
-|815|
+|1038|
 
 Scenario: KYC user can view entity details
 Meta:@static
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
-Then the user should see below head office address giin facta status
+Then the user should see below head office address, giin and facta status for the selected institution in the entity details page
 |HEAD OFFICE ADDRESS|GIIN|FACTA STATUS|
 |Calle 17, No 7- 43 Piso 3, Calle 17, Bogotá, Distrito Capital de Santa Fe de Bogota, Colombia|10ZQZE.99999.SL.170|Participating FFI|
 
@@ -66,7 +68,7 @@ Examples:
 
 Scenario: Head office address should not be displayed for KYC user to view when there is no address associated to the entity or UseInAddress is false
 a. without head office address (display field label, no value)
-b. with head office address elements with varying "UseInAddress" flag values for each element (do not display element if UseInAddress is false)
+b. with head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
 Meta:@dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -85,7 +87,7 @@ Meta:@dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
-Then the user should not see only identifier lables and not values
+Then the user should see only identifier lables and not values for identifiers
 
 Examples:
 |fid|

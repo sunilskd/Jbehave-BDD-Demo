@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 public class Common extends PagesCommon{
 
     private By ownership_tab_xpath = By.xpath("//*[@id='content-navigation'] //li[2]");
+    public static String selectedFid="";
 
     public Common(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -26,6 +27,7 @@ public class Common extends PagesCommon{
 
     public void openUrl(String url){
         get("https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/legalEntity/" + url + "/ownership/owners");
+        selectedFid = url;
     }
 
 }
