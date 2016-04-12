@@ -1,10 +1,12 @@
 Meta:@owners @kyc
+Epic: Ownership
 
-Narrative:
-As a user
-I want to perform an action
-So that I can achieve a business goal
+A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships
+will not result in funding illegal activities such as money laundering and terrorist financing. A key part of this process is to find out if there are
+any owners of the bank they will potentially do business which are known to be risky or involved in criminal activities.
+Covers below features:
 JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
+JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
 
 Scenario: KYC user can view direct owners that are legal entities
 a. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
@@ -77,3 +79,11 @@ Examples:
 |1|
 |140612|
 |46089|
+
+Scenario: KYC-100 Filter owners list by percent ownership
+a. View all is selected by default (displays all direct owners regardless of percent ownership)
+b. Selecting 10% and above filters out any entity that has null or less than 10% ownership
+c. Selecting 25% and above filters out any entity that has null or less than 25% ownership
+d. Selecting 50% and above filters out any entity that has null or less than 50% ownership
+e. Select filter that results in no entities on the list (display no owners)
+f. Select a second filter (first filter is de-selected, list updates to match new filter)
