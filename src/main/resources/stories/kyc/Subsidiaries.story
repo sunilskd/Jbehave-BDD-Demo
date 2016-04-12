@@ -1,10 +1,10 @@
 Meta:@subsidiaries @kyc
+Epic: Subsidiaries
 
-Narrative:
-As a user
-I want to perform an action
-So that I can achieve a business goal
+When a KYC analyst is researching an entity they will potentially do business with, they will review the subsidiaries
+owned by the entity they are researching.
 JIRA ID - KYC-45 - KYC user can view direct subsidiaries
+JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
 
 Scenario: KYC user can view direct subsidiaries
 a. With percentage ownership; with country of operations; with active legal entity subsidiaries; with active subsidiary relationships
@@ -55,3 +55,12 @@ Then the user should see message displayed in place of list explaining there are
 Examples:
 |fid|
 |269306|
+
+
+Scenario: KYC-102 Filter list of subsidiaries by percent ownership
+a. View all is selected by default (displays all direct subsidiaries regardless of percent ownership)
+b. Selecting 10% and above filters out any entities owned by less than 10% or have null ownership
+c. Selecting 25% and above filters out any entities owned by less than 25% or have null ownership
+d. Selecting 50% and above filters out any entities owned by less than 50% or have null ownership
+e. Select filter that results in no entities on the list (display no subsidiaries, display message explaining no subsidiaries meet percent filter requirement)
+f. Select a second filter (first filter is de-selected)
