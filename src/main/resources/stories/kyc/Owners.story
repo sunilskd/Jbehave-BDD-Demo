@@ -1,5 +1,4 @@
 Meta:@owners @kyc
-Epic: Ownership
 
 A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships
 will not result in funding illegal activities such as money laundering and terrorist financing. A key part of this process is to find out if there are
@@ -17,7 +16,7 @@ Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution <fid> in the owners page
+Then the user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
 
 Examples:
@@ -34,7 +33,7 @@ Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution <fid> in the owners page
+Then the user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 And the user should see not see the percentage meter bar in the direct owners list
 
 Examples:
@@ -81,9 +80,49 @@ Examples:
 |46089|
 
 Scenario: KYC-100 Filter owners list by percent ownership
-a. View all is selected by default (displays all direct owners regardless of percent ownership)
-b. Selecting 10% and above filters out any entity that has null or less than 10% ownership
-c. Selecting 25% and above filters out any entity that has null or less than 25% ownership
-d. Selecting 50% and above filters out any entity that has null or less than 50% ownership
-e. Select filter that results in no entities on the list (display no owners)
-f. Select a second filter (first filter is de-selected, list updates to match new filter)
+a. View all is selected by default (displays all direct owners regardless of percent ownership);
+   Selecting 10% and above filters out any entity that has null or less than 10% ownership
+b. Selecting 25% and above filters out any entity that has null or less than 25% ownership
+c. Selecting 50% and above filters out any entity that has null or less than 50% ownership
+Meta:@directOwners @dynamic
+Given the kyc user is on the ubo home page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the user should see the optional percent filters all, 10%, 25% and 50% and above for direct owners and ubo with all selected by default in the owners page
+When the user selects the percent filter option <percentFilter> in the owners page
+Then the user should see the direct owners ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the owners page
+
+Examples:
+|fid|percentFilter|
+|211|10% and above|
+|1038|25% and above|
+|1045|50% and above|
+
+Scenario: Select filter that results in no entities on the list (display no owners)
+Meta:@directOwners @dynamic
+Given the kyc user is on the ubo home page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the user should see the optional percent filters all, 10%, 25% and 50% and above for direct owners and ubo with all selected by default in the owners page
+When the user selects the percent filter option <percentFilter> in the owners page
+Then the user should see message displayed in place of list explaining there are no direct owners
+
+Examples:
+|fid|percentFilter|
+|94016|10% and above|
+
+Scenario: Select a second filter (first filter is de-selected, list updates to match new filter)
+Meta:@directOwners @dynamic
+Given the kyc user is on the ubo home page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the user should see the optional percent filters all, 10%, 25% and 50% and above for direct owners and ubo with all selected by default in the owners page
+When the user selects the percent filter option <percentFilter> in the owners page
+Then the user should see the percent filter All de-selected in the owners page
+
+Examples:
+|fid|percentFilter|
+|94016|10% and above|
