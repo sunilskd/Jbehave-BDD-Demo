@@ -38,11 +38,6 @@ public class OwnersPage extends PagesCommon {
     }
 
     public void dVerifyDirectOwnersList() {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
         verifyDirectOwnersHeaders();
         Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);

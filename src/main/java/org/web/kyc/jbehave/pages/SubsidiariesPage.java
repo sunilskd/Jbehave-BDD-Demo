@@ -32,10 +32,8 @@ public class SubsidiariesPage extends PagesCommon {
         clickOnWebElement(subsidiaries_tab_xpath);
     }
 
-    public void dVerifySubsidiariesList(String fid) {
+    public void dVerifySubsidiariesList() {
         waitForWebElementToAppear(subsidiaries_entity_name_text_xpath);
-        List<NameValuePair> nvPairs = new ArrayList<>();
-        nvPairs.add(new BasicNameValuePair("fid", fid));
         Document eSubsidiariesList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST, nvPairs);
         List<WebElement> aSubsidiariesEntityName = getWebElements(subsidiaries_entity_name_text_xpath);
         List<WebElement> aSubsidiariesCountryName = getWebElements(subsidiaries_country_name_text_xpath);
@@ -80,6 +78,7 @@ public class SubsidiariesPage extends PagesCommon {
     }
 
 
-
-
+    public void dVerifySubsidiariesListForPercentFilter() {
+        dVerifySubsidiariesList();
+    }
 }

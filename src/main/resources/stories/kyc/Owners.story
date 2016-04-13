@@ -1,6 +1,6 @@
-A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships
-will not result in funding illegal activities such as money laundering and terrorist financing. A key part of this process is to find out if there are
-any owners of the bank they will potentially do business which are known to be risky or involved in criminal activities.
+A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships will not result in funding illegal activities such as money laundering and terrorist financing.
+A key part of this process is to find out if there are any owners of the bank they will potentially do business which are known to be risky or involved in criminal activities.
+
 Covers below features:
 JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
@@ -108,7 +108,7 @@ Examples:
 |1045|50|
 
 Scenario: Select filter that results in no entities on the list (display no owners)
-Meta:@directOwners @dynamic
+Meta:@directOwners @static @dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -122,7 +122,7 @@ Examples:
 |94016|10|
 
 Scenario: Select a second filter (first filter is de-selected, list updates to match new filter)
-Meta:@directOwners @dynamic
+Meta:@directOwners @static @dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
