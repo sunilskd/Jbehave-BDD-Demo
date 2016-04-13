@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -61,5 +62,10 @@ public class OwnersSteps {
     @Then("the user should see the percent filter $deselectFilter de-selected in the owners page")
     public void verifyPercentFilterIsDeSelected(@Named("deselectFilter") String deselectFilter){
         pages.common().verifyPercentFilterIsDeSelected(deselectFilter);
+    }
+
+    @When("the user changes the percent filter option to $updatedFilter in the owners page")
+    public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
+        pages.common().selectPercentFilter(updatedFilter);
     }
 }
