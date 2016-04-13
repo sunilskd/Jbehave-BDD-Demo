@@ -72,6 +72,29 @@ Then the user should see the below list of direct subsidiaries ordered by percen
 |Nainital Bank Ltd|India|98.57|
 |Bank of Baroda (Kenya) Ltd|Kenya|86.7|
 |Bank of Baroda (Uganda) Limited|Uganda|80|
+When the user changes the percent filter option to View All in the subsidiaries page
+Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|Bank of Baroda (Botswana) Limited|Botswana|100|
+|Bank of Baroda (Ghana) Ltd|Ghana|100|
+|Bank of Baroda (Guyana) Incorporated|Guyana|100|
+|Bank of Baroda (NewZealand) Ltd|New Zealand|100|
+|Bank of Baroda (Tanzania) Ltd|Tanzania|100|
+|Bank of Baroda (Trinidad and Tobago) Limited|Trinidad & Tobago|100|
+|BOB Capital Market Ltd|India|100|
+|BOB Cards Ltd|India|100|
+|Nainital Bank Ltd|India|98.57|
+|Bank of Baroda (Kenya) Ltd|Kenya|86.7|
+|Bank of Baroda (Uganda) Limited|Uganda|80|
+|Baroda Pioneer Asset Management Co Ltd|India|49|
+|India International Bank (Malaysia) Bhd|Malaysia|40|
+|Baroda Gujarat Gramin Bank|India|35|
+|Baroda Rajasthan Kshetriya Gramin Bank|India|35|
+|Baroda Uttar Pradesh Gramin Bank|India|35|
+|UTI Asset Management Co Pvt Ltd|India|25|
+|UTI Trustee Co Pvt Ltd|India|25|
+|Indo-Zambia Bank Limited|Zambia|20|
+|Small Industries Development Bank of India (SIDBI)|India|4.4|
 
 Examples:
 |fid|percentFilter|
@@ -124,7 +147,7 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the subsidiaries page
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
-Then the user should see the percent filter All de-selected in the subsidiaries page
+Then the user should see the percent filter View All de-selected in the subsidiaries page
 
 Examples:
 |fid|percentFilter|
