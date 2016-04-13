@@ -66,7 +66,7 @@ Then the user should see the below list of direct owners ordered by percentage o
 |'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|
 |Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|
 
-When the user changes the percent filter option to All in the owners page
+When the user changes the percent filter option to View All in the owners page
 Then the user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
 |VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011|
@@ -141,7 +141,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
-Then the user should see the percent filter All de-selected in the owners page
+Then the user should see the percent filter View All de-selected in the owners page
 
 Examples:
 |fid|percentFilter|

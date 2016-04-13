@@ -37,7 +37,7 @@ public class Common extends PagesCommon{
     public void verifyPercentFilterOptions() {
         waitForWebElementToAppear(By.xpath(percent_filter_options_text_xpath+"[1]"));
         assertEquals("DISPLAY %", getWebElementText(percent_filter_option_header_text_xpath));
-        assertEquals("All", getWebElementText(By.xpath(percent_filter_options_text_xpath+"[1]")));
+        assertEquals("View All", getWebElementText(By.xpath(percent_filter_options_text_xpath+"[1]")));
         assertTrue(isWebElementDisplayed(By.xpath(percent_filter_options_text_xpath+"[1][@class='ng-binding ng-scope selected']")));
         assertEquals("10% and above", getWebElementText(By.xpath(percent_filter_options_text_xpath+"[2]")));
         assertEquals("25% and above", getWebElementText(By.xpath(percent_filter_options_text_xpath+"[3]")));
@@ -47,7 +47,7 @@ public class Common extends PagesCommon{
     public void selectPercentFilter(String percentFilter) {
         String filterXpath = "";
         nvPairs.add(new BasicNameValuePair("percentage",percentFilter.replace("% and above","")));
-        if(percentFilter.equals("All")){
+        if(percentFilter.equals("View All")){
              filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), percentFilter) + "]";
         } else {
              filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), percentFilter+"% and above") + "]";
