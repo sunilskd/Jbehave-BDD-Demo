@@ -19,8 +19,8 @@ public class Common extends PagesCommon{
     }
 
     public void open(){
-        get(readProperties().getUrl());
         nvPairs.clear();
+        get(readProperties().getUrl());
     }
 
     public void clickOnOwnershipTab() {
