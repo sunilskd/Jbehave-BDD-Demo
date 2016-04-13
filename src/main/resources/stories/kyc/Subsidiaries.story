@@ -102,7 +102,6 @@ Examples:
 
 Scenario: Display message in place of subs list if no subsidiaries for entity user is viewing
 a. If there are no subsidiaries display "no results" for now;
-   Select filter that results in no entities on the list (display no subsidiaries, display message explaining no subsidiaries meet percent filter requirement)
 Meta:@static @dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -117,6 +116,22 @@ And the user should see the legal title <institutionLegalTitle> of the instituti
 Examples:
 |fid|institutionLegalTitle|percentFilter|
 |269306|First American Insurance Services Inc|10|
+
+Scenario: Select filter that results in no entities on the list (display no subsidiaries, display message explaining no subsidiaries meet percent filter requirement)
+Meta:@static @dynamic
+Given the kyc user is on the ubo home page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+Then the user should see message displayed in place of list explaining there are no subsidiaries
+And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
+When the user selects the percent filter option <percentFilter> in the subsidiaries page
+Then the user should see message no subsidiaries meet the percent filter requirement for the selected institution in the subsidiaries page
+And the user should not see the legal title of the institution it is looking at in the subsidiaries page
+
+Examples:
+|fid|percentFilter|
+|173|25|
 
 Scenario: KYC-102 Filter list of subsidiaries by percent ownership
 a. View all is selected by default (displays all direct subsidiaries regardless of percent ownership)

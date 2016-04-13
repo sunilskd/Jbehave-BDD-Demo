@@ -10,6 +10,7 @@ import org.w3c.dom.Document;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
 
 public class SubsidiariesPage extends PagesCommon {
@@ -77,8 +78,16 @@ public class SubsidiariesPage extends PagesCommon {
         }
     }
 
-
     public void dVerifySubsidiariesListForPercentFilter() {
         dVerifySubsidiariesList();
+    }
+
+    public void verifyMsgNoSubsidiariesMeetThePercentFilter() {
+        waitForWebElementToAppear(no_subsidiaries_msg_text_xpath);
+        assertEquals("No subsidiaries meet the percent filter requirement", getWebElementText(no_subsidiaries_msg_text_xpath));
+    }
+
+    public void verifyLegalTitleIsNotDisplayed() {
+        assertTrue(isWebElementDisplayed(subsidiaries_institution_legal_title_text_xpath));
     }
 }
