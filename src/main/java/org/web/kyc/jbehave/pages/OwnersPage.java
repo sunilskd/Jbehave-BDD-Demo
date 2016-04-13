@@ -3,15 +3,10 @@ package org.web.kyc.jbehave.pages;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
-
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.web.kyc.xqueries.XQueryEnum.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
