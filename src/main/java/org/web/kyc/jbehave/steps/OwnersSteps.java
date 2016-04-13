@@ -43,7 +43,7 @@ public class OwnersSteps {
         pages.ownersPage().verifyPercentageMeterBar();
     }
 
-    @Then("the user should see the optional percent filters all, 10%, 25% and 50% and above for direct owners and ubo with all selected by default in the owners page")
+    @Then("the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page")
     public void verifyPercentFilterOptions(){
         pages.common().verifyPercentFilterOptions();
     }

@@ -45,8 +45,13 @@ public class Common extends PagesCommon{
     }
 
     public void selectPercentFilter(String percentFilter) {
+        String filterXpath = "";
         nvPairs.add(new BasicNameValuePair("percentage",percentFilter.replace("% and above","")));
-        String filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), percentFilter) + "]";
+        if(percentFilter.equals("All")){
+             filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), percentFilter) + "]";
+        } else {
+             filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), percentFilter+"% and above") + "]";
+        }
         clickOnWebElement(By.xpath(filterXpath));
     }
 
