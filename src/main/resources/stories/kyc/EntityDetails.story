@@ -48,6 +48,6 @@ And the user should see the identifiers with below leis in the entity details pa
 |Global Intermediary Identification Number K613SZ.99999.SL.840|
 
 Examples:
-|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|factcaStatus|
+|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
 |815|Banco Popular|Bankersalmanac.com ID: 815|Calle 17, No 7- 43 Piso 3, Calle 17, Bogotá, Distrito Capital de Santa Fe de Bogota, Colombia|10ZQZE.99999.SL.170|Participating FFI|
 

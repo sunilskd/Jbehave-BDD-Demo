@@ -44,9 +44,9 @@ public class EntityDetailsSteps {
     }
 
     @Then("the user should see the identifiers with giin <giin> and fatca status <fatcaStatus> for the selected institution in the entity details page")
-    public void sVerifyGiinAndFactaStatus(@Named("giin") String giin,@Named("factcaStatus") String factcaStatus)
+    public void sVerifyGiinAndFatcaStatus(@Named("giin") String giin,@Named("fatcaStatus") String fatcaStatus)
     {
-        pages.entityDetailsPage().sVerifyGiinAndFactaStatus(giin,factcaStatus);
+        pages.entityDetailsPage().sVerifyGiinAndFatcaStatus(giin,fatcaStatus);
 
     }
 

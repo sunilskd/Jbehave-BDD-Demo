@@ -82,9 +82,9 @@ public class EntityDetailsPage extends PagesCommon {
         assertEquals(headOfficeAddress, getWebElementText(entity_details_head_office_address_text_xpath));
     }
 
-    public void sVerifyGiinAndFactaStatus(String giin, String factcaStatus) {
+    public void sVerifyGiinAndFatcaStatus(String giin, String fatcaStatus) {
         assertEquals(giin, getWebElementText(entity_details_giin_text_xpath));
-        assertEquals(factcaStatus, getWebElementText(entity_details_fatca_status_text_xpath));
+        assertEquals(fatcaStatus, getWebElementText(entity_details_fatca_status_text_xpath));
 
     }
 
