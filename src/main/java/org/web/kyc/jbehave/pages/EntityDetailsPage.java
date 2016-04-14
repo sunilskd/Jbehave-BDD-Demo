@@ -19,13 +19,13 @@ public class EntityDetailsPage extends PagesCommon {
     private By entity_details_summary_header_text_xpath = By.xpath("//*[@id='content-view'] /h1[1]");
     private By entity_details_head_office_address_text_xpath = By.xpath("//*[@id='entity-head-office']/tbody/tr/td/div[1]");
     private By entity_details_giin_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[1]/td");
-    private By entity_details_facta_satus_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[2]/td");
+    private By entity_details_fatca_status_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[2]/td");
     private By entity_details_lei_text_xpath = By.xpath("//*[@id='entity-lei'] //*[@class='ng-binding']");
     private By entity_details_identifiers_header_text_xpath = By.xpath("//*[@id='content-view']/h1[2]");
     private By entity_details_head_office_lable_text_xpath = By.xpath("//*[@id='entity-head-office']/tbody/tr/th");
     private By entity_details_giin_lable_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[1]/th");
     private By entity_details_lei_lable_text_xpath = By.xpath("//*[@id='entity-lei']/tbody/tr/th");
-    private By entity_details_facta_satus_lable_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[2]/th");
+    private By entity_details_fatca_status_lable_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[2]/th");
     private Document entityDetailsDocument;
 
     public EntityDetailsPage(WebDriverProvider driverProvider) {
@@ -59,7 +59,7 @@ public class EntityDetailsPage extends PagesCommon {
         verifyIdentifierLables();
         List<WebElement> aLeiValues = getWebElements(entity_details_lei_text_xpath);
         assertEquals("Identifiers",getWebElementText(entity_details_identifiers_header_text_xpath));
-        assertEquals(entityDetailsDocument.getElementsByTagName("FATCAStatus").item(0).getTextContent(),getWebElementText(entity_details_facta_satus_text_xpath));
+        assertEquals(entityDetailsDocument.getElementsByTagName("FATCAStatus").item(0).getTextContent(),getWebElementText(entity_details_fatca_status_text_xpath));
         assertEquals(entityDetailsDocument.getElementsByTagName("GIIN").item(0).getTextContent(),getWebElementText(entity_details_giin_text_xpath));
         for (int i = 0; i < aLeiValues.size(); i++) {
             assertEquals("LEI Value does not match at" + i, entityDetailsDocument.getElementsByTagName("LEIs").item(i).getTextContent(),aLeiValues.get(i).getText());
@@ -68,7 +68,7 @@ public class EntityDetailsPage extends PagesCommon {
 
     public void verifyIdentifierLables() {
         assertEquals("GIIN", getWebElementText(entity_details_giin_lable_text_xpath));
-        assertEquals("FATCA Status", getWebElementText(entity_details_facta_satus_lable_text_xpath));
+        assertEquals("FATCA Status", getWebElementText(entity_details_fatca_status_lable_text_xpath));
         assertEquals("LEI", getWebElementText(entity_details_lei_lable_text_xpath));
     }
 
@@ -84,7 +84,7 @@ public class EntityDetailsPage extends PagesCommon {
 
     public void sVerifyGiinAndFactaStatus(String giin, String factcaStatus) {
         assertEquals(giin, getWebElementText(entity_details_giin_text_xpath));
-        assertEquals(factcaStatus, getWebElementText(entity_details_facta_satus_text_xpath));
+        assertEquals(factcaStatus, getWebElementText(entity_details_fatca_status_text_xpath));
 
     }
 
