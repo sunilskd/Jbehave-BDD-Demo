@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.pages;
 
+import org.apache.http.NameValuePair;
 import org.jbehave.web.selenium.WebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
@@ -17,7 +18,7 @@ import java.util.List;
 public class PagesCommon extends WebDriverPage {
     private static ReadProperties readProperties;
     private static HttpRequest httpRequest;
-
+    public static List<NameValuePair> nvPairs = new ArrayList<>();
     public PagesCommon(WebDriverProvider driverProvider) {
         super(driverProvider);
     }
@@ -56,8 +57,9 @@ public class PagesCommon extends WebDriverPage {
         }
     }
 
+    /* Returns true if element is present */
     public Boolean isWebElementDisplayed(By by){
-        return findElements(by).size() == 0;
+        return findElements(by).size() != 0;
     }
 
     public List<String> getWebElementsAttributeValue(By by, String attribute){
@@ -67,5 +69,16 @@ public class PagesCommon extends WebDriverPage {
             attributeValue.add(webElements.get(i).getAttribute(attribute));
         }
         return attributeValue;
+    }
+
+    public String getElementIndexByValue(By by, String value){
+        String index = "";
+        List<WebElement> webElementsList = findElements(by);
+        for(int i=0; i<webElementsList.size(); i++){
+            if(webElementsList.get(i).getText().equals(value)){
+                index = Integer.toString(i+1);
+            }
+        }
+        return index;
     }
 }

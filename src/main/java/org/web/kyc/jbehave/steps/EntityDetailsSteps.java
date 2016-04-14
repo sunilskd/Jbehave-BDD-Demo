@@ -15,7 +15,7 @@ public class EntityDetailsSteps {
 
     @When("the user clicks on the entity details tab")
     public void clickOnEntityDetailsTab(){
-        pages.entityDetailsPage().clickOnEntityDetailsTab(pages.common().selectedFid);
+        pages.entityDetailsPage().clickOnEntityDetailsTab();
     }
 
     @Then("the user should see the identifiers with giin, lei and fatca status for the selected institution in the entity details page")

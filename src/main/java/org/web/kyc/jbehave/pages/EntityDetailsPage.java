@@ -1,14 +1,13 @@
 package org.web.kyc.jbehave.pages;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
-import java.util.ArrayList;
+
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.web.kyc.xqueries.XQueryEnum.ENTITY_DETAILS;
 
@@ -33,11 +32,9 @@ public class EntityDetailsPage extends PagesCommon {
         super(driverProvider);
     }
 
-    public void clickOnEntityDetailsTab(String fid) {
+    public void clickOnEntityDetailsTab() {
         assertEquals("Entity Details", getWebElementText(entity_details_tab_xpath));
         clickOnWebElement(entity_details_tab_xpath);
-        List<NameValuePair> nvPairs = new ArrayList<>();
-        nvPairs.add(new BasicNameValuePair("fid", fid));
         entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
     }
 

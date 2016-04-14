@@ -102,15 +102,15 @@ let $orderedSwiftBicsList :=
 for $x in $swiftBicDocs
 let $swiftBicCode := $x/codeValue/text()
 order by fn:string-length($swiftBicCode) ascending, $swiftBicCode ascending
-return <swiftBic>{$swiftBicCode}</swiftBic>       
+return <swiftBic routingCodeFid="{data($x/@fid)}">{$swiftBicCode}</swiftBic>       
 
 return <entityDetails>
           <header>
-            <legalTitle>{$legalTitle}</legalTitle>
+            <legalTitle legalEntityFid="{data($legalEntity/@fid)}">{$legalTitle}</legalTitle>
             <bankersAlmanacID>{$bankersAlmanacID}</bankersAlmanacID>
           </header>
           <summary>
-            <headOfficeAddress>{$headOfficeAddress}</headOfficeAddress>
+            <headOfficeAddress officeFid="{data($headOffice/@fid)}">{$headOfficeAddress}</headOfficeAddress>
           </summary>
           <identifiers>
             <GIIN>{$GIIN}</GIIN>
