@@ -7,7 +7,7 @@ import org.jbehave.core.model.ExamplesTable;
 import org.web.kyc.jbehave.pages.Pages;
 
 public class EntityDetailsSteps {
-    private Pages pages;
+    private final Pages pages;
 
     public EntityDetailsSteps(Pages pages) {
         this.pages = pages;
@@ -21,33 +21,38 @@ public class EntityDetailsSteps {
     @Then("the user should see the identifiers with giin, lei and fatca status for the selected institution in the entity details page")
     public void dVerifyIdentifiers(){
         pages.entityDetailsPage().dVerifyIdentifiers();
-
     }
 
-    @Then("the user should see multiple leis associated to the entity")
-    public void dVerifyMultipleLeis(){
-        pages.entityDetailsPage().dVerifyMultipleLeis();
-
+    @Then("the user should see the headers with institution legal title and bankers almanac id in entity details page")
+    public void verifyEntityDetailsHeader(){
+        pages.entityDetailsPage().verifyEntityDetailsHeader();
     }
 
-    @Then("the user should see below head office address, giin and facta status for the selected institution in the entity details page $entityDetailsExamTable")
-    public void sVerifyEntityDetails(ExamplesTable entityDetailsExamTable) {
-        pages.entityDetailsPage().sVerifyEntityDetails(entityDetailsExamTable);
-
-    }
-
-    @Then("the user should not see head office address")
-    public void verifyNoHeadOfficeAddress() {
-        pages.entityDetailsPage().verifyNoHeadOfficeAddress();
-    }
-
-    @Then("the user should see only identifier lables and not values for identifiers")
-    public void verifyIdentifierLables(){
-    pages.entityDetailsPage().verifyIdentifierLables();
+    @Then("the user should see the headers with institution legal title <legalTitle> and bankers almanac id <bankersAlmanacId> in entity details page")
+    public void sVerifyEntityDetailsHeader(@Named("legalTitle") String legalTitle,@Named("bankersAlmanacId") String bankersAlmanacId){
+        pages.entityDetailsPage().sVerifyEntityDetailsHeader(legalTitle,bankersAlmanacId);
     }
 
     @Then("the user should see the summary with head office address (address line1 line2 line3 line 4, city, area, subarea, country) respecting the useInAddress flag for the selected institution in the entity details page")
     public void dVerifyEntityDetailsSummary(){
         pages.entityDetailsPage().dVerifyEntityDetailsSummary();
     }
+
+    @Then("the user should see the summary with head office address <headOfficeAddress> respecting the useInAddress flag for the selected institution in the entity details page")
+    public void sVerifyHeadOfficeAddress(@Named("headOfficeAddress") String headOfficeAddress){
+        pages.entityDetailsPage().sVerifyHeadOfficeAddress(headOfficeAddress);
+    }
+
+    @Then("the user should see the identifiers with giin <giin> and fatca status <fatcaStatus> for the selected institution in the entity details page")
+    public void sVerifyGiinAndFactaStatus(@Named("giin") String giin,@Named("factcaStatus") String factcaStatus)
+    {
+        pages.entityDetailsPage().sVerifyGiinAndFactaStatus(giin,factcaStatus);
+
+    }
+
+    @Then("the user should see the identifiers with below leis in the entity details page $leis")
+    public void sVerifyLeis(ExamplesTable leisExamTable){
+        pages.entityDetailsPage().sVerifyLeis(leisExamTable);
+    }
+
 }
