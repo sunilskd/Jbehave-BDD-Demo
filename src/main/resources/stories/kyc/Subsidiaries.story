@@ -125,8 +125,7 @@ Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
-Then the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
-And the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
+Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
 Then the user should see message displayed in place of list explaining there are no subsidiaries
 And the user should not see the legal title of the institution it is looking at in the subsidiaries page

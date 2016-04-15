@@ -59,7 +59,7 @@ public class SubsidiariesSteps {
         pages.common().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
-    @When("the user changes the percent filter option to View All in the subsidiaries page")
+    @When("the user changes the percent filter option to $updatedFilter in the subsidiaries page")
     public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
         pages.common().selectPercentFilter(updatedFilter);
     }
