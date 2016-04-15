@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
 
 public class SubsidiariesPage extends PagesCommon {
@@ -19,6 +19,7 @@ public class SubsidiariesPage extends PagesCommon {
     private By subsidiaries_percentage_owned_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='percentage ng-binding']");
     private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@class='notification']");
     private By subsidiaries_institution_legal_title_text_xpath =By.xpath("//*[@id='content-view']/h2");
+    private By subsidiaries_institution_legal_title_hidden_text_xpath = By.xpath("//*[@id='content-view']/h2[@class='ng-binding ng-hide']");
 
 
     public SubsidiariesPage(WebDriverProvider driverProvider) {
@@ -57,7 +58,7 @@ public class SubsidiariesPage extends PagesCommon {
 
     public void verifyNoSubsidiariesMsg() {
         waitForWebElementToAppear(no_subsidiaries_msg_text_xpath);
-        assertEquals("No results.", getWebElementText(no_subsidiaries_msg_text_xpath));
+        assertEquals("No known entities.", getWebElementText(no_subsidiaries_msg_text_xpath));
     }
 
     public void sVerifySubsidiariesList(ExamplesTable subsidiariesListExamTable) {
@@ -79,12 +80,7 @@ public class SubsidiariesPage extends PagesCommon {
         dVerifySubsidiariesList();
     }
 
-    public void verifyMsgNoSubsidiariesMeetThePercentFilter() {
-        waitForWebElementToAppear(no_subsidiaries_msg_text_xpath);
-        assertEquals("No subsidiaries meet the percent filter requirement", getWebElementText(no_subsidiaries_msg_text_xpath));
-    }
-
     public void verifyLegalTitleIsNotDisplayed() {
-        assertFalse(isWebElementDisplayed(subsidiaries_institution_legal_title_text_xpath));
+        assertTrue(isWebElementDisplayed(subsidiaries_institution_legal_title_hidden_text_xpath));
     }
 }

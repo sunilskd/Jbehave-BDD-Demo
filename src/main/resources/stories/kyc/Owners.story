@@ -85,8 +85,8 @@ Examples:
 |46637|10|
 
 Scenario: Verify no data found message when there are no direct owners
-a. If there are no direct owners display "no results" for now
-b. If legal entity direct owner are inactive do not display the records for inactive legal entity
+a. If there are no direct owners display "No known entities" for now
+b. If direct owner is inactive do not display the inactive direct owner legal entity
 c. If direct owner relationships are inactive do not display the records for inactive direct ownership relationship
 Meta:@directOwners @static @dynamic
 Given the kyc user is on the ubo home page
@@ -121,7 +121,7 @@ Examples:
 |1038|25|
 |1045|50|
 
-Scenario: Select filter that results in no entities on the list (display no owners)
+Scenario: Select filter that results in no entities on the list (display no owners, display message no known entitiess)
 Meta:@directOwners @static @dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
