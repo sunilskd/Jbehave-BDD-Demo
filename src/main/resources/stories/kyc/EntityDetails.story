@@ -10,13 +10,15 @@ Scenario: KYC user can view entity details
 a. with head office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
    with LEI (with multiple LEIs (sort by LEI issuer name alphabetically (ascending) in identifiers section)
    with GIIN (display in identifiers section)
+   with head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
 b. with FATCA status value (display in identifiers section)
 c. KYC users should see Indetifiers labels even when there are no values for the identifiers
     If no GIIN, display field label in identifiers section but no value
     If no LEI, display field label in identifiers section but no value
     If no FATCA status, display field label in identifiers section but no value
 d. If no primary physical address exists for head office, display field label in summary section but no value
-e. with head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
+e. Do not display head office when it is inactive
+f. Display all head office entity where useInaddress is true
 Meta:@dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -30,8 +32,9 @@ Examples:
 |1038|
 |815|
 |269306|
-||
-||
+|277123|
+|82474|
+|15773|
 
 Scenario: KYC user can view entity details
 Meta:@static
@@ -50,4 +53,3 @@ And the user should see the identifiers with below leis in the entity details pa
 Examples:
 |fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
 |815|Banco Popular|Bankersalmanac.com ID: 815|Calle 17, No 7- 43 Piso 3, Calle 17, Bogotá, Distrito Capital de Santa Fe de Bogota, Colombia|10ZQZE.99999.SL.170|Participating FFI|
-
