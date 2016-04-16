@@ -8,6 +8,10 @@ JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
 
 Meta:@subsidiaries @kyc
 
+Scenario: KYC user login
+Given the user is on the ubo login page
+When the user login as a ubo user
+
 Scenario: KYC user can view direct subsidiaries
 a. With percentage ownership; with country of operations; with active legal entity subsidiaries; with active subsidiary relationships
 b. If percentage ownership is null then display record with no percentage ownership
@@ -15,7 +19,7 @@ c. If country of operations is not present then display records with no country
 d. If subsidiaries are inactive do not display the inactive subsidiaries legal entity
 e. If subsidiary relationships are inactive do not display the records for inactive subsidiaries relationship
 Meta:@dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -32,7 +36,7 @@ Examples:
 
 Scenario: KYC user can view direct subsidiaries
 Meta:@static
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -105,7 +109,7 @@ Examples:
 Scenario: Display message in place of subs list if no subsidiaries for entity user is viewing
 a. If there are no subsidiaries display "No known entities" for now;
 Meta:@static @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -121,7 +125,7 @@ Examples:
 
 Scenario: Select filter that results in no entities on the list (display no subsidiaries, display message no known entities)
 Meta:@static @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -140,7 +144,7 @@ a. View all is selected by default (displays all direct subsidiaries regardless 
 b. Selecting 25 and above filters out any entities owned by less than 25 or have null ownership
 c. Selecting 50 and above filters out any entities owned by less than 50 or have null ownership
 Meta:@dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -157,7 +161,7 @@ Examples:
 
 Scenario: Select a second filter (first filter is de-selected, list updates to match new filter)
 Meta:@dynamic @static
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -168,3 +172,7 @@ Then the user should see the percent filter View All de-selected in the subsidia
 Examples:
 |fid|percentFilter|
 |1038|10|
+
+Scenario: KYC user logout
+Given the user is on the ubo login page
+When the user logout
