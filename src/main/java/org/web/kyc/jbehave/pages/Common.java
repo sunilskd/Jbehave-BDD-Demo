@@ -22,7 +22,7 @@ public class Common extends PagesCommon{
 
     public void open(){
         nvPairs.clear();
-        get(readProperties().getUrl());
+        get(readProperties().getUrl() + "login");
     }
 
     public void clickOnOwnershipTab() {
@@ -33,7 +33,7 @@ public class Common extends PagesCommon{
 
     public void openUrl(String url){
         nvPairs.add(new BasicNameValuePair("fid", url));
-        get("https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/legalEntity/" + url + "/ownership/owners");
+        get(readProperties().getUrl() + "legalEntity/" + url + "/ownership/owners");
     }
 
     public void verifyPercentFilterOptions() {
@@ -69,6 +69,11 @@ public class Common extends PagesCommon{
             enterStringInInputBox(user_login_input_box_id, readProperties().getUboUser());
         }
         clickOnWebElement(login_button_xpath);
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void userLogout(){
