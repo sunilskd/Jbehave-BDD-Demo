@@ -12,7 +12,9 @@ public class Common extends PagesCommon{
     private By ownership_tab_xpath = By.xpath("//*[@id='content-navigation'] //li[2]");
     private By percent_filter_option_header_text_xpath = By.xpath("//*[@id='content-filters']/h2[1]");
     private String percent_filter_options_text_xpath = "//*[@id='content-filters']/ul[1]/li";
-
+    private By user_login_input_box_id = By.xpath("//input[@id='login']");
+    private By login_button_xpath = By.xpath("//button[1]");
+    private By logout_button_xpath = By.xpath("//button[1]");
 
     public Common(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -20,7 +22,7 @@ public class Common extends PagesCommon{
 
     public void open(){
         nvPairs.clear();
-        get(readProperties().getUrl());
+        get(readProperties().getUrl() + "login");
     }
 
     public void clickOnOwnershipTab() {
@@ -31,7 +33,7 @@ public class Common extends PagesCommon{
 
     public void openUrl(String url){
         nvPairs.add(new BasicNameValuePair("fid", url));
-        get("https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/legalEntity/" + url + "/ownership/owners");
+        get(readProperties().getUrl() + "legalEntity/" + url + "/ownership/owners");
     }
 
     public void verifyPercentFilterOptions() {
@@ -58,5 +60,23 @@ public class Common extends PagesCommon{
     public void verifyPercentFilterIsDeSelected(String deselectFilter) {
         String filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), deselectFilter) + "]";
         assertFalse(isWebElementDisplayed(By.xpath(filterXpath+"[@class='ng-binding ng-scope selected']")));
+    }
+
+    public void userLogin(String userType) {
+        if(userType.equals("kyc")){
+            enterStringInInputBox(user_login_input_box_id, readProperties().getKycUser());
+        } else if(userType.equals("ubo")){
+            enterStringInInputBox(user_login_input_box_id, readProperties().getUboUser());
+        }
+        clickOnWebElement(login_button_xpath);
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void userLogout(){
+        clickOnWebElement(logout_button_xpath);
     }
 }
