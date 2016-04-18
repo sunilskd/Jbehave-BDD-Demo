@@ -6,6 +6,7 @@ A key part of this process is to find out if there are any owners of the bank th
 Covers below features:
 JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
+JIRA-ID - KYC-106- KYC user can highlight legal entities by country in direct owners list
 
 Meta:@owners @kyc
 
@@ -150,3 +151,11 @@ Examples:
 |94016|10|
 
 
+Scenario: Highlight legal entities in direct owners list by country
+a. Legal entities in list have country of operations (country of operations for each legal entity populates list of available countries to highlight, only list each unique country once, sort countries in highlight list alphabetically)
+b. Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
+c. de-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+d. select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
+e. If no legal entities in list have country of operations, then no countries are available as highlight option
+f. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
+g. If user applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
