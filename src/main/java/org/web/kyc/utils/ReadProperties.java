@@ -8,6 +8,8 @@ public class ReadProperties {
     private String url;
     private String browser;
     private String stories;
+    private String kycUser;
+    private String uboUser;
     private String mlHost;
     private String mlPort;
     private String mlUsername;
@@ -86,11 +88,29 @@ public class ReadProperties {
     public void setStories(String stories) {
         this.stories = stories;
     }
+    public String getUboUser() {
+        return uboUser;
+    }
+
+    public void setUboUser(String uboUser) {
+        this.uboUser = uboUser;
+    }
+
+    public String getKycUser() {
+        return kycUser;
+    }
+
+    public void setKycUser(String kycUser) {
+        this.kycUser = kycUser;
+    }
+
 
     public ReadProperties(){
         setUrl(getProjectProperties("testRunner.properties", "kyc.web.url"));
         setBrowser(getProjectProperties("testRunner.properties", "kyc.web.browser"));
         setStories(getProjectProperties("testRunner.properties", "kyc.web.story"));
+        setKycUser(getProjectProperties("testRunner.properties", "kyc.kyc.user.login.id"));
+        setUboUser(getProjectProperties("testRunner.properties", "kyc.ubo.user.login.id"));
         setMlHost(getProjectProperties("testRunner.properties", "ml.admin.host"));
         setMlPort(getProjectProperties("testRunner.properties", "ml.admin.port"));
         setMlUsername(getProjectProperties("testRunner.properties", "ml.admin.username"));
