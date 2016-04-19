@@ -1,4 +1,4 @@
-Epic- Ownership
+Epic - Ownership
 
 KYC user is performing due dilligence on a potential business partner, so they need to see identifying information about the entity to make sure it is the one they are researching.
 Covers below features:
@@ -54,7 +54,7 @@ And the user should see the identifiers with below leis in the entity details pa
 
 Examples:
 |fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
-|1038|BOA|Bankersalmanac.com ID: 1038|100 N Tryon St, Ste 170, Charlotte, North Carolina, USA|K613SZ.99999.SL.840||
+|1038|BOA|Bankersalmanac.com ID: 1038|100 N Tryon St,Ste 170,Charlotte,North Carolina,USA|K613SZ.99999.SL.840||
 
 Scenario: KYC user logout
 Given the user is on the ubo login page

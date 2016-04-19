@@ -64,6 +64,11 @@ public class Common extends PagesCommon{
     }
 
     public void userLogin(String userType) {
+        try {
+            Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if(userType.equals("kyc")){
             enterStringInInputBox(user_login_input_box_id, readProperties().getKycUser());
         } else if(userType.equals("ubo")){
