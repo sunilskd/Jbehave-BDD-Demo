@@ -59,14 +59,9 @@ public class SubsidiariesSteps {
         pages.common().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
-    @When("the user changes the percent filter option to View All in the subsidiaries page")
+    @When("the user changes the percent filter option to $updatedFilter in the subsidiaries page")
     public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
         pages.common().selectPercentFilter(updatedFilter);
-    }
-
-    @Then("the user should see message no subsidiaries meet the percent filter requirement for the selected institution in the subsidiaries page")
-    public void verifyMsgNoSubsidiariesMeetThePercentFilter(){
-        pages.subsidiariesPage().verifyMsgNoSubsidiariesMeetThePercentFilter();
     }
 
     @Then("the user should not see the legal title of the institution it is looking at in the subsidiaries page")

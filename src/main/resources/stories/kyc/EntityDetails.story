@@ -6,6 +6,10 @@ JIRA ID - KYC-117 - KYC user can view entity details
 
 Meta:@entitydetails @kyc
 
+Scenario: KYC user login
+Given the user is on the ubo login page
+When the user login as a ubo user
+
 Scenario: KYC user can view entity details
 a. with head office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
    with LEI (with multiple LEIs (sort by LEI issuer name alphabetically (ascending) ignoring "The" in identifiers section)
@@ -19,7 +23,7 @@ c. KYC users should see Indetifiers labels even when there are no values for the
 d. If no primary physical address exists for head office, display field label in summary section but no value
 e. Display all head office entity where useInaddress is true
 Meta:@dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
 Then the user should see the headers with institution legal title and bankers almanac id in entity details page
@@ -36,7 +40,7 @@ Examples:
 
 Scenario: KYC user can view entity details
 Meta:@static
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
 Then the user should see the headers with institution legal title <legalTitle> and bankers almanac id <bankersAlmanacId> in entity details page
@@ -51,3 +55,7 @@ And the user should see the identifiers with below leis in the entity details pa
 Examples:
 |fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
 |1038|BOA|Bankersalmanac.com ID: 1038|100 N Tryon St, Ste 170, Charlotte, North Carolina, USA|K613SZ.99999.SL.840||
+
+Scenario: KYC user logout
+Given the user is on the ubo login page
+When the user logout

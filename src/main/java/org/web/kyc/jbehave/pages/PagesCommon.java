@@ -81,4 +81,8 @@ public class PagesCommon extends WebDriverPage {
         }
         return index;
     }
+
+    public void enterStringInInputBox(By by, String inputString){
+        findElement(by).sendKeys(inputString);
+    }
 }

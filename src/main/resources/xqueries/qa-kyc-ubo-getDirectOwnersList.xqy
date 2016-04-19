@@ -6,9 +6,11 @@ let $percentageFilter := xs:string(xdmp:get-request-field("percentage"))
 
 let $directOwnersList := qa-kyc-ubo-getEntityList:getEntityList($fid, "direct owners")
 
-for $results in $directOwnersList/entityInfo
-return if($percentageFilter ne "all")
-        then if (xs:double($results/percentOwnership) >= xs:double($percentageFilter))
-             then <entitiesInfo>{$results}</entitiesInfo>
-             else ()
-         else <entitiesInfo>{$results}</entitiesInfo>
+let $directOwnersFilteredList:= for $results in $directOwnersList/entityInfo
+				return if($percentageFilter ne "all")
+				        then if (xs:double($results/percentOwnership) >= xs:double($percentageFilter))
+				             then $results
+				             else ()
+				        else $results
+
+return <entitiesInfo>{$directOwnersFilteredList}</entitiesInfo>

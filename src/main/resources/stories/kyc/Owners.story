@@ -9,12 +9,16 @@ JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
 
 Meta:@owners @kyc
 
+Scenario: KYC user login
+Given the user is on the ubo login page
+When the user login as a ubo user
+
 Scenario: KYC user can view direct owners that are legal entities
 a. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
 b. KYC-166 - If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
 c. If country of operations is not present then display records with no country
 Meta:@directOwners @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -31,7 +35,7 @@ Scenario: KYC-172 - Do not display the meter when the percentage ownership is nu
 a. If percentage ownership is null then display record with no percentage ownership
 b. KYC-170 - If validation date is not present then display record with no validation date
 Meta:@directOwners @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -45,7 +49,7 @@ Examples:
 
 Scenario: KYC user can view direct owners that are legal entities
 Meta:@directOwners @static
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -85,11 +89,11 @@ Examples:
 |46637|10|
 
 Scenario: Verify no data found message when there are no direct owners
-a. If there are no direct owners display "no results" for now
-b. If legal entity direct owner are inactive do not display the records for inactive legal entity
+a. If there are no direct owners display "No known entities" for now
+b. If direct owner is inactive do not display the inactive direct owner legal entity
 c. If direct owner relationships are inactive do not display the records for inactive direct ownership relationship
 Meta:@directOwners @static @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -107,7 +111,7 @@ a. View all is selected by default (displays all direct owners regardless of per
 b. Selecting 25 and above filters out any entity that has null or less than 25 ownership
 c. Selecting 50 and above filters out any entity that has null or less than 50 ownership
 Meta:@directOwners @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -121,9 +125,9 @@ Examples:
 |1038|25|
 |1045|50|
 
-Scenario: Select filter that results in no entities on the list (display no owners)
+Scenario: Select filter that results in no entities on the list (display no owners, display message no known entitiess)
 Meta:@directOwners @static @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -137,7 +141,7 @@ Examples:
 
 Scenario: Select a second filter (first filter is de-selected, list updates to match new filter)
 Meta:@directOwners @static @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -149,4 +153,6 @@ Examples:
 |fid|percentFilter|
 |94016|10|
 
-
+Scenario: KYC user logout
+Given the user is on the ubo login page
+When the user logout

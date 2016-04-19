@@ -12,7 +12,7 @@ public class CommonSteps {
         this.pages = pages;
     }
 
-    @Given("the kyc user is on the ubo home page")
+    @Given("the user is on the ubo login page")
     public void open(){
         pages.common().open();
     }
@@ -27,4 +27,13 @@ public class CommonSteps {
         pages.common().openUrl(fid);
     }
 
+    @When("the user login as a $userType user")
+    public void userLogin(@Named("userType") String userType){
+        pages.common().userLogin(userType);
+    }
+
+    @When("the user logout")
+    public void userLogout(){
+        pages.common().userLogout();
+    }
 }

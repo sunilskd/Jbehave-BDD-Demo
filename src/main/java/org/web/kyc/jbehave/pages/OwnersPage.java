@@ -59,7 +59,7 @@ public class OwnersPage extends PagesCommon {
 
     public void verifyNoDirectOwnersMsg() {
         waitForWebElementToAppear(no_direct_owners_msg_text_xpath);
-        assertEquals("No results.", getWebElementText(no_direct_owners_msg_text_xpath));
+        assertEquals("No known entities.", getWebElementText(no_direct_owners_msg_text_xpath));
     }
 
     public void sVerifyDirectOwnersList(ExamplesTable directOwnersListExamTable) {
