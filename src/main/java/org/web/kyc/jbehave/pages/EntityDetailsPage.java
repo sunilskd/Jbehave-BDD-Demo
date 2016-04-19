@@ -17,7 +17,7 @@ public class EntityDetailsPage extends PagesCommon {
     private By entity_details_name_text_xpath = By.xpath("//*[@id='entity-details']/h1");
     private By entity_details_almanac_id_text_xpath = By.xpath("//*[@id='entity-details']/p");
     private By entity_details_summary_header_text_xpath = By.xpath("//*[@id='content-view'] /h1[1]");
-    private By entity_details_head_office_address_text_xpath = By.xpath("//*[@id='entity-head-office']/tbody/tr/td/div[1]");
+    private By entity_details_head_office_address_text_xpath = By.xpath("//*[@id='entity-head-office']/tbody/tr/td/div/span");
     private By entity_details_giin_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[1]/td");
     private By entity_details_fatca_status_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[2]/td");
     private By entity_details_lei_text_xpath = By.xpath("//*[@id='entity-lei'] //*[@class='ng-binding']");

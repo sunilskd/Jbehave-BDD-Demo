@@ -8,7 +8,7 @@ Meta:@entitydetails @kyc
 
 Scenario: KYC user can view entity details
 a. with head office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
-   with LEI (with multiple LEIs (sort by LEI issuer name alphabetically (ascending) in identifiers section)
+   with LEI (with multiple LEIs (sort by LEI issuer name alphabetically (ascending) ignoring "The" in identifiers section)
    with GIIN (display in identifiers section)
    with head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
 b. with FATCA status value (display in identifiers section)
@@ -17,8 +17,7 @@ c. KYC users should see Indetifiers labels even when there are no values for the
     If no LEI, display field label in identifiers section but no value
     If no FATCA status, display field label in identifiers section but no value
 d. If no primary physical address exists for head office, display field label in summary section but no value
-e. Do not display head office when it is inactive
-f. Display all head office entity where useInaddress is true
+e. Display all head office entity where useInaddress is true
 Meta:@dynamic
 Given the kyc user is on the ubo home page
 When the user opens legal entity <fid>
@@ -33,7 +32,6 @@ Examples:
 |815|
 |269306|
 |277123|
-|82474|
 |15773|
 
 Scenario: KYC user can view entity details
@@ -46,10 +44,10 @@ Then the user should see the summary with head office address <headOfficeAddress
 And the user should see the identifiers with giin <giin> and fatca status <fatcaStatus> for the selected institution in the entity details page
 And the user should see the identifiers with below leis in the entity details page
 |LEIS|
+|Global Intermediary Identification Number K613SZ.99999.SL.840|
 |The Global Markets Entity Identifier (GMEI) B4TYDEB6GKMZO031MB27|
 |S and P Identification Number (SPID) 105940|
-|Global Intermediary Identification Number K613SZ.99999.SL.840|
 
 Examples:
 |fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
-|815|Banco Popular|Bankersalmanac.com ID: 815|Calle 17, No 7- 43 Piso 3, Calle 17, Bogotá, Distrito Capital de Santa Fe de Bogota, Colombia|10ZQZE.99999.SL.170|Participating FFI|
+|1038|BOA|Bankersalmanac.com ID: 1038|100 N Tryon St, Ste 170, Charlotte, North Carolina, USA|K613SZ.99999.SL.840||
