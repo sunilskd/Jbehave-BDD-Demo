@@ -63,6 +63,7 @@ public class Common extends PagesCommon{
     }
 
     public void userLogin(String userType) {
+        waitForWebElementToAppear(user_login_input_box_id);
         if(userType.equals("kyc")){
             enterStringInInputBox(user_login_input_box_id, readProperties().getKycUser());
         } else if(userType.equals("ubo")){

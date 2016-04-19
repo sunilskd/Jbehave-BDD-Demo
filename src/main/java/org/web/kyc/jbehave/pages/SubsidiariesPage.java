@@ -37,9 +37,9 @@ public class SubsidiariesPage extends PagesCommon {
         List<WebElement> aSubsidiariesEntityName = getWebElements(subsidiaries_entity_name_text_xpath);
         List<WebElement> aSubsidiariesCountryName = getWebElements(subsidiaries_country_name_text_xpath);
         List<WebElement> aSubsidiariesPercentageOwned = getWebElements(subsidiaries_percentage_owned_text_xpath);
-        assertEquals("Subsidiaries count mismatch", aSubsidiariesEntityName.size(), eSubsidiariesList.getElementsByTagName("legalTitle").getLength());
+        assertEquals("Subsidiaries count mismatch", aSubsidiariesEntityName.size(), eSubsidiariesList.getElementsByTagName("entityName").getLength());
         for (int i = 0; i < aSubsidiariesEntityName.size(); i++) {
-            assertEquals("Legal title does not match at" + i, aSubsidiariesEntityName.get(i).getText(), eSubsidiariesList.getElementsByTagName("legalTitle").item(i).getTextContent());
+            assertEquals("Legal title does not match at" + i, aSubsidiariesEntityName.get(i).getText(), eSubsidiariesList.getElementsByTagName("entityName").item(i).getTextContent());
             assertEquals("Country name does not match at" + i, aSubsidiariesCountryName.get(i).getText(), eSubsidiariesList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
             if(!eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
                 assertEquals("Percentage owned does not match at" + i, aSubsidiariesPercentageOwned.get(i).getText(), eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%");

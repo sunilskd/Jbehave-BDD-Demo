@@ -10,7 +10,7 @@ Meta:@subsidiaries @kyc
 
 Scenario: KYC user login
 Given the user is on the ubo login page
-When the user login as a ubo user
+When the user login as a kyc user
 
 Scenario: KYC user can view direct subsidiaries
 a. With percentage ownership; with country of operations; with active legal entity subsidiaries; with active subsidiary relationships

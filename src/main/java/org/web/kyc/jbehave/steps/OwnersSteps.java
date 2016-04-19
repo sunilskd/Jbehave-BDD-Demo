@@ -20,7 +20,7 @@ public class OwnersSteps {
     }
 
     @Then("the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page")
-    @Alias("the ubo user should see the list of direct owners ordered by percentage ownership then asc by direct owners name (legal title or people as owners) for the selected institution in the owners page")
+    @Alias("the ubo user should see the list of direct owners (person or institution or non entity) ordered by percentage ownership then asc by owners name for the selected institution in the owners page")
     public void dVerifyDirectOwnersList(){
         pages.ownersPage().dVerifyDirectOwnersList();
     }

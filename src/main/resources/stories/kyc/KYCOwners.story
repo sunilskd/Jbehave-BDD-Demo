@@ -11,12 +11,13 @@ Meta:@owners @kyc
 
 Scenario: KYC user login
 Given the user is on the ubo login page
-When the user login as a ubo user
+When the user login as a kyc user
 
 Scenario: KYC user can view direct owners that are legal entities
 a. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
 b. KYC-166 - If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
 c. If country of operations is not present then display records with no country
+d. Do not display person as owners for KYC users
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -30,6 +31,7 @@ Examples:
 |211|
 |284626|
 |179281|
+|12538|
 
 Scenario: KYC-172 - Do not display the meter when the percentage ownership is null; KYC-189;
 a. If percentage ownership is null then display record with no percentage ownership
