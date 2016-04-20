@@ -24,8 +24,8 @@ public class EntityDetailsSteps {
     }
 
     @Then("the user should see the headers with institution legal title and bankers almanac id in entity details page")
-    public void verifyEntityDetailsHeader(){
-        pages.entityDetailsPage().verifyEntityDetailsHeader();
+    public void dVerifyEntityDetailsHeader(){
+        pages.entityDetailsPage().dVerifyEntityDetailsHeader();
     }
 
     @Then("the user should see the headers with institution legal title <legalTitle> and bankers almanac id <bankersAlmanacId> in entity details page")

@@ -36,7 +36,7 @@ Examples:
 |815|
 |269306|
 |277123|
-|15773|
+|498|
 
 Scenario: KYC user can view entity details
 Meta:@static

@@ -39,7 +39,7 @@ public class EntityDetailsPage extends PagesCommon {
         entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
     }
 
-    public void verifyEntityDetailsHeader() {
+    public void dVerifyEntityDetailsHeader() {
         assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(),getWebElementText(entity_details_name_text_xpath));
         assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(),(getWebElementText(entity_details_almanac_id_text_xpath)));
     }
