@@ -12,9 +12,9 @@ JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
 JIRA ID - KYC-91 - UBO user can view ownership list with non-entity, non-person owners
 
-Meta:@uboowners @ubo
+Meta:@owners @ubo
 
-Scenario: KYC user login
+Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
@@ -72,20 +72,58 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the ubo user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+Then the ubo user should see the below list of direct owners (person or institution or non entity) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
-|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011|
-|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|
-|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|
-|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|
-|Central Bank of the Russian Federation|Russian Federation|8.9|28 Oct 2011|
-|Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|
-|Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|
-|Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|
+|Others||42.3|10 Mar 2016|
+|Moody Bank Holding Company Inc|USA|25.38|Mar 2016|
+|Directors and Officers of the Bank, Directors||16.76|10 Mar 2016|
+|Anthony G. Buzbee||3.75|10 Mar 2016|
+|G. William Rider||3.41|10 Mar 2016|
+|T. A. Waterman,, Jr||2.34|10 Mar 2016|
+|Jimmy Rasmussen||1.84|10 Mar 2016|
+|Stacy Dienst||1.02|10 Mar 2016|
+|Maurice Estlinbaum||0.76|10 Mar 2016|
+|Robert L. Moody, Jr||0.52|10 Mar 2016|
+|Greg S. Garison||0.43|10 Mar 2016|
+|Sidney C. Farmer, III||0.34|10 Mar 2016|
+|Dorothea Matthews Balentine||0.31|10 Mar 2016|
+|Joe Saladino||0.3|10 Mar 2016|
+|Kent Ballard||0.29|10 Mar 2016|
+|Michael J. Gaido,, Jr||0.26|10 Mar 2016|
+|E. Vince Matthews, III||0.26|10 Mar 2016|
+|Bob Pagan||0.26|10 Mar 2016|
+
+When the user selects the percent filter option <percentFilter> in the owners page
+Then the ubo user should see the below list of direct owners (person or institution or non entity) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|Others||42.3|10 Mar 2016|
+|Moody Bank Holding Company Inc|USA|25.38|Mar 2016|
+
+When the user changes the percent filter option to View All in the owners page
+Then the ubo user should see the below list of direct owners (person or institution or non entity) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|Others||42.3|10 Mar 2016|
+|Moody Bank Holding Company Inc|USA|25.38|Mar 2016|
+|Directors and Officers of the Bank, Directors||16.76|10 Mar 2016|
+|Anthony G. Buzbee||3.75|10 Mar 2016|
+|G. William Rider||3.41|10 Mar 2016|
+|T. A. Waterman,, Jr||2.34|10 Mar 2016|
+|Jimmy Rasmussen||1.84|10 Mar 2016|
+|Stacy Dienst||1.02|10 Mar 2016|
+|Maurice Estlinbaum||0.76|10 Mar 2016|
+|Robert L. Moody, Jr||0.52|10 Mar 2016|
+|Greg S. Garison||0.43|10 Mar 2016|
+|Sidney C. Farmer, III||0.34|10 Mar 2016|
+|Dorothea Matthews Balentine||0.31|10 Mar 2016|
+|Joe Saladino||0.3|10 Mar 2016|
+|Kent Ballard||0.29|10 Mar 2016|
+|Michael J. Gaido,, Jr||0.26|10 Mar 2016|
+|E. Vince Matthews, III||0.26|10 Mar 2016|
+|Bob Pagan||0.26|10 Mar 2016|
 
 Examples:
-|fid|
-|46637|
+|fid|percentFilter|
+|12538|25|
 
 Scenario: Verify no data found message when there are no direct owners
 a. If there are no direct owners display "no results" for now
@@ -152,6 +190,6 @@ Examples:
 |fid|percentFilter|
 |12538|10|
 
-Scenario: KYC user logout
+Scenario: UBO user logout
 Given the user is on the ubo login page
 When the user logout
