@@ -2,33 +2,33 @@ package org.web.kyc.jbehave.pages;
 
 import org.jbehave.web.selenium.WebDriverProvider;
 
-public class Pages {
+public class PageObject {
 
     private final WebDriverProvider driverProvider;
     private OwnersPage ownersPage;
-    private Common common;
+    private CommonUtils commonUtil;
     private SubsidiariesPage subsidiariesPage;
 
-    public Pages(WebDriverProvider driverProvider) {
+    public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
     }
 
-    public OwnersPage ownersPage(){
-        if(ownersPage == null){
+    public OwnersPage ownersPage() {
+        if (ownersPage == null) {
             ownersPage = new OwnersPage(driverProvider);
         }
         return ownersPage;
     }
 
-    public Common common(){
-        if(common == null){
-            common = new Common(driverProvider);
+    public CommonUtils common() {
+        if (commonUtil == null) {
+            commonUtil = new CommonUtils(driverProvider);
         }
-        return common;
+        return commonUtil;
     }
 
-    public SubsidiariesPage subsidiariesPage(){
-        if(subsidiariesPage == null){
+    public SubsidiariesPage subsidiariesPage() {
+        if (subsidiariesPage == null) {
             subsidiariesPage = new SubsidiariesPage(driverProvider);
         }
         return subsidiariesPage;

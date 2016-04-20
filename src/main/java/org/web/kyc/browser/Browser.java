@@ -1,4 +1,5 @@
 package org.web.kyc.browser;
+
 import org.web.kyc.utils.ReadProperties;
 
 public class Browser {

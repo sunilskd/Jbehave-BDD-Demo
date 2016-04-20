@@ -12,7 +12,7 @@ JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
 JIRA ID - KYC-91 - UBO user can view ownership list with non-entity, non-person owners
 
-Meta:@owners @ubo
+Meta:@owners @ubo @uboowners
 
 Scenario: UBO user login
 Given the user is on the ubo login page
@@ -21,10 +21,12 @@ When the user login as a ubo user
 Scenario: UBO user can view direct owners that are legal entities, people, or other entity types (non-institution, non-person) as owners
 a. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
    Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
+   If only ownerType is present display owner as "ownerType"
 b. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
    Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
 c. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
    If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
+d. If entityReference/description and ownerType are not present do not display owner in the direct owners list
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -37,6 +39,7 @@ Examples:
 |12538|
 |257433|
 |3112|
+|28691|
 
 Scenario: Verify percentage meter bar for direct owners (person or institution or other entity type)
 Meta:@directOwners @dynamic
@@ -76,7 +79,7 @@ Then the ubo user should see the below list of direct owners (person or institut
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
 |Others||42.3|10 Mar 2016|
 |Moody Bank Holding Company Inc|USA|25.38|Mar 2016|
-|Directors and Officers of the Bank, Directors||16.76|10 Mar 2016|
+|Directors, Directors and Officers of the Bank||16.76|10 Mar 2016|
 |Anthony G. Buzbee||3.75|10 Mar 2016|
 |G. William Rider||3.41|10 Mar 2016|
 |T. A. Waterman,, Jr||2.34|10 Mar 2016|
@@ -99,12 +102,13 @@ Then the ubo user should see the below list of direct owners (person or institut
 |Others||42.3|10 Mar 2016|
 |Moody Bank Holding Company Inc|USA|25.38|Mar 2016|
 
+And the user should see the percentage meter bar in the direct owners list
 When the user changes the percent filter option to View All in the owners page
 Then the ubo user should see the below list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
 |Others||42.3|10 Mar 2016|
 |Moody Bank Holding Company Inc|USA|25.38|Mar 2016|
-|Directors and Officers of the Bank, Directors||16.76|10 Mar 2016|
+|Directors, Directors and Officers of the Bank||16.76|10 Mar 2016|
 |Anthony G. Buzbee||3.75|10 Mar 2016|
 |G. William Rider||3.41|10 Mar 2016|
 |T. A. Waterman,, Jr||2.34|10 Mar 2016|
@@ -120,6 +124,7 @@ Then the ubo user should see the below list of direct owners (person or institut
 |Michael J. Gaido,, Jr||0.26|10 Mar 2016|
 |E. Vince Matthews, III||0.26|10 Mar 2016|
 |Bob Pagan||0.26|10 Mar 2016|
+And the user should see the percentage meter bar in the direct owners list
 
 Examples:
 |fid|percentFilter|

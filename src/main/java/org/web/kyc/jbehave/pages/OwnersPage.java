@@ -5,14 +5,13 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.web.kyc.xqueries.XQueryEnum.*;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class OwnersPage extends PagesCommon {
+public class OwnersPage extends WebDriverUtils {
 
     private By owners_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[2]");
     private By direct_owners_header_text_xpath = By.xpath("//*[@class='heading-bar'][1]/h1");
