@@ -7,7 +7,7 @@ Covers below features:
 JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
 
-Meta:@owners @kyc
+Meta:@owners @kyc @kycowners
 
 Scenario: KYC user login
 Given the user is on the ubo login page
@@ -73,6 +73,7 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|
 |'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|
 |Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|
+And the user should see the percentage meter bar in the direct owners list
 
 When the user changes the percent filter option to View All in the owners page
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
@@ -85,6 +86,7 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|
 |Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|
 |Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|
+And the user should see the percentage meter bar in the direct owners list
 
 Examples:
 |fid|percentFilter|

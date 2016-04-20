@@ -19,9 +19,9 @@ public class ScreenShootingHtmlFormat extends Format {
     public StoryReporter createStoryReporter(
             FilePrintStreamFactory factory,
             StoryReporterBuilder builder) {
-            factory.useConfiguration(
+        factory.useConfiguration(
                 builder.fileConfiguration("html"));
-                return new ScreenShootingHtmlOutput(factory.createPrintStream(),
+        return new ScreenShootingHtmlOutput(factory.createPrintStream(),
                 builder, webDriverProvider)
                 .doReportFailureTrace(builder.reportFailureTrace())
                 .doCompressFailureTrace(builder.compressFailureTrace());

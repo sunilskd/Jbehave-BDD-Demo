@@ -12,7 +12,7 @@ public enum XQueryEnum {
         this.xQueryName = xQueryName;
     }
 
-    public String getXQueryName(){
+    public String getXQueryName() {
         return xQueryName;
     }
 }
