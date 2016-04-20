@@ -18,19 +18,19 @@ Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: UBO user can view direct owners that are legal entities and people as owners
-a. Person or institution or non enity owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
-   Person or institution or non enity owner has percent ownership (Display percent ownership on list, display meter on list)
+Scenario: UBO user can view direct owners that are legal entities, people, or other entity types (non-institution, non-person) as owners
+a. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
+   Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
 b. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
    Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
-c. If ownership relationship (with non entity owners) does not have validated date, do not display validated date on list next to the record
+c. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
    If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the ubo user should see the list of direct owners (person or institution or non entity) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
+Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
 
 Examples:
 |fid|
@@ -38,7 +38,7 @@ Examples:
 |257433|
 |3112|
 
-Scenario: Verify percentage meter bar for direct owners (person or institution or non-entity)
+Scenario: Verify percentage meter bar for direct owners (person or institution or other entity type)
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -58,7 +58,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the ubo user should see the list of direct owners (person or institution or non entity) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
+Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
 And the user should not see the percentage meter bar in the direct owners list
 
 Examples:
@@ -72,7 +72,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the ubo user should see the below list of direct owners (person or institution or non entity) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+Then the ubo user should see the below list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
 |Others||42.3|10 Mar 2016|
 |Moody Bank Holding Company Inc|USA|25.38|Mar 2016|
@@ -94,13 +94,13 @@ Then the ubo user should see the below list of direct owners (person or institut
 |Bob Pagan||0.26|10 Mar 2016|
 
 When the user selects the percent filter option <percentFilter> in the owners page
-Then the ubo user should see the below list of direct owners (person or institution or non entity) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+Then the ubo user should see the below list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
 |Others||42.3|10 Mar 2016|
 |Moody Bank Holding Company Inc|USA|25.38|Mar 2016|
 
 When the user changes the percent filter option to View All in the owners page
-Then the ubo user should see the below list of direct owners (person or institution or non entity) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+Then the ubo user should see the below list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
 |Others||42.3|10 Mar 2016|
 |Moody Bank Holding Company Inc|USA|25.38|Mar 2016|
@@ -128,7 +128,7 @@ Examples:
 Scenario: Verify no data found message when there are no direct owners
 a. If there are no direct owners display "no results" for now
 b. If person or institution ownership relationship is inactive, do not display that person or institution on owners list
-c. If non entity owner ownership relationship is inactive, do not display that no entity owners on owners list
+c. If non entity or person owner ownership relationship is inactive, do not display those other entity type owners on owners list
 Meta:@directOwners @static @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -162,7 +162,7 @@ Examples:
 |12538|25|
 |248469|50|
 
-Scenario: Select filter that results in no person or institution or non entity owners on the list (display no owners, display message no known entitiess)
+Scenario: Select filter that results in no person or institution or non entity owners on the list (display no owners, display message no known entities)
 Meta:@directOwners @static @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -193,3 +193,5 @@ Examples:
 Scenario: UBO user logout
 Given the user is on the ubo login page
 When the user logout
+
+
