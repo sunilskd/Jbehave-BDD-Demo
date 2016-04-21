@@ -6,6 +6,7 @@ A key part of this process is to find out if there are any owners of the bank th
 Covers below features:
 JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
+JIRA ID - KYC-115 - KYC user can view ownership free text in owners list
 
 Meta:@owners @kyc @kycowners
 
@@ -160,3 +161,9 @@ Examples:
 Scenario: KYC user logout
 Given the user is on the ubo login page
 When the user logout
+
+Scenario: KYC-115 KYC user can view ownership free text in owners list
+a. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
+b. If ownership free text does not exist on legal entity doc, then do not display
+c. Ownership free text exists and there are legal entities on owners list (display both, free text at bottom of list)
+d. Only ownership free text exists on the owners list, no legal entities on the list (display free text, do not display "No known entities." message)
