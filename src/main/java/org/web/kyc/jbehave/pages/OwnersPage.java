@@ -5,11 +5,12 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
-import static org.junit.Assert.assertTrue;
-import static org.web.kyc.xqueries.XQueryEnum.*;
+
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
 
 public class OwnersPage extends PagesCommon {
 

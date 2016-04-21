@@ -2,7 +2,6 @@ package org.web.kyc.jbehave.steps;
 
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.web.kyc.jbehave.pages.Pages;
 

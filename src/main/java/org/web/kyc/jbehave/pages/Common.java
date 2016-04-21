@@ -3,6 +3,7 @@ package org.web.kyc.jbehave.pages;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+
 import static org.junit.Assert.*;
 
 /* Contains common methods to be used in page classes */
@@ -63,6 +64,11 @@ public class Common extends PagesCommon{
     }
 
     public void userLogin(String userType) {
+        try {
+            Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if(userType.equals("kyc")){
             enterStringInInputBox(user_login_input_box_id, readProperties().getKycUser());
         } else if(userType.equals("ubo")){

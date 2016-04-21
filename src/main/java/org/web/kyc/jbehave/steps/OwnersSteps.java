@@ -1,6 +1,5 @@
 package org.web.kyc.jbehave.steps;
 
-import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
