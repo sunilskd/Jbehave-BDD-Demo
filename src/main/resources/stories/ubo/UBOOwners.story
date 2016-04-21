@@ -26,7 +26,8 @@ b. If ownership relationship (with person or institution) does not have validate
    Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
 c. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
    If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
-d. If entityReference/description and ownerType are not present do not display owner in the direct owners list
+d. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
+e. If ownerType is not present display owner as "entityReference/description"
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -40,6 +41,7 @@ Examples:
 |257433|
 |3112|
 |28691|
+|11262|
 
 Scenario: Verify percentage meter bar for direct owners (person or institution or other entity type)
 Meta:@directOwners @dynamic
