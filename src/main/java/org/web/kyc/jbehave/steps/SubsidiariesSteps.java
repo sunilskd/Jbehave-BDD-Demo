@@ -4,74 +4,69 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
-import org.web.kyc.jbehave.pages.Pages;
+import org.web.kyc.jbehave.pages.PageObject;
 
 public class SubsidiariesSteps {
-    private final Pages pages;
+    private final PageObject pageObject;
 
-    public SubsidiariesSteps(Pages pages) {
-        this.pages = pages;
+    public SubsidiariesSteps(PageObject pageObject) {
+        this.pageObject = pageObject;
     }
 
     @When("the user clicks on the subsidiaries tab")
     public void clickOnSubsidiariesTab() {
-        pages.subsidiariesPage().clickOnSubsidiariesTab();
+        pageObject.subsidiariesPage().clickOnSubsidiariesTab();
     }
 
     @Then("the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page")
     public void dVerifySubsidiariesList() {
-        pages.subsidiariesPage().dVerifySubsidiariesList();
+        pageObject.subsidiariesPage().dVerifySubsidiariesList();
     }
 
     @Then("the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page $subsidiariesListExamTable")
     public void sVerifySubsidiariesList(ExamplesTable subsidiariesListExamTable) {
-        pages.subsidiariesPage().sVerifySubsidiariesList(subsidiariesListExamTable);
+        pageObject.subsidiariesPage().sVerifySubsidiariesList(subsidiariesListExamTable);
 
     }
 
     @Then("the user should see message displayed in place of list explaining there are no subsidiaries")
     public void verifyNoSubsidiariesMsg() {
-        pages.subsidiariesPage().verifyNoSubsidiariesMsg();
+        pageObject.subsidiariesPage().verifyNoSubsidiariesMsg();
     }
 
     @Then("the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page")
     public void verifyInstitutionLegalTitle(@Named("institutionLegalTitle") String institutionLegalTitle) {
-        pages.subsidiariesPage().verifyInstitutionLegalTitle(institutionLegalTitle);
+        pageObject.subsidiariesPage().verifyInstitutionLegalTitle(institutionLegalTitle);
     }
 
     @Then("the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the subsidiaries page")
     public void verifyPercentFilterOptions(){
-        pages.common().verifyPercentFilterOptions();
+        pageObject.commonUtils().verifyPercentFilterOptions();
     }
 
     @When("the user selects the percent filter option <percentFilter> in the subsidiaries page")
     public void selectPercentFilter(@Named("percentFilter") String percentFilter){
-        pages.common().selectPercentFilter(percentFilter);
+        pageObject.commonUtils().selectPercentFilter(percentFilter);
     }
 
     @Then("the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the subsidiaries page")
     public void dVerifySubsidiariesListForPercentFilter(){
-        pages.subsidiariesPage().dVerifySubsidiariesListForPercentFilter();
+        pageObject.subsidiariesPage().dVerifySubsidiariesListForPercentFilter();
     }
 
     @Then("the user should see the percent filter $deselectFilter de-selected in the subsidiaries page")
     public void verifyPercentFilterIsDeSelected(@Named("deselectFilter") String deselectFilter){
-        pages.common().verifyPercentFilterIsDeSelected(deselectFilter);
+        pageObject.commonUtils().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
-    @When("the user changes the percent filter option to View All in the subsidiaries page")
+    @When("the user changes the percent filter option to $updatedFilter in the subsidiaries page")
     public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
-        pages.common().selectPercentFilter(updatedFilter);
-    }
-
-    @Then("the user should see message no subsidiaries meet the percent filter requirement for the selected institution in the subsidiaries page")
-    public void verifyMsgNoSubsidiariesMeetThePercentFilter(){
-        pages.subsidiariesPage().verifyMsgNoSubsidiariesMeetThePercentFilter();
+        pageObject.commonUtils().selectPercentFilter(updatedFilter);
     }
 
     @Then("the user should not see the legal title of the institution it is looking at in the subsidiaries page")
     public void verifyLegalTitleIsNotDisplayed(){
-        pages.subsidiariesPage().verifyLegalTitleIsNotDisplayed();
+        pageObject.subsidiariesPage().verifyLegalTitleIsNotDisplayed();
     }
 
 }

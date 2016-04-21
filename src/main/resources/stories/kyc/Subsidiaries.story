@@ -8,14 +8,18 @@ JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
 
 Meta:@subsidiaries @kyc
 
+Scenario: KYC user login
+Given the user is on the ubo login page
+When the user login as a kyc user
+
 Scenario: KYC user can view direct subsidiaries
 a. With percentage ownership; with country of operations; with active legal entity subsidiaries; with active subsidiary relationships
 b. If percentage ownership is null then display record with no percentage ownership
 c. If country of operations is not present then display records with no country
-d. If legal entity subsidiaries are inactive do not display the records for inactive legal entity
+d. If subsidiaries are inactive do not display the inactive subsidiaries legal entity
 e. If subsidiary relationships are inactive do not display the records for inactive subsidiaries relationship
 Meta:@dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -32,7 +36,7 @@ Examples:
 
 Scenario: KYC user can view direct subsidiaries
 Meta:@static
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -58,6 +62,7 @@ Then the user should see the below list of direct subsidiaries ordered by percen
 |UTI Trustee Co Pvt Ltd|India|25|
 |Indo-Zambia Bank Limited|Zambia|20|
 |Small Industries Development Bank of India (SIDBI)|India|4.4|
+
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
@@ -72,6 +77,7 @@ Then the user should see the below list of direct subsidiaries ordered by percen
 |Nainital Bank Ltd|India|98.57|
 |Bank of Baroda (Kenya) Ltd|Kenya|86.7|
 |Bank of Baroda (Uganda) Limited|Uganda|80|
+
 When the user changes the percent filter option to View All in the subsidiaries page
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
@@ -101,32 +107,31 @@ Examples:
 |1045|50|
 
 Scenario: Display message in place of subs list if no subsidiaries for entity user is viewing
-a. If there are no subsidiaries display "no results" for now;
+a. If there are no subsidiaries display "No known entities" for now;
 Meta:@static @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 Then the user should see message displayed in place of list explaining there are no subsidiaries
-And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
+And the user should not see the legal title of the institution it is looking at in the subsidiaries page
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
 Then the user should see message displayed in place of list explaining there are no subsidiaries
-And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
+And the user should not see the legal title of the institution it is looking at in the subsidiaries page
 
 Examples:
 |fid|institutionLegalTitle|percentFilter|
 |269306|First American Insurance Services Inc|10|
 
-Scenario: Select filter that results in no entities on the list (display no subsidiaries, display message explaining no subsidiaries meet percent filter requirement)
+Scenario: Select filter that results in no entities on the list (display no subsidiaries, display message no known entities)
 Meta:@static @dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
-Then the user should see message displayed in place of list explaining there are no subsidiaries
-And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
+Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
-Then the user should see message no subsidiaries meet the percent filter requirement for the selected institution in the subsidiaries page
+Then the user should see message displayed in place of list explaining there are no subsidiaries
 And the user should not see the legal title of the institution it is looking at in the subsidiaries page
 
 Examples:
@@ -139,7 +144,7 @@ a. View all is selected by default (displays all direct subsidiaries regardless 
 b. Selecting 25 and above filters out any entities owned by less than 25 or have null ownership
 c. Selecting 50 and above filters out any entities owned by less than 50 or have null ownership
 Meta:@dynamic
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -156,7 +161,7 @@ Examples:
 
 Scenario: Select a second filter (first filter is de-selected, list updates to match new filter)
 Meta:@dynamic @static
-Given the kyc user is on the ubo home page
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -167,3 +172,7 @@ Then the user should see the percent filter View All de-selected in the subsidia
 Examples:
 |fid|percentFilter|
 |1038|10|
+
+Scenario: KYC user logout
+Given the user is on the ubo login page
+When the user logout

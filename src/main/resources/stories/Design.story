@@ -5,18 +5,31 @@ As a user
 I want to perform an action
 So that I can achieve a business goal
 
-Scenario: KYC user can view direct subsidiaries
-a. with percentage ownership; with country of operations; with active legal entity subsidiaries; with active subsidiary relationships
-b. with percentage null (should not display percent)
-c. without country of operations (should not display country of operations)
-d. with inactive legal entity subsidiaries
-Meta:@dynamic
-Given the kyc user is on the ubo home page
+e. Display all head office entity where useInaddress is true
+Scenario: KYC user login
+Meta: @id login
+Given the user is on the ubo login page
+When the user login as a kyc user
+
+Scenario: KYC user can view direct owners that are legal entities
+a.
+b.If no legal entities in list have country of operations, then no countries are available as highlight option
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the subsidiaries tab
-Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution <fid> in the subsidiaries page
+And the user clicks on the owners tab
+When the user selects a country <country> from the country highlight list in the owners page
+Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
+Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
+Then the user should not see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
+When the user de-select previously selected country by clicking on it a second time from the country highlight
+Then the use should not see any direct owners lists highlighted in the owners page
+When the user selects another country <country> from the country highlight list in the owners page
+Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
+And the previously selected country should be de-selected
 
 Examples:
-|fid|
-|211|
+|fid|country|
+|211|Australia|
+|179281||

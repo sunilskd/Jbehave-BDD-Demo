@@ -2,6 +2,10 @@ xquery version "1.0-ml";
 import module namespace qa-kyc-ubo-getLegalEntityDoc = "qa-kyc-ubo-getLegalEntityDoc" at "qa-kyc-ubo-getLegalEntityDoc.xqy";
 import module namespace qa-kyc-ubo-getLookupDoc  = "qa-kyc-ubo-getLookupDoc" at "qa-kyc-ubo-getLookupDoc.xqy";
 import module namespace qa-kyc-ubo-getRoutingCodeDocs = "qa-kyc-ubo-getRoutingCodeDocs" at "qa-kyc-ubo-getRoutingCodeDocs.xqy";
+import module namespace qa-kyc-ubo-getCountryDoc = "qa-kyc-ubo-getCountryDoc" at "qa-kyc-ubo-getCountryDoc.xqy";
+import module namespace qa-kyc-ubo-getCityDoc = "qa-kyc-ubo-getCityDoc" at "qa-kyc-ubo-getCityDoc.xqy";
+import module namespace qa-kyc-ubo-getAreaDoc = "qa-kyc-ubo-getAreaDoc" at "qa-kyc-ubo-getAreaDoc.xqy";
+
 
 let $fid := xs:string(xdmp:get-request-field("fid"))
 
@@ -11,13 +15,14 @@ let $bankersAlmanacID := $legalEntity/@fid/string()
 let $GIIN := $legalEntity/summary/identifiers/identifier[type="Global Intermediary Identification Number"]/value/text()
 let $FATCAStatus := $legalEntity/summary/fatcaStatus/text()
 
-let $addnLookup := qa-kyc-ubo-getLookupDoc:getLookupDoc("LEGAL_ENTITY_THIRD_PARTY_IDENTIFIER")
+let $addnLookup := qa-kyc-ubo-getLookupDoc:getLookupDoc("THIRD_PARTY_IDENTIFIER_LEGAL_ENTITY")
 let $legalEntityIdentifierType := $legalEntity/summary/identifiers/identifier/type/text()
 
 let $LEIs:= 
 for $x in $legalEntityIdentifierType
-let $LEIFlag := $addnLookup/lookupBody/entry[@id=$x]/@leiFlag
+let $LEIFlag := $addnLookup/lookupBody/entry[@id=$x][@leiFlag="true"]
 let $legalEntityIdentifierValue := $legalEntity/summary/identifiers/identifier[type = $x]/value/text()
+order by $x 
 return if ($LEIFlag)
        then <LEI>             
              <LEIIssuer>{$x}</LEIIssuer>
@@ -50,47 +55,27 @@ let $officeAddressLine4 := if (fn:exists($primaryPhysicalAddress/streetAddress/a
                            then $primaryPhysicalAddress/streetAddress/addressLine4/text()
                            else ()
                            
-let $city := cts:search(/city,
-			        cts:and-query((
-			        cts:collection-query(("current")),
-			        cts:collection-query(("city")),
-			        cts:collection-query("source-fdb"), 
-              cts:element-attribute-value-query(xs:QName("city"), xs:QName("resource"), $primaryPhysicalAddress/city/link/@href))))
+let $city := qa-kyc-ubo-getCityDoc:getCityDoc($primaryPhysicalAddress/city/link/@href)
 
-let $cityName := if ($city/summary/useInAddress) 
+let $cityName := if ($city/summary/useInAddress = "true") 
                  then $city/summary[useInAddress="true"]/names/name[type="Full Name"]/value/text()
                  else()
 
-let $subArea := cts:search(/area,
-			        cts:and-query((
-			        cts:collection-query(("current")),
-			        cts:collection-query(("area")),
-			        cts:collection-query("source-fdb"), 
-              cts:element-attribute-value-query(xs:QName("area"), xs:QName("resource"), $primaryPhysicalAddress/subArea/link/@href))))
+let $subArea := qa-kyc-ubo-getAreaDoc:getAreaDoc($primaryPhysicalAddress/subarea/link/@href)
 
-let $subAreaName := if ($subArea/summary/useInAddress) 
+let $subAreaName := if ($subArea/summary/useInAddress = "true") 
                     then $subArea/summary/names/name[type="Full Name"]/value/text()
                     else ()
 
-let $area := cts:search(/area,
-			        cts:and-query((
-			        cts:collection-query(("current")),
-			        cts:collection-query(("area")),
-			        cts:collection-query("source-fdb"), 
-              cts:element-attribute-value-query(xs:QName("area"), xs:QName("resource"), $primaryPhysicalAddress/area/link/@href))))
+let $area := qa-kyc-ubo-getAreaDoc:getAreaDoc($primaryPhysicalAddress/area/link/@href)
 
-let $areaName := if ($area/summary/useInAddress)
+let $areaName := if ($area/summary/useInAddress = "true")
                  then $area/summary/names/name[type="Full Name"]/value/text()
                  else ()
 
-let $country := cts:search(/country,
-			        cts:and-query((
-			        cts:collection-query(("current")),
-			        cts:collection-query(("country")),
-			        cts:collection-query("source-fdb"), 
-              cts:element-attribute-value-query(xs:QName("country"), xs:QName("resource"), $primaryPhysicalAddress/country/link/@href))))
+let $country := qa-kyc-ubo-getCountryDoc:getCountryDoc($primaryPhysicalAddress/country/link/@href)
 
-let $countryName := if ($country/summary/useInAddress)
+let $countryName := if ($country/summary/useInAddress = "true")
                     then $country/summary/names/name[type="Country Name"]/value/text()
                     else ()
 
@@ -110,6 +95,12 @@ return <entityDetails>
             <bankersAlmanacID>{$bankersAlmanacID}</bankersAlmanacID>
           </header>
           <summary>
+	    <addressInfo> 
+		<city cityValue="{data($cityName)}" cityFid="{data($city/@fid)}" cityUseInAddress="{data($city/summary/useInAddress)}"></city>
+		<area areaValue="{data($areaName)}" areaFid="{data($area/@fid)}" areaUseInAddress="{data($area/summary/useInAddress)}"></area>
+		<subArea subAreaValue="{data($subAreaName)}" subAreaFid="{data($subArea/@fid)}" subAreaUseInAddress="{data($subArea/summary/useInAddress)}"></subArea>
+		<country countryName="{data($countryName)}" countryFid="{data($country/@fid)}" countryUseInAddress="{data($country/summary/useInAddress)}"></country>
+	    </addressInfo>
             <headOfficeAddress officeFid="{data($headOffice/@fid)}">{$headOfficeAddress}</headOfficeAddress>
           </summary>
           <identifiers>
