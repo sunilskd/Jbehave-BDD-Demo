@@ -16,8 +16,7 @@ public class UriBuilder {
                     .setPort(port)
                     .setPath(path + xquery)
                     .addParameters(nvPairs).build().toString();
-        }
-        catch (URISyntaxException e) {
+        } catch (URISyntaxException e) {
             e.printStackTrace();
             return null;
         }

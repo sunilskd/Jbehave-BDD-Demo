@@ -13,6 +13,7 @@ import org.web.kyc.uri.UriBuilder;
 import org.web.kyc.utils.ReadProperties;
 import org.web.kyc.xml.XmlDocument;
 import org.web.kyc.xqueries.XQueryEnum;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ public class HttpRequest {
     UriBuilder uriBuilder = new UriBuilder();
     private Document results;
 
-    public Response executeDatabaseQuery(String xquery, List<NameValuePair> nvPairs){
+    public Response executeDatabaseQuery(String xquery, List<NameValuePair> nvPairs) {
         httpClient.getState().setCredentials(
                 new AuthScope(readProperties.getMlHost(), readProperties.getMlPort(), "public"),
                 new UsernamePasswordCredentials(readProperties.getMlUsername(), readProperties.getMlPassword()));
@@ -33,10 +34,10 @@ public class HttpRequest {
         authPrefs.add(AuthPolicy.DIGEST);
         httpClient.getParams().setParameter(AuthPolicy.AUTH_SCHEME_PRIORITY, authPrefs);
 
-        GetMethod httpGet  = new GetMethod(uriBuilder.constructURLWithMultipleParameters(readProperties.getMlScheme(),
-                                            readProperties.getMlHost(),
-                                            readProperties.getMlPort(),
-                                            readProperties.getMlPath(), xquery, nvPairs));
+        GetMethod httpGet = new GetMethod(uriBuilder.constructURLWithMultipleParameters(readProperties.getMlScheme(),
+                readProperties.getMlHost(),
+                readProperties.getMlPort(),
+                readProperties.getMlPath(), xquery, nvPairs));
         int status = 0;
         Response response = null;
 
@@ -55,7 +56,7 @@ public class HttpRequest {
         return response;
     }
 
-    public Document getResultsFormDataBase(XQueryEnum xqueryEnum, List<NameValuePair> nvPairs){
+    public Document getResultsFormDataBase(XQueryEnum xqueryEnum, List<NameValuePair> nvPairs) {
         try {
             results = (executeDatabaseQuery(xqueryEnum.getXQueryName(), nvPairs)).getXmlDocument().toDomRepresentation().getDocument();
         } catch (IOException e) {
@@ -64,10 +65,10 @@ public class HttpRequest {
         return results;
     }
 
-    public ArrayList getElementValuesByTagName(XQueryEnum xqueryEnum, List<NameValuePair> nvPairs, String tagName){
+    public ArrayList getElementValuesByTagName(XQueryEnum xqueryEnum, List<NameValuePair> nvPairs, String tagName) {
         ArrayList values = new ArrayList();
         NodeList nodes = getResultsFormDataBase(xqueryEnum, nvPairs).getElementsByTagName(tagName);
-        for(int i = 0; i<nodes.getLength(); i++){
+        for (int i = 0; i < nodes.getLength(); i++) {
             values.add(i, nodes.item(i).getTextContent());
         }
         return values;

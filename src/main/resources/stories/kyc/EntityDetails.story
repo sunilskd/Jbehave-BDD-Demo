@@ -8,7 +8,7 @@ Meta:@entitydetails @kyc
 
 Scenario: KYC user login
 Given the user is on the ubo login page
-When the user login as a ubo user
+When the user login as a kyc user
 
 Scenario: KYC user can view entity details
 a. with head office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
