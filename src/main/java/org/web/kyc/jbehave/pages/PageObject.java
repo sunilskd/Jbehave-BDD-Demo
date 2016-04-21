@@ -8,6 +8,7 @@ public class PageObject {
     private OwnersPage ownersPage;
     private CommonUtils commonUtil;
     private SubsidiariesPage subsidiariesPage;
+    private EntityDetailsPage entityDetailsPage;
 
     public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -32,6 +33,13 @@ public class PageObject {
             subsidiariesPage = new SubsidiariesPage(driverProvider);
         }
         return subsidiariesPage;
+    }
+
+    public EntityDetailsPage entityDetailsPage(){
+        if(entityDetailsPage == null){
+            entityDetailsPage = new EntityDetailsPage(driverProvider);
+        }
+        return entityDetailsPage;
     }
 
 }

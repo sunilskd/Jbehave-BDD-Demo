@@ -20,6 +20,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
 import org.web.kyc.jbehave.pages.PageObject;
 import org.web.kyc.jbehave.steps.CommonSteps;
+import org.web.kyc.jbehave.steps.EntityDetailsSteps;
 import org.web.kyc.jbehave.steps.OwnersSteps;
 import org.web.kyc.jbehave.steps.SubsidiariesSteps;
 import org.web.kyc.utils.FileUtils;
@@ -123,6 +124,7 @@ public class StoriesRunner extends JUnitStories {
                 new CommonSteps(pageObject),
                 new OwnersSteps(pageObject),
                 new SubsidiariesSteps(pageObject),
+                new EntityDetailsSteps(pageObject),
                 lifeCycleSteps,
                 new WebDriverScreenshotOnFailure(driverProvider, configuration.storyReporterBuilder()));
     }
