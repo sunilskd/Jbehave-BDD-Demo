@@ -5,6 +5,7 @@ A KYC analyst is researching an entity they will potentially do business with, t
 Covers below features:
 JIRA ID - KYC-45 - KYC user can view direct subsidiaries
 JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
+JIRA-ID - KYC-108 - KYC user can highlight legal entities by country on subsidiaries list
 
 Meta:@subsidiaries @kyc
 
@@ -176,3 +177,12 @@ Examples:
 Scenario: KYC user logout
 Given the user is on the ubo login page
 When the user logout
+
+Scenario: Highlight legal entities in subsidiaries list by country
+a. Legal entities in list have country of operations (country of operations for each legal entity populates list of available countries to highlight, only list each unique country once, sort countries in highlight list alphabetically)
+b. Select a country highlight, legal entities in the list that have that country of operations are highlighted
+c. de-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+d. select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
+e. If no legal entities in list have country of operations, then no countries are available as highlight option
+f. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
+g. If user applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
