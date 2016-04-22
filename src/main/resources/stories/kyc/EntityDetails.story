@@ -3,6 +3,7 @@ Epic - Ownership
 KYC user is performing due dilligence on a potential business partner, so they need to see identifying information about the entity to make sure it is the one they are researching.
 Covers below features:
 JIRA ID - KYC-117 - KYC user can view entity details
+JIRA ID - KYC-99 - KYC user can view stock exchange info
 
 Meta:@entitydetails @kyc
 
@@ -59,3 +60,11 @@ Examples:
 Scenario: KYC user logout
 Given the user is on the ubo login page
 When the user logout
+
+Scenario: KYC-99 display stock exchange info in summary section and identifiers section on entity details
+a. If active stock exchange relationship(s) exist, display legal title of stock exchange and abbreviated name in summary section sort first by primary = true, then by legal title
+b. If active stock exchange relationship(s) exist, display abbreviated name of stock exchange and ticker symbol for that stock exchange relationship in identifiers section, sort first by primary = true, then by abbreviated stock exchange name
+c. If inactive stock exchange relationship, then do not display
+d. If no stock exchange relationship exists, then display field labels in summary section and identifiers section but no values
+e. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
+f. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
