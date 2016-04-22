@@ -1,4 +1,5 @@
 package org.web.kyc.utils;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -8,12 +9,28 @@ public class ReadProperties {
     private String url;
     private String browser;
     private String stories;
+    private String kycUser;
+    private String uboUser;
     private String mlHost;
     private String mlPort;
     private String mlUsername;
     private String mlPassword;
     private String mlScheme;
     private String mlPath;
+
+    public ReadProperties() {
+        setUrl(getProjectProperties("testRunner.properties", "kyc.web.url"));
+        setBrowser(getProjectProperties("testRunner.properties", "kyc.web.browser"));
+        setStories(getProjectProperties("testRunner.properties", "kyc.web.story"));
+        setKycUser(getProjectProperties("testRunner.properties", "kyc.kyc.user.login.id"));
+        setUboUser(getProjectProperties("testRunner.properties", "kyc.ubo.user.login.id"));
+        setMlHost(getProjectProperties("testRunner.properties", "ml.admin.host"));
+        setMlPort(getProjectProperties("testRunner.properties", "ml.admin.port"));
+        setMlUsername(getProjectProperties("testRunner.properties", "ml.admin.username"));
+        setMlPassword(getProjectProperties("testRunner.properties", "ml.admin.password"));
+        setMlScheme(getProjectProperties("testRunner.properties", "ml.admin.scheme"));
+        setMlPath(getProjectProperties("testRunner.properties", "ml.admin.path"));
+    }
 
     public String getMlPath() {
         return mlPath;
@@ -87,19 +104,23 @@ public class ReadProperties {
         this.stories = stories;
     }
 
-    public ReadProperties(){
-        setUrl(getProjectProperties("testRunner.properties", "kyc.web.url"));
-        setBrowser(getProjectProperties("testRunner.properties", "kyc.web.browser"));
-        setStories(getProjectProperties("testRunner.properties", "kyc.web.story"));
-        setMlHost(getProjectProperties("testRunner.properties", "ml.admin.host"));
-        setMlPort(getProjectProperties("testRunner.properties", "ml.admin.port"));
-        setMlUsername(getProjectProperties("testRunner.properties", "ml.admin.username"));
-        setMlPassword(getProjectProperties("testRunner.properties", "ml.admin.password"));
-        setMlScheme(getProjectProperties("testRunner.properties", "ml.admin.scheme"));
-        setMlPath(getProjectProperties("testRunner.properties", "ml.admin.path"));
+    public String getUboUser() {
+        return uboUser;
     }
 
-    public String getProjectProperties(String propertyFile, String property){
+    public void setUboUser(String uboUser) {
+        this.uboUser = uboUser;
+    }
+
+    public String getKycUser() {
+        return kycUser;
+    }
+
+    public void setKycUser(String kycUser) {
+        this.kycUser = kycUser;
+    }
+
+    public String getProjectProperties(String propertyFile, String property) {
         Properties properties = new Properties();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertyFile);
         try {

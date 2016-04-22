@@ -1,28 +1,10 @@
 xquery version "1.0-ml";
-declare namespace html = "http://www.w3.org/1999/xhtml";
-declare namespace functx = "http://www.functx.com";
 import module namespace qa-kyc-ubo-getRelationshipDocs = "qa-kyc-ubo-getRelationshipDocs" at "qa-kyc-ubo-getRelationshipDocs.xqy";
+import module namespace qa-kyc-ubo-getDateAsPerAccuracy = "qa-kyc-ubo-getDateAsPerAccuracy" at "qa-kyc-ubo-getDateAsPerAccuracy.xqy";
+import module namespace qa-kyc-ubo-getPersonDoc = "qa-kyc-ubo-getPersonDoc" at "qa-kyc-ubo-getPersonDoc.xqy";
+import module namespace qa-kyc-ubo-getLegalEntityDoc = "qa-kyc-ubo-getLegalEntityDoc" at "qa-kyc-ubo-getLegalEntityDoc.xqy";
+import module namespace qa-kyc-ubo-getCountryDoc = "qa-kyc-ubo-getCountryDoc" at "qa-kyc-ubo-getCountryDoc.xqy";
 
-declare function functx:month-abbrev-en ( $date as xs:anyAtomicType? )  as xs:string? 
-{
-    ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
-    [month-from-date(xs:date($date))]
-} ;
-
-declare function functx:day-abbrev-en ( $date as xs:anyAtomicType? )  as xs:string? 
-{
-    ('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31')
-    [day-from-date(xs:date($date))]
-} ;
-
-declare function local:getDateAsPerAccuracy ( $date as node() ) 
-{
-    switch($date/@accuracy/string())
-        case "day" return fn:concat(functx:day-abbrev-en(xs:date($date)), ' ', functx:month-abbrev-en(xs:date($date)), ' ', year-from-date(xs:date($date)))
-        case "month" return fn:concat(functx:month-abbrev-en(xs:date($date)),	 ' ', year-from-date(xs:date($date)))
-        case "year"  return year-from-date(xs:date($date))
-        default return "date not valid"
-};
 
 let $fid := xs:string(xdmp:get-request-field("fid"))
 let $listType := xs:string(xdmp:get-request-field("listType"))
@@ -37,7 +19,12 @@ let $returnedEntityPartyType := if($listType = "direct owners")
                                   then "owner"
                                   else if ($listType = "subsidiaries")
                                         then "owned"
-                                        else()                                        
+                                        else()      
+                                  
+let $ownershipFreeTextInLegalEntity := (qa-kyc-ubo-getLegalEntityDoc:getLegalEntityDoc($fid))/ownership/summaries/summary[1]/text()
+let $freeTextInOwnership := if(fn:exists($ownershipFreeTextInLegalEntity))
+                            then <ownershipFreeText>{$ownershipFreeTextInLegalEntity}</ownershipFreeText>
+                            else ()
 
 let $relationshipDocs := qa-kyc-ubo-getRelationshipDocs:getRelationships($fid, $searchedEntityPartyType)
 
@@ -48,29 +35,57 @@ let $legalEntity := cts:search(/legalEntity,
 			cts:collection-query(("current")),
 			cts:collection-query(("legalEntity")),
 			cts:collection-query("source-fdb"), 
-			cts:path-range-query("/legalEntity/summary/status", "=", "active", "collation=http://marklogic.com/collation/"),
 			cts:element-attribute-value-query(xs:QName("legalEntity"), xs:QName("resource"), $x/parties/party[partyType = $returnedEntityPartyType][entityType = "institution"]/entityReference/link/@href)))) 
-           
-let $legalTitle := $legalEntity/summary/names/name[type="Legal Title"]/value/text()
-let $percentOwnership := $x/details/ownership/percentage/text()
 
-let $country := cts:search(/country,
-				cts:and-query((
-				cts:collection-query(("current")),
-				cts:collection-query(("country")),
-				cts:collection-query("source-fdb"), 
-				cts:element-attribute-value-query(xs:QName("country"), xs:QName("resource"), $legalEntity/summary/countryOfOperations/link/@href))))
+let $legalTitle := $legalEntity/summary[status="active"]/names/name[type="Legal Title"]/value/text()
+let $legalTitleSortKey := $legalEntity/summary/names/legalEntitySortKey/text()           
 
+let $person := qa-kyc-ubo-getPersonDoc:getPersonDoc($x/parties/party[partyType = $returnedEntityPartyType][entityType = "person"]/entityReference/link/@href)
+
+let $personName := $person/summary/names/name/formattedName/text()
+let $personSortKey := $person/summary/names/personSortKey/text()
+
+let $percentOwnership := if(fn:exists($x/details/ownership/percentage))
+				then $x/details/ownership/percentage/text()
+				else()
+
+let $country := qa-kyc-ubo-getCountryDoc:getCountryDoc($legalEntity/summary/countryOfOperations/link/@href)
 let $countryOfOperations := $country/summary/names/name[type="Country Name"]/value/text()
-let $lastValidatedDate := local:getDateAsPerAccuracy($x/validationDate)
+let $lastValidatedDate := qa-kyc-ubo-getDateAsPerAccuracy:getDateAsPerAccuracy($x/validationDate)
 
-order by xs:double($percentOwnership) descending, $legalTitle ascending
+order by xs:double($percentOwnership) descending, $legalEntity/summary/names/legalEntitySortKey ascending
 
-return <entityInfo>
-       <legalTitle>{$legalTitle}</legalTitle>
-       <percentOwnership>{$percentOwnership}</percentOwnership> 
-       <countryOfOperations>{$countryOfOperations}</countryOfOperations> 
-       <lastValidatedDate>{$lastValidatedDate}</lastValidatedDate> 
-       </entityInfo>
+return if(fn:exists($legalTitle))
+	then <entity>
+	       	<entityInfo entityType= "legalEntity" legalEntityFid="{data($legalEntity/@fid)}">
+		       <entityName>{$legalTitle}</entityName>
+		       <entitySortKey>{$legalTitleSortKey}</entitySortKey>		
+	       	</entityInfo>
+		<countryOfOperations countryFid="{data($country/@fid)}">{$countryOfOperations}</countryOfOperations> 
+	    	<relationship relationshipFid="{data($x/@fid)}">		
+	       		<percentOwnership>{$percentOwnership}</percentOwnership> 
+			<lastValidatedDate accuracy="{data($x/validationDate/@accuracy)}">{$lastValidatedDate}</lastValidatedDate> 
+		</relationship>	
+	      </entity>	
+	else if(fn:exists($personName))
+	then <entity>
+		<entityInfo entityType= "person" personFid="{data($person /@fid)}">
+			<entityName>{$personName}</entityName>
+		       <entitySortKey>{$personSortKey }</entitySortKey>		
+	       	</entityInfo>
+		<countryOfOperations countryFid="{data($country/@fid)}">{$countryOfOperations}</countryOfOperations> 
+	    	<relationship relationshipFid="{data($x/@fid)}">		
+	       		<percentOwnership>{$percentOwnership}</percentOwnership> 
+			<lastValidatedDate accuracy="{data($x/validationDate/@accuracy)}">{$lastValidatedDate}</lastValidatedDate> 
+		</relationship>	
+	      </entity>	
+	else()
 
-return <entitiesInfo>{$directOwnersInfo}</entitiesInfo>
+return <entities>
+		{$directOwnersInfo}
+		<entity>
+	       	<entityInfo entityType= "freeText" legalEntityFid="{data($fid)}">
+			{$freeTextInOwnership}
+		</entityInfo>
+		</entity>
+	</entities>

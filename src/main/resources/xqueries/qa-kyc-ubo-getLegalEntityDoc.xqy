@@ -7,7 +7,7 @@ let $legalEntityDoc := cts:search(/legalEntity,
                       cts:and-query((
                       cts:collection-query(("current")),
                       cts:collection-query(("legalEntity")),
-   		      cts:collection-query("source-fdb"), 		     
+   		      cts:collection-query("source-fdb"), 	
 		      cts:element-attribute-value-query(xs:QName("legalEntity"), xs:QName("fid"), $fid))))                                                
 return $legalEntityDoc
 };
