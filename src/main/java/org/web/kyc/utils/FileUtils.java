@@ -40,7 +40,7 @@ public class FileUtils {
         }
     }
 
-    public String getProjectProperties(String propertyFile, String property){
+    public String getProjectProperties(String propertyFile, String property) {
         Properties properties = new Properties();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertyFile);
         try {

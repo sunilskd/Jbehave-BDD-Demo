@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave;
 
+import org.jbehave.asciidoctor.reporter.AsciidoctorStoryReporter;
 import org.jbehave.core.Embeddable;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.embedder.executors.SameThreadExecutors;
@@ -17,32 +18,53 @@ import org.junit.After;
 import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
-import org.web.kyc.jbehave.pages.Pages;
-import org.web.kyc.jbehave.steps.SampleSteps;
+import org.web.kyc.jbehave.pages.PageObject;
+import org.web.kyc.jbehave.steps.CommonSteps;
+import org.web.kyc.jbehave.steps.EntityDetailsSteps;
+import org.web.kyc.jbehave.steps.OwnersSteps;
+import org.web.kyc.jbehave.steps.SubsidiariesSteps;
 import org.web.kyc.utils.FileUtils;
 import org.web.kyc.utils.ReadProperties;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.Format.CONSOLE;
 
 public class StoriesRunner extends JUnitStories {
 
-    ReadProperties readProperties = new ReadProperties();
-
-    static Browser browser = new Browser();
-    private static WebDriverProvider driverProvider;
-    private SeleniumContext context = new SeleniumContext();
-    private ContextView contextView = new LocalFrameContextView().sized(500, 100);
-    private static WebDriverSteps lifeCycleSteps;
-    private static Pages pages;
-
     /* Browserstack credentials */
     public static final String USERNAME = "ravisahu1";
     public static final String AUTOMATE_KEY = "usU2zSencBAxxm8Nniux";
     public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
+    static Browser browser = new Browser();
+    private static WebDriverProvider driverProvider;
+    private static WebDriverSteps lifeCycleSteps;
+    private static PageObject pageObject;
+    ReadProperties readProperties = new ReadProperties();
+    private SeleniumContext context = new SeleniumContext();
+    private ContextView contextView = new LocalFrameContextView().sized(500, 100);
+
+    /* Customized HTML format class to include screenshot in reports */
+    private Format screenShootingFormat = new ScreenShootingHtmlFormat(driverProvider);
+
+    public StoriesRunner() {
+        if (lifeCycleSteps instanceof PerStoriesWebDriverSteps) {
+            configuredEmbedder().useExecutorService(new SameThreadExecutors().create(
+                    configuredEmbedder()
+                            .embedderControls()
+            ));
+            try {
+                /* Required to run stories with annotated meta filters */
+                configuredEmbedder().useMetaFilters(Arrays.asList(getListOfStoriesToRun().split(",")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @BeforeClass
     public static void setBrowser() {
@@ -60,12 +82,12 @@ public class StoriesRunner extends JUnitStories {
         }
 
         lifeCycleSteps = new PerStoriesWebDriverSteps(driverProvider);
-        pages = new Pages(driverProvider);
+        pageObject = new PageObject(driverProvider);
     }
 
     /* Copy reports to build directory*/
     @After
-    public void styleJBehaveReports(){
+    public void styleJBehaveReports() {
         try {
             File srcDir = new File("./src/main/resources/reports");
             File destDir = new File("./build/classes/jbehave/view");
@@ -80,24 +102,6 @@ public class StoriesRunner extends JUnitStories {
         }
     }
 
-    public StoriesRunner() {
-        if (lifeCycleSteps instanceof PerStoriesWebDriverSteps) {
-            configuredEmbedder().useExecutorService(new SameThreadExecutors().create(
-                                    configuredEmbedder()
-                                            .embedderControls()
-                                            ));
-            try {
-                /* Required to run stories with annotated meta filters */
-                configuredEmbedder().useMetaFilters(Arrays.asList(getListOfStoriesToRun().split(",")));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /* Customized HTML format class to include screenshot in reports */
-    private Format screenShootingFormat = new ScreenShootingHtmlFormat(driverProvider);
-
     @Override
     public Configuration configuration() {
         Class<? extends Embeddable> embeddableClass = this.getClass();
@@ -109,7 +113,7 @@ public class StoriesRunner extends JUnitStories {
                 .useStoryReporterBuilder(new StoryReporterBuilder()
                         .withCodeLocation(codeLocationFromClass(embeddableClass))
                         .withDefaultFormats()
-                        .withFormats(CONSOLE, screenShootingFormat));
+                        .withFormats(CONSOLE, screenShootingFormat, AsciidoctorStoryReporter.ASCIIDOC));
     }
 
     @Override
@@ -117,7 +121,10 @@ public class StoriesRunner extends JUnitStories {
         Configuration configuration = configuration();
         return new InstanceStepsFactory(configuration,
                 /* Add all step classes here */
-                new SampleSteps(pages),
+                new CommonSteps(pageObject),
+                new OwnersSteps(pageObject),
+                new SubsidiariesSteps(pageObject),
+                new EntityDetailsSteps(pageObject),
                 lifeCycleSteps,
                 new WebDriverScreenshotOnFailure(driverProvider, configuration.storyReporterBuilder()));
     }
