@@ -3,6 +3,7 @@ Epic - Ownership
 KYC user is performing due dilligence on a potential business partner, so they need to see identifying information about the entity to make sure it is the one they are researching.
 Covers below features:
 JIRA ID - KYC-117 - KYC user can view entity details
+JIRA ID - KYC-129 - KYC user can view regulator on entity details
 
 Meta:@entitydetails @kyc
 
@@ -59,3 +60,8 @@ Examples:
 Scenario: KYC user logout
 Given the user is on the ubo login page
 When the user logout
+
+Scenario: KYC-129 KYC user can view regulator on entity details
+a. Active regulation relationships exist for entity user is viewing, display in entity details summary section sorted alphabetically by legal title
+b. If regulation relationship is inactive, do not display
+c. If no active regulation relationship exists, then display field label but no value
