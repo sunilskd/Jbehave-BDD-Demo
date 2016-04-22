@@ -69,6 +69,12 @@ public class OwnersSteps {
         pageObject.commonUtils().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
+    @Then("the previously selected country <country> should be de-selected")
+
+    public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
+        pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
+    }
+
     @When("the user changes the percent filter option to $updatedFilter in the owners page")
     public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
         pageObject.commonUtils().selectPercentFilter(updatedFilter);
@@ -77,6 +83,11 @@ public class OwnersSteps {
     @Then("the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page")
     public void dVerifyCountryHighlightList(){
         pageObject.ownersPage().dVerifyCountryHighlightList();
+    }
+
+    @Then("the user should not see any country in country highlights list")
+    public void verifyCounryListNotExists(){
+        pageObject.ownersPage().verifyCounryListNotExists();
     }
 
     @Then("the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page")
@@ -90,7 +101,14 @@ public class OwnersSteps {
     }
 
     @When("the user selects a country <country> from the country highlight list in the owners page")
+    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight")
     public void selectCountryHighlight(@Named("country") String country){
         pageObject.commonUtils().selectCountryHighlight(country);
     }
+
+    @When("the user selects another country <changeCountry> from the country highlight list in the owners page")
+    public void changeCountryHighlight(@Named("changeCountry") String changeCountry){
+        pageObject.commonUtils().selectCountryHighlight(changeCountry);
+    }
+
 }

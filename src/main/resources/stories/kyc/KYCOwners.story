@@ -158,16 +158,68 @@ Examples:
 |fid|percentFilter|
 |94016|10|
 
+Scenario: KYC user can view Highlight legal entities in direct owners list by country
+a.Legal entities in list have country of operations.
+  List each unique country once, sort countries in highlight list alphabetically
+  Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
+  De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+  Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+When the user selects a country <country> from the country highlight list in the owners page
+Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
+Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
+When the user de-select previously selected country <country> by clicking on it a second time from the country highlight
+Then the user should not see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
+When the user selects a country <country> from the country highlight list in the owners page
+When the user selects another country <changeCountry> from the country highlight list in the owners page
+Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
+And the previously selected country <country> should be de-selected
+
+Examples:
+|fid|country|changeCountry|
+|173|Jordan|Lebanon|
+
+Scenario: Filter owners list by percent ownership
+a. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
+b. User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+When the user selects a country <country> from the country highlight list in the owners page
+Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
+Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
+When the user selects the percent filter option <percentFilter> in the owners page
+Then the kyc user should see the direct owners ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the owners page
+Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
+When the user selects a country <country> from the country highlight list in the owners page
+Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
+
+Examples:
+|fid|percentFilter|country
+|211|10|Australia|
+|1038|25|USA|
+|1045|50|India|
+|1045|10|India|
+|173|10|Lebanon|
+
+Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+When the user selects the percent filter option <percentFilter> in the owners page
+Then the user should not see any country in country highlights list
+
+Examples:
+|fid|percentFilter|
+|173|50|
+
 Scenario: KYC user logout
 Given the user is on the ubo login page
 When the user logout
-
-Scenario: Highlight legal entities in direct owners list by country
-a. Legal entities in list have country of operations (country of operations for each legal entity populates list of available countries to highlight, only list each unique country once, sort countries in highlight list alphabetically)
-b. Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
-c. de-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
-d. select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
-e. If no legal entities in list have country of operations, then no countries are available as highlight option
-f. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
-g. If user applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
-

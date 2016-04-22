@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.pages;
 
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
@@ -9,6 +10,7 @@ import org.w3c.dom.Document;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
@@ -40,6 +42,7 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void dVerifyDirectOwnersList() {
+        eCountryHighlightList.clear();
         waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
         verifyDirectOwnersHeaders();
         Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
@@ -51,6 +54,7 @@ public class OwnersPage extends WebDriverUtils {
         for(int i=0; i<aDirectOwnerEntityName.size(); i++){
             assertEquals("Legal title does not match at" + i, aDirectOwnerEntityName.get(i).getText(), eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent());
             assertEquals("Country name does not match at" + i, aDirectOwnersCountryName.get(i).getText(), eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
+
             eCountryHighlightList.add(eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
             if(!eDirectOwnersList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
                 assertEquals("Percentage owned does not match at" + i, aDirectOwnersPercentageOwned.get(i).getText(), eDirectOwnersList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%");
@@ -120,12 +124,26 @@ public class OwnersPage extends WebDriverUtils {
         assertTrue(getWebElements(By.xpath(direct_owners_highlighted_xpath)).size() == 0);
     }
 
+
+
     public void dVerifyCountryHighlightList() {
+
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         List<String> aCountryHighlightList = getWebElementsText(country_highlight_list_text_xpath);
         Iterator eIterator = eCountryHighlightList.iterator();
         Iterator aIterator = aCountryHighlightList.iterator();
         while (eIterator.hasNext()){
             assertEquals(eIterator.next(),aIterator.next());
         }
+    }
+
+    public void verifyCounryListNotExists() {
+
+        assertFalse(isWebElementDisplayed(country_highlight_list_text_xpath));
+
     }
 }

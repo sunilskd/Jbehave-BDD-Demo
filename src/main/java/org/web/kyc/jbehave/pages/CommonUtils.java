@@ -65,7 +65,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void selectCountryHighlight(String country) {
         try {
-            Thread.sleep(2000L);
+            Thread.sleep(3000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -77,6 +77,11 @@ public class CommonUtils extends WebDriverUtils {
     public void verifyPercentFilterIsDeSelected(String deselectFilter) {
         String filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), deselectFilter) + "]";
         assertFalse(isWebElementDisplayed(By.xpath(filterXpath + "[@class='ng-binding ng-scope selected']")));
+    }
+
+    public void verifyCountryHighlightIsDeSelected(String deselectCountry){
+        String countyrHighlighXpath = country_highlight_options_text_xpath + "[" + getElementIndexByValue(By.xpath(country_highlight_options_text_xpath), deselectCountry) + "]";
+        assertFalse(isWebElementDisplayed(By.xpath(countyrHighlighXpath + "[@class='ng-binding ng-scope selected']")));
     }
 
     public void userLogin(String userType) {
