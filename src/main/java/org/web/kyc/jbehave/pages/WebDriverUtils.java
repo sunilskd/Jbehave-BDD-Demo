@@ -13,7 +13,7 @@ import org.web.kyc.utils.ReadProperties;
 import java.util.ArrayList;
 import java.util.List;
 
-/* Contains common webdriver methods to be used in page classes */
+/* Contains commonUtils webdriver methods to be used in page classes */
 
 public class WebDriverUtils extends WebDriverPage {
 
@@ -87,4 +87,13 @@ public class WebDriverUtils extends WebDriverPage {
     public void enterStringInInputBox(By by, String inputString) {
         findElement(by).sendKeys(inputString);
     }
+
+    public List<String> getWebElementsText(By by) {
+        List<String> webElementsText = new ArrayList<String>();
+        for (int i = 0; i < findElements(by).size(); i++) {
+            webElementsText.add(findElements(by).get(i).getText());
+        }
+        return webElementsText;
+    }
+
 }

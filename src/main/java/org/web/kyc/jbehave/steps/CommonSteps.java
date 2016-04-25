@@ -14,26 +14,26 @@ public class CommonSteps {
 
     @Given("the user is on the ubo login page")
     public void open(){
-        pageObject.common().open();
+        pageObject.commonUtils().open();
     }
 
     @When("the user clicks on the ownership tab")
     public void clickOnOwnershipTab(){
-        pageObject.common().clickOnOwnershipTab();
+        pageObject.commonUtils().clickOnOwnershipTab();
     }
 
     @When("the user opens legal entity <fid>")
     public void openUrl(@Named("fid") String fid){
-        pageObject.common().openUrl(fid);
+        pageObject.commonUtils().openUrl(fid);
     }
 
     @When("the user login as a $userType user")
     public void userLogin(@Named("userType") String userType){
-        pageObject.common().userLogin(userType);
+        pageObject.commonUtils().userLogin(userType);
     }
 
     @When("the user logout")
     public void userLogout(){
-        pageObject.common().userLogout();
+        pageObject.commonUtils().userLogout();
     }
 }

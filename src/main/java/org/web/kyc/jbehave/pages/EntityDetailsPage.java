@@ -92,9 +92,7 @@ public class EntityDetailsPage extends WebDriverUtils {
         List<WebElement> aLeiValues = getWebElements(entity_details_lei_text_xpath);
         for (int i = 0; i < leisExamTable.getRowCount(); i++) {
             assertEquals("LEI does not match at" + i, aLeiValues.get(i).getText(), leisExamTable.getRow(i).get(leisExamTable.getHeaders().get(0)));
-
         }
-
     }
 
 }

@@ -49,12 +49,12 @@ public class OwnersSteps {
 
     @Then("the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page")
     public void verifyPercentFilterOptions(){
-        pageObject.common().verifyPercentFilterOptions();
+        pageObject.commonUtils().verifyPercentFilterOptions();
     }
 
     @When("the user selects the percent filter option <percentFilter> in the owners page")
     public void selectPercentFilter(@Named("percentFilter") String percentFilter){
-        pageObject.common().selectPercentFilter(percentFilter);
+        pageObject.commonUtils().selectPercentFilter(percentFilter);
     }
 
     @Then("the kyc user should see the direct owners ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the owners page")
@@ -66,11 +66,49 @@ public class OwnersSteps {
     @Then("the kyc user should see the percent filter $deselectFilter de-selected in the owners page")
     @Alias("the ubo user should see the percent filter $deselectFilter de-selected in the owners page")
     public void verifyPercentFilterIsDeSelected(@Named("deselectFilter") String deselectFilter){
-        pageObject.common().verifyPercentFilterIsDeSelected(deselectFilter);
+        pageObject.commonUtils().verifyPercentFilterIsDeSelected(deselectFilter);
+    }
+
+    @Then("the previously selected country <country> should be de-selected")
+
+    public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
+        pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
     }
 
     @When("the user changes the percent filter option to $updatedFilter in the owners page")
     public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
-        pageObject.common().selectPercentFilter(updatedFilter);
+        pageObject.commonUtils().selectPercentFilter(updatedFilter);
     }
+
+    @Then("the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page")
+    public void dVerifyCountryHighlightList(){
+        pageObject.ownersPage().dVerifyCountryHighlightList();
+    }
+
+    @Then("the user should not see any country in country highlights list")
+    public void verifyCounryListNotExists(){
+        pageObject.ownersPage().verifyCounryListNotExists();
+    }
+
+    @Then("the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page")
+    public void verifyDirectOwnersAreHighlighted(){
+        pageObject.ownersPage().verifyDirectOwnersAreHighlighted();
+    }
+
+    @Then("the user should not see the direct owners in the owners list that have the selected country of operations highlighted in the owners page")
+    public void verifyDirectOwnersAreNotHighlighted(){
+        pageObject.ownersPage().verifyDirectOwnersAreNotHighlighted();
+    }
+
+    @When("the user selects a country <country> from the country highlight list in the owners page")
+    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight")
+    public void selectCountryHighlight(@Named("country") String country){
+        pageObject.commonUtils().selectCountryHighlight(country);
+    }
+
+    @When("the user selects another country <changeCountry> from the country highlight list in the owners page")
+    public void changeCountryHighlight(@Named("changeCountry") String changeCountry){
+        pageObject.commonUtils().selectCountryHighlight(changeCountry);
+    }
+
 }

@@ -1,22 +1,25 @@
 package org.web.kyc.jbehave.pages;
 
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
 
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
 
 public class OwnersPage extends WebDriverUtils {
 
     private By owners_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[2]");
-    private By direct_owners_header_text_xpath = By.xpath("//*[@class='heading-bar'][1]/h1");
-    private By direct_owners_last_validated_header_text_xpath = By.xpath("//*[@class='heading-bar'][1]/p");
+    private By direct_owners_header_text_xpath = By.xpath("//*[@id='content-view']/div[1]/div/h1");
+    private By direct_owners_last_validated_header_text_xpath = By.xpath("//*[@id='content-view']/div[1]/div/p");
     private By direct_owners_entity_name_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='entity']");
     private By direct_owners_country_name_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='location ng-binding']");
     private By direct_owners_percentage_owned_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='ownership ng-binding']");
@@ -24,6 +27,10 @@ public class OwnersPage extends WebDriverUtils {
     private By no_direct_owners_msg_text_xpath = By.xpath("//*[@class='notification']");
     private By direct_owners_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='measure']");
     private By direct_owners_no_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='meter ng-isolate-scope ng-hide']");
+    private String direct_owners_highlighted_xpath = "//*[@id='direct-owners-list']/li/div[@class='details highlight']";
+    private String direct_owners_row_for_country_xpath = "//ul[li[@class='location ng-binding']='";
+    private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters']/ul[2]/li");
+    Set<String> eCountryHighlightList = new TreeSet<>();
 
     public OwnersPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -35,6 +42,7 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void dVerifyDirectOwnersList() {
+        eCountryHighlightList.clear();
         waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
         verifyDirectOwnersHeaders();
         Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
@@ -46,6 +54,8 @@ public class OwnersPage extends WebDriverUtils {
         for(int i=0; i<aDirectOwnerEntityName.size(); i++){
             assertEquals("Legal title does not match at" + i, aDirectOwnerEntityName.get(i).getText(), eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent());
             assertEquals("Country name does not match at" + i, aDirectOwnersCountryName.get(i).getText(), eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
+
+            eCountryHighlightList.add(eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
             if(!eDirectOwnersList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
                 assertEquals("Percentage owned does not match at" + i, aDirectOwnersPercentageOwned.get(i).getText(), eDirectOwnersList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%");
             }
@@ -98,5 +108,42 @@ public class OwnersPage extends WebDriverUtils {
 
     public void dVerifyDirectOwnersAndUBOListForPercentFilter() {
         dVerifyDirectOwnersList();
+    }
+
+    public void verifyDirectOwnersAreHighlighted() {
+        assertEquals(
+                getWebElements(By.xpath(direct_owners_highlighted_xpath + "[ul[li[@class='location ng-binding']='" + selectedCountryHighlight + "']]")).size(),
+                getWebElements(By.xpath(direct_owners_row_for_country_xpath + selectedCountryHighlight + "']")).size());
+        assertEquals(
+                getWebElements(By.xpath(direct_owners_highlighted_xpath)).size(),
+                getWebElements(By.xpath(direct_owners_row_for_country_xpath + selectedCountryHighlight + "']")).size());
+    }
+
+    public void verifyDirectOwnersAreNotHighlighted() {
+        assertTrue(getWebElements(By.xpath(direct_owners_highlighted_xpath + "[ul[li[@class='location ng-binding']='" + selectedCountryHighlight + "']]")).size() == 0);
+        assertTrue(getWebElements(By.xpath(direct_owners_highlighted_xpath)).size() == 0);
+    }
+
+
+
+    public void dVerifyCountryHighlightList() {
+
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        List<String> aCountryHighlightList = getWebElementsText(country_highlight_list_text_xpath);
+        Iterator eIterator = eCountryHighlightList.iterator();
+        Iterator aIterator = aCountryHighlightList.iterator();
+        while (eIterator.hasNext()){
+            assertEquals(eIterator.next(),aIterator.next());
+        }
+    }
+
+    public void verifyCounryListNotExists() {
+
+        assertFalse(isWebElementDisplayed(country_highlight_list_text_xpath));
+
     }
 }
