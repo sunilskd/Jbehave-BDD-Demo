@@ -2,6 +2,7 @@ package org.web.kyc.xml;
 
 import org.restlet.ext.xml.DomRepresentation;
 import org.w3c.dom.Document;
+
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -37,8 +38,7 @@ public class XmlDocument {
     public DomRepresentation toDomRepresentation() {
         try {
             return convertToDomRepresentation();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException("Error converting XmlDocument to DOM Representation", e);
         }
     }
