@@ -109,7 +109,6 @@ public class OwnersPage extends WebDriverUtils {
                 nvPairs.remove(nameValuePair);
             }
         }
-        waitForWebElementToAppear(direct_owners_percentage_owned_text_xpath);
         clickOnWebElement(By.linkText(legalTitle));
         try {
             Thread.sleep(3000L);
@@ -125,7 +124,6 @@ public class OwnersPage extends WebDriverUtils {
                 nvPairs.remove(nameValuePair);
             }
         }
-        waitForWebElementToAppear(direct_owners_percentage_owned_text_xpath);
         openLinkInNewWindow(By.linkText(legalTitle));
     }
 }

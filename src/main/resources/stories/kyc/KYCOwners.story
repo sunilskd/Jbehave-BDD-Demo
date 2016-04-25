@@ -178,7 +178,8 @@ Examples:
 |fid|percentFilter|
 |94016|10|
 
-Scenario: User clicks legal title of legal entity that appears in direct owners list (user is taken to the direct owners list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
+Scenario: User clicks legal title of legal entity that appears in direct owners list
+(user is taken to the direct owners list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>

@@ -72,8 +72,7 @@ Examples:
 |94016|
 |241440|
 
-Scenario: UBO user can view direct owners that are legal entities and people as owners. User clicks oan opens legal title of legal entity that appears in direct owners list in a new window
-(user is taken to the direct owners list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
+Scenario: UBO user can view direct owners that are legal entities and people as owners.
 Meta:@directOwners @static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
