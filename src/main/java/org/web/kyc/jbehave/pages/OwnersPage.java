@@ -17,13 +17,13 @@ import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
 public class OwnersPage extends WebDriverUtils {
 
     private By owners_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[2]");
-    private By direct_owners_header_text_xpath = By.xpath("//*[@class='heading-bar'][1]/h1");
-    private By direct_owners_last_validated_header_text_xpath = By.xpath("//*[@class='heading-bar'][1]/p");
+    private By direct_owners_header_text_xpath = By.xpath("//*[@class='heading-bar ng-scope'][1]/h1");
+    private By direct_owners_last_validated_header_text_xpath = By.xpath("//*[@class='heading-bar ng-scope'][1]/p");
     private By direct_owners_entity_name_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='entity']");
     private By direct_owners_country_name_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='location ng-binding']");
     private By direct_owners_percentage_owned_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='ownership ng-binding']");
     private By direct_owners_last_validated_date_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='validation ng-binding']");
-    private By no_direct_owners_msg_text_xpath = By.xpath("//*[@class='notification']");
+    private By no_direct_owners_msg_text_xpath = By.xpath("//*[@class='notification ng-scope']");
     private By direct_owners_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='measure']");
     private By direct_owners_no_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='meter ng-isolate-scope ng-hide']");
 
@@ -103,6 +103,7 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void clickOnLegalTitleInDirectOwnersList(String legalTitle) {
+        waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
         nvPairs.add(new BasicNameValuePair("name", legalTitle));
         for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
             if("fid".equals(nameValuePair.getName())) {
@@ -118,6 +119,7 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void openLegalTitleInDirectOwnersListInNewWindow(String legalTitle) {
+        waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
         nvPairs.add(new BasicNameValuePair("name", legalTitle));
         for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
             if("fid".equals(nameValuePair.getName())) {

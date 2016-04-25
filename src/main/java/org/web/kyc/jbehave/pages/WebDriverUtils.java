@@ -106,5 +106,6 @@ public class WebDriverUtils extends WebDriverPage {
         for (String Handle : getWindowHandles()) {
             switchTo().window(Handle);
         }
+        waitForPageToLoad(15000L);
     }
 }
