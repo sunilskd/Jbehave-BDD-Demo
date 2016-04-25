@@ -21,7 +21,7 @@ public class PageObject {
         return ownersPage;
     }
 
-    public CommonUtils common() {
+    public CommonUtils commonUtils() {
         if (commonUtil == null) {
             commonUtil = new CommonUtils(driverProvider);
         }

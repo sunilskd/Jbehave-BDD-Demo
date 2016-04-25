@@ -25,8 +25,7 @@ public class OwnersSteps {
         pageObject.ownersPage().dVerifyDirectOwnersList();
     }
 
-    @Then("the kyc user should see message displayed in place of list explaining there are no direct owners")
-    @Alias("the ubo user should see message displayed in place of list explaining there are no direct owners")
+    @Then("the user should see message displayed in place of list explaining there are no direct owners")
     public void verifyNoDirectOwnersMsg(){
         pageObject.ownersPage().verifyNoDirectOwnersMsg();
     }
@@ -49,28 +48,37 @@ public class OwnersSteps {
 
     @Then("the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page")
     public void verifyPercentFilterOptions(){
-        pageObject.common().verifyPercentFilterOptions();
+        pageObject.commonUtils().verifyPercentFilterOptions();
     }
 
     @When("the user selects the percent filter option <percentFilter> in the owners page")
     public void selectPercentFilter(@Named("percentFilter") String percentFilter){
-        pageObject.common().selectPercentFilter(percentFilter);
+        pageObject.commonUtils().selectPercentFilter(percentFilter);
     }
 
     @Then("the kyc user should see the direct owners ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the owners page")
     @Alias("the ubo user should see the direct owners ordered by percentage ownership then asc by direct owners name (legal title or people as owners), filtered by selected percent filter, for the selected institution in the owners page")
-    public void dVerifyDirectOwnersAndUBOListForPercentFilter(){
-        pageObject.ownersPage().dVerifyDirectOwnersAndUBOListForPercentFilter();
+    public void dVerifyDirectOwnersListForSelectedPercentFilter(){
+        pageObject.ownersPage().dVerifyDirectOwnersListForSelectedPercentFilter();
     }
 
-    @Then("the kyc user should see the percent filter $deselectFilter de-selected in the owners page")
-    @Alias("the ubo user should see the percent filter $deselectFilter de-selected in the owners page")
+    @Then("the user should see the percent filter $deselectFilter de-selected in the owners page")
     public void verifyPercentFilterIsDeSelected(@Named("deselectFilter") String deselectFilter){
-        pageObject.common().verifyPercentFilterIsDeSelected(deselectFilter);
+        pageObject.commonUtils().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
     @When("the user changes the percent filter option to $updatedFilter in the owners page")
     public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
-        pageObject.common().selectPercentFilter(updatedFilter);
+        pageObject.commonUtils().selectPercentFilter(updatedFilter);
+    }
+
+    @When("the user clicks on the legal title $legalTitle in direct owners list in the owners page")
+    public void clickOnLegalTitleInDirectOwnersList(@Named("legalTitle") String legalTitle){
+        pageObject.ownersPage().clickOnLegalTitleInDirectOwnersList(legalTitle);
+    }
+
+    @When("the user clicks and opens the legal title $legalTitle in direct owners list in new window in the owners page")
+    public void openLegalTitleInDirectOwnersListInNewWindow(@Named("$legalTitle") String legalTitle){
+        pageObject.ownersPage().openLegalTitleInDirectOwnersListInNewWindow(legalTitle);
     }
 }
