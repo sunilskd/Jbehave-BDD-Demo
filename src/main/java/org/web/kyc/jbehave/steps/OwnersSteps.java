@@ -101,7 +101,7 @@ public class OwnersSteps {
     }
 
     @When("the user selects a country <country> from the country highlight list in the owners page")
-    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight")
+    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the owners page")
     public void selectCountryHighlight(@Named("country") String country){
         pageObject.commonUtils().selectCountryHighlight(country);
     }

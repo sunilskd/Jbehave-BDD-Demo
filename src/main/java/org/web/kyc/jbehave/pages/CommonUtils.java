@@ -65,7 +65,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void selectCountryHighlight(String country) {
         try {
-            Thread.sleep(3000L);
+            Thread.sleep(10000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

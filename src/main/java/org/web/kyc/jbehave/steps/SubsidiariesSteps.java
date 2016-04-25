@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -69,4 +70,35 @@ public class SubsidiariesSteps {
         pageObject.subsidiariesPage().verifyLegalTitleIsNotDisplayed();
     }
 
-}
+    @When("the user selects a country <country> from the country highlight list in the subsidiaries page")
+    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the subsidiaries page")
+    public void selectCountryHighlight(@Named("country") String country){
+        pageObject.commonUtils().selectCountryHighlight(country);
+    }
+
+    @When("the user selects another country <changeCountry> from the country highlight list in the subsidiaries page")
+    public void changeCountryHighlight(@Named("changeCountry") String changeCountry){
+        pageObject.commonUtils().selectCountryHighlight(changeCountry);
+    }
+
+    @Then("the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page")
+    public void verifyDirectSubsidiariesAreHighlighted(){
+        pageObject.subsidiariesPage().verifyDirectSubsidiariesAreHighlighted();
+    }
+
+    @Then("the user should see the list of unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries page")
+    public void dVerifyCountryHighlightList() {
+        pageObject.subsidiariesPage().dVerifyCountryHighlightList();
+    }
+
+    @Then("the user should not see the subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page")
+    public void verifyDirectOwnersAreNotHighlighted(){
+        pageObject.subsidiariesPage().verifyDirectSubsidiariesAreNotHighlighted();
+    }
+    @Then("the user should not see any country in country highlights list")
+    public void verifyCounryListNotExists(){
+        pageObject.subsidiariesPage().verifyCounryListNotExists();
+    }
+
+
+    }

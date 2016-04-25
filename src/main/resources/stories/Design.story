@@ -11,25 +11,15 @@ Meta: @id login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: KYC user can view direct owners that are legal entities
-a.
-b.If no legal entities in list have country of operations, then no countries are available as highlight option
+Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
+a.User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the owners tab
-When the user selects a country <country> from the country highlight list in the owners page
-Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
-Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
-Then the user should not see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
-When the user de-select previously selected country by clicking on it a second time from the country highlight
-Then the use should not see any direct owners lists highlighted in the owners page
-When the user selects another country <country> from the country highlight list in the owners page
-Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
-And the previously selected country should be de-selected
+And the user clicks on the subsidiaries tab
+When the user selects the percent filter option <percentFilter> in the subsidiaries page
+Then the user should not see any country in country highlights list
 
 Examples:
-|fid|country|
-|211|Australia|
-|179281||
+|fid|percentFilter|
+|173|50|

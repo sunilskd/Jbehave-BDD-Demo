@@ -172,7 +172,7 @@ When the user selects a country <country> from the country highlight list in the
 Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
 Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
-When the user de-select previously selected country <country> by clicking on it a second time from the country highlight
+When the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the owners page
 Then the user should not see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
 When the user selects a country <country> from the country highlight list in the owners page
 When the user selects another country <changeCountry> from the country highlight list in the owners page
@@ -185,7 +185,6 @@ Examples:
 
 Scenario: Filter owners list by percent ownership
 a. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
-b. User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -209,6 +208,7 @@ Examples:
 |173|10|Lebanon|
 
 Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
+a. User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
