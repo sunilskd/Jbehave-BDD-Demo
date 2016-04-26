@@ -3,6 +3,7 @@ Epic - Ownership
 KYC user is performing due diligence on a potential business partner, so they need to see identifying information about the entity to make sure it is the one they are researching.
 Covers below features:
 JIRA ID - KYC-117 - KYC user can view entity details
+JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
 
 Meta:@entitydetails @kyc

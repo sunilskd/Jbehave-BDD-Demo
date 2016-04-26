@@ -79,4 +79,9 @@ public class SubsidiariesSteps {
         pageObject.subsidiariesPage().clickOnLegalTitleInSubsidiariesList(legalTitle);
     }
 
+    @Then("the user should see the subsidiaries summary selected by default in the subsidiaries page")
+    public void verifySummaryIsSelectedByDefault(){
+        pageObject.commonUtils().verifySummaryIsSelectedByDefault();
+    }
+
 }

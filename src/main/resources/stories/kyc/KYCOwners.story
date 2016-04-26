@@ -12,6 +12,7 @@ JIRA ID - KYC-172 - Do not display the meter when the percentage ownership is nu
 JIRA ID - KYC-189 - Direct Owners - Last validated date is incorrect
 JIRA ID - KYC-166 - Respect the validation date accuracy
 JIRA ID - KYC-170 - If validation date is not present then display record with no validation date
+JIRA ID - KYC-133 - User can navigate through tabs on office page
 
 Meta:@owners @kyc @kycowners
 
@@ -29,6 +30,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
+Then the user should see the direct owners summary selected by default in the owners page
 Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
 

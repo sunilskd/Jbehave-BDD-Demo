@@ -5,6 +5,7 @@ A KYC analyst is researching an entity they will potentially do business with, t
 Covers below features:
 JIRA ID - KYC-45 - KYC user can view direct subsidiaries
 JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
+JIRA ID - KYC-133 - User can navigate through tabs on office page
 
 Meta:@subsidiaries @kyc
 
@@ -23,6 +24,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
+Then the user should see the subsidiaries summary selected by default in the subsidiaries page
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
 
