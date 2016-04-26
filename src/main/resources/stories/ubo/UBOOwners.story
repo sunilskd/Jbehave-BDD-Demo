@@ -12,6 +12,7 @@ JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
 JIRA ID - KYC-91 - UBO user can view ownership list with non-entity, non-person owners
 JIRA ID - KYC-72 - KYC user can click link to another entity in ownership list
+JIRA ID - KYC-133 - User can navigate through tabs on office page
 
 Meta:@owners @ubo @uboowners
 
@@ -34,6 +35,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
+Then the user should see the direct owners summary selected by default in the owners page
 Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
 
 Examples:

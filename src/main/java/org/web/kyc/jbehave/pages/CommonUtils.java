@@ -16,6 +16,7 @@ public class CommonUtils extends WebDriverUtils {
     private By user_login_input_box_id = By.xpath("//input[@id='login']");
     private By login_button_xpath = By.xpath("//button[1]");
     private By logout_button_xpath = By.xpath("//button[1]");
+    private By summary_tab_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
 
     public CommonUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -82,4 +83,7 @@ public class CommonUtils extends WebDriverUtils {
         clickOnWebElement(logout_button_xpath);
     }
 
+    public void verifySummaryIsSelectedByDefault() {
+        assertEquals("Summary", getWebElementText(summary_tab_selected_text_xpath));
+    }
 }
