@@ -55,8 +55,8 @@ public class OwnersPage extends WebDriverUtils {
         List<WebElement> aDirectOwnersLastValidatedDate = getWebElements(direct_owners_last_validated_date_text_xpath);
         assertEquals("Direct owners count mismatch", eDirectOwnersList.getElementsByTagName("entityName").getLength(), aDirectOwnerEntityName.size());
         for(int i=0; i<aDirectOwnerEntityName.size(); i++){
-            assertEquals("Legal title does not match at" + i, aDirectOwnerEntityName.get(i).getText(), eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent());
-            assertEquals("Country name does not match at" + i, aDirectOwnersCountryName.get(i).getText(), eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
+            assertEquals("Legal title does not match at" + i, eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent(),aDirectOwnerEntityName.get(i).getText());
+            assertEquals("Country name does not match at" + i, eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent(),aDirectOwnersCountryName.get(i).getText());
             eCountryHighlightList.add(eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
             assertEquals("Legal title does not match at" + i, eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent(), aDirectOwnerEntityName.get(i).getText());
             assertEquals("Country name does not match at" + i, eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent(), aDirectOwnersCountryName.get(i).getText());
@@ -129,7 +129,6 @@ public class OwnersPage extends WebDriverUtils {
 
     public void dVerifyCountryHighlightList() {
         waitForPageToLoad(15000L);
-        dVerifyDirectOwnersList();
         List<String> aCountryHighlightList = getWebElementsText(country_highlight_list_text_xpath);
         Iterator eIterator = eCountryHighlightList.iterator();
         Iterator aIterator = aCountryHighlightList.iterator();
@@ -138,7 +137,7 @@ public class OwnersPage extends WebDriverUtils {
         }
     }
 
-    public void verifyCounryListNotExists() {
+    public void verifyCounryHighlightListNotExists() {
         waitForPageToLoad(15000L);
         System.out.print(isWebElementDisplayed(country_highlight_list_not_displayed_text_xpath));
         assertTrue(isWebElementDisplayed(country_highlight_list_not_displayed_text_xpath));

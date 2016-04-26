@@ -251,12 +251,14 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 When the user selects the percent filter option <percentFilter> in the owners page
+Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
 
 Examples:
 |fid|percentFilter|country
 |211|10|Australia|
 |1045|50|India|
+|12538|10|USA|
 
 Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
 Meta:@directOwners
@@ -270,6 +272,7 @@ Then the user should not see any country in country highlights list in the owner
 Examples:
 |fid|percentFilter|
 |173|50|
+|179281|10|
 
 Scenario: KYC user logout
 Given the user is on the ubo login page
