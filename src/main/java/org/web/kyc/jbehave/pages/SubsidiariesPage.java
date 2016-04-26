@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.pages;
 
+import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
@@ -16,7 +17,7 @@ public class SubsidiariesPage extends WebDriverUtils {
 
     private By subsidiaries_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[3]");
     private By subsidiaries_header_text_xpath = By.xpath("//*[@id='content-view'] /div/h1");
-    private By subsidiaries_entity_name_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='entity ng-binding']");
+    private By subsidiaries_entity_name_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='entity']");
     private By subsidiaries_country_name_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='location ng-binding']");
     private By subsidiaries_percentage_owned_text_xpath = By.xpath("//*[@id='subsidiaries-structure'] //*[@class='percentage ng-binding']");
     private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@class='notification']");
@@ -64,8 +65,8 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void sVerifySubsidiariesList(ExamplesTable subsidiariesListExamTable) {
-        verifySubsidiariesHeaders();
         waitForWebElementToAppear(subsidiaries_entity_name_text_xpath);
+        verifySubsidiariesHeaders();
         List<WebElement> aSubsidiariesEntityName = getWebElements(subsidiaries_entity_name_text_xpath);
         List<WebElement> aSubsidiariesCountryName = getWebElements(subsidiaries_country_name_text_xpath);
         List<WebElement> aSubsidiariesPercentageOwned = getWebElements(subsidiaries_percentage_owned_text_xpath);
@@ -84,5 +85,28 @@ public class SubsidiariesPage extends WebDriverUtils {
 
     public void verifyLegalTitleIsNotDisplayed() {
         assertTrue(isWebElementDisplayed(subsidiaries_institution_legal_title_hidden_text_xpath));
+    }
+
+    public void openLegalTitleInSubsidiariesListInNewWindow(String legalTitle) {
+        waitForWebElementToAppear(subsidiaries_entity_name_text_xpath);
+        nvPairs.add(new BasicNameValuePair("name", legalTitle));
+        for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
+            if("fid".equals(nameValuePair.getName())) {
+                nvPairs.remove(nameValuePair);
+            }
+        }
+        openLinkInNewWindow(By.linkText(legalTitle));
+    }
+
+    public void clickOnLegalTitleInSubsidiariesList(String legalTitle) {
+        waitForWebElementToAppear(subsidiaries_entity_name_text_xpath);
+        nvPairs.add(new BasicNameValuePair("name", legalTitle));
+        for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
+            if("fid".equals(nameValuePair.getName())) {
+                nvPairs.remove(nameValuePair);
+            }
+        }
+        clickOnWebElement(By.linkText(legalTitle));
+        waitForPageToLoad(15000L);
     }
 }
