@@ -265,7 +265,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 When the user selects the percent filter option <percentFilter> in the owners page
-Then the user should not see any country in country highlights list
+Then the user should not see any country in country highlights list in the owners page
 
 Examples:
 |fid|percentFilter|
