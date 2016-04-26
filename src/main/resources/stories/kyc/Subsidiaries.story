@@ -24,7 +24,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
-Then the user should see the subsidiaries summary selected by default in the owners page
+Then the user should see the subsidiaries summary selected by default in the subsidiaries page
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
 
