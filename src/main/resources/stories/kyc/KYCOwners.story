@@ -11,6 +11,7 @@ JIRA ID - KYC-172 - Do not display the meter when the percentage ownership is nu
 JIRA ID - KYC-189 - Direct Owners - Last validated date is incorrect
 JIRA ID - KYC-166 - Respect the validation date accuracy
 JIRA ID - KYC-170 - If validation date is not present then display record with no validation date
+JIRA ID - KYC-131- Restrict entity types displayed on direct owners based on UBO permission
 
 Meta:@owners @kyc @kycowners
 
@@ -209,3 +210,9 @@ Examples:
 Scenario: KYC user logout
 Given the user is on the ubo login page
 When the user logout
+
+Scenario: KYC-131 Restrict entity types displayed on owners list for KYC (non-UBO) users
+a. display legal entities
+b. If non-UBO user, display free text ownership
+c. If non-UBO user, do not display people owners in direct owners or UBO list
+d. If non-UBO user, do not display non-people/non-institution owners in direct owners list
