@@ -91,6 +91,14 @@ public class WebDriverUtils extends WebDriverPage {
         findElement(by).sendKeys(inputString);
     }
 
+    public List<String> getWebElementsText(By by) {
+        List<String> webElementsText = new ArrayList<String>();
+        for (int i = 0; i < findElements(by).size(); i++) {
+            webElementsText.add(findElements(by).get(i).getText());
+        }
+        return webElementsText;
+    }
+
     public void waitForPageToLoad(Long seconds){
         manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
