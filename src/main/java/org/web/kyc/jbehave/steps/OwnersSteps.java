@@ -67,9 +67,45 @@ public class OwnersSteps {
         pageObject.commonUtils().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
+    @Then("the previously selected country <country> should be de-selected")
+    public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
+        pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
+    }
+
     @When("the user changes the percent filter option to $updatedFilter in the owners page")
     public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
         pageObject.commonUtils().selectPercentFilter(updatedFilter);
+    }
+
+    @Then("the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page")
+    public void dVerifyCountryHighlightList(){
+        pageObject.ownersPage().dVerifyCountryHighlightList();
+    }
+
+    @Then("the user should not see any country in country highlights list in the owners page")
+    public void verifyCounryHighlightListNotExists(){
+        pageObject.ownersPage().verifyCounryHighlightListNotExists();
+    }
+
+    @Then("the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page")
+    public void verifyDirectOwnersAreHighlighted(){
+        pageObject.ownersPage().verifyDirectOwnersAreHighlighted();
+    }
+
+    @Then("the user should not see the direct owners in the owners list that have the selected country of operations highlighted in the owners page")
+    public void verifyDirectOwnersAreNotHighlighted(){
+        pageObject.ownersPage().verifyDirectOwnersAreNotHighlighted();
+    }
+
+    @When("the user selects a country <country> from the country highlight list in the owners page")
+    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight")
+    public void selectCountryHighlight(@Named("country") String country){
+        pageObject.commonUtils().selectCountryHighlight(country);
+    }
+
+    @When("the user selects another country <changeCountry> from the country highlight list in the owners page")
+    public void changeCountryHighlight(@Named("changeCountry") String changeCountry) {
+        pageObject.commonUtils().selectCountryHighlight(changeCountry);
     }
 
     @When("the user clicks on the legal title $legalTitle in direct owners list in the owners page")
@@ -81,4 +117,5 @@ public class OwnersSteps {
     public void openLegalTitleInDirectOwnersListInNewWindow(@Named("$legalTitle") String legalTitle){
         pageObject.ownersPage().openLegalTitleInDirectOwnersListInNewWindow(legalTitle);
     }
+
 }

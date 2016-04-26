@@ -3,15 +3,16 @@ package org.web.kyc.jbehave.pages;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
-import org.omg.CORBA.NameValuePair;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
-
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
 
 public class OwnersPage extends WebDriverUtils {
@@ -26,6 +27,13 @@ public class OwnersPage extends WebDriverUtils {
     private By no_direct_owners_msg_text_xpath = By.xpath("//*[@class='notification ng-scope']");
     private By direct_owners_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='measure']");
     private By direct_owners_no_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='meter ng-isolate-scope ng-hide']");
+    private String direct_owners_highlighted_xpath = "//*[@id='direct-owners-list']/li/div[@class='details highlight']";
+    private By direct_owners_not_highlighted_xpath = By.xpath("//*[@id='direct-owners-list']/li/div[@class='details']");
+    private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners-list']/li");
+    private String direct_owners_row_for_country_xpath = "//ul[li[@class='location ng-binding']='";
+    private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters']/ul[2]/li");
+    private By country_highlight_list_not_displayed_text_xpath = By.xpath("//*[@id='content-filters'] /h2[@class='ng-hide']");
+    Set<String> eCountryHighlightList = new TreeSet<>();
 
     public OwnersPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -37,6 +45,7 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void dVerifyDirectOwnersList() {
+        eCountryHighlightList.clear();
         waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
         verifyDirectOwnersHeaders();
         Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
@@ -46,6 +55,9 @@ public class OwnersPage extends WebDriverUtils {
         List<WebElement> aDirectOwnersLastValidatedDate = getWebElements(direct_owners_last_validated_date_text_xpath);
         assertEquals("Direct owners count mismatch", eDirectOwnersList.getElementsByTagName("entityName").getLength(), aDirectOwnerEntityName.size());
         for(int i=0; i<aDirectOwnerEntityName.size(); i++){
+            assertEquals("Legal title does not match at" + i, eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent(),aDirectOwnerEntityName.get(i).getText());
+            assertEquals("Country name does not match at" + i, eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent(),aDirectOwnersCountryName.get(i).getText());
+            eCountryHighlightList.add(eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
             assertEquals("Legal title does not match at" + i, eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent(), aDirectOwnerEntityName.get(i).getText());
             assertEquals("Country name does not match at" + i, eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent(), aDirectOwnersCountryName.get(i).getText());
             if(!eDirectOwnersList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
@@ -102,6 +114,35 @@ public class OwnersPage extends WebDriverUtils {
         dVerifyDirectOwnersList();
     }
 
+    public void verifyDirectOwnersAreHighlighted() {
+        assertEquals(
+                getWebElements(By.xpath(direct_owners_highlighted_xpath + "[ul[li[@class='location ng-binding']='" + selectedCountryHighlight + "']]")).size(),
+                getWebElements(By.xpath(direct_owners_row_for_country_xpath + selectedCountryHighlight + "']")).size());
+        assertEquals(
+                getWebElements(By.xpath(direct_owners_highlighted_xpath)).size(),
+                getWebElements(By.xpath(direct_owners_row_for_country_xpath + selectedCountryHighlight + "']")).size());
+    }
+
+    public void verifyDirectOwnersAreNotHighlighted() {
+        assertEquals(getWebElements(direct_owners_not_highlighted_xpath).size(), getWebElements(direct_owners_rows_xpath).size());
+    }
+
+    public void dVerifyCountryHighlightList() {
+        waitForPageToLoad(15000L);
+        List<String> aCountryHighlightList = getWebElementsText(country_highlight_list_text_xpath);
+        Iterator eIterator = eCountryHighlightList.iterator();
+        Iterator aIterator = aCountryHighlightList.iterator();
+        while (eIterator.hasNext()){
+            assertEquals(eIterator.next(),aIterator.next());
+        }
+    }
+
+    public void verifyCounryHighlightListNotExists() {
+        waitForPageToLoad(15000L);
+        System.out.print(isWebElementDisplayed(country_highlight_list_not_displayed_text_xpath));
+        assertTrue(isWebElementDisplayed(country_highlight_list_not_displayed_text_xpath));
+    }
+
     public void clickOnLegalTitleInDirectOwnersList(String legalTitle) {
         waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
         nvPairs.add(new BasicNameValuePair("name", legalTitle));
@@ -111,11 +152,7 @@ public class OwnersPage extends WebDriverUtils {
             }
         }
         clickOnWebElement(By.linkText(legalTitle));
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForPageToLoad(15000L);
     }
 
     public void openLegalTitleInDirectOwnersListInNewWindow(String legalTitle) {

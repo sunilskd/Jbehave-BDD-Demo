@@ -107,10 +107,6 @@ public class SubsidiariesPage extends WebDriverUtils {
             }
         }
         clickOnWebElement(By.linkText(legalTitle));
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForPageToLoad(15000L);
     }
 }
