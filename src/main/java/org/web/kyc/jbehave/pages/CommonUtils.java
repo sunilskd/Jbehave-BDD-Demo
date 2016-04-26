@@ -4,6 +4,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /* Contains commonUtils methods to be used in page classes */
@@ -13,10 +16,12 @@ public class CommonUtils extends WebDriverUtils {
     private By ownership_tab_xpath = By.xpath("//*[@id='content-navigation'] //li[2]");
     private By percent_filter_option_header_text_xpath = By.xpath("//*[@id='content-filters']/h2[1]");
     private String percent_filter_options_text_xpath = "//*[@id='content-filters']/ul[1]/li";
+    private String country_highlight_options_text_xpath = "//*[@id='content-filters']/ul[2]/li";
     private By user_login_input_box_id = By.xpath("//input[@id='login']");
     private By login_button_xpath = By.xpath("//button[1]");
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_tab_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
+    public static String selectedCountryHighlight = "";
 
     public CommonUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -59,9 +64,21 @@ public class CommonUtils extends WebDriverUtils {
         clickOnWebElement(By.xpath(filterXpath));
     }
 
+    public void selectCountryHighlight(String country) {
+        waitForPageToLoad(15000L);
+        selectedCountryHighlight = country;
+        String highlightXpath = country_highlight_options_text_xpath + "[" + getElementIndexByValue(By.xpath(country_highlight_options_text_xpath), country) + "]";
+        clickOnWebElement(By.xpath(highlightXpath));
+    }
+
     public void verifyPercentFilterIsDeSelected(String deselectFilter) {
         String filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), deselectFilter) + "]";
         assertTrue(isWebElementDisplayed(By.xpath(filterXpath + "[@class='ng-binding ng-scope']")));
+    }
+
+    public void verifyCountryHighlightIsDeSelected(String deselectCountry){
+        String countyrHighlighXpath = country_highlight_options_text_xpath + "[" + getElementIndexByValue(By.xpath(country_highlight_options_text_xpath), deselectCountry) + "]";
+        assertTrue(isWebElementDisplayed(By.xpath(countyrHighlighXpath + "[@class='ng-binding ng-scope']")));
     }
 
     public void userLogin(String userType) {
