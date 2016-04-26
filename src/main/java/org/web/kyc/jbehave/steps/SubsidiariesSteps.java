@@ -41,12 +41,12 @@ public class SubsidiariesSteps {
 
     @Then("the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the subsidiaries page")
     public void verifyPercentFilterOptions(){
-        pageObject.common().verifyPercentFilterOptions();
+        pageObject.commonUtils().verifyPercentFilterOptions();
     }
 
     @When("the user selects the percent filter option <percentFilter> in the subsidiaries page")
     public void selectPercentFilter(@Named("percentFilter") String percentFilter){
-        pageObject.common().selectPercentFilter(percentFilter);
+        pageObject.commonUtils().selectPercentFilter(percentFilter);
     }
 
     @Then("the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the subsidiaries page")
@@ -56,17 +56,27 @@ public class SubsidiariesSteps {
 
     @Then("the user should see the percent filter $deselectFilter de-selected in the subsidiaries page")
     public void verifyPercentFilterIsDeSelected(@Named("deselectFilter") String deselectFilter){
-        pageObject.common().verifyPercentFilterIsDeSelected(deselectFilter);
+        pageObject.commonUtils().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
     @When("the user changes the percent filter option to $updatedFilter in the subsidiaries page")
     public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
-        pageObject.common().selectPercentFilter(updatedFilter);
+        pageObject.commonUtils().selectPercentFilter(updatedFilter);
     }
 
     @Then("the user should not see the legal title of the institution it is looking at in the subsidiaries page")
     public void verifyLegalTitleIsNotDisplayed(){
         pageObject.subsidiariesPage().verifyLegalTitleIsNotDisplayed();
+    }
+
+    @When("the user clicks and opens the legal title $legalTitle in subsidiaries list in new window in the subsidiaries page")
+    public void openLegalTitleInSubsidiariesListInNewWindow(@Named("$legalTitle") String legalTitle){
+        pageObject.subsidiariesPage().openLegalTitleInSubsidiariesListInNewWindow(legalTitle);
+    }
+
+    @When("the user clicks on the legal title $legalTitle in subsidiaries list in the subsidiaries page")
+    public void clickOnLegalTitleInSubsidiariesList(@Named("legalTitle") String legalTitle){
+        pageObject.subsidiariesPage().clickOnLegalTitleInSubsidiariesList(legalTitle);
     }
 
 }

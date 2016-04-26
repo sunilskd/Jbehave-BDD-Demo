@@ -18,7 +18,7 @@ public class EntityDetailsSteps {
         pageObject.entityDetailsPage().clickOnEntityDetailsTab();
     }
 
-    @Then("the user should see the identifiers with giin, lei and fatca status for the selected institution in the entity details page")
+    @Then("the user should see the identifiers with giin, lei, sorted alphabetically by issuer name, and fatca status for the selected institution in the entity details page")
     public void dVerifyIdentifiers(){
         pageObject.entityDetailsPage().dVerifyIdentifiers();
     }
@@ -48,9 +48,19 @@ public class EntityDetailsSteps {
         pageObject.entityDetailsPage().sVerifyGiinAndFatcaStatus(giin,fatcaStatus);
     }
 
-    @Then("the user should see the identifiers with below leis in the entity details page $leis")
+    @Then("the user should see the identifiers with below leis, sorted alphabetically by issuer name, in the entity details page $leisExamTable")
     public void sVerifyLeis(ExamplesTable leisExamTable){
         pageObject.entityDetailsPage().sVerifyLeis(leisExamTable);
+    }
+
+    @Then("the user should see the list of swift bics sorted first by length (short to long) then by alpha-numerically in the entity details page")
+    public void dVerifySwiftBicList(){
+        pageObject.entityDetailsPage().dVerifySwiftBicList();
+    }
+
+    @Then("the user should see the swift bic list sorted first by length (short to long) then by alpha-numerically in the entity details page $swiftBicExampleTable")
+    public void sVerifySwiftBicList(ExamplesTable swiftBicExampleTable){
+        pageObject.entityDetailsPage().sVerifySwiftBicList(swiftBicExampleTable);
     }
 
 }

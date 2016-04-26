@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 import static org.junit.Assert.*;
 
-/* Contains common methods to be used in page classes */
+/* Contains commonUtils methods to be used in page classes */
 
 public class CommonUtils extends WebDriverUtils {
 
@@ -60,7 +60,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyPercentFilterIsDeSelected(String deselectFilter) {
         String filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), deselectFilter) + "]";
-        assertFalse(isWebElementDisplayed(By.xpath(filterXpath + "[@class='ng-binding ng-scope selected']")));
+        assertTrue(isWebElementDisplayed(By.xpath(filterXpath + "[@class='ng-binding ng-scope']")));
     }
 
     public void userLogin(String userType) {
@@ -81,4 +81,5 @@ public class CommonUtils extends WebDriverUtils {
     public void userLogout() {
         clickOnWebElement(logout_button_xpath);
     }
+
 }

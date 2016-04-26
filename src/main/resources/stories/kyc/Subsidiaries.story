@@ -106,6 +106,23 @@ Examples:
 |fid|percentFilter|
 |1045|50|
 
+Scenario: User clicks and opens legal title of legal entity that appears in subsidiaries list in a new window
+(user is taken to the subsidiaries list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
+Meta:@directOwners @static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
+Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|Acceptance Alliance LLC|USA||
+|Banc of America Merchant Services LLC|USA||
+
+Examples:
+|fid|
+|1038|
+
 Scenario: Display message in place of subs list if no subsidiaries for entity user is viewing
 a. If there are no subsidiaries display "No known entities" for now;
 Meta:@static @dynamic
@@ -172,6 +189,36 @@ Then the user should see the percent filter View All de-selected in the subsidia
 Examples:
 |fid|percentFilter|
 |1038|10|
+
+Scenario: User clicks and opens legal title of legal entity that appears in subsidiaries list in a new window
+(user is taken to the subsidiaries list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
+Meta:@dynamic
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
+Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
+And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
+
+Examples:
+|fid|institutionLegalTitle|
+|1038|BAMS Solutions Inc|
+
+Scenario: User clicks legal title of legal entity that appears in subsidiaries list
+(user is taken to the subsidiaries list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
+Meta:@dynamic
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the legal title BAMS Solutions Inc in subsidiaries list in the subsidiaries page
+Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
+And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
+
+Examples:
+|fid|institutionLegalTitle|
+|1038|BAMS Solutions Inc|
 
 Scenario: KYC user logout
 Given the user is on the ubo login page

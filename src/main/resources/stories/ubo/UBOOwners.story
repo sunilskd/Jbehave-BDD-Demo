@@ -11,6 +11,7 @@ JIRA ID - KYC-50 - UBO user can view direct owners list with people as owners
 JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
 JIRA ID - KYC-91 - UBO user can view ownership list with non-entity, non-person owners
+JIRA ID - KYC-72 - KYC user can click link to another entity in ownership list
 
 Meta:@owners @ubo @uboowners
 
@@ -71,7 +72,7 @@ Examples:
 |94016|
 |241440|
 
-Scenario: UBO user can view direct owners that are legal entities and people as owners
+Scenario: UBO user can view direct owners that are legal entities and people as owners.
 Meta:@directOwners @static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -132,6 +133,22 @@ Examples:
 |fid|percentFilter|
 |12538|25|
 
+Scenario: User clicks and opens legal title of legal entity that appears in direct owners list in a new window
+(user is taken to the direct owners list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
+Meta:@directOwners @static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+When the user clicks and opens the legal title Moody Bank Holding Company Inc in direct owners list in new window in the owners page
+Then the ubo user should see the below list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|Moody Bancshares Inc|USA||09 Feb 2001|
+
+Examples:
+|fid|
+|12538|
+
 Scenario: Verify no data found message when there are no direct owners
 a. If there are no direct owners display "no results" for now
 b. If person or institution ownership relationship is inactive, do not display that person or institution on owners list
@@ -141,7 +158,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the ubo user should see message displayed in place of list explaining there are no direct owners
+Then the user should see message displayed in place of list explaining there are no direct owners
 
 Examples:
 |fid|
@@ -177,7 +194,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
-Then the ubo user should see message displayed in place of list explaining there are no direct owners
+Then the user should see message displayed in place of list explaining there are no direct owners
 
 Examples:
 |fid|percentFilter|
@@ -191,7 +208,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
-Then the ubo user should see the percent filter View All de-selected in the owners page
+Then the user should see the percent filter View All de-selected in the owners page
 
 Examples:
 |fid|percentFilter|
@@ -200,5 +217,3 @@ Examples:
 Scenario: UBO user logout
 Given the user is on the ubo login page
 When the user logout
-
-
