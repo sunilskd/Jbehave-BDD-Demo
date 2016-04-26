@@ -217,3 +217,9 @@ Examples:
 Scenario: UBO user logout
 Given the user is on the ubo login page
 When the user logout
+
+Scenario: KYC-131 Restrict entity types displayed on owners list based on UBO permission
+a. display legal entities
+b. If UBO user, do not display free text ownership
+c. If UBO user, display people owners in direct owners or UBO list
+d. If UBO user, display non-people/non-institution owners in direct owners list
