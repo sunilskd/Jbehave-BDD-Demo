@@ -21,13 +21,13 @@ Given the user is on the ubo login page
 When the user login as a ubo user
 
 Scenario: UBO user can view direct owners that are legal entities, people, or other entity types (non-institution, non-person) as owners
-a. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
-   Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
-   If only ownerType is present display owner as "ownerType"
-b. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
-   Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
-c. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
-   If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
+a. 1. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
+   2. Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
+   3. If only ownerType is present display owner as "ownerType"
+b. 1. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
+   2. Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
+c. 1. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
+   2. If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
 d. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
 e. If ownerType is not present display owner as "entityReference/description"
 Meta:@directOwners @dynamic
@@ -169,8 +169,8 @@ Examples:
 |2162|
 
 Scenario: KYC-100 Filter owners list by percent ownership
-a. View all is selected by default (displays all direct owners regardless of percent ownership);
-   Selecting 10 and above filters out any entity that has null or less than 10 ownership
+a. 1. View all is selected by default (displays all direct owners regardless of percent ownership);
+   2. Selecting 10 and above filters out any entity that has null or less than 10 ownership
 b. Selecting 25 and above filters out any entity that has null or less than 25 ownership
 c. Selecting 50 and above filters out any entity that has null or less than 50 ownership
 Meta:@directOwners @dynamic

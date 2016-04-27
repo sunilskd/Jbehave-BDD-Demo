@@ -134,8 +134,8 @@ Examples:
 |46089|
 
 Scenario: KYC-100 Filter owners list by percent ownership
-a. View all is selected by default (displays all direct owners regardless of percent ownership);
-   Selecting 10 and above filters out any entity that has null or less than 10 ownership
+a. 1. View all is selected by default (displays all direct owners regardless of percent ownership);
+   2. Selecting 10 and above filters out any entity that has null or less than 10 ownership
 b. Selecting 25 and above filters out any entity that has null or less than 25 ownership
 c. Selecting 50 and above filters out any entity that has null or less than 50 ownership
 Meta:@directOwners @dynamic
@@ -210,10 +210,9 @@ Examples:
 |211|
 
 Scenario: KYC user can view Highlight legal entities in direct owners list by country
-a.Legal entities in list have country of operations.
-  Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
-  Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
-Examples:
+a. 1. Legal entities in list have country of operations.
+   2. Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
+   3. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -229,8 +228,8 @@ Examples:
 |173|Jordan|Lebanon|
 
 Scenario: KYC user can view Highlight legal entities in direct owners list by country
-a.List each unique country once, sort countries in highlight list alphabetically
-  De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+a. 1. List each unique country once, sort countries in highlight list alphabetically
+   2. De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
