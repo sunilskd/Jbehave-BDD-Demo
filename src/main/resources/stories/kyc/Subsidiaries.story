@@ -5,7 +5,7 @@ A KYC analyst is researching an entity they will potentially do business with, t
 Covers below features:
 JIRA ID - KYC-45 - KYC user can view direct subsidiaries
 JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
-JIRA-ID - KYC-108 - KYC user can highlight legal entities by country on subsidiaries list
+JIRA ID - KYC-133 - User can navigate through tabs on office page
 
 Meta:@subsidiaries @kyc
 
@@ -24,6 +24,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
+Then the user should see the subsidiaries summary selected by default in the subsidiaries page
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
 
@@ -107,6 +108,23 @@ Examples:
 |fid|percentFilter|
 |1045|50|
 
+Scenario: User clicks and opens legal title of legal entity that appears in subsidiaries list in a new window
+(user is taken to the subsidiaries list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
+Meta:@directOwners @static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
+Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|Acceptance Alliance LLC|USA||
+|Banc of America Merchant Services LLC|USA||
+
+Examples:
+|fid|
+|1038|
+
 Scenario: Display message in place of subs list if no subsidiaries for entity user is viewing
 a. If there are no subsidiaries display "No known entities" for now;
 Meta:@static @dynamic
@@ -140,8 +158,8 @@ Examples:
 |173|25|
 
 Scenario: KYC-102 Filter list of subsidiaries by percent ownership
-a. View all is selected by default (displays all direct subsidiaries regardless of percent ownership)
-   Selecting 10 and above filters out any entities owned by less than 10 or have null ownership
+a. 0. View all is selected by default (displays all direct subsidiaries regardless of percent ownership)
+   2. Selecting 10 and above filters out any entities owned by less than 10 or have null ownership
 b. Selecting 25 and above filters out any entities owned by less than 25 or have null ownership
 c. Selecting 50 and above filters out any entities owned by less than 50 or have null ownership
 Meta:@dynamic
@@ -174,14 +192,35 @@ Examples:
 |fid|percentFilter|
 |1038|10|
 
-Scenario: Highlight legal entities in subsidiaries list by country
-a. Legal entities in list have country of operations (country of operations for each legal entity populates list of available countries to highlight, only list each unique country once, sort countries in highlight list alphabetically)
-b. Select a country highlight, legal entities in the list that have that country of operations are highlighted
-c. de-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
-d. select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
-e. If no legal entities in list have country of operations, then no countries are available as highlight option
-f. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
-g. If user applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
+Scenario: User clicks and opens legal title of legal entity that appears in subsidiaries list in a new window
+(user is taken to the subsidiaries list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
+Meta:@dynamic
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
+Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
+And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
+
+Examples:
+|fid|institutionLegalTitle|
+|1038|BAMS Solutions Inc|
+
+Scenario: User clicks legal title of legal entity that appears in subsidiaries list
+(user is taken to the subsidiaries list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
+Meta:@dynamic
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the legal title BAMS Solutions Inc in subsidiaries list in the subsidiaries page
+Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
+And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
+
+Examples:
+|fid|institutionLegalTitle|
+|1038|BAMS Solutions Inc|
 
 Scenario: Highlight legal entities in subsidiaries list by country
 a.Legal entities in list have country of operations.
@@ -197,9 +236,6 @@ When the user selects a country <country> from the country highlight list in the
 Then the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 Then the user should see the list of unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries page
-When the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the subsidiaries page
-Then the user should not see the subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
-When the user selects a country <country> from the country highlight list in the subsidiaries page
 When the user selects another country <changeCountry> from the country highlight list in the subsidiaries page
 Then the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
 And the previously selected country <country> should be de-selected
@@ -207,6 +243,23 @@ And the previously selected country <country> should be de-selected
 Examples:
 |fid|country|changeCountry|
 |211|Australia|USA|
+|815|Colombia|Chile|
+
+Scenario: Highlight legal entities in subsidiaries list by country
+a.De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+When the user selects a country <country> from the country highlight list in the subsidiaries page
+Then the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
+When the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the subsidiaries page
+Then the user should not see the subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
+
+Examples:
+|fid|country|
+|211|Australia|
+|146115|Ireland|
 
 Scenario: Filter subsidiaries list by percent ownership
 a. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
@@ -214,19 +267,13 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
-When the user selects a country <country> from the country highlight list in the subsidiaries page
-Then the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
-Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
-Then the user should see the list of unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries page
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 Then the user should see the list of unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries page
-When the user selects a country <country> from the country highlight list in the subsidiaries page
-Then the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
 
 Examples:
-|fid|percentFilter|country
-|211|50|Australia|
+|fid|percentFilter|
+|211|50|
 
 Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
 a.User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options

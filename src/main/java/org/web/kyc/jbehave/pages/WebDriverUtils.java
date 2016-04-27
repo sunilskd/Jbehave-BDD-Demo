@@ -4,7 +4,9 @@ import org.apache.http.NameValuePair;
 import org.jbehave.web.selenium.WebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.web.kyc.rest.HttpRequest;
@@ -12,6 +14,7 @@ import org.web.kyc.utils.ReadProperties;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /* Contains commonUtils webdriver methods to be used in page classes */
 
@@ -96,4 +99,21 @@ public class WebDriverUtils extends WebDriverPage {
         return webElementsText;
     }
 
+    public void waitForPageToLoad(Long seconds){
+        manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+    }
+
+    public void openLinkInNewWindow(By by) {
+        Actions action = new Actions(getDriverProvider().get());
+        WebElement element = findElement(by);
+        action.moveToElement(element);
+        // Right click and select the option ' Open in new window'
+        action.contextClick(element).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
+
+        // Switch to new window
+        for (String Handle : getWindowHandles()) {
+            switchTo().window(Handle);
+        }
+        waitForPageToLoad(15000L);
+    }
 }

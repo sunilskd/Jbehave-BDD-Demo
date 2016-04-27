@@ -101,4 +101,22 @@ public class SubsidiariesSteps {
     }
 
 
+
+
+    @When("the user clicks and opens the legal title $legalTitle in subsidiaries list in new window in the subsidiaries page")
+    public void openLegalTitleInSubsidiariesListInNewWindow(@Named("$legalTitle") String legalTitle){
+        pageObject.subsidiariesPage().openLegalTitleInSubsidiariesListInNewWindow(legalTitle);
     }
+
+    @When("the user clicks on the legal title $legalTitle in subsidiaries list in the subsidiaries page")
+    public void clickOnLegalTitleInSubsidiariesList(@Named("legalTitle") String legalTitle){
+        pageObject.subsidiariesPage().clickOnLegalTitleInSubsidiariesList(legalTitle);
+    }
+
+    @Then("the user should see the subsidiaries summary selected by default in the subsidiaries page")
+    public void verifySummaryIsSelectedByDefault(){
+        pageObject.commonUtils().verifySummaryIsSelectedByDefault();
+    }
+
+}
+

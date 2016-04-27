@@ -25,8 +25,7 @@ public class OwnersSteps {
         pageObject.ownersPage().dVerifyDirectOwnersList();
     }
 
-    @Then("the kyc user should see message displayed in place of list explaining there are no direct owners")
-    @Alias("the ubo user should see message displayed in place of list explaining there are no direct owners")
+    @Then("the user should see message displayed in place of list explaining there are no direct owners")
     public void verifyNoDirectOwnersMsg(){
         pageObject.ownersPage().verifyNoDirectOwnersMsg();
     }
@@ -59,18 +58,16 @@ public class OwnersSteps {
 
     @Then("the kyc user should see the direct owners ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the owners page")
     @Alias("the ubo user should see the direct owners ordered by percentage ownership then asc by direct owners name (legal title or people as owners), filtered by selected percent filter, for the selected institution in the owners page")
-    public void dVerifyDirectOwnersAndUBOListForPercentFilter(){
-        pageObject.ownersPage().dVerifyDirectOwnersAndUBOListForPercentFilter();
+    public void dVerifyDirectOwnersListForSelectedPercentFilter(){
+        pageObject.ownersPage().dVerifyDirectOwnersListForSelectedPercentFilter();
     }
 
-    @Then("the kyc user should see the percent filter $deselectFilter de-selected in the owners page")
-    @Alias("the ubo user should see the percent filter $deselectFilter de-selected in the owners page")
+    @Then("the user should see the percent filter $deselectFilter de-selected in the owners page")
     public void verifyPercentFilterIsDeSelected(@Named("deselectFilter") String deselectFilter){
         pageObject.commonUtils().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
     @Then("the previously selected country <country> should be de-selected")
-
     public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
         pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
     }
@@ -85,9 +82,9 @@ public class OwnersSteps {
         pageObject.ownersPage().dVerifyCountryHighlightList();
     }
 
-    @Then("the user should not see any country in country highlights list")
-    public void verifyCounryListNotExists(){
-        pageObject.ownersPage().verifyCounryListNotExists();
+    @Then("the user should not see any country in country highlights list in the owners page")
+    public void verifyCounryHighlightListNotExists(){
+        pageObject.ownersPage().verifyCounryHighlightListNotExists();
     }
 
     @Then("the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page")
@@ -107,8 +104,22 @@ public class OwnersSteps {
     }
 
     @When("the user selects another country <changeCountry> from the country highlight list in the owners page")
-    public void changeCountryHighlight(@Named("changeCountry") String changeCountry){
+    public void changeCountryHighlight(@Named("changeCountry") String changeCountry) {
         pageObject.commonUtils().selectCountryHighlight(changeCountry);
     }
 
+    @When("the user clicks on the legal title $legalTitle in direct owners list in the owners page")
+    public void clickOnLegalTitleInDirectOwnersList(@Named("legalTitle") String legalTitle){
+        pageObject.ownersPage().clickOnLegalTitleInDirectOwnersList(legalTitle);
+    }
+
+    @When("the user clicks and opens the legal title $legalTitle in direct owners list in new window in the owners page")
+    public void openLegalTitleInDirectOwnersListInNewWindow(@Named("$legalTitle") String legalTitle){
+        pageObject.ownersPage().openLegalTitleInDirectOwnersListInNewWindow(legalTitle);
+    }
+
+    @Then("the user should see the direct owners summary selected by default in the owners page")
+    public void verifySummaryIsSelectedByDefault(){
+        pageObject.commonUtils().verifySummaryIsSelectedByDefault();
+    }
 }
