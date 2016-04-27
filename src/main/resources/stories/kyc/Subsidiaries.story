@@ -158,7 +158,7 @@ Examples:
 |173|25|
 
 Scenario: KYC-102 Filter list of subsidiaries by percent ownership
-a. 1. View all is selected by default (displays all direct subsidiaries regardless of percent ownership)
+a. 0. View all is selected by default (displays all direct subsidiaries regardless of percent ownership)
    2. Selecting 10 and above filters out any entities owned by less than 10 or have null ownership
 b. Selecting 25 and above filters out any entities owned by less than 25 or have null ownership
 c. Selecting 50 and above filters out any entities owned by less than 50 or have null ownership

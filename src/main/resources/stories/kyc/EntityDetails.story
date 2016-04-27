@@ -13,18 +13,18 @@ Given the user is on the ubo login page
 When the user login as a kyc user
 
 Scenario: KYC user can view entity details
-a. 1. with head office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
-   2. with LEI (with multiple LEIs (sort by LEI issuer name alphabetically (ascending) ignoring "The" in identifiers section)
-   3. with GIIN (display in identifiers section)
-   4. with head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
-   5. If active SWIFT BICs have assigned institution that is the entity user is viewing, then display SWIFT BICs on entity details sorted first by length (short to long) then by alpha-numeric
-b. 1. with FATCA status value (display in identifiers section)
-   2. If inactive SWIFT BIC has assigned institution that is the entity user is viewing, then do not display
-c. 1. KYC users should see Indetifiers labels even when there are no values for the identifiers
-   2. If no GIIN, display field label in identifiers section but no value
-   3. If no LEI, display field label in identifiers section but no value
-   4. If no FATCA status, display field label in identifiers section but no value
-   5. If no active SWIFT BICs have assigned institution that is the entity user is viewing, display the field label but no value
+a. 0. with head office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
+   1. with LEI (with multiple LEIs (sort by LEI issuer name alphabetically (ascending) ignoring "The" in identifiers section)
+   2. with GIIN (display in identifiers section)
+   3. with head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
+   4. If active SWIFT BICs have assigned institution that is the entity user is viewing, then display SWIFT BICs on entity details sorted first by length (short to long) then by alpha-numeric
+b. 0. with FATCA status value (display in identifiers section)
+   1. If inactive SWIFT BIC has assigned institution that is the entity user is viewing, then do not display
+c. 0. KYC users should see Indetifiers labels even when there are no values for the identifiers
+   1. If no GIIN, display field label in identifiers section but no value
+   2. If no LEI, display field label in identifiers section but no value
+   3. If no FATCA status, display field label in identifiers section but no value
+   4. If no active SWIFT BICs have assigned institution that is the entity user is viewing, display the field label but no value
 d. If no primary physical address exists for head office, display field label in summary section but no value
 e. Display all head office entity where useInaddress is true
 Meta:@dynamic
