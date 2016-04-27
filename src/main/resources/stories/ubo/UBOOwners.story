@@ -12,6 +12,7 @@ JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
 JIRA ID - KYC-91 - UBO user can view ownership list with non-entity, non-person owners
 JIRA ID - KYC-72 - KYC user can click link to another entity in ownership list
+JIRA ID - KYC-133 - User can navigate through tabs on office page
 
 Meta:@owners @ubo @uboowners
 
@@ -20,13 +21,13 @@ Given the user is on the ubo login page
 When the user login as a ubo user
 
 Scenario: UBO user can view direct owners that are legal entities, people, or other entity types (non-institution, non-person) as owners
-a. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
-   Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
-   If only ownerType is present display owner as "ownerType"
-b. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
-   Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
-c. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
-   If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
+a. 0. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
+   1. Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
+   2. If only ownerType is present display owner as "ownerType"
+b. 0. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
+   1. Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
+c. 0. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
+   1. If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
 d. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
 e. If ownerType is not present display owner as "entityReference/description"
 Meta:@directOwners @dynamic
@@ -34,6 +35,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
+Then the user should see the direct owners summary selected by default in the owners page
 Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
 
 Examples:
@@ -167,8 +169,8 @@ Examples:
 |2162|
 
 Scenario: KYC-100 Filter owners list by percent ownership
-a. View all is selected by default (displays all direct owners regardless of percent ownership);
-   Selecting 10 and above filters out any entity that has null or less than 10 ownership
+a. 0. View all is selected by default (displays all direct owners regardless of percent ownership);
+   1. Selecting 10 and above filters out any entity that has null or less than 10 ownership
 b. Selecting 25 and above filters out any entity that has null or less than 25 ownership
 c. Selecting 50 and above filters out any entity that has null or less than 50 ownership
 Meta:@directOwners @dynamic

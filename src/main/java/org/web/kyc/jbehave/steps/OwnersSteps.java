@@ -118,4 +118,8 @@ public class OwnersSteps {
         pageObject.ownersPage().openLegalTitleInDirectOwnersListInNewWindow(legalTitle);
     }
 
+    @Then("the user should see the direct owners summary selected by default in the owners page")
+    public void verifySummaryIsSelectedByDefault(){
+        pageObject.commonUtils().verifySummaryIsSelectedByDefault();
+    }
 }

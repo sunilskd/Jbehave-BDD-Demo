@@ -13,6 +13,9 @@ JIRA ID - KYC-172 - Do not display the meter when the percentage ownership is nu
 JIRA ID - KYC-189 - Direct Owners - Last validated date is incorrect
 JIRA ID - KYC-166 - Respect the validation date accuracy
 JIRA ID - KYC-170 - If validation date is not present then display record with no validation date
+JIRA ID - KYC-133 - User can navigate through tabs on office page
+JIRA ID - KYC-244 - In case only ownership free text exists on the owners list, no legal entities on the list then display free text, do not display "No known entities." message.
+JIRA ID - KYC-147 - Display only the first summary if there are multiple on the legal entity doc
 
 Meta:@owners @kyc @kycowners
 
@@ -21,15 +24,20 @@ Given the user is on the ubo login page
 When the user login as a kyc user
 
 Scenario: KYC user can view direct owners that are legal entities
-a. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
-b. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
+a. 0. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
+   1. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
+   2. Ownership free text exists and there are legal entities on owners list (display both, free text at bottom of list)
+b. 0. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
+   1. If ownership free text does not exist on legal entity doc, then do not display
 c. If country of operations is not present then display records with no country
 d. Do not display person or non entity as owners for KYC users
+f. Display only the first summary if there are multiple on the legal entity doc
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
+Then the user should see the direct owners summary selected by default in the owners page
 Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
 
@@ -39,6 +47,7 @@ Examples:
 |284626|
 |179281|
 |12538|
+|30415|
 
 Scenario: Do not display the meter when the percentage ownership is null
 a. If percentage ownership is null then display record with no percentage ownership
@@ -72,6 +81,7 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|
 |Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|
 |Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|
+|City Property Management Committee, 1.297%||||
 
 When the user selects the percent filter option <percentFilter> in the owners page
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
@@ -80,6 +90,7 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|
 |'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|
 |Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|
+|City Property Management Committee, 1.297%||||
 And the user should see the percentage meter bar in the direct owners list
 
 When the user changes the percent filter option to View All in the owners page
@@ -93,6 +104,7 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|
 |Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|
 |Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|
+|City Property Management Committee, 1.297%||||
 And the user should see the percentage meter bar in the direct owners list
 
 Examples:
@@ -110,10 +122,26 @@ When the user clicks and opens the legal title Sberbank of Russia in direct owne
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
 |Central Bank of the Russian Federation|Russian Federation|52.32|01 Mar 2013|
+|Free float, 47.68%. Except Bank of Russia, no other shareholders with 5% or more of the bank's charter capital||||
 
 Examples:
 |fid|
 |46637|
+
+Scenario: Only ownership free text exists on the owners list, no legal entities on the list (display free text, do not display "No known entities." message)
+Meta:@directOwners @static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+When the user clicks and opens the legal title Sberbank of Russia in direct owners list in new window in the owners page
+Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|Foreign institutional investors, 74%; Greek institutional investors, 11%; Individuals, 4%||||
+
+Examples:
+|fid|
+|168466|
 
 Scenario: Verify no data found message when there are no direct owners
 a. If there are no direct owners display "No known entities" for now
@@ -133,8 +161,8 @@ Examples:
 |46089|
 
 Scenario: KYC-100 Filter owners list by percent ownership
-a. View all is selected by default (displays all direct owners regardless of percent ownership);
-   Selecting 10 and above filters out any entity that has null or less than 10 ownership
+a. 0. View all is selected by default (displays all direct owners regardless of percent ownership);
+   1. Selecting 10 and above filters out any entity that has null or less than 10 ownership
 b. Selecting 25 and above filters out any entity that has null or less than 25 ownership
 c. Selecting 50 and above filters out any entity that has null or less than 50 ownership
 Meta:@directOwners @dynamic
@@ -148,7 +176,7 @@ Then the kyc user should see the direct owners ordered by percentage ownership t
 
 Examples:
 |fid|percentFilter|
-|211|10||
+|211|10|
 |1038|25|
 |1045|50|
 
@@ -209,10 +237,9 @@ Examples:
 |211|
 
 Scenario: KYC user can view Highlight legal entities in direct owners list by country
-a.Legal entities in list have country of operations.
-  Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
-  Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
-Examples:
+a. 0. Legal entities in list have country of operations.
+   1. Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
+   2. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -228,12 +255,13 @@ Examples:
 |173|Jordan|Lebanon|
 
 Scenario: KYC user can view Highlight legal entities in direct owners list by country
-a.List each unique country once, sort countries in highlight list alphabetically
-  De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+a. 0. List each unique country once, sort countries in highlight list alphabetically
+   1. De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
+Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
 When the user selects a country <country> from the country highlight list in the owners page
 Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
