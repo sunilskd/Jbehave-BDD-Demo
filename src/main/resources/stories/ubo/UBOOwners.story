@@ -20,7 +20,7 @@ Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: UBO user can view direct owners that are legal entities, people, or other entity types (non-institution, non-person) as owners
+Scenario: UBO user can view direct owners that are legal entities, people, or other entity types (non-institution, non-person) as owners and can not view ownership free text in owners list
 a. 0. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
    1. Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
    2. If only ownerType is present display owner as "ownerType"
@@ -37,6 +37,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see the direct owners summary selected by default in the owners page
 Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
+Then the kyc user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page
 
 Examples:
 |fid|

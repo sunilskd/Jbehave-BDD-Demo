@@ -122,4 +122,21 @@ public class OwnersSteps {
     public void verifySummaryIsSelectedByDefault(){
         pageObject.commonUtils().verifySummaryIsSelectedByDefault();
     }
+
+    @Then("the kyc user should see the free text at the bottom of the direct owner list for the selected institution in the owners page")
+    public void dVerifyFreeTextInDirectOwnersList(){
+        pageObject.ownersPage().dVerifyFreeTextInDirectOwnersList();
+    }
+
+    @Then("the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page")
+    public void sVerifyFreeTextInDirectOwnersList(@Named("directOwnerFreeText") String directOwnerFreeText){
+        pageObject.ownersPage().sVerifyFreeTextInDirectOwnersList(directOwnerFreeText);
+    }
+
+    @Then("the kyc user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page")
+    @Alias("the ubo user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page")
+    public void sVerifyNoFreeTextInDirectOwnersList(){
+        pageObject.ownersPage().sVerifyNoFreeTextInDirectOwnersList();
+    }
+
 }

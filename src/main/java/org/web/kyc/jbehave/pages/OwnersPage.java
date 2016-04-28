@@ -51,24 +51,13 @@ public class OwnersPage extends WebDriverUtils {
         verifyDirectOwnersHeaders();
         Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
         List<WebElement> aDirectOwnerEntityName = getWebElements(direct_owners_entity_name_text_xpath);
-
-        /* adding the free text row as direct owner*/
-        if(!getWebElementText(direct_owners_entity_free_text_xpath).isEmpty()) {
-            aDirectOwnerEntityName.add(getWebElement(direct_owners_entity_free_text_xpath));
-        }
-
         List<WebElement> aDirectOwnersCountryName = getWebElements(direct_owners_country_name_text_xpath);
         List<WebElement> aDirectOwnersPercentageOwned = getWebElements(direct_owners_percentage_owned_text_xpath);
         List<WebElement> aDirectOwnersLastValidatedDate = getWebElements(direct_owners_last_validated_date_text_xpath);
         assertEquals("Direct owners count mismatch", eDirectOwnersList.getElementsByTagName("entityName").getLength(), aDirectOwnerEntityName.size());
 
-        /* loop to check the direct owners list that includes free text */
-        for(int i=0; i<eDirectOwnersList.getElementsByTagName("entityName").getLength(); i++) {
-            assertEquals("Legal title does not match at" + i, eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent(), aDirectOwnerEntityName.get(i).getText());
-        }
-
-        /* loop to check the other information of direct owners, other than free text, as free text will not have other information like country, percentage and validated date */
         for(int i=0; i<getWebElements(direct_owners_entity_name_text_xpath).size(); i++) {
+            assertEquals("Legal title does not match at" + i, eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent(), aDirectOwnerEntityName.get(i).getText());
             assertEquals("Country name does not match at" + i, eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent(),aDirectOwnersCountryName.get(i).getText());
             eCountryHighlightList.add(eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
             if(!eDirectOwnersList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
@@ -92,20 +81,11 @@ public class OwnersPage extends WebDriverUtils {
         waitForPageToLoad(15000L);
         verifyDirectOwnersHeaders();
         List<WebElement> aDirectOwnerEntityName = getWebElements(direct_owners_entity_name_text_xpath);
-
-        /* adding the free text row as direct owner*/
-        if(!getWebElementText(direct_owners_entity_free_text_xpath).isEmpty()) {
-            aDirectOwnerEntityName.add(getWebElement(direct_owners_entity_free_text_xpath));
-        }
-
         List<WebElement> aDirectOwnersCountryName = getWebElements(direct_owners_country_name_text_xpath);
         List<WebElement> aDirectOwnersPercentageOwned = getWebElements(direct_owners_percentage_owned_text_xpath);
         List<WebElement> aDirectOwnersLastValidatedDate = getWebElements(direct_owners_last_validated_date_text_xpath);
-        for(int i=0; i<directOwnersListExamTable.getRowCount(); i++) {
-            assertEquals("Legal title does not match at" + i, directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(0)), aDirectOwnerEntityName.get(i).getText());
-        }
-
         for(int i=0; i<aDirectOwnersCountryName.size(); i++) {
+            assertEquals("Legal title does not match at" + i, directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(0)), aDirectOwnerEntityName.get(i).getText());
             assertEquals("Country name does not match at" + i, directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(1)), aDirectOwnersCountryName.get(i).getText());
             if(!directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(2)).isEmpty()) {
                 assertEquals("Percentage owned does not match at" + i, directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(2)) + "%", aDirectOwnersPercentageOwned.get(i).getText());
@@ -180,7 +160,7 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void openLegalTitleInDirectOwnersListInNewWindow(String legalTitle) {
-        waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
+        waitForPageToLoad(15000L);
         nvPairs.add(new BasicNameValuePair("name", legalTitle));
         for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
             if("fid".equals(nameValuePair.getName())) {
@@ -188,5 +168,30 @@ public class OwnersPage extends WebDriverUtils {
             }
         }
         openLinkInNewWindow(By.linkText(legalTitle));
+    }
+
+    public void dVerifyFreeTextInDirectOwnersList(){
+        waitForWebElementToAppear(direct_owners_entity_free_text_xpath);
+        verifyDirectOwnersHeaders();
+        Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
+        String aDirectOwnerFreeText = getWebElementText(direct_owners_entity_free_text_xpath);
+        try {
+            assertEquals(eDirectOwnersList.getElementsByTagName("freeTextEntity").item(0).getTextContent(), aDirectOwnerFreeText);
+        }catch (Exception NullPointerException){
+            System.out.print("Expected free text in direct owner list is null");
+        }
+    }
+
+    public void sVerifyFreeTextInDirectOwnersList(String directOwnerFreeText) {
+        waitForWebElementToAppear(direct_owners_entity_free_text_xpath);
+        verifyDirectOwnersHeaders();
+        String aDirectOwnerFreeText = getWebElementText(direct_owners_entity_free_text_xpath);
+        assertEquals(directOwnerFreeText, aDirectOwnerFreeText);
+    }
+
+    public void sVerifyNoFreeTextInDirectOwnersList() {
+        verifyDirectOwnersHeaders();
+        /* The html contains empty div when the free text ius not present */
+        assertEquals("",getWebElementText(direct_owners_entity_free_text_xpath));
     }
 }

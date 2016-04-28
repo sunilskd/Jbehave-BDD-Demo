@@ -24,14 +24,10 @@ Given the user is on the ubo login page
 When the user login as a kyc user
 
 Scenario: KYC user can view direct owners that are legal entities
-a. 0. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
-   1. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
-   2. Ownership free text exists and there are legal entities on owners list (display both, free text at bottom of list)
-b. 0. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
-   1. If ownership free text does not exist on legal entity doc, then do not display
+a. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
+b. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
 c. If country of operations is not present then display records with no country
 d. Do not display person or non entity as owners for KYC users
-f. Display only the first summary if there are multiple on the legal entity doc
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -49,6 +45,39 @@ Examples:
 |12538|
 |30415|
 
+Scenario: KYC user can view ownership free text in owners list
+a. 0. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
+   1. Ownership free text exists and there are legal entities on owners list (display both, free text at bottom of list)
+b. Display only the first summary if there are multiple on the legal entity doc
+c. Only ownership free text exists on the owners list, no legal entities on the list (display free text, do not display "No known entities." message)
+Meta:@directOwners @dynamic
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the user should see the direct owners summary selected by default in the owners page
+Then the kyc user should see the free text at the bottom of the direct owner list for the selected institution in the owners page
+
+Examples:
+|fid|
+|211|
+|284626|
+|30415|
+|168466|
+
+Scenario: If ownership free text does not exist on legal entity doc, then do not display
+Meta:@directOwners @dynamic
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the user should see the direct owners summary selected by default in the owners page
+Then the kyc user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page
+
+Examples:
+|fid|
+|284626|
+
 Scenario: Do not display the meter when the percentage ownership is null
 a. If percentage ownership is null then display record with no percentage ownership
 b. If validation date is not present then display record with no validation date
@@ -65,7 +94,7 @@ Examples:
 |94016|
 |91832|
 
-Scenario: KYC user can view direct owners that are legal entities
+Scenario: KYC user can view direct owners that are legal entities and free text
 Meta:@directOwners @static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -81,7 +110,7 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|
 |Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|
 |Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|
-|City Property Management Committee, 1.297%||||
+Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 
 When the user selects the percent filter option <percentFilter> in the owners page
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
@@ -91,6 +120,7 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|
 |Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|
 |City Property Management Committee, 1.297%||||
+Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
 
 When the user changes the percent filter option to View All in the owners page
@@ -105,11 +135,12 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|
 |Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|
 |City Property Management Committee, 1.297%||||
+Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
 
 Examples:
-|fid|percentFilter|
-|46637|10|
+|fid|percentFilter|directOwnerFreeText|
+|46637|10|City Property Management Committee, 1.297%|
 
 Scenario: User clicks and opens legal title of legal entity that appears in direct owners list in a new window
 (user is taken to the direct owners list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
@@ -122,11 +153,12 @@ When the user clicks and opens the legal title Sberbank of Russia in direct owne
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
 |Central Bank of the Russian Federation|Russian Federation|52.32|01 Mar 2013|
-|Free float, 47.68%. Except Bank of Russia, no other shareholders with 5% or more of the bank's charter capital||||
+
+Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 
 Examples:
-|fid|
-|46637|
+|fid|directOwnerFreeText|
+|46637|Free float, 47.68%. Except Bank of Russia, no other shareholders with 5% or more of the bank's charter capital|
 
 Scenario: Only ownership free text exists on the owners list, no legal entities on the list (display free text, do not display "No known entities." message)
 Meta:@directOwners @static
@@ -134,14 +166,11 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-When the user clicks and opens the legal title Sberbank of Russia in direct owners list in new window in the owners page
-Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
-|Foreign institutional investors, 74%; Greek institutional investors, 11%; Individuals, 4%||||
+Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 
 Examples:
-|fid|
-|168466|
+|fid|directOwnerFreeText|
+|168466|Foreign institutional investors, 74%; Greek institutional investors, 11%; Individuals, 4%|
 
 Scenario: Verify no data found message when there are no direct owners
 a. If there are no direct owners display "No known entities" for now
@@ -306,9 +335,3 @@ Examples:
 Scenario: KYC user logout
 Given the user is on the ubo login page
 When the user logout
-
-Scenario: KYC-115 KYC user can view ownership free text in owners list
-a. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
-b. If ownership free text does not exist on legal entity doc, then do not display
-c. Ownership free text exists and there are legal entities on owners list (display both, free text at bottom of list)
-d. Only ownership free text exists on the owners list, no legal entities on the list (display free text, do not display "No known entities." message)
