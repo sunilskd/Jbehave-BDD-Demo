@@ -37,7 +37,7 @@ Scenario: KYC user can view direct owners that are legal entities
 a. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
 b. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
 c. If country of operations is not present then display records with no country
-d. Do not display person or other entity types (non-institution, non-person) as owners  for KYC users
+d. Do not display people owners in direct owners or UBO list. Do not display non-people/non-institution owners in direct owners list.
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -54,7 +54,7 @@ Examples:
 |179281|
 |12538|
 
-Scenario: KYC user can view ownership free text in owners list
+Scenario: KYC user can view ownership free text in owners list.
 a. 0. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
    1. Ownership free text exists and there are legal entities on owners list (display both, free text at bottom of list)
 b. Display only the first summary if there are multiple on the legal entity doc

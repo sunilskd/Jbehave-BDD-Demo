@@ -30,7 +30,7 @@ Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: UBO user can view direct owners that are legal entities, people, or other entity types (non-institution, non-person) as owners and can not view ownership free text in owners list
+Scenario: UBO user can view direct owners that are legal entities, people, or other entity types (non-institution, non-person) as owners do not display free text ownership.
 a. 0. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
    1. Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
    2. If only ownerType is present display owner as "ownerType"
