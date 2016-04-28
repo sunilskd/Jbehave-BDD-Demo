@@ -139,7 +139,6 @@ public class OwnersPage extends WebDriverUtils {
 
     public void verifyCounryHighlightListNotExists() {
         waitForPageToLoad(15000L);
-        System.out.print(isWebElementDisplayed(country_highlight_list_not_displayed_text_xpath));
         assertTrue(isWebElementDisplayed(country_highlight_list_not_displayed_text_xpath));
     }
 
