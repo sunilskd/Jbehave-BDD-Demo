@@ -53,7 +53,6 @@ public class HttpRequest {
         if (status != HttpStatus.SC_OK) {
             throw new RuntimeException("Admin query returned with error code: " + status);
         }
-
         return response;
     }
 
