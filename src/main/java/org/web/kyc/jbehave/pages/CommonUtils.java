@@ -56,6 +56,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void selectPercentFilter(String percentFilter) {
+        waitForPageToLoad(15000L);
         String filterXpath = "";
         nvPairs.add(new BasicNameValuePair("percentage", percentFilter.replace("% and above", "")));
         if (percentFilter.equals("View All")) {
@@ -67,6 +68,13 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void selectCountryHighlight(String country) {
+
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         waitForPageToLoad(15000L);
         selectedCountryHighlight = country;
         String highlightXpath = country_highlight_options_text_xpath + "[" + getElementIndexByValue(By.xpath(country_highlight_options_text_xpath), country) + "]";

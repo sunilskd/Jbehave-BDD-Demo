@@ -6,6 +6,15 @@ no owners, including an ultimate beneficial owner which is a natural person, of 
 or known to be involved in criminal activities. A UBO user of the application has paid for premium access, which includes the
 same access as a KYC user but with additional data about UBOs (people).
 
+UBO user has access to below entity types -
+1. Person
+2. Legal Entities
+3. Other entity types (non-institution, non-person)
+4. UBO list
+
+UBO user does not has access to below entity types -
+1. Free text ownership
+
 Covers below features:
 JIRA ID - KYC-50 - UBO user can view direct owners list with people as owners
 JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
@@ -13,6 +22,7 @@ JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
 JIRA ID - KYC-91 - UBO user can view ownership list with non-entity, non-person owners
 JIRA ID - KYC-72 - KYC user can click link to another entity in ownership list
 JIRA ID - KYC-133 - User can navigate through tabs on office page
+JIRA ID - KYC-131 - Restrict entity types displayed on direct owners list by UBO user permission
 
 Meta:@owners @ubo @uboowners
 

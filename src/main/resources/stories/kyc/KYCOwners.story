@@ -3,6 +3,15 @@ Epic: Ownership
 A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships will not result in funding illegal activities such as money laundering and terrorist financing.
 A key part of this process is to find out if there are any owners of the bank they will potentially do business which are known to be risky or involved in criminal activities.
 
+KYC user has access to below entity types -
+1. Legal Entities
+2. Free text ownership
+
+KYC user does not has access to below entity types -
+1. Person
+2. UBO list
+3. Other entity types (non-institution, non-person)
+
 Covers below features:
 JIRA ID - KYC-64 - KYC user can view direct owners that are legal entities
 JIRA ID - KYC-100 - KYC user can filter owners list by percent ownership
@@ -16,6 +25,7 @@ JIRA ID - KYC-170 - If validation date is not present then display record with n
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-244 - In case only ownership free text exists on the owners list, no legal entities on the list then display free text, do not display "No known entities." message.
 JIRA ID - KYC-147 - Display only the first summary if there are multiple on the legal entity doc
+JIRA ID - KYC-131 - Restrict entity types displayed on direct owners list by UBO user permission
 
 Meta:@owners @kyc @kycowners
 
@@ -27,7 +37,7 @@ Scenario: KYC user can view direct owners that are legal entities
 a. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
 b. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
 c. If country of operations is not present then display records with no country
-d. Do not display person or non entity as owners for KYC users
+d. Do not display person or other entity types (non-institution, non-person) as owners  for KYC users
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -43,7 +53,6 @@ Examples:
 |284626|
 |179281|
 |12538|
-|30415|
 
 Scenario: KYC user can view ownership free text in owners list
 a. 0. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
@@ -269,12 +278,15 @@ Scenario: KYC user can view Highlight legal entities in direct owners list by co
 a. 0. Legal entities in list have country of operations.
    1. Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
    2. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
+   3. List each unique country once, sort countries in highlight list alphabetically
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 When the user selects a country <country> from the country highlight list in the owners page
 Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
+Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
 When the user selects another country <changeCountry> from the country highlight list in the owners page
 Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
 And the previously selected country <country> should be de-selected
@@ -284,8 +296,7 @@ Examples:
 |173|Jordan|Lebanon|
 
 Scenario: KYC user can view Highlight legal entities in direct owners list by country
-a. 0. List each unique country once, sort countries in highlight list alphabetically
-   1. De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+a.De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -294,7 +305,7 @@ Then the kyc user should see the list of direct owners ordered by percentage own
 Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
 When the user selects a country <country> from the country highlight list in the owners page
 Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
-When the user de-select previously selected country <country> by clicking on it a second time from the country highlight
+When the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the owners page
 Then the user should not see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
 
 Examples:
@@ -319,6 +330,7 @@ Examples:
 |12538|10|USA|
 
 Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
+a. User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
 Meta:@directOwners
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
