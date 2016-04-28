@@ -54,6 +54,10 @@ public class WebDriverUtils extends WebDriverPage {
         return findElements(by);
     }
 
+    public WebElement getWebElement(By by) {
+        return findElement(by);
+    }
+
     public void waitForWebElementToAppear(By by) {
         try {
             WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 3000);
@@ -89,6 +93,14 @@ public class WebDriverUtils extends WebDriverPage {
 
     public void enterStringInInputBox(By by, String inputString) {
         findElement(by).sendKeys(inputString);
+    }
+
+    public List<String> getWebElementsText(By by) {
+        List<String> webElementsText = new ArrayList<String>();
+        for (int i = 0; i < findElements(by).size(); i++) {
+            webElementsText.add(findElements(by).get(i).getText());
+        }
+        return webElementsText;
     }
 
     public void waitForPageToLoad(Long seconds){

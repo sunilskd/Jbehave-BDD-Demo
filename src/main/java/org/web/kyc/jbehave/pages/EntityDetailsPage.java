@@ -24,6 +24,10 @@ public class EntityDetailsPage extends WebDriverUtils {
     private By entity_details_giin_label_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[1]/th");
     private By entity_details_lei_label_text_xpath = By.xpath("//*[@id='entity-lei']/tbody/tr/th");
     private By entity_details_fatca_status_label_text_xpath = By.xpath("//*[@id='entity-identifiers']/tbody/tr[2]/th");
+    private By entity_details_swift_bic_header_text_xpath = By.xpath("//*[@id='content-view']/h1[3]");
+    private By entity_details_swift_bic_label_text_xpath = By.xpath("//*[@id='entity-swift-bic'] //th");
+    private By entity_details_swift_bic_list_text_xpath = By.xpath("//*[@id='entity-swift-bic'] //span");
+
     private Document entityDetailsDocument;
 
     public EntityDetailsPage(WebDriverProvider driverProvider) {
@@ -91,12 +95,30 @@ public class EntityDetailsPage extends WebDriverUtils {
     public void sVerifyLeis(ExamplesTable leisExamTable) {
         List<WebElement> aLeiValues = getWebElements(entity_details_lei_text_xpath);
         for (int i = 0; i < leisExamTable.getRowCount(); i++) {
-            assertEquals("LEI does not match at" + i, aLeiValues.get(i).getText(), leisExamTable.getRow(i).get(leisExamTable.getHeaders().get(0)));
-
+            assertEquals("LEI does not match at" + i, leisExamTable.getRow(i).get(leisExamTable.getHeaders().get(0)), aLeiValues.get(i).getText());
         }
-
     }
 
+    public void dVerifySwiftBicList() {
+        verifySwiftBicLabels();
+        List<WebElement> aSwiftBicList = getWebElements(entity_details_swift_bic_list_text_xpath);
+        for (int i =0; i < aSwiftBicList.size(); i++){
+            assertEquals("SWIFT BIC doesn't match at " + i, entityDetailsDocument.getElementsByTagName("swiftBic").item(i).getTextContent(), aSwiftBicList.get(i).getText());
+        }
+    }
+
+    public void sVerifySwiftBicList(ExamplesTable swiftBicExampleTable) {
+        verifySwiftBicLabels();
+        List<WebElement> aSwiftBicList = getWebElements(entity_details_swift_bic_list_text_xpath);
+        for (int i =0; i < aSwiftBicList.size(); i++){
+            assertEquals("SWIFT BIC doesn't match at " + i, swiftBicExampleTable.getRow(i).get(swiftBicExampleTable.getHeaders().get(0)), aSwiftBicList.get(i).getText());
+        }
+    }
+
+    public void verifySwiftBicLabels(){
+        assertEquals("SWIFT/BIC", getWebElementText(entity_details_swift_bic_header_text_xpath));
+        assertEquals("SWIFT/BIC", getWebElementText(entity_details_swift_bic_label_text_xpath));
+    }
 }
 
 
