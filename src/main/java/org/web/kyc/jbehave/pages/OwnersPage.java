@@ -174,18 +174,14 @@ public class OwnersPage extends WebDriverUtils {
         verifyDirectOwnersHeaders();
         Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
         String aDirectOwnerFreeText = getWebElementText(direct_owners_entity_free_text_xpath);
-        try {
-            assertEquals(eDirectOwnersList.getElementsByTagName("freeTextEntity").item(0).getTextContent(), aDirectOwnerFreeText);
-        }catch (Exception NullPointerException){
-            System.out.print("Expected free text in direct owner list is null");
-        }
+        assertEquals(eDirectOwnersList.getElementsByTagName("freeTextEntity").item(0).getTextContent().replace("%",""), aDirectOwnerFreeText.replace("%",""));
     }
 
     public void sVerifyFreeTextInDirectOwnersList(String directOwnerFreeText) {
         waitForWebElementToAppear(direct_owners_entity_free_text_xpath);
         verifyDirectOwnersHeaders();
         String aDirectOwnerFreeText = getWebElementText(direct_owners_entity_free_text_xpath);
-        assertEquals(directOwnerFreeText, aDirectOwnerFreeText);
+        assertEquals(directOwnerFreeText, aDirectOwnerFreeText.replace("%",""));
     }
 
     public void sVerifyNoFreeTextInDirectOwnersList() {
