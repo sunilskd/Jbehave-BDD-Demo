@@ -11,15 +11,15 @@ Meta: @id login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario:
-Meta:@dynamic
+Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
+a.User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
-When the user clicks on the entity details tab
-Then the user should see the headers with institution legal title and bankers almanac id in entity details page
-Then the user should see the summary with head office address (address line1 line2 line3 line 4, city, area, subarea, country) respecting the useInAddress flag for the selected institution in the entity details page
-And the user should see the identifiers with giin, lei and fatca status for the selected institution in the entity details page
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+When the user selects the percent filter option <percentFilter> in the subsidiaries page
+Then the user should not see any country in country highlights list
 
 Examples:
-|fid|
-|269306|
+|fid|percentFilter|
+|173|50|
