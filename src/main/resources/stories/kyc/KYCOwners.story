@@ -70,7 +70,6 @@ Then the kyc user should see the free text at the bottom of the direct owner lis
 Examples:
 |fid|
 |211|
-|284626|
 |30415|
 |168466|
 
@@ -128,7 +127,7 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|
 |'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|
 |Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|
-|City Property Management Committee, 1.297%||||
+
 Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
 
@@ -143,13 +142,13 @@ Then the kyc user should see the below list of direct owners ordered by percenta
 |Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|
 |Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|
 |Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|
-|City Property Management Committee, 1.297%||||
+
 Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
 
 Examples:
 |fid|percentFilter|directOwnerFreeText|
-|46637|10|City Property Management Committee, 1.297%|
+|46637|10|City Property Management Committee, 1.297|
 
 Scenario: User clicks and opens legal title of legal entity that appears in direct owners list in a new window
 (user is taken to the direct owners list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
@@ -167,7 +166,7 @@ Then the kyc user should see the free text <directOwnerFreeText> at the bottom o
 
 Examples:
 |fid|directOwnerFreeText|
-|46637|Free float, 47.68%. Except Bank of Russia, no other shareholders with 5% or more of the bank's charter capital|
+|46637|Free float, 47.68. Except Bank of Russia, no other shareholders with 5 or more of the bank's charter capital|
 
 Scenario: Only ownership free text exists on the owners list, no legal entities on the list (display free text, do not display "No known entities." message)
 Meta:@directOwners @static
@@ -179,7 +178,7 @@ Then the kyc user should see the free text <directOwnerFreeText> at the bottom o
 
 Examples:
 |fid|directOwnerFreeText|
-|168466|Foreign institutional investors, 74%; Greek institutional investors, 11%; Individuals, 4%|
+|168466|Foreign institutional investors, 74; Greek institutional investors, 11; Individuals, 4|
 
 Scenario: Verify no data found message when there are no direct owners
 a. If there are no direct owners display "No known entities" for now
