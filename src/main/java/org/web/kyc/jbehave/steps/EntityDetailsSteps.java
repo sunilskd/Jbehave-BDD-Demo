@@ -63,4 +63,20 @@ public class EntityDetailsSteps {
         pageObject.entityDetailsPage().sVerifySwiftBicList(swiftBicExampleTable);
     }
 
+    @Then("the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name")
+    public void dVerifyStockExchangeInformation(){
+        pageObject.entityDetailsPage().dVerifyStockExchangeInformation();
+    }
+
+    @Then("the user should see the list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name")
+    public void dVerifyStockAndTickerSymbol(){
+        pageObject.entityDetailsPage().dVerifyStockAndTickerSymbol();
+    }
+
+    @Then("the user should see regulators information, sorted by alphabetically")
+    public void dVerifyRegulatorsList(){
+        pageObject.entityDetailsPage().dVerifyRegulatorsList();
+    }
+
+
 }

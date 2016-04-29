@@ -6,6 +6,7 @@ JIRA ID - KYC-117 - KYC user can view entity details
 JIRA ID - KYC-99 - KYC user can view stock exchange info
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
+JIRA ID - KYC-129 - KYC user can view regulator in bank details
 
 Meta:@entitydetails @kyc
 
@@ -28,6 +29,19 @@ c. 0. KYC users should see Indetifiers labels even when there are no values for 
    4. If no active SWIFT BICs have assigned institution that is the entity user is viewing, display the field label but no value
 d. If no primary physical address exists for head office, display field label in summary section but no value
 e. Display all head office entity where useInaddress is true
+f. 0. with regulators information, sorted by alphabetically
+   1. If no regulators, display field label in summary section but no value
+   2. If regulator is inactive, display field label in summary section but no value
+g. 0. with stock exchange info first by primary and then alphabetically by stock exchange name in summary section
+   1. If no stock exchange relationship exisits, display field label in summary section but no value
+   2. If relationship type is not stock exchange, display field label in summary section but no value
+   3. If stock exchange status is inactive, display field label in summary section but no value
+h. 0. with stock symbol and ticker symbol seperated by colon , first by primary and then alphabetically by stock exchange name in identifier section
+   1. If no stock exchange relationship exisits, display field label in identifier section but no value
+   2. If relationship type is not stock exchange, display field label in identifier section but no value
+   3. If stock exchange status is inactive, display field label in identifier section but no value
+   4. If stock symbol does not exists but ticker symbol exists
+   5. if stock symbol exists but ticker symbol does not exists
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -36,6 +50,9 @@ Then the user should see the headers with institution legal title and bankers al
 Then the user should see the summary with head office address (address line1 line2 line3 line 4, city, area, subarea, country) respecting the useInAddress flag for the selected institution in the entity details page
 And the user should see the identifiers with giin, lei, sorted alphabetically by issuer name, and fatca status for the selected institution in the entity details page
 And the user should see the list of swift bics sorted first by length (short to long) then by alpha-numerically in the entity details page
+And the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name
+And the user should see the list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name
+And the user should see regulators information, sorted by alphabetically
 
 Examples:
 |fid|
@@ -44,6 +61,12 @@ Examples:
 |269306|
 |277123|
 |498|
+|58285|
+|52147|
+|4236|
+|3581|
+|2836|
+|15586
 
 Scenario: KYC user can view entity details
 Meta:@static
