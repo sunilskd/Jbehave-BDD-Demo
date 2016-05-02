@@ -6,7 +6,7 @@ public class PageObject {
 
     private final WebDriverProvider driverProvider;
     private OwnersPage ownersPage;
-    private CommonUtils commonUtil;
+    private CommonUtils commonUtils;
     private SubsidiariesPage subsidiariesPage;
     private EntityDetailsPage entityDetailsPage;
 
@@ -21,11 +21,11 @@ public class PageObject {
         return ownersPage;
     }
 
-    public CommonUtils common() {
-        if (commonUtil == null) {
-            commonUtil = new CommonUtils(driverProvider);
+    public CommonUtils commonUtils() {
+        if (commonUtils == null) {
+            commonUtils = new CommonUtils(driverProvider);
         }
-        return commonUtil;
+        return commonUtils;
     }
 
     public SubsidiariesPage subsidiariesPage() {

@@ -4,16 +4,23 @@ import org.apache.http.NameValuePair;
 import org.jbehave.web.selenium.WebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.w3c.dom.Document;
 import org.web.kyc.rest.HttpRequest;
 import org.web.kyc.utils.ReadProperties;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-/* Contains common webdriver methods to be used in page classes */
+/* Contains commonUtils webdriver methods to be used in page classes */
 
 public class WebDriverUtils extends WebDriverPage {
 
@@ -51,6 +58,10 @@ public class WebDriverUtils extends WebDriverPage {
         return findElements(by);
     }
 
+    public WebElement getWebElement(By by) {
+        return findElement(by);
+    }
+
     public void waitForWebElementToAppear(By by) {
         try {
             WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 3000);
@@ -61,6 +72,7 @@ public class WebDriverUtils extends WebDriverPage {
 
     /* Returns true if element is present */
     public Boolean isWebElementDisplayed(By by) {
+        manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return findElements(by).size() != 0;
     }
 
@@ -86,5 +98,31 @@ public class WebDriverUtils extends WebDriverPage {
 
     public void enterStringInInputBox(By by, String inputString) {
         findElement(by).sendKeys(inputString);
+    }
+
+    public List<String> getWebElementsText(By by) {
+        List<String> webElementsText = new ArrayList<String>();
+        for (int i = 0; i < findElements(by).size(); i++) {
+            webElementsText.add(findElements(by).get(i).getText());
+        }
+        return webElementsText;
+    }
+
+    public void waitForPageToLoad(Long seconds){
+        manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+    }
+
+    public void openLinkInNewWindow(By by) {
+        Actions action = new Actions(getDriverProvider().get());
+        WebElement element = findElement(by);
+        action.moveToElement(element);
+        // Right click and select the option ' Open in new window'
+        action.contextClick(element).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
+
+        // Switch to new window
+        for (String Handle : getWindowHandles()) {
+            switchTo().window(Handle);
+        }
+        waitForPageToLoad(15000L);
     }
 }
