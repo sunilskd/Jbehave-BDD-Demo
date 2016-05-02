@@ -31,18 +31,18 @@ c. 0. KYC users should see Indetifiers labels even when there are no values for 
 d. If no primary physical address exists for head office, display field label in summary section but no value
 e. Display all head office entity where useInaddress is true
 f. 0. with regulators information, sorted by alphabetically
-   1. If no regulators, display field label in summary section but no value
-   2. If regulator is inactive, display field label in summary section but no value
-g. 0. with stock exchange info first by primary and then alphabetically by stock exchange name in summary section
+g. 0. If no regulators, display field label in summary section but no value
    1. If no stock exchange relationship exisits, display field label in summary section but no value
-   2. If relationship type is not stock exchange, display field label in summary section but no value
-   3. If stock exchange status is inactive, display field label in summary section but no value
-h. 0. with stock symbol and ticker symbol seperated by colon , first by primary and then alphabetically by stock exchange name in identifier section
-   1. If no stock exchange relationship exisits, display field label in identifier section but no value
-   2. If relationship type is not stock exchange, display field label in identifier section but no value
-   3. If stock exchange status is inactive, display field label in identifier section but no value
-   4. If stock symbol does not exists but ticker symbol exists
-   5. if stock symbol exists but ticker symbol does not exists
+   2. If no stock exchange relationship exisits, display field label in identifier section but no value
+h. 0. If regulator is inactive, display field label in summary section but no value
+i. 0. with stock exchange info first by primary and then alphabetically by stock exchange name in summary section
+   1. with stock symbol and ticker symbol seperated by colon , first by primary and then alphabetically by stock exchange name in identifier section
+j. 0. If relationship type is not stock exchange, display field label in summary section but no value
+   1. If relationship type is not stock exchange, display field label in identifier section but no value
+k. 0. If stock exchange status is inactive, display field label in summary section but no value
+l. 0. If stock exchange status is inactive, display field label in identifier section but no value
+   1. If stock symbol does not exists but ticker symbol exists
+   2. if stock symbol exists but ticker symbol does not exists
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -68,7 +68,6 @@ Examples:
 |4236|
 |3581|
 |519|
-|2836|
 |15586|
 
 Scenario: KYC user can view entity details
