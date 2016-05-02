@@ -51,9 +51,9 @@ Then the user should see the headers with institution legal title and bankers al
 Then the user should see the summary with head office address (address line1 line2 line3 line 4, city, area, subarea, country) respecting the useInAddress flag for the selected institution in the entity details page
 And the user should see the identifiers with giin, lei, sorted alphabetically by issuer name, and fatca status for the selected institution in the entity details page
 And the user should see the list of swift bics sorted first by length (short to long) then by alpha-numerically in the entity details page
-And the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name
-And the user should see the list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name
-And the user should see regulators information, sorted by alphabetically
+And the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
+And the user should see the list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
+And the user should see regulators information, sorted by alphabetically in the entity details page
 
 Examples:
 |fid|
@@ -83,17 +83,17 @@ And the user should see the identifiers with below leis, sorted alphabetically b
 |Global Intermediary Identification Number NISWJ7.00001.ME.276|
 |WM Datenservice General Entity Identifier (GEI) 529900C4RSSBWXBSY931|
 
-And the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name
+And the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
 |STOCK EXCHANGES|
 |Börse Berlin AG PRIMARY|
 |Deutsche Börse AG|
 
-And the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name
+And the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
 |STOCK SYMBOL|
 |THJC|
 |KJHJ|
 
-And the user should see regulators <regulator> information, sorted by alphabetically
+And the user should see regulators <regulator> information, sorted by alphabetically in the entity details page
 
 Examples:
 |fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|regulator|

@@ -63,32 +63,32 @@ public class EntityDetailsSteps {
         pageObject.entityDetailsPage().sVerifySwiftBicList(swiftBicExampleTable);
     }
 
-    @Then("the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name")
+    @Then("the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page")
     public void dVerifyStockExchangeInformation(){
         pageObject.entityDetailsPage().dVerifyStockExchangeInformation();
     }
 
-    @Then("the user should see the list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name")
+    @Then("the user should see the list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page")
     public void dVerifyStockAndTickerSymbol(){
         pageObject.entityDetailsPage().dVerifyStockAndTickerSymbol();
     }
 
-    @Then("the user should see regulators information, sorted by alphabetically")
+    @Then("the user should see regulators information, sorted by alphabetically in the entity details page")
     public void dVerifyRegulatorsList(){
         pageObject.entityDetailsPage().dVerifyRegulatorsList();
     }
 
-    @Then("the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name $stockSymbolExamTable")
+    @Then("the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page $stockSymbolExamTable")
     public void sVerifyStockAndTickerSymbol(ExamplesTable stockSymbolExamTable){
         pageObject.entityDetailsPage().sVerifyStockAndTickerSymbol(stockSymbolExamTable);
     }
 
-    @Then("the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name $stockExchangeExamTable")
+    @Then("the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page $stockExchangeExamTable")
     public void sVerifyStockExchangeInformation(ExamplesTable stockExchangeExamTable){
         pageObject.entityDetailsPage().sVerifyStockExchangeInformation(stockExchangeExamTable);
     }
 
-    @Then("the user should see regulators <regulator> information, sorted by alphabetically")
+    @Then("the user should see regulators <regulator> information, sorted by alphabetically in the entity details page")
     public void sVerifyRegulators(@Named("regulator") String regulator){
         pageObject.entityDetailsPage().sVerifyRegulators(regulator);
     }
