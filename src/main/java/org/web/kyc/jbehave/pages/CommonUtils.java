@@ -22,6 +22,7 @@ public class CommonUtils extends WebDriverUtils {
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_tab_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
     public static String selectedCountryHighlight = "";
+    private String userType="";
 
     public CommonUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -29,6 +30,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void open() {
         nvPairs.clear();
+        nvPairs.add(new BasicNameValuePair("userType", userType));
         get(readProperties().getUrl() + "login");
     }
 
@@ -90,6 +92,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void userLogin(String userType) {
+        this.userType = userType;
         waitForWebElementToAppear(user_login_input_box_id);
         if (userType.equals("kyc")) {
             enterStringInInputBox(user_login_input_box_id, readProperties().getKycUser());
@@ -109,6 +112,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifySummaryIsSelectedByDefault() {
+        waitForPageToLoad(15000L);
         assertEquals("Summary", getWebElementText(summary_tab_selected_text_xpath));
     }
 }

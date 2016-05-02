@@ -54,6 +54,10 @@ public class WebDriverUtils extends WebDriverPage {
         return findElements(by);
     }
 
+    public WebElement getWebElement(By by) {
+        return findElement(by);
+    }
+
     public void waitForWebElementToAppear(By by) {
         try {
             WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 3000);
