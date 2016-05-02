@@ -47,7 +47,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see the direct owners summary selected by default in the owners page
 Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
-Then the kyc user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page
+Then the ubo user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page
 
 Examples:
 |fid|
