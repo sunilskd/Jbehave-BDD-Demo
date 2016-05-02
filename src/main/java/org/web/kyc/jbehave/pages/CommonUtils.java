@@ -14,14 +14,15 @@ import static org.junit.Assert.*;
 public class CommonUtils extends WebDriverUtils {
 
     private By ownership_tab_xpath = By.xpath("//*[@id='content-navigation'] //li[2]");
-    private By percent_filter_option_header_text_xpath = By.xpath("//*[@id='content-filters']/h2[1]");
-    private String percent_filter_options_text_xpath = "//*[@id='content-filters']/ul[1]/li";
-    private String country_highlight_options_text_xpath = "//*[@id='content-filters']/ul[2]/li";
+    private By percent_filter_option_header_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Display %']/h2");
+    private String percent_filter_options_text_xpath = "//*[@id='content-filters'] //div[h2='Display %']/ul/li";
+    private String country_highlight_options_text_xpath = "//*[@id='content-filters'] //div[h2='Highlight']/ul/li";
     private By user_login_input_box_id = By.xpath("//input[@id='login']");
     private By login_button_xpath = By.xpath("//button[1]");
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_tab_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
     public static String selectedCountryHighlight = "";
+    private String userType="";
 
     public CommonUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -29,6 +30,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void open() {
         nvPairs.clear();
+        nvPairs.add(new BasicNameValuePair("userType", userType));
         get(readProperties().getUrl() + "login");
     }
 
@@ -47,7 +49,7 @@ public class CommonUtils extends WebDriverUtils {
         waitForWebElementToAppear(By.xpath(percent_filter_options_text_xpath + "[1]"));
         assertEquals("DISPLAY %", getWebElementText(percent_filter_option_header_text_xpath));
         assertEquals("View All", getWebElementText(By.xpath(percent_filter_options_text_xpath + "[1]")));
-        assertTrue(isWebElementDisplayed(By.xpath(percent_filter_options_text_xpath + "[1][@class='ng-binding ng-scope selected']")));
+        assertTrue(isWebElementDisplayed(By.xpath(percent_filter_options_text_xpath + "[1][@class='selected']")));
         assertEquals("10% and above", getWebElementText(By.xpath(percent_filter_options_text_xpath + "[2]")));
         assertEquals("25% and above", getWebElementText(By.xpath(percent_filter_options_text_xpath + "[3]")));
         assertEquals("50% and above", getWebElementText(By.xpath(percent_filter_options_text_xpath + "[4]")));
@@ -81,15 +83,16 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyPercentFilterIsDeSelected(String deselectFilter) {
         String filterXpath = percent_filter_options_text_xpath + "[" + getElementIndexByValue(By.xpath(percent_filter_options_text_xpath), deselectFilter) + "]";
-        assertTrue(isWebElementDisplayed(By.xpath(filterXpath + "[@class='ng-binding ng-scope']")));
+        assertFalse(isWebElementDisplayed(By.xpath(filterXpath + "[@class='selected']")));
     }
 
     public void verifyCountryHighlightIsDeSelected(String deselectCountry){
-        String countyrHighlighXpath = country_highlight_options_text_xpath + "[" + getElementIndexByValue(By.xpath(country_highlight_options_text_xpath), deselectCountry) + "]";
-        assertTrue(isWebElementDisplayed(By.xpath(countyrHighlighXpath + "[@class='ng-binding ng-scope']")));
+        String countryHighlightXpath = country_highlight_options_text_xpath + "[" + getElementIndexByValue(By.xpath(country_highlight_options_text_xpath), deselectCountry) + "]";
+        assertFalse(isWebElementDisplayed(By.xpath(countryHighlightXpath + "[@class='selected']")));
     }
 
     public void userLogin(String userType) {
+        this.userType = userType;
         waitForWebElementToAppear(user_login_input_box_id);
         if (userType.equals("kyc")) {
             enterStringInInputBox(user_login_input_box_id, readProperties().getKycUser());
@@ -109,6 +112,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifySummaryIsSelectedByDefault() {
+        waitForPageToLoad(15000L);
         assertEquals("Summary", getWebElementText(summary_tab_selected_text_xpath));
     }
 }
