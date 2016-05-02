@@ -63,10 +63,12 @@ Examples:
 |498|
 |58285|
 |52147|
+17062|
 |4236|
 |3581|
+|519|
 |2836|
-|15586
+|15586|
 
 Scenario: KYC user can view entity details
 Meta:@static
@@ -78,13 +80,24 @@ Then the user should see the summary with head office address <headOfficeAddress
 And the user should see the identifiers with giin <giin> and fatca status <fatcaStatus> for the selected institution in the entity details page
 And the user should see the identifiers with below leis, sorted alphabetically by issuer name, in the entity details page
 |LEIS|
-|Global Intermediary Identification Number K613SZ.99999.SL.840|
-|The Global Markets Entity Identifier (GMEI) B4TYDEB6GKMZO031MB27|
-|S and P Identification Number (SPID) 105940|
+|Global Intermediary Identification Number NISWJ7.00001.ME.276|
+|WM Datenservice General Entity Identifier (GEI) 529900C4RSSBWXBSY931|
+
+And the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name
+|STOCK EXCHANGES|
+|Börse Berlin AG PRIMARY|
+|Deutsche Börse AG|
+
+And the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name
+|STOCK SYMBOL|
+|THJC|
+|KJHJ|
+
+And the user should see regulators <regulator> information, sorted by alphabetically
 
 Examples:
-|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
-|1038|BOA|Bankersalmanac.com ID: 1038|100 N Tryon St,Ste 170,Charlotte,North Carolina,USA|K613SZ.99999.SL.840||
+|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|regulator|
+|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||Bundesanstalt für Finanzdienstleistungsaufsicht|
 
 Scenario: KYC user can view active swift bic list in entity details
 Meta:@static
@@ -110,15 +123,6 @@ Then the user should see the swift bic list sorted first by length (short to lon
 Examples:
 |fid|
 |815|
-
-Scenario: KYC-99 display stock exchange info in summary section and identifiers section on entity details
-a. If active stock exchange relationship(s) exist, display legal title of stock exchange and abbreviated name in summary section sort first by primary = true, then by legal title
-b. If active stock exchange relationship(s) exist, display abbreviated name of stock exchange and ticker symbol for that stock exchange relationship in identifiers section, sort first by primary = true, then by abbreviated stock exchange name
-c. If inactive stock exchange relationship, then do not display
-d. If no stock exchange relationship exists, then display field labels in summary section and identifiers section but no values
-e. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
-f. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
-
 
 Scenario: KYC user logout
 Given the user is on the ubo login page

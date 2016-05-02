@@ -9,9 +9,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.web.kyc.xqueries.XQueryEnum.ENTITY_DETAILS;
 
+
+
 public class EntityDetailsPage extends WebDriverUtils {
 
-    private By entity_details_tab_xpath = By.xpath("//*[@id='content-navigation'] //li[1]");
+    private By entity_details_tab_xpath = By.xpath("//*[@id='content1-navigation'] //li[1]");
     private By entity_details_name_text_xpath = By.xpath("//*[@id='entity-details']/h1");
     private By entity_details_almanac_id_text_xpath = By.xpath("//*[@id='entity-details']/p");
     private By entity_details_summary_header_text_xpath = By.xpath("//*[@id='content-view'] /h1[1]");
@@ -147,6 +149,26 @@ public class EntityDetailsPage extends WebDriverUtils {
         }
     }
 
-}
+    public void sVerifyStockAndTickerSymbol(ExamplesTable stockSymbolExamTable){
+        List<WebElement> aStockSymbolValues = getWebElements(entity_details_stock_and_ticker_symbol_list_text_xpath);
+        for (int i = 0; i < stockSymbolExamTable.getRowCount(); i++) {
+            assertEquals("Stock Symbol does not match at" + i, stockSymbolExamTable.getRow(i).get(stockSymbolExamTable.getHeaders().get(0)), aStockSymbolValues.get(i).getText());
+        }
+    }
+
+    public void sVerifyStockExchangeInformation(ExamplesTable stockExchangeExamTable) {
+        List<WebElement> aStockExchangeValues = getWebElements(entity_details_stock_exchange_list_text_xpath);
+        for (int i = 0; i < stockExchangeExamTable.getRowCount(); i++) {
+            assertEquals("Stock Exchange does not match at" + i, stockExchangeExamTable.getRow(i).get(stockExchangeExamTable.getHeaders().get(0)), aStockExchangeValues.get(i).getText());
+        }
+    }
+
+    public void sVerifyRegulators(String regulator) {
+        assertEquals(regulator, getWebElementText(entity_details_regulators_list_text_xpath));
+    }
+
+ }
+
+
 
 

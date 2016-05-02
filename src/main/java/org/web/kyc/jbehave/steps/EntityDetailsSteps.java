@@ -78,5 +78,18 @@ public class EntityDetailsSteps {
         pageObject.entityDetailsPage().dVerifyRegulatorsList();
     }
 
+    @Then("the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name $stockSymbolExamTable")
+    public void sVerifyStockAndTickerSymbol(ExamplesTable stockSymbolExamTable){
+        pageObject.entityDetailsPage().sVerifyStockAndTickerSymbol(stockSymbolExamTable);
+    }
 
+    @Then("the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name $stockExchangeExamTable")
+    public void sVerifyStockExchangeInformation(ExamplesTable stockExchangeExamTable){
+        pageObject.entityDetailsPage().sVerifyStockExchangeInformation(stockExchangeExamTable);
+    }
+
+    @Then("the user should see regulators <regulator> information, sorted by alphabetically")
+    public void sVerifyRegulators(@Named("regulator") String regulator){
+        pageObject.entityDetailsPage().sVerifyRegulators(regulator);
+    }
 }
