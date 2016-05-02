@@ -84,7 +84,7 @@ public class OwnersSteps {
 
     @Then("the user should not see any country in country highlights list in the owners page")
     public void verifyCounryHighlightListNotExists(){
-        pageObject.ownersPage().verifyCounryHighlightListNotExists();
+        pageObject.ownersPage().verifyCountryHighlightListNotExists();
     }
 
     @Then("the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page")

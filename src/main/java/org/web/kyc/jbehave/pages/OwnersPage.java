@@ -28,12 +28,11 @@ public class OwnersPage extends WebDriverUtils {
     private By no_direct_owners_msg_text_xpath = By.xpath("//*[@class='notification ng-scope']");
     private By direct_owners_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='measure']");
     private By direct_owners_no_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='meter ng-isolate-scope ng-hide']");
-    private String direct_owners_highlighted_xpath = "//*[@id='direct-owners-list']/li/div[@class='details highlight']";
-    private By direct_owners_not_highlighted_xpath = By.xpath("//*[@id='direct-owners-list']/li/div[@class='details']");
-    private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners-list']/li/div/ul");
+    private String direct_owners_highlighted_xpath = "//*[@id='direct-owners-list'] //*[@class='details highlight']";
+    private By direct_owners_not_highlighted_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='details']");
+    private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners-list']/div/li");
     private String direct_owners_row_for_country_xpath = "//ul[li[@class='location ng-binding']='";
-    private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters']/ul[2]/li");
-    private By country_highlight_list_not_displayed_text_xpath = By.xpath("//*[@id='content-filters'] /h2[@class='ng-hide']");
+    private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
     Set<String> eCountryHighlightList = new TreeSet<>();
 
     public OwnersPage(WebDriverProvider driverProvider) {
@@ -116,7 +115,7 @@ public class OwnersPage extends WebDriverUtils {
 
     public void verifyDirectOwnersAreHighlighted() {
         assertEquals(
-                getWebElements(By.xpath(direct_owners_highlighted_xpath + "[ul[li[@class='location ng-binding']='" + selectedCountryHighlight + "']]")).size(),
+                getWebElements(By.xpath(direct_owners_highlighted_xpath + "/ul[li[@class='location ng-binding']='" + selectedCountryHighlight + "']")).size(),
                 getWebElements(By.xpath(direct_owners_row_for_country_xpath + selectedCountryHighlight + "']")).size());
         assertEquals(
                 getWebElements(By.xpath(direct_owners_highlighted_xpath)).size(),
@@ -137,9 +136,9 @@ public class OwnersPage extends WebDriverUtils {
         }
     }
 
-    public void verifyCounryHighlightListNotExists() {
+    public void verifyCountryHighlightListNotExists() {
         waitForPageToLoad(15000L);
-        assertTrue(isWebElementDisplayed(country_highlight_list_not_displayed_text_xpath));
+        assertFalse(isWebElementDisplayed(country_highlight_list_text_xpath));
     }
 
     public void clickOnLegalTitleInDirectOwnersList(String legalTitle) {
@@ -186,7 +185,6 @@ public class OwnersPage extends WebDriverUtils {
 
     public void sVerifyNoFreeTextInDirectOwnersList() {
         verifyDirectOwnersHeaders();
-        /* The html contains empty div when the free text ius not present */
-        assertEquals("",getWebElementText(direct_owners_entity_free_text_xpath));
+        assertFalse(isWebElementDisplayed(direct_owners_entity_free_text_xpath));
     }
 }

@@ -97,11 +97,8 @@ public class SubsidiariesSteps {
     }
     @Then("the user should not see any country in country highlights list")
     public void verifyCounryListNotExists(){
-        pageObject.subsidiariesPage().verifyCounryListNotExists();
+        pageObject.subsidiariesPage().verifyCountryHighlightListNotExists();
     }
-
-
-
 
     @When("the user clicks and opens the legal title $legalTitle in subsidiaries list in new window in the subsidiaries page")
     public void openLegalTitleInSubsidiariesListInNewWindow(@Named("$legalTitle") String legalTitle){

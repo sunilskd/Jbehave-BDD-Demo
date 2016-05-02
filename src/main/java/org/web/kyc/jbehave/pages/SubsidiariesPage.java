@@ -32,11 +32,8 @@ public class SubsidiariesPage extends WebDriverUtils {
     private By subsidiaries_not_highlighted_xpath = By.xpath("//*[@id='subsidiaries-structure']/li/div[@class='item']");
     private By subsidiaries_row_xpath = By.xpath("//*[@id='subsidiaries-structure']/li");
     private String subsidiaries_row_for_country_xpath = "//li/div[div[@class='location ng-binding']='";
-    private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters']/ul[2]/li");
-    private By country_highlight_list_not_displayed_text_xpath = By.xpath("//*[@id='content-filters'] /h2[@class='ng-hide']");
+    private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
     Set<String> eCountryHighlightList = new TreeSet<>();
-
-
 
     public SubsidiariesPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -102,7 +99,6 @@ public class SubsidiariesPage extends WebDriverUtils {
         assertTrue(isWebElementDisplayed(subsidiaries_institution_legal_title_hidden_text_xpath));
     }
 
-
     public void verifyDirectSubsidiariesAreHighlighted() {
         assertEquals(
                 getWebElements(By.xpath(subsidiaries_highlighted_xpath + "[div[@class='location ng-binding']='" + selectedCountryHighlight + "']")).size(),
@@ -113,9 +109,6 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void verifyDirectSubsidiariesAreNotHighlighted() {
-        //assertTrue(getWebElements(By.xpath(subsidiaries_highlighted_xpath + "[div[@class='location ng-binding']='" + selectedCountryHighlight + "']")).size() == 0);
-        //assertTrue(getWebElements(By.xpath(subsidiaries_highlighted_xpath)).size() == 0);
-
         assertEquals(getWebElements(subsidiaries_not_highlighted_xpath).size(), getWebElements(subsidiaries_row_xpath).size());
     }
 
@@ -129,13 +122,10 @@ public class SubsidiariesPage extends WebDriverUtils {
         }
     }
 
-    public void verifyCounryListNotExists() {
-
+    public void verifyCountryHighlightListNotExists() {
         waitForPageToLoad(15000L);
-        assertTrue(isWebElementDisplayed(country_highlight_list_not_displayed_text_xpath));
-
+        assertFalse(isWebElementDisplayed(country_highlight_list_text_xpath));
     }
-
 
     public void openLegalTitleInSubsidiariesListInNewWindow(String legalTitle) {
         waitForWebElementToAppear(subsidiaries_entity_name_text_xpath);
