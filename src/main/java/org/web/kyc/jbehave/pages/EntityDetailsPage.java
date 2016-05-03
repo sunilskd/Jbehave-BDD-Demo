@@ -31,7 +31,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     private By entity_details_swift_bic_list_text_xpath = By.xpath("//*[@id='entity-swift-bic'] //span");
     private By entity_details_stock_exchange_list_text_xpath = By.xpath(".//*[@id='entity-regulator'] /tbody/tr[2]/td/span");
     private By entity_details_stock_exchange_label_text_xpath = By.xpath("//*[@id='entity-regulator']/tbody/tr[2]/th");
-    private By entity_details_stock_and_ticker_symbol_list_text_xpath=By.xpath("//*[@id='entity-lei']/tbody/tr[2]/td/span");
+    private By entity_details_stock_and_ticker_symbol_list_text_xpath=By.xpath("//*[@id='entity-lei']/tbody/tr[2] /td/span/span[@class='ng-binding']");
     private By entity_details_stock_and_ticker_symbol_label_text_xpath=By.xpath(".//*[@id='entity-lei']/tbody/tr[2]/th");
     private By entity_details_regulators_list_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/td/span");
     private By entity_details_regulators_label_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/th");
