@@ -5,8 +5,10 @@ KYC user is performing due diligence on a potential business partner, so they ne
 Covers below features:
 JIRA ID - KYC-117 - KYC user can view entity details
 JIRA ID - KYC-129 - KYC user can view regulator on entity details
+JIRA ID - KYC-99 - KYC user can view stock exchange info
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
+
 
 Meta:@entitydetails @kyc
 
@@ -29,6 +31,19 @@ c. 0. KYC users should see Indetifiers labels even when there are no values for 
    4. If no active SWIFT BICs have assigned institution that is the entity user is viewing, display the field label but no value
 d. If no primary physical address exists for head office, display field label in summary section but no value
 e. Display all head office entity where useInaddress is true
+f. 0. with regulators information, sorted by alphabetically
+g. 0. If no regulators, display field label in summary section but no value
+   1. If no stock exchange relationship exisits, display field label in summary section but no value
+   2. If no stock exchange relationship exisits, display field label in identifier section but no value
+h. 0. If regulator is inactive, display field label in summary section but no value
+i. 0. with stock exchange info first by primary and then alphabetically by stock exchange name in summary section
+   1. with stock symbol and ticker symbol seperated by colon , first by primary and then alphabetically by stock exchange name in identifier section
+j. 0. If relationship type is not stock exchange, display field label in summary section but no value
+   1. If relationship type is not stock exchange, display field label in identifier section but no value
+k. 0. If stock exchange status is inactive, display field label in summary section but no value
+l. 0. If stock exchange status is inactive, display field label in identifier section but no value
+   1. If stock symbol does not exists but ticker symbol exists
+   2. if stock symbol exists but ticker symbol does not exists
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -37,6 +52,9 @@ Then the user should see the headers with institution legal title and bankers al
 Then the user should see the summary with head office address (address line1 line2 line3 line 4, city, area, subarea, country) respecting the useInAddress flag for the selected institution in the entity details page
 And the user should see the identifiers with giin, lei, sorted alphabetically by issuer name, and fatca status for the selected institution in the entity details page
 And the user should see the list of swift bics sorted first by length (short to long) then by alpha-numerically in the entity details page
+And the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
+And the user should see the list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
+And the user should see regulators information, sorted by alphabetically in the entity details page
 
 Examples:
 |fid|
@@ -45,6 +63,13 @@ Examples:
 |269306|
 |277123|
 |498|
+|58285|
+|52147|
+|17062|
+|4236|
+|3581|
+|519|
+|15586|
 
 Scenario: KYC user can view entity details
 Meta:@static
@@ -56,13 +81,27 @@ Then the user should see the summary with head office address <headOfficeAddress
 And the user should see the identifiers with giin <giin> and fatca status <fatcaStatus> for the selected institution in the entity details page
 And the user should see the identifiers with below leis, sorted alphabetically by issuer name, in the entity details page
 |LEIS|
-|Global Intermediary Identification Number K613SZ.99999.SL.840|
-|The Global Markets Entity Identifier (GMEI) B4TYDEB6GKMZO031MB27|
-|S and P Identification Number (SPID) 105940|
+|Global Intermediary Identification Number NISWJ7.00001.ME.276|
+|WM Datenservice General Entity Identifier (GEI) 529900C4RSSBWXBSY931|
+
+And the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
+|STOCK EXCHANGES|
+|Börse Berlin AG PRIMARY|
+|Deutsche Börse AG|
+
+And the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
+|STOCK SYMBOL|
+|THJC|
+|KJHJ|
+
+And the user should see regulators information, sorted by alphabetically in the entity details page
+|REGULATORS|
+|BOA|
+|Bundesanstalt für Finanzdienstleistungsaufsicht|
 
 Examples:
 |fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
-|1038|BOA|Bankersalmanac.com ID: 1038|100 N Tryon St,Ste 170,Charlotte,North Carolina,USA|K613SZ.99999.SL.840||
+|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||
 
 Scenario: KYC user can view active swift bic list in entity details
 Meta:@static
