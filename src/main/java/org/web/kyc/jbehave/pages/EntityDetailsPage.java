@@ -13,7 +13,7 @@ import static org.web.kyc.xqueries.XQueryEnum.ENTITY_DETAILS;
 
 public class EntityDetailsPage extends WebDriverUtils {
 
-    private By entity_details_tab_xpath = By.xpath("//*[@id='content1-navigation'] //li[1]");
+    private By entity_details_tab_xpath = By.xpath("//*[@id='content-navigation'] //li[1]");
     private By entity_details_name_text_xpath = By.xpath("//*[@id='entity-details']/h1");
     private By entity_details_almanac_id_text_xpath = By.xpath("//*[@id='entity-details']/p");
     private By entity_details_summary_header_text_xpath = By.xpath("//*[@id='content-view'] /h1[1]");
@@ -163,10 +163,12 @@ public class EntityDetailsPage extends WebDriverUtils {
         }
     }
 
-    public void sVerifyRegulators(String regulator) {
-        assertEquals(regulator, getWebElementText(entity_details_regulators_list_text_xpath));
+    public void sVerifyRegulators(ExamplesTable regulatorsExamTable) {
+        List<WebElement> aRegulatorsValues = getWebElements(entity_details_regulators_list_text_xpath);
+        for (int i = 0; i < regulatorsExamTable.getRowCount(); i++) {
+            assertEquals("Regulator does not match at" + i, regulatorsExamTable.getRow(i).get(regulatorsExamTable.getHeaders().get(0)), aRegulatorsValues.get(i).getText());
+        }
     }
-
  }
 
 

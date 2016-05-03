@@ -93,11 +93,14 @@ And the user should see the below list of stock symbols with ticker symbols, fir
 |THJC|
 |KJHJ|
 
-And the user should see regulators <regulator> information, sorted by alphabetically in the entity details page
+And the user should see regulators information, sorted by alphabetically in the entity details page
+|REGULATORS|
+|BOA|
+|Bundesanstalt für Finanzdienstleistungsaufsicht|
 
 Examples:
-|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|regulator|
-|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||Bundesanstalt für Finanzdienstleistungsaufsicht|
+|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
+|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||
 
 Scenario: KYC user can view active swift bic list in entity details
 Meta:@static

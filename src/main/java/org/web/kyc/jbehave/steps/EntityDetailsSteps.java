@@ -88,8 +88,8 @@ public class EntityDetailsSteps {
         pageObject.entityDetailsPage().sVerifyStockExchangeInformation(stockExchangeExamTable);
     }
 
-    @Then("the user should see regulators <regulator> information, sorted by alphabetically in the entity details page")
-    public void sVerifyRegulators(@Named("regulator") String regulator){
-        pageObject.entityDetailsPage().sVerifyRegulators(regulator);
+    @Then("the user should see regulators information, sorted by alphabetically in the entity details page $regulatorsExamTable")
+    public void sVerifyRegulators(ExamplesTable regulatorsExamTable){
+        pageObject.entityDetailsPage().sVerifyRegulators(regulatorsExamTable);
     }
 }
