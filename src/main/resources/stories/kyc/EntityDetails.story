@@ -41,6 +41,7 @@ i. 0. If active stock exchange relationship(s) exist, display legal title of sto
 j. 0. If inactive stock exchange relationship, then display field label but no value
 k. 0. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
    1. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
+l. 0. if stock exchange relationship is active and stock exchange legal entity is inactive, then display field label but no value
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -66,6 +67,7 @@ Examples:
 |4236|
 |519|
 |15586|
+|1857|
 
 Scenario: KYC user can view entity details
 Meta:@static
