@@ -289,9 +289,9 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
+Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 When the user selects a country <country> from the country highlight list in the owners page
 Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
-Then the kyc user should see the list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
 When the user selects another country <changeCountry> from the country highlight list in the owners page
 Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
