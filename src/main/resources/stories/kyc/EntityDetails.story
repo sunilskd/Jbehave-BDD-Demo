@@ -35,15 +35,12 @@ f. 0. Active regulation relationships exist for entity user is viewing, display 
 g. 0. If no active regulation relationship exists, then display field label but no value
    1. If no stock exchange relationship exisits, display field label in summary section but no value
    2. If no stock exchange relationship exisits, display field label in identifier section but no value
-h. 0. If regulation relationship is inactive, do not display
+h. 0. If regulation relationship is inactive, then display field label but no value
 i. 0. If active stock exchange relationship(s) exist, display legal title of stock exchange and abbreviated name in summary section sort first by primary = true, then by legal title
    1. If active stock exchange relationship(s) exist, display abbreviated name of stock exchange and ticker symbol for that stock exchange relationship in identifiers section, sort first by primary = true, then by abbreviated stock exchange name
-j. 0. If relationship type is not stock exchange, display field label in summary section but no value
-   1. If relationship type is not stock exchange, display field label in identifier section but no value
-k. 0. If inactive stock exchange relationship, then do not display
-l. 0. If no stock exchange relationship exists, then display field labels in summary section and identifiers section but no values
-   1. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
-   2. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
+j. 0. If inactive stock exchange relationship, then display field label but no value
+k. 0. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
+   1. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -67,7 +64,6 @@ Examples:
 |52147|
 |17062|
 |4236|
-|3581|
 |519|
 |15586|
 
