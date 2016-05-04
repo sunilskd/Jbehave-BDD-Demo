@@ -26,6 +26,8 @@ JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-244 - In case only ownership free text exists on the owners list, no legal entities on the list then display free text, do not display "No known entities." message.
 JIRA ID - KYC-147 - Display only the first summary if there are multiple on the legal entity doc
 JIRA ID - KYC-131 - Restrict entity types displayed on direct owners list by UBO user permission
+JIRA ID - KYC-140 - Display source on owners list
+JIRA ID - KYC-271 - When only extended source is present the source is not displaying.
 
 Meta:@owners @kyc @kycowners
 
@@ -34,9 +36,13 @@ Given the user is on the ubo login page
 When the user login as a kyc user
 
 Scenario: KYC user can view direct owners that are legal entities
-a. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships and validated date
+a. 0. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships validated date and source
+   1. Display source as "source, extended source" when both source and extended source are present
+   2. Display source as "source" when only source is present
+   3. Do not display source when source and extecnded source are not present
 b. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
-c. If country of operations is not present then display records with no country
+c. 0. If country of operations is not present then display records with no country
+   1. Display extended source as "source" when only extended source is present
 d. Do not display people owners in direct owners or UBO list. Do not display non-people/non-institution owners in direct owners list.
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
@@ -109,39 +115,39 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
-|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011|
-|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|
-|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|
-|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|
-|Central Bank of the Russian Federation|Russian Federation|8.9|28 Oct 2011|
-|Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|
-|Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|
-|Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011||
+|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|Stock Company Saint-Petersburg Currency Exchange, From Institution's Website|
+|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|oswsxkqrmbsdvqc, Third Party Supplier|
+|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|Stock Company Saint-Petersburg Currency Exchange|
+|Central Bank of the Russian Federation|Russian Federation|8.9|28 Oct 2011|Stock Company Saint-Petersburg Currency Exchange|
+|Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|Stock Company Saint-Petersburg Currency Exchange, Direct From Institution|
+|Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|Stock Company Saint-Petersburg Currency Exchange|
+|Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|Stock Company Saint-Petersburg Currency Exchange, Third Party Supplier|
 Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 
 When the user selects the percent filter option <percentFilter> in the owners page
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
-|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011|
-|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|
-|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|
-|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011||
+|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|Stock Company Saint-Petersburg Currency Exchange, From Institution's Website|
+|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|oswsxkqrmbsdvqc, Third Party Supplier|
+|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|Stock Company Saint-Petersburg Currency Exchange|
 
 Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
 
 When the user changes the percent filter option to View All in the owners page
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
-|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011|
-|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|
-|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|
-|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|
-|Central Bank of the Russian Federation|Russian Federation|8.9|28 Oct 2011|
-|Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|
-|Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|
-|Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011||
+|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|Stock Company Saint-Petersburg Currency Exchange, From Institution's Website|
+|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|oswsxkqrmbsdvqc, Third Party Supplier|
+|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|Stock Company Saint-Petersburg Currency Exchange|
+|Central Bank of the Russian Federation|Russian Federation|8.9|28 Oct 2011|Stock Company Saint-Petersburg Currency Exchange|
+|Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|Stock Company Saint-Petersburg Currency Exchange, Direct From Institution|
+|Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|Stock Company Saint-Petersburg Currency Exchange|
+|Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|Stock Company Saint-Petersburg Currency Exchange, Third Party Supplier|
 
 Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
@@ -159,8 +165,8 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 When the user clicks and opens the legal title Sberbank of Russia in direct owners list in new window in the owners page
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|
-|Central Bank of the Russian Federation|Russian Federation|52.32|01 Mar 2013|
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|Central Bank of the Russian Federation|Russian Federation|52.32|01 Mar 2013|Sberbank of Russia, From Institution's Website|
 
 Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 
@@ -278,6 +284,7 @@ a. 0. Legal entities in list have country of operations.
    1. Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
    2. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
    3. List each unique country once, sort countries in highlight list alphabetically
+Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -296,6 +303,7 @@ Examples:
 
 Scenario: KYC user can view Highlight legal entities in direct owners list by country
 a.De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -313,7 +321,7 @@ Examples:
 
 Scenario: Filter owners list by percent ownership
 a. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
-Meta:@directOwners
+Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -330,7 +338,7 @@ Examples:
 
 Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
 a. User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
-Meta:@directOwners
+Meta:@directOwners @static @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab

@@ -19,19 +19,24 @@ public class OwnersPage extends WebDriverUtils {
 
     private By owners_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[2]");
     private By direct_owners_header_text_xpath = By.xpath("//*[@class='heading-bar ng-scope'][1]/h1");
-    private By direct_owners_last_validated_header_text_xpath = By.xpath("//*[@class='heading-bar ng-scope'][1]/p");
-    private By direct_owners_entity_name_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='entity']");
-    private By direct_owners_entity_free_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='details ng-binding']");
-    private By direct_owners_country_name_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='location ng-binding']");
-    private By direct_owners_percentage_owned_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='ownership ng-binding']");
-    private By direct_owners_last_validated_date_text_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='validation ng-binding']");
+    private By direct_owners_name_header_text_xpath = By.xpath("//*[@id='direct-owners'] //th[1]");
+    private By direct_owners_country_header_text_xpath = By.xpath("//*[@id='direct-owners'] //th[2]");
+    private By direct_owners_percentage_header_text_xpath = By.xpath("//*[@id='direct-owners'] //th[3]");
+    private By direct_owners_date_header_text_xpath = By.xpath("//*[@id='direct-owners'] //th[4]");
+    private By direct_owners_source_header_text_xpath = By.xpath("//*[@id='direct-owners'] //th[5]");
+    private By direct_owners_entity_name_text_xpath = By.xpath("//*[@id='direct-owners'] //tr[@class='ng-scope']/td[1]");
+    private By direct_owners_entity_free_text_xpath = By.xpath("//*[@class='free-text ng-scope']/td/div");
+    private By direct_owners_country_name_text_xpath = By.xpath("//*[@id='direct-owners'] //td[2]");
+    private By direct_owners_percentage_owned_text_xpath = By.xpath("//*[@id='direct-owners'] //td[3]");
+    private By direct_owners_date_text_xpath = By.xpath("//*[@id='direct-owners'] //td[4]");
+    private By direct_owners_source_text_xpath = By.xpath("//*[@id='direct-owners'] //td[5]");
     private By no_direct_owners_msg_text_xpath = By.xpath("//*[@class='notification ng-scope']");
-    private By direct_owners_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='measure']");
-    private By direct_owners_no_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners-list'] //div[@class='meter ng-isolate-scope ng-hide']");
-    private String direct_owners_highlighted_xpath = "//*[@id='direct-owners-list'] //*[@class='details highlight']";
-    private By direct_owners_not_highlighted_xpath = By.xpath("//*[@id='direct-owners-list'] //*[@class='details']");
-    private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners-list']/div/li");
-    private String direct_owners_row_for_country_xpath = "//ul[li[@class='location ng-binding']='";
+    private By direct_owners_percentage_meter_bar_xpath = By.xpath("//*[@class='percent-meter ng-scope'] //div[@class='measure']");
+    private By direct_owners_no_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners'] //div[@class='meter ng-isolate-scope ng-hide']");
+    private String direct_owners_highlighted_xpath = "//*[@id='direct-owners']  //*[@class='ng-scope highlight']";
+    private By direct_owners_not_highlighted_xpath = By.xpath("//*[@id='direct-owners'] //tbody[@class='ng-scope']");
+    private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners'] //tbody");
+    private String direct_owners_row_for_country_xpath = "//*[td='";
     private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
     Set<String> eCountryHighlightList = new TreeSet<>();
 
@@ -46,13 +51,14 @@ public class OwnersPage extends WebDriverUtils {
 
     public void dVerifyDirectOwnersList() {
         eCountryHighlightList.clear();
-        waitForPageToLoad(15000L);
+        waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
         verifyDirectOwnersHeaders();
         Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
         List<WebElement> aDirectOwnerEntityName = getWebElements(direct_owners_entity_name_text_xpath);
         List<WebElement> aDirectOwnersCountryName = getWebElements(direct_owners_country_name_text_xpath);
         List<WebElement> aDirectOwnersPercentageOwned = getWebElements(direct_owners_percentage_owned_text_xpath);
-        List<WebElement> aDirectOwnersLastValidatedDate = getWebElements(direct_owners_last_validated_date_text_xpath);
+        List<WebElement> aDirectOwnersLastValidatedDate = getWebElements(direct_owners_date_text_xpath);
+        List<WebElement> aDirectOwnersSource = getWebElements(direct_owners_source_text_xpath);
         assertEquals("Direct owners count mismatch", eDirectOwnersList.getElementsByTagName("entityName").getLength(), aDirectOwnerEntityName.size());
 
         for(int i=0; i<aDirectOwnerEntityName.size(); i++) {
@@ -63,12 +69,18 @@ public class OwnersPage extends WebDriverUtils {
                 assertEquals("Percentage owned does not match at" + i, eDirectOwnersList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%", aDirectOwnersPercentageOwned.get(i).getText());
             }
             assertEquals("Validated date does not match at" + i, eDirectOwnersList.getElementsByTagName("lastValidatedDate").item(i).getTextContent(), aDirectOwnersLastValidatedDate.get(i).getText());
+            assertEquals("Source does not match at" + i, eDirectOwnersList.getElementsByTagName("displaySource").item(i).getTextContent(), aDirectOwnersSource.get(i).getText());
         }
     }
 
     public void verifyDirectOwnersHeaders(){
+        waitForWebElementToAppear(direct_owners_name_header_text_xpath);
         assertEquals("Direct Owners", getWebElementText(direct_owners_header_text_xpath));
-        assertEquals("Last Validated",getWebElementText(direct_owners_last_validated_header_text_xpath));
+        assertEquals("NAME",getWebElementText(direct_owners_name_header_text_xpath));
+        assertEquals("COUNTRY",getWebElementText(direct_owners_country_header_text_xpath));
+        assertEquals("%",getWebElementText(direct_owners_percentage_header_text_xpath));
+        assertEquals("DATE",getWebElementText(direct_owners_date_header_text_xpath));
+        assertEquals("SOURCE",getWebElementText(direct_owners_source_header_text_xpath));
     }
 
     public void verifyNoDirectOwnersMsg() {
@@ -77,12 +89,13 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void sVerifyDirectOwnersList(ExamplesTable directOwnersListExamTable) {
-        waitForPageToLoad(15000L);
+        waitForWebElementToAppear(direct_owners_entity_name_text_xpath);
         verifyDirectOwnersHeaders();
         List<WebElement> aDirectOwnerEntityName = getWebElements(direct_owners_entity_name_text_xpath);
         List<WebElement> aDirectOwnersCountryName = getWebElements(direct_owners_country_name_text_xpath);
         List<WebElement> aDirectOwnersPercentageOwned = getWebElements(direct_owners_percentage_owned_text_xpath);
-        List<WebElement> aDirectOwnersLastValidatedDate = getWebElements(direct_owners_last_validated_date_text_xpath);
+        List<WebElement> aDirectOwnersLastValidatedDate = getWebElements(direct_owners_date_text_xpath);
+        List<WebElement> aDirectOwnersSource = getWebElements(direct_owners_source_text_xpath);
         for(int i=0; i<aDirectOwnersCountryName.size(); i++) {
             assertEquals("Legal title does not match at" + i, directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(0)), aDirectOwnerEntityName.get(i).getText());
             assertEquals("Country name does not match at" + i, directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(1)), aDirectOwnersCountryName.get(i).getText());
@@ -90,6 +103,7 @@ public class OwnersPage extends WebDriverUtils {
                 assertEquals("Percentage owned does not match at" + i, directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(2)) + "%", aDirectOwnersPercentageOwned.get(i).getText());
             }
             assertEquals("Validated date does not match at" + i, directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(3)), aDirectOwnersLastValidatedDate.get(i).getText());
+            assertEquals("Source does not match at" + i, directOwnersListExamTable.getRow(i).get(directOwnersListExamTable.getHeaders().get(4)), aDirectOwnersSource.get(i).getText());
         }
     }
 
@@ -115,7 +129,7 @@ public class OwnersPage extends WebDriverUtils {
 
     public void verifyDirectOwnersAreHighlighted() {
         assertEquals(
-                getWebElements(By.xpath(direct_owners_highlighted_xpath + "/ul[li[@class='location ng-binding']='" + selectedCountryHighlight + "']")).size(),
+                getWebElements(By.xpath(direct_owners_highlighted_xpath + "[td='" + selectedCountryHighlight + "']")).size(),
                 getWebElements(By.xpath(direct_owners_row_for_country_xpath + selectedCountryHighlight + "']")).size());
         assertEquals(
                 getWebElements(By.xpath(direct_owners_highlighted_xpath)).size(),
