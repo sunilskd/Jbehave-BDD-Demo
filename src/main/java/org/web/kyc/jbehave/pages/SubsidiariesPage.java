@@ -22,6 +22,10 @@ public class SubsidiariesPage extends WebDriverUtils {
 
     private By subsidiaries_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[3]");
     private By subsidiaries_header_text_xpath = By.xpath(".//*[@id='content-view'] /h1");
+    private By subsidiaries_entity_name_header_text_xpath = By.xpath("//*[@id='subsidiaries']/thead/tr/th[1]");
+    private By subsidiaries_country_header_text_xpath = By.xpath("//*[@id='subsidiaries']/thead/tr/th[2]");
+    private By subsidiaries_percentage_header_text_xpath = By.xpath("//*[@id='subsidiaries']/thead/tr/th[3]");
+    private By subsidiaries_date_header_text_xpath = By.xpath("//*[@id='subsidiaries']/thead/tr/th[4]");
     private By subsidiaries_entity_name_text_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]/td[1]");
     private By subsidiaries_country_name_text_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]/td[2]");
     private By subsidiaries_percentage_owned_text_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]/td[3]");
@@ -65,6 +69,11 @@ public class SubsidiariesPage extends WebDriverUtils {
 
     public void verifySubsidiariesHeaders() {
         assertEquals("Subsidiaries and Affiliated Companies", getWebElementText(subsidiaries_header_text_xpath));
+        assertEquals("NAME",getWebElementText(subsidiaries_entity_name_header_text_xpath));
+        assertEquals("COUNTRY",getWebElementText(subsidiaries_country_header_text_xpath));
+        assertEquals("%",getWebElementText(subsidiaries_percentage_header_text_xpath));
+        assertEquals("DATE",getWebElementText(subsidiaries_date_header_text_xpath));
+
     }
 
     public void verifyNoSubsidiariesMsg() {

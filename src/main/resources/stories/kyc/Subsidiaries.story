@@ -31,13 +31,13 @@ Then the user should see the subsidiaries summary selected by default in the sub
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 
 Examples:
-|fid|institutionLegalTitle|
-|211|Australia and New Zealand Banking Group Limited|
-|815|Banco Popular|
-|146115|Investec Holdings (Ireland) Ltd|
-|200|Public Bank (Hong Kong) Limited|
-|1717|Berliner Volksbank eG|
-|112618|Moody Bank Holding Company Inc|
+|fid|
+|211|
+|815|
+|146115|
+|200|
+|1717|
+|112618|
 
 Scenario: KYC user can view direct subsidiaries
 Meta:@static
@@ -140,8 +140,8 @@ When the user selects the percent filter option <percentFilter> in the subsidiar
 Then the user should see message displayed in place of list explaining there are no subsidiaries
 
 Examples:
-|fid|institutionLegalTitle|percentFilter|
-|269306|First American Insurance Services Inc|10|
+|fid|percentFilter|
+|269306|10|
 
 Scenario: Select filter that results in no entities on the list (display no subsidiaries, display message no known entities)
 Meta:@static @dynamic
@@ -172,10 +172,10 @@ When the user selects the percent filter option <percentFilter> in the subsidiar
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the subsidiaries page
 
 Examples:
-|fid|percentFilter|institutionLegalTitle|
-|1045|10|Bank of Baroda|
-|1045|25|Bank of Baroda|
-|1045|50|Bank of Baroda|
+|fid|percentFilter|
+|1045|10|
+|1045|25|
+|1045|50|
 
 Scenario: Select a second filter (first filter is de-selected, list updates to match new filter)
 Meta:@dynamic @static
@@ -202,8 +202,8 @@ When the user clicks and opens the legal title BAMS Solutions Inc in subsidiarie
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 
 Examples:
-|fid|institutionLegalTitle|
-|1038|BAMS Solutions Inc|
+|fid|
+|1038|
 
 Scenario: User clicks legal title of legal entity that appears in subsidiaries list
 (user is taken to the subsidiaries list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
@@ -216,8 +216,8 @@ And the user clicks on the legal title BAMS Solutions Inc in subsidiaries list i
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 
 Examples:
-|fid|institutionLegalTitle|
-|1038|BAMS Solutions Inc|
+|fid|
+|1038|
 
 Scenario: Highlight legal entities in subsidiaries list by country
 a.Legal entities in list have country of operations.
