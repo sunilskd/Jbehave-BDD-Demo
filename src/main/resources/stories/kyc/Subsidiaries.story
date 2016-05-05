@@ -6,7 +6,7 @@ Covers below features:
 JIRA ID - KYC-45 - KYC user can view direct subsidiaries
 JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
 JIRA ID - KYC-133 - User can navigate through tabs on office page
-JIRA ID - KYC-188 -
+JIRA ID - KYC-188 - Display relationship validated date on subsidiary list
 
 Meta:@subsidiaries @kyc
 
