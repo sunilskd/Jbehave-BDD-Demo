@@ -17,10 +17,11 @@ When the user login as a kyc user
 Scenario: KYC user can view direct subsidiaries
 a. With percentage ownership; with country of operations; with validated date; with active legal entity subsidiaries; with active subsidiary relationships
 b. If percentage ownership is null then display record with no percentage ownership
-c. If country of operations is not present then display records with no country
-d. If validated date is not present then display records with no validated date
+c. 0.If country of operations is not present then display records with no country
+   1.If validated date is not present then display records with no validated date
 d. If subsidiaries are inactive do not display the inactive subsidiaries legal entity
 e. If subsidiary relationships are inactive do not display the records for inactive subsidiaries relationship
+f. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -36,6 +37,7 @@ Examples:
 |146115|Investec Holdings (Ireland) Ltd|
 |200|Public Bank (Hong Kong) Limited|
 |1717|Berliner Volksbank eG|
+|112618|Moody Bank Holding Company Inc|
 
 Scenario: KYC user can view direct subsidiaries
 Meta:@static

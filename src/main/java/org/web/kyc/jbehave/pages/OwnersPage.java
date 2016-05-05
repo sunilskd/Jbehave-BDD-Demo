@@ -128,9 +128,12 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void verifyDirectOwnersAreHighlighted() {
+        /* Compare size of all the direct owners highlighted for the county with all the direct owners for the country */
         assertEquals(
                 getWebElements(By.xpath(direct_owners_highlighted_xpath + "[td='" + selectedCountryHighlight + "']")).size(),
                 getWebElements(By.xpath(direct_owners_row_for_country_xpath + selectedCountryHighlight + "']")).size());
+
+        /* Compare size of all the direct owners highlighted with all the direct owners for the country */
         assertEquals(
                 getWebElements(By.xpath(direct_owners_highlighted_xpath)).size(),
                 getWebElements(By.xpath(direct_owners_row_for_country_xpath + selectedCountryHighlight + "']")).size());

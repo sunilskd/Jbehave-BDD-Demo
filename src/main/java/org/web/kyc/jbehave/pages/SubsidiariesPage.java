@@ -27,10 +27,10 @@ public class SubsidiariesPage extends WebDriverUtils {
     private By subsidiaries_percentage_owned_text_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]/td[3]");
     private By subsidiaries_validated_date_text_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]/td[4]");
     private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@class='notification']");
-    private String subsidiaries_highlighted_xpath = ".//*[@id='subsidiaries']//tr[@class='highlight']";
-    private By subsidiaries_not_highlighted_xpath = By.xpath("//*[@id='subsidiaries-structure']/li/div[@class='item']");
-    private By subsidiaries_row_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]");
-    private String subsidiaries_row_for_country_xpath = "//li/div[div[@class='location ng-binding']='";
+    private String subsidiaries_highlighted_xpath = "//*[@id='subsidiaries']//tr[@class='highlight']";
+    // private By subsidiaries_not_highlighted_xpath = By.xpath("//*[@id='subsidiaries-structure']/li/div[@class='item']");
+    //private By subsidiaries_row_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]");
+    private String subsidiaries_row_for_country_xpath = "//*[@id='subsidiaries']/tbody[@class='ng-scope']//*[td='";
     private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
     Set<String> eCountryHighlightList = new TreeSet<>();
 
@@ -94,16 +94,20 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void verifyDirectSubsidiariesAreHighlighted() {
+        /* Compare size of all the subsidiaries highlighted for the county with all the subsidiaries for the country */
         assertEquals(
-                getWebElements(By.xpath(subsidiaries_highlighted_xpath + "[div[@class='location ng-binding']='" + selectedCountryHighlight + "']")).size(),
+                getWebElements(By.xpath(subsidiaries_highlighted_xpath + "[td[@class='ng-binding']='" + selectedCountryHighlight + "']")).size(),
                 getWebElements(By.xpath(subsidiaries_row_for_country_xpath + selectedCountryHighlight + "']")).size());
+
+        /* Compare size of all the subsidiaries highlighted with all the subsidiaries for the country */
         assertEquals(
                 getWebElements(By.xpath(subsidiaries_highlighted_xpath)).size(),
                 getWebElements(By.xpath(subsidiaries_row_for_country_xpath + selectedCountryHighlight + "']")).size());
     }
 
     public void verifyDirectSubsidiariesAreNotHighlighted() {
-        assertEquals(getWebElements(subsidiaries_not_highlighted_xpath).size(), getWebElements(subsidiaries_row_xpath).size());
+        //assertEquals(getWebElements(subsidiaries_not_highlighted_xpath).size(), getWebElements(subsidiaries_row_xpath).size());
+        assertFalse(isWebElementDisplayed(By.xpath(subsidiaries_highlighted_xpath)));
     }
 
     public void dVerifyCountryHighlightList() {
