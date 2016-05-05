@@ -83,7 +83,7 @@ public class OwnersSteps {
     }
 
     @Then("the user should not see any country in country highlights list in the owners page")
-    public void verifyCounryHighlightListNotExists(){
+    public void verifyCountryHighlightListNotExists(){
         pageObject.ownersPage().verifyCountryHighlightListNotExists();
     }
 

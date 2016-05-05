@@ -35,13 +35,13 @@ f. 0. Active regulation relationships exist for entity user is viewing, display 
 g. 0. If no active regulation relationship exists, then display field label but no value
    1. If no stock exchange relationship exisits, display field label in summary section but no value
    2. If no stock exchange relationship exisits, display field label in identifier section but no value
-h. 0. If regulation relationship is inactive, then display field label but no value
+h. If regulation relationship is inactive, then display field label but no value
 i. 0. If active stock exchange relationship(s) exist, display legal title of stock exchange and abbreviated name in summary section sort first by primary = true, then by legal title
    1. If active stock exchange relationship(s) exist, display abbreviated name of stock exchange and ticker symbol for that stock exchange relationship in identifiers section, sort first by primary = true, then by abbreviated stock exchange name
-j. 0. If inactive stock exchange relationship, then display field label but no value
+j. If inactive stock exchange relationship, then display field label but no value
 k. 0. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
    1. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
-l. 0. if stock exchange relationship is active and stock exchange legal entity is inactive, then display field label but no value
+l. if stock exchange relationship is active and stock exchange legal entity is inactive, then display field label but no value
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -92,7 +92,7 @@ And the user should see the below list of stock symbols with ticker symbols, fir
 |THJC|
 |KJHJ|
 
-And the user should see regulators information, sorted by alphabetically in the entity details page
+And the user should see regulators information, sorted alphabetically in the entity details page
 |REGULATORS|
 |BOA|
 |Bundesanstalt für Finanzdienstleistungsaufsicht|
