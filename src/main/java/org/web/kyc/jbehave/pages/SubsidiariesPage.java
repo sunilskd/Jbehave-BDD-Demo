@@ -29,7 +29,7 @@ public class SubsidiariesPage extends WebDriverUtils {
     private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@class='notification']");
     private String subsidiaries_highlighted_xpath = ".//*[@id='subsidiaries']//tr[@class='highlight']";
     private By subsidiaries_not_highlighted_xpath = By.xpath("//*[@id='subsidiaries-structure']/li/div[@class='item']");
-    private By subsidiaries_row_xpath = By.xpath("//*[@id='subsidiaries-structure']/li");
+    private By subsidiaries_row_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]");
     private String subsidiaries_row_for_country_xpath = "//li/div[div[@class='location ng-binding']='";
     private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
     Set<String> eCountryHighlightList = new TreeSet<>();
