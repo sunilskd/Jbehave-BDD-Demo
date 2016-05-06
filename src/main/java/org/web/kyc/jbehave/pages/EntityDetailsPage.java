@@ -175,10 +175,9 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void compareSnapshotsForEntityDetails() {
-        assertTrue(compareImages("F:/workspace/kyc-automated-functional-test/src/test/resources/expected/eEntityDetails.png","F:/workspace/kyc-automated-functional-test/src/test/resources/actual/aEntityDetails.png","F:/workspace/kyc-automated-functional-test/src/test/resources/difference/dEntityDetails.png"));
-//        assertTrue(
-//                compareImages(readProperties().getSnapshotPath() + "/expected/eEntityDetails.png",
-//                                readProperties().getSnapshotPath() + "/actual/aEntityDetails.png",
-//                                readProperties().getSnapshotPath() + "/difference/dEntityDetails.png"));
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eEntityDetails.png",
+                                readProperties().getSnapshotPath() + "/actual/aEntityDetails.png",
+                                readProperties().getSnapshotPath() + "/difference/dEntityDetails.png"));
     }
 }

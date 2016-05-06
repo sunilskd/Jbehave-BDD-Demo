@@ -2,10 +2,19 @@ package org.web.kyc.comparator;
 import org.im4java.core.CompareCmd;
 import org.im4java.process.StandardStream;
 import org.im4java.core.IMOperation;
+import org.jbehave.web.selenium.WebDriverPage;
+import org.jbehave.web.selenium.WebDriverProvider;
+import org.web.kyc.utils.ReadProperties;
+
+import static org.web.kyc.jbehave.pages.WebDriverUtils.readProperties;
 
 /** Compare Images **/
 
-public class Comparator {
+public class Comparator extends WebDriverPage {
+
+    public Comparator(WebDriverProvider driverProvider) {
+        super(driverProvider);
+    }
 
     public static boolean compareImages(String exp, String act, String diff){
 
@@ -30,7 +39,7 @@ public class Comparator {
 
         try {
             // Do the compare
-            compare.setSearchPath("F:/Program Files/ImageMagick-7.0.1-1-portable-Q16-x64");
+            compare.setSearchPath(readProperties().getImageMagicPath());
             compare.run(cmpOp);
             return true;
         }
