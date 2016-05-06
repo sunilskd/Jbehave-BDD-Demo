@@ -6,6 +6,7 @@ Covers below features:
 JIRA ID - KYC-45 - KYC user can view direct subsidiaries
 JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
 JIRA ID - KYC-133 - User can navigate through tabs on office page
+JIRA ID - KYC-188 - Display relationship validated date on subsidiary list
 
 Meta:@subsidiaries @kyc
 
@@ -14,11 +15,13 @@ Given the user is on the ubo login page
 When the user login as a kyc user
 
 Scenario: KYC user can view direct subsidiaries
-a. With percentage ownership; with country of operations; with active legal entity subsidiaries; with active subsidiary relationships
+a. With percentage ownership; with country of operations; with validated date; with active legal entity subsidiaries; with active subsidiary relationships
 b. If percentage ownership is null then display record with no percentage ownership
-c. If country of operations is not present then display records with no country
+c. 0.If country of operations is not present then display records with no country
+   1.If validated date is not present then display records with no validated date
 d. If subsidiaries are inactive do not display the inactive subsidiaries legal entity
 e. If subsidiary relationships are inactive do not display the records for inactive subsidiaries relationship
+f. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -26,15 +29,15 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 Then the user should see the subsidiaries summary selected by default in the subsidiaries page
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
-And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
 
 Examples:
-|fid|institutionLegalTitle|
-|211|Australia and New Zealand Banking Group Limited|
-|815|Banco Popular|
-|146115|Investec Holdings (Ireland) Ltd|
-|200|Public Bank (Hong Kong) Limited|
-|1717|Berliner Volksbank eG|
+|fid|
+|211|
+|815|
+|146115|
+|200|
+|1717|
+|112618|
 
 Scenario: KYC user can view direct subsidiaries
 Meta:@static
@@ -43,66 +46,66 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Bank of Baroda (Botswana) Limited|Botswana|100|
-|Bank of Baroda (Ghana) Ltd|Ghana|100|
-|Bank of Baroda (Guyana) Incorporated|Guyana|100|
-|Bank of Baroda (NewZealand) Ltd|New Zealand|100|
-|Bank of Baroda (Tanzania) Ltd|Tanzania|100|
-|Bank of Baroda (Trinidad and Tobago) Limited|Trinidad & Tobago|100|
-|BOB Capital Market Ltd|India|100|
-|BOB Cards Ltd|India|100|
-|Nainital Bank Ltd|India|98.57|
-|Bank of Baroda (Kenya) Ltd|Kenya|86.7|
-|Bank of Baroda (Uganda) Limited|Uganda|80|
-|Baroda Pioneer Asset Management Co Ltd|India|49|
-|India International Bank (Malaysia) Bhd|Malaysia|40|
-|Baroda Gujarat Gramin Bank|India|35|
-|Baroda Rajasthan Kshetriya Gramin Bank|India|35|
-|Baroda Uttar Pradesh Gramin Bank|India|35|
-|UTI Asset Management Co Pvt Ltd|India|25|
-|UTI Trustee Co Pvt Ltd|India|25|
-|Indo-Zambia Bank Limited|Zambia|20|
-|Small Industries Development Bank of India (SIDBI)|India|4.4|
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|VALIDATED DATE|
+|Bank of Baroda (Botswana) Limited|Botswana|100|24 Nov 2001|
+|Bank of Baroda (Ghana) Ltd|Ghana|100|07 May 2010|
+|Bank of Baroda (Guyana) Incorporated|Guyana|100|01 Dec 2001|
+|Bank of Baroda (NewZealand) Ltd|New Zealand|100|04 Feb 2011|
+|Bank of Baroda (Tanzania) Ltd|Tanzania|100|10 Apr 2005|
+|Bank of Baroda (Trinidad and Tobago) Limited|Trinidad & Tobago|100|07 May 2010|
+|BOB Capital Market Ltd|India|100|01 Jun 2002|
+|BOB Cards Ltd|India|100|20 Mar 2005|
+|Nainital Bank Ltd|India|98.57|13 Mar 2015|
+|Bank of Baroda (Kenya) Ltd|Kenya|86.7|26 Jun 2005|
+|Bank of Baroda (Uganda) Limited|Uganda|80|23 Nov 2003|
+|Baroda Pioneer Asset Management Co Ltd|India|49|07 May 2010|
+|India International Bank (Malaysia) Bhd|Malaysia|40|14 Dec 2012|
+|Baroda Gujarat Gramin Bank|India|35|07 May 2010|
+|Baroda Rajasthan Kshetriya Gramin Bank|India|35|07 May 2010|
+|Baroda Uttar Pradesh Gramin Bank|India|35|19 Jul 2013|
+|UTI Asset Management Co Pvt Ltd|India|25|07 May 2010|
+|UTI Trustee Co Pvt Ltd|India|25|07 May 2010|
+|Indo-Zambia Bank Limited|Zambia|20|26 Oct 2002|
+|Small Industries Development Bank of India (SIDBI)|India|4.4|28 Feb 2014|
 
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Bank of Baroda (Botswana) Limited|Botswana|100|
-|Bank of Baroda (Ghana) Ltd|Ghana|100|
-|Bank of Baroda (Guyana) Incorporated|Guyana|100|
-|Bank of Baroda (NewZealand) Ltd|New Zealand|100|
-|Bank of Baroda (Tanzania) Ltd|Tanzania|100|
-|Bank of Baroda (Trinidad and Tobago) Limited|Trinidad & Tobago|100|
-|BOB Capital Market Ltd|India|100|
-|BOB Cards Ltd|India|100|
-|Nainital Bank Ltd|India|98.57|
-|Bank of Baroda (Kenya) Ltd|Kenya|86.7|
-|Bank of Baroda (Uganda) Limited|Uganda|80|
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|VALIDATED DATE|
+|Bank of Baroda (Botswana) Limited|Botswana|100|24 Nov 2001|
+|Bank of Baroda (Ghana) Ltd|Ghana|100|07 May 2010|
+|Bank of Baroda (Guyana) Incorporated|Guyana|100|01 Dec 2001|
+|Bank of Baroda (NewZealand) Ltd|New Zealand|100|04 Feb 2011|
+|Bank of Baroda (Tanzania) Ltd|Tanzania|100|10 Apr 2005|
+|Bank of Baroda (Trinidad and Tobago) Limited|Trinidad & Tobago|100|07 May 2010|
+|BOB Capital Market Ltd|India|100|01 Jun 2002|
+|BOB Cards Ltd|India|100|20 Mar 2005|
+|Nainital Bank Ltd|India|98.57|13 Mar 2015|
+|Bank of Baroda (Kenya) Ltd|Kenya|86.7|26 Jun 2005|
+|Bank of Baroda (Uganda) Limited|Uganda|80|23 Nov 2003|
 
 When the user changes the percent filter option to View All in the subsidiaries page
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Bank of Baroda (Botswana) Limited|Botswana|100|
-|Bank of Baroda (Ghana) Ltd|Ghana|100|
-|Bank of Baroda (Guyana) Incorporated|Guyana|100|
-|Bank of Baroda (NewZealand) Ltd|New Zealand|100|
-|Bank of Baroda (Tanzania) Ltd|Tanzania|100|
-|Bank of Baroda (Trinidad and Tobago) Limited|Trinidad & Tobago|100|
-|BOB Capital Market Ltd|India|100|
-|BOB Cards Ltd|India|100|
-|Nainital Bank Ltd|India|98.57|
-|Bank of Baroda (Kenya) Ltd|Kenya|86.7|
-|Bank of Baroda (Uganda) Limited|Uganda|80|
-|Baroda Pioneer Asset Management Co Ltd|India|49|
-|India International Bank (Malaysia) Bhd|Malaysia|40|
-|Baroda Gujarat Gramin Bank|India|35|
-|Baroda Rajasthan Kshetriya Gramin Bank|India|35|
-|Baroda Uttar Pradesh Gramin Bank|India|35|
-|UTI Asset Management Co Pvt Ltd|India|25|
-|UTI Trustee Co Pvt Ltd|India|25|
-|Indo-Zambia Bank Limited|Zambia|20|
-|Small Industries Development Bank of India (SIDBI)|India|4.4|
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|VALIDATED DATE|
+|Bank of Baroda (Botswana) Limited|Botswana|100|24 Nov 2001|
+|Bank of Baroda (Ghana) Ltd|Ghana|100|07 May 2010|
+|Bank of Baroda (Guyana) Incorporated|Guyana|100|01 Dec 2001|
+|Bank of Baroda (NewZealand) Ltd|New Zealand|100|04 Feb 2011|
+|Bank of Baroda (Tanzania) Ltd|Tanzania|100|10 Apr 2005|
+|Bank of Baroda (Trinidad and Tobago) Limited|Trinidad & Tobago|100|07 May 2010|
+|BOB Capital Market Ltd|India|100|01 Jun 2002|
+|BOB Cards Ltd|India|100|20 Mar 2005|
+|Nainital Bank Ltd|India|98.57|13 Mar 2015|
+|Bank of Baroda (Kenya) Ltd|Kenya|86.7|26 Jun 2005|
+|Bank of Baroda (Uganda) Limited|Uganda|80|23 Nov 2003|
+|Baroda Pioneer Asset Management Co Ltd|India|49|07 May 2010|
+|India International Bank (Malaysia) Bhd|Malaysia|40|14 Dec 2012|
+|Baroda Gujarat Gramin Bank|India|35|07 May 2010|
+|Baroda Rajasthan Kshetriya Gramin Bank|India|35|07 May 2010|
+|Baroda Uttar Pradesh Gramin Bank|India|35|19 Jul 2013|
+|UTI Asset Management Co Pvt Ltd|India|25|07 May 2010|
+|UTI Trustee Co Pvt Ltd|India|25|07 May 2010|
+|Indo-Zambia Bank Limited|Zambia|20|26 Oct 2002|
+|Small Industries Development Bank of India (SIDBI)|India|4.4|28 Feb 2014|
 
 Examples:
 |fid|percentFilter|
@@ -117,9 +120,9 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Acceptance Alliance LLC|USA||
-|Banc of America Merchant Services LLC|USA||
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|VALIDATED DATE|
+|Acceptance Alliance LLC|USA||09 Apr 2010|
+|Banc of America Merchant Services LLC|USA||09 Apr 2010|
 
 Examples:
 |fid|
@@ -133,14 +136,12 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 Then the user should see message displayed in place of list explaining there are no subsidiaries
-And the user should not see the legal title of the institution it is looking at in the subsidiaries page
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
 Then the user should see message displayed in place of list explaining there are no subsidiaries
-And the user should not see the legal title of the institution it is looking at in the subsidiaries page
 
 Examples:
-|fid|institutionLegalTitle|percentFilter|
-|269306|First American Insurance Services Inc|10|
+|fid|percentFilter|
+|269306|10|
 
 Scenario: Select filter that results in no entities on the list (display no subsidiaries, display message no known entities)
 Meta:@static @dynamic
@@ -151,7 +152,6 @@ And the user clicks on the subsidiaries tab
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
 Then the user should see message displayed in place of list explaining there are no subsidiaries
-And the user should not see the legal title of the institution it is looking at in the subsidiaries page
 
 Examples:
 |fid|percentFilter|
@@ -170,13 +170,12 @@ And the user clicks on the subsidiaries tab
 Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the subsidiaries page
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the subsidiaries page
-And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
 
 Examples:
-|fid|percentFilter|institutionLegalTitle|
-|1045|10|Bank of Baroda|
-|1045|25|Bank of Baroda|
-|1045|50|Bank of Baroda|
+|fid|percentFilter|
+|1045|10|
+|1045|25|
+|1045|50|
 
 Scenario: Select a second filter (first filter is de-selected, list updates to match new filter)
 Meta:@dynamic @static
@@ -201,11 +200,10 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
-And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
 
 Examples:
-|fid|institutionLegalTitle|
-|1038|BAMS Solutions Inc|
+|fid|
+|1038|
 
 Scenario: User clicks legal title of legal entity that appears in subsidiaries list
 (user is taken to the subsidiaries list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
@@ -216,11 +214,10 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the legal title BAMS Solutions Inc in subsidiaries list in the subsidiaries page
 Then the user should see the list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
-And the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page
 
 Examples:
-|fid|institutionLegalTitle|
-|1038|BAMS Solutions Inc|
+|fid|
+|1038|
 
 Scenario: Highlight legal entities in subsidiaries list by country
 a.Legal entities in list have country of operations.
