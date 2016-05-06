@@ -5,11 +5,12 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
+import java.io.File;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.xqueries.XQueryEnum.ENTITY_DETAILS;
-
-
 
 public class EntityDetailsPage extends WebDriverUtils {
 
@@ -35,7 +36,6 @@ public class EntityDetailsPage extends WebDriverUtils {
     private By entity_details_stock_and_ticker_symbol_label_text_xpath=By.xpath(".//*[@id='entity-lei']/tbody/tr[2]/th");
     private By entity_details_regulators_list_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/td/span");
     private By entity_details_regulators_label_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/th");
-
     private Document entityDetailsDocument;
 
     public EntityDetailsPage(WebDriverProvider driverProvider) {
@@ -169,8 +169,16 @@ public class EntityDetailsPage extends WebDriverUtils {
             assertEquals("Regulator does not match at" + i, regulatorsExamTable.getRow(i).get(regulatorsExamTable.getHeaders().get(0)), aRegulatorsValues.get(i).getText());
         }
     }
- }
 
+    public void captureEntityDetailsPage() {
+        takeSnapshot("./src/test/resources/actual/aEntityDetails.png");
+    }
 
-
-
+    public void compareSnapshotsForEntityDetails() {
+        assertTrue(compareImages("F:/workspace/kyc-automated-functional-test/src/test/resources/expected/eEntityDetails.png","F:/workspace/kyc-automated-functional-test/src/test/resources/actual/aEntityDetails.png","F:/workspace/kyc-automated-functional-test/src/test/resources/difference/dEntityDetails.png"));
+//        assertTrue(
+//                compareImages(readProperties().getSnapshotPath() + "/expected/eEntityDetails.png",
+//                                readProperties().getSnapshotPath() + "/actual/aEntityDetails.png",
+//                                readProperties().getSnapshotPath() + "/difference/dEntityDetails.png"));
+    }
+}
