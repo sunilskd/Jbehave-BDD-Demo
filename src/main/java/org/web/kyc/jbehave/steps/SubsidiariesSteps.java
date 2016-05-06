@@ -35,11 +35,6 @@ public class SubsidiariesSteps {
         pageObject.subsidiariesPage().verifyNoSubsidiariesMsg();
     }
 
-    @Then("the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page")
-    public void verifyInstitutionLegalTitle(@Named("institutionLegalTitle") String institutionLegalTitle) {
-        pageObject.subsidiariesPage().verifyInstitutionLegalTitle(institutionLegalTitle);
-    }
-
     @Then("the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the subsidiaries page")
     public void verifyPercentFilterOptions(){
         pageObject.commonUtils().verifyPercentFilterOptions();
@@ -63,11 +58,6 @@ public class SubsidiariesSteps {
     @When("the user changes the percent filter option to $updatedFilter in the subsidiaries page")
     public void changePercentFilterOption(@Named("updatedFilter") String updatedFilter){
         pageObject.commonUtils().selectPercentFilter(updatedFilter);
-    }
-
-    @Then("the user should not see the legal title of the institution it is looking at in the subsidiaries page")
-    public void verifyLegalTitleIsNotDisplayed(){
-        pageObject.subsidiariesPage().verifyLegalTitleIsNotDisplayed();
     }
 
     @When("the user selects a country <country> from the country highlight list in the subsidiaries page")
