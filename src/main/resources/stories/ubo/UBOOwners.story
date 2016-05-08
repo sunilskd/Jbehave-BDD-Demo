@@ -30,7 +30,7 @@ Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: UBO user can view direct owners that are legal entities, people, or other entity types (non-institution, non-person) as owners do not display free text ownership.
+Scenario: Covers below scenarios
 a. 0. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
    1. Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
    2. If only ownerType is present display owner as "ownerType"
@@ -166,7 +166,7 @@ Examples:
 |fid|
 |12538|
 
-Scenario: Verify no data found message when there are no direct owners
+Scenario: Covers below scenarios
 a. If there are no direct owners display "no results" for now
 b. If person or institution ownership relationship is inactive, do not display that person or institution on owners list
 c. If non entity or person owner ownership relationship is inactive, do not display those other entity type owners on owners list
@@ -183,7 +183,7 @@ Examples:
 |30010|
 |2162|
 
-Scenario: KYC-100 Filter owners list by percent ownership
+Scenario: Covers below scenarios
 a. 0. View all is selected by default (displays all direct owners regardless of percent ownership);
    1. Selecting 10 and above filters out any entity that has null or less than 10 ownership
 b. Selecting 25 and above filters out any entity that has null or less than 25 ownership
