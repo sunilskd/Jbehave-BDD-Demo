@@ -16,13 +16,13 @@ Scenario: KYC user login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: KYC user can view entity details
-a. 0. with head office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
-   1. with LEI (with multiple LEIs (sort by LEI issuer name alphabetically (ascending) ignoring "The" in identifiers section)
-   2. with GIIN (display in identifiers section)
-   3. with head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
+Scenario: Covers below scenarios
+a. 0. With head office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
+   1. With LEI (with multiple LEIs (sort by LEI issuer name alphabetically (ascending) ignoring "The" in identifiers section)
+   2. With GIIN (display in identifiers section)
+   3. With head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
    4. If active SWIFT BICs have assigned institution that is the entity user is viewing, then display SWIFT BICs on entity details sorted first by length (short to long) then by alpha-numeric
-b. 0. with FATCA status value (display in identifiers section)
+b. 0. With FATCA status value (display in identifiers section)
    1. If inactive SWIFT BIC has assigned institution that is the entity user is viewing, then do not display
 c. 0. KYC users should see Indetifiers labels even when there are no values for the identifiers
    1. If no GIIN, display field label in identifiers section but no value
@@ -41,7 +41,7 @@ i. 0. If active stock exchange relationship(s) exist, display legal title of sto
 j. If inactive stock exchange relationship, then display field label but no value
 k. 0. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
    1. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
-l. if stock exchange relationship is active and stock exchange legal entity is inactive, then display field label but no value
+l. If stock exchange relationship is active and stock exchange legal entity is inactive, then display field label but no value
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>

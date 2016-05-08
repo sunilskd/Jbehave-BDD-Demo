@@ -14,11 +14,11 @@ Scenario: KYC user login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: KYC user can view direct subsidiaries
+Scenario: Covers below scenarios
 a. With percentage ownership; with country of operations; with validated date; with active legal entity subsidiaries; with active subsidiary relationships
 b. If percentage ownership is null then display record with no percentage ownership
-c. 0.If country of operations is not present then display records with no country
-   1.If validated date is not present then display records with no validated date
+c. 0. If country of operations is not present then display records with no country
+   1. If validated date is not present then display records with no validated date
 d. If subsidiaries are inactive do not display the inactive subsidiaries legal entity
 e. If subsidiary relationships are inactive do not display the records for inactive subsidiaries relationship
 f. If accuracy is day, display day, month and year. If accuracy is month, display month and year. If accuracy is year, display only year
@@ -128,8 +128,7 @@ Examples:
 |fid|
 |1038|
 
-Scenario: Display message in place of subs list if no subsidiaries for entity user is viewing
-a. If there are no subsidiaries display "No known entities" for now;
+Scenario: If there are no subsidiaries display "No known entities" for now;
 Meta:@static @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -157,9 +156,9 @@ Examples:
 |fid|percentFilter|
 |173|25|
 
-Scenario: KYC-102 Filter list of subsidiaries by percent ownership
+Scenario: Covers below scenarios
 a. 0. View all is selected by default (displays all direct subsidiaries regardless of percent ownership)
-   2. Selecting 10 and above filters out any entities owned by less than 10 or have null ownership
+   1. Selecting 10 and above filters out any entities owned by less than 10 or have null ownership
 b. Selecting 25 and above filters out any entities owned by less than 25 or have null ownership
 c. Selecting 50 and above filters out any entities owned by less than 50 or have null ownership
 Meta:@dynamic
@@ -219,12 +218,12 @@ Examples:
 |fid|
 |1038|
 
-Scenario: Highlight legal entities in subsidiaries list by country
-a.Legal entities in list have country of operations.
-  List each unique country once, sort countries in highlight list alphabetically
-  Select a country highlight, legal entities in the subsidiaries list that have that country of operations are highlighted
-  De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
-  Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
+Scenario: Covers below scenarios
+a. 0. Legal entities in list have country of operations.
+   1. List each unique country once, sort countries in highlight list alphabetically
+   2. Select a country highlight, legal entities in the subsidiaries list that have that country of operations are highlighted
+b. 0. De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+   1. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -242,8 +241,7 @@ Examples:
 |211|Australia|USA|
 |815|Colombia|Chile|
 
-Scenario: Highlight legal entities in subsidiaries list by country
-a.De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+Scenario: De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -258,8 +256,7 @@ Examples:
 |211|Australia|
 |146115|Ireland|
 
-Scenario: Filter subsidiaries list by percent ownership
-a. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
+Scenario: User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -272,8 +269,7 @@ Examples:
 |fid|percentFilter|
 |211|50|
 
-Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
-a.User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
+Scenario: User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab

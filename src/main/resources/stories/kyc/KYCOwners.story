@@ -35,7 +35,7 @@ Scenario: KYC user login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: KYC user can view direct owners that are legal entities
+Scenario: Covers below scenarios
 a. 0. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships validated date and source
    1. Display source as "source, extended source" when both source and extended source are present
    2. Display source as "source" when only source is present
@@ -60,7 +60,7 @@ Examples:
 |179281|
 |12538|
 
-Scenario: KYC user can view ownership free text in owners list.
+Scenario: Covers below scenarios
 a. 0. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
    1. Ownership free text exists and there are legal entities on owners list (display both, free text at bottom of list)
 b. Display only the first summary if there are multiple on the legal entity doc
@@ -92,8 +92,8 @@ Examples:
 |fid|
 |284626|
 
-Scenario: Do not display the meter when the percentage ownership is null
-a. If percentage ownership is null then display record with no percentage ownership
+Scenario: Covers below scenarios
+a. If percentage ownership is null then display record with no percentage ownership. Do not display the meter when the percentage ownership is null.
 b. If validation date is not present then display record with no validation date
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
@@ -186,7 +186,7 @@ Examples:
 |fid|directOwnerFreeText|
 |168466|Foreign institutional investors, 74; Greek institutional investors, 11; Individuals, 4|
 
-Scenario: Verify no data found message when there are no direct owners
+Scenario: Covers below scenarios
 a. If there are no direct owners display "No known entities" for now
 b. If direct owner is inactive do not display the inactive direct owner legal entity
 c. If direct owner relationships are inactive do not display the records for inactive direct ownership relationship
@@ -203,7 +203,7 @@ Examples:
 |140612|
 |46089|
 
-Scenario: KYC-100 Filter owners list by percent ownership
+Scenario: Covers below scenarios
 a. 0. View all is selected by default (displays all direct owners regardless of percent ownership);
    1. Selecting 10 and above filters out any entity that has null or less than 10 ownership
 b. Selecting 25 and above filters out any entity that has null or less than 25 ownership
@@ -279,7 +279,7 @@ Examples:
 |fid|
 |211|
 
-Scenario: KYC user can view Highlight legal entities in direct owners list by country
+Scenario: Covers below scenarios
 a. 0. Legal entities in list have country of operations.
    1. Select a country highlight, legal entities in the owners list that have that country of operations are highlighted
    2. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
@@ -301,8 +301,7 @@ Examples:
 |fid|country|changeCountry|
 |173|Jordan|Lebanon|
 
-Scenario: KYC user can view Highlight legal entities in direct owners list by country
-a.De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+Scenario: De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -319,8 +318,7 @@ Examples:
 |fid|country|
 |173|Jordan|
 
-Scenario: Filter owners list by percent ownership
-a. User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
+Scenario: User applies a  filter by percent ownership, countries available in highlight list dynamically updated to only list country of operations of legal entities currently visible on list after filter
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -336,8 +334,9 @@ Examples:
 |1045|50|India|
 |12538|10|USA|
 
-Scenario:No legal entities in list have country of operations, then no countries are available as highlight option.
-a. User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
+Scenario: Covers below scenarios
+a. No legal entities in list have country of operations, then no countries are available as highlight option.
+b. User applies a filter by percent ownership that results in no legal entities in list or no legal entities that have a country of operations, then no countries populate the available highlight options
 Meta:@directOwners @static @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
