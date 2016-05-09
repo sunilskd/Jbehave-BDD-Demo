@@ -24,6 +24,7 @@ JIRA ID - KYC-72 - KYC user can click link to another entity in ownership list
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-131 - Restrict entity types displayed on direct owners list by UBO user permission
 JIRA ID - KYC-90 -  UBO user can view list of UBOs
+JIRA ID - KYC-253 - Add source to UBO list
 
 Meta:@owners @ubo @uboowners
 
@@ -236,21 +237,24 @@ Scenario: UBO User can view list of all UBOs
 a. 0.UBO user can view all direct and indirect owners that are people, in the ownership path of an enity.
    1.UBOs are ordered by percentage ownership, then alphabetically by personSortKey.
    2.UBOs has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
+   3.UBOs has source as "source, extended source" when both source and extended source are present
+   4.Display source as "source" when only source is present
+   5.Do not display source when source and extecnded source are not present
 Meta:@static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
-|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|
-|QA Test Person G|QA Legal Entity B|50.222|27 Mar 2015|
-|QA Test Person D|QA Legal Entity C|49.23|27 Mar 2015|
-|QA Test Person E|QA Legal Entity A|49.23|27 Mar 2015|
-|QA Test Person H|QA Legal Entity D|49.23|27 Mar 2015|
-|QA Test Person A|QA Legal Entity A|45.52|Mar 2015|
-|QA Test Person B|QA Legal Entity B|40.23|27 Mar 2015|
-|QA Test Person G|QA Legal Entity C|4.93|27 Mar 2015|
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|Legal Entity D owned by Person C|
+|QA Test Person G|QA Legal Entity B|50.222|27 Mar 2015|Legal Entity B owned by Person B|
+|QA Test Person D|QA Legal Entity C|49.23|27 Mar 2015|Legal Entity C owned by Person D|
+|QA Test Person E|QA Legal Entity A|49.23|27 Mar 2015|Legal Entity A owned by Person E|
+|QA Test Person H|QA Legal Entity D|49.23|27 Mar 2015|Legal Entity C owned by Person D|
+|QA Test Person A|QA Legal Entity A|45.52|Mar 2015|Legal Entity A owned by Person A|
+|QA Test Person B|QA Legal Entity B|40.23|27 Mar 2015|Legal Entity B owned by Person B|
+|QA Test Person G|QA Legal Entity C|4.93|27 Mar 2015|Legal Entity C owned by Person G|
 
 Examples:
 |fid|
@@ -263,11 +267,11 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
-|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|
-|QA Test Person D|QA Legal Entity C|49.23|27 Mar 2015|
-|QA Test Person H|QA Legal Entity D|49.23|27 Mar 2015|
-|QA Test Person G|QA Legal Entity C|4.93|27 Mar 2015|
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|Legal Entity D owned by Person C|
+|QA Test Person D|QA Legal Entity C|49.23|27 Mar 2015|Legal Entity C owned by Person D|
+|QA Test Person H|QA Legal Entity D|49.23|27 Mar 2015|Legal Entity C owned by Person D|
+|QA Test Person G|QA Legal Entity C|4.93|27 Mar 2015|Legal Entity C owned by Person G|
 
 Examples:
 |fid|
@@ -280,9 +284,9 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
-|QA Test Person G|QA Legal Entity B|50.222|27 Mar 2015|
-|QA Test Person B|QA Legal Entity B|40.23|27 Mar 2015|
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|QA Test Person G|QA Legal Entity B|50.222|27 Mar 2015|Legal Entity B owned by Person B|
+|QA Test Person B|QA Legal Entity B|40.23|27 Mar 2015|Legal Entity B owned by Person B|
 
 Examples:
 |fid|

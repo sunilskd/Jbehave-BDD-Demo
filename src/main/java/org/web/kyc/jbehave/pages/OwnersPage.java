@@ -43,10 +43,12 @@ public class OwnersPage extends WebDriverUtils {
     private By ubo_entity_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[2]");
     private By ubo_percentage_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[3]");
     private By ubo_date_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[4]");
+    private By ubo_source_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[5]");
     private By ubo_name_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[1]");
     private By ubo_entity_name_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[2]");
     private By ubo_percentage_owned_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[3]");
     private By ubo_date_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[4]");
+    private By ubo_source_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[5]");
     private By no_ubo_msg_text_xpath = By.xpath("//*[@id='content-view']/div[2]/p");
 
 
@@ -102,7 +104,7 @@ public class OwnersPage extends WebDriverUtils {
         assertEquals("ENTITY",getWebElementText(ubo_entity_header_text_xpath));
         assertEquals("%",getWebElementText(ubo_percentage_header_text_xpath));
         assertEquals("DATE",getWebElementText(ubo_date_header_text_xpath));
-
+        assertEquals("SOURCE",getWebElementText(ubo_source_header_text_xpath));
     }
 
     public void verifyNoDirectOwnersMsg() {
@@ -235,6 +237,7 @@ public class OwnersPage extends WebDriverUtils {
         List<WebElement> aUBOEntityName = getWebElements(ubo_entity_name_text_xpath);
         List<WebElement> aUBOPercentageOwned = getWebElements(ubo_percentage_owned_text_xpath);
         List<WebElement> aUBOLastValidatedDate = getWebElements(ubo_date_text_xpath);
+        List<WebElement> aUBOSource = getWebElements(ubo_source_text_xpath);
         for(int i=0; i<aUBOName.size(); i++) {
             assertEquals("UBO Name does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(0)), aUBOName.get(i).getText());
             assertEquals("UBO Entity Name does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(1)), aUBOEntityName.get(i).getText());
@@ -242,6 +245,7 @@ public class OwnersPage extends WebDriverUtils {
                 assertEquals("Percentage owned does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(2)) + "%", aUBOPercentageOwned.get(i).getText());
             }
             assertEquals("Validated date does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(3)), aUBOLastValidatedDate.get(i).getText());
+            assertEquals("Source does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(4)), aUBOSource.get(i).getText());
         }
     }
 
