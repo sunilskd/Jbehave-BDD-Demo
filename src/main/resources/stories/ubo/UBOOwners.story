@@ -23,6 +23,7 @@ JIRA ID - KYC-91 - UBO user can view ownership list with non-entity, non-person 
 JIRA ID - KYC-72 - KYC user can click link to another entity in ownership list
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-131 - Restrict entity types displayed on direct owners list by UBO user permission
+JIRA ID - KYC-90 -  UBO user can view list of UBOs
 
 Meta:@owners @ubo @uboowners
 
@@ -230,6 +231,88 @@ Then the user should see the percent filter View All de-selected in the owners p
 Examples:
 |fid|percentFilter|
 |12538|10|
+
+Scenario: UBO User can view list of all UBOs
+a. 0.UBO user can view all direct and indirect owners that are people, in the ownership path of an enity.
+   1.UBOs are ordered by percentage ownership, then alphabetically by personSortKey.
+   2.UBOs has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|
+|QA Test Person G|QA Legal Entity B|50.222|27 Mar 2015|
+|QA Test Person D|QA Legal Entity C|49.23|27 Mar 2015|
+|QA Test Person E|QA Legal Entity A|49.23|27 Mar 2015|
+|QA Test Person H|QA Legal Entity D|49.23|27 Mar 2015|
+|QA Test Person A|QA Legal Entity A|45.52|Mar 2015|
+|QA Test Person B|QA Legal Entity B|40.23|27 Mar 2015|
+|QA Test Person G|QA Legal Entity C|4.93|27 Mar 2015|
+
+Examples:
+|fid|
+|LE-A|
+
+Scenario: UBO User can view list of Direct and Indirect UBOs, and not Inactive UBO
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|
+|QA Test Person D|QA Legal Entity C|49.23|27 Mar 2015|
+|QA Test Person H|QA Legal Entity D|49.23|27 Mar 2015|
+|QA Test Person G|QA Legal Entity C|4.93|27 Mar 2015|
+
+Examples:
+|fid|
+|LE-C|
+
+Scenario: UBO User can view multiple UBOs of the same enity
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|QA Test Person G|QA Legal Entity B|50.222|27 Mar 2015|
+|QA Test Person B|QA Legal Entity B|40.23|27 Mar 2015|
+
+Examples:
+|fid|
+|LE-B|
+
+Scenario: UBO User can view UBOs when % ownership is null
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|Japan Finance Corporation|Japan Bank For International Cooperation||11 Nov 2011|
+
+Examples:
+|fid|
+|241440|
+
+Scenario: If there are no UBOs exists, display "No known entities"
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the user should see message displayed in place of list explaining there are no UBOs
+
+Examples:
+|fid|
+|211|
 
 Scenario: UBO user logout
 Given the user is on the ubo login page
