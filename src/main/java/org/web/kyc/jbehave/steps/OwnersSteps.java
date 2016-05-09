@@ -139,4 +139,18 @@ public class OwnersSteps {
         pageObject.ownersPage().sVerifyNoFreeTextInDirectOwnersList();
     }
 
+    @When("the user captures the expected snapshot for the owners page")
+    public void eCaptureOwnersPage(){
+        pageObject.ownersPage().eCaptureOwnersPage();
+    }
+
+    @When("the user captures the actual snapshot for the owners page")
+    public void aCaptureOwnersPage(){
+        pageObject.ownersPage().aCaptureOwnersPage();
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for owners page")
+    public void compareSnapshotsForOwners(){
+        pageObject.ownersPage().compareSnapshotsForOwners();
+    }
 }

@@ -170,7 +170,11 @@ public class EntityDetailsPage extends WebDriverUtils {
         }
     }
 
-    public void captureEntityDetailsPage() {
+    public void eCaptureEntityDetailsPage() {
+        takeSnapshot("./src/test/resources/expected/eEntityDetails.png");
+    }
+
+    public void aCaptureEntityDetailsPage() {
         takeSnapshot("./src/test/resources/actual/aEntityDetails.png");
     }
 

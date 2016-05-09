@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import static org.junit.Assert.*;
+import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
 
@@ -31,8 +32,6 @@ public class SubsidiariesPage extends WebDriverUtils {
     private By subsidiaries_validated_date_text_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]/td[4]");
     private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@class='notification']");
     private String subsidiaries_highlighted_xpath = "//*[@id='subsidiaries']//tr[@class='highlight']";
-    // private By subsidiaries_not_highlighted_xpath = By.xpath("//*[@id='subsidiaries-structure']/li/div[@class='item']");
-    //private By subsidiaries_row_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]");
     private String subsidiaries_row_for_country_xpath = "//*[@id='subsidiaries']/tbody[@class='ng-scope']//*[td='";
     private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
 
@@ -72,7 +71,6 @@ public class SubsidiariesPage extends WebDriverUtils {
         assertEquals("COUNTRY",getWebElementText(subsidiaries_country_header_text_xpath));
         assertEquals("%",getWebElementText(subsidiaries_percentage_header_text_xpath));
         assertEquals("DATE",getWebElementText(subsidiaries_date_header_text_xpath));
-
     }
 
     public void verifyNoSubsidiariesMsg() {
@@ -114,7 +112,6 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void verifyDirectSubsidiariesAreNotHighlighted() {
-        //assertEquals(getWebElements(subsidiaries_not_highlighted_xpath).size(), getWebElements(subsidiaries_row_xpath).size());
         assertFalse(isWebElementDisplayed(By.xpath(subsidiaries_highlighted_xpath)));
     }
 
@@ -160,4 +157,18 @@ public class SubsidiariesPage extends WebDriverUtils {
         }
     }
 
+    public void eCaptureSubsidiariesPage() {
+        takeSnapshot("./src/test/resources/expected/eSubsidiariesPage.png");
+    }
+
+    public void aCaptureSubsidiariesPage() {
+        takeSnapshot("./src/test/resources/actual/aSubsidiariesPage.png");
+    }
+
+    public void compareSnapshotsForEntityDetails() {
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eSubsidiariesPage.png",
+                        readProperties().getSnapshotPath() + "/actual/aSubsidiariesPage.png",
+                        readProperties().getSnapshotPath() + "/difference/dSubsidiariesPage.png"));
+    }
 }

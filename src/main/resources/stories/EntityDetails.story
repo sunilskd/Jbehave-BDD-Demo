@@ -131,8 +131,8 @@ Meta:@static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
-When the user captures the snapshot for th entity details page
-Then the user should see the actual snapshot should match the expected snapshot
+When the user captures the actual snapshot for the entity details page
+Then the user should see the actual snapshot matching the expected snapshot for entity details page
 
 Examples:
 |fid|
