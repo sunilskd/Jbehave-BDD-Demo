@@ -397,6 +397,20 @@ Examples:
 |fid|percentFilter|
 |12538|10|
 
+Scenario: UBO user can view UBO, of an entity owned by only one owner
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below UBO (person) in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|Ruth de la Cour - Vontobel|Vontobel Holding AG|5.5|10 Mar 2016|Vontobel Holding AG|
+
+Examples:
+|fid|
+|11262|
+
 Scenario: UBO user logout
 Given the user is on the ubo login page
 When the user logout
