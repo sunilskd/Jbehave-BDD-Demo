@@ -13,9 +13,10 @@ c. Entity displayed on list (could be entity user is viewing) has at least one l
 d. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has zero owners that have null percent ownership, then that entity is at the top of the list
 e. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has more than one owner that has null percent ownership, then that entity is at the top of the list
 f. Entity displayed on list (could be entity user is viewing) has no owners, then that entity is at the top of the list
-g. Entity on the list has at least one subsidiary it owns more than 50 percent, display that subsidiary entity indented below it in the list
-h. Entity on the list has a subsidiary where it is the only owner of that entity to have null percent ownership, display that subsidiary entity in the list
-i. Multiple entities are at the same level of indentation in the list, then sort by percent ownership descending then alphabetically by legal title
-j. If null percent ownership, do not display percent ownership for that relationship
-k. If no country of operations for legal entity on list, do not display country of operations
-l. If legal entity owner or subsidiary is inactive, or the relationship document is inactive, do not display the entity on list
+g. Entity displayed on list has an inactive owner (relationship doc is inactive), do not display that owner
+h. Entity on the list has at least one subsidiary it owns more than 50 percent, display that subsidiary entity indented below it in the list
+i. Entity on the list has a subsidiary where it is the only owner of that entity to have null percent ownership, display that subsidiary entity in the list
+j. Multiple entities are at the same level of indentation in the list, then sort by percent ownership descending then alphabetically by legal title
+k. If null percent ownership, do not display percent ownership for that relationship
+l. If no country of operations for legal entity on list, do not display country of operations
+j. If subsidiary relationship document is inactive, do not display the subsidiary entity on list
