@@ -28,6 +28,7 @@ JIRA ID - KYC-147 - Display only the first summary if there are multiple on the 
 JIRA ID - KYC-131 - Restrict entity types displayed on direct owners list by UBO user permission
 JIRA ID - KYC-140 - Display source on owners list
 JIRA ID - KYC-271 - When only extended source is present the source is not displaying.
+JIRA ID - KYC-90 - UBO user can view list of UBOs
 
 Meta:@owners @kyc @kycowners
 
@@ -349,6 +350,19 @@ Examples:
 |fid|percentFilter|
 |173|50|
 |179281|10|
+
+Scenario: KYC use should not have access to view UBO list, and display mesage "No known entities"
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the user should see message displayed as no known enities for KYC user
+
+Examples:
+|fid|
+|12538|
+
 
 Scenario: KYC user logout
 Given the user is on the ubo login page

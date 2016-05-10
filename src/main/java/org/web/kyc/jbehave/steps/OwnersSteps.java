@@ -145,6 +145,7 @@ public class OwnersSteps {
     }
 
     @Then("the user should see message displayed in place of list explaining there are no UBOs")
+    @Alias("the user should see message displayed as no known enities for KYC user")
     public void verifyNoUBOMsg(){
         pageObject.ownersPage().verifyNoUBOMsg();
     }
