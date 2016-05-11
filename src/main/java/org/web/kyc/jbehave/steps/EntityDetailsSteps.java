@@ -92,4 +92,19 @@ public class EntityDetailsSteps {
     public void sVerifyRegulators(ExamplesTable regulatorsExamTable){
         pageObject.entityDetailsPage().sVerifyRegulators(regulatorsExamTable);
     }
+
+    @When("the user captures the expected snapshot for the entity details page")
+    public void eCaptureEntityDetailsPage(){
+        pageObject.entityDetailsPage().eCaptureEntityDetailsPage();
+    }
+
+    @When("the user captures the actual snapshot for the entity details page")
+    public void aCaptureEntityDetailsPage(){
+        pageObject.entityDetailsPage().aCaptureEntityDetailsPage();
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for entity details page")
+    public void compareSnapshotsForEntityDetails(){
+        pageObject.entityDetailsPage().compareSnapshotsForEntityDetails();
+    }
 }

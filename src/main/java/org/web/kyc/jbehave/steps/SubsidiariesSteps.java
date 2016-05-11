@@ -105,5 +105,19 @@ public class SubsidiariesSteps {
         pageObject.commonUtils().verifySummaryIsSelectedByDefault();
     }
 
+    @When("the user captures the expected snapshot for the subsidiaries page")
+    public void eCaptureSubsidiariesPage(){
+        pageObject.subsidiariesPage().eCaptureSubsidiariesPage();
+    }
+
+    @When("the user captures the actual snapshot for the subsidiaries page")
+    public void aCaptureSubsidiariesPage(){
+        pageObject.subsidiariesPage().aCaptureSubsidiariesPage();
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for subsidiaries page")
+    public void compareSnapshotsForSubsidiaries(){
+        pageObject.subsidiariesPage().compareSnapshotsForEntityDetails();
+    }
 }
 

@@ -17,6 +17,8 @@ public class ReadProperties {
     private String mlPassword;
     private String mlScheme;
     private String mlPath;
+    private String snapshotPath;
+    private String imageMagicPath;
 
     public ReadProperties() {
         setUrl(getProjectProperties("testRunner.properties", "kyc.web.url"));
@@ -30,6 +32,8 @@ public class ReadProperties {
         setMlPassword(getProjectProperties("testRunner.properties", "ml.admin.password"));
         setMlScheme(getProjectProperties("testRunner.properties", "ml.admin.scheme"));
         setMlPath(getProjectProperties("testRunner.properties", "ml.admin.path"));
+        setSnapshotPath(getProjectProperties("testRunner.properties", "kyc.snapshot.path"));
+        setImageMagicPath(getProjectProperties("testRunner.properties", "image.magic.path"));
     }
 
     public String getMlPath() {
@@ -118,6 +122,22 @@ public class ReadProperties {
 
     public void setKycUser(String kycUser) {
         this.kycUser = kycUser;
+    }
+
+    public String getSnapshotPath() {
+        return snapshotPath;
+    }
+
+    public void setSnapshotPath(String snapshotPath) {
+        this.snapshotPath = snapshotPath;
+    }
+
+    public String getImageMagicPath() {
+        return imageMagicPath;
+    }
+
+    public void setImageMagicPath(String imageMagicPath) {
+        this.imageMagicPath = imageMagicPath;
     }
 
     public String getProjectProperties(String propertyFile, String property) {

@@ -12,14 +12,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
 
 public class SubsidiariesPage extends WebDriverUtils {
 
+    Set<String> eCountryHighlightList = new TreeSet<>();
     private By subsidiaries_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[3]");
     private By subsidiaries_header_text_xpath = By.xpath(".//*[@id='content-view'] /h1");
     private By subsidiaries_entity_name_header_text_xpath = By.xpath("//*[@id='subsidiaries']/thead/tr/th[1]");
@@ -32,11 +32,8 @@ public class SubsidiariesPage extends WebDriverUtils {
     private By subsidiaries_validated_date_text_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]/td[4]");
     private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@class='notification']");
     private String subsidiaries_highlighted_xpath = "//*[@id='subsidiaries']//tr[@class='highlight']";
-    // private By subsidiaries_not_highlighted_xpath = By.xpath("//*[@id='subsidiaries-structure']/li/div[@class='item']");
-    //private By subsidiaries_row_xpath = By.xpath("//*[@id='subsidiaries']/tbody[@class='ng-scope']/tr[1]");
     private String subsidiaries_row_for_country_xpath = "//*[@id='subsidiaries']/tbody[@class='ng-scope']//*[td='";
     private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
-    Set<String> eCountryHighlightList = new TreeSet<>();
 
     public SubsidiariesPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -55,13 +52,14 @@ public class SubsidiariesPage extends WebDriverUtils {
         List<WebElement> aSubsidiariesCountryName = getWebElements(subsidiaries_country_name_text_xpath);
         List<WebElement> aSubsidiariesPercentageOwned = getWebElements(subsidiaries_percentage_owned_text_xpath);
         List<WebElement> aSubsidiariesValidatedDate = getWebElements(subsidiaries_validated_date_text_xpath);
-        assertEquals("Subsidiaries count mismatch", eSubsidiariesList.getElementsByTagName("entityName").getLength(),aSubsidiariesEntityName.size());
+        assertEquals("Subsidiaries count mismatch", eSubsidiariesList.getElementsByTagName("entityName").getLength(), aSubsidiariesEntityName.size());
+
         for (int i = 0; i < aSubsidiariesEntityName.size(); i++) {
-            assertEquals("Legal title does not match at" + i, eSubsidiariesList.getElementsByTagName("entityName").item(i).getTextContent(),aSubsidiariesEntityName.get(i).getText());
-            assertEquals("Country name does not match at" + i, eSubsidiariesList.getElementsByTagName("countryOfOperations").item(i).getTextContent(),aSubsidiariesCountryName.get(i).getText());
+            assertEquals("Legal title does not match at" + i, eSubsidiariesList.getElementsByTagName("entityName").item(i).getTextContent(), aSubsidiariesEntityName.get(i).getText());
+            assertEquals("Country name does not match at" + i, eSubsidiariesList.getElementsByTagName("countryOfOperations").item(i).getTextContent(), aSubsidiariesCountryName.get(i).getText());
             eCountryHighlightList.add(eSubsidiariesList.getElementsByTagName("countryOfOperations").item(i).getTextContent());
             if (!eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
-                assertEquals("Percentage owned does not match at" + i, (eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%"),aSubsidiariesPercentageOwned.get(i).getText());
+                assertEquals("Percentage owned does not match at" + i, (eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%"), aSubsidiariesPercentageOwned.get(i).getText());
             }
             assertEquals("Validate Date does not match at" + i, eSubsidiariesList.getElementsByTagName("lastValidatedDate").item(i).getTextContent(),aSubsidiariesValidatedDate.get(i).getText());
         }
@@ -73,7 +71,6 @@ public class SubsidiariesPage extends WebDriverUtils {
         assertEquals("COUNTRY",getWebElementText(subsidiaries_country_header_text_xpath));
         assertEquals("%",getWebElementText(subsidiaries_percentage_header_text_xpath));
         assertEquals("DATE",getWebElementText(subsidiaries_date_header_text_xpath));
-
     }
 
     public void verifyNoSubsidiariesMsg() {
@@ -115,7 +112,6 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void verifyDirectSubsidiariesAreNotHighlighted() {
-        //assertEquals(getWebElements(subsidiaries_not_highlighted_xpath).size(), getWebElements(subsidiaries_row_xpath).size());
         assertFalse(isWebElementDisplayed(By.xpath(subsidiaries_highlighted_xpath)));
     }
 
@@ -124,8 +120,8 @@ public class SubsidiariesPage extends WebDriverUtils {
         List<String> aCountryHighlightList = getWebElementsText(country_highlight_list_text_xpath);
         Iterator eIterator = eCountryHighlightList.iterator();
         Iterator aIterator = aCountryHighlightList.iterator();
-        while (eIterator.hasNext()){
-            assertEquals(eIterator.next(),aIterator.next());
+        while (eIterator.hasNext()) {
+            assertEquals(eIterator.next(), aIterator.next());
         }
     }
 
@@ -137,8 +133,8 @@ public class SubsidiariesPage extends WebDriverUtils {
     public void openLegalTitleInSubsidiariesListInNewWindow(String legalTitle) {
         waitForWebElementToAppear(subsidiaries_entity_name_text_xpath);
         nvPairs.add(new BasicNameValuePair("name", legalTitle));
-        for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if("fid".equals(nameValuePair.getName())) {
+        for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
+            if ("fid".equals(nameValuePair.getName())) {
                 nvPairs.remove(nameValuePair);
             }
         }
@@ -148,8 +144,8 @@ public class SubsidiariesPage extends WebDriverUtils {
     public void clickOnLegalTitleInSubsidiariesList(String legalTitle) {
         waitForWebElementToAppear(subsidiaries_entity_name_text_xpath);
         nvPairs.add(new BasicNameValuePair("name", legalTitle));
-        for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if("fid".equals(nameValuePair.getName())) {
+        for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
+            if ("fid".equals(nameValuePair.getName())) {
                 nvPairs.remove(nameValuePair);
             }
         }
@@ -161,4 +157,18 @@ public class SubsidiariesPage extends WebDriverUtils {
         }
     }
 
+    public void eCaptureSubsidiariesPage() {
+        takeSnapshot("./src/test/resources/expected/eSubsidiariesPage.png");
+    }
+
+    public void aCaptureSubsidiariesPage() {
+        takeSnapshot("./src/test/resources/actual/aSubsidiariesPage.png");
+    }
+
+    public void compareSnapshotsForEntityDetails() {
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eSubsidiariesPage.png",
+                        readProperties().getSnapshotPath() + "/actual/aSubsidiariesPage.png",
+                        readProperties().getSnapshotPath() + "/difference/dSubsidiariesPage.png"));
+    }
 }

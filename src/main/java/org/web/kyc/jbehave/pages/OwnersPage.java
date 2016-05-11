@@ -10,8 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
 import static org.junit.Assert.*;
+import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
 
@@ -229,6 +229,20 @@ public class OwnersPage extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(direct_owners_entity_free_text_xpath));
     }
 
+    public void eCaptureOwnersPage() {
+        takeSnapshot("./src/test/resources/expected/eOwnersPage.png");
+    }
+
+    public void aCaptureOwnersPage() {
+        takeSnapshot("./src/test/resources/actual/aOwnersPage.png");
+    }
+
+    public void compareSnapshotsForOwners() {
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eOwnersPage.png",
+                        readProperties().getSnapshotPath() + "/actual/aOwnersPage.png",
+                        readProperties().getSnapshotPath() + "/difference/dOwnersPage.png"));
+    }
 
     public void sVerifyUBOList(ExamplesTable uboListExamTable) {
         waitForWebElementToAppear(ubo_name_text_xpath);
