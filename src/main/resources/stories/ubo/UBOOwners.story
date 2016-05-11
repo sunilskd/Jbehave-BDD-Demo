@@ -23,6 +23,7 @@ JIRA ID - KYC-91 - UBO user can view ownership list with non-entity, non-person 
 JIRA ID - KYC-72 - KYC user can click link to another entity in ownership list
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-131 - Restrict entity types displayed on direct owners list by UBO user permission
+JIRA ID - KYC-90 -  UBO user can view list of UBOs
 
 Meta:@owners @ubo @uboowners
 
@@ -230,6 +231,119 @@ Then the user should see the percent filter View All de-selected in the owners p
 Examples:
 |fid|percentFilter|
 |12538|10|
+
+Scenario: UBO User can view list of all UBOs
+a. 0. UBO user can view all direct and indirect owners that are people, in the ownership path of an enity.
+   1. UBOs are ordered by percentage ownership, then alphabetically by personSortKey.
+   2. UBOs has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
+   3. Unique UBO that owns multiple entities should be displayed in the UBO(Example person G)
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|
+|QA Test Person G|QA Legal Entity B|50.222|27 Mar 2015|
+|QA Test Person D|QA Legal Entity C|49.23|27 Mar 2015|
+|QA Test Person E|QA Legal Entity A|49.23|27 Mar 2015|
+|QA Test Person H|QA Legal Entity D|49.23|27 Mar 2015|
+|QA Test Person A|QA Legal Entity A|45.52|Mar 2015|
+|QA Test Person B|QA Legal Entity B|40.23|27 Mar 2015|
+|QA Test Person G|QA Legal Entity C|4.93|27 Mar 2015|
+|QA Test Person G|QA Legal Entity D|4.23|27 Mar 2015|
+
+Examples:
+|fid|
+|LE-A|
+
+Scenario: UBO User can view list of Direct and Indirect UBOs, and not Inactive ownership relationship
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|
+|QA Test Person D|QA Legal Entity C|49.23|27 Mar 2015|
+|QA Test Person H|QA Legal Entity D|49.23|27 Mar 2015|
+|QA Test Person G|QA Legal Entity C|4.93|27 Mar 2015|
+|QA Test Person G|QA Legal Entity D|4.23|27 Mar 2015|
+
+Examples:
+|fid|
+|LE-C|
+
+Scenario: UBO User can view multiple UBOs of the same enity
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|QA Test Person G|QA Legal Entity B|50.222|27 Mar 2015|
+|QA Test Person B|QA Legal Entity B|40.23|27 Mar 2015|
+
+Examples:
+|fid|
+|LE-B|
+
+Scenario: UBO User can view UBOs when % ownership is null
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|Japan Finance Corporation|Japan Bank For International Cooperation||11 Nov 2011|
+
+Examples:
+|fid|
+|241440|
+
+Scenario: If there are no UBOs exists, display "No known entities"
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see message displayed in place of list explaining there are no UBOs
+
+Examples:
+|fid|
+|211|
+
+Scenario: UBO User can view list of all UBOs
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
+|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|
+|Anthony G. Buzbee|HomeTown Bank National Association|3.75|10 Mar 2016|
+|G. William Rider|HomeTown Bank National Association|3.41|10 Mar 2016|
+|T. A. Waterman,, Jr|HomeTown Bank National Association|2.34|10 Mar 2016|
+|Jimmy Rasmussen|HomeTown Bank National Association|1.84|10 Mar 2016|
+|Stacy Dienst|HomeTown Bank National Association|1.02|10 Mar 2016|
+|Maurice Estlinbaum|HomeTown Bank National Association|0.76|10 Mar 2016|
+|Robert L. Moody, Jr|HomeTown Bank National Association|0.52|10 Mar 2016|
+|Greg S. Garison|HomeTown Bank National Association|0.43|10 Mar 2016|
+|Sidney C. Farmer, III|HomeTown Bank National Association|0.34|10 Mar 2016|
+|Dorothea Matthews Balentine|HomeTown Bank National Association|0.31|10 Mar 2016|
+|Joe Saladino|HomeTown Bank National Association|0.3|10 Mar 2016|
+|Kent Ballard|HomeTown Bank National Association|0.29|10 Mar 2016|
+|Michael J. Gaido,, Jr|HomeTown Bank National Association|0.26|10 Mar 2016|
+|E. Vince Matthews, III|HomeTown Bank National Association|0.26|10 Mar 2016|
+|Bob Pagan|HomeTown Bank National Association|0.26|10 Mar 2016|
+
+Examples:
+|fid|
+|12538|
 
 Scenario: UBO user logout
 Given the user is on the ubo login page

@@ -18,7 +18,7 @@ import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
 public class OwnersPage extends WebDriverUtils {
 
     private By owners_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[2]");
-    private By direct_owners_header_text_xpath = By.xpath("//*[@class='heading-bar ng-scope'][1]/h1");
+    private By direct_owners_header_text_xpath = By.xpath("//*[@id='content-view']/div[1]/div/h1");
     private By direct_owners_name_header_text_xpath = By.xpath("//*[@id='direct-owners'] //th[1]");
     private By direct_owners_country_header_text_xpath = By.xpath("//*[@id='direct-owners'] //th[2]");
     private By direct_owners_percentage_header_text_xpath = By.xpath("//*[@id='direct-owners'] //th[3]");
@@ -38,6 +38,18 @@ public class OwnersPage extends WebDriverUtils {
     private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners'] //tbody");
     private String direct_owners_row_for_country_xpath = "//*[td='";
     private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
+    private By ubo_header_text_xpath = By.xpath(".//*[@id='content-view']/div[2]/div/h1");
+    private By ubo_name_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[1]");
+    private By ubo_entity_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[2]");
+    private By ubo_percentage_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[3]");
+    private By ubo_date_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[4]");
+    private By ubo_name_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[1]");
+    private By ubo_entity_name_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[2]");
+    private By ubo_percentage_owned_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[3]");
+    private By ubo_date_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[4]");
+    private By no_ubo_msg_text_xpath = By.xpath("//*[@id='content-view']/div[2]/p");
+
+
     Set<String> eCountryHighlightList = new TreeSet<>();
 
     public OwnersPage(WebDriverProvider driverProvider) {
@@ -81,6 +93,16 @@ public class OwnersPage extends WebDriverUtils {
         assertEquals("%",getWebElementText(direct_owners_percentage_header_text_xpath));
         assertEquals("DATE",getWebElementText(direct_owners_date_header_text_xpath));
         assertEquals("SOURCE",getWebElementText(direct_owners_source_header_text_xpath));
+    }
+
+    public void verifyUBOHeaders(){
+        waitForWebElementToAppear(ubo_header_text_xpath);
+        assertEquals("Ultimate Beneficial Owners", getWebElementText(ubo_header_text_xpath));
+        assertEquals("NAME",getWebElementText(ubo_name_header_text_xpath));
+        assertEquals("ENTITY",getWebElementText(ubo_entity_header_text_xpath));
+        assertEquals("%",getWebElementText(ubo_percentage_header_text_xpath));
+        assertEquals("DATE",getWebElementText(ubo_date_header_text_xpath));
+
     }
 
     public void verifyNoDirectOwnersMsg() {
@@ -204,4 +226,28 @@ public class OwnersPage extends WebDriverUtils {
         verifyDirectOwnersHeaders();
         assertFalse(isWebElementDisplayed(direct_owners_entity_free_text_xpath));
     }
+
+
+    public void sVerifyUBOList(ExamplesTable uboListExamTable) {
+        waitForWebElementToAppear(ubo_name_text_xpath);
+        verifyUBOHeaders();
+        List<WebElement> aUBOName = getWebElements(ubo_name_text_xpath);
+        List<WebElement> aUBOEntityName = getWebElements(ubo_entity_name_text_xpath);
+        List<WebElement> aUBOPercentageOwned = getWebElements(ubo_percentage_owned_text_xpath);
+        List<WebElement> aUBOLastValidatedDate = getWebElements(ubo_date_text_xpath);
+        for(int i=0; i<aUBOName.size(); i++) {
+            assertEquals("UBO Name does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(0)), aUBOName.get(i).getText());
+            assertEquals("UBO Entity Name does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(1)), aUBOEntityName.get(i).getText());
+            if(!uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(2)).isEmpty()) {
+                assertEquals("Percentage owned does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(2)) + "%", aUBOPercentageOwned.get(i).getText());
+            }
+            assertEquals("Validated date does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(3)), aUBOLastValidatedDate.get(i).getText());
+        }
+    }
+
+    public void verifyNoUBOMsg() {
+        waitForWebElementToAppear(no_ubo_msg_text_xpath);
+        assertEquals("No known entities.", getWebElementText(no_ubo_msg_text_xpath));
+    }
+
 }
