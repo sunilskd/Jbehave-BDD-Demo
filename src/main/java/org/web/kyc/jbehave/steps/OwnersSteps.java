@@ -139,7 +139,7 @@ public class OwnersSteps {
         pageObject.ownersPage().sVerifyNoFreeTextInDirectOwnersList();
     }
 
-    @Then("the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page $UBOListExamTable")
+    @Then("the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page $UBOListExamTable")
     public void sVerifyUBOList(ExamplesTable uboListExamTable){
         pageObject.ownersPage().sVerifyUBOList(uboListExamTable);
     }
