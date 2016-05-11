@@ -139,13 +139,13 @@ public class OwnersSteps {
         pageObject.ownersPage().sVerifyNoFreeTextInDirectOwnersList();
     }
 
-    @Then("the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page $UBOListExamTable")
+    @Then("the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page $UBOListExamTable")
     public void sVerifyUBOList(ExamplesTable uboListExamTable){
         pageObject.ownersPage().sVerifyUBOList(uboListExamTable);
     }
 
-    @Then("the user should see message displayed in place of list explaining there are no UBOs")
-    @Alias("the user should see message displayed as no known enities for KYC user")
+    @Then("the ubo user should see message displayed in place of list explaining there are no UBOs")
+    @Alias("the kyc user should see message displayed as no known entities for KYC user")
     public void verifyNoUBOMsg(){
         pageObject.ownersPage().verifyNoUBOMsg();
     }
