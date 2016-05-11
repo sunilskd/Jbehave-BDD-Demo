@@ -140,7 +140,6 @@ public class OwnersSteps {
     }
 
     @Then("the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page $UBOListExamTable")
-    @Alias("the ubo user should see the below UBO (person) in the owners page $UBOListExamTable")
     public void sVerifyUBOList(ExamplesTable uboListExamTable){
         pageObject.ownersPage().sVerifyUBOList(uboListExamTable);
     }

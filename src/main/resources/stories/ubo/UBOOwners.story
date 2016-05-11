@@ -403,7 +403,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the ubo user should see the below UBO (person) in the owners page
+Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
 |Ruth de la Cour - Vontobel|Vontobel Holding AG|5.5|10 Mar 2016|Vontobel Holding AG|
 
