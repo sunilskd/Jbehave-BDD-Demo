@@ -357,7 +357,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the user should see message displayed as no known enities for KYC user
+Then the kyc user should see message displayed as no known entities for KYC user
 
 Examples:
 |fid|

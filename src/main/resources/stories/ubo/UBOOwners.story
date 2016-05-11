@@ -311,7 +311,7 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the user should see message displayed in place of list explaining there are no UBOs
+Then the ubo user should see message displayed in place of list explaining there are no UBOs
 
 Examples:
 |fid|
