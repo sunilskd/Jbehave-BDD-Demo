@@ -20,3 +20,23 @@ j. Multiple entities are at the same level of indentation in the list, then sort
 k. If null percent ownership, do not display percent ownership for that relationship
 l. If no country of operations for legal entity on list, do not display country of operations
 j. If subsidiary relationship document is inactive, do not display the subsidiary entity on list
+
+Scenario: KYC user login
+Given the user is on the ubo login page
+When the user login as a kyc user
+
+Scenario: Baisc AFT steps
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+
+Then the user should see the majority owner for the institution BOA in the group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+
+And the user should see the indented list of subsidiaries for the institution BOA that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by institution name
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+
+Examples:
+|fid|
+|1038|
