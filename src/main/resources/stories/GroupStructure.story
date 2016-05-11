@@ -34,8 +34,18 @@ And the user clicks on the group structure tab
 Then the user should see the majority owner for the institution BOA in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
 
-And the user should see the indented list of subsidiaries for the institution BOA that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by institution name
+And the user should see the indented list of subsidiaries for the institution BOA that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+
+When the user clicks on the legal entity BOA in group structure page
+
+Then the user should see the majority owner for the institution BOA in the group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+
+And the user should see the indented list of subsidiaries for the institution BOA that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+
+And the user should see the country highlight options based on the country of operations for legal entities that appear in the list, each unique country should appear only once in the option list
 
 Examples:
 |fid|

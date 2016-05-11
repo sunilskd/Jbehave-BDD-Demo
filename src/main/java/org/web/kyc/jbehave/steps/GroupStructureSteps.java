@@ -27,9 +27,18 @@ public class GroupStructureSteps {
         pageObject.groupStructurePage().sVerifyMajorityOwners(institutionName, majorityOwnersExamTable);
     }
 
-    @Then("the user should see the indented list of subsidiaries for the institution $institutionName that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by institution name $subsidiariesExamTable")
-    public void sVerifySubsidiaries(@Named("institutionName") String $institutionName, ExamplesTable subsidiariesExamTable){
-        pageObject.groupStructurePage().sVerifySubsidiaries();
+    @Then("the user should see the indented list of subsidiaries for the institution $institutionName that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page $subsidiariesExamTable")
+    public void sVerifySubsidiaries(@Named("institutionName") String institutionName, ExamplesTable subsidiariesExamTable){
+        pageObject.groupStructurePage().sVerifySubsidiaries(institutionName, subsidiariesExamTable);
     }
 
+    @When("the user clicks on the legal entity $legalEntity in group structure page")
+    public void clickOnLegalEntityInGroupStructure(@Named("legalEntity") String legalEntity){
+        pageObject.groupStructurePage().clickOnLegalEntityInGroupStructure(legalEntity);
+    }
+
+    @Then("the user should see the country highlight options based on the country of operations for legal entities that appear in the list, each unique country should appear only once in the option list")
+    public void verifyCountryHighlightListInGroupStructure(){
+        pageObject.groupStructurePage().verifyCountryHighlightListInGroupStructure();
+    }
 }
