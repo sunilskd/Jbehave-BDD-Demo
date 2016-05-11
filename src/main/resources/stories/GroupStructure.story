@@ -5,6 +5,7 @@ The group structure allows an analyst to see "sibling" entities of the bank they
 
 Covers below features:
 JIRA ID - KYC-41 - KYC user can view group structure list
+JIRA ID - KYC-107 - KYC user can highlight legal entities by country in group structure list
 
 Scenario: KYC-41 User can view group structure list
 a. Entity user is viewing is highlighted in the list
@@ -50,3 +51,20 @@ And the user should see the country highlight options based on the country of op
 Examples:
 |fid|
 |1038|
+
+Scenario: Covers below scenarios
+a. 0. Select a country highlight, legal entities in the group structure that have that country of operations are highlighted
+   1. De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+   2. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+When the user selects a country <country> from the country highlight list in the group struture page
+Then the user should see the enities in the group structure that have the selected country of operations highlighted in the group struture page
+When the user selects another country <changeCountry> from the country highlight list in the group structure page
+Then the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
+And the previously selected country <country> should be de-selected
+
+Examples:
+|fid|country|changeCountry|

@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -41,4 +42,20 @@ public class GroupStructureSteps {
     public void verifyCountryHighlightListInGroupStructure(){
         pageObject.groupStructurePage().verifyCountryHighlightListInGroupStructure();
     }
+
+    @When("the user selects a country <country> from the country highlight list in the group struture page")
+    public void selectCountryHighlight(@Named("country") String country){
+        pageObject.commonUtils().selectCountryHighlight(country);
+    }
+
+    @When("the user selects another country <changeCountry> from the country highlight list in the group structure page")
+    public void changeCountryHighlight(@Named("changeCountry") String changeCountry){
+        pageObject.commonUtils().selectCountryHighlight(changeCountry);
+    }
+
+    @Then("the user should see the enities in the group structure that have the selected country of operations highlighted in the group struture page")
+    public void verifyEntitiesAreHighlighted(){
+        pageObject.groupStructurePage().verifyEntitiesAreHighlighted();
+    }
+
 }
