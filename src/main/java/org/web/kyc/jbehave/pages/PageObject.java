@@ -36,8 +36,8 @@ public class PageObject {
         return subsidiariesPage;
     }
 
-    public EntityDetailsPage entityDetailsPage(){
-        if(entityDetailsPage == null){
+    public EntityDetailsPage entityDetailsPage() {
+        if (entityDetailsPage == null) {
             entityDetailsPage = new EntityDetailsPage(driverProvider);
         }
         return entityDetailsPage;

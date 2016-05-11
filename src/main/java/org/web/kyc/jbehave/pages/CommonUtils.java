@@ -4,9 +4,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 /* Contains commonUtils methods to be used in page classes */
