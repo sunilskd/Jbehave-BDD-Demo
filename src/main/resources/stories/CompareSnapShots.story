@@ -30,10 +30,6 @@ Examples:
 |fid|percentFilter|country|
 |211|50|Australia|
 
-Scenario: KYC user logout
-Given the user is on the ubo login page
-When the user logout
-
 Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
