@@ -11,14 +11,23 @@ Meta: @id login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: KYC user can view entity details
-Meta:@dynamic
+Scenario: Capture entity details snapshots
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
-When the user clicks on the entity details tab
-When the user captures the snapshot for th entity details page
-Then the user should see the actual snapshot should match the expected snapshot
+And the user clicks on the entity details tab
+And the user captures the expected snapshot for the entity details page
 
 Examples:
 |fid|
-|1038|
+|58285|
+
+Scenario: Capture entity details snapshots
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+And the user clicks on the entity details tab
+And the user captures the actual snapshot for the entity details page
+Then the user should see the actual snapshot matching the expected snapshot for entity details page
+
+Examples:
+|fid|
+|58285|

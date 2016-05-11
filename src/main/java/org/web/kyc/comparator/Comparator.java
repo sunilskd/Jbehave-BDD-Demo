@@ -4,7 +4,6 @@ import org.im4java.process.StandardStream;
 import org.im4java.core.IMOperation;
 import org.jbehave.web.selenium.WebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
-import org.web.kyc.utils.ReadProperties;
 
 import static org.web.kyc.jbehave.pages.WebDriverUtils.readProperties;
 
