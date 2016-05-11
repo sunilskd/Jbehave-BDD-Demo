@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -34,11 +35,6 @@ public class SubsidiariesSteps {
         pageObject.subsidiariesPage().verifyNoSubsidiariesMsg();
     }
 
-    @Then("the user should see the legal title <institutionLegalTitle> of the institution it is looking at in the subsidiaries page")
-    public void verifyInstitutionLegalTitle(@Named("institutionLegalTitle") String institutionLegalTitle) {
-        pageObject.subsidiariesPage().verifyInstitutionLegalTitle(institutionLegalTitle);
-    }
-
     @Then("the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the subsidiaries page")
     public void verifyPercentFilterOptions(){
         pageObject.commonUtils().verifyPercentFilterOptions();
@@ -64,9 +60,34 @@ public class SubsidiariesSteps {
         pageObject.commonUtils().selectPercentFilter(updatedFilter);
     }
 
-    @Then("the user should not see the legal title of the institution it is looking at in the subsidiaries page")
-    public void verifyLegalTitleIsNotDisplayed(){
-        pageObject.subsidiariesPage().verifyLegalTitleIsNotDisplayed();
+    @When("the user selects a country <country> from the country highlight list in the subsidiaries page")
+    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the subsidiaries page")
+    public void selectCountryHighlight(@Named("country") String country){
+        pageObject.commonUtils().selectCountryHighlight(country);
+    }
+
+    @When("the user selects another country <changeCountry> from the country highlight list in the subsidiaries page")
+    public void changeCountryHighlight(@Named("changeCountry") String changeCountry){
+        pageObject.commonUtils().selectCountryHighlight(changeCountry);
+    }
+
+    @Then("the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page")
+    public void verifyDirectSubsidiariesAreHighlighted(){
+        pageObject.subsidiariesPage().verifyDirectSubsidiariesAreHighlighted();
+    }
+
+    @Then("the user should see the list of unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries page")
+    public void dVerifyCountryHighlightList() {
+        pageObject.subsidiariesPage().dVerifyCountryHighlightList();
+    }
+
+    @Then("the user should not see the subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page")
+    public void verifyDirectOwnersAreNotHighlighted(){
+        pageObject.subsidiariesPage().verifyDirectSubsidiariesAreNotHighlighted();
+    }
+    @Then("the user should not see any country in country highlights list")
+    public void verifyCounryListNotExists(){
+        pageObject.subsidiariesPage().verifyCountryHighlightListNotExists();
     }
 
     @When("the user clicks and opens the legal title $legalTitle in subsidiaries list in new window in the subsidiaries page")
@@ -85,3 +106,4 @@ public class SubsidiariesSteps {
     }
 
 }
+

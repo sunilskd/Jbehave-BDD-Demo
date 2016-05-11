@@ -83,8 +83,8 @@ public class OwnersSteps {
     }
 
     @Then("the user should not see any country in country highlights list in the owners page")
-    public void verifyCounryHighlightListNotExists(){
-        pageObject.ownersPage().verifyCounryHighlightListNotExists();
+    public void verifyCountryHighlightListNotExists(){
+        pageObject.ownersPage().verifyCountryHighlightListNotExists();
     }
 
     @Then("the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page")
@@ -98,7 +98,7 @@ public class OwnersSteps {
     }
 
     @When("the user selects a country <country> from the country highlight list in the owners page")
-    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight")
+    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the owners page")
     public void selectCountryHighlight(@Named("country") String country){
         pageObject.commonUtils().selectCountryHighlight(country);
     }
@@ -122,4 +122,21 @@ public class OwnersSteps {
     public void verifySummaryIsSelectedByDefault(){
         pageObject.commonUtils().verifySummaryIsSelectedByDefault();
     }
+
+    @Then("the kyc user should see the free text at the bottom of the direct owner list for the selected institution in the owners page")
+    public void dVerifyFreeTextInDirectOwnersList(){
+        pageObject.ownersPage().dVerifyFreeTextInDirectOwnersList();
+    }
+
+    @Then("the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page")
+    public void sVerifyFreeTextInDirectOwnersList(@Named("directOwnerFreeText") String directOwnerFreeText){
+        pageObject.ownersPage().sVerifyFreeTextInDirectOwnersList(directOwnerFreeText);
+    }
+
+    @Then("the kyc user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page")
+    @Alias("the ubo user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page")
+    public void sVerifyNoFreeTextInDirectOwnersList(){
+        pageObject.ownersPage().sVerifyNoFreeTextInDirectOwnersList();
+    }
+
 }
