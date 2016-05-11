@@ -14,12 +14,14 @@ d. Entity displayed on list (could be entity user is viewing) has no owner that 
 e. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has more than one owner that has null percent ownership, then that entity is at the top of the list
 f. Entity displayed on list (could be entity user is viewing) has no owners, then that entity is at the top of the list
 g. Entity displayed on list has an inactive owner (relationship doc is inactive), do not display that owner
-h. Entity on the list has at least one subsidiary it owns more than 50 percent, display that subsidiary entity indented below it in the list
-i. Entity on the list has a subsidiary where it is the only owner of that entity to have null percent ownership, display that subsidiary entity in the list
-j. Multiple entities are at the same level of indentation in the list, then sort by percent ownership descending then alphabetically by legal title
-k. If null percent ownership, do not display percent ownership for that relationship
-l. If no country of operations for legal entity on list, do not display country of operations
-j. If subsidiary relationship document is inactive, do not display the subsidiary entity on list
+h. Entity on the list has a subsidiary it owns more than 50 percent, display that subsidiary entity indented below it in the list
+i. Entity on the list has a subsidiary where it has null percent ownership, there is no other owner of that same subsidiary with null percent ownership or greater than 50 percent ownership, display that subsidiary entity in the list
+j. If entity on the list has a subsidiary where it has null percent ownership, but there is another owner of that same subsidiary that has null percent ownership, then do not display that subsidiary on the list
+k. If entity on the list has a subsidiary where it has null percent ownership, but there is another owner of that same subsidiary that has greater than 50 percent ownership, then do not display that subsidiary on the list
+l. Multiple entities are at the same level of indentation in the list, then sort by percent ownership descending then alphabetically by legal title
+m. If null percent ownership, do not display percent ownership for that relationship
+n. If no country of operations for legal entity on list, do not display country of operations
+o. If subsidiary relationship document is inactive, do not display the subsidiary entity on list
 
 Scenario: KYC user login
 Given the user is on the ubo login page
