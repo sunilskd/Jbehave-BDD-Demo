@@ -44,6 +44,7 @@ public class GroupStructureSteps {
     }
 
     @When("the user selects a country <country> from the country highlight list in the group struture page")
+    @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the group structure page")
     public void selectCountryHighlight(@Named("country") String country){
         pageObject.commonUtils().selectCountryHighlight(country);
     }
@@ -53,9 +54,14 @@ public class GroupStructureSteps {
         pageObject.commonUtils().selectCountryHighlight(changeCountry);
     }
 
-    @Then("the user should see the enities in the group structure that have the selected country of operations highlighted in the group struture page")
+    @Then("the user should see the enities in the group structure that have the selected country of operations highlighted in the group structure page")
     public void verifyEntitiesAreHighlighted(){
         pageObject.groupStructurePage().verifyEntitiesAreHighlighted();
+    }
+
+    @Then("the user should not see the enities in the group structure that have the selected country of operations highlighted in the group structure page")
+    public void verifyEntitiesAreNotHighlighted(){
+        pageObject.groupStructurePage().verifyEntitiesAreNotHighlighted();
     }
 
 }

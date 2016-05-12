@@ -11,6 +11,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 
 public class GroupStructurePage extends WebDriverUtils {
 
@@ -19,6 +21,8 @@ public class GroupStructurePage extends WebDriverUtils {
     private String group_structure_subsidiaries_text_xpath = "//li[ul/li/div[div[contains(a[@class='ng-binding'],'";
     private By group_structure_countries_list_text_xpath = By.xpath("//div[@class='location ng-binding']");
     private By group_structure_country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
+    private By group_structure_entities_highlighted_xpath = By.xpath("//div[contains(@class, \"highlight\")]");
+    private String group_structure_row_for_country_xpath ="//div[div[@class='location ng-binding']='";
 
     Set<String> eCountryHighlightSet = new TreeSet<>();
 
@@ -70,5 +74,19 @@ public class GroupStructurePage extends WebDriverUtils {
         while (eIterator.hasNext()){
             assertEquals(eIterator.next(),aIterator.next());
         }
+    }
+
+    public void verifyEntitiesAreHighlighted() {
+        /* Compare size of all the entities(subsidiaries+owners) highlighted for the county with all the entities that are highlighted*/
+
+        assertEquals(
+                getWebElements(group_structure_entities_highlighted_xpath).size(),
+                getWebElements(By.xpath(group_structure_row_for_country_xpath + selectedCountryHighlight + "']")).size());
+    }
+
+    public void verifyEntitiesAreNotHighlighted() {
+
+        assertFalse(isWebElementDisplayed(group_structure_entities_highlighted_xpath));
+
     }
 }

@@ -56,17 +56,32 @@ Examples:
 
 Scenario: Covers below scenarios
 a. 0. Select a country highlight, legal entities in the group structure that have that country of operations are highlighted
-   1. De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
-   2. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
+   1. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 When the user selects a country <country> from the country highlight list in the group struture page
-Then the user should see the enities in the group structure that have the selected country of operations highlighted in the group struture page
+Then the user should see the enities in the group structure that have the selected country of operations highlighted in the group structure page
 When the user selects another country <changeCountry> from the country highlight list in the group structure page
-Then the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
+Then the user should see the enities in the group structure that have the selected country of operations highlighted in the group structure page
 And the previously selected country <country> should be de-selected
 
 Examples:
 |fid|country|changeCountry|
+|444|Italy|USA|
+
+Scenario: De-select previously selected filter by clicking on it a second time, removes highlight of legal entities in that country
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+When the user selects a country <country> from the country highlight list in the group struture page
+Then the user should see the enities in the group structure that have the selected country of operations highlighted in the group structure page
+When the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the group structure page
+Then the user should not see the enities in the group structure that have the selected country of operations highlighted in the group structure page
+And the previously selected country <country> should be de-selected
+
+Examples:
+|fid|country|
+|444|Italy|
