@@ -23,7 +23,7 @@ public class GroupStructureSteps {
         pageObject.groupStructurePage().clickOnGroupStructureTab();
     }
 
-    @Then("the user should see the majority owner for the institution $institutionName in the group structure page $majorityOwnersExamTable")
+    @Then("the user should see the majority owners for the $institutionName the group structure page $majorityOwnersExamTable")
     public void sVerifyMajorityOwners(@Named("institutionName") String institutionName, ExamplesTable majorityOwnersExamTable) {
         pageObject.groupStructurePage().sVerifyMajorityOwners(institutionName, majorityOwnersExamTable);
     }

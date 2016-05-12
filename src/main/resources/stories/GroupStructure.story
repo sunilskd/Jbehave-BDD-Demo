@@ -34,8 +34,10 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 
-Then the user should see the majority owner for the institution BOA in the group structure page
+Then the user should see the majority owners for the institution QA Legal Entity 1 in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 2||50.53|
+
 
 And the user should see the indented list of subsidiaries for the institution BOA that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
@@ -52,7 +54,8 @@ And the user should see the country highlight options based on the country of op
 
 Examples:
 |fid|
-|1038|
+|LE-1|
+
 
 Scenario: Covers below scenarios
 a. 0. Select a country highlight, legal entities in the group structure that have that country of operations are highlighted
