@@ -22,8 +22,8 @@ public class GroupStructurePage extends WebDriverUtils {
     private String group_structure_row_for_country_xpath ="//div[div[@class='location ng-binding']='";
     private By group_structure_legal_entity_highlight_xpath = By.xpath("//div[contains(@class,'entity focus')]");
     private By group_structure_ultimate_owner_text_xpath = By.xpath("//*[@id='content-view']/h2");
-    private By group_structure_focused_entity_subsidiaries_text_xpath = By.xpath("//li[div[div[@class='ng-binding ng-scope entity focus']='");
-    private By group_structure_focused_entity_owners_text_xpath = By.xpath("//li[ul[li[div[div[@class='ng-binding ng-scope entity focus']='");
+    private String group_structure_focused_entity_subsidiaries_text_xpath = "//li[div[div[@class='ng-binding ng-scope entity focus']='";
+    private String group_structure_focused_entity_owners_text_xpath = "//li[ul[li[div[div[@class='ng-binding ng-scope entity focus']='";
 
     Set<String> eCountryHighlightSet = new TreeSet<>();
 
@@ -81,7 +81,6 @@ public class GroupStructurePage extends WebDriverUtils {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //List<WebElement> aSubsidiariesList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div/a"));
         List<WebElement> aSubsidiariesList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div/a"));
         List<WebElement> aCountryNameList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div[2]"));
         List<WebElement> aPercentageOwnedList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div[3]"));
