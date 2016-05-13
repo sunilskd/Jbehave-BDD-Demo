@@ -5,10 +5,7 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -25,6 +22,8 @@ public class GroupStructurePage extends WebDriverUtils {
     private String group_structure_row_for_country_xpath ="//div[div[@class='location ng-binding']='";
     private By group_structure_legal_entity_highlight_xpath = By.xpath("//div[contains(@class,'entity focus')]");
     private By group_structure_ultimate_owner_text_xpath = By.xpath("//*[@id='content-view']/h2");
+    private By group_structure_focused_entity_subsidiaries_text_xpath = By.xpath("//li[div[div[@class='ng-binding ng-scope entity focus']='");
+    private By group_structure_focused_entity_owners_text_xpath = By.xpath("//li[ul[li[div[div[@class='ng-binding ng-scope entity focus']='");
 
     Set<String> eCountryHighlightSet = new TreeSet<>();
 
@@ -54,6 +53,38 @@ public class GroupStructurePage extends WebDriverUtils {
         List<WebElement> aSubsidiariesList = getWebElements(By.xpath(group_structure_subsidiaries_text_xpath + institutionName + "')]]/ul/li/div/div/a"));
         List<WebElement> aCountryNameList = getWebElements(By.xpath(group_structure_subsidiaries_text_xpath + institutionName + "')]]/ul/li/div/div[2]"));
         List<WebElement> aPercentageOwnedList = getWebElements(By.xpath(group_structure_subsidiaries_text_xpath + institutionName + "')]]/ul/li/div/div[3]"));
+        for(int i=0; i<subsidiariesExamTable.getRowCount(); i++){
+            assertEquals("Legal Title does not match at " + i, subsidiariesExamTable.getRow(i).get(subsidiariesExamTable.getHeaders().get(0)), aSubsidiariesList.get(i).getText());
+            assertEquals("Country Name does not match at " + i, subsidiariesExamTable.getRow(i).get(subsidiariesExamTable.getHeaders().get(1)), aCountryNameList.get(i).getText());
+            if(!subsidiariesExamTable.getRow(i).get(subsidiariesExamTable.getHeaders().get(2)).isEmpty()) {
+                assertEquals("Percentage Owned does not match at " + i, subsidiariesExamTable.getRow(i).get(subsidiariesExamTable.getHeaders().get(2)) + "%", aPercentageOwnedList.get(i).getText());
+            }
+        }
+    }
+
+    public void sVerifyMajorityOwnersForFocusedEntity(String institutionName, ExamplesTable majorityOwnersExamTable) {
+        List<WebElement> aMajorityOwnersList = getWebElements(By.xpath(group_structure_focused_entity_owners_text_xpath + institutionName + "']]]/div/div/a"));
+        List<WebElement> aCountryNameList = getWebElements(By.xpath(group_structure_focused_entity_owners_text_xpath  + institutionName + "']]]/div/div[2]"));
+        List<WebElement> aPercentageOwnedList = getWebElements(By.xpath(group_structure_focused_entity_owners_text_xpath  + institutionName + "']]]/div/div[3]"));
+        for(int i=0; i<majorityOwnersExamTable.getRowCount(); i++){
+            assertEquals("Legal Title does not match at " + i, majorityOwnersExamTable.getRow(i).get(majorityOwnersExamTable.getHeaders().get(0)), aMajorityOwnersList.get(i).getText());
+            assertEquals("Country Name does not match at " + i, majorityOwnersExamTable.getRow(i).get(majorityOwnersExamTable.getHeaders().get(1)), aCountryNameList.get(i).getText());
+            if(!majorityOwnersExamTable.getRow(i).get(majorityOwnersExamTable.getHeaders().get(2)).isEmpty()) {
+                assertEquals("Percentage Owned does not match at " + i, majorityOwnersExamTable.getRow(i).get(majorityOwnersExamTable.getHeaders().get(2)) + "%", aPercentageOwnedList.get(i).getText());
+            }
+        }
+    }
+
+    public void sVerifySubsidiariesForFocusedEntity(String institutionName, ExamplesTable subsidiariesExamTable) {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //List<WebElement> aSubsidiariesList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div/a"));
+        List<WebElement> aSubsidiariesList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div/a"));
+        List<WebElement> aCountryNameList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div[2]"));
+        List<WebElement> aPercentageOwnedList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div[3]"));
         for(int i=0; i<subsidiariesExamTable.getRowCount(); i++){
             assertEquals("Legal Title does not match at " + i, subsidiariesExamTable.getRow(i).get(subsidiariesExamTable.getHeaders().get(0)), aSubsidiariesList.get(i).getText());
             assertEquals("Country Name does not match at " + i, subsidiariesExamTable.getRow(i).get(subsidiariesExamTable.getHeaders().get(1)), aCountryNameList.get(i).getText());

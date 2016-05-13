@@ -33,6 +33,10 @@ public class GroupStructureSteps {
         pageObject.groupStructurePage().sVerifySubsidiaries(institutionName, subsidiariesExamTable);
     }
 
+    @Then("the user should see the indented list of subsidiaries for the focused institution $institutionName that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page $subsidiariesExamTable")
+    public void sVerifySubsidiariesForFocusedEntity(String institutionName, ExamplesTable subsidiariesExamTable){
+        pageObject.groupStructurePage().sVerifySubsidiariesForFocusedEntity(institutionName, subsidiariesExamTable);
+    }
     @When("the user clicks on the legal entity $legalEntity in group structure page")
     public void clickOnLegalEntityInGroupStructure(@Named("legalEntity") String legalEntity){
         pageObject.groupStructurePage().clickOnLegalEntityInGroupStructure(legalEntity);
