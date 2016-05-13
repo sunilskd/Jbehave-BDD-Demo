@@ -23,13 +23,13 @@ public class GroupStructureSteps {
         pageObject.groupStructurePage().clickOnGroupStructureTab();
     }
 
-    @Then("the user should see the majority owners for the $institutionName the group structure page $majorityOwnersExamTable")
-    public void sVerifyMajorityOwners(@Named("institutionName") String institutionName, ExamplesTable majorityOwnersExamTable) {
+    @Then("the user should see the majority owners for the institution $institutionName in the group structure page $majorityOwnersExamTable")
+    public void sVerifyMajorityOwners(String institutionName, ExamplesTable majorityOwnersExamTable) {
         pageObject.groupStructurePage().sVerifyMajorityOwners(institutionName, majorityOwnersExamTable);
     }
 
     @Then("the user should see the indented list of subsidiaries for the institution $institutionName that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page $subsidiariesExamTable")
-    public void sVerifySubsidiaries(@Named("institutionName") String institutionName, ExamplesTable subsidiariesExamTable){
+    public void sVerifySubsidiaries(String institutionName, ExamplesTable subsidiariesExamTable){
         pageObject.groupStructurePage().sVerifySubsidiaries(institutionName, subsidiariesExamTable);
     }
 
@@ -43,7 +43,7 @@ public class GroupStructureSteps {
         pageObject.groupStructurePage().verifyCountryHighlightListInGroupStructure();
     }
 
-    @When("the user selects a country <country> from the country highlight list in the group struture page")
+    @When("the user selects a country <country> from the country highlight list in the group structure page")
     @Alias("the user de-select previously selected country <country> by clicking on it a second time from the country highlight in the group structure page")
     public void selectCountryHighlight(@Named("country") String country){
         pageObject.commonUtils().selectCountryHighlight(country);
@@ -54,14 +54,28 @@ public class GroupStructureSteps {
         pageObject.commonUtils().selectCountryHighlight(changeCountry);
     }
 
-    @Then("the user should see the enities in the group structure that have the selected country of operations highlighted in the group structure page")
+    @Then("the user should see the entities in the group structure that have the selected country of operations highlighted in the group structure page")
     public void verifyEntitiesAreHighlighted(){
         pageObject.groupStructurePage().verifyEntitiesAreHighlighted();
     }
 
-    @Then("the user should not see the enities in the group structure that have the selected country of operations highlighted in the group structure page")
+    @Then("the user should not see the entities in the group structure that have the selected country of operations highlighted in the group structure page")
     public void verifyEntitiesAreNotHighlighted(){
         pageObject.groupStructurePage().verifyEntitiesAreNotHighlighted();
     }
 
+    @Then("the previously selected country <country> should be de-selected in the group structure page")
+    public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
+        pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
+    }
+
+    @Then("the user should see the legal entity $legalEntity, user is currently viewing, highlighted in the group structure page")
+    public void verifyLegalEntityIsHighlighted(@Named("legalEntity") String legalEntity){
+        pageObject.groupStructurePage().verifyLegalEntityIsHighlighted(legalEntity);
+    }
+
+    @Then("the user should see the ultimate owner as $ultimateOwner for the entity user is viewing in the group structure page")
+    public void verifyUltimateOwner(@Named("ultimateOwner") String ultimateOwner){
+        pageObject.groupStructurePage().verifyUltimateOwner(ultimateOwner);
+    }
 }

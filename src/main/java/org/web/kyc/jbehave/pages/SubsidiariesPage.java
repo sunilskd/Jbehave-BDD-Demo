@@ -165,7 +165,7 @@ public class SubsidiariesPage extends WebDriverUtils {
         takeSnapshot("./src/test/resources/actual/aSubsidiariesPage.png");
     }
 
-    public void compareSnapshotsForEntityDetails() {
+    public void compareSnapshotsForSubsidiaries() {
         assertTrue(
                 compareImages(readProperties().getSnapshotPath() + "/expected/eSubsidiariesPage.png",
                         readProperties().getSnapshotPath() + "/actual/aSubsidiariesPage.png",

@@ -61,7 +61,7 @@ public class WebDriverUtils extends WebDriverPage {
 
     public void waitForWebElementToAppear(By by) {
         try {
-            WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 3000);
+            WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 10000);
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (org.openqa.selenium.NoSuchElementException e) {
         }
