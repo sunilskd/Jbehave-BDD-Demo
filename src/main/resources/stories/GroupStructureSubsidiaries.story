@@ -52,13 +52,12 @@ Examples:
 
 Scenario: Scenario 2
 i. Entity on the list has a subsidiary where it has null percent ownership, there is no other owner of that same subsidiary with null percent ownership or greater than 50 percent ownership, display that subsidiary entity in the list
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 
-Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 16 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+Then the user should see the indented list of subsidiaries for the focused institution QA Legal Entity 16 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
 |QA Legal Entity 38|Australia||
 
@@ -74,7 +73,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 
-Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 47 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+Then the user should see the indented list of subsidiaries for the focused institution QA Legal Entity 47 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
 ||||
 
@@ -90,7 +89,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 
-Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 24 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+Then the user should see the indented list of subsidiaries for the focused institution QA Legal Entity 24 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
 ||||
 
@@ -107,7 +106,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 
-Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 45 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+Then the user should see the indented list of subsidiaries for the focused institution QA Legal Entity 45 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
 |QA Legal Entity 46||71.9|
 
