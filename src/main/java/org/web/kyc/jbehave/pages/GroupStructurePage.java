@@ -76,11 +76,6 @@ public class GroupStructurePage extends WebDriverUtils {
     }
 
     public void sVerifySubsidiariesForFocusedEntity(String institutionName, ExamplesTable subsidiariesExamTable) {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         List<WebElement> aSubsidiariesList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div/a"));
         List<WebElement> aCountryNameList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div[2]"));
         List<WebElement> aPercentageOwnedList = getWebElements(By.xpath(group_structure_focused_entity_subsidiaries_text_xpath + institutionName + "']]/ul/li/div/div[3]"));
