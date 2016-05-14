@@ -9,6 +9,8 @@ import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 
 public class GroupStructurePage extends WebDriverUtils {
@@ -143,5 +145,20 @@ public class GroupStructurePage extends WebDriverUtils {
 
     public void verifyNoMajorityOwnersForLegalEntity(String legalEntity) {
         assertFalse(isWebElementDisplayed(By.xpath(group_structure_majority_owners_text_xpath + legalEntity + "')]]]/div/div/a")));
+    }
+
+    public void eCaptureGroupStructurePage() {
+        takeSnapshot("./src/test/resources/expected/eGroupStructurePage.png");
+    }
+
+    public void aCaptureGroupStructurePage() {
+        takeSnapshot("./src/test/resources/actual/aGroupStructurePage.png");
+    }
+
+    public void compareSnapshotsForGroupStructure() {
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eGroupStructurePage.png",
+                        readProperties().getSnapshotPath() + "/actual/aGroupStructurePage.png",
+                        readProperties().getSnapshotPath() + "/difference/dGroupStructurePage.png"));
     }
 }
