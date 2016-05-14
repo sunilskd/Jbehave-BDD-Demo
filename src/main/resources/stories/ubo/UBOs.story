@@ -6,6 +6,10 @@ no owners, including an ultimate beneficial owner which is a natural person, of 
 or known to be involved in criminal activities. A UBO user of the application has paid for premium access, which includes the
 same access as a KYC user but with additional data about UBOs (people).
 
+----
+image:UBO.png[UBO]
+----
+
 UBO user has access to below entity types -
 1. Person
 2. Legal Entities
@@ -88,7 +92,7 @@ Examples:
 |fid|
 |LE-B|
 
-Scenario: UBO User can view UBOs when % ownership is null
+Scenario: UBO User can view UBOs when percentage ownership is null
 Meta:@static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>

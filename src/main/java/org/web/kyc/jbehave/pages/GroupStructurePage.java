@@ -25,8 +25,6 @@ public class GroupStructurePage extends WebDriverUtils {
     private String group_structure_focused_entity_subsidiaries_text_xpath = "//li[div[div[@class='ng-binding ng-scope entity focus']='";
     private String group_structure_focused_entity_owners_text_xpath = "//li[ul[li[div[div[@class='ng-binding ng-scope entity focus']='";
 
-    Set<String> eCountryHighlightSet = new TreeSet<>();
-
     public GroupStructurePage(WebDriverProvider driverProvider) {
         super(driverProvider);
     }
@@ -63,9 +61,9 @@ public class GroupStructurePage extends WebDriverUtils {
     }
 
     public void sVerifyMajorityOwnersForFocusedEntity(String institutionName, ExamplesTable majorityOwnersExamTable) {
-        List<WebElement> aMajorityOwnersList = getWebElements(By.xpath(group_structure_focused_entity_owners_text_xpath + institutionName + "']]]/div/div/a"));
-        List<WebElement> aCountryNameList = getWebElements(By.xpath(group_structure_focused_entity_owners_text_xpath  + institutionName + "']]]/div/div[2]"));
-        List<WebElement> aPercentageOwnedList = getWebElements(By.xpath(group_structure_focused_entity_owners_text_xpath  + institutionName + "']]]/div/div[3]"));
+        List<WebElement> aMajorityOwnersList = getWebElements(By.xpath(group_structure_focused_entity_owners_text_xpath + institutionName + "']]]]/div/div/a"));
+        List<WebElement> aCountryNameList = getWebElements(By.xpath(group_structure_focused_entity_owners_text_xpath  + institutionName + "']]]]/div/div[2]"));
+        List<WebElement> aPercentageOwnedList = getWebElements(By.xpath(group_structure_focused_entity_owners_text_xpath  + institutionName + "']]]]/div/div[3]"));
         for(int i=0; i<majorityOwnersExamTable.getRowCount(); i++){
             assertEquals("Legal Title does not match at " + i, majorityOwnersExamTable.getRow(i).get(majorityOwnersExamTable.getHeaders().get(0)), aMajorityOwnersList.get(i).getText());
             assertEquals("Country Name does not match at " + i, majorityOwnersExamTable.getRow(i).get(majorityOwnersExamTable.getHeaders().get(1)), aCountryNameList.get(i).getText());
@@ -93,13 +91,19 @@ public class GroupStructurePage extends WebDriverUtils {
     }
 
     public void verifyCountryHighlightListInGroupStructure() {
-        List<WebElement> eCountryHighlightList = getWebElements(group_structure_countries_list_text_xpath);
-        List<WebElement> aCountryHighlightList = getWebElements(group_structure_country_highlight_list_text_xpath);
+        Set<String> eCountryHighlightSet = new TreeSet<>();
+        List<String> eCountryHighlightList = new ArrayList<>();
+        List<WebElement> eCountryHighlightElements = getWebElements(group_structure_countries_list_text_xpath);
+        List<String> aCountryHighlightList = getWebElementsText(group_structure_country_highlight_list_text_xpath);
 
         /* Creating a set of unique countries from the countries appearing in the group structure */
-        for(int i=0; i<eCountryHighlightList.size(); i++){
-            eCountryHighlightSet.add(eCountryHighlightList.get(i).getText());
+        for(int i=0; i<eCountryHighlightElements.size(); i++){
+            eCountryHighlightSet.add(eCountryHighlightElements.get(i).getText());
         }
+
+        /* Sorting expected country highlight list */
+        eCountryHighlightList.addAll(eCountryHighlightSet);
+        Collections.sort(eCountryHighlightList, String.CASE_INSENSITIVE_ORDER);
 
         Iterator eIterator = eCountryHighlightList.iterator();
         Iterator aIterator = aCountryHighlightList.iterator();
@@ -131,5 +135,13 @@ public class GroupStructurePage extends WebDriverUtils {
             e.printStackTrace();
         }
         assertEquals(ultimateOwner, getWebElementText(group_structure_ultimate_owner_text_xpath));
+    }
+
+    public void verifyNoSubsidiariesForLegalEntity(String legalEntity) {
+        assertFalse(isWebElementDisplayed(By.xpath(group_structure_subsidiaries_text_xpath + legalEntity + "')]]/ul/li/div/div/a")));
+    }
+
+    public void verifyNoMajorityOwnersForLegalEntity(String legalEntity) {
+        assertFalse(isWebElementDisplayed(By.xpath(group_structure_majority_owners_text_xpath + legalEntity + "')]]]/div/div/a")));
     }
 }
