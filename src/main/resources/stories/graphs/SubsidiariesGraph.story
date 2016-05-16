@@ -6,6 +6,12 @@ It is of added value to present it in graph form to the user, since they often p
 Covers below features:
 JIRA ID - KYC-69 - KYC user can view subsidiary graph
 
+Meta:@subsidiariesgraph
+
+Scenario: KYC user login
+Given the user is on the ubo login page
+When the user login as a kyc user
+
 Scenario: KYC-69 view subsidiary graph
 a. Entity on the graph (could be entity user is viewing or another entity on graph) has at least one active relationship where it is the owner and the owned entity is also active, display owned entity as subsidiary on graph and display percent ownership on subsidiary
 b. Entity on the graph has an inactive relationship where it is the owner, then do not display owned entity on graph
@@ -14,3 +20,13 @@ d. Entity (including entity user is viewing) appears in the same path of the gra
 e. Entity user is viewing does not have any active relationships where it is the owner, then display message "No known entities"
 f. Entity user is viewing has no relationship where it is the owner and the owned entity is active, then display message "No known entities"
 g. Relationship has null percent ownership, do not display a percent ownership on the subsidiary entity
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+
+Examples:
+|fid|
+|LE-6|

@@ -36,4 +36,9 @@ public class CommonSteps {
     public void userLogout(){
         pageObject.commonUtils().userLogout();
     }
+
+    @When("the user clicks on the graph button")
+    public void clickOnGraphButton(){
+        pageObject.commonUtils().clickOnGraphButton();
+    }
 }

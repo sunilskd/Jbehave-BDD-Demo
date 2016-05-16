@@ -17,7 +17,9 @@ public class CommonUtils extends WebDriverUtils {
     private By user_login_input_box_id = By.xpath("//input[@id='login']");
     private By login_button_xpath = By.xpath("//button[1]");
     private By logout_button_xpath = By.xpath("//button[1]");
-    private By summary_tab_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
+    private By summary_button_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
+    private By graph_button_xpath = By.xpath("//*[@id='view-options']/ul/li[2]");
+
     public static String selectedCountryHighlight = "";
     private String userType="";
 
@@ -110,6 +112,10 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifySummaryIsSelectedByDefault() {
         waitForPageToLoad(15000L);
-        assertEquals("Summary", getWebElementText(summary_tab_selected_text_xpath));
+        assertEquals("Summary", getWebElementText(summary_button_selected_text_xpath));
+    }
+
+    public void clickOnGraphButton() {
+        clickOnWebElement(graph_button_xpath);
     }
 }

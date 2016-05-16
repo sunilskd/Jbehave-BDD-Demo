@@ -10,6 +10,7 @@ public class PageObject {
     private SubsidiariesPage subsidiariesPage;
     private EntityDetailsPage entityDetailsPage;
     private GroupStructurePage groupStructurePage;
+    private SubsidiariesGraphPage subsidiariesGraphPage;
 
     public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -48,6 +49,13 @@ public class PageObject {
             groupStructurePage = new GroupStructurePage(driverProvider);
         }
         return groupStructurePage;
+    }
+
+    public SubsidiariesGraphPage subsidiariesGraphPage(){
+        if(subsidiariesGraphPage == null){
+            subsidiariesGraphPage = new SubsidiariesGraphPage(driverProvider);
+        }
+        return subsidiariesGraphPage;
     }
 
 }
