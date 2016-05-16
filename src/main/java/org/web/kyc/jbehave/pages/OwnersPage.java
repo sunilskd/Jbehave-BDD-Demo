@@ -37,7 +37,7 @@ public class OwnersPage extends WebDriverUtils {
     private By direct_owners_not_highlighted_xpath = By.xpath("//*[@id='direct-owners'] //tbody[@class='ng-scope']");
     private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners'] //tbody");
     private String direct_owners_row_for_country_xpath = "//*[td='";
-    private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
+    private By direct_owners_country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
     private By ubo_header_text_xpath = By.xpath(".//*[@id='content-view']/div[2]/div/h1");
     private By ubo_name_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[1]");
     private By ubo_entity_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[2]");
@@ -50,8 +50,6 @@ public class OwnersPage extends WebDriverUtils {
     private By ubo_date_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[4]");
     private By ubo_source_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[5]");
     private By no_ubo_msg_text_xpath = By.xpath("//*[@id='content-view']/div[2]/p");
-
-
     Set<String> eCountryHighlightList = new TreeSet<>();
 
     public OwnersPage(WebDriverProvider driverProvider) {
@@ -89,7 +87,8 @@ public class OwnersPage extends WebDriverUtils {
 
     public void verifyDirectOwnersHeaders(){
         waitForWebElementToAppear(direct_owners_name_header_text_xpath);
-        assertEquals("Direct Owners", getWebElementText(direct_owners_header_text_xpath));
+        /* BUG - KYC-310*/
+        assertEquals("Owners", getWebElementText(direct_owners_header_text_xpath));
         assertEquals("NAME",getWebElementText(direct_owners_name_header_text_xpath));
         assertEquals("COUNTRY",getWebElementText(direct_owners_country_header_text_xpath));
         assertEquals("%",getWebElementText(direct_owners_percentage_header_text_xpath));
@@ -169,7 +168,7 @@ public class OwnersPage extends WebDriverUtils {
 
     public void dVerifyCountryHighlightList() {
         waitForPageToLoad(15000L);
-        List<String> aCountryHighlightList = getWebElementsText(country_highlight_list_text_xpath);
+        List<String> aCountryHighlightList = getWebElementsText(direct_owners_country_highlight_list_text_xpath);
         Iterator eIterator = eCountryHighlightList.iterator();
         Iterator aIterator = aCountryHighlightList.iterator();
         while (eIterator.hasNext()){
@@ -179,7 +178,7 @@ public class OwnersPage extends WebDriverUtils {
 
     public void verifyCountryHighlightListNotExists() {
         waitForPageToLoad(15000L);
-        assertFalse(isWebElementDisplayed(country_highlight_list_text_xpath));
+        assertFalse(isWebElementDisplayed(direct_owners_country_highlight_list_text_xpath));
     }
 
     public void clickOnLegalTitleInDirectOwnersList(String legalTitle) {

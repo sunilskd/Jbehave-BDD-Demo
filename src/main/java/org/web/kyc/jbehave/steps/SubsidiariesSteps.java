@@ -117,7 +117,12 @@ public class SubsidiariesSteps {
 
     @Then("the user should see the actual snapshot matching the expected snapshot for subsidiaries page")
     public void compareSnapshotsForSubsidiaries(){
-        pageObject.subsidiariesPage().compareSnapshotsForEntityDetails();
+        pageObject.subsidiariesPage().compareSnapshotsForSubsidiaries();
+    }
+
+    @Then("the previously selected country <country> should be de-selected in the subsidiaries page")
+    public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
+        pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
     }
 }
 

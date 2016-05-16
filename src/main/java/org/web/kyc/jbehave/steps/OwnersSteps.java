@@ -67,7 +67,7 @@ public class OwnersSteps {
         pageObject.commonUtils().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
-    @Then("the previously selected country <country> should be de-selected")
+    @Then("the previously selected country <country> should be de-selected in the owners page")
     public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
         pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
     }

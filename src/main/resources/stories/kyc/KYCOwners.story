@@ -296,7 +296,7 @@ Then the user should see the direct owners in the owners list that have the sele
 Then the user should see the list of unique country of operations for each direct owners to highlight, sorted alphabetically, in the owners page
 When the user selects another country <changeCountry> from the country highlight list in the owners page
 Then the user should see the direct owners in the owners list that have the selected country of operations highlighted in the owners page
-And the previously selected country <country> should be de-selected
+And the previously selected country <country> should be de-selected in the owners page
 
 Examples:
 |fid|country|changeCountry|
