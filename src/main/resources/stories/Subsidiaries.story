@@ -8,7 +8,7 @@ JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-188 - Display relationship validated date on subsidiary list
 
-Meta:@subsidiaries @kyc
+Meta:@subsidiaries @kyc @ubo
 
 Scenario: KYC user login
 Given the user is on the ubo login page
@@ -234,7 +234,7 @@ Then the user should see the list of direct subsidiaries ordered by percentage o
 Then the user should see the list of unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries page
 When the user selects another country <changeCountry> from the country highlight list in the subsidiaries page
 Then the user should see the direct subsidiaries in the subsidiaries list that have the selected country of operations highlighted in the subsidiaries page
-And the previously selected country <country> should be de-selected
+And the previously selected country <country> should be de-selected in the subsidiaries page
 
 Examples:
 |fid|country|changeCountry|

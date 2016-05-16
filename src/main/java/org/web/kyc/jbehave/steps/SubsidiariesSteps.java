@@ -105,5 +105,24 @@ public class SubsidiariesSteps {
         pageObject.commonUtils().verifySummaryIsSelectedByDefault();
     }
 
+    @When("the user captures the expected snapshot for the subsidiaries page")
+    public void eCaptureSubsidiariesPage(){
+        pageObject.subsidiariesPage().eCaptureSubsidiariesPage();
+    }
+
+    @When("the user captures the actual snapshot for the subsidiaries page")
+    public void aCaptureSubsidiariesPage(){
+        pageObject.subsidiariesPage().aCaptureSubsidiariesPage();
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for subsidiaries page")
+    public void compareSnapshotsForSubsidiaries(){
+        pageObject.subsidiariesPage().compareSnapshotsForSubsidiaries();
+    }
+
+    @Then("the previously selected country <country> should be de-selected in the subsidiaries page")
+    public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
+        pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
+    }
 }
 

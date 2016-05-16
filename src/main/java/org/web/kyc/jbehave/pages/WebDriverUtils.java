@@ -3,19 +3,16 @@ package org.web.kyc.jbehave.pages;
 import org.apache.http.NameValuePair;
 import org.jbehave.web.selenium.WebDriverPage;
 import org.jbehave.web.selenium.WebDriverProvider;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.w3c.dom.Document;
 import org.web.kyc.rest.HttpRequest;
+import org.web.kyc.utils.FileUtils;
 import org.web.kyc.utils.ReadProperties;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -64,7 +61,7 @@ public class WebDriverUtils extends WebDriverPage {
 
     public void waitForWebElementToAppear(By by) {
         try {
-            WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 3000);
+            WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 10000);
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         } catch (org.openqa.selenium.NoSuchElementException e) {
         }
@@ -108,7 +105,7 @@ public class WebDriverUtils extends WebDriverPage {
         return webElementsText;
     }
 
-    public void waitForPageToLoad(Long seconds){
+    public void waitForPageToLoad(Long seconds) {
         manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 
@@ -124,5 +121,9 @@ public class WebDriverUtils extends WebDriverPage {
             switchTo().window(Handle);
         }
         waitForPageToLoad(15000L);
+    }
+
+    public void takeSnapshot(String path){
+        getDriverProvider().saveScreenshotTo(path);
     }
 }

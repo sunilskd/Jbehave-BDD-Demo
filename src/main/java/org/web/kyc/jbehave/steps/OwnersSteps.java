@@ -67,7 +67,7 @@ public class OwnersSteps {
         pageObject.commonUtils().verifyPercentFilterIsDeSelected(deselectFilter);
     }
 
-    @Then("the previously selected country <country> should be de-selected")
+    @Then("the previously selected country <country> should be de-selected in the owners page")
     public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
         pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
     }
@@ -137,6 +137,32 @@ public class OwnersSteps {
     @Alias("the ubo user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page")
     public void sVerifyNoFreeTextInDirectOwnersList(){
         pageObject.ownersPage().sVerifyNoFreeTextInDirectOwnersList();
+    }
+
+    @When("the user captures the expected snapshot for the owners page")
+    public void eCaptureOwnersPage(){
+        pageObject.ownersPage().eCaptureOwnersPage();
+    }
+
+    @When("the user captures the actual snapshot for the owners page")
+    public void aCaptureOwnersPage(){
+        pageObject.ownersPage().aCaptureOwnersPage();
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for owners page")
+    public void compareSnapshotsForOwners(){
+        pageObject.ownersPage().compareSnapshotsForOwners();
+    }
+
+    @Then("the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page $UBOListExamTable")
+    public void sVerifyUBOList(ExamplesTable uboListExamTable){
+        pageObject.ownersPage().sVerifyUBOList(uboListExamTable);
+    }
+
+    @Then("the ubo user should see message displayed in place of list explaining there are no UBOs")
+    @Alias("the kyc user should see message displayed as no known entities for KYC user")
+    public void verifyNoUBOMsg(){
+        pageObject.ownersPage().verifyNoUBOMsg();
     }
 
 }

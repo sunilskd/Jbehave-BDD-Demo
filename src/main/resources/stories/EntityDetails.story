@@ -10,7 +10,7 @@ JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
 
 
-Meta:@entitydetails @kyc
+Meta:@entitydetails @kyc @ubo
 
 Scenario: KYC user login
 Given the user is on the ubo login page
