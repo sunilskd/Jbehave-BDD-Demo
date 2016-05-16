@@ -86,11 +86,14 @@ public class StoriesRunner extends JUnitStories {
     @After
     public void styleJBehaveReports() {
         try {
-            File srcDir = new File("./src/main/resources/reports");
-            File destDir = new File("./build/classes/jbehave/view");
-            if (destDir.exists()) {
+            File srcReportsDir = new File("./src/main/resources/reports");
+            File destReportsDir = new File("./build/classes/jbehave/view");
+            File srcGraphsDir = new File("./src/test/resources/graphs");
+            File destGraphsDir = new File("./build/classes/jbehave");
+            if (destReportsDir.exists()) {
                 try {
-                    FileUtils.copyDirectory(srcDir, destDir);
+                    FileUtils.copyDirectory(srcGraphsDir, destGraphsDir);
+                    FileUtils.copyDirectory(srcReportsDir, destReportsDir);
                 } catch (Exception e) {
                     System.out.println("The error message " + e.getMessage());
                 }

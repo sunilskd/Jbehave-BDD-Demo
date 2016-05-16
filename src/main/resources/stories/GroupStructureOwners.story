@@ -9,84 +9,211 @@ JIRA ID - KYC-107 - KYC user can highlight legal entities by country in group st
 JIRA ID - KYC-75 - KYC user can click link to another entity in group structure list
 
 Meta:@groupstructureowners @kyc @ubo
-Scenario:
-a. Entity user is viewing is highlighted in the list
-b. Entity displayed on list (could be entity user is viewing) has at least one legal entity owner that is active, the ownership relationship is active, and the entity owns greater than 50 percent of the entity user is viewing, then display owning entity indented at a higher level in the list.
-c. Entity displayed on list (could be entity user is viewing) has at least one legal entity owner that is active, the ownership relationship is active, there is no entity that owns greater than 50 percent, and the entity has only one owner with null percent ownership, then display owning entity indented at a higher level in the list.
-d. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has zero owners that have null percent ownership, then that entity is at the top of the list
-e. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has more than one owner that has null percent ownership, then that entity is at the top of the list
-f. Entity displayed on list (could be entity user is viewing) has no owners, then that entity is at the top of the list
-g. Entity displayed on list has an inactive owner (relationship doc is inactive), do not display that owner
+
+Scenario: KYC user login
+Meta: @id login
+Given the user is on the ubo login page
+When the user login as a kyc user
 
 Scenario: Scenario 1
+.Description
+----
 a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list (could be entity user is viewing) has at least one legal entity owner that is active, the ownership relationship is active,
         and the entity owns greater than 50 percent of the entity user is viewing, then display owning entity indented at a higher level in the list.
+----
+image:GS-Scenario-1.png[Scenario 1]
+----
+----
+Meta:@static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 11 for the entity user is viewing in the group structure page
+Then the user should see the legal entity QA Legal Entity 1, user is currently viewing, highlighted in the group structure page
 
-Then the user should see the majority owners for the institution QA Legal Entity 1 in the group structure page
+Then the user should see the majority owners for the focused institution QA Legal Entity 1 in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 2||50.53|
+|QA Legal Entity 2|USA|50.53|
 
-
-And the user should see the indented list of subsidiaries for the institution BOA that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+Then the user should see the majority owners for the institution QA Legal Entity 2 in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 3|India|59.53|
 
-When the user clicks on the legal entity BOA in group structure page
-
-Then the user should see the majority owners for the institution BOA in the group structure page
+Then the user should see the majority owners for the institution QA Legal Entity 3 in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 6|UK||
 
-And the user should see the indented list of subsidiaries for the institution BOA that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+Then the user should see the majority owners for the institution QA Legal Entity 6 in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-
-And the user should see the country highlight options based on the country of operations for legal entities that appear in the list, each unique country should appear only once in the option list
+|QA Legal Entity 10|UK|51.53|
 
 Examples:
 |fid|
 |LE-1|
 
-Scenario:
-c. Entity displayed on list (could be entity user is viewing) has at least one legal entity owner that is active, the ownership relationship is active, there is no entity that owns greater than 50 percent, and the entity has only one owner with null percent ownership, then display owning entity indented at a higher level in the list.
-d. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has zero owners that have null percent ownership, then that entity is at the top of the list
-e. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has more than one owner that has null percent ownership, then that entity is at the top of the list
-f. Entity displayed on list (could be entity user is viewing) has no owners, then that entity is at the top of the list
-g. Entity displayed on list has an inactive owner (relationship doc is inactive), do not display that owner
-h. Entity on the list has a subsidiary it owns more than 50 percent, display that subsidiary entity indented below it in the list
-i. Entity on the list has a subsidiary where it has null percent ownership, there is no other owner of that same subsidiary with null percent ownership or greater than 50 percent ownership, display that subsidiary entity in the list
-j. If entity on the list has a subsidiary where it has null percent ownership, but there is another owner of that same subsidiary that has null percent ownership, then do not display that subsidiary on the list
-k. If entity on the list has a subsidiary where it has null percent ownership, but there is another owner of that same subsidiary that has greater than 50 percent ownership, then do not display that subsidiary on the list
-l. Multiple entities are at the same level of indentation in the list, then sort by percent ownership descending then alphabetically by legal title
-m. If null percent ownership, do not display percent ownership for that relationship
-n. If no country of operations for legal entity on list, do not display country of operations
-o. If subsidiary relationship document is inactive, do not display the subsidiary entity on list
-Scenario: Baisc AFT steps
+Scenario: Scenario 2
+.Description
+----
+a. 0. Entity user is viewing is highlighted in the list
+   1. Entity displayed on list (could be entity user is viewing) has at least one legal entity owner that is active, the ownership relationship is active,
+        there is no entity that owns greater than 50 percent, and the entity has only one owner with null percent ownership, then display owning entity indented at a higher level in the list.
+----
+image:GS-Scenario-2.png[Scenario 2]
+----
+----
+Meta:@static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 11 for the entity user is viewing in the group structure page
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, highlighted in the group structure page
 
-Then the user should see the majority owners for the institution QA Legal Entity 1 in the group structure page
+Then the user should see the majority owners for the focused institution QA Legal Entity 6 in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 2||50.53|
-
-
-And the user should see the indented list of subsidiaries for the institution BOA that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-
-When the user clicks on the legal entity BOA in group structure page
-
-Then the user should see the majority owners for the institution BOA in the group structure page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-
-And the user should see the indented list of subsidiaries for the institution BOA that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-
-And the user should see the country highlight options based on the country of operations for legal entities that appear in the list, each unique country should appear only once in the option list
+|QA Legal Entity 10|UK|51.53|
 
 Examples:
 |fid|
-|LE-1|
+|LE-6|
+
+Scenario: Scenario 3
+.Description
+----
+a. 0. Entity user is viewing is highlighted in the list
+   1. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has more than one owner that has null percent ownership,
+        then that entity is at the top of the list
+----
+image:GS-Scenario-3.png[Scenario 3]
+----
+----
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 11 for the entity user is viewing in the group structure page
+
+Examples:
+|fid|
+|LE-11|
+
+Scenario: Scenario 4
+.Description
+----
+a. 0. Entity user is viewing is highlighted in the list
+   1. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has zero owners that have null percent ownership,
+        then that entity is at the top of the list
+   2. Entity displayed on list (could be entity user is viewing) has no owners, then that entity is at the top of the list
+----
+image:GS-Scenario-4.png[Scenario 4]
+----
+----
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 9 for the entity user is viewing in the group structure page
+And the user should not see any majority owners for the legal entity QA Legal Entity 9 in the group structure page
+
+Examples:
+|fid|
+|LE-9|
+
+Scenario: Scenario 5
+.Description
+----
+a. 0. Entity user is viewing is highlighted in the list
+   1. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and more than 1 null percent ownership,
+        then display owning entity indented at a higher level in the list.
+----
+image:GS-Scenario-5.png[Scenario 5]
+----
+----
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 21 for the entity user is viewing in the group structure page
+Then the user should see the legal entity QA Legal Entity 8, user is currently viewing, highlighted in the group structure page
+
+Then the user should see the majority owners for the focused institution QA Legal Entity 8 in the group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 20|USA|51.53|
+
+Examples:
+|fid|
+|LE-8|
+
+Scenario: Scenario 6
+.Description
+----
+a. 0. Entity user is viewing is highlighted in the list
+   1. Entity displayed on list has an inactive owner (relationship doc is inactive), do not display that owner
+----
+image:GS-Scenario-6.png[Scenario 6]
+----
+----
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 26 for the entity user is viewing in the group structure page
+And the user should not see any subsidiaries for the legal entity QA Legal Entity 4 in the group structure page
+
+Examples:
+|fid|
+|LE-26|
+
+Scenario: Scenario 7
+.Description
+----
+a. 0. Entity user is viewing is highlighted in the list
+   1. Entity displayed on list has an inactive owner with percentage greater than 50 and active owner greater than 50 then follow the active path and display owning entity indented at a higher level in the list.
+----
+image:GS-Scenario-7.png[Scenario 7]
+----
+----
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 30 for the entity user is viewing in the group structure page
+Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, highlighted in the group structure page
+
+Then the user should see the majority owners for the focused institution QA Legal Entity 23 in the group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 29|India||
+
+Examples:
+|fid|
+|LE-23|
+
+
+Scenario: Scenario 8
+.Description
+----
+a. 0. Entity user is viewing is highlighted in the list
+   1. Entity displayed on list has an inactive owner with percentage greater than 50 and active owner less than 50 and only one active null percentage owner
+        then follow the active path and display owning entity indented at a higher level in the list.
+----
+image:GS-Scenario-8.png[Scenario 8]
+----
+----
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 30 for the entity user is viewing in the group structure page
+Then the user should see the legal entity QA Legal Entity 29, user is currently viewing, highlighted in the group structure page
+
+Examples:
+|fid|
+|LE-29|

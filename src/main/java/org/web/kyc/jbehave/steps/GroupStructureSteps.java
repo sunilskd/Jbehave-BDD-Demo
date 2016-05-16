@@ -28,6 +28,11 @@ public class GroupStructureSteps {
         pageObject.groupStructurePage().sVerifyMajorityOwners(institutionName, majorityOwnersExamTable);
     }
 
+    @Then("the user should see the majority owners for the focused institution $institutionName in the group structure page $majorityOwnersExamTable")
+    public void sVerifyMajorityOwnersForFocusedEntity(String institutionName, ExamplesTable majorityOwnersExamTable) {
+        pageObject.groupStructurePage().sVerifyMajorityOwnersForFocusedEntity(institutionName, majorityOwnersExamTable);
+    }
+
     @Then("the user should see the indented list of subsidiaries for the institution $institutionName that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page $subsidiariesExamTable")
     public void sVerifySubsidiaries(String institutionName, ExamplesTable subsidiariesExamTable){
         pageObject.groupStructurePage().sVerifySubsidiaries(institutionName, subsidiariesExamTable);
@@ -81,5 +86,30 @@ public class GroupStructureSteps {
     @Then("the user should see the ultimate owner as $ultimateOwner for the entity user is viewing in the group structure page")
     public void verifyUltimateOwner(@Named("ultimateOwner") String ultimateOwner){
         pageObject.groupStructurePage().verifyUltimateOwner(ultimateOwner);
+    }
+
+    @Then("the user should not see any subsidiaries for the legal entity $legalEntity in the group structure page")
+    public void verifyNoSubsidiariesForLegalEntity(@Named("legalEntity") String legalEntity){
+        pageObject.groupStructurePage().verifyNoSubsidiariesForLegalEntity(legalEntity);
+    }
+
+    @Then("the user should not see any majority owners for the legal entity $legalEntity in the group structure page")
+    public void verifyNoMajorityOwnersForLegalEntity(@Named("legalEntity") String legalEntity){
+        pageObject.groupStructurePage().verifyNoMajorityOwnersForLegalEntity(legalEntity);
+    }
+
+    @When("the user captures the expected snapshot for the group structure page")
+    public void eCaptureGroupStructurePage(){
+        pageObject.groupStructurePage().eCaptureGroupStructurePage();
+    }
+
+    @When("the user captures the actual snapshot for the group structure page")
+    public void aCaptureGroupStructurePage(){
+        pageObject.groupStructurePage().aCaptureGroupStructurePage();
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for group structure page")
+    public void compareSnapshotsForGroupStructure(){
+        pageObject.groupStructurePage().compareSnapshotsForGroupStructure();
     }
 }
