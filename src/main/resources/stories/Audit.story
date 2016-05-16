@@ -43,25 +43,10 @@ Examples:
 |6|
 
 Scenario: Verify Audit information
-a. If no ownership review data exists for legal entity user is viewing, then display message "No audit information available."
+a. 0. If no ownership review data exists for legal entity user is viewing, then display message "No audit information available."
+   1. By default audit section is collapsed
+   2. User clicks "Hide Audit Information", audit section collapses
 b. If there is no action of type "Supplied" or "Verified", do not display any actions or dates even if other action types exist for the legal entity user is viewing and display message "No audit information available."
-Meta:@audit @dynamic
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on display audit information link in owners page
-Then the user should see a message thats says no audit information is available
-
-Examples:
-|fid|
-|211|
-|5|
-
-
-Scenario: to be automated
-By default audit section is collapsed
-User clicks "Hide Audit Information", audit section collapses
 Meta:@audit @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -75,3 +60,4 @@ Then the audit section should collapse and Owners list should be moved to top se
 Examples:
 |fid|
 |211|
+|5|
