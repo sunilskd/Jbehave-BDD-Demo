@@ -126,7 +126,7 @@ Scenario: Scenario 5
 ----
 a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list (could be entity user is viewing) has one owner that has greater than 50 percent ownership and more than 1 null percent ownership,
-        then display owning entity indented at a higher level in the list.
+        then display owning entity, that has greater than 50 percent ownership, indented at a higher level in the list.
 ----
 image:GS-Own-Scenario-5.png[Scenario 5]
 ----
@@ -201,7 +201,7 @@ Scenario: Scenario 8
 ----
 a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list has an inactive owner with percentage greater than 50 and active owner less than 50 and only one active null percentage owner
-        then follow the active path and display owning entity indented at a higher level in the list.
+        then follow the active null percentage path and display owning entity indented at a higher level in the list.
 ----
 image:GS-Own-Scenario-8.png[Scenario 8]
 ----

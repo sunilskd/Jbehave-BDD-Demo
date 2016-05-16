@@ -152,3 +152,46 @@ Then the user should see the indented list of subsidiaries for the ultimate owne
 Examples:
 |fid|
 |LE-49|
+
+Scenario: Scenario 7
+.Description
+----
+q. Owner owns greater than 50 percent of subsidiary, but there is another relationship where the same owner entity is owned by the same subsidiary entity by more than 50 percent,
+    then display the owner entity and subsidiary entity in the group structure list.
+----
+image:GS-Sub-Scenario-7.png[Scenario 7]
+----
+----
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 52 for the entity user is viewing in the group structure page
+Then the user should see the legal entity QA Legal Entity 52, user is currently viewing, highlighted in the group structure page
+
+Then the user should see the indented list of subsidiaries for the ultimate owner that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 51||51.23|
+|QA Legal Entity 53|||
+
+Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 51 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 53|||
+
+When the user clicks on the legal entity QA Legal Entity 51 in group structure page
+
+Then the user should see the ultimate owner as QA Legal Entity 51 for the entity user is viewing in the group structure page
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, highlighted in the group structure page
+
+Then the user should see the indented list of subsidiaries for the ultimate owner that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 52||51.23|
+|QA Legal Entity 53|||
+
+Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 52 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 53|||
+
+Examples:
+|fid|
+|LE-52|
