@@ -5,8 +5,6 @@ The group structure allows an analyst to see "sibling" entities of the bank they
 
 Covers below features:
 JIRA ID - KYC-41 - KYC user can view group structure list
-JIRA ID - KYC-107 - KYC user can highlight legal entities by country in group structure list
-JIRA ID - KYC-75 - KYC user can click link to another entity in group structure list
 
 Meta:@groupstructureowners @kyc @ubo
 
@@ -127,7 +125,7 @@ Scenario: Scenario 5
 .Description
 ----
 a. 0. Entity user is viewing is highlighted in the list
-   1. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and more than 1 null percent ownership,
+   1. Entity displayed on list (could be entity user is viewing) has one owner that has greater than 50 percent ownership and more than 1 null percent ownership,
         then display owning entity indented at a higher level in the list.
 ----
 image:GS-Scenario-5.png[Scenario 5]
