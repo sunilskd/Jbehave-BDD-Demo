@@ -8,10 +8,21 @@ JIRA ID - KYC-41 - KYC user can view group structure list
 
 Meta:@groupstructuresubsidiaries @kyc @ubo
 
+Scenario: KYC user login
+Meta: @id login
+Given the user is on the ubo login page
+When the user login as a ubo user
+
 Scenario: Scenario 1
+.Description
+----
 h. Entity on the list has a subsidiary it owns more than 50 percent, display that subsidiary entity indented below it in the list
 l. Multiple entities are at the same level of indentation in the list, then sort by percent ownership descending then alphabetically by legal title
 m. If null percent ownership, do not display percent ownership for that relationship
+----
+image:GS-Sub-Scenario-1.png[Scenario 1]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -39,7 +50,13 @@ Examples:
 |LE-6|
 
 Scenario: Scenario 2
+.Description
+----
 i. Entity on the list has a subsidiary where it has null percent ownership, there is no other owner of that same subsidiary with null percent ownership or greater than 50 percent ownership, display that subsidiary entity in the list
+----
+image:GS-Sub-Scenario-2.png[Scenario 2]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -55,7 +72,13 @@ Examples:
 |LE-16|
 
 Scenario: Scenario 3
+.Description
+----
 k. If entity on the list has a subsidiary where it has null percent ownership, but there is another owner of that same subsidiary that has greater than 50 percent ownership, then do not display that subsidiary on the list
+----
+image:GS-Sub-Scenario-3.png[Scenario 3]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -68,7 +91,13 @@ Examples:
 |LE-47|
 
 Scenario: Scenario 4
+.Description
+----
 j. If entity on the list has a subsidiary where it has null percent ownership, but there is another owner of that same subsidiary that has null percent ownership, then do not display that subsidiary on the list
+----
+image:GS-Sub-Scenario-4.png[Scenario 4]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -81,8 +110,14 @@ Examples:
 |LE-24|
 
 Scenario: Scenario 5
+.Description
+----
 n. If no country of operations for legal entity on list, do not display country of operations
 o. If subsidiary relationship document is inactive, do not display the subsidiary entity on list and if there is another active subisidiary for the same owner with >50 percent ownership then display that subsidairy on the list
+----
+image:GS-Sub-Scenario-5.png[Scenario 5]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -98,14 +133,19 @@ Examples:
 |LE-45|
 
 Scenario: Scenario 6
+.Description
+----
 p. If entity on the list has a subsidiary where it has null percent ownership, but there are another owner of that same subsidiary that has <50 percent ownership, then display that subsidiary on the list
-
+----
+image:GS-Sub-Scenario-6.png[Scenario 6]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 Then the user should see the ultimate owner as QA Legal Entity 49 for the entity user is viewing in the group structure page
-Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 49 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+Then the user should see the indented list of subsidiaries for the ultimate owner that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
 |QA Legal Entity 47|||
 

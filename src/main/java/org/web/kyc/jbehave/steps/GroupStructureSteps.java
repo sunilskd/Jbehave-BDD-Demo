@@ -112,4 +112,9 @@ public class GroupStructureSteps {
     public void compareSnapshotsForGroupStructure(){
         pageObject.groupStructurePage().compareSnapshotsForGroupStructure();
     }
+
+    @Then("the user should see the indented list of subsidiaries for the ultimate owner that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page $subsidiariesExamTable")
+    public void sVerifySubsidiariesForUltimateOwner(ExamplesTable subsidiariesExamTable){
+        pageObject.groupStructurePage().sVerifySubsidiariesForUltimateOwner(subsidiariesExamTable);
+    }
 }

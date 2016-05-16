@@ -20,7 +20,7 @@ a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list (could be entity user is viewing) has at least one legal entity owner that is active, the ownership relationship is active,
         and the entity owns greater than 50 percent of the entity user is viewing, then display owning entity indented at a higher level in the list.
 ----
-image:GS-Scenario-1.png[Scenario 1]
+image:GS-Own-Scenario-1.png[Scenario 1]
 ----
 ----
 Meta:@static
@@ -58,7 +58,7 @@ a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list (could be entity user is viewing) has at least one legal entity owner that is active, the ownership relationship is active,
         there is no entity that owns greater than 50 percent, and the entity has only one owner with null percent ownership, then display owning entity indented at a higher level in the list.
 ----
-image:GS-Scenario-2.png[Scenario 2]
+image:GS-Own-Scenario-2.png[Scenario 2]
 ----
 ----
 Meta:@static
@@ -84,7 +84,7 @@ a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list (could be entity user is viewing) has no owner that has greater than 50 percent ownership and has more than one owner that has null percent ownership,
         then that entity is at the top of the list
 ----
-image:GS-Scenario-3.png[Scenario 3]
+image:GS-Own-Scenario-3.png[Scenario 3]
 ----
 ----
 Meta:@static
@@ -106,7 +106,7 @@ a. 0. Entity user is viewing is highlighted in the list
         then that entity is at the top of the list
    2. Entity displayed on list (could be entity user is viewing) has no owners, then that entity is at the top of the list
 ----
-image:GS-Scenario-4.png[Scenario 4]
+image:GS-Own-Scenario-4.png[Scenario 4]
 ----
 ----
 Meta:@static
@@ -128,7 +128,7 @@ a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list (could be entity user is viewing) has one owner that has greater than 50 percent ownership and more than 1 null percent ownership,
         then display owning entity indented at a higher level in the list.
 ----
-image:GS-Scenario-5.png[Scenario 5]
+image:GS-Own-Scenario-5.png[Scenario 5]
 ----
 ----
 Meta:@static
@@ -153,7 +153,7 @@ Scenario: Scenario 6
 a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list has an inactive owner (relationship doc is inactive), do not display that owner
 ----
-image:GS-Scenario-6.png[Scenario 6]
+image:GS-Own-Scenario-6.png[Scenario 6]
 ----
 ----
 Meta:@static
@@ -162,7 +162,9 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 Then the user should see the ultimate owner as QA Legal Entity 26 for the entity user is viewing in the group structure page
-And the user should not see any subsidiaries for the legal entity QA Legal Entity 4 in the group structure page
+Then the user should see the indented list of subsidiaries for the ultimate owner that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 4|Australia|51.53|
 
 Examples:
 |fid|
@@ -174,7 +176,7 @@ Scenario: Scenario 7
 a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list has an inactive owner with percentage greater than 50 and active owner greater than 50 then follow the active path and display owning entity indented at a higher level in the list.
 ----
-image:GS-Scenario-7.png[Scenario 7]
+image:GS-Own-Scenario-7.png[Scenario 7]
 ----
 ----
 Meta:@static
@@ -201,7 +203,7 @@ a. 0. Entity user is viewing is highlighted in the list
    1. Entity displayed on list has an inactive owner with percentage greater than 50 and active owner less than 50 and only one active null percentage owner
         then follow the active path and display owning entity indented at a higher level in the list.
 ----
-image:GS-Scenario-8.png[Scenario 8]
+image:GS-Own-Scenario-8.png[Scenario 8]
 ----
 ----
 Meta:@static
