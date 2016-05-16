@@ -87,7 +87,8 @@ public class OwnersPage extends WebDriverUtils {
 
     public void verifyDirectOwnersHeaders(){
         waitForWebElementToAppear(direct_owners_name_header_text_xpath);
-        assertEquals("Direct Owners", getWebElementText(direct_owners_header_text_xpath));
+        /* BUG - KYC-310*/
+        assertEquals("Owners", getWebElementText(direct_owners_header_text_xpath));
         assertEquals("NAME",getWebElementText(direct_owners_name_header_text_xpath));
         assertEquals("COUNTRY",getWebElementText(direct_owners_country_header_text_xpath));
         assertEquals("%",getWebElementText(direct_owners_percentage_header_text_xpath));
