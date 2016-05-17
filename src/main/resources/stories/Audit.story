@@ -22,13 +22,19 @@ Given the user is on the ubo login page
 When the user login as a ubo user
 
 Scenario: Verify Audit information
-
 a. 0. User clicks "Display Audit Information", audit section expands with legal title of legal entity user is viewing in the header of the table, button user clicked is renamed to "Hide Audit Information"
-   1. If there is an action of type "Supplied" or "Verified", display the date for whichever action is the most recent and display the label "Last updated on" for the action
+   1. If there is one action of type "Supplied" or "Verified", display the date for whichever action is the most recent and display the label "Last updated on" for the action
    2. If there is an action of type "Attempt" or "Denied" that is more recent than the "Supplied" or "Verified" date, display the dates for those actions and display the label "Update attempted on" for the actions
    3. Sort list of actions by date, listing the most recent at the top
-
-b. If there is an action of type "Supplied" or "Verified" but no actions of "Attempt" or "Denied" that are more recent, display only the date for the more recent "Supplied" or "Verified"
+   4. If action date has accuracy attribute of day, then display day, month, and year
+   5. If action date has accuracy attribute of month, then display only month and year
+   6. If action date has accuracy attribute of year, then display only year
+   7. If there is only a "Supplied" date, display that as the "Last updated on" date
+b. 0. If there is an action of type "Supplied" or "Verified" but no actions of "Attempt" or "Denied" that are more recent, display only the date for the more recent "Supplied" or "Verified"
+   1. If there is only a "Verified" date, display that as the "Last updated on" date
+c. If there are multiple "Supplied" dates, choose the most recent
+d. If there are multiple "Verified" dates, choose the most recent
+e. If there is a "Supplied" date and a "Verified" date, choose whichever is more recent
 Meta:@audit @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -41,6 +47,9 @@ Examples:
 |fid|
 |3|
 |6|
+|7|
+|8|
+|9|
 
 Scenario: Verify Audit information
 a. 0. If no ownership review data exists for legal entity user is viewing, then display message "No audit information available."
