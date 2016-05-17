@@ -6,13 +6,13 @@ no owners, including an ultimate beneficial owner which is a natural person, of 
 or known to be involved in criminal activities. A UBO user of the application has paid for premium access, which includes the
 same access as a KYC user but with additional data about UBOs (people).
 
-KYC user has access to below entity types -
+UBO user has access to below entity types -
 1. Legal Entities
-2. Free text ownership
+2. People
+3. Other entity types (non-person, non-entity)
 
-KYC user does not have access to below entity types -
-1. Person (UBOs)
-2. Other entity types (non-institution, non-person)
+UBO user does not have access to below entity types -
+1. Free text ownership
 
 Covers below features:
 JIRA ID - KYC-34 - KYC user can view owners graph
