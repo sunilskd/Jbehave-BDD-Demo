@@ -9,6 +9,7 @@ public class PageObject {
     private CommonUtils commonUtils;
     private SubsidiariesPage subsidiariesPage;
     private EntityDetailsPage entityDetailsPage;
+    private AuditPage auditPage;
 
     public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -42,4 +43,10 @@ public class PageObject {
         return entityDetailsPage;
     }
 
+    public AuditPage auditPage() {
+        if (auditPage == null) {
+            auditPage = new AuditPage(driverProvider);
+        }
+        return auditPage;
+    }
 }
