@@ -12,7 +12,7 @@ When the user login as a ubo user
 
 Scenario: KYC user can view audit trail
 a. 0. User clicks "Display Audit Information", audit section expands with legal title of legal entity user is viewing in the header of the table, button user clicked is renamed to "Hide Audit Information"
-   1. If there is one action of type "Supplied" or "Verified", display the date for whichever action is the most recent and display the label "Last updated on" for the action
+   1. If there is one action of type "Supplied", display the date for whichever action is the most recent and display the label "Last updated on" for the action
    2. If there is an action of type "Attempt" or "Denied" that is more recent than the "Supplied" or "Verified" date, display the dates for those actions and display the label "Update attempted on" for the actions
    3. Sort list of actions by date, listing the most recent at the top
    4. If action date has accuracy attribute of day, then display day, month, and year
@@ -24,6 +24,7 @@ b. 0. If there is an action of type "Supplied" or "Verified" but no actions of "
 c. If there are multiple "Supplied" dates, choose the most recent
 d. If there are multiple "Verified" dates, choose the most recent
 e. If there is a "Supplied" date and a "Verified" date, choose whichever is more recent
+f. If there is one action of type "Verified", display the date for whichever action is the most recent and display the label "Last updated on" for the action
 Meta:@audit @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -39,6 +40,7 @@ Examples:
 |7|
 |8|
 |9|
+|4|
 
 Scenario: Verify Audit information
 a. 0. If no ownership review data exists for legal entity user is viewing, then display message "No audit information available."
