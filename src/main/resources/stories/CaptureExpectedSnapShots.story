@@ -34,6 +34,7 @@ When the user login as a ubo user
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the owners tab
+And the user clicks on display audit information link in owners page
 And the user selects a country <country> from the country highlight list in the owners page
 And the user captures the expected snapshot for the owners page
 
