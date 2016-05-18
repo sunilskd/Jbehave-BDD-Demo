@@ -25,7 +25,34 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user should see the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 35(Australia)|
+|QA Legal Entity 3425.9(Australia)|
+|QA Legal Entity 33(Australia)|
+|QA Legal Entity 550.53(Korea (Republic of))|
+|QA Legal Entity 359.53(India)|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 3960.9(Australia)|
+|QA Legal Entity 437.9(Korea (Republic of))|
+|QA Legal Entity 41(Korea (Republic of))|
+|QA Legal Entity 4070.9(Korea (Republic of))|
+|QA Legal Entity 42(Korea (Republic of))|
+|QA Legal Entity 149.53(UK)|
+|QA Legal Entity 250.53(USA)|
+
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 4571.9(Korea (Republic of))|
+|QA Legal Entity 150.52(UK)|
+
+And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 4671.9(null)|
 
 Examples:
 |fid|

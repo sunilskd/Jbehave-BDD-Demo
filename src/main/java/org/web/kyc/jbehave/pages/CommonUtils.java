@@ -1,6 +1,7 @@
 package org.web.kyc.jbehave.pages;
 
 import org.apache.http.message.BasicNameValuePair;
+import org.jbehave.core.annotations.Then;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 
@@ -116,6 +117,11 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void clickOnGraphButton() {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         clickOnWebElement(graph_button_xpath);
     }
 }
