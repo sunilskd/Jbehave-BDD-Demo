@@ -4,7 +4,7 @@ Scenario: KYC user login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: Capture entity details snapshots
+Scenario: Compare entity details snapshots
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
@@ -15,7 +15,7 @@ Examples:
 |fid|
 |58285|
 
-Scenario: Capture subsidiaries snapshot
+Scenario: Compare subsidiaries snapshot
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
@@ -33,7 +33,7 @@ Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: Capture owners snapshot for UBO User
+Scenario: Compare owners snapshot
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
@@ -46,3 +46,16 @@ Then the user should see the actual snapshot matching the expected snapshot for 
 Examples:
 |fid|country|
 |12538|USA|
+
+Scenario: Compare group structure snapshot
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+And the user clicks on the ownership tab
+And the user clicks on the group structure tab
+When the user selects a country <country> from the country highlight list in the group structure page
+And the user captures the actual snapshot for the group structure page
+Then the user should see the actual snapshot matching the expected snapshot for group structure page
+
+Examples:
+|fid|country|
+|1038|USA|

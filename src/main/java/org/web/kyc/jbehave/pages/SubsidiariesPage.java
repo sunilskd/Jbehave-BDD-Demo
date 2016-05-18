@@ -19,7 +19,6 @@ import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
 
 public class SubsidiariesPage extends WebDriverUtils {
 
-    Set<String> eCountryHighlightList = new TreeSet<>();
     private By subsidiaries_tab_xpath = By.xpath("//*[@id='content-subnavigation'] //li[3]");
     private By subsidiaries_header_text_xpath = By.xpath(".//*[@id='content-view'] /h1");
     private By subsidiaries_entity_name_header_text_xpath = By.xpath("//*[@id='subsidiaries']/thead/tr/th[1]");
@@ -33,7 +32,8 @@ public class SubsidiariesPage extends WebDriverUtils {
     private By no_subsidiaries_msg_text_xpath = By.xpath("//*[@class='notification']");
     private String subsidiaries_highlighted_xpath = "//*[@id='subsidiaries']//tr[@class='highlight']";
     private String subsidiaries_row_for_country_xpath = "//*[@id='subsidiaries']/tbody[@class='ng-scope']//*[td='";
-    private By country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
+    private By subsidiaries_country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
+    Set<String> eCountryHighlightList = new TreeSet<>();
 
     public SubsidiariesPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -117,7 +117,7 @@ public class SubsidiariesPage extends WebDriverUtils {
 
     public void dVerifyCountryHighlightList() {
         waitForPageToLoad(15000L);
-        List<String> aCountryHighlightList = getWebElementsText(country_highlight_list_text_xpath);
+        List<String> aCountryHighlightList = getWebElementsText(subsidiaries_country_highlight_list_text_xpath);
         Iterator eIterator = eCountryHighlightList.iterator();
         Iterator aIterator = aCountryHighlightList.iterator();
         while (eIterator.hasNext()) {
@@ -127,7 +127,7 @@ public class SubsidiariesPage extends WebDriverUtils {
 
     public void verifyCountryHighlightListNotExists() {
         waitForPageToLoad(15000L);
-        assertFalse(isWebElementDisplayed(country_highlight_list_text_xpath));
+        assertFalse(isWebElementDisplayed(subsidiaries_country_highlight_list_text_xpath));
     }
 
     public void openLegalTitleInSubsidiariesListInNewWindow(String legalTitle) {
@@ -165,7 +165,7 @@ public class SubsidiariesPage extends WebDriverUtils {
         takeSnapshot("./src/test/resources/actual/aSubsidiariesPage.png");
     }
 
-    public void compareSnapshotsForEntityDetails() {
+    public void compareSnapshotsForSubsidiaries() {
         assertTrue(
                 compareImages(readProperties().getSnapshotPath() + "/expected/eSubsidiariesPage.png",
                         readProperties().getSnapshotPath() + "/actual/aSubsidiariesPage.png",
