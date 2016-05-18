@@ -127,6 +127,7 @@ public class StoriesRunner extends JUnitStories {
                 new EntityDetailsSteps(pageObject),
                 new GroupStructureSteps(pageObject),
                 lifeCycleSteps,
+                new AuditSteps(pageObject),
                 new WebDriverScreenshotOnFailure(driverProvider, configuration.storyReporterBuilder()));
     }
 

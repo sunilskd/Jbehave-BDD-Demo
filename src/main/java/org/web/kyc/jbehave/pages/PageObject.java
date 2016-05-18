@@ -9,6 +9,7 @@ public class PageObject {
     private CommonUtils commonUtils;
     private SubsidiariesPage subsidiariesPage;
     private EntityDetailsPage entityDetailsPage;
+    private AuditPage auditPage;
     private GroupStructurePage groupStructurePage;
 
     public PageObject(WebDriverProvider driverProvider) {
@@ -43,11 +44,17 @@ public class PageObject {
         return entityDetailsPage;
     }
 
+    public AuditPage auditPage() {
+        if (auditPage == null) {
+            auditPage = new AuditPage(driverProvider);
+        }
+        return auditPage;
+    }
+
     public GroupStructurePage groupStructurePage(){
         if(groupStructurePage == null){
             groupStructurePage = new GroupStructurePage(driverProvider);
         }
         return groupStructurePage;
     }
-
 }
