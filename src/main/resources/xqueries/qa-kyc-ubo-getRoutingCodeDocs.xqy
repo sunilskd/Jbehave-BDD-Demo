@@ -9,6 +9,7 @@ let $routingCodes := cts:search(/routingCode,
 			        cts:collection-query(("routingCode")),
 			        cts:collection-query("source-fdb"), 
 		                cts:path-range-query("/routingCode/codeType", "=", "SWIFT BIC", "collation=http://marklogic.com/collation//S1"),
+		                cts:path-range-query("/routingCode/codeStatus", "=", "active", "collation=http://marklogic.com/collation/"),
 		                cts:element-query(xs:QName("assignedInstitution"), cts:element-attribute-value-query(xs:QName("link"), xs:QName("href"), $assignedInstitution)
               ))))
 
