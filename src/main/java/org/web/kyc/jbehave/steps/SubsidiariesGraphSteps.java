@@ -22,4 +22,9 @@ public class SubsidiariesGraphSteps {
     public void verifySubsidiariesNodes(String level, ExamplesTable subsidiariesExamTable){
         pageObject.subsidiariesGraphPage().verifySubsidiariesNodes(level, subsidiariesExamTable);
     }
+
+    @Then("the user should see message displayed in place of graph explaining there are no subsidiaries")
+    public void verifyNoSubsidiariesMsg() {
+        pageObject.subsidiariesGraphPage().verifyNoSubsidiariesMsg();
+    }
 }
