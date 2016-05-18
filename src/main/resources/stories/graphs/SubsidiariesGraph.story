@@ -17,6 +17,7 @@ a. 0. Entity on the graph (could be entity user is viewing or another entity on 
    1. Entity on the graph has an inactive relationship where it is the owner, then do not display owned entity on graph
    2. Entity on the graph has an active relationship where it is the owner but the owned entity is inactive, then do not display owned entity on graph
    3. Relationship has null percent ownership, do not display a percent ownership on the subsidiary entity
+   4.
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -80,6 +81,7 @@ And the user should see the list of below subsidiaries in level 3, below the roo
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
 |SUBSIDIARIES|
 |QA Legal Entity 5651.99(null)|
+|QA Legal Entity 6056.99(null)|
 
 Examples:
 |fid|
