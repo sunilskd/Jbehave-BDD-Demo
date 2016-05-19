@@ -5,6 +5,7 @@ It is of added value to present it in graph form to the user, since they often p
 
 Covers below features:
 JIRA ID - KYC-69 - KYC user can view subsidiary graph
+JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
 
 Meta:@subsidiariesgraph
 
@@ -142,3 +143,11 @@ Examples:
 |fid|
 |LE-58|
 |LE-46|
+
+Scenario: Highlight legal entities by country
+a. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+b. "No country highlight" is default selection in country highlight drop-down
+c. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
+d. Select "No country highlight", removes country highlight of legal entities
+e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+f. If no legal entity that appears on graph has country of operations, drop-down still appears with "No country highlight" as default
