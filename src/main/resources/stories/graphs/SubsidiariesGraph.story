@@ -151,3 +151,29 @@ c. Select a country highlight, legal entities in the subsidiaries graph that hav
 d. Select "No country highlight", removes country highlight of legal entities
 e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
 f. If no legal entity that appears on graph has country of operations, drop-down still appears with "No country highlight" as default
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page
+|COUNTRIES|
+|No country highlight|
+|Australia|
+|India|
+|Korea (Republic of)|
+|UK|
+|USA|
+
+When the user selects a country <country> from the country highlight list in the subsidiaries graph page
+Then the user should see the subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+
+When the user selects another country <changecountry> from the country highlight list in the subsidiaries graph page
+Then the user should see the subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+
+When the user de-selects the selected country by selecting No country highlights from the country highlight list in the subsidiaries graph page
+
+Examples:
+|fid|country|changecountry|
+|LE-6|Australia|USA|
