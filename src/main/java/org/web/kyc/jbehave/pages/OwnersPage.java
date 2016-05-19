@@ -233,6 +233,11 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void aCaptureOwnersPage() {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         takeSnapshot("./src/test/resources/actual/aOwnersPage.png");
     }
 

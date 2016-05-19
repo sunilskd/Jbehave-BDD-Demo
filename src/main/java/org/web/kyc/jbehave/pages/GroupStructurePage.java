@@ -166,6 +166,11 @@ public class GroupStructurePage extends WebDriverUtils {
     }
 
     public void aCaptureGroupStructurePage() {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         takeSnapshot("./src/test/resources/actual/aGroupStructurePage.png");
     }
 

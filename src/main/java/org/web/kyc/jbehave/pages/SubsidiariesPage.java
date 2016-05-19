@@ -162,6 +162,11 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void aCaptureSubsidiariesPage() {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         takeSnapshot("./src/test/resources/actual/aSubsidiariesPage.png");
     }
 

@@ -58,4 +58,4 @@ Then the user should see the actual snapshot matching the expected snapshot for 
 
 Examples:
 |fid|country|
-|1038|USA|
+|211|Australia|

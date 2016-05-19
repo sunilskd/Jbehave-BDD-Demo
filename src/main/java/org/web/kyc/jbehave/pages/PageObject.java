@@ -11,6 +11,7 @@ public class PageObject {
     private EntityDetailsPage entityDetailsPage;
     private AuditPage auditPage;
     private GroupStructurePage groupStructurePage;
+    private SubsidiariesGraphPage subsidiariesGraphPage;
 
     public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -57,4 +58,12 @@ public class PageObject {
         }
         return groupStructurePage;
     }
+
+    public SubsidiariesGraphPage subsidiariesGraphPage(){
+        if(subsidiariesGraphPage == null){
+            subsidiariesGraphPage = new SubsidiariesGraphPage(driverProvider);
+        }
+        return subsidiariesGraphPage;
+    }
+
 }

@@ -176,7 +176,7 @@ Then the user should see the indented list of subsidiaries for the ultimate owne
 
 Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 51 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 53|||
+|QA Legal Entity 54|||
 
 When the user clicks on the legal entity QA Legal Entity 51 in group structure page
 
@@ -186,7 +186,7 @@ Then the user should see the legal entity QA Legal Entity 51, user is currently 
 Then the user should see the indented list of subsidiaries for the ultimate owner that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
 |QA Legal Entity 52||51.23|
-|QA Legal Entity 53|||
+|QA Legal Entity 54|||
 
 Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 52 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|

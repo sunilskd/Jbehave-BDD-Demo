@@ -175,6 +175,11 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void aCaptureEntityDetailsPage() {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         takeSnapshot("./src/test/resources/actual/aEntityDetails.png");
     }
 
