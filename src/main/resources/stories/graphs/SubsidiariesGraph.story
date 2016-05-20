@@ -5,6 +5,7 @@ It is of added value to present it in graph form to the user, since they often p
 
 Covers below features:
 JIRA ID - KYC-69 - KYC user can view subsidiary graph
+JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
 
 Meta:@subsidiariesgraph
 
@@ -142,3 +143,13 @@ Examples:
 |fid|
 |LE-58|
 |LE-46|
+
+Scenario: KYC-104 - KYC user can filter subsidiary graph by percent ownership
+a. By default, percent filter is set to 0 for both input box and slider, all subsidiaries are displayed in the graph
+b. If user moves slider to percent 1-100, null percent subsidiaries are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
+c. If user moves slider to 0 percent, all subsidiaries appear on graph
+d. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
+e. If user enters 0 in input box, slider position automatically updates to match percent entered, all subsidiaries appear on the graph
+f. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only subsidiaries that are owned by 100 percent appear on graph
+g. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all subsidiaries are displayed in the graph
+h. User applies percent filter that results in no subsidiaries on the graph, display message "No known entities."
