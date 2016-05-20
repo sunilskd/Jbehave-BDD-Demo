@@ -134,6 +134,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         verifyCountryHighlightsHeader();
+        verifyNoCountryHighlightSelection();
         List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
         List eCountryHighlightList = new ArrayList();
         for (Map<String, String> row : countriesHighlightListExamTable.getRows()) {
@@ -161,5 +162,13 @@ public class CommonUtils extends WebDriverUtils {
         assertEquals("Highlight in Graph", getWebElementText(graph_highlight_in_graph_header_text_xpath));
         assertEquals("Country:", getWebElementText(graph_country_highlight_header_text_xpath));
     }
+
+    public void verifyNoCountryHighlightSelection(){
+        Select dropDown = new Select(getWebElement(graph_country_highlight_list_text_xpath));
+        String selectedValue = dropDown.getFirstSelectedOption().getAttribute("Value");
+        assertEquals("No country highlight",selectedValue);
+
+    }
+
 
 }

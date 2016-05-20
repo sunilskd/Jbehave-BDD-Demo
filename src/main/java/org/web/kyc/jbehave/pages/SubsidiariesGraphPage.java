@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class SubsidiariesGraphPage extends WebDriverUtils {
@@ -69,15 +70,11 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
             /* Looping through the expected highlight list */
             for(int j=0; j<subsidiariesHighlightedExamTable.getRowCount(); j++){
                 if(webElements.get(i).getText().contains(subsidiariesHighlightedExamTable.getRow(j).get(subsidiariesHighlightedExamTable.getHeaders().get(0)))){
-                    try {
-                        assertTrue(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
+                        assertFalse(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
                         System.out.println(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
                         System.out.println(getWebElementText(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='text'][1]")));
                         System.out.println("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]");
                         System.out.println(subsidiariesHighlightedExamTable.getRow(j).get(subsidiariesHighlightedExamTable.getHeaders().get(0)));
-                    } catch (Throwable e){
-                        e.printStackTrace();
-                    }
             }
         }
     }

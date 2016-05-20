@@ -28,6 +28,15 @@ Then the user should see the below subsidiaries in the subsidiaries graph that h
 |QA Legal Entity 35|
 |QA Legal Entity 39|
 
+When the user selects another country <changecountry> from the country highlight list in the subsidiaries graph page
+Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+|SUBSIDIARIES|
+|QA Legal Entity 2|
+
+When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
+Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+|SUBSIDIARIES|
+
 Examples:
 |fid|country|changecountry|
 |LE-6|Australia|USA|
