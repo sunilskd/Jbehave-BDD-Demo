@@ -1,9 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
 import org.web.kyc.jbehave.pages.PageObject;
 
@@ -30,19 +27,11 @@ public class SubsidiariesGraphSteps {
         pageObject.subsidiariesGraphPage().verifyNoSubsidiariesMsg();
     }
 
-    @When("the user selects a country <country> from the country highlight list in the subsidiaries graph page")
+    @When("the user selects a country $country from the country highlight list in the subsidiaries graph page")
+    @Aliases(values={"the user selects another country $country from the country highlight list in the subsidiaries graph page",
+                    "the user de-selects the selected country by selecting $country from the country highlight list in the subsidiaries graph page"})
     public void selectCountryHighlightInGraphs(@Named("country") String country){
         pageObject.commonUtils().selectCountryHighlightInGraphs(country);
-    }
-
-    @When("the user selects another country <changecountry> from the country highlight list in the subsidiaries graph page")
-    public void changeCountryHighlight(@Named("changecountry") String changecountry){
-        pageObject.commonUtils().selectCountryHighlightInGraphs(changecountry);
-    }
-
-    @When("the user de-selects the selected country by selecting $nocountryhighlights from the country highlight list in the subsidiaries graph page")
-    public void selectNoCountryHighlight(@Named("nocountryhighlights") String nocountryhighlights){
-        pageObject.commonUtils().selectCountryHighlightInGraphs(nocountryhighlights);
     }
 
     @Then("the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page $subsidiariesHighlightedExamTable")
@@ -50,8 +39,13 @@ public class SubsidiariesGraphSteps {
         pageObject.subsidiariesGraphPage().verifySubsidiariesAreHighlightedForSelectedCountry(subsidiariesHighlightedExamTable);
     }
 
-    @Then("country highlights should display with no country highlight option selected")
+    @Then("the user should see no country highlight selected by default in country highlight drop-down in the subsidiaries graph page")
     public void verifyNoCountryHighlightSelection(){
         pageObject.commonUtils().verifyNoCountryHighlightSelection();
+    }
+
+    @Then("the user should not see the nodes highlighted in the subsidiaries graph page")
+    public void verifyNoHighlightedNodes(){
+        pageObject.commonUtils().verifyNoHighlightedNodes();
     }
 }

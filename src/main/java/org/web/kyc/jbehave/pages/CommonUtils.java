@@ -1,7 +1,6 @@
 package org.web.kyc.jbehave.pages;
 
 import org.apache.http.message.BasicNameValuePair;
-import org.jbehave.core.annotations.Then;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
@@ -26,9 +25,10 @@ public class CommonUtils extends WebDriverUtils {
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_button_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
     private By graph_button_xpath = By.xpath("//*[@id='view-options']/ul/li[2]");
-    private By graph_country_highlight_list_text_xpath =By.xpath("//select");
-    private By graph_country_highlight_header_text_xpath =By.xpath("//*[@id='content-view']/div[1]/div[2]/div/label");
-    private By graph_highlight_in_graph_header_text_xpath =By.xpath("//*[@id='content-view']/div[1]/div[2]/div/h2");
+    private By graph_country_highlight_drop_down_xpath = By.xpath("//select");
+    private By graph_country_highlight_list_text_xpath = By.xpath("//select/option");
+    private By graph_country_highlight_header_text_xpath = By.xpath(".//div[@class='graph-controls']/div[3] //label");
+    private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -134,45 +134,30 @@ public class CommonUtils extends WebDriverUtils {
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         verifyCountryHighlightsHeader();
-       // List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
-        List eCountryHighlightList = new ArrayList();
-        for (Map<String, String> row : countriesHighlightListExamTable.getRows()) {
-            String legalTitle = row.get("COUNTRIES");
-            eCountryHighlightList.add(legalTitle);
-        }
-        for (int i = 0; i < countriesHighlightListExamTable.getRowCount(); i++) {
-            int j=i+1;
-            assertEquals(" Country does not match at" + i, eCountryHighlightList.get(i), getWebElementText(By.xpath("//select/option[" + j + "]")));
+        List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
+        for(int i =0; i<countriesHighlightListExamTable.getRowCount(); i++){
+            assertEquals("Country list does not match at " + i, countriesHighlightListExamTable.getRow(i).get(countriesHighlightListExamTable.getHeaders().get(0)), aCountryHighlightList.get(i));
         }
     }
 
     public void selectCountryHighlightInGraphs(String country) {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Select dropDown = new Select(getWebElement(graph_country_highlight_list_text_xpath));
+        Select dropDown = new Select(getWebElement(graph_country_highlight_drop_down_xpath));
         dropDown.selectByVisibleText(country);
     }
 
     public void verifyCountryHighlightsHeader() {
-        waitForWebElementToAppear(graph_highlight_in_graph_header_text_xpath);
-        assertEquals("Highlight in Graph", getWebElementText(graph_highlight_in_graph_header_text_xpath));
-        assertEquals("Country:", getWebElementText(graph_country_highlight_header_text_xpath));
+        assertEquals("HIGHLIGHT IN GRAPH", getWebElementText(graph_highlight_in_graph_header_text_xpath));
+        assertEquals("Country", getWebElementText(graph_country_highlight_header_text_xpath));
     }
 
     public void verifyNoCountryHighlightSelection(){
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        Select dropDown = new Select(getWebElement(graph_country_highlight_list_text_xpath));
-        String selectedValue = dropDown.getFirstSelectedOption().getText();
-        assertEquals("No country highlight",selectedValue);
-
+        waitForWebElementToAppear(graph_country_highlight_drop_down_xpath);
+        Select dropDown = new Select(getWebElement(graph_country_highlight_drop_down_xpath));
+        assertEquals("No country highlight", dropDown.getFirstSelectedOption().getText());
     }
 
 
+    public void verifyNoHighlightedNodes() {
+        assertFalse(isWebElementDisplayed(By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]")));
+    }
 }

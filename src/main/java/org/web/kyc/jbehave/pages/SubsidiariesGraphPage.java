@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class SubsidiariesGraphPage extends WebDriverUtils {
@@ -24,6 +23,7 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     }
 
     public void verifySubsidiariesGraphRootNode(String legalEntity) {
+        waitForWebElementToAppear(By.xpath(subsidiaries_graph_level_xpath + "0" + subsidiaries_graph_legal_title_xpath));
         verifySubsGraphHeader();
         waitForWebElementToAppear(By.xpath(subsidiaries_graph_level_xpath + "0" + subsidiaries_graph_legal_title_xpath));
         assertEquals(legalEntity, getWebElementText(By.xpath(subsidiaries_graph_level_xpath + "0" + subsidiaries_graph_legal_title_xpath)));
@@ -67,15 +67,11 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     public void verifySubsidiariesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable) {
         List<WebElement> webElements= findElements(By.xpath("//*[local-name()='g']"));
         /* Looping through all the nodes*/
-        for (int i=1; i<webElements.size(); i++){
+        for(int j=0; j<subsidiariesHighlightedExamTable.getRowCount(); j++){
             /* Looping through the expected highlight list */
-            for(int j=0; j<subsidiariesHighlightedExamTable.getRowCount(); j++){
+            for (int i=1; i<webElements.size(); i++){
                 if(webElements.get(i).getText().contains(subsidiariesHighlightedExamTable.getRow(j).get(subsidiariesHighlightedExamTable.getHeaders().get(0)))){
-                        assertFalse(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
-                        System.out.println(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
-                        System.out.println(getWebElementText(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='text'][1]")));
-                        System.out.println("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]");
-                        System.out.println(subsidiariesHighlightedExamTable.getRow(j).get(subsidiariesHighlightedExamTable.getHeaders().get(0)));
+                        assertTrue(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
             }
         }
     }

@@ -139,7 +139,7 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see message displayed in place of graph explaining there are no subsidiaries
-And country highlights should display with no country highlight option selected
+Then the user should see no country highlight selected by default in country highlight drop-down in the subsidiaries graph page
 
 Examples:
 |fid|
@@ -152,14 +152,13 @@ b. "No country highlight" is default selection in country highlight drop-down
 c. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
 d. Select "No country highlight", removes country highlight of legal entities
 e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 
-Then country highlights should display with no country highlight option selected
+Then the user should see no country highlight selected by default in country highlight drop-down in the subsidiaries graph page
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page
 |COUNTRIES|
 |No country highlight|
@@ -169,7 +168,7 @@ And the user should see the list of below unique country of operations for each 
 |UK|
 |USA|
 
-When the user selects a country <country> from the country highlight list in the subsidiaries graph page
+When the user selects a country Korea (Republic of) from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
 |SUBSIDIARIES|
 |QA Legal Entity 5|
@@ -179,15 +178,14 @@ Then the user should see the below subsidiaries in the subsidiaries graph that h
 |QA Legal Entity 42|
 |QA Legal Entity 45|
 
-When the user selects another country <changecountry> from the country highlight list in the subsidiaries graph page
+When the user selects another country USA from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
 |SUBSIDIARIES|
 |QA Legal Entity 2|
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
-Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
+Then the user should not see the nodes highlighted in the subsidiaries graph page
 
 Examples:
-|fid|country|changecountry|
-|LE-6|Korea (Republic of)|USA|
+|fid|
+|LE-6|
