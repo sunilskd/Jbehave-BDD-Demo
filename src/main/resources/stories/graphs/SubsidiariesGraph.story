@@ -132,12 +132,14 @@ Examples:
 Scenario: Covers below scenarios
 a. Entity user is viewing does not have any active relationships where it is the owner, then display message "No known entities"
 b. Entity user is viewing has no relationship where it is the owner and the owned entity is active, then display message "No known entities"
+c. If no legal entity that appears on graph has country of operations, drop-down still appears with "No country highlight" as default
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see message displayed in place of graph explaining there are no subsidiaries
+And country highlights should display with no country highlight option selected
 
 Examples:
 |fid|
@@ -157,7 +159,8 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 
-Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page
+Then country highlights should display with no country highlight option selected
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page
 |COUNTRIES|
 |No country highlight|
 |Australia|
@@ -169,11 +172,12 @@ Then the user should see the list of below unique country of operations for each
 When the user selects a country <country> from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
 |SUBSIDIARIES|
-|QA Legal Entity 33|
-|QA Legal Entity 34|
-|QA Legal Entity 35|
-|QA Legal Entity 39|
-
+|QA Legal Entity 5|
+|QA Legal Entity 43|
+|QA Legal Entity 41|
+|QA Legal Entity 40|
+|QA Legal Entity 42|
+|QA Legal Entity 45|
 
 When the user selects another country <changecountry> from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
@@ -186,12 +190,4 @@ Then the user should see the below subsidiaries in the subsidiaries graph that h
 
 Examples:
 |fid|country|changecountry|
-|LE-6|Australia|USA|
-
-Scenario: If no legal entity that appears on graph has country of operations, drop-down still appears with "No country highlight" as default
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the subsidiaries tab
-And the user clicks on the graph button
-Then the user should see message displayed in place of graph explaining there are no subsidiaries
+|LE-6|Korea (Republic of)|USA|

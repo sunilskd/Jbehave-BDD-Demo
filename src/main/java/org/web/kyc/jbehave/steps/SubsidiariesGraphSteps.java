@@ -49,4 +49,9 @@ public class SubsidiariesGraphSteps {
     public void verifySubsidiariesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable){
         pageObject.subsidiariesGraphPage().verifySubsidiariesAreHighlightedForSelectedCountry(subsidiariesHighlightedExamTable);
     }
+
+    @Then("country highlights should display with no country highlight option selected")
+    public void verifyNoCountryHighlightSelection(){
+        pageObject.commonUtils().verifyNoCountryHighlightSelection();
+    }
 }

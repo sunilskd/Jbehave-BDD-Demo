@@ -58,6 +58,7 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
         }
         assertEquals("No known entities.", getWebElementText(subsidiaries_graph_no_subs_message_text_xpath));
     }
+
     public void verifySubsGraphHeader() {
         waitForWebElementToAppear(subsidiaries_graph_header_text_xpath);
         assertEquals("Subsidiary Graph", getWebElementText(subsidiaries_graph_header_text_xpath));

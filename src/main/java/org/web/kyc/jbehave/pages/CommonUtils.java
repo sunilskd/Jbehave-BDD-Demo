@@ -134,16 +134,15 @@ public class CommonUtils extends WebDriverUtils {
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         verifyCountryHighlightsHeader();
-        verifyNoCountryHighlightSelection();
-        List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
+       // List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
         List eCountryHighlightList = new ArrayList();
         for (Map<String, String> row : countriesHighlightListExamTable.getRows()) {
             String legalTitle = row.get("COUNTRIES");
             eCountryHighlightList.add(legalTitle);
         }
-
         for (int i = 0; i < countriesHighlightListExamTable.getRowCount(); i++) {
-            assertEquals(" Country does not match at" + i, eCountryHighlightList.get(i), aCountryHighlightList.get(i));
+            int j=i+1;
+            assertEquals(" Country does not match at" + i, eCountryHighlightList.get(i), getWebElementText(By.xpath("//select/option[" + j + "]")));
         }
     }
 
@@ -164,8 +163,13 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyNoCountryHighlightSelection(){
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Select dropDown = new Select(getWebElement(graph_country_highlight_list_text_xpath));
-        String selectedValue = dropDown.getFirstSelectedOption().getAttribute("Value");
+        String selectedValue = dropDown.getFirstSelectedOption().getText();
         assertEquals("No country highlight",selectedValue);
 
     }
