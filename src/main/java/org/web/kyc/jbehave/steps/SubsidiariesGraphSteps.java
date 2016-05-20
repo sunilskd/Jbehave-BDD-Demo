@@ -46,8 +46,13 @@ public class SubsidiariesGraphSteps {
     }
 
 
-    @When("the user de-selects the selected country by selecting $nocountryhighlights from the country highlight list in the subsidiaries graph page")
-    public void selectNoCountryHighlight(@Named("nocountryhighlights") String nocountryhighlights){
-        pageObject.subsidiariesGraphPage().selectNoCountryHighlight(nocountryhighlights);
+//    @When("the user de-selects the selected country by selecting $nocountryhighlights from the country highlight list in the subsidiaries graph page")
+//    public void selectNoCountryHighlight(@Named("nocountryhighlights") String nocountryhighlights){
+//        pageObject.subsidiariesGraphPage().selectNoCountryHighlight(nocountryhighlights);
+//    }
+
+    @Then("the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page $subsidiariesHighlightedExamTable")
+    public void verifySubsidiariesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable){
+        pageObject.subsidiariesGraphPage().verifySubsidiariesAreHighlightedForSelectedCountry(subsidiariesHighlightedExamTable);
     }
 }

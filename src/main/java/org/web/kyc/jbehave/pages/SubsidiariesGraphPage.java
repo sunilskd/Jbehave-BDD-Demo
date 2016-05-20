@@ -4,10 +4,12 @@ import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SubsidiariesGraphPage extends WebDriverUtils {
 
@@ -15,9 +17,9 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     private String subsidiaries_graph_level_xpath = "//*[contains(@transform,',";
     private String subsidiaries_graph_legal_title_xpath = "')]//*[local-name()='text'][1]";
     private By subsidiaries_graph_no_subs_message_text_xpath = By.xpath("//*[@id='content-view']/p");
-    private By subsidiaries_graph_country_highlight_list_text_xpath =By.xpath("//*[@id='content-view']/div[1]/div[2]/div/select/option");
+    private By subsidiaries_graph_country_highlight_list_text_xpath =By.xpath("//select");
     private By subsidiaries_graph_country_highlight_header_text_xpath =By.xpath("//*[@id='content-view']/div[1]/div[2]/div/label");
-    private By subsidiaries_graph_highlight_ingraph_header_text_xpath =By.xpath("//*[@id='content-view']/div[1]/div[2]/div/h2");
+    private By subsidiaries_graph_highlight_in_graph_header_text_xpath =By.xpath("//*[@id='content-view']/div[1]/div[2]/div/h2");
 
     public SubsidiariesGraphPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -64,7 +66,7 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     }
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlighListExamTable) {
-        verifyCountyrHighlightsHeader();
+        verifyCountryHighlightsHeader();
         waitForPageToLoad(15000L);
         try {
             Thread.sleep(3000L);
@@ -85,20 +87,24 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     }
 
     public void selectCountryHighlight(String country) {
-
-        try {
-            Thread.sleep(5000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        findElement(subsidiaries_graph_country_highlight_list_text_xpath).sendKeys(country);
-
+        Select dropDown = new Select(getWebElement(subsidiaries_graph_country_highlight_list_text_xpath));
+        dropDown.selectByVisibleText(country);
     }
 
-    public void verifyCountyrHighlightsHeader() {
-        waitForWebElementToAppear(subsidiaries_graph_highlight_ingraph_header_text_xpath);
-        assertEquals("Highlight in Graph", getWebElementText(subsidiaries_graph_highlight_ingraph_header_text_xpath));
+    public void verifyCountryHighlightsHeader() {
+        waitForWebElementToAppear(subsidiaries_graph_highlight_in_graph_header_text_xpath);
+        assertEquals("Highlight in Graph", getWebElementText(subsidiaries_graph_highlight_in_graph_header_text_xpath));
         assertEquals("Country:", getWebElementText(subsidiaries_graph_country_highlight_header_text_xpath));
     }
 
+    public void verifySubsidiariesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable) {
+        List<WebElement> webElements= findElements(By.xpath("//*[local-name()='g']"));
+        for (int i=1; i<webElements.size(); i++){
+            for(int j=0; j<subsidiariesHighlightedExamTable.getRowCount(); j++){
+                if(webElements.get(i).getText().contains(subsidiariesHighlightedExamTable.getRow(j).get(subsidiariesHighlightedExamTable.getHeaders().get(0)))){
+                    assertTrue(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
+            }
+        }
+    }
+}
 }

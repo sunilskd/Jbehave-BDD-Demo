@@ -18,22 +18,16 @@ m. If null percent ownership, do not display percent ownership for that relation
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the group structure tab
-
-Then the user should see the indented list of subsidiaries for the focused institution QA Legal Entity 6 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 3|India|59.53|
-|QA Legal Entity 5|Korea (Republic of)|50.53|
-|QA Legal Entity 33|Australia||
-|QA Legal Entity 35|Australia||
-
-Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 35 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 40|Korea (Republic of)|70.9|
-|QA Legal Entity 39|Australia|60.9|
-|QA Legal Entity 41|Korea (Republic of)||
-|QA Legal Entity 42|Korea (Republic of)||
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+When the user selects a country <country> from the country highlight list in the subsidiaries graph page
+Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+|SUBSIDIARIES|
+|QA Legal Entity 33|
+|QA Legal Entity 34|
+|QA Legal Entity 35|
+|QA Legal Entity 39|
 
 Examples:
-|fid|
-|LE-6|
+|fid|country|changecountry|
+|LE-6|Australia|USA|
