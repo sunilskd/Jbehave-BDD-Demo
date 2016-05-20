@@ -5,6 +5,7 @@ It is of added value to present it in graph form to the user, since they often p
 
 Covers below features:
 JIRA ID - KYC-69 - KYC user can view subsidiary graph
+JIRA ID - KYC-137 - Sub Graph - Direct-Indirect filter
 
 Meta:@subsidiariesgraph
 
@@ -142,3 +143,10 @@ Examples:
 |fid|
 |LE-58|
 |LE-46|
+
+Scenario: KYC-137 - Sub Graph - Direct-Indirect filter
+a. By default, "Direct Relationships Only" is not selected
+b. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
+c. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
+d. If no subsidiaries are present, filter is still available
+e. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
