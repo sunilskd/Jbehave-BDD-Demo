@@ -70,8 +70,7 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
             for(int j=0; j<subsidiariesHighlightedExamTable.getRowCount(); j++){
                 if(webElements.get(i).getText().contains(subsidiariesHighlightedExamTable.getRow(j).get(subsidiariesHighlightedExamTable.getHeaders().get(0)))){
                     try {
-                        //assertTrue(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
-                        assertEquals("true",isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
+                        assertTrue(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
                         System.out.println(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
                         System.out.println(getWebElementText(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='text'][1]")));
                         System.out.println("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]");

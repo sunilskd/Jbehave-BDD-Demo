@@ -23,8 +23,11 @@ And the user clicks on the graph button
 When the user selects a country <country> from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
 |SUBSIDIARIES|
-|QA Legal Entity 3|
+|QA Legal Entity 33|
+|QA Legal Entity 34|
+|QA Legal Entity 35|
+|QA Legal Entity 39|
 
 Examples:
 |fid|country|changecountry|
-|LE-6|India|USA|
+|LE-6|Australia|USA|
