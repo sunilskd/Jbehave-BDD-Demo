@@ -30,19 +30,14 @@ public class SubsidiariesGraphSteps {
         pageObject.subsidiariesGraphPage().verifyNoSubsidiariesMsg();
     }
 
-    @Then("the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page $countriesHighlighListExamTable")
-    public void sVerifyCountryHighlightList(ExamplesTable countriesHighlighListExamTable) {
-        pageObject.subsidiariesGraphPage().sVerifyCountryHighlightList(countriesHighlighListExamTable);
-    }
-
     @When("the user selects a country <country> from the country highlight list in the subsidiaries graph page")
     public void selectCountryHighlight(@Named("country") String country){
-        pageObject.subsidiariesGraphPage().selectCountryHighlight(country);
+        pageObject.commonUtils().selectCountryHighlight(country);
     }
 
     @When("the user selects another country <changecountry> from the country highlight list in the subsidiaries graph page")
     public void changeCountryHighlight(@Named("changecountry") String changecountry){
-        pageObject.subsidiariesGraphPage().selectCountryHighlight(changecountry);
+        pageObject.commonUtils().selectCountryHighlight(changecountry);
     }
 
 
