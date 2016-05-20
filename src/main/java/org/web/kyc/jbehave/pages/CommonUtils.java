@@ -147,6 +147,11 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void selectCountryHighlightInGraphs(String country) {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Select dropDown = new Select(getWebElement(graph_country_highlight_list_text_xpath));
         dropDown.selectByVisibleText(country);
     }

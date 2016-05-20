@@ -43,9 +43,10 @@ public class CommonSteps {
     public void clickOnGraphButton(){
         pageObject.commonUtils().clickOnGraphButton();
     }
+
     @Then("the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page $countriesHighlightListExamTable")
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
-        pageObject.subsidiariesGraphPage().sVerifyCountryHighlightList(countriesHighlightListExamTable);
+        pageObject.commonUtils().sVerifyCountryHighlightList(countriesHighlightListExamTable);
     }
 
 }

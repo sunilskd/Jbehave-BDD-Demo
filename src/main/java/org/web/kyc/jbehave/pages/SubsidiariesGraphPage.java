@@ -64,10 +64,21 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
 
     public void verifySubsidiariesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable) {
         List<WebElement> webElements= findElements(By.xpath("//*[local-name()='g']"));
+        /* Looping through all the nodes*/
         for (int i=1; i<webElements.size(); i++){
+            /* Looping through the expected highlight list */
             for(int j=0; j<subsidiariesHighlightedExamTable.getRowCount(); j++){
                 if(webElements.get(i).getText().contains(subsidiariesHighlightedExamTable.getRow(j).get(subsidiariesHighlightedExamTable.getHeaders().get(0)))){
-                    assertTrue(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
+                    try {
+                        //assertTrue(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
+                        assertEquals("true",isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
+                        System.out.println(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
+                        System.out.println(getWebElementText(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='text'][1]")));
+                        System.out.println("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]");
+                        System.out.println(subsidiariesHighlightedExamTable.getRow(j).get(subsidiariesHighlightedExamTable.getHeaders().get(0)));
+                    } catch (Throwable e){
+                        e.printStackTrace();
+                    }
             }
         }
     }
