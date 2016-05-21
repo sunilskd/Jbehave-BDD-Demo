@@ -17,6 +17,8 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     private String subsidiaries_graph_level_xpath = "//*[contains(@transform,',";
     private String subsidiaries_graph_legal_title_xpath = "')]//*[local-name()='text'][1]";
     private By subsidiaries_graph_no_subs_message_text_xpath = By.xpath("//*[@id='content-view']/p");
+    private String nodes_xpath = "//*[local-name()='g']";
+    private String node_highlight_xpath = "/*[local-name()='rect'][contains(@class,'country-highlight')]";
 
     public SubsidiariesGraphPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -30,6 +32,11 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     }
 
     public void verifySubsidiariesNodes(String level, ExamplesTable subsidiariesExamTable) {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String aLevel  = Integer.toString(Integer.parseInt(level)*180);
         List<String> aSubsidiariesList = getWebElementsText(By.xpath(subsidiaries_graph_level_xpath + aLevel + "')]"));
 
@@ -65,13 +72,13 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     }
 
     public void verifySubsidiariesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable) {
-        List<WebElement> webElements= findElements(By.xpath("//*[local-name()='g']"));
+        List<WebElement> webElements= getWebElements(By.xpath(nodes_xpath));
         /* Looping through all the nodes*/
         for(int j=0; j<subsidiariesHighlightedExamTable.getRowCount(); j++){
             /* Looping through the expected highlight list */
             for (int i=1; i<webElements.size(); i++){
                 if(webElements.get(i).getText().contains(subsidiariesHighlightedExamTable.getRow(j).get(subsidiariesHighlightedExamTable.getHeaders().get(0)))){
-                        assertTrue(isWebElementDisplayed(By.xpath("//*[local-name()='g'][" + i + "]/*[local-name()='rect'][contains(@class,'country-highlight')]")));
+                        assertTrue(isWebElementDisplayed(By.xpath(nodes_xpath + "[" + i + "]" + node_highlight_xpath)));
             }
         }
     }

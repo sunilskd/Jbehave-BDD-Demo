@@ -133,6 +133,11 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         verifyCountryHighlightsHeader();
         List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
         for(int i =0; i<countriesHighlightListExamTable.getRowCount(); i++){
