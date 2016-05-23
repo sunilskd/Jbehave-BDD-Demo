@@ -11,29 +11,48 @@ Meta: @id login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: Scenario 1
-h. 0. Entity on the list has a subsidiary it owns more than 50 percent, display that subsidiary entity indented below it in the list
-l. Multiple entities are at the same level of indentation in the list, then sort by percent ownership descending then alphabetically by legal title
-m. If null percent ownership, do not display percent ownership for that relationship
+Scenario: Highlight legal entities by country
+a. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+b. "No country highlight" is default selection in country highlight drop-down
+c. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
+d. Select "No country highlight", removes country highlight of legal entities
+e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the group structure tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
 
-Then the user should see the indented list of subsidiaries for the focused institution QA Legal Entity 6 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 3|India|59.53|
-|QA Legal Entity 5|Korea (Republic of)|50.53|
-|QA Legal Entity 33|Australia||
-|QA Legal Entity 35|Australia||
+Then country highlights should display with no country highlight option selected
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page
+|COUNTRIES|
+|No country highlight|
+|Australia|
+|India|
+|Korea (Republic of)|
+|UK|
+|USA|
 
-Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 35 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 40|Korea (Republic of)|70.9|
-|QA Legal Entity 39|Australia|60.9|
-|QA Legal Entity 41|Korea (Republic of)||
-|QA Legal Entity 42|Korea (Republic of)||
+When the user selects a country <country> from the country highlight list in the subsidiaries graph page
+Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+|SUBSIDIARIES|
+|QA Legal Entity 5|
+|QA Legal Entity 43|
+|QA Legal Entity 41|
+|QA Legal Entity 40|
+|QA Legal Entity 42|
+|QA Legal Entity 45|
+
+When the user selects another country <changecountry> from the country highlight list in the subsidiaries graph page
+Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+|SUBSIDIARIES|
+|QA Legal Entity 2|
+
+When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
+Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+|SUBSIDIARIES|
 
 Examples:
-|fid|
-|LE-6|
+|fid|country|changecountry|
+|LE-6|Korea (Republic of)|USA|

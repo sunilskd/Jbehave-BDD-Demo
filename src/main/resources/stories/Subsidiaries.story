@@ -275,7 +275,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 When the user selects the percent filter option <percentFilter> in the subsidiaries page
-Then the user should not see any country in country highlights list
+Then the user should not see any country in country highlights list in the subsidiaries page
 
 Examples:
 |fid|percentFilter|
