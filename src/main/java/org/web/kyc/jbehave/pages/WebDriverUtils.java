@@ -131,5 +131,6 @@ public class WebDriverUtils extends WebDriverPage {
 
         /* Clicking and holding on the slider bar and move by offset*/
         getActions().clickAndHold(findElement(by)).moveByOffset(x, 0).build().perform();
+        getActions().release(findElement(by)).build().perform();
     }
 }

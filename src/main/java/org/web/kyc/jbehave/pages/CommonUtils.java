@@ -1,6 +1,7 @@
 package org.web.kyc.jbehave.pages;
 
 import org.apache.http.message.BasicNameValuePair;
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
@@ -30,6 +31,8 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_country_highlight_header_text_xpath = By.xpath(".//div[@class='graph-controls']/div[3] //label");
     private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
     private By graph_percent_slider_bar_xpath = By.xpath("//*[@class='graph-controls'] //input[2]");
+    private By graph_percent_filter_text_box_xpath = By.xpath("//*[@id='content-view']/div[1]/div[1]/div/input[1]");
+
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -169,5 +172,14 @@ public class CommonUtils extends WebDriverUtils {
 
     public void changePercentOwnershipUsingSlider(int slideTo) {
         moveSliderBarTo(graph_percent_slider_bar_xpath, slideTo);
+    }
+
+    public void enterPercentFilter(String percentFilter){
+        enterStringInInputBox(graph_percent_filter_text_box_xpath,percentFilter);
+    }
+
+    public void verifyPercentFilterSettoZero(){
+        assertEquals("0",getWebElementText(graph_percent_filter_text_box_xpath));
+
     }
 }

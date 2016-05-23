@@ -192,13 +192,8 @@ Examples:
 |LE-6|
 
 Scenario: KYC-104 - KYC user can filter subsidiary graph by percent ownership
-a. By default, percent filter is set to 0 for both input box and slider, all subsidiaries are displayed in the graph
 b. If user moves slider to percent 1-100, null percent subsidiaries are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
 c. If user moves slider to 0 percent, all subsidiaries appear on graph
-d. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
-e. If user enters 0 in input box, slider position automatically updates to match percent entered, all subsidiaries appear on the graph
-f. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only subsidiaries that are owned by 100 percent appear on graph
-g. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all subsidiaries are displayed in the graph
 h. User applies percent filter that results in no subsidiaries on the graph, display message "No known entities."
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -206,6 +201,65 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 And the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the subsidiaries graph page
+Then subsidiaries with percent filter matching should be displayed
+
+Examples:
+|fid|
+|LE-6|
+
+Scenario: KYC-104 - KYC user can filter subsidiary graph by percent ownership
+a. By default, percent filter is set to 0 for both input box and slider, all subsidiaries are displayed in the graph
+d. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
+e. If user enters 0 in input box, slider position automatically updates to match percent entered, all subsidiaries appear on the graph
+f. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only subsidiaries that are owned by 100 percent appear on graph
+g. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all subsidiaries are displayed in the graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then by default the pecentage filter should be set to 0
+When the user enters percentage as 25 in ownership percentage text box
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 3425.9(Australia)|
+|QA Legal Entity 550.53(Korea (Republic of))|
+|QA Legal Entity 359.53(India)|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 149.53(UK)|
+|QA Legal Entity 250.53(USA)|
+
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 150.52(UK)|
+
+When the user enters percentage as 0 in ownership percentage text box
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 3425.9(Australia)|
+|QA Legal Entity 550.53(Korea (Republic of))|
+|QA Legal Entity 359.53(India)|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 149.53(UK)|
+|QA Legal Entity 250.53(USA)|
+
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 150.52(UK)|
+
+When the user enters percentage as 100 in ownership percentage text box
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+When the user enters percentage as 200 in ownership percentage text box
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 Examples:
 |fid|

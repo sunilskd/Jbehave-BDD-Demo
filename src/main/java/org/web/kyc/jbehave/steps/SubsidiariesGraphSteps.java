@@ -48,4 +48,9 @@ public class SubsidiariesGraphSteps {
     public void verifyNoHighlightedNodes(){
         pageObject.commonUtils().verifyNoHighlightedNodes();
     }
+
+    @Then("subsidiaries with percent filter matching should be displayed")
+    public void verifySubsidiariesGraphPercentage(){
+        pageObject.subsidiariesGraphPage().verifySubsidiariesGraphPercentage();
+    }
 }

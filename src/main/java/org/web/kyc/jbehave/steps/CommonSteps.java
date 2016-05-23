@@ -54,4 +54,15 @@ public class CommonSteps {
         pageObject.commonUtils().changePercentOwnershipUsingSlider(slideTo);
     }
 
+    @When("the user enters percentage as $percentFilter in ownership percentage text box")
+    public void enterPercentFilter(@Named("percentFilter") String percentFilter){
+        pageObject.commonUtils().enterPercentFilter(percentFilter);
+    }
+
+    @Then("by default the pecentage filter should be set to 0")
+    public void verifyPercentFilterSettoZero() {
+        pageObject.commonUtils().verifyPercentFilterSettoZero();
+
+    }
+
 }
