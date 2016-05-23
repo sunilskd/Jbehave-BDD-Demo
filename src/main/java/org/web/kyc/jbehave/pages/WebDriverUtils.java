@@ -126,4 +126,15 @@ public class WebDriverUtils extends WebDriverPage {
     public void takeSnapshot(String path){
         getDriverProvider().saveScreenshotTo(path);
     }
+
+    public void moveSliderBarTo(By by, int x){
+        WebElement sliderBar = findElement(by);
+        sliderBar.getLocation().getX();
+        int widthOfSliderBar = sliderBar.getSize().getWidth();
+        int slideBy = (int) (widthOfSliderBar * ((double) x/100));
+
+        /* Clicking and holding on the slider bar and move by offset*/
+        getActions().clickAndHold(sliderBar).moveByOffset(slideBy, 0).build().perform();
+        sliderBar.getLocation().getX();
+    }
 }

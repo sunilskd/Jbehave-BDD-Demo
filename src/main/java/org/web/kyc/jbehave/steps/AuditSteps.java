@@ -33,6 +33,6 @@ public class AuditSteps {
 
     @Then("the audit section should collapse and Owners list should be moved to top section")
     public void dVerifyAuditSectionCollaps(){
-        pageObject.auditPage().dVerifyAuditSectionCollaps();
+        pageObject.auditPage().dVerifyAuditSectionCollapse();
     }
 }

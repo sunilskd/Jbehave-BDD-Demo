@@ -11,28 +11,19 @@ Meta: @id login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: Scenario 1
-h. 0. Entity on the list has a subsidiary it owns more than 50 percent, display that subsidiary entity indented below it in the list
-l. Multiple entities are at the same level of indentation in the list, then sort by percent ownership descending then alphabetically by legal title
-m. If null percent ownership, do not display percent ownership for that relationship
+Scenario: Highlight legal entities by country
+a. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+b. "No country highlight" is default selection in country highlight drop-down
+c. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
+d. Select "No country highlight", removes country highlight of legal entities
+e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the group structure tab
-
-Then the user should see the indented list of subsidiaries for the focused institution QA Legal Entity 6 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 3|India|59.53|
-|QA Legal Entity 5|Korea (Republic of)|50.53|
-|QA Legal Entity 33|Australia||
-|QA Legal Entity 35|Australia||
-
-Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 35 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 40|Korea (Republic of)|70.9|
-|QA Legal Entity 39|Australia|60.9|
-|QA Legal Entity 41|Korea (Republic of)||
-|QA Legal Entity 42|Korea (Republic of)||
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+And the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the subsidiaries graph page
 
 Examples:
 |fid|

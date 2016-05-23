@@ -1,9 +1,14 @@
 package org.web.kyc.jbehave.pages;
 
 import org.apache.http.message.BasicNameValuePair;
-import org.jbehave.core.annotations.Then;
+import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -20,6 +25,11 @@ public class CommonUtils extends WebDriverUtils {
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_button_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
     private By graph_button_xpath = By.xpath("//*[@id='view-options']/ul/li[2]");
+    private By graph_country_highlight_drop_down_xpath = By.xpath("//select");
+    private By graph_country_highlight_list_text_xpath = By.xpath("//select/option");
+    private By graph_country_highlight_header_text_xpath = By.xpath(".//div[@class='graph-controls']/div[3] //label");
+    private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
+    private By graph_percent_slider_bar_xpath = By.xpath("//*[@class='graph-controls'] //input[2]");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -68,13 +78,11 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void selectCountryHighlight(String country) {
-
         try {
             Thread.sleep(3000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         waitForPageToLoad(15000L);
         selectedCountryHighlight = country;
         String highlightXpath = country_highlight_options_text_xpath + "[" + getElementIndexByValue(By.xpath(country_highlight_options_text_xpath), country) + "]";
@@ -123,5 +131,43 @@ public class CommonUtils extends WebDriverUtils {
             e.printStackTrace();
         }
         clickOnWebElement(graph_button_xpath);
+    }
+
+    public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        verifyCountryHighlightsHeader();
+        List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
+        for(int i =0; i<countriesHighlightListExamTable.getRowCount(); i++){
+            assertEquals("Country list does not match at " + i, countriesHighlightListExamTable.getRow(i).get(countriesHighlightListExamTable.getHeaders().get(0)), aCountryHighlightList.get(i));
+        }
+    }
+
+    public void selectCountryHighlightInGraphs(String country) {
+        Select dropDown = new Select(getWebElement(graph_country_highlight_drop_down_xpath));
+        dropDown.selectByVisibleText(country);
+    }
+
+    public void verifyCountryHighlightsHeader() {
+        assertEquals("HIGHLIGHT IN GRAPH", getWebElementText(graph_highlight_in_graph_header_text_xpath));
+        assertEquals("Country", getWebElementText(graph_country_highlight_header_text_xpath));
+    }
+
+    public void verifyNoCountryHighlightSelection(){
+        waitForWebElementToAppear(graph_country_highlight_drop_down_xpath);
+        Select dropDown = new Select(getWebElement(graph_country_highlight_drop_down_xpath));
+        assertEquals("No country highlight", dropDown.getFirstSelectedOption().getText());
+    }
+
+
+    public void verifyNoHighlightedNodes() {
+        assertFalse(isWebElementDisplayed(By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]")));
+    }
+
+    public void changePercentOwnershipUsingSlider(int slideTo) {
+        moveSliderBarTo(graph_percent_slider_bar_xpath, slideTo);
     }
 }
