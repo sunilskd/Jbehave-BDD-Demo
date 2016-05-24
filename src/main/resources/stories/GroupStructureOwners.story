@@ -217,3 +217,24 @@ Then the user should see the legal entity QA Legal Entity 29, user is currently 
 Examples:
 |fid|
 |LE-29|
+
+Scenario: Scenario 9
+.Description
+----
+a. 0. Entity user is viewing is highlighted in the list
+   1. Entity displayed on list has an inactive relationship with percentage greater than 50 then do not follow the inactive relationship path.
+----
+image:GS-Own-Scenario-9.png[Scenario 9]
+----
+----
+Meta:@static
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should see the ultimate owner as QA Legal Entity 26 for the entity user is viewing in the group structure page
+Then the user should see the legal entity QA Legal Entity 4, user is currently viewing, highlighted in the group structure page
+
+Examples:
+|fid|
+|LE-4|
