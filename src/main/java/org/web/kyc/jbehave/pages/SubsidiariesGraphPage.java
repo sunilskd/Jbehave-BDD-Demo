@@ -19,7 +19,7 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     private By subsidiaries_graph_no_subs_message_text_xpath = By.xpath("//*[@id='content-view']/p");
     private String nodes_xpath = "//*[local-name()='g']";
     private String node_highlight_xpath = "/*[local-name()='rect'][contains(@class,'country-highlight')]";
-    private String subsidiaries_graph_percentage_value_text_xpath ="//*[local-name()='g'][@transform != 'translate(0,0)']/*[local-name()='text'][2]";
+    private String subsidiaries_graph_percentage_value_text_xpath ="//*[local-name()='g'][@transform != 'translate(0,0)']/*[local-name()='text'][1]/*[local-name()='tspan']";
     private String graph_percent_filter_text_box_xpath = "//*[@id='content-view']/div[1]/div[1]/div/input[1]";
 
     public SubsidiariesGraphPage(WebDriverProvider driverProvider) {
@@ -92,6 +92,7 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
         List<String> aSubsidiariesPercentageList = getWebElementsText(By.xpath(subsidiaries_graph_percentage_value_text_xpath));
         for (int i=1;i<getWebElementsText(By.xpath(subsidiaries_graph_percentage_value_text_xpath)).size();i++){
             assertTrue(percentageSetto >= Integer.parseInt(getWebElementsText(By.xpath(subsidiaries_graph_percentage_value_text_xpath)).get(i)));
+
 
         }
 
