@@ -218,8 +218,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then by default the pecentage filter should be set to 0
-When the user enters percentage as 25 in ownership percentage text box
+Then the user should see the pecentage filter is set to 0 by default in the subsidiaries graph page
+When the user enters percentage as 25 in ownership percentage text box in the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
@@ -237,7 +237,7 @@ And the user should see the list of below subsidiaries in level 3, below the roo
 |SUBSIDIARIES|
 |QA Legal Entity 150.52(UK)|
 
-When the user enters percentage as 0 in ownership percentage text box
+When the user enters percentage as 0 in ownership percentage text box in the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
@@ -255,13 +255,13 @@ And the user should see the list of below subsidiaries in level 3, below the roo
 |SUBSIDIARIES|
 |QA Legal Entity 150.52(UK)|
 
-When the user enters percentage as 100 in ownership percentage text box
+When the user enters percentage as 100 in ownership percentage text box in the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
-When the user enters percentage as 200 in ownership percentage text box
+When the user enters percentage as 200 in ownership percentage text box in the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
-When the user enters percentage as abc in ownership percentage text box
+When the user enters percentage as abc in ownership percentage text box in the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
