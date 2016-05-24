@@ -20,7 +20,7 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     private String nodes_xpath = "//*[local-name()='g']";
     private String node_highlight_xpath = "/*[local-name()='rect'][contains(@class,'country-highlight')]";
     private String subsidiaries_graph_percentage_value_text_xpath ="//*[local-name()='g'][@transform != 'translate(0,0)']/*[local-name()='text'][2]";
-    private By graph_percent_filter_text_box_xpath = By.xpath("//*[@id='content-view']/div[1]/div[1]/div/input[1]");
+    private String graph_percent_filter_text_box_xpath = "//*[@id='content-view']/div[1]/div[1]/div/input[1]";
 
     public SubsidiariesGraphPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -87,10 +87,11 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     }
 
     public void verifySubsidiariesGraphPercentage() {
-        String percentageSetto = getWebElementText(graph_percent_filter_text_box_xpath);
+       //String percentageSetto = getWebElementText(By.xpath(graph_percent_filter_text_box_xpath));
+        int percentageSetto =50;
         List<String> aSubsidiariesPercentageList = getWebElementsText(By.xpath(subsidiaries_graph_percentage_value_text_xpath));
-        for (int i=1;i<aSubsidiariesPercentageList.size();i++){
-            assertTrue(Integer.parseInt(percentageSetto) >= Integer.parseInt(aSubsidiariesPercentageList.get(i)));
+        for (int i=1;i<getWebElementsText(By.xpath(subsidiaries_graph_percentage_value_text_xpath)).size();i++){
+            assertTrue(percentageSetto >= Integer.parseInt(getWebElementsText(By.xpath(subsidiaries_graph_percentage_value_text_xpath)).get(i)));
 
         }
 

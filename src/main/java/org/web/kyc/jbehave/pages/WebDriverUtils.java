@@ -128,7 +128,11 @@ public class WebDriverUtils extends WebDriverPage {
     }
 
     public void moveSliderBarTo(By by, int x){
-
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         /* Clicking and holding on the slider bar and move by offset*/
         getActions().clickAndHold(findElement(by)).moveByOffset(x, 0).build().perform();
         getActions().release(findElement(by)).build().perform();

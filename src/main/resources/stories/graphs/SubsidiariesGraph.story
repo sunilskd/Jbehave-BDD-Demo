@@ -261,6 +261,15 @@ Then the user should see the legal entity QA Legal Entity 6, user is currently v
 When the user enters percentage as 200 in ownership percentage text box
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
+When the user enters percentage as abc in ownership percentage text box
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 3425.9(Australia)|
+|QA Legal Entity 550.53(Korea (Republic of))|
+|QA Legal Entity 359.53(India)|
+
 Examples:
 |fid|
 |LE-6|
