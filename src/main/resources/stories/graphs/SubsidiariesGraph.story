@@ -7,7 +7,7 @@ Covers below features:
 JIRA ID - KYC-69 - KYC user can view subsidiary graph
 JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
 
-Meta:@subsidiariesgraph
+Meta:@subsidiariesgraph @kyc @ubo
 
 Scenario: KYC user login
 Given the user is on the ubo login page
