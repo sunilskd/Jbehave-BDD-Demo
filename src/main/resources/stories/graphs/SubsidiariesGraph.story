@@ -7,6 +7,7 @@ Covers below features:
 JIRA ID - KYC-69 - KYC user can view subsidiary graph
 JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
 JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
+JIRA ID - KYC-324 - Country list in owners graph and subs graph is not displaying root node's country.
 
 Meta:@subsidiariesgraph
 
@@ -179,22 +180,21 @@ Then the user should see the below subsidiaries in the subsidiaries graph that h
 |QA Legal Entity 42|
 |QA Legal Entity 45|
 
-When the user selects another country USA from the country highlight list in the subsidiaries graph page
+When the user selects another country India from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
 |SUBSIDIARIES|
-|QA Legal Entity 2|
+|QA Legal Entity 3|
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
 Then the user should not see the nodes highlighted in the subsidiaries graph page
 
 Examples:
 |fid|
-|LE-6|
+|LE-16|
 
 Scenario: KYC-104 - KYC user can filter subsidiary graph by percent ownership
 b. If user moves slider to percent 1-100, null percent subsidiaries are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
 c. If user moves slider to 0 percent, all subsidiaries appear on graph
-h. User applies percent filter that results in no subsidiaries on the graph, display message "No known entities."
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -213,6 +213,7 @@ d. If user enters a number between 1-100 in input box, slider position automatic
 e. If user enters 0 in input box, slider position automatically updates to match percent entered, all subsidiaries appear on the graph
 f. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only subsidiaries that are owned by 100 percent appear on graph
 g. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all subsidiaries are displayed in the graph
+h. User applies percent filter that results in no subsidiaries on the graph,display entity user is viewing as root node
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
