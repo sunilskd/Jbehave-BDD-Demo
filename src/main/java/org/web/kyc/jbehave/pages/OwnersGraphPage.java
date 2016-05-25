@@ -54,7 +54,7 @@ public class OwnersGraphPage extends WebDriverUtils {
         List aOwnersList = new ArrayList();
 
         /* Creating a list of actual owners list by concatenating legal title, percent and country */
-        for (int i =0; i<getWebElements(By.xpath(owners_graph_level_xpath + aLevel + "')]")).size(); i++) {
+        for (int i =0; i<getWebElements(By.xpath(owners_graph_level_xpath + aLevel + ")" + "')]")).size(); i++) {
             aOwnersList.add(aOwnersLegalTitle.get(i) + aOwnersPercent.get(i).replace("%","") + aOwnersCountry.get(i));
         }
 
