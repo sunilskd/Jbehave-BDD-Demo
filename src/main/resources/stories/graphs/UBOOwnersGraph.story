@@ -16,6 +16,7 @@ UBO user does not have access to below entity types -
 
 Covers below features:
 JIRA ID - KYC-37 - KYC user can filter owners graph by percent ownership
+JIRA ID - KYC-34 - KYC user can view owners graph
 
 Scenario: Filter owners graph by percent ownership
 a. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
@@ -26,3 +27,16 @@ e. If user enters a character than is not a number in the input box, input box a
 f. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only owners with equal to or greater than selected percent appear on the graph
 g. If user moves slider to 0 percent, all owners appear on graph
 h. User applies percent filter that results in no owners on the graph, only root node is left on the graph
+=======
+
+
+Scenario: UBO user views owners graph
+a. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity on the owners graph above the entity it owns.
+b. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
+c. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
+d. Owner has percent ownership, display percent on owner's node on graph
+e. Owner has null percent ownership, do not display percent ownership on owner node on graph
+f. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+g. Entity user is viewing does not have any active relationships to owners, display message "No known entities."
+h. Entity user is viewing does not have any owners, display message "No known entities."
+
