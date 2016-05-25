@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Created by sahug on 5/24/2016.
@@ -82,6 +83,18 @@ public class OwnersGraphPage extends WebDriverUtils {
             e.printStackTrace();
         }
         assertEquals("No known entities.", getWebElementText(owners_graph_no_subs_message_text_xpath));
+    }
+
+    public void verifyStopTravelingPath(String level) {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        /* Root node for owner is at y=840 */
+        String aLevel = Integer.toString(840 - (Integer.parseInt(level) * 180));
+        assertFalse(isWebElementDisplayed(By.xpath(owners_graph_level_xpath + aLevel + owners_graph_legal_title_xpath)));
+
     }
 
 

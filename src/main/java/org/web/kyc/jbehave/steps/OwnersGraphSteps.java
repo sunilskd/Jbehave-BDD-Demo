@@ -36,4 +36,9 @@ public class OwnersGraphSteps {
     public void verifyNoOwnersMsg() {
         pageObject.ownersGraphPage().verifyNoOwnersMsg();
     }
+
+    @Then("the user should not see any nodes in level $level, above the root entity, in the owners graph")
+    public void verifyStopTravelingPath(String level){
+        pageObject.ownersGraphPage().verifyStopTravelingPath(level);
+    }
 }
