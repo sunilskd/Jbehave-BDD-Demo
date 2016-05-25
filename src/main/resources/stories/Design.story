@@ -22,11 +22,13 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 
-And the user should see the list of below owners in level 8, above the root entity, in the owners graph
+And the user should see the list of below owners in level 5, above the root entity, in the owners graph
 |OWNERS|
-|QA Legal Entity 5730.99|
-
-When the user clicks on the direct relationships only filter in the owners graph
+|QA Legal Entity 5741.99|
+|QA Legal Entity 5630.23|
+|QA Legal Entity 5630.23|
+|Top shareholders owning less than 2%, 71.315 %|
+|Top shareholders owning less than 2%, 71.315 %|
 
 Examples:
 |fid|

@@ -48,9 +48,9 @@ public class OwnersGraphPage extends WebDriverUtils {
         /* Root node for owner is at y=840 */
         String aLevel  = Integer.toString(840 - (Integer.parseInt(level)*180));
 
-        List<String> aOwnersLegalTitle = getWebElementsText(By.xpath(owners_graph_level_xpath + aLevel + owners_graph_legal_title_xpath));
-        List<String> aOwnersPercent = getWebElementsText(By.xpath(owners_graph_level_xpath + aLevel + owners_graph_percent_xpath));
-        List<String> aOwnersCountry = getWebElementsText(By.xpath(owners_graph_level_xpath + aLevel + owners_graph_country_xpath));
+        List<String> aOwnersLegalTitle = getWebElementsText(By.xpath(owners_graph_level_xpath + aLevel + ")" + owners_graph_legal_title_xpath));
+        List<String> aOwnersPercent = getWebElementsText(By.xpath(owners_graph_level_xpath + aLevel + ")" + owners_graph_percent_xpath));
+        List<String> aOwnersCountry = getWebElementsText(By.xpath(owners_graph_level_xpath + aLevel + ")" + owners_graph_country_xpath));
         List aOwnersList = new ArrayList();
 
         /* Creating a list of actual owners list by concatenating legal title, percent and country */
