@@ -21,18 +21,6 @@ Scenario: KYC user login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: Filter owners graph by percent ownership
-a. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
-b. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, null percent owners are filtered out and not displayed on the graph, only owners with equal to or greater than selected percent ownership appear on the graph
-c. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph
-d. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners with 100 percent appear on graph
-e. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
-f. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only owners with equal to or greater than selected percent appear on the graph
-g. If user moves slider to 0 percent, all owners appear on graph
-h. User applies percent filter that results in no owners on the graph, only root node is left on the graph
-i. Free text ownership always remains visible on graph despite any filter applied
-
-
 Scenario: Covers below scenarios
 a. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity on the owners graph above the entity it owns.
 b. Owner has percent ownership, display percent on owner's node on graph

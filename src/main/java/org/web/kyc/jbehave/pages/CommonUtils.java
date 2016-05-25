@@ -30,6 +30,7 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_country_highlight_header_text_xpath = By.xpath(".//div[@class='graph-controls']/div[3] //label");
     private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
     private By graph_filter_direct_relationship_only_xpath = By.xpath("//*[@class='graph-controls'] //input[@type='checkbox']");
+    private By graph_no_known_entities_message_text_xpath = By.xpath("//*[@id='content-view']/p");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -168,5 +169,16 @@ public class CommonUtils extends WebDriverUtils {
 
     public void clickOnDirectRelationshipOnlyFilter() {
         clickOnWebElement(graph_filter_direct_relationship_only_xpath);
+    }
+
+    public void verifyNoOwnersMsg() {
+
+        waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
     }
 }
