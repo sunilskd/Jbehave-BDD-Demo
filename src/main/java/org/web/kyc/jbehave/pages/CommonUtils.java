@@ -29,7 +29,9 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_country_highlight_list_text_xpath = By.xpath("//select/option");
     private By graph_country_highlight_header_text_xpath = By.xpath(".//div[@class='graph-controls']/div[3] //label");
     private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
-    private By graph_filter_direct_relationship_only_xpath = By.xpath("//*[@class='graph-controls'] //input[@type='checkbox']");
+    private By graph_filter_direct_relationship_only_xpath = By.xpath("//input[@type='checkbox'][@class='ng-pristine ng-valid']");
+    private By graph_filer_direct_relationship_only_uncheck_xpath = By.xpath("//input[@type='checkbox'][@class='ng-valid ng-dirty']");
+
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -167,6 +169,24 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void clickOnDirectRelationshipOnlyFilter() {
+        try{
+            Thread.sleep(5000L);
         clickOnWebElement(graph_filter_direct_relationship_only_xpath);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyDirectRelationshipCheckboxValue() {
+        assertTrue(isWebElementDisplayed(graph_filter_direct_relationship_only_xpath));
+    }
+
+    public void uncheckDirectRelationShipCheckbox() {
+        try{
+            Thread.sleep(5000L);
+            clickOnWebElement(graph_filer_direct_relationship_only_uncheck_xpath);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 }

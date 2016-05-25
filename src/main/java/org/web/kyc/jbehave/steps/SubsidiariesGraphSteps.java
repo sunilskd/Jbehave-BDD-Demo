@@ -20,6 +20,7 @@ public class SubsidiariesGraphSteps {
     @Then("the user should see the list of below subsidiaries in level $level, below the root entity, in the subsidiaries graph $subsidiariesExamTable")
     public void verifySubsidiariesNodes(String level, ExamplesTable subsidiariesExamTable){
         pageObject.subsidiariesGraphPage().verifySubsidiariesNodes(level, subsidiariesExamTable);
+
     }
 
     @Then("the user should see message displayed in place of graph explaining there are no subsidiaries")

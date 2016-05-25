@@ -35,31 +35,31 @@ Then the user should see the legal entity QA Legal Entity 6, user is currently v
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |SUBSIDIARIES|
-|QA Legal Entity 35(Australia)|
-|QA Legal Entity 3425.9(Australia)|
-|QA Legal Entity 33(Australia)|
-|QA Legal Entity 550.53(Korea (Republic of))|
-|QA Legal Entity 359.53(India)|
+|QA Legal Entity 35Australia|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 33Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
 |SUBSIDIARIES|
-|QA Legal Entity 3960.9(Australia)|
-|QA Legal Entity 437.9(Korea (Republic of))|
-|QA Legal Entity 41(Korea (Republic of))|
-|QA Legal Entity 4070.9(Korea (Republic of))|
-|QA Legal Entity 42(Korea (Republic of))|
-|QA Legal Entity 149.53(UK)|
-|QA Legal Entity 250.53(USA)|
+|QA Legal Entity 3960.9Australia|
+|QA Legal Entity 437.9Korea (Republic of)|
+|QA Legal Entity 41Korea (Republic of)|
+|QA Legal Entity 4070.9Korea (Republic of)|
+|QA Legal Entity 42Korea (Republic of)|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53USA|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
 |SUBSIDIARIES|
-|QA Legal Entity 4571.9(Korea (Republic of))|
-|QA Legal Entity 150.52(UK)|
-|QA Legal Entity 110.23(UK)|
+|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 150.52UK|
+|QA Legal Entity 110.23UK|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
 |SUBSIDIARIES|
-|QA Legal Entity 4671.9(null)|
+|QA Legal Entity 4671.9|
 
 Examples:
 |fid|
@@ -149,12 +149,7 @@ Examples:
 |LE-46|
 
 
-Scenario: KYC-137 - Sub Graph - Direct-Indirect filter
-a. By default, "Direct Relationships Only" is not selected
-b. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
-c. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
-d. If no subsidiaries are present, filter is still available
-e. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
+
 
 
 
@@ -203,3 +198,83 @@ Then the user should not see the nodes highlighted in the subsidiaries graph pag
 Examples:
 |fid|
 |LE-6|
+
+
+Scenario: KYC-137 - Sub Graph - Direct-Indirect filter
+a. By default, "Direct Relationships Only" is not selected
+b. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
+c. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
+d. If no subsidiaries are present, filter is still available
+e. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
+
+Scenario: By Default checkbox for Direct relationship is not selected
+
+Given the user is on the ubo login page
+When the user login as a kyc user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+And the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user verifies direct relationship checkbox is not checked
+
+Examples:
+|fid|
+|LE-6|
+
+Scenario: User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
+User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
+
+Given the user is on the ubo login page
+When the user login as a kyc user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+And the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user clicks on direct relationship checkbox
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 35Australia|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 33Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+Then the user unchecks direct relationship checkbox
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 35Australia|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 33Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 3960.9Australia|
+|QA Legal Entity 437.9Korea (Republic of)|
+|QA Legal Entity 41Korea (Republic of)|
+|QA Legal Entity 4070.9Korea (Republic of)|
+|QA Legal Entity 42Korea (Republic of)|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53USA|
+
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 150.52UK|
+|QA Legal Entity 110.23UK|
+
+And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
+|SUBSIDIARIES|
+|QA Legal Entity 4671.9|
+
+Examples:
+|fid|
+|LE-6|
+
