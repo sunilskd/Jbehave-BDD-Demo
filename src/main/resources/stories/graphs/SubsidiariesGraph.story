@@ -6,8 +6,10 @@ It is of added value to present it in graph form to the user, since they often p
 Covers below features:
 JIRA ID - KYC-69 - KYC user can view subsidiary graph
 JIRA ID - KYC-137 - Sub Graph - Direct-Indirect filter
+JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
 
-Meta:@subsidiariesgraph
+
+Meta:@subsidiariesgraph @kyc @ubo
 
 Scenario: KYC user login
 Given the user is on the ubo login page
@@ -132,17 +134,20 @@ Examples:
 Scenario: Covers below scenarios
 a. Entity user is viewing does not have any active relationships where it is the owner, then display message "No known entities"
 b. Entity user is viewing has no relationship where it is the owner and the owned entity is active, then display message "No known entities"
+c. If no legal entity that appears on graph has country of operations, drop-down still appears with "No country highlight" as default
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see message displayed in place of graph explaining there are no subsidiaries
+Then the user should see no country highlight selected by default in country highlight drop-down in the subsidiaries graph page
 
 Examples:
 |fid|
 |LE-58|
 |LE-46|
+
 
 Scenario: KYC-137 - Sub Graph - Direct-Indirect filter
 a. By default, "Direct Relationships Only" is not selected
@@ -150,3 +155,51 @@ b. User selects "Direct Relationships Only", then graph updates to only show dir
 c. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
 d. If no subsidiaries are present, filter is still available
 e. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
+
+
+
+
+
+Scenario: Highlight legal entities by country
+a. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+b. "No country highlight" is default selection in country highlight drop-down
+c. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
+d. Select "No country highlight", removes country highlight of legal entities
+e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+
+Then the user should see no country highlight selected by default in country highlight drop-down in the subsidiaries graph page
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page
+|COUNTRIES|
+|No country highlight|
+|Australia|
+|India|
+|Korea (Republic of)|
+|UK|
+|USA|
+
+When the user selects a country Korea (Republic of) from the country highlight list in the subsidiaries graph page
+Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+|SUBSIDIARIES|
+|QA Legal Entity 5|
+|QA Legal Entity 43|
+|QA Legal Entity 41|
+|QA Legal Entity 40|
+|QA Legal Entity 42|
+|QA Legal Entity 45|
+
+When the user selects another country USA from the country highlight list in the subsidiaries graph page
+Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+|SUBSIDIARIES|
+|QA Legal Entity 2|
+
+When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
+Then the user should not see the nodes highlighted in the subsidiaries graph page
+
+Examples:
+|fid|
+|LE-6|

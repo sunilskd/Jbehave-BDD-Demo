@@ -55,7 +55,7 @@ public class AuditPage extends WebDriverUtils {
         clickOnWebElement(hide_audit_information_text_xpath);
     }
 
-    public void dVerifyAuditSectionCollaps(){
+    public void dVerifyAuditSectionCollapse(){
         assertEquals("Display Audit Information", getWebElementText(display_audit_information_text_xpath));
     }
 }

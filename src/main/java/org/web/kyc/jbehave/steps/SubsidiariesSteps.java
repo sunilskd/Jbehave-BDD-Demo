@@ -85,8 +85,9 @@ public class SubsidiariesSteps {
     public void verifyDirectOwnersAreNotHighlighted(){
         pageObject.subsidiariesPage().verifyDirectSubsidiariesAreNotHighlighted();
     }
-    @Then("the user should not see any country in country highlights list")
-    public void verifyCounryListNotExists(){
+
+    @Then("the user should not see any country in country highlights list in the subsidiaries page")
+    public void verifyCountryHighlightListNotExists(){
         pageObject.subsidiariesPage().verifyCountryHighlightListNotExists();
     }
 
