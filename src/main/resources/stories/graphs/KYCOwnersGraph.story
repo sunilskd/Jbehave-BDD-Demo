@@ -42,8 +42,49 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
+|Treasury shares, 3.8%; Trade Union Federations of SGB (where no federation owns 3% or more), 4.8%; Others, 23.4%|
+
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 14UK|
+|QA Legal Entity 12UK|
+|QA Legal Entity 1751.53USA|
+|QA Legal Entity 1951.53USA|
+|Other shareholders owning less than 2%, 71.315 %|
+
+And the user should see the list of below owners in level 4, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 1551.53USA|
+|QA Legal Entity 1351.53UK|
+|QA Legal Entity 5714.99|
+|QA Legal Entity 574.99|
+|Top 20 shareholders, 57.67%; Others, 42.33%. There were no persons with a substantial shareholding in the Bank|
 
 And the user should see the list of below owners in level 5, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 5741.99|
+|QA Legal Entity 5630.23|
+|QA Legal Entity 5630.23|
+|Top shareholders owning less than 2%, 71.315 %|
+|Top shareholders owning less than 2%, 71.315 %|
+
+And the user should see the list of below owners in level 6, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 5630.23|
+|QA Legal Entity 5951.99|
+|QA Legal Entity 5520.23|
+|QA Legal Entity 5951.99|
+|QA Legal Entity 5520.23|
+|Top shareholders owning less than 2%, 71.315 %|
+
+And the user should see the list of below owners in level 7, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 5951.99|
+|QA Legal Entity 5520.23|
+|QA Legal Entity 5730.99|
+|QA Legal Entity 5730.99|
+
+And the user should see the list of below owners in level 8, above the root entity, in the owners graph
 |OWNERS|
 |QA Legal Entity 5730.99|
 
@@ -99,9 +140,9 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 57, user is currently viewing, as the root in the owners graph
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
 
-And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
 |OWNERS|
 |QA Legal Entity 5630.23|
 
@@ -109,4 +150,47 @@ Then the user should not see any nodes in level 4, above the root entity, in the
 
 Examples:
 |fid|
-|LE-57|
+|LE-56|
+
+Scenario: To verify circular relationship
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 5251.23|
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 5151.23|
+
+Examples:
+|fid|
+|LE-51|
+
+
+Scenario: To verify circular relationship
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity Vontobel Holding AG, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|OWNERS|
+|Vontrust Family Holding12.5Switzerland|
+|Vontobel Foundation10.9Switzerland|
+|Pellegrinus Holding AG4.2Switzerland|
+|Vontobel Holding AG2.5Switzerland|
+|Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
+|Dr Hans Vontobel, 18.1%; Ruth de la Cour - Vontobel, 5.5%; Vontrust AG (Holding of the Vontobel family shareholders), 12.5%; Other shares of family shareholders, 0.5%; Vontobel Foundation, 10.9%; Pellegrinus Holding AG, 4.2%; Vontobel Holding AG, 2.5%; Executive Members, 0.8%; Publicly Traded, 32.5%|
+
+Examples:
+|fid|
+|11262|
+
