@@ -20,6 +20,7 @@ public class OwnersGraphPage extends WebDriverUtils {
     private String owners_graph_percent_xpath = "')]/*[local-name()='text']/*[local-name()='tspan']";
     private String owners_graph_country_xpath = "')]/*[local-name()='text'][2]";
     private By owners_graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
+    private By owners_graph_no_subs_message_text_xpath = By.xpath("//*[@id='content-view']/p");
 
     public OwnersGraphPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -71,4 +72,17 @@ public class OwnersGraphPage extends WebDriverUtils {
         }
 
     }
+
+    public void verifyNoOwnersMsg() {
+
+        waitForWebElementToAppear(owners_graph_no_subs_message_text_xpath);
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertEquals("No known entities.", getWebElementText(owners_graph_no_subs_message_text_xpath));
+    }
+
+
 }

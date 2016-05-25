@@ -32,4 +32,8 @@ public class OwnersGraphSteps {
         pageObject.commonUtils().clickOnDirectRelationshipOnlyFilter();
     }
 
+    @Then("the user should see message displayed in place of graph explaining there are no owners")
+    public void verifyNoOwnersMsg() {
+        pageObject.ownersGraphPage().verifyNoOwnersMsg();
+    }
 }
