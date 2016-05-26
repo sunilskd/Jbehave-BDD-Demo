@@ -78,6 +78,7 @@ Examples:
 |LE-6|
 
 Scenario: User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
+User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
 Given the user is on the ubo login page
 When the user login as a kyc user
 Given the user is on the ubo login page

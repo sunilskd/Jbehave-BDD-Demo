@@ -51,6 +51,7 @@ Examples:
 |LE-6|
 
 Scenario: User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
+User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
 Given the user is on the ubo login page
 When the user login as a ubo user
 Given the user is on the ubo login page
@@ -78,7 +79,43 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
-
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 1951.53USA|
+|QA Legal Entity 1751.53USA|
+|QA Legal Entity 12UK|
+|QA Legal Entity 14UK|
+And the user should see the list of below owners in level 4, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 574.99|
+|QA Legal Entity 5714.99|
+|QA Legal Entity 1351.53UK|
+|QA Legal Entity 1551.53USA|
+And the user should see the list of below owners in level 5, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 5630.23|
+|QA Test Person 15.93|
+|QA Legal Entity 5630.23|
+|QA Test Person 15.93|
+|QA Legal Entity 5741.99|
+|QA Test Person 251.93|
+And the user should see the list of below owners in level 6, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 5520.23|
+|QA Legal Entity 5951.99|
+|QA Legal Entity 5520.23|
+|QA Legal Entity 5951.99|
+|QA Legal Entity 5630.23|
+|QA Legal Entity 15.93|
+And the user should see the list of below owners in level 7, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 5730.99|
+|QA Legal Entity 5730.99|
+|QA Legal Entity 5520.23|
+|QA Legal Entity 5951.99|
+And the user should see the list of below owners in level 8, above the root entity, in the owners graph
+|OWNERS|
+|QA Legal Entity 5730.99|
 
 Examples:
 |fid|
