@@ -198,12 +198,11 @@ Examples:
 
 
 Scenario: KYC-137 - Sub Graph - Direct-Indirect filter covers below scenarios
-a.By Default checkbox for Direct relationship is not selected
+a. By Default checkbox for Direct relationship is not selected
 b. If no subsidiaries are present, filter is still available
 c. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
 
-Given the user is on the ubo login page
-When the user login as a kyc user
+
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
@@ -221,8 +220,7 @@ Scenario: Covers below scenarios
  a. 0. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
     1. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
 
-Given the user is on the ubo login page
-When the user login as a kyc user
+
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
