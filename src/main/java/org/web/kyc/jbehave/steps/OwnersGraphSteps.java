@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -29,7 +30,24 @@ public class OwnersGraphSteps {
 
     @When("the user clicks on the direct relationships only filter in the owners graph")
     public void clickOnDirectRelationshipOnlyFilter(){
-        pageObject.commonUtils().clickOnDirectRelationshipOnlyFilter();
+        pageObject.commonUtils().clickOnDirectRelationshipCheckbox();
+    }
+
+    @Then("the user should see no country highlight selected by default in country highlight drop-down in the owners graph page")
+    public void verifyNoCountryHighlightSelection(){
+        pageObject.commonUtils().verifyNoCountryHighlightSelection();
+    }
+
+    @When("the user selects a country $country from the country highlight list in the owners graph page")
+    @Aliases(values={"the user selects another country $country from the country highlight list in the owners graph page",
+            "the user de-selects the selected country by selecting $country from the country highlight list in the owners graph page"})
+    public void selectCountryHighlightInGraphs(@Named("country") String country){
+        pageObject.commonUtils().selectCountryHighlightInGraphs(country);
+    }
+
+    @Then("the user should see the below owners in the owners graph that have the selected country of operations highlighted in the owners graph page $subsidiariesHighlightedExamTable")
+    public void verifyNodesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable){
+        pageObject.commonUtils().verifyNodesAreHighlightedForSelectedCountry(subsidiariesHighlightedExamTable);
     }
 
 }

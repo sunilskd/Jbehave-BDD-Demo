@@ -14,6 +14,7 @@ KYC user does not have access to below entity types -
 Covers below features:
 JIRA ID - KYC-37 - KYC user can filter owners graph by percent ownership
 JIRA ID - KYC-138 - Owners Graph - Direct-Indirect filter
+JIRA ID - KYC-105 - KYC user can highlight legal entities by country in ownership graph
 
 Meta:@kycownersgraph @kyc
 
@@ -71,6 +72,55 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
+
+
+Examples:
+|fid|
+|LE-6|
+
+Scenario: Covers below scenarios
+a. 0. "No country highlight" is default selection in country highlight drop-down
+   1. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+   2. Select a country highlight, legal entities in the owners graph that have that country of operations are highlighted (including root node of graph if applicable)
+   3. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+   4. Select "No country highlight", removes country highlight of legal entities
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+
+Then the user should see no country highlight selected by default in country highlight drop-down in the owners graph page
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page
+|COUNTRIES|
+|No country highlight|
+|UK|
+|USA|
+
+When the user selects a country UK from the country highlight list in the owners graph page
+Then the user should see the below owners in the owners graph that have the selected country of operations highlighted in the owners graph page
+|NODES|
+|QA Legal Entity 6|
+|QA Legal Entity 10|
+|QA Legal Entity 9|
+|QA Legal Entity 11|
+|QA Legal Entity 12|
+|QA Legal Entity 14|
+|QA Legal Entity 13|
+
+When the user selects a country USA from the country highlight list in the owners graph page
+Then the user should see the below owners in the owners graph that have the selected country of operations highlighted in the owners graph page
+|NODES|
+|QA Legal Entity 16|
+|QA Legal Entity 18|
+|QA Legal Entity 17|
+|QA Legal Entity 19|
+|QA Legal Entity 15|
+
+When the user de-selects the selected country by selecting No country highlight from the country highlight list in the owners graph page
+Then the user should not see the nodes highlighted in the graph page
 
 
 Examples:

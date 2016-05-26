@@ -38,6 +38,7 @@ public class CommonUtils extends WebDriverUtils {
     private String graph_country_xpath = ")')]/*[local-name()='text'][2]";
     private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
+    private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -143,7 +144,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         try {
-            Thread.sleep(3000L);
+            Thread.sleep(5000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -171,7 +172,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyNoHighlightedNodes() {
-        assertFalse(isWebElementDisplayed(By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]")));
+        assertFalse(isWebElementDisplayed(graph_country_highlight_nodes_verify_xpath));
     }
 
     public void clickOnDirectRelationshipCheckbox() {
