@@ -52,10 +52,10 @@ public class CommonSteps {
     @Then("the user verifies direct relationship checkbox is not checked on graph")
     public void verifyingDirectRelationshipCheckboxisNotClicked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxisNotClicked();}
 
-    @Then("the user clicks on direct relationship checkbox on graph")
+    @When("the user clicks on direct relationship checkbox on graph")
     public void clickOnDirectRelationshipCheckbox(){pageObject.commonUtils().clickOnDirectRelationshipCheckbox();}
 
-    @Then("the user unchecks direct relationship checkbox on graph")
+    @When("the user unchecks direct relationship checkbox on graph")
     public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationshipCheckbox();}
 
 }
