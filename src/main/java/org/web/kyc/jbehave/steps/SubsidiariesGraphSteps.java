@@ -18,9 +18,8 @@ public class SubsidiariesGraphSteps {
     }
 
     @Then("the user should see the list of below subsidiaries in level $level, below the root entity, in the subsidiaries graph $subsidiariesExamTable")
-    public void verifySubsidiariesNodes(String level, ExamplesTable subsidiariesExamTable){
-        pageObject.subsidiariesGraphPage().verifySubsidiariesNodes(level, subsidiariesExamTable);
-
+    public void verifyGraphNodes(String level, ExamplesTable subsidiariesExamTable){
+        pageObject.commonUtils().verifyGraphNodes(Integer.toString(Integer.parseInt(level)*180), subsidiariesExamTable);
     }
 
     @Then("the user should see message displayed in place of graph explaining there are no subsidiaries")
@@ -36,8 +35,8 @@ public class SubsidiariesGraphSteps {
     }
 
     @Then("the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page $subsidiariesHighlightedExamTable")
-    public void verifySubsidiariesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable){
-        pageObject.subsidiariesGraphPage().verifySubsidiariesAreHighlightedForSelectedCountry(subsidiariesHighlightedExamTable);
+    public void verifyNodesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable){
+        pageObject.commonUtils().verifyNodesAreHighlightedForSelectedCountry(subsidiariesHighlightedExamTable);
     }
 
     @Then("the user should see no country highlight selected by default in country highlight drop-down in the subsidiaries graph page")

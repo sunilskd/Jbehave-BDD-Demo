@@ -56,6 +56,6 @@ public class CommonSteps {
     public void clickOnDirectRelationshipCheckbox(){pageObject.commonUtils().clickOnDirectRelationshipOnlyFilter();}
 
     @Then("the user unchecks direct relationship checkbox")
-    public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().uncheckDirectRelationShipCheckbox();}
+    public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationShipCheckbox();}
 
 }

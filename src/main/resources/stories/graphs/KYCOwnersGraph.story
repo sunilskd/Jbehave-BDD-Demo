@@ -21,41 +21,6 @@ Scenario: KYC user login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: Filter owners graph by percent ownership
-a. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
-b. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, null percent owners are filtered out and not displayed on the graph, only owners with equal to or greater than selected percent ownership appear on the graph
-c. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph
-d. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners with 100 percent appear on graph
-e. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
-f. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only owners with equal to or greater than selected percent appear on the graph
-g. If user moves slider to 0 percent, all owners appear on graph
-h. User applies percent filter that results in no owners on the graph, only root node is left on the graph
-i. Free text ownership always remains visible on graph despite any filter applied
-
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
-
-And the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|OWNERS|
-|QA Legal Entity 945.53UK|
-|QA Legal Entity 10UK|
-
-And the user should see the list of below owners in level 2, above the root entity, in the owners graph
-|OWNERS|
-|QA Legal Entity 161.53USA|
-|QA Legal Entity 181.53USA|
-|QA Legal Entity 1151.53UK|
-
-When the user clicks on the direct relationships only filter in the owners graph
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: KYC-137 - Sub Graph - Direct-Indirect filter
 a. By default, "Direct Relationships Only" is not selected
 b. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
@@ -77,8 +42,9 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
-User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
+Scenario: Covers below scenarios
+a. 0. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
+   1. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
 Given the user is on the ubo login page
 When the user login as a kyc user
 Given the user is on the ubo login page
@@ -89,7 +55,7 @@ And the user clicks on the graph button
 Then the user clicks on direct relationship checkbox
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|OWNERS|
+|NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
@@ -97,12 +63,12 @@ Then the user unchecks direct relationship checkbox
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|OWNERS|
+|NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
 And the user should see the list of below owners in level 2, above the root entity, in the owners graph
-|OWNERS|
+|NODES|
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|

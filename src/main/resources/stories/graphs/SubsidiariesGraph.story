@@ -34,7 +34,7 @@ And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 35Australia|
 |QA Legal Entity 3425.9Australia|
 |QA Legal Entity 33Australia|
@@ -42,23 +42,23 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 |QA Legal Entity 359.53India|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 3960.9Australia|
 |QA Legal Entity 437.9Korea (Republic of)|
 |QA Legal Entity 41Korea (Republic of)|
 |QA Legal Entity 4070.9Korea (Republic of)|
 |QA Legal Entity 42Korea (Republic of)|
 |QA Legal Entity 149.53UK|
-|QA Legal Entity 250.53USA|
+|QA Legal Entity 250.53UK|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 4571.9Korea (Republic of)|
 |QA Legal Entity 150.52UK|
 |QA Legal Entity 110.23UK|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 4671.9|
 
 Examples:
@@ -81,22 +81,22 @@ And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 55, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 5620.23(null)|
+|NODES|
+|QA Legal Entity 5620.23|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 6055.99(null)|
-|QA Legal Entity 5730.23(null)|
+|NODES|
+|QA Legal Entity 6055.99|
+|QA Legal Entity 5730.23|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 5930.99(null)|
+|NODES|
+|QA Legal Entity 5930.99|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 5651.99(null)|
-|QA Legal Entity 6056.99(null)|
+|NODES|
+|QA Legal Entity 5651.99|
+|QA Legal Entity 6056.99|
 
 Examples:
 |fid|
@@ -118,14 +118,14 @@ And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 52, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 53(null)|
-|QA Legal Entity 5151.23(null)|
+|NODES|
+|QA Legal Entity 53|
+|QA Legal Entity 5151.23|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 5251.23(null)|
-|QA Legal Entity 54(null)|
+|NODES|
+|QA Legal Entity 5251.23|
+|QA Legal Entity 54|
 
 Examples:
 |fid|
@@ -148,13 +148,6 @@ Examples:
 |LE-58|
 |LE-46|
 
-
-
-
-
-
-
-
 Scenario: Highlight legal entities by country
 a. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
 b. "No country highlight" is default selection in country highlight drop-down
@@ -175,22 +168,25 @@ And the user should see the list of below unique country of operations for each 
 |India|
 |Korea (Republic of)|
 |UK|
-|USA|
 
 When the user selects a country Korea (Republic of) from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 5|
 |QA Legal Entity 43|
+|QA Legal Entity 42|
 |QA Legal Entity 41|
 |QA Legal Entity 40|
-|QA Legal Entity 42|
 |QA Legal Entity 45|
 
-When the user selects another country USA from the country highlight list in the subsidiaries graph page
+When the user selects another country UK from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 2|
+|QA Legal Entity 6|
+|QA Legal Entity 1|
+|QA Legal Entity 1|
+|QA Legal Entity 1|
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
 Then the user should not see the nodes highlighted in the subsidiaries graph page
@@ -198,7 +194,6 @@ Then the user should not see the nodes highlighted in the subsidiaries graph pag
 Examples:
 |fid|
 |LE-6|
-
 
 Scenario: KYC-137 - Sub Graph - Direct-Indirect filter
 a. By default, "Direct Relationships Only" is not selected
@@ -236,7 +231,7 @@ Then the user clicks on direct relationship checkbox
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 35Australia|
 |QA Legal Entity 3425.9Australia|
 |QA Legal Entity 33Australia|
@@ -247,7 +242,7 @@ Then the user unchecks direct relationship checkbox
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 35Australia|
 |QA Legal Entity 3425.9Australia|
 |QA Legal Entity 33Australia|
@@ -255,23 +250,23 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 |QA Legal Entity 359.53India|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 3960.9Australia|
 |QA Legal Entity 437.9Korea (Republic of)|
 |QA Legal Entity 41Korea (Republic of)|
 |QA Legal Entity 4070.9Korea (Republic of)|
 |QA Legal Entity 42Korea (Republic of)|
 |QA Legal Entity 149.53UK|
-|QA Legal Entity 250.53USA|
+|QA Legal Entity 250.53UK|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 4571.9Korea (Republic of)|
 |QA Legal Entity 150.52UK|
 |QA Legal Entity 110.23UK|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 4671.9|
 
 Examples:

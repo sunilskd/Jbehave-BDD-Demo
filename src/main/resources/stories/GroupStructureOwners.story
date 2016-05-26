@@ -33,7 +33,7 @@ Then the user should see the legal entity QA Legal Entity 1, user is currently v
 
 Then the user should see the majority owners for the focused institution QA Legal Entity 1 in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 2|USA|50.53|
+|QA Legal Entity 2|UK|50.53|
 
 Then the user should see the majority owners for the institution QA Legal Entity 2 in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
