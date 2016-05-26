@@ -17,6 +17,7 @@ UBO user does not have access to below entity types -
 Covers below features:
 JIRA ID - KYC-37 - KYC user can filter owners graph by percent ownership
 JIRA ID - KYC-138 - Owners Graph - Direct-Indirect filter
+JIRA ID - KYC-49 - UBO user can view ownership graph with UBOs
 
 Meta:@uboownersgraph @ubo
 
@@ -44,6 +45,10 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
    1. User un-checks "Direct Relationships Only" box, then graph updates to show all owners in any level
+   2. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity on the owners graph above the entity it owns.
+   3. Owner has percent ownership, display percent on owner's node on graph
+   4. Owner has null percent ownership, do not display percent ownership on owner node on graph
+   5. Entity user is viewing has free text ownership, do not display on the owners graph for UBO user
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -69,54 +74,170 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
+
 And the user should see the list of below owners in level 3, above the root entity, in the owners graph
 |NODES|
-|QA Legal Entity 1951.53USA|
-|QA Legal Entity 1751.53USA|
-|QA Legal Entity 12UK|
 |QA Legal Entity 14UK|
+|QA Legal Entity 12UK|
+|QA Legal Entity 1751.53USA|
+|QA Legal Entity 1951.53USA|
+
 And the user should see the list of below owners in level 4, above the root entity, in the owners graph
 |NODES|
-|QA Legal Entity 574.99|
-|QA Legal Entity 5714.99|
-|QA Legal Entity 1351.53UK|
 |QA Legal Entity 1551.53USA|
+|QA Legal Entity 1351.53UK|
+|QA Legal Entity 614.99|
+|QA Legal Entity 6114.99|
+
 And the user should see the list of below owners in level 5, above the root entity, in the owners graph
 |NODES|
-|QA Legal Entity 5630.23|
+|QA Legal Entity 6141.99|
 |QA Test Person 15.93|
-|QA Legal Entity 5630.23|
 |QA Test Person 15.93|
-|QA Legal Entity 5741.99|
 |QA Test Person 251.93|
+
 And the user should see the list of below owners in level 6, above the root entity, in the owners graph
 |NODES|
-|QA Legal Entity 5520.23|
-|QA Legal Entity 5951.99|
-|QA Legal Entity 5520.23|
-|QA Legal Entity 5951.99|
-|QA Legal Entity 5630.23|
-|QA Legal Entity 15.93|
-And the user should see the list of below owners in level 7, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 5730.99|
-|QA Legal Entity 5730.99|
-|QA Legal Entity 5520.23|
-|QA Legal Entity 5951.99|
-And the user should see the list of below owners in level 8, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 5730.99|
+|QA Test Person 15.93|
 
 Examples:
 |fid|
 |LE-6|
 
-Scenario: UBO user views owners graph
-a. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity on the owners graph above the entity it owns.
-b. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
-c. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
-d. Owner has percent ownership, display percent on owner's node on graph
-e. Owner has null percent ownership, do not display percent ownership on owner node on graph
-f. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
-g. Entity user is viewing does not have any active relationships to owners, display message "No known entities."
-h. Entity user is viewing does not have any owners, display message "No known entities."
+Scenario: Covers below scenarios
+a. 0. Entity user is viewing does not have any active relationships to owners, display message "No known entities."
+   1. Entity user is viewing does not have any owners, display message "No known entities."
+b. 0. If owner is type person but the relationship is inactive, do not display that person as owner on the graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see message displayed in place of graph explaining there are no owners
+
+Examples:
+|fid|
+|LE-32|
+|LE-F|
+
+Scenario: Covers below scenarios
+a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
+   1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 2951.53India|
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 322.53India|
+|QA Legal Entity 30India|
+
+Examples:
+|fid|
+|LE-23|
+
+Scenario: Covers below scenarios
+a. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 5630.23|
+
+Then the user should not see any nodes in level 4, above the root entity, in the owners graph
+
+Examples:
+|fid|
+|LE-56|
+
+Scenario: To verify circular relationship
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 5251.23|
+|QA Test Person 110.93|
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 5151.23|
+|QA Test Person 29.93|
+
+Examples:
+|fid|
+|LE-51|
+
+Scenario: To verify owners graph when entity user is viewing is also an owner of the same entity
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity Vontobel Holding AG, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|Vontrust Family Holding12.5Switzerland|
+|Vontobel Foundation10.9Switzerland|
+|Pellegrinus Holding AG4.2Switzerland|
+|Vontobel Holding AG2.5Switzerland|
+|Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
+|Free float32.5|
+|Dr Hans Vontobel, 18.1%; Ruth de la Cour - Vontobel, 5.5%; Vontrust AG (Holding of the Vontobel family shareholders), 12.5%; Other shares of family shareholders, 0.5%; Vontobel Foundation, 10.9%; Pellegrinus Holding AG, 4.2%; Vontobel Holding AG, 2.5%; Executive Members, 0.8%; Publicly Traded, 32.5%|
+
+Examples:
+|fid|
+|11262|
+
+Scenario: Covers below scenarios
+a. 0. Entity user is viewing has owners that are type person and the relationship is active, display those owners on the graph
+   1. Person owner has percent ownership, display percent on owner's node on graph
+   2. Person owner has null percent ownership, do not display percent ownership on owner node on graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Test Person E49.23|
+|QA Legal Entity B50.52|
+|QA Test Person A45.52|
+|QA Legal Entity C50.52|
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Test Person B40.23|
+|QA Test Person G50.222|
+|QA Legal Entity D50.52|
+|QA Test Person D49.23|
+|QA Test Person G4.93|
+
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|NODES|
+|QA Test Person H49.23|
+|QA Test Person G4.23|
+|QA Test Person C50.52|
+
+Examples:
+|fid|
+|LE-A|

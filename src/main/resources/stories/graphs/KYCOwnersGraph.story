@@ -57,37 +57,19 @@ And the user should see the list of below owners in level 4, above the root enti
 |NODES|
 |QA Legal Entity 1551.53USA|
 |QA Legal Entity 1351.53UK|
-|QA Legal Entity 5714.99|
-|QA Legal Entity 574.99|
+|QA Legal Entity 614.99|
+|QA Legal Entity 6114.99|
 |Top 20 shareholders, 57.67%; Others, 42.33%. There were no persons with a substantial shareholding in the Bank|
 
 And the user should see the list of below owners in level 5, above the root entity, in the owners graph
 |NODES|
-|QA Legal Entity 5741.99|
-|QA Legal Entity 5630.23|
-|QA Legal Entity 5630.23|
+|QA Legal Entity 6141.99|
 |Top shareholders owning less than 2%, 71.315 %|
 |Top shareholders owning less than 2%, 71.315 %|
 
 And the user should see the list of below owners in level 6, above the root entity, in the owners graph
 |NODES|
-|QA Legal Entity 5630.23|
-|QA Legal Entity 5951.99|
-|QA Legal Entity 5520.23|
-|QA Legal Entity 5951.99|
-|QA Legal Entity 5520.23|
 |Top shareholders owning less than 2%, 71.315 %|
-
-And the user should see the list of below owners in level 7, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 5951.99|
-|QA Legal Entity 5520.23|
-|QA Legal Entity 5730.99|
-|QA Legal Entity 5730.99|
-
-And the user should see the list of below owners in level 8, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 5730.99|
 
 Examples:
 |fid|
@@ -144,6 +126,7 @@ Then the user should see the legal entity QA Legal Entity 56, user is currently 
 And the user should see the list of below owners in level 3, above the root entity, in the owners graph
 |NODES|
 |QA Legal Entity 5630.23|
+|Top shareholders owning less than 2%, 71.315 %|
 
 Then the user should not see any nodes in level 4, above the root entity, in the owners graph
 
@@ -172,7 +155,7 @@ Examples:
 |LE-51|
 
 
-Scenario: To verify circular relationship
+Scenario: To verify owners graph when entity user is viewing is also an owner of the same entity
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
