@@ -16,16 +16,15 @@ UBO user does not have access to below entity types -
 
 Covers below features:
 JIRA ID - KYC-37 - KYC user can filter owners graph by percent ownership
-JIRA ID - KYC-137 - Sub Graph - Direct-Indirect filter
+JIRA ID - KYC-138 - Owners Graph - Direct-Indirect filter
 
-Scenario: KYC-137 - Sub Graph - Direct-Indirect filter
-a. By default, "Direct Relationships Only" is not selected
-b. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
-c. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
-d. If no subsidiaries are present, filter is still available
-e. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
 
-Scenario:By Default checkbox for Direct relationship is not selected
+
+Scenario: KYC-138 - Owners Graph - Direct-Indirect filter covers below scenarios
+a. By Default checkbox for Direct relationship is not selected
+b. If no owners are present, filter is still available
+c. If there are no owners beyond level 1 direct relationships, filter is still available
+
 Given the user is on the ubo login page
 When the user login as a ubo user
 Given the user is on the ubo login page
@@ -33,11 +32,13 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user verifies direct relationship checkbox is not checked on Owners
+Then the user verifies direct relationship checkbox is not checked on graph
 
 Examples:
 |fid|
 |LE-6|
+|LE-55|
+|LE-61|
 
 Scenario: Covers below scenarios
 a. 0. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
@@ -49,14 +50,14 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user clicks on direct relationship checkbox on Owners
+Then the user clicks on direct relationship checkbox on graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
-Then the user unchecks direct relationship checkbox on Owners
+Then the user unchecks direct relationship checkbox on graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
