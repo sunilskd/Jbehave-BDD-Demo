@@ -26,6 +26,7 @@ Scenario: Covers below scenarios
 a. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity on the owners graph above the entity it owns.
 b. Owner has percent ownership, display percent on owner's node on graph
 c. Owner has null percent ownership, do not display percent ownership on owner node on graph
+d. Entity has owners of type person, do not display on the graph for KYC user
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -115,7 +116,6 @@ Examples:
 
 Scenario: Covers below scenarios
 a. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
-b. Entity has owners of type person, do not display on the graph for KYC user
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
