@@ -174,7 +174,7 @@ public class CommonUtils extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]")));
     }
 
-    public void clickOnDirectRelationshipOnlyFilter() {
+    public void clickOnDirectRelationshipCheckbox() {
         try{
             Thread.sleep(5000L);
         clickOnWebElement(graph_filter_direct_relationship_only_xpath);
@@ -183,11 +183,11 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
-    public void verifyDirectRelationshipCheckboxValue() {
+    public void verifyingDirectRelationshipCheckboxisNotClicked() {
         assertTrue(isWebElementDisplayed(graph_filter_direct_relationship_only_xpath));
     }
 
-    public void unCheckDirectRelationShipCheckbox() {
+    public void unCheckDirectRelationshipCheckbox() {
         try{
             Thread.sleep(5000L);
             clickOnWebElement(graph_filer_direct_relationship_only_uncheck_xpath);

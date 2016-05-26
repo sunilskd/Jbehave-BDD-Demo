@@ -28,7 +28,7 @@ c. User un-checks "Direct Relationships Only" box, then graph updates to show al
 d. If no subsidiaries are present, filter is still available
 e. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
 
-Scenario:By Default checkbox for Direct relationship is not selected
+Scenario: By Default checkbox for Direct relationship is not selected
 Given the user is on the ubo login page
 When the user login as a kyc user
 Given the user is on the ubo login page
@@ -36,7 +36,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user verifies direct relationship checkbox is not checked
+Then the user verifies direct relationship checkbox is not checked on Owners
 
 Examples:
 |fid|
@@ -52,14 +52,14 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user clicks on direct relationship checkbox
+Then the user clicks on direct relationship checkbox on Owners
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
-Then the user unchecks direct relationship checkbox
+Then the user unchecks direct relationship checkbox on Owners
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph

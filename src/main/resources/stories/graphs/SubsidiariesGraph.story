@@ -211,7 +211,7 @@ When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user verifies direct relationship checkbox is not checked
+Then the user verifies direct relationship checkbox is not checked on subsidiaries
 
 Examples:
 |fid|
@@ -227,7 +227,7 @@ When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user clicks on direct relationship checkbox
+Then the user clicks on direct relationship checkbox on subsidiaries
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
@@ -238,7 +238,7 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
-Then the user unchecks direct relationship checkbox
+Then the user unchecks direct relationship checkbox on subsidiaries
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph

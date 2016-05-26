@@ -33,14 +33,15 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user verifies direct relationship checkbox is not checked
+Then the user verifies direct relationship checkbox is not checked on Owners
 
 Examples:
 |fid|
 |LE-6|
 
-Scenario: User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
-User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
+Scenario: Covers below scenarios
+a. 0. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
+   1. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
 Given the user is on the ubo login page
 When the user login as a ubo user
 Given the user is on the ubo login page
@@ -48,14 +49,14 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user clicks on direct relationship checkbox
+Then the user clicks on direct relationship checkbox on Owners
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
-Then the user unchecks direct relationship checkbox
+Then the user unchecks direct relationship checkbox on Owners
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
