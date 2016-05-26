@@ -31,6 +31,7 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_country_highlight_list_text_xpath = By.xpath("//select/option");
     private By graph_country_highlight_header_text_xpath = By.xpath(".//div[@class='graph-controls']/div[3] //label");
     private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
+    private By graph_no_known_entities_message_text_xpath = By.xpath("//*[@id='content-view']/p");
     private By graph_filter_direct_relationship_only_xpath = By.xpath("//input[@type='checkbox'][@class='ng-pristine ng-valid']");
     private By graph_filer_direct_relationship_only_uncheck_xpath = By.xpath("//input[@type='checkbox'][@class='ng-valid ng-dirty']");
     private String graph_level_xpath = "//*[contains(@transform,',";
@@ -250,5 +251,16 @@ public class CommonUtils extends WebDriverUtils {
         for (int i=0; i<eNodeList.size(); i++){
             assertEquals("Node does not match at " + i, eNodeList.get(i), aNodeList.get(i));
         }
+    }
+
+    public void verifyNoOwnersMsg() {
+
+        waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
     }
 }

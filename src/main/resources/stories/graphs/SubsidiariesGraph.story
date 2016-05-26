@@ -8,7 +8,6 @@ JIRA ID - KYC-69 - KYC user can view subsidiary graph
 JIRA ID - KYC-137 - Sub Graph - Direct-Indirect filter
 JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
 
-
 Meta:@subsidiariesgraph @kyc @ubo
 
 Scenario: KYC user login
@@ -195,14 +194,10 @@ Examples:
 |fid|
 |LE-6|
 
-
-
 Scenario: KYC-137 - Sub Graph - Direct-Indirect filter covers below scenarios
 a. By Default checkbox for Direct relationship is not selected
 b. If no subsidiaries are present, filter is still available
 c. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
-
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
@@ -219,14 +214,12 @@ Examples:
 Scenario: Covers below scenarios
  a. 0. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
     1. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
-
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship checkbox on graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
@@ -237,7 +230,7 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
-Then the user unchecks direct relationship checkbox on graph
+When the user unchecks direct relationship checkbox on graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph

@@ -28,6 +28,7 @@ public class OwnersGraphSteps {
         pageObject.commonUtils().verifyGraphNodes(Integer.toString(840 - (Integer.parseInt(level)*180)), ownersExamTable);
     }
 
+
     @When("the user clicks on the direct relationships only filter in the owners graph")
     public void clickOnDirectRelationshipOnlyFilter(){
         pageObject.commonUtils().clickOnDirectRelationshipCheckbox();
@@ -46,8 +47,18 @@ public class OwnersGraphSteps {
     }
 
     @Then("the user should see the below owners in the owners graph that have the selected country of operations highlighted in the owners graph page $subsidiariesHighlightedExamTable")
-    public void verifyNodesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable){
+    public void verifyNodesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable) {
         pageObject.commonUtils().verifyNodesAreHighlightedForSelectedCountry(subsidiariesHighlightedExamTable);
     }
 
+    @Then("the user should see message displayed in place of graph explaining there are no owners")
+    public void verifyNoOwnersMsg() {
+        pageObject.commonUtils().verifyNoOwnersMsg();
+
+    }
+
+    @Then("the user should not see any nodes in level $level, above the root entity, in the owners graph")
+    public void verifyStopTravelingPath(String level){
+        pageObject.ownersGraphPage().verifyStopTravelingPath(level);
+    }
 }
