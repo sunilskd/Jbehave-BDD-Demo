@@ -23,13 +23,8 @@ public class OwnersGraphSteps {
     }
 
     @Then("the user should see the list of below owners in level $level, above the root entity, in the owners graph $ownersExamTable")
-    public void verifyOwnersNodes(String level, ExamplesTable ownersExamTable){
-        pageObject.ownersGraphPage().verifyOwnersNodes(level, ownersExamTable);
-    }
-
-    @When("the user clicks on the direct relationships only filter in the owners graph")
-    public void clickOnDirectRelationshipOnlyFilter(){
-        pageObject.commonUtils().clickOnDirectRelationshipOnlyFilter();
+    public void verifyGraphNodes(String level, ExamplesTable ownersExamTable){
+        pageObject.commonUtils().verifyGraphNodes(Integer.toString(840 - (Integer.parseInt(level)*180)), ownersExamTable);
     }
 
     @Then("the user should see message displayed in place of graph explaining there are no owners")
