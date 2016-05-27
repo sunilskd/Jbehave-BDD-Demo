@@ -7,6 +7,7 @@ Covers below features:
 JIRA ID - KYC-69 - KYC user can view subsidiary graph
 JIRA ID - KYC-137 - Sub Graph - Direct-Indirect filter
 JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
+JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -272,7 +273,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user should see the pecentage filter is set to 0 by default in the subsidiaries graph page
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
 When the user enters percentage as 25 in ownership percentage text box in the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 

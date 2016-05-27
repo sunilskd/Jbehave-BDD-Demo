@@ -186,9 +186,9 @@ public class CommonUtils extends WebDriverUtils {
         enterStringInInputBox(graph_percent_filter_text_box_xpath,percentFilter);
     }
 
-    public void verifyPercentFilterSettoZero() {
-        assertEquals("0", getWebElementText(graph_percent_filter_text_box_xpath));
-
+    public void verifyPercentFilterIsSetToZero() {
+        waitForWebElementToAppear(graph_percent_slider_bar_xpath);
+        assertEquals("0", getWebElementsAttributeValue(graph_percent_slider_bar_xpath, "data-value").get(0));
     }
 
     public void clickOnDirectRelationshipCheckbox() {
@@ -269,7 +269,6 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyNoOwnersMsg() {
-
         waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
         try {
             Thread.sleep(3000L);

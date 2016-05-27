@@ -59,10 +59,9 @@ public class CommonSteps {
         pageObject.commonUtils().enterPercentFilter(percentFilter);
     }
 
-    @Then("the user should see the pecentage filter is set to 0 by default in the subsidiaries graph page")
-    public void verifyPercentFilterSettoZero() {
-        pageObject.commonUtils().verifyPercentFilterSettoZero();
-
+    @Then("the user should see, by default, percent filter set to 0 for both input box and slider, in the graph")
+    public void verifyPercentFilterIsSetToZero() {
+        pageObject.commonUtils().verifyPercentFilterIsSetToZero();
     }
 
     @Then("the user verifies direct relationship checkbox is not checked on graph")
