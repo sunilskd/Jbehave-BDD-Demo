@@ -17,9 +17,9 @@ public class OwnersGraphPage extends WebDriverUtils {
     }
 
     public void verifyOwnersGraphRootNode(String legalEntity) {
-        waitForWebElementToAppear(By.xpath(owners_graph_level_xpath  + "840" + owners_graph_legal_title_xpath));
+        waitForWebElementToAppear(By.xpath(owners_graph_level_xpath  + "600" + owners_graph_legal_title_xpath));
         verifyOwnersGraphHeader();
-        assertEquals(legalEntity, getWebElementText(By.xpath(owners_graph_level_xpath  + "840" + owners_graph_legal_title_xpath)));
+        assertEquals(legalEntity, getWebElementText(By.xpath(owners_graph_level_xpath  + "600" + owners_graph_legal_title_xpath)));
     }
 
     public void verifyOwnersGraphHeader() {
