@@ -297,7 +297,12 @@ public class CommonUtils extends WebDriverUtils {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+            }
+
+    public void verifyFooterLogos(String verifyFooterLogos){
+       findElement(By.className(verifyFooterLogos)).click();
     }
+
 
     public void verifyURLOpensInNewWindow(String url){
         for (String Handle : getWindowHandles()) {

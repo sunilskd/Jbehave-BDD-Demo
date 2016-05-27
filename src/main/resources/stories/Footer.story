@@ -33,6 +33,9 @@ When the user clicks on Disclaimer link in footer section
 Then user is taken to a URL http://www.accuity.com/disclaimer/ that opens in a new window
 When the user clicks on Editorial Policy link in footer section
 Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
+When the user clicks on the logo logo-relx in footers section
+Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+
 
 Examples:
 |fid|
