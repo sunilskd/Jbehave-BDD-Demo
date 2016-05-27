@@ -67,7 +67,8 @@ Examples:
 Scenario: Scenario 2
 .Description
 ----
-Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+a. 1. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+   2. Subsidiary graph should not display the free text
 ----
 image:Subsidiaries-Graph-Scenario-2.png[Scenario 2]
 ----
@@ -148,11 +149,11 @@ Examples:
 |LE-46|
 
 Scenario: Highlight legal entities by country
-a. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
-b. "No country highlight" is default selection in country highlight drop-down
-c. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
-d. Select "No country highlight", removes country highlight of legal entities
-e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+a. 0. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+   1. "No country highlight" is default selection in country highlight drop-down
+   2. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
+   3. Select "No country highlight", removes country highlight of legal entities
+   4. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab

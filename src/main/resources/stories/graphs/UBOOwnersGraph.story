@@ -200,7 +200,7 @@ And the user should see the list of below owners in level 1, above the root enti
 |Vontobel Holding AG2.5Switzerland|
 |Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
 |Free float32.5|
-|Dr Hans Vontobel, 18.1%; Ruth de la Cour - Vontobel, 5.5%; Vontrust AG (Holding of the Vontobel family shareholders), 12.5%; Other shares of family shareholders, 0.5%; Vontobel Foundation, 10.9%; Pellegrinus Holding AG, 4.2%; Vontobel Holding AG, 2.5%; Executive Members, 0.8%; Publicly Traded, 32.5%|
+|Others, ExecutiveMembers|
 
 Examples:
 |fid|

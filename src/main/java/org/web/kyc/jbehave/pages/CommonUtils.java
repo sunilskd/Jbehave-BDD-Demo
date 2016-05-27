@@ -206,7 +206,7 @@ public class CommonUtils extends WebDriverUtils {
         /* Creating a list of actual owners list by concatenating legal title, percent and country */
         for (int i =0; i<getWebElements(By.xpath(graph_level_xpath + level + ")')]")).size(); i++) {
             aNodeList.add(
-                    executeScript("return arguments[0].innerHTML;", aLegalTitle.get(i)).toString() +
+                    executeScript("return arguments[0].innerHTML;", aLegalTitle.get(i)).toString().replace("%","").trim() +
                             executeScript("return arguments[0].innerHTML;", aPercent.get(i)).toString().replace("%","") +
                             executeScript("return arguments[0].innerHTML;", aCountry.get(i)).toString()
             );
