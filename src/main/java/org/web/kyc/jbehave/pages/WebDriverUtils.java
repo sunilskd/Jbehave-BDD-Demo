@@ -94,6 +94,7 @@ public class WebDriverUtils extends WebDriverPage {
     }
 
     public void enterStringInInputBox(By by, String inputString) {
+        findElement(by).clear();
         findElement(by).sendKeys(inputString);
     }
 

@@ -54,7 +54,7 @@ public class CommonSteps {
         pageObject.commonUtils().changePercentOwnershipUsingSlider(slideTo);
     }
 
-    @When("the user enters percentage as $percentFilter in ownership percentage text box in the subsidiaries graph")
+    @When("the user enters percentage as $percentFilter in ownership percentage filter text box in the graph")
     public void enterPercentFilter(@Named("percentFilter") String percentFilter){
         pageObject.commonUtils().enterPercentFilter(percentFilter);
     }
@@ -73,5 +73,9 @@ public class CommonSteps {
     @When("the user unchecks direct relationship checkbox on graph")
     public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationshipCheckbox();}
 
+    @Then("the user should see the legal title displayed in the nodes when the user hovers over it in the graphs $legalTitleExamTable")
+    public void verifyHoverOverToolTipInNodes(ExamplesTable legalTitleExamTable){
+        pageObject.commonUtils().verifyHoverOverToolTipInNodes(legalTitleExamTable);
+    }
 
 }

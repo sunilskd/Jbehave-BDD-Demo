@@ -267,6 +267,37 @@ Examples:
 |fid|
 |LE-6|
 
+Scenario: Verify tool tip displays legal title in graphs
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+And the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+
+Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
+|LEGAL TITLE|
+|QA Legal Entity 6|
+|QA Legal Entity 35|
+|QA Legal Entity 34|
+|QA Legal Entity 33|
+|QA Legal Entity 5|
+|QA Legal Entity 3|
+|QA Legal Entity 39|
+|QA Legal Entity 43|
+|QA Legal Entity 41|
+|QA Legal Entity 40|
+|QA Legal Entity 42|
+|QA Legal Entity 1|
+|QA Legal Entity 2|
+|QA Legal Entity 45|
+|QA Legal Entity 1|
+|QA Legal Entity 1|
+|QA Legal Entity 46|
+
+Examples:
+|fid|
+|LE-6|
+
 Scenario:
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -274,7 +305,7 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
-When the user enters percentage as 25 in ownership percentage text box in the subsidiaries graph
+When the user enters percentage as 25 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
@@ -292,7 +323,7 @@ And the user should see the list of below subsidiaries in level 3, below the roo
 |SUBSIDIARIES|
 |QA Legal Entity 150.52(UK)|
 
-When the user enters percentage as 0 in ownership percentage text box in the subsidiaries graph
+When the user enters percentage as 0 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
@@ -310,13 +341,13 @@ And the user should see the list of below subsidiaries in level 3, below the roo
 |SUBSIDIARIES|
 |QA Legal Entity 150.52(UK)|
 
-When the user enters percentage as 100 in ownership percentage text box in the subsidiaries graph
+When the user enters percentage as 100 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
-When the user enters percentage as 200 in ownership percentage text box in the subsidiaries graph
+When the user enters percentage as 200 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
-When the user enters percentage as abc in ownership percentage text box in the subsidiaries graph
+When the user enters percentage as abc in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph

@@ -22,7 +22,7 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
-When the user enters percentage as 25 in ownership percentage text box in the subsidiaries graph
+When the user enters percentage as 25 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
@@ -34,11 +34,41 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
 |NODES|
 |QA Legal Entity 149.53UK|
-|QA Legal Entity 250.53USA|
+|QA Legal Entity 250.53UK|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
 |NODES|
 |QA Legal Entity 150.52UK|
+
+When the user enters percentage as 0 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53UK|
+
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 150.52UK|
+
+When the user enters percentage as 100 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+And the user should not see any nodes in level 2, below the root entity, in the subsidiaries graph
+
+When the user enters percentage as 200 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+And the user should not see any nodes in level 2, below the root entity, in the subsidiaries graph
+
+When the user enters percentage as abc in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+And the user should not see any nodes in level 2, below the root entity, in the subsidiaries graph
 
 Examples:
 |fid|
