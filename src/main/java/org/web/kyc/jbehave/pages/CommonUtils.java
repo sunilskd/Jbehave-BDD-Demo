@@ -204,6 +204,9 @@ public class CommonUtils extends WebDriverUtils {
         List<WebElement> aCountry = getWebElements(By.xpath(graph_level_xpath + level + graph_country_xpath));
         List aNodeList = new ArrayList();
 
+        /* Comparing the size of actual and expected list */
+        assertEquals(aLegalTitle.size(),nodesExamTable.getRowCount());
+
         /* Creating a list of actual owners list by concatenating legal title, percent and country */
         for (int i =0; i<getWebElements(By.xpath(graph_level_xpath + level + ")')]")).size(); i++) {
             aNodeList.add(
@@ -235,6 +238,9 @@ public class CommonUtils extends WebDriverUtils {
     public void verifyNodesAreHighlightedForSelectedCountry(ExamplesTable nodesHighlightedExamTable) {
         List<WebElement> webElements = getWebElements(graph_country_highlight_nodes_xpath);
         List aNodeList = new ArrayList();
+
+        /* Comparing the size of actual and expected list */
+        assertEquals(webElements.size(),nodesHighlightedExamTable.getRowCount());
 
         for (int i =0; i<webElements.size(); i++) {
             aNodeList.add(
@@ -272,6 +278,9 @@ public class CommonUtils extends WebDriverUtils {
         waitForWebElementToAppear(By.xpath(graph_legal_title_tool_tip_xpath));
         List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_legal_title_tool_tip_xpath));
         List aNodeList = new ArrayList();
+
+        /* Comparing the size of actual and expected list */
+        assertEquals(aLegalTitle.size(),legalTitleExamTable.getRowCount());
 
         for (int i =0; i<aLegalTitle.size(); i++) {
             aNodeList.add(
