@@ -9,50 +9,32 @@ e. Display all head office entity where useInaddress is true
 Scenario: KYC user login
 Meta: @id login
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 
-Scenario: Highlight legal entities by country
-a. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
-b. "No country highlight" is default selection in country highlight drop-down
-c. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
-d. Select "No country highlight", removes country highlight of legal entities
-e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
-
+Scenario: Covers below scenarios
+a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
+   1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
+   2. If entity on owners graph has non-institution, non-person entity type owner but the relationship is inactive, do not display that owner on the graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the subsidiaries tab
+And the user clicks on the owners tab
 And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root in the owners graph
 
-Then country highlights should display with no country highlight option selected
-And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page
-|COUNTRIES|
-|No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
-|USA|
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 2951.53India|
 
-When the user selects a country <country> from the country highlight list in the subsidiaries graph page
-Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
-|QA Legal Entity 5|
-|QA Legal Entity 43|
-|QA Legal Entity 41|
-|QA Legal Entity 40|
-|QA Legal Entity 42|
-|QA Legal Entity 45|
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 322.53India|
+|QA Legal Entity 30India|
 
-When the user selects another country <changecountry> from the country highlight list in the subsidiaries graph page
-Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
-|QA Legal Entity 2|
-
-When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
-Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|NODES|
+|QA Test Person 2|
 
 Examples:
-|fid|country|changecountry|
-|LE-6|Korea (Republic of)|USA|
+|fid|
+|LE-23|

@@ -49,4 +49,13 @@ public class CommonSteps {
         pageObject.commonUtils().sVerifyCountryHighlightList(countriesHighlightListExamTable);
     }
 
+    @Then("the user verifies direct relationship checkbox is not checked on graph")
+    public void verifyingDirectRelationshipCheckboxisNotClicked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxIsNotClicked();}
+
+    @When("the user clicks on direct relationship checkbox on graph")
+    public void clickOnDirectRelationshipCheckbox(){pageObject.commonUtils().clickOnDirectRelationshipCheckbox();}
+
+    @When("the user unchecks direct relationship checkbox on graph")
+    public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationshipCheckbox();}
+
 }
