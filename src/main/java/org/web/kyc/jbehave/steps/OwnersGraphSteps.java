@@ -24,7 +24,7 @@ public class OwnersGraphSteps {
 
     @Then("the user should see the list of below owners in level $level, above the root entity, in the owners graph $ownersExamTable")
     public void verifyGraphNodes(String level, ExamplesTable ownersExamTable){
-        pageObject.commonUtils().verifyGraphNodes(Integer.toString(840 - (Integer.parseInt(level)*180)), ownersExamTable);
+        pageObject.commonUtils().verifyGraphNodes(Integer.toString(600 - (Integer.parseInt(level)*180)), ownersExamTable);
     }
 
     @Then("the user should see message displayed in place of graph explaining there are no owners")
