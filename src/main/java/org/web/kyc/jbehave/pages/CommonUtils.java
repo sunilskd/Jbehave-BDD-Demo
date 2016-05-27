@@ -1,6 +1,7 @@
 package org.web.kyc.jbehave.pages;
 
 import org.apache.http.message.BasicNameValuePair;
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
@@ -39,6 +40,17 @@ public class CommonUtils extends WebDriverUtils {
     private String graph_country_xpath = ")')]/*[local-name()='text'][2]";
     private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
+    private By footer_contactus_text_xpath = By.xpath("//ul/li[1]/a");
+    private By footer_help_text_xpath = By.xpath("//ul/li[2]/a");
+    private By footer_portfolio_text_xpath = By.xpath("//ul/li[3]/a");
+    private By footer_about_us_text_xpath = By.xpath("//ul/li[4]/a");
+    private By footer_terms_and_conditions_text_xpath = By.xpath("//ul/li[5]/a");
+    private By footer_privacy_policy_text_xpath = By.xpath("//ul/li[6]/a");
+    private By footer_disclaimer_text_xpath = By.xpath("//ul/li[7]/a");
+    private By footer_editorial_policy_text_xpath = By.xpath("//ul/li[8]/a");
+    private By footer_rbi_logo_xpath = By.xpath("//a[1]/span");
+    private By footer_relx_logo_xpath = By.xpath("//a[2]/span");
+    private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -261,5 +273,37 @@ public class CommonUtils extends WebDriverUtils {
             e.printStackTrace();
         }
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
+    }
+
+    public void verifyFooterInformation(){
+        waitForWebElementToAppear(footer_contactus_text_xpath);
+        assertEquals("Contact Us",getWebElementText(footer_contactus_text_xpath));
+        assertEquals("Help",getWebElementText(footer_help_text_xpath));
+        assertEquals("Portfolio",getWebElementText(footer_portfolio_text_xpath));
+        assertEquals("About Us",getWebElementText(footer_about_us_text_xpath));
+        assertEquals("Terms & Conditions",getWebElementText(footer_terms_and_conditions_text_xpath));
+        assertEquals("Privacy Policy",getWebElementText(footer_privacy_policy_text_xpath));
+        assertEquals("Disclaimer",getWebElementText(footer_disclaimer_text_xpath));
+        assertEquals("Editorial Policy",getWebElementText(footer_editorial_policy_text_xpath));
+        assertTrue(isWebElementDisplayed(footer_rbi_logo_xpath));
+        assertTrue(isWebElementDisplayed(footer_relx_logo_xpath));
+        assertEquals("© Reed Business Information Limited 2016",getWebElementText(footer_copyrights_label_text_xpath));
+     }
+
+    public void verifyFooterLinks(String footerLink){
+        findElement(By.linkText(footerLink)).click();
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyURLOpensInNewWindow(String url){
+        for (String Handle : getWindowHandles()) {
+            switchTo().window(Handle);
+        }
+        assertEquals(url, getCurrentUrl());
+        switchTo().window((String) getWindowHandles().toArray()[0]);
     }
 }

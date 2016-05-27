@@ -58,4 +58,17 @@ public class CommonSteps {
     @When("the user unchecks direct relationship checkbox on graph")
     public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationshipCheckbox();}
 
+    @Then("the user should see footer information with links to contact us, help, portfolio, about us, terms and conditions, privacy policy, disclaimer, editorial policy, rbi and relx logos, copy rights label")
+    public void verifyFooterInformation(){pageObject.commonUtils().verifyFooterInformation();
+    }
+
+    @When("the user clicks on $footerLink link in footer section")
+    public void verifyFooterLinks(@Named("$footerLink") String footerLink){pageObject.commonUtils().verifyFooterLinks(footerLink);
+    }
+
+    @Then("user is taken to a URL $url that opens in a new window")
+    public void verifyURLOpensInNewWIndow(@Named("$url") String url){pageObject.commonUtils().verifyURLOpensInNewWindow(url);}
+
+
+
 }
