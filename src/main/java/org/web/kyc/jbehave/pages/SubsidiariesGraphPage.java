@@ -15,46 +15,24 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
 
     private By subsidiaries_graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
     private String subsidiaries_graph_level_xpath = "//*[contains(@transform,',";
-    private String subsidiaries_graph_legal_title_xpath = "')]//*[local-name()='text'][1]";
+    private String subsidiaries_graph_legal_title_xpath = "')]/*[local-name()='text']/*[local-name()='title']";
     private By subsidiaries_graph_no_subs_message_text_xpath = By.xpath("//*[@id='content-view']/p");
+<<<<<<< HEAD
     private String nodes_xpath = "//*[local-name()='g']";
     private String node_highlight_xpath = "/*[local-name()='rect'][contains(@class,'country-highlight')]";
     private String subsidiaries_graph_percentage_value_text_xpath ="//*[local-name()='g'][@transform != 'translate(0,0)']/*[local-name()='text'][1]/*[local-name()='tspan']";
     private String graph_percent_filter_text_box_xpath = "//*[@id='content-view']/div[1]/div[1]/div/input[1]";
+=======
+>>>>>>> develop
 
     public SubsidiariesGraphPage(WebDriverProvider driverProvider) {
         super(driverProvider);
     }
 
     public void verifySubsidiariesGraphRootNode(String legalEntity) {
-        waitForWebElementToAppear(By.xpath(subsidiaries_graph_level_xpath + "0" + subsidiaries_graph_legal_title_xpath));
         verifySubsGraphHeader();
         waitForWebElementToAppear(By.xpath(subsidiaries_graph_level_xpath + "0" + subsidiaries_graph_legal_title_xpath));
         assertEquals(legalEntity, getWebElementText(By.xpath(subsidiaries_graph_level_xpath + "0" + subsidiaries_graph_legal_title_xpath)));
-    }
-
-    public void verifySubsidiariesNodes(String level, ExamplesTable subsidiariesExamTable) {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        String aLevel  = Integer.toString(Integer.parseInt(level)*180);
-        List<String> aSubsidiariesList = getWebElementsText(By.xpath(subsidiaries_graph_level_xpath + aLevel + "')]"));
-
-        List eSubsidiariesLegalTitle = new ArrayList();
-        for (Map<String,String> row : subsidiariesExamTable.getRows()) {
-            String legalTitle = row.get("SUBSIDIARIES");
-            eSubsidiariesLegalTitle.add(legalTitle);
-        }
-
-        /* Ordering both actual and expected list as the node position changes every time a page loads */
-        Collections.sort(aSubsidiariesList);
-        Collections.sort(eSubsidiariesLegalTitle);
-
-        for (int i=0; i<eSubsidiariesLegalTitle.size(); i++){
-            assertEquals("Subsidiaries does not match at " + i, eSubsidiariesLegalTitle.get(i), aSubsidiariesList.get(i).replace("%",""));
-        }
     }
 
     public void verifyNoSubsidiariesMsg() {
@@ -73,6 +51,7 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
         assertEquals("Subsidiary Graph", getWebElementText(subsidiaries_graph_header_text_xpath));
     }
 
+<<<<<<< HEAD
     public void verifySubsidiariesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable) {
         List<WebElement> webElements= getWebElements(By.xpath(nodes_xpath));
         /* Looping through all the nodes*/
@@ -104,3 +83,6 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
 
 
 
+=======
+}
+>>>>>>> develop

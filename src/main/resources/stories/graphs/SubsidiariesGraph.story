@@ -5,11 +5,15 @@ It is of added value to present it in graph form to the user, since they often p
 
 Covers below features:
 JIRA ID - KYC-69 - KYC user can view subsidiary graph
+<<<<<<< HEAD
 JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
+=======
+JIRA ID - KYC-137 - Sub Graph - Direct-Indirect filter
+>>>>>>> develop
 JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
 JIRA ID - KYC-324 - Country list in owners graph and subs graph is not displaying root node's country.
 
-Meta:@subsidiariesgraph
+Meta:@subsidiariesgraph @kyc @ubo
 
 Scenario: KYC user login
 Given the user is on the ubo login page
@@ -34,32 +38,32 @@ And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 35(Australia)|
-|QA Legal Entity 3425.9(Australia)|
-|QA Legal Entity 33(Australia)|
-|QA Legal Entity 550.53(Korea (Republic of))|
-|QA Legal Entity 359.53(India)|
+|NODES|
+|QA Legal Entity 35Australia|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 33Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 3960.9(Australia)|
-|QA Legal Entity 437.9(Korea (Republic of))|
-|QA Legal Entity 41(Korea (Republic of))|
-|QA Legal Entity 4070.9(Korea (Republic of))|
-|QA Legal Entity 42(Korea (Republic of))|
-|QA Legal Entity 149.53(UK)|
-|QA Legal Entity 250.53(USA)|
+|NODES|
+|QA Legal Entity 3960.9Australia|
+|QA Legal Entity 437.9Korea (Republic of)|
+|QA Legal Entity 41Korea (Republic of)|
+|QA Legal Entity 4070.9Korea (Republic of)|
+|QA Legal Entity 42Korea (Republic of)|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53UK|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 4571.9(Korea (Republic of))|
-|QA Legal Entity 150.52(UK)|
-|QA Legal Entity 110.23(UK)|
+|NODES|
+|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 150.52UK|
+|QA Legal Entity 110.23UK|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 4671.9(null)|
+|NODES|
+|QA Legal Entity 4671.9|
 
 Examples:
 |fid|
@@ -68,7 +72,8 @@ Examples:
 Scenario: Scenario 2
 .Description
 ----
-Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+a. 1. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+   2. Subsidiary graph should not display the free text
 ----
 image:Subsidiaries-Graph-Scenario-2.png[Scenario 2]
 ----
@@ -81,22 +86,22 @@ And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 55, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 5620.23(null)|
+|NODES|
+|QA Legal Entity 5620.23|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 6055.99(null)|
-|QA Legal Entity 5730.23(null)|
+|NODES|
+|QA Legal Entity 6055.99|
+|QA Legal Entity 5730.23|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 5930.99(null)|
+|NODES|
+|QA Legal Entity 5930.99|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 5651.99(null)|
-|QA Legal Entity 6056.99(null)|
+|NODES|
+|QA Legal Entity 5651.99|
+|QA Legal Entity 6056.99|
 
 Examples:
 |fid|
@@ -118,14 +123,14 @@ And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 52, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 53(null)|
-|QA Legal Entity 5151.23(null)|
+|NODES|
+|QA Legal Entity 53|
+|QA Legal Entity 5151.23|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 5251.23(null)|
-|QA Legal Entity 54(null)|
+|NODES|
+|QA Legal Entity 5251.23|
+|QA Legal Entity 54|
 
 Examples:
 |fid|
@@ -149,11 +154,11 @@ Examples:
 |LE-46|
 
 Scenario: Highlight legal entities by country
-a. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
-b. "No country highlight" is default selection in country highlight drop-down
-c. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
-d. Select "No country highlight", removes country highlight of legal entities
-e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+a. 0. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+   1. "No country highlight" is default selection in country highlight drop-down
+   2. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
+   3. Select "No country highlight", removes country highlight of legal entities
+   4. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -168,28 +173,39 @@ And the user should see the list of below unique country of operations for each 
 |India|
 |Korea (Republic of)|
 |UK|
-|USA|
 
 When the user selects a country Korea (Republic of) from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
+|NODES|
 |QA Legal Entity 5|
 |QA Legal Entity 43|
+|QA Legal Entity 42|
 |QA Legal Entity 41|
 |QA Legal Entity 40|
-|QA Legal Entity 42|
 |QA Legal Entity 45|
 
+<<<<<<< HEAD
 When the user selects another country India from the country highlight list in the subsidiaries graph page
 Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
 |SUBSIDIARIES|
 |QA Legal Entity 3|
+=======
+When the user selects another country UK from the country highlight list in the subsidiaries graph page
+Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
+|NODES|
+|QA Legal Entity 2|
+|QA Legal Entity 6|
+|QA Legal Entity 1|
+|QA Legal Entity 1|
+|QA Legal Entity 1|
+>>>>>>> develop
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
 Then the user should not see the nodes highlighted in the subsidiaries graph page
 
 Examples:
 |fid|
+<<<<<<< HEAD
 |LE-16|
 
 Scenario: KYC-104 - KYC user can filter subsidiary graph by percent ownership
@@ -202,10 +218,25 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 And the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the subsidiaries graph page
 Then subsidiaries with percent filter matching should be displayed
+=======
+|LE-6|
+
+Scenario: KYC-137 - Sub Graph - Direct-Indirect filter covers below scenarios
+a. By Default checkbox for Direct relationship is not selected
+b. If no subsidiaries are present, filter is still available
+c. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+And the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user verifies direct relationship checkbox is not checked on graph
+>>>>>>> develop
 
 Examples:
 |fid|
 |LE-6|
+<<<<<<< HEAD
 
 Scenario: KYC-104 - KYC user can filter subsidiary graph by percent ownership
 a. By default, percent filter is set to 0 for both input box and slider, all subsidiaries are displayed in the graph
@@ -274,3 +305,62 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 Examples:
 |fid|
 |LE-6|
+=======
+|LE-1|
+|LE-2|
+
+Scenario: Covers below scenarios
+ a. 0. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
+    1. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+And the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+When the user clicks on direct relationship checkbox on graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 35Australia|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 33Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+When the user unchecks direct relationship checkbox on graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 35Australia|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 33Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 3960.9Australia|
+|QA Legal Entity 437.9Korea (Republic of)|
+|QA Legal Entity 41Korea (Republic of)|
+|QA Legal Entity 4070.9Korea (Republic of)|
+|QA Legal Entity 42Korea (Republic of)|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53UK|
+
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 150.52UK|
+|QA Legal Entity 110.23UK|
+
+And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 4671.9|
+
+Examples:
+|fid|
+|LE-6|
+
+>>>>>>> develop
