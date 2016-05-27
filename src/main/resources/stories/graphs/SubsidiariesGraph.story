@@ -298,7 +298,8 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario:
+Scenario: Covers below scenarios
+
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -309,52 +310,64 @@ When the user enters percentage as 25 in ownership percentage filter text box in
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 3425.9(Australia)|
-|QA Legal Entity 550.53(Korea (Republic of))|
-|QA Legal Entity 359.53(India)|
+|NODES|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 149.53(UK)|
-|QA Legal Entity 250.53(USA)|
+|NODES|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53UK|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 150.52(UK)|
+|NODES|
+|QA Legal Entity 150.52UK|
 
 When the user enters percentage as 0 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 3425.9(Australia)|
-|QA Legal Entity 550.53(Korea (Republic of))|
-|QA Legal Entity 359.53(India)|
+|NODES|
+|QA Legal Entity 35Australia|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 33Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 149.53(UK)|
-|QA Legal Entity 250.53(USA)|
+|NODES|
+|QA Legal Entity 3960.9Australia|
+|QA Legal Entity 437.9Korea (Republic of)|
+|QA Legal Entity 41Korea (Republic of)|
+|QA Legal Entity 4070.9Korea (Republic of)|
+|QA Legal Entity 42Korea (Republic of)|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53UK|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 150.52(UK)|
+|NODES|
+|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 150.52UK|
+|QA Legal Entity 110.23UK|
+
+And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 4671.9|
 
 When the user enters percentage as 100 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+And the user should not see any nodes in level 2, below the root entity, in the subsidiaries graph
 
 When the user enters percentage as 200 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+And the user should not see any nodes in level 2, below the root entity, in the subsidiaries graph
 
 When the user enters percentage as abc in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
-
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
-|SUBSIDIARIES|
-|QA Legal Entity 3425.9(Australia)|
-|QA Legal Entity 550.53(Korea (Republic of))|
-|QA Legal Entity 359.53(India)|
+And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 4671.9|
 
 Examples:
 |fid|
