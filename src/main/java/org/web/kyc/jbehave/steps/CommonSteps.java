@@ -1,9 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
 import org.web.kyc.jbehave.pages.PageObject;
 
@@ -44,13 +41,29 @@ public class CommonSteps {
         pageObject.commonUtils().clickOnGraphButton();
     }
 
-    @Then("the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page $countriesHighlightListExamTable")
+    @Then ("the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page $countriesHighlightListExamTable")
+    @Alias("the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page $countriesHighlightListExamTable")
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         pageObject.commonUtils().sVerifyCountryHighlightList(countriesHighlightListExamTable);
     }
+    
+    @When("the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to $slideTo in the subsidiaries graph page")
+    public void changePercentOwnershipUsingSlider(@Named("$slideTo") int slideTo){
+        pageObject.commonUtils().changePercentOwnershipUsingSlider(slideTo);
+    }
+
+    @When("the user enters percentage as $percentFilter in ownership percentage filter text box in the graph")
+    public void enterPercentFilter(@Named("percentFilter") String percentFilter){
+        pageObject.commonUtils().enterPercentFilter(percentFilter);
+    }
+
+    @Then("the user should see, by default, percent filter set to 0 for both input box and slider, in the graph")
+    public void verifyPercentFilterIsSetToZero() {
+        pageObject.commonUtils().verifyPercentFilterIsSetToZero();
+    }
 
     @Then("the user verifies direct relationship checkbox is not checked on graph")
-    public void verifyingDirectRelationshipCheckboxisNotClicked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxisNotClicked();}
+    public void verifyingDirectRelationshipCheckboxIsNotClicked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxIsNotClicked();}
 
     @When("the user clicks on direct relationship checkbox on graph")
     public void clickOnDirectRelationshipCheckbox(){pageObject.commonUtils().clickOnDirectRelationshipCheckbox();}
@@ -73,6 +86,13 @@ public class CommonSteps {
     @Then("user is taken to a URL $url that opens in a new window")
     public void verifyURLOpensInNewWindow(@Named("$url") String url){pageObject.commonUtils().verifyURLOpensInNewWindow(url);}
 
+    @Then("the user should see the legal title displayed in the nodes when the user hovers over it in the graphs $legalTitleExamTable")
+    public void verifyHoverOverToolTipInNodes(ExamplesTable legalTitleExamTable){
+        pageObject.commonUtils().verifyHoverOverToolTipInNodes(legalTitleExamTable);
+    }
 
-
+    @Then("the user verifies no other country names are listed in dropdown")
+    public void verifyCountryHighlightDropDownSize(){
+        pageObject.commonUtils().verifyCountryHighlightDropDownSize();
+    }
 }

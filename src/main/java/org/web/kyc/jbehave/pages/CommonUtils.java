@@ -6,6 +6,7 @@ import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.*;
@@ -29,25 +30,20 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_country_highlight_list_text_xpath = By.xpath("//select/option");
     private By graph_country_highlight_header_text_xpath = By.xpath(".//div[@class='graph-controls']/div[3] //label");
     private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
+    private By graph_percent_slider_bar_xpath = By.xpath("//*[@class='graph-controls'] //input[2]");
+    private By graph_percent_filter_text_box_xpath = By.xpath("//*[@class='graph-controls']/div[1]/div/input[1]");
     private By graph_no_known_entities_message_text_xpath = By.xpath("//*[@id='content-view']/p");
     private By graph_filter_direct_relationship_only_xpath = By.xpath("//input[@type='checkbox'][@class='ng-pristine ng-valid']");
     private By graph_filer_direct_relationship_only_uncheck_xpath = By.xpath("//input[@type='checkbox'][@class='ng-valid ng-dirty']");
     private String graph_level_xpath = "//*[contains(@transform,',";
     private String graph_percent_xpath = ")')]/*[local-name()='text'][1]/*[local-name()='tspan']";
     private String graph_country_xpath = ")')]/*[local-name()='text'][2]";
-    private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
+    private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
+    private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']";
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
-    private By footer_contactus_text_xpath = By.xpath("//ul/li[1]/a");
-    private By footer_help_text_xpath = By.xpath("//ul/li[2]/a");
-    private By footer_portfolio_text_xpath = By.xpath("//ul/li[3]/a");
-    private By footer_about_us_text_xpath = By.xpath("//ul/li[4]/a");
-    private By footer_terms_and_conditions_text_xpath = By.xpath("//ul/li[5]/a");
-    private By footer_privacy_policy_text_xpath = By.xpath("//ul/li[6]/a");
-    private By footer_disclaimer_text_xpath = By.xpath("//ul/li[7]/a");
-    private By footer_editorial_policy_text_xpath = By.xpath("//ul/li[8]/a");
-    private By footer_rbi_logo_xpath = By.xpath("//a[1]/span");
-    private By footer_relx_logo_xpath = By.xpath("//a[2]/span");
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
+    private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
+    private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -153,7 +149,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         try {
-            Thread.sleep(3000L);
+            Thread.sleep(5000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -181,7 +177,26 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyNoHighlightedNodes() {
-        assertFalse(isWebElementDisplayed(By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]")));
+        assertFalse(isWebElementDisplayed(graph_country_highlight_nodes_verify_xpath));
+    }
+
+    public void changePercentOwnershipUsingSlider(int slideTo) {
+        moveSliderBarTo(graph_percent_slider_bar_xpath, slideTo);
+    }
+
+    public void enterPercentFilter(String percentFilter){
+        waitForWebElementToAppear(graph_percent_filter_text_box_xpath);
+        enterStringInInputBox(graph_percent_filter_text_box_xpath, percentFilter);
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyPercentFilterIsSetToZero() {
+        waitForWebElementToAppear(graph_percent_slider_bar_xpath);
+        assertEquals("0", getWebElementsAttributeValue(graph_percent_slider_bar_xpath, "data-value").get(0));
     }
 
     public void clickOnDirectRelationshipCheckbox() {
@@ -193,7 +208,7 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
-    public void verifyingDirectRelationshipCheckboxisNotClicked() {
+    public void verifyingDirectRelationshipCheckboxIsNotClicked() {
         assertTrue(isWebElementDisplayed(graph_filter_direct_relationship_only_xpath));
     }
 
@@ -207,15 +222,22 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyGraphNodes(String level, ExamplesTable nodesExamTable) {
-        List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_level_xpath + level + graph_legal_title_xpath));
+        List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_level_xpath + level + graph_legal_title_link_xpath));
         List<WebElement> aPercent = getWebElements(By.xpath(graph_level_xpath + level + graph_percent_xpath ));
         List<WebElement> aCountry = getWebElements(By.xpath(graph_level_xpath + level + graph_country_xpath));
         List aNodeList = new ArrayList();
 
+        /* Comparing the size of actual and expected list */
+        assertEquals(aLegalTitle.size(),nodesExamTable.getRowCount());
+
         /* Creating a list of actual owners list by concatenating legal title, percent and country */
         for (int i =0; i<getWebElements(By.xpath(graph_level_xpath + level + ")')]")).size(); i++) {
             aNodeList.add(
-                    executeScript("return arguments[0].innerHTML;", aLegalTitle.get(i)).toString().replace("%","").trim() +
+                    executeScript("return arguments[0].innerHTML;", aLegalTitle.get(i)).toString().replace("%","")
+                                                                                        .replace("<tspan x=\"40\">","")
+                                                                                        .replace("</tspan><tspan dy=\"14\" x=\"40\">","")
+                                                                                        .replace("</tspan><tspan class=\"ellipsis\">","")
+                                                                                        .replace("</tspan>","").trim() +
                             executeScript("return arguments[0].innerHTML;", aPercent.get(i)).toString().replace("%","") +
                             executeScript("return arguments[0].innerHTML;", aCountry.get(i)).toString()
             );
@@ -240,6 +262,9 @@ public class CommonUtils extends WebDriverUtils {
         List<WebElement> webElements = getWebElements(graph_country_highlight_nodes_xpath);
         List aNodeList = new ArrayList();
 
+        /* Comparing the size of actual and expected list */
+        assertEquals(webElements.size(),nodesHighlightedExamTable.getRowCount());
+
         for (int i =0; i<webElements.size(); i++) {
             aNodeList.add(
                     executeScript("return arguments[0].innerHTML;", webElements.get(i)).toString());
@@ -262,7 +287,6 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyNoOwnersMsg() {
-
         waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
         try {
             Thread.sleep(3000L);
@@ -304,4 +328,48 @@ public class CommonUtils extends WebDriverUtils {
         assertEquals(url, getCurrentUrl());
         switchTo().window((String) getWindowHandles().toArray()[0]);
     }
+
+    public void verifyHoverOverToolTipInNodes(ExamplesTable legalTitleExamTable) {
+        waitForWebElementToAppear(By.xpath(graph_legal_title_tool_tip_xpath));
+        List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_legal_title_tool_tip_xpath));
+        List aNodeList = new ArrayList();
+
+        /* Comparing the size of actual and expected list */
+        assertEquals(aLegalTitle.size(),legalTitleExamTable.getRowCount());
+
+        for (int i =0; i<aLegalTitle.size(); i++) {
+            aNodeList.add(
+                    executeScript("return arguments[0].innerHTML;", aLegalTitle.get(i)).toString().replace("%","").trim());
+        }
+
+        List eNodeList = new ArrayList();
+        for (Map<String,String> row : legalTitleExamTable.getRows()) {
+            String legalTitle = row.get("LEGAL TITLE");
+            eNodeList.add(legalTitle);
+        }
+
+        /* Ordering both actual and expected list as the node position changes every time a page loads */
+        Collections.sort(eNodeList);
+        Collections.sort(aNodeList);
+
+        for (int i=0; i<eNodeList.size(); i++){
+            assertEquals("Node does not match at " + i, eNodeList.get(i), aNodeList.get(i));
+        }
+    }
+
+
+    public void verifyCountryHighlightDropDownSize() {
+        List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
+        assertTrue(aCountryHighlightList.size()==1);
+    }
+
+    public void verifyStopTravelingPath(String level) {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
+    }
+
 }
