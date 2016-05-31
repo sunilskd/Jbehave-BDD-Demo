@@ -48,6 +48,21 @@ public class CommonSteps {
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         pageObject.commonUtils().sVerifyCountryHighlightList(countriesHighlightListExamTable);
     }
+    
+    @When("the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to $slideTo in the subsidiaries graph page")
+    public void changePercentOwnershipUsingSlider(@Named("$slideTo") int slideTo){
+        pageObject.commonUtils().changePercentOwnershipUsingSlider(slideTo);
+    }
+
+    @When("the user enters percentage as $percentFilter in ownership percentage filter text box in the graph")
+    public void enterPercentFilter(@Named("percentFilter") String percentFilter){
+        pageObject.commonUtils().enterPercentFilter(percentFilter);
+    }
+
+    @Then("the user should see, by default, percent filter set to 0 for both input box and slider, in the graph")
+    public void verifyPercentFilterIsSetToZero() {
+        pageObject.commonUtils().verifyPercentFilterIsSetToZero();
+    }
 
     @Then("the user verifies direct relationship checkbox is not checked on graph")
     public void verifyingDirectRelationshipCheckboxIsNotClicked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxIsNotClicked();}

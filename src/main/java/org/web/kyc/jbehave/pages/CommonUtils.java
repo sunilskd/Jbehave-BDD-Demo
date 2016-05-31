@@ -1,10 +1,12 @@
 package org.web.kyc.jbehave.pages;
 
 import org.apache.http.message.BasicNameValuePair;
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_country_highlight_list_text_xpath = By.xpath("//select/option");
     private By graph_country_highlight_header_text_xpath = By.xpath(".//div[@class='graph-controls']/div[3] //label");
     private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
+    private By graph_percent_slider_bar_xpath = By.xpath("//*[@class='graph-controls'] //input[2]");
+    private By graph_percent_filter_text_box_xpath = By.xpath("//*[@class='graph-controls']/div[1]/div/input[1]");
     private By graph_no_known_entities_message_text_xpath = By.xpath("//*[@id='content-view']/p");
     private By graph_filter_direct_relationship_only_xpath = By.xpath("//input[@type='checkbox'][@class='ng-pristine ng-valid']");
     private By graph_filer_direct_relationship_only_uncheck_xpath = By.xpath("//input[@type='checkbox'][@class='ng-valid ng-dirty']");
@@ -40,6 +44,7 @@ public class CommonUtils extends WebDriverUtils {
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']";
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
+    private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -176,6 +181,25 @@ public class CommonUtils extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]")));
     }
 
+    public void changePercentOwnershipUsingSlider(int slideTo) {
+        moveSliderBarTo(graph_percent_slider_bar_xpath, slideTo);
+    }
+
+    public void enterPercentFilter(String percentFilter){
+        waitForWebElementToAppear(graph_percent_filter_text_box_xpath);
+        enterStringInInputBox(graph_percent_filter_text_box_xpath, percentFilter);
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyPercentFilterIsSetToZero() {
+        waitForWebElementToAppear(graph_percent_slider_bar_xpath);
+        assertEquals("0", getWebElementsAttributeValue(graph_percent_slider_bar_xpath, "data-value").get(0));
+    }
+
     public void clickOnDirectRelationshipCheckbox() {
         try{
             Thread.sleep(5000L);
@@ -264,7 +288,6 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyNoOwnersMsg() {
-
         waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
         try {
             Thread.sleep(3000L);
@@ -301,4 +324,14 @@ public class CommonUtils extends WebDriverUtils {
             assertEquals("Node does not match at " + i, eNodeList.get(i), aNodeList.get(i));
         }
     }
+
+    public void verifyStopTravelingPath(String level) {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
+    }
+
 }

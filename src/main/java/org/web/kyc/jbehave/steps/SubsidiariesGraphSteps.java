@@ -48,4 +48,9 @@ public class SubsidiariesGraphSteps {
     public void verifyNoHighlightedNodes(){
         pageObject.commonUtils().verifyNoHighlightedNodes();
     }
+
+    @Then("the user should not see any nodes in level $level, below the root entity, in the subsidiaries graph")
+    public void verifyStopTravelingPath(String level){
+        pageObject.commonUtils().verifyStopTravelingPath(Integer.toString((Integer.parseInt(level) * 180)));
+    }
 }
