@@ -302,4 +302,9 @@ public class CommonUtils extends WebDriverUtils {
             assertEquals("Node does not match at " + i, eNodeList.get(i), aNodeList.get(i));
         }
     }
+
+    public void verifyCountryHighlightDropDownSize() {
+        List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
+        assertTrue(aCountryHighlightList.size()==1);
+    }
 }

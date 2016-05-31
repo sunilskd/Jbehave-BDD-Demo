@@ -334,3 +334,20 @@ Then the user should not see the nodes highlighted in the graph page
 Examples:
 |fid|
 |LE-6|
+
+
+Scenario: Country list is not displayed when No known entities
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see no country highlight selected by default in country highlight drop-down in the owners graph page
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page
+|COUNTRIES|
+|No country highlight|
+And the user verifies no other country names are listed in dropdown
+
+Examples:
+|fid|
+|1|

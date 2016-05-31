@@ -360,7 +360,46 @@ Then the user should see the below owners in the owners graph that have the sele
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the owners graph page
 Then the user should not see the nodes highlighted in the graph page
 
-
 Examples:
 |fid|
 |LE-6|
+
+Scenario: Country list is sorted alphabetically.
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see no country highlight selected by default in country highlight drop-down in the owners graph page
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page
+|COUNTRIES|
+|No country highlight|
+|Canada|
+|Italy|
+|Norway|
+|South Africa|
+|UK|
+|USA|
+
+Examples:
+|fid|
+|444|
+
+Scenario: Country list displaying root node country's
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see no country highlight selected by default in country highlight drop-down in the owners graph page
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page
+|COUNTRIES|
+|No country highlight|
+|UK|
+|USA|
+
+Examples:
+|fid|
+|LE-9|
+
+

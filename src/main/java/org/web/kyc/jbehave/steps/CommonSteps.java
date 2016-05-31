@@ -61,4 +61,9 @@ public class CommonSteps {
         pageObject.commonUtils().verifyHoverOverToolTipInNodes(legalTitleExamTable);
     }
 
+    @Then("the user verifies no other country names are listed in dropdown")
+    public void verifyCountryHighlightDropDownSize(){
+        pageObject.commonUtils().verifyCountryHighlightDropDownSize();
+    }
+
 }
