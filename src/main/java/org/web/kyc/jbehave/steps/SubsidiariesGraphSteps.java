@@ -49,11 +49,6 @@ public class SubsidiariesGraphSteps {
         pageObject.commonUtils().verifyNoHighlightedNodes();
     }
 
-    @Then("subsidiaries with percent filter matching should be displayed")
-    public void verifySubsidiariesGraphPercentage(){
-        pageObject.subsidiariesGraphPage().verifySubsidiariesGraphPercentage();
-    }
-
     @Then("the user should not see any nodes in level $level, below the root entity, in the subsidiaries graph")
     public void verifyStopTravelingPath(String level){
         pageObject.commonUtils().verifyStopTravelingPath(Integer.toString((Integer.parseInt(level) * 180)));

@@ -6,6 +6,7 @@ import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -185,6 +186,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void enterPercentFilter(String percentFilter){
+        waitForWebElementToAppear(graph_percent_filter_text_box_xpath);
         enterStringInInputBox(graph_percent_filter_text_box_xpath, percentFilter);
         try {
             Thread.sleep(2000L);
@@ -331,4 +333,5 @@ public class CommonUtils extends WebDriverUtils {
         }
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
+
 }
