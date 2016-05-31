@@ -8,10 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -276,18 +273,9 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyFooterInformation(){
-        waitForWebElementToAppear(footer_contactus_text_xpath);
-        assertEquals("Contact Us",getWebElementText(footer_contactus_text_xpath));
-        assertEquals("Help",getWebElementText(footer_help_text_xpath));
-        assertEquals("Portfolio",getWebElementText(footer_portfolio_text_xpath));
-        assertEquals("About Us",getWebElementText(footer_about_us_text_xpath));
-        assertEquals("Terms & Conditions",getWebElementText(footer_terms_and_conditions_text_xpath));
-        assertEquals("Privacy Policy",getWebElementText(footer_privacy_policy_text_xpath));
-        assertEquals("Disclaimer",getWebElementText(footer_disclaimer_text_xpath));
-        assertEquals("Editorial Policy",getWebElementText(footer_editorial_policy_text_xpath));
-        assertTrue(isWebElementDisplayed(footer_rbi_logo_xpath));
-        assertTrue(isWebElementDisplayed(footer_relx_logo_xpath));
-        assertEquals("© Reed Business Information Limited 2016",getWebElementText(footer_copyrights_label_text_xpath));
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        waitForWebElementToAppear(footer_copyrights_label_text_xpath);
+        assertEquals("© Reed Business Information Limited " + year,getWebElementText(footer_copyrights_label_text_xpath));
      }
 
     public void verifyFooterLinks(String footerLink){
@@ -297,7 +285,7 @@ public class CommonUtils extends WebDriverUtils {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-            }
+    }
 
     public void verifyFooterLogos(String verifyFooterLogos){
        findElement(By.className(verifyFooterLogos)).click();
@@ -305,6 +293,11 @@ public class CommonUtils extends WebDriverUtils {
 
 
     public void verifyURLOpensInNewWindow(String url){
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         for (String Handle : getWindowHandles()) {
             switchTo().window(Handle);
         }

@@ -58,7 +58,7 @@ public class CommonSteps {
     @When("the user unchecks direct relationship checkbox on graph")
     public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationshipCheckbox();}
 
-    @Then("the user should see footer information with links to contact us, help, portfolio, about us, terms and conditions, privacy policy, disclaimer, editorial policy, rbi and relx logos, copy rights label")
+    @Then("the user should see the copyright notice: © Reed Business Information Limited (year)")
     public void verifyFooterInformation(){pageObject.commonUtils().verifyFooterInformation();
     }
 
