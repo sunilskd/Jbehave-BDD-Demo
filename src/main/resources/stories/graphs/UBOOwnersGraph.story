@@ -321,3 +321,123 @@ Then the user should see the legal title displayed in the nodes when the user ho
 Examples:
 |fid|
 |LE-6|
+
+Scenario: Covers below scenarios
+a. By default, percent filter is set to 0 for both input box and slider, all subsidiaries are displayed in the graph
+b. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
+c. If user enters 0 in input box, slider position automatically updates to match percent entered, all subsidiaries appear on the graph
+d. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only subsidiaries that are owned by 100 percent appear on graph
+e. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all subsidiaries are displayed in the graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
+When the user enters percentage as 25 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Test Person E49.23|
+|QA Legal Entity B50.52|
+|QA Test Person A45.52|
+|QA Legal Entity C50.52|
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Test Person B40.23|
+|QA Test Person G50.222|
+|QA Legal Entity D50.52|
+|QA Test Person D49.23|
+
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|NODES|
+|QA Test Person H49.23|
+|QA Test Person C50.52|
+
+When the user enters percentage as 0 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Test Person B40.23|
+|QA Test Person G50.222|
+|QA Legal Entity D50.52|
+|QA Test Person D49.23|
+|QA Test Person G4.93|
+
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|NODES|
+|QA Test Person H49.23|
+|QA Test Person G4.23|
+|QA Test Person C50.52|
+
+When the user enters percentage as 100 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+And the user should not see any nodes in level 2, below the root entity, in the subsidiaries graph
+
+When the user enters percentage as 200 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+And the user should not see any nodes in level 2, below the root entity, in the subsidiaries graph
+
+When the user enters percentage as abc in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Test Person B40.23|
+|QA Test Person G50.222|
+|QA Legal Entity D50.52|
+|QA Test Person D49.23|
+|QA Test Person G4.93|
+
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|NODES|
+|QA Test Person H49.23|
+|QA Test Person G4.23|
+|QA Test Person C50.52|
+
+Examples:
+|fid|
+|LE-A|
+
+Scenario: Covers below scenarios
+a. If user moves slider to percent 1-100, null percent subsidiaries are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
+b. If user moves slider to 0 percent, all subsidiaries appear on graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+And the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the subsidiaries graph page
+
+Then the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity B50.52|
+|QA Legal Entity C50.52|
+
+Then the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Test Person G50.222|
+|QA Legal Entity D50.52|
+
+Then the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|NODES|
+|QA Test Person C50.52|
+
+Examples:
+|fid|
+|LE-A|
+
+Scenario: User applies percent filter that results in no subsidiaries on the graph, only root node is left on the graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user enters percentage as 51 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+
+Examples:
+|fid|
+|LE-A|
