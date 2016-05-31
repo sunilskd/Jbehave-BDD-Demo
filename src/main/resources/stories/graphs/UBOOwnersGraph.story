@@ -20,6 +20,7 @@ JIRA ID - KYC-138 - Owners Graph - Direct-Indirect filter
 JIRA ID - KYC-105 - KYC user can highlight legal entities by country in ownership graph
 JIRA ID - KYC-49 - UBO user can view ownership graph with UBOs
 JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners graph
+JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears multiple times in the ownership graph
 
 
 Meta:@uboownersgraph @ubo
@@ -401,5 +402,53 @@ And the user should see the list of below unique country of operations for each 
 Examples:
 |fid|
 |LE-9|
+
+
+Scenario: KYC -33 Root node appears in multiple times in the same path
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
+And the user should see legal entity<legalEntityTitle> appears text under the node with count<countValue>
+
+Examples:
+|fid|legalEntityTitle|countValue|
+|LE-56|QA Legal Entity 56|Appears: 2|
+
+
+Scenario: KYC -33 Covers below scenarios
+a. Legal Entity appears at multiple levels
+b. Person appears at multiple levels
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+And the user should see legal entity<legalEntityTitle> appears text under the node with count<countValue>
+
+Examples:
+|fid|legalEntityTitle|countValue|
+|LE-6|QA Legal Entity 61|Appears: 3|
+|LE-6|QA Test Person 1|Appears: 3|
+
+Scenario: KYC -33 Visual indentifier must not be displayed when Non-person/Non-legal Entities appear multiple times on the graph
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+And the user verifies visual indicator is not displayed for Non-Person/Non-Entity when appeared multiple time <nonEntityValue>
+
+Examples:
+|fid|nonEntityValue|
+|LE-6|Local Government, Legal Entity 61 owned by Local Government|
+
 
 

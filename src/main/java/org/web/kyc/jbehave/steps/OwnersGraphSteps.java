@@ -61,4 +61,14 @@ public class OwnersGraphSteps {
     public void verifyStopTravelingPath(String level){
         pageObject.commonUtils().verifyStopTravelingPath(Integer.toString(600 - (Integer.parseInt(level) * 180)));
     }
+
+    @Then("the user should see legal entity<legalEntityTitle> appears text under the node with count<countValue>")
+    public void verifyingCountForMultipleDiplayedNodes(@Named("legalEntityTitle")String legalEntityTitle,@Named("countValue")String countValue){
+        pageObject.ownersGraphPage().verifyingCountForMultipleDiplayedNodes(legalEntityTitle,countValue);
+    }
+
+    @Then("the user verifies visual indicator is not displayed for Non-Person/Non-Entity when appeared multiple time <nonEntityValue>")
+    public void verifyIndicatorNotDisplayed(@Named("nonEntityValue") String nonEntityValue){
+        pageObject.ownersGraphPage().verifyIndicatorNotDisplayed(nonEntityValue);
+    }
 }

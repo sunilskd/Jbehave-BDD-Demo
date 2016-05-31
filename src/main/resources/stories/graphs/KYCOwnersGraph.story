@@ -351,3 +351,18 @@ And the user verifies no other country names are listed in dropdown
 Examples:
 |fid|
 |1|
+
+
+Scenario: KYC -33 Visual indentifier must not be displayed when free text appears multiple times on the graph
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+And the user verifies visual indicator is not displayed for Non-Person/Non-Entity when appeared multiple time <nonEntityValue>
+
+Examples:
+|fid|nonEntityValue|
+|LE-6|Top shareholders owning less than 2%, 71.315 %|
