@@ -16,6 +16,7 @@ JIRA ID - KYC-112 - KYC user can view free text ownership on owners graph
 JIRA ID - KYC-37 - KYC user can filter owners graph by percent ownership
 JIRA ID - KYC-34 - KYC user can view owners graph
 JIRA ID - KYC-138 - Owners Graph - Direct-Indirect filter
+JIRA ID - KYC-105 - KYC user can highlight legal entities by country in ownership graph
 JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners graph
 
 Meta:@kycownersgraph @kyc
@@ -49,7 +50,7 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|
+|Treasury shares, 3.8%;Trade Union...|
 
 And the user should see the list of below owners in level 3, above the root entity, in the owners graph
 |NODES|
@@ -57,7 +58,7 @@ And the user should see the list of below owners in level 3, above the root enti
 |QA Legal Entity 12UK|
 |QA Legal Entity 1751.53USA|
 |QA Legal Entity 1951.53USA|
-|Other shareholdersowning less than 2,...|
+|Other shareholdersowning less than 2%,...|
 
 And the user should see the list of below owners in level 4, above the root entity, in the owners graph
 |NODES|
@@ -65,17 +66,17 @@ And the user should see the list of below owners in level 4, above the root enti
 |QA Legal Entity 1351.53UK|
 |QA Legal Entity 614.99|
 |QA Legal Entity 6114.99|
-|Top 20 shareholders,57.67; Others,...|
+|Top 20 shareholders,57.67%; Others,...|
 
 And the user should see the list of below owners in level 5, above the root entity, in the owners graph
 |NODES|
 |QA Legal Entity 6141.99|
-|Top shareholdersowning less than 2,...|
-|Top shareholdersowning less than 2,...|
+|Top shareholdersowning less than 2%,...|
+|Top shareholdersowning less than 2%,...|
 
 And the user should see the list of below owners in level 6, above the root entity, in the owners graph
 |NODES|
-|Top shareholdersowning less than 2,...|
+|Top shareholdersowning less than 2%,...|
 
 Examples:
 |fid|
@@ -131,7 +132,7 @@ Then the user should see the legal entity QA Legal Entity 56, user is currently 
 And the user should see the list of below owners in level 3, above the root entity, in the owners graph
 |NODES|
 |QA Legal Entity 5630.23|
-|Top shareholdersowning less than 2,...|
+|Top shareholdersowning less than 2%,...|
 
 Then the user should not see any nodes in level 4, above the root entity, in the owners graph
 
@@ -174,7 +175,7 @@ And the user should see the list of below owners in level 1, above the root enti
 |Pellegrinus Holding AG4.2Switzerland|
 |Vontobel Holding AG2.5Switzerland|
 |Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
-|Dr Hans Vontobel,18.1; Ruth de la Cour...|
+|Dr Hans Vontobel,18.1%; Ruth de la Cour...|
 
 Examples:
 |fid|
@@ -283,6 +284,68 @@ Then the user should see the legal title displayed in the nodes when the user ho
 Examples:
 |fid|
 |LE-6|
+
+Scenario: Covers below scenarios
+a. 0. "No country highlight" is default selection in country highlight drop-down
+   1. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+   2. Select a country highlight, legal entities in the owners graph that have that country of operations are highlighted (including root node of graph if applicable)
+   3. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+   4. Select "No country highlight", removes country highlight of legal entities
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+
+Then the user should see no country highlight selected by default in country highlight drop-down in the owners graph page
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page
+|COUNTRIES|
+|No country highlight|
+|UK|
+|USA|
+
+When the user selects a country UK from the country highlight list in the owners graph page
+Then the user should see the below owners in the owners graph that have the selected country of operations highlighted in the owners graph page
+|NODES|
+|QA Legal Entity 6|
+|QA Legal Entity 10|
+|QA Legal Entity 9|
+|QA Legal Entity 11|
+|QA Legal Entity 12|
+|QA Legal Entity 14|
+|QA Legal Entity 13|
+
+When the user selects a country USA from the country highlight list in the owners graph page
+Then the user should see the below owners in the owners graph that have the selected country of operations highlighted in the owners graph page
+|NODES|
+|QA Legal Entity 16|
+|QA Legal Entity 18|
+|QA Legal Entity 17|
+|QA Legal Entity 19|
+|QA Legal Entity 15|
+
+When the user de-selects the selected country by selecting No country highlight from the country highlight list in the owners graph page
+Then the user should not see the nodes highlighted in the graph page
+
+Examples:
+|fid|
+|LE-6|
+
+Scenario: Country list is not displayed when No known entities
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see no country highlight selected by default in country highlight drop-down in the owners graph page
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page
+|COUNTRIES|
+|No country highlight|
+And the user verifies no other country names are listed in dropdown
+
+Examples:
+|fid|
+|1|
 
 Scenario: Free text ownership always remains visible on graph despite any filter applied
 Given the user is on the ubo login page

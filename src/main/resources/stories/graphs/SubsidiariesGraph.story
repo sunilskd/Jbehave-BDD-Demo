@@ -191,7 +191,7 @@ Then the user should see the below subsidiaries in the subsidiaries graph that h
 |QA Legal Entity 1|
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
-Then the user should not see the nodes highlighted in the subsidiaries graph page
+Then the user should not see the nodes highlighted in the graph page
 
 Examples:
 |fid|

@@ -44,6 +44,7 @@ public class CommonUtils extends WebDriverUtils {
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']";
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
+    private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
 
     public static String selectedCountryHighlight = "";
@@ -150,7 +151,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         try {
-            Thread.sleep(3000L);
+            Thread.sleep(5000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -178,7 +179,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyNoHighlightedNodes() {
-        assertFalse(isWebElementDisplayed(By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]")));
+        assertFalse(isWebElementDisplayed(graph_country_highlight_nodes_verify_xpath));
     }
 
     public void changePercentOwnershipUsingSlider(int slideTo) {
@@ -325,6 +326,12 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
+
+    public void verifyCountryHighlightDropDownSize() {
+        List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
+        assertTrue(aCountryHighlightList.size()==1);
+    }
+
     public void verifyStopTravelingPath(String level) {
         try {
             Thread.sleep(2000L);
@@ -333,5 +340,6 @@ public class CommonUtils extends WebDriverUtils {
         }
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
+
 
 }
