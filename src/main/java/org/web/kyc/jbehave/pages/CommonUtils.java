@@ -326,12 +326,12 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
-<<<<<<< HEAD
+
     public void verifyCountryHighlightDropDownSize() {
         List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
         assertTrue(aCountryHighlightList.size()==1);
     }
-=======
+
     public void verifyStopTravelingPath(String level) {
         try {
             Thread.sleep(2000L);
@@ -341,5 +341,5 @@ public class CommonUtils extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
 
->>>>>>> develop
+
 }
