@@ -37,7 +37,8 @@ public class CommonUtils extends WebDriverUtils {
     private String graph_level_xpath = "//*[contains(@transform,',";
     private String graph_percent_xpath = ")')]/*[local-name()='text'][1]/*[local-name()='tspan']";
     private String graph_country_xpath = ")')]/*[local-name()='text'][2]";
-    private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
+    private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
+    private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']";
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
 
@@ -185,7 +186,7 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
-    public void verifyingDirectRelationshipCheckboxisNotClicked() {
+    public void verifyingDirectRelationshipCheckboxIsNotClicked() {
         assertTrue(isWebElementDisplayed(graph_filter_direct_relationship_only_xpath));
     }
 
@@ -199,15 +200,22 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyGraphNodes(String level, ExamplesTable nodesExamTable) {
-        List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_level_xpath + level + graph_legal_title_xpath));
+        List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_level_xpath + level + graph_legal_title_link_xpath));
         List<WebElement> aPercent = getWebElements(By.xpath(graph_level_xpath + level + graph_percent_xpath ));
         List<WebElement> aCountry = getWebElements(By.xpath(graph_level_xpath + level + graph_country_xpath));
         List aNodeList = new ArrayList();
 
+        /* Comparing the size of actual and expected list */
+        assertEquals(aLegalTitle.size(),nodesExamTable.getRowCount());
+
         /* Creating a list of actual owners list by concatenating legal title, percent and country */
         for (int i =0; i<getWebElements(By.xpath(graph_level_xpath + level + ")')]")).size(); i++) {
             aNodeList.add(
-                    executeScript("return arguments[0].innerHTML;", aLegalTitle.get(i)).toString() +
+                    executeScript("return arguments[0].innerHTML;", aLegalTitle.get(i)).toString().replace("%","")
+                                                                                        .replace("<tspan x=\"40\">","")
+                                                                                        .replace("</tspan><tspan dy=\"14\" x=\"40\">","")
+                                                                                        .replace("</tspan><tspan class=\"ellipsis\">","")
+                                                                                        .replace("</tspan>","").trim() +
                             executeScript("return arguments[0].innerHTML;", aPercent.get(i)).toString().replace("%","") +
                             executeScript("return arguments[0].innerHTML;", aCountry.get(i)).toString()
             );
@@ -231,6 +239,9 @@ public class CommonUtils extends WebDriverUtils {
     public void verifyNodesAreHighlightedForSelectedCountry(ExamplesTable nodesHighlightedExamTable) {
         List<WebElement> webElements = getWebElements(graph_country_highlight_nodes_xpath);
         List aNodeList = new ArrayList();
+
+        /* Comparing the size of actual and expected list */
+        assertEquals(webElements.size(),nodesHighlightedExamTable.getRowCount());
 
         for (int i =0; i<webElements.size(); i++) {
             aNodeList.add(
@@ -262,5 +273,33 @@ public class CommonUtils extends WebDriverUtils {
             e.printStackTrace();
         }
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
+    }
+
+    public void verifyHoverOverToolTipInNodes(ExamplesTable legalTitleExamTable) {
+        waitForWebElementToAppear(By.xpath(graph_legal_title_tool_tip_xpath));
+        List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_legal_title_tool_tip_xpath));
+        List aNodeList = new ArrayList();
+
+        /* Comparing the size of actual and expected list */
+        assertEquals(aLegalTitle.size(),legalTitleExamTable.getRowCount());
+
+        for (int i =0; i<aLegalTitle.size(); i++) {
+            aNodeList.add(
+                    executeScript("return arguments[0].innerHTML;", aLegalTitle.get(i)).toString().replace("%","").trim());
+        }
+
+        List eNodeList = new ArrayList();
+        for (Map<String,String> row : legalTitleExamTable.getRows()) {
+            String legalTitle = row.get("LEGAL TITLE");
+            eNodeList.add(legalTitle);
+        }
+
+        /* Ordering both actual and expected list as the node position changes every time a page loads */
+        Collections.sort(eNodeList);
+        Collections.sort(aNodeList);
+
+        for (int i=0; i<eNodeList.size(); i++){
+            assertEquals("Node does not match at " + i, eNodeList.get(i), aNodeList.get(i));
+        }
     }
 }

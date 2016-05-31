@@ -48,12 +48,17 @@ public class CommonSteps {
     }
 
     @Then("the user verifies direct relationship checkbox is not checked on graph")
-    public void verifyingDirectRelationshipCheckboxisNotClicked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxisNotClicked();}
+    public void verifyingDirectRelationshipCheckboxIsNotClicked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxIsNotClicked();}
 
     @When("the user clicks on direct relationship checkbox on graph")
     public void clickOnDirectRelationshipCheckbox(){pageObject.commonUtils().clickOnDirectRelationshipCheckbox();}
 
     @When("the user unchecks direct relationship checkbox on graph")
     public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationshipCheckbox();}
+
+    @Then("the user should see the legal title displayed in the nodes when the user hovers over it in the graphs $legalTitleExamTable")
+    public void verifyHoverOverToolTipInNodes(ExamplesTable legalTitleExamTable){
+        pageObject.commonUtils().verifyHoverOverToolTipInNodes(legalTitleExamTable);
+    }
 
 }
