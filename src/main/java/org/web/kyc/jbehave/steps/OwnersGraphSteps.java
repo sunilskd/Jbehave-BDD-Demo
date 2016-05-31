@@ -59,6 +59,6 @@ public class OwnersGraphSteps {
 
     @Then("the user should not see any nodes in level $level, above the root entity, in the owners graph")
     public void verifyStopTravelingPath(String level){
-        pageObject.ownersGraphPage().verifyStopTravelingPath(level);
+        pageObject.commonUtils().verifyStopTravelingPath(Integer.toString(600 - (Integer.parseInt(level) * 180)));
     }
 }
