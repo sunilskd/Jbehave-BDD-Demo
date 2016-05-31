@@ -47,7 +47,7 @@ public class CommonSteps {
         pageObject.commonUtils().sVerifyCountryHighlightList(countriesHighlightListExamTable);
     }
     
-    @When("the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to $slideTo in the subsidiaries graph page")
+    @When("the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to $slideTo in the graph")
     public void changePercentOwnershipUsingSlider(@Named("$slideTo") int slideTo){
         pageObject.commonUtils().changePercentOwnershipUsingSlider(slideTo);
     }
