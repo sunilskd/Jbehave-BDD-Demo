@@ -9,10 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -44,6 +41,7 @@ public class CommonUtils extends WebDriverUtils {
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']";
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
+    private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
 
@@ -298,6 +296,39 @@ public class CommonUtils extends WebDriverUtils {
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
     }
 
+    public void verifyFooterInformation(){
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        waitForWebElementToAppear(footer_copyrights_label_text_xpath);
+        assertEquals("© Reed Business Information Limited " + year,getWebElementText(footer_copyrights_label_text_xpath));
+     }
+
+    public void verifyFooterLinks(String footerLink){
+        findElement(By.linkText(footerLink)).click();
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyFooterLogos(String verifyFooterLogos){
+       findElement(By.className(verifyFooterLogos)).click();
+    }
+
+
+    public void verifyURLOpensInNewWindow(String url){
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        for (String Handle : getWindowHandles()) {
+            switchTo().window(Handle);
+        }
+        assertEquals(url, getCurrentUrl());
+        switchTo().window((String) getWindowHandles().toArray()[0]);
+    }
+
     public void verifyHoverOverToolTipInNodes(ExamplesTable legalTitleExamTable) {
         waitForWebElementToAppear(By.xpath(graph_legal_title_tool_tip_xpath));
         List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_legal_title_tool_tip_xpath));
@@ -340,6 +371,5 @@ public class CommonUtils extends WebDriverUtils {
         }
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
-
 
 }

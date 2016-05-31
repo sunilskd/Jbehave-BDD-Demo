@@ -71,6 +71,21 @@ public class CommonSteps {
     @When("the user unchecks direct relationship checkbox on graph")
     public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationshipCheckbox();}
 
+    @Then("the user should see the copyright notice: © Reed Business Information Limited (year)")
+    public void verifyFooterInformation(){pageObject.commonUtils().verifyFooterInformation();
+    }
+
+    @When("the user clicks on $footerLink link in footer section")
+    public void verifyFooterLinks(@Named("$footerLink") String footerLink){pageObject.commonUtils().verifyFooterLinks(footerLink);
+    }
+
+    @When("the user clicks on the logo $logo in footers section")
+    public void verifyFooterLogos(@Named("$logo") String logo){pageObject.commonUtils().verifyFooterLogos(logo);
+    }
+
+    @Then("user is taken to a URL $url that opens in a new window")
+    public void verifyURLOpensInNewWindow(@Named("$url") String url){pageObject.commonUtils().verifyURLOpensInNewWindow(url);}
+
     @Then("the user should see the legal title displayed in the nodes when the user hovers over it in the graphs $legalTitleExamTable")
     public void verifyHoverOverToolTipInNodes(ExamplesTable legalTitleExamTable){
         pageObject.commonUtils().verifyHoverOverToolTipInNodes(legalTitleExamTable);
@@ -80,5 +95,4 @@ public class CommonSteps {
     public void verifyCountryHighlightDropDownSize(){
         pageObject.commonUtils().verifyCountryHighlightDropDownSize();
     }
-
 }
