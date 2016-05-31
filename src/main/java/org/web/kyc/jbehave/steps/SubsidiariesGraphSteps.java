@@ -44,7 +44,7 @@ public class SubsidiariesGraphSteps {
         pageObject.commonUtils().verifyNoCountryHighlightSelection();
     }
 
-    @Then("the user should not see the nodes highlighted in the subsidiaries graph page")
+    @Then("the user should not see the nodes highlighted in the graph page")
     public void verifyNoHighlightedNodes(){
         pageObject.commonUtils().verifyNoHighlightedNodes();
     }
