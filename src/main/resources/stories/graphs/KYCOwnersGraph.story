@@ -455,12 +455,12 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 
 And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the owners graph
-Then the user should see below free text in the side panle of owners graph
+Then the user should see below free text in the side panel of owners graph
 |FREETEXT|
 |Treasury shares, 3.8%; Trade Union Federations of SGB (where no federation owns 3% or more), 4.8%; Others, 23.4%|
 
 When the user clicks on the graph node with title Other shareholders, user is currently viewing in the owners graph
-Then the user should see below free text in the side panle of owners graph
+Then the user should see below free text in the side panel of owners graph
 |FREETEXT|
 |Other shareholders owning less than 2%, 71.315 %|
 

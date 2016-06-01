@@ -63,21 +63,21 @@ public class OwnersGraphSteps {
     }
 
     @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the owners graph")
-    public void clickNodeToViewSidePanel(String nodeTitle){
-        pageObject.commonUtils().clickNodeToViewSidePanel(nodeTitle);
+    public void clickPartialLinkText(String linkText){
+        pageObject.commonUtils().clickPartialLinkText(linkText);
     }
 
-    @Then("the user should see below free text in the side panle of owners graph $freeTextExampletable")
+    @Then("the user should see below free text in the side panel of owners graph $freeTextExampletable")
     public void verifyFreeTextInSidePanel(ExamplesTable freeTextExampletable){
         pageObject.ownersGraphPage().verifyFreeTextInSidePanel(freeTextExampletable);
     }
 
     @When("the user clicks on close button on the side panel in the owners graph")
     public void closeSidePanel(){
-        pageObject.ownersGraphPage().closeSidePanel();
+        pageObject.commonUtils().closeSidePanel();
     }
     @Then("side panel should be closed and user should continue to be on owners graph page")
     public void verifySidePanelIsClosed(){
-        pageObject.ownersGraphPage().verifySidePanelIsClosed();
+        pageObject.commonUtils().verifySidePanelIsClosed();
     }
 }
