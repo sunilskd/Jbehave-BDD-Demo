@@ -8,6 +8,7 @@ JIRA ID - KYC-69 - KYC user can view subsidiary graph
 JIRA ID - KYC-137 - Sub Graph - Direct-Indirect filter
 JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
 JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
+JIRA ID - KYC-318 - Country highlights is not working for the root node.
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -386,7 +387,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-And the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the subsidiaries graph page
+And the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the graph
 
 Then the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |NODES|
@@ -405,7 +406,7 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: User applies percent filter that results in no subsidiaries on the graph, display root node
+Scenario: User applies percent filter that results in no subsidiaries on the graph, only root node is left on the graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
