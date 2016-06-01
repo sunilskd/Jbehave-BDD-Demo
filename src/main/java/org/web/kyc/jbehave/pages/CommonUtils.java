@@ -372,4 +372,14 @@ public class CommonUtils extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
 
+    public void clickNodeToViewSidePanel(String nodeTitle){
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        findElement(By.partialLinkText(nodeTitle)).click();
+
+    }
+
 }
