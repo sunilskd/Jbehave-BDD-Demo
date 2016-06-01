@@ -50,7 +50,7 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8%;Trade Union...|
+|Treasury shares, 3.8;Trade Union...|
 
 And the user should see the list of below owners in level 3, above the root entity, in the owners graph
 |NODES|
@@ -58,7 +58,7 @@ And the user should see the list of below owners in level 3, above the root enti
 |QA Legal Entity 12UK|
 |QA Legal Entity 1751.53USA|
 |QA Legal Entity 1951.53USA|
-|Other shareholdersowning less than 2%,...|
+|Other shareholdersowning less than 2,...|
 
 And the user should see the list of below owners in level 4, above the root entity, in the owners graph
 |NODES|
@@ -66,17 +66,17 @@ And the user should see the list of below owners in level 4, above the root enti
 |QA Legal Entity 1351.53UK|
 |QA Legal Entity 614.99|
 |QA Legal Entity 6114.99|
-|Top 20 shareholders,57.67%; Others,...|
+|Top 20 shareholders,57.67; Others,...|
 
 And the user should see the list of below owners in level 5, above the root entity, in the owners graph
 |NODES|
 |QA Legal Entity 6141.99|
-|Top shareholdersowning less than 2%,...|
-|Top shareholdersowning less than 2%,...|
+|Top shareholdersowning less than 2,...|
+|Top shareholdersowning less than 2,...|
 
 And the user should see the list of below owners in level 6, above the root entity, in the owners graph
 |NODES|
-|Top shareholdersowning less than 2%,...|
+|Top shareholdersowning less than 2,...|
 
 Examples:
 |fid|
@@ -132,7 +132,7 @@ Then the user should see the legal entity QA Legal Entity 56, user is currently 
 And the user should see the list of below owners in level 3, above the root entity, in the owners graph
 |NODES|
 |QA Legal Entity 5630.23|
-|Top shareholdersowning less than 2%,...|
+|Top shareholdersowning less than 2,...|
 
 Then the user should not see any nodes in level 4, above the root entity, in the owners graph
 
@@ -175,7 +175,7 @@ And the user should see the list of below owners in level 1, above the root enti
 |Pellegrinus Holding AG4.2Switzerland|
 |Vontobel Holding AG2.5Switzerland|
 |Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
-|Dr Hans Vontobel,18.1%; Ruth de la Cour...|
+|Dr Hans Vontobel,18.1; Ruth de la Cour...|
 
 Examples:
 |fid|
@@ -242,7 +242,7 @@ When the user clicks on direct relationship checkbox on graph
 Then the user should see the legal entity QA Legal Entity 61, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
-|Top shareholders owning less than 2,...|
+|Top shareholdersowning less than 2,...|
 
 Then the user should not see any nodes in level 2, above the root entity, in the owners graph
 
