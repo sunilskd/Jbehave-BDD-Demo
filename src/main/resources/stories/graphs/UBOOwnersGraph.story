@@ -521,3 +521,20 @@ Examples:
 |fid|
 |LE-A|
 
+Scenario: Percent filter should not filter out non-entity non-person
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
+When the user enters percentage as 25 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 61, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|Local Government,Legal Entity 61 owned...59.52|
+
+Examples:
+|fid|
+|LE-61|
