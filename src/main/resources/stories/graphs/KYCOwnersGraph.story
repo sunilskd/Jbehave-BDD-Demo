@@ -542,3 +542,17 @@ Examples:
 |fid|entityType|
 |LE-9|QA Legal Entity 16|
 
+Scenario: KYC -33 Visual indicator count doesnt change even filter is applied
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
+When the user clicks on direct relationship checkbox on graph
+Then the user should see legal entity<legalEntityTitle> appears text under the node with count<countValue>
+
+Examples:
+|fid|legalEntityTitle|countValue|
+|LE-56|QA Legal Entity 56|Appears: 2|
+
