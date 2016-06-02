@@ -79,7 +79,7 @@ public class OwnersGraphSteps {
         pageObject.ownersGraphPage().verifyingHighLightDisplayedForMultipleNode(legalEntityTitle);
     }
 
-    @Then("the user clicks on <legalEntityTitle> node which is appearing multiple times")
+    @When("the user clicks on <legalEntityTitle> node which is appearing multiple times")
     public void selectingNodeToBeClicked(@Named("legalEntityTitle") String legalEntityTitle){
         pageObject.ownersGraphPage().selectingNodeToBeClicked(legalEntityTitle);
     }
@@ -99,6 +99,7 @@ public class OwnersGraphSteps {
     public void closeSidePanel(){
         pageObject.commonUtils().closeSidePanel();
     }
+
     @Then("side panel should be closed and user should continue to be on owners graph page")
     public void verifySidePanelIsClosed(){
         pageObject.commonUtils().verifySidePanelIsClosed();

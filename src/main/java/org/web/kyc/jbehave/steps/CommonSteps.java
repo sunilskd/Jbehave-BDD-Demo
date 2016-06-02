@@ -96,7 +96,7 @@ public class CommonSteps {
         pageObject.commonUtils().verifyCountryHighlightDropDownSize();
     }
 
-    @Then("the user zoom out of the graph")
+    @When("the user zoom out of the graph")
     public void zoomingOutGraph(){
         pageObject.commonUtils().zoomingOutGraph();
     }

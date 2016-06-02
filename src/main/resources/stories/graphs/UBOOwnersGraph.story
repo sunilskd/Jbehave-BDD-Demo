@@ -594,8 +594,8 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the owners graph
-And the user clicks on <legalEntityTitle> node which is appearing multiple times
-And the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>
+When the user clicks on <legalEntityTitle> node which is appearing multiple times
+Then the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>
 
 Examples:
 |fid|legalEntityTitle|
@@ -609,9 +609,9 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
-And the user zoom out of the graph
+When the user zoom out of the graph
 And the user clicks on <legalEntityTitle> node which is appearing multiple times
-And the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>
+Then the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>
 
 Examples:
 |fid|legalEntityTitle|
