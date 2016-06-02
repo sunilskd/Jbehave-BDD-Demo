@@ -98,8 +98,13 @@ public class CommonSteps {
     }
 
     @Then("the user should not see the nodes highlighted in the graph page")
-    public void verifyNoHighlightedNodes(){
+    public void verifyNoHighlightedNodes() {
         pageObject.commonUtils().verifyNoHighlightedNodes();
+    }
+
+    @When("the user zoom out of the graph")
+    public void zoomingOutGraph(){
+        pageObject.commonUtils().zoomingOutGraph();
     }
 
 }
