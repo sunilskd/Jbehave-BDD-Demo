@@ -52,4 +52,23 @@ public class OwnersGraphSteps {
     public void verifyStopTravelingPath(String level){
         pageObject.commonUtils().verifyStopTravelingPath(Integer.toString(600 - (Integer.parseInt(level) * 180)));
     }
+
+    @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the owners graph")
+    public void clickPartialLinkText(String linkText){
+        pageObject.commonUtils().clickPartialLinkText(linkText);
+    }
+
+    @Then("the user should see below free text in the side panel of owners graph $freeTextExampletable")
+    public void verifyFreeTextInSidePanel(ExamplesTable freeTextExampletable){
+        pageObject.ownersGraphPage().verifyFreeTextInSidePanel(freeTextExampletable);
+    }
+
+    @When("the user clicks on close button on the side panel in the owners graph")
+    public void closeSidePanel(){
+        pageObject.commonUtils().closeSidePanel();
+    }
+    @Then("side panel should be closed and user should continue to be on owners graph page")
+    public void verifySidePanelIsClosed(){
+        pageObject.commonUtils().verifySidePanelIsClosed();
+    }
 }

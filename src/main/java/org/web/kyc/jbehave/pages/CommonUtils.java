@@ -45,6 +45,9 @@ public class CommonUtils extends WebDriverUtils {
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
+    private By owners_graph_side_panel_close_button_xpath = By.xpath("//div[3]/button");
+    private By owners_graph_side_panel_closed_xpath = By.xpath("//h3[@class='ng-hide']");
+    private By owners_graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -373,5 +376,23 @@ public class CommonUtils extends WebDriverUtils {
         }
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
+
+    public void clickPartialLinkText(String linkText){
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        findElement(By.partialLinkText(linkText)).click();
+    }
+    public void closeSidePanel(){
+        findElement(owners_graph_side_panel_close_button_xpath).click();
+    }
+
+    public void verifySidePanelIsClosed(){
+        assertTrue(isWebElementDisplayed(owners_graph_side_panel_closed_xpath));
+        assertTrue(isWebElementDisplayed(owners_graph_header_text_xpath));
+    }
+
 
 }
