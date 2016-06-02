@@ -5,6 +5,7 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -46,6 +47,7 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
+    private By graph_xpath = By.xpath(".//*[local-name()='svg']");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -341,5 +343,13 @@ public class CommonUtils extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
 
+    public void zoomingOutGraph(){
+            try{
+                WebElement elementToBeClicked = getWebElement(graph_xpath);
+                getActions().sendKeys(Keys.SHIFT).doubleClick(elementToBeClicked).build().perform();
+                Thread.sleep(3000L);
+            }catch(InterruptedException e){
+                e.printStackTrace();}
+     }
 
 }

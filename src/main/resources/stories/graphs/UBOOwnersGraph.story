@@ -450,5 +450,38 @@ Examples:
 |fid|nonEntityValue|
 |LE-6|Local Government, Legal Entity 61 owned by Local Government|
 
+Scenario: KYC -33 Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the owners graph
+And the user clicks on <legalEntityTitle> node which is appearing multiple times
+And the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>
+
+Examples:
+|fid|legalEntityTitle|
+|LE-9|QA Legal Entity 61|
+
+
+Scenario: KYC -33 Person appears at multiple levels is highlighted when clicked on one of the occurances
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+And the user zoom out of the graph
+And the user clicks on <legalEntityTitle> node which is appearing multiple times
+And the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>
+
+Examples:
+|fid|legalEntityTitle|
+|LE-6|QA Test Person 1|
+
+
 
 

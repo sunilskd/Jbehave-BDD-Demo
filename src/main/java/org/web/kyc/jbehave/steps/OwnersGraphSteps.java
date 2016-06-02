@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.eclipse.jetty.util.annotation.Name;
 import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -68,7 +69,20 @@ public class OwnersGraphSteps {
     }
 
     @Then("the user verifies visual indicator is not displayed for Non-Person/Non-Entity when appeared multiple time <nonEntityValue>")
+    @Aliases(values={"the user verifies visual indicator is not displayed for free text ownership when appeared multiple time<freeTextValue>"})
     public void verifyIndicatorNotDisplayed(@Named("nonEntityValue") String nonEntityValue){
         pageObject.ownersGraphPage().verifyIndicatorNotDisplayed(nonEntityValue);
     }
+
+    @Then("the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>")
+    public void verifyingHighLightDisplayedForMultipleNode(@Named("legalEntityTitle") String legalEntityTitle){
+        pageObject.ownersGraphPage().verifyingHighLightDisplayedForMultipleNode(legalEntityTitle);
+    }
+
+    @Then("the user clicks on <legalEntityTitle> node which is appearing multiple times")
+    public void selectingNodeToBeClicked(@Named("legalEntityTitle") String legalEntityTitle){
+        pageObject.ownersGraphPage().selectingNodeToBeClicked(legalEntityTitle);
+    }
+
+
 }

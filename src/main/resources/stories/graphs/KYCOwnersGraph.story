@@ -361,7 +361,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
-And the user verifies visual indicator is not displayed for Non-Person/Non-Entity when appeared multiple time <nonEntityValue>
+And the user verifies visual indicator is not displayed for free text ownership when appeared multiple time<freeTextValue>
 
 Examples:
 |fid|nonEntityValue|
