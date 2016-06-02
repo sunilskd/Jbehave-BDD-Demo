@@ -515,7 +515,7 @@ And the user should see legal entity<legalEntityTitle> appears text under the no
 Examples:
 |fid|legalEntityTitle|countValue|
 |LE-6|QA Legal Entity 61|Appears: 3|
-|LE-6|QA Test Person 1|Appears: 3|
+
 
 Scenario: KYC -33 Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
 
