@@ -36,7 +36,6 @@ public class OwnersGraphPage extends WebDriverUtils {
     }
 
     public void verifyFreeTextInSidePanel(ExamplesTable freeTextExampletable){
-
         String aDirectOwnerFreeText = getWebElementText(owners_graph_side_panel_free_text_xpath);
         assertEquals(freeTextExampletable.getRow(0).get(freeTextExampletable.getHeaders().get(0)), aDirectOwnerFreeText);
     }

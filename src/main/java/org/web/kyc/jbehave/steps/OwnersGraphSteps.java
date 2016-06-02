@@ -44,7 +44,7 @@ public class OwnersGraphSteps {
 
     @Then("the user should see message displayed in place of graph explaining there are no owners")
     public void verifyNoOwnersMsg() {
-        pageObject.commonUtils().verifyNoOwnersMsg();
+        pageObject.commonUtils().verifyNoEntitiesMsg();
 
     }
 

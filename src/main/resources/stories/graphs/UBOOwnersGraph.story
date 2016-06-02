@@ -27,7 +27,7 @@ Scenario: KYC user login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: KYC-138 - Owners Graph - Direct-Indirect filter covers below scenarios
+Scenario: Covers below scenarios
 a. By Default checkbox for Direct relationship is not selected
 b. If no owners are present, filter is still available
 c. If there are no owners beyond level 1 direct relationships, filter is still available
@@ -44,7 +44,9 @@ Examples:
 |LE-55|
 |LE-61|
 
-Scenario: Covers below scenarios
+Scenario: Scenario 1
+.Description
+----
 a. 0. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
    1. User un-checks "Direct Relationships Only" box, then graph updates to show all owners in any level
    2. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity on the owners graph above the entity it owns.
@@ -56,6 +58,10 @@ a. 0. User selects "Direct Relationships Only", then graph updates to only show 
    8. non-institution, non-person entity type owner has null percent ownership, do not display percent ownership on owner's node
    9. non-institution, non-person entity type owner has value for owner type and description, display owner type and description
    10. If non-institution, non-person entity type owner has a value for owner type but no value for description, only display owner type in node
+----
+image:UBOOwnersGraph-Scenario-1.png[Scenario 1]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -132,10 +138,16 @@ Examples:
 |LE-32|
 |LE-F|
 
-Scenario: Covers below scenarios
+Scenario: Scenario 3
+.Description
+----
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
    1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
    2. If entity on owners graph has non-institution, non-person entity type owner but the relationship is inactive, do not display that owner on the graph
+----
+image:UBOOwnersGraph-Scenario-2.png[Scenario 2]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -160,8 +172,14 @@ Examples:
 |fid|
 |LE-23|
 
-Scenario: Covers below scenarios
+Scenario: Scenario 3
+.Description
+----
 a. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+----
+image:UBOOwnersGraph-Scenario-3.png[Scenario 3]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -189,7 +207,14 @@ Examples:
 |fid|
 |LE-56|
 
-Scenario: To verify circular relationship
+Scenario: Scenario 4
+.Description
+----
+To verify circular relationship
+----
+image:UBOOwnersGraph-Scenario-4.png[Scenario 4]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -234,9 +259,16 @@ Examples:
 |fid|
 |11262|
 
+Scenario: Scenario 5
+.Description
+----
 Scenario: Covers below scenarios
 a. 0. Entity user is viewing has owners that are type person and the relationship is active, display those owners on the graph
    1. Person owner has percent ownership, display percent on owner's node on graph
+----
+image:UBOOwnersGraph-Scenario-5.png[Scenario 5]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab

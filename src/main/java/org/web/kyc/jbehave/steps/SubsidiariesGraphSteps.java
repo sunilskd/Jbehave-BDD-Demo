@@ -25,7 +25,7 @@ public class SubsidiariesGraphSteps {
 
     @Then("the user should see message displayed in place of graph explaining there are no subsidiaries")
     public void verifyNoSubsidiariesMsg() {
-        pageObject.subsidiariesGraphPage().verifyNoSubsidiariesMsg();
+        pageObject.commonUtils().verifyNoEntitiesMsg();
     }
 
     @When("the user selects a country $country from the country highlight list in the subsidiaries graph page")

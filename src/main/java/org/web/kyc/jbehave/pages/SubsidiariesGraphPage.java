@@ -28,17 +28,6 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
         assertEquals(legalEntity, getWebElementText(By.xpath(subsidiaries_graph_level_xpath + "0" + subsidiaries_graph_legal_title_xpath)));
     }
 
-    public void verifyNoSubsidiariesMsg() {
-        verifySubsGraphHeader();
-        waitForWebElementToAppear(subsidiaries_graph_no_subs_message_text_xpath);
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        assertEquals("No known entities.", getWebElementText(subsidiaries_graph_no_subs_message_text_xpath));
-    }
-
     public void verifySubsGraphHeader() {
         waitForWebElementToAppear(subsidiaries_graph_header_text_xpath);
         assertEquals("Subsidiary Graph", getWebElementText(subsidiaries_graph_header_text_xpath));

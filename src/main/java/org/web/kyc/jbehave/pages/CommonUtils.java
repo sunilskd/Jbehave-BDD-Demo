@@ -291,7 +291,7 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
-    public void verifyNoOwnersMsg() {
+    public void verifyNoEntitiesMsg() {
         waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
         try {
             Thread.sleep(3000L);

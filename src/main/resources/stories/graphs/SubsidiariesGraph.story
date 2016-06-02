@@ -418,3 +418,25 @@ Then the user should see the legal entity QA Legal Entity 3, user is currently v
 Examples:
 |fid|
 |LE-3|
+
+Scenario: To verify circular relationship
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 54|
+|QA Legal Entity 5251.23|
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 53|
+|QA Legal Entity 5151.23|
+
+Examples:
+|fid|
+|LE-51|

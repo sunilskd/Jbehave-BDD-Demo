@@ -43,4 +43,9 @@ public class FullGraphSteps {
     public void verifyStopTravelingPath(String level){
         pageObject.commonUtils().verifyStopTravelingPath(Integer.toString(0 - (Integer.parseInt(level) * 180)));
     }
+
+    @Then("the user should see message displayed in place of graph explaining there are no entities")
+    public void verifyNoSubsidiariesMsg() {
+        pageObject.commonUtils().verifyNoEntitiesMsg();
+    }
 }

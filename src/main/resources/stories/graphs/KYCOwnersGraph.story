@@ -26,7 +26,9 @@ Scenario: KYC user login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: Covers below scenarios
+Scenario: Scenario 1
+.Description
+----
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity on the owners graph above the entity it owns.
    1. Owner has percent ownership, display percent on owner's node on graph
    2. Owner has null percent ownership, do not display percent ownership on owner node on graph
@@ -34,6 +36,10 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    4. Free text ownership exists for entity user is viewing, display that free text in a node as a direct owner of the root node
    5. Free text ownership does not exist for entity user is viewing, do not display free text on owners graph
    6. Entity on the graph has a non-institution, non-person owner, do not display that owner on the graph for KYC user
+----
+image:KYCOwnersGraph-Scenario-1.png[Scenario 1]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -98,9 +104,15 @@ Examples:
 |LE-D|
 |LE-32|
 
-Scenario: Covers below scenarios
+Scenario: Scenario 2
+.Description
+----
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
    1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
+----
+image:KYCOwnersGraph-Scenario-2.png[Scenario 2]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -121,8 +133,14 @@ Examples:
 |fid|
 |LE-23|
 
-Scenario: Covers below scenarios
-a. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+Scenario: Scenario 3
+.Description
+----
+Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+----
+image:KYCOwnersGraph-Scenario-3.png[Scenario 3]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -141,7 +159,14 @@ Examples:
 |fid|
 |LE-56|
 
-Scenario: To verify circular relationship
+Scenario: Scenario 4
+.Description
+----
+To verify circular relationship
+----
+image:KYCOwnersGraph-Scenario-4.png[Scenario 4]
+----
+----
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
