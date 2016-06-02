@@ -1,9 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
-import org.jbehave.core.annotations.Aliases;
-import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
 import org.web.kyc.jbehave.pages.PageObject;
 
@@ -26,12 +23,6 @@ public class OwnersGraphSteps {
     @Then("the user should see the list of below owners in level $level, above the root entity, in the owners graph $ownersExamTable")
     public void verifyGraphNodes(String level, ExamplesTable ownersExamTable){
         pageObject.commonUtils().verifyGraphNodes(Integer.toString(600 - (Integer.parseInt(level)*180)), ownersExamTable);
-    }
-
-
-    @When("the user clicks on the direct relationships only filter in the owners graph")
-    public void clickOnDirectRelationshipOnlyFilter(){
-        pageObject.commonUtils().clickOnDirectRelationshipCheckbox();
     }
 
     @Then("the user should see no country highlight selected by default in country highlight drop-down in the owners graph page")

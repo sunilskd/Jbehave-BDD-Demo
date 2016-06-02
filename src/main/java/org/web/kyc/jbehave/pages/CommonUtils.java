@@ -36,10 +36,11 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_filter_direct_relationship_only_xpath = By.xpath("//input[@type='checkbox'][@class='ng-pristine ng-valid']");
     private By graph_filer_direct_relationship_only_uncheck_xpath = By.xpath("//input[@type='checkbox'][@class='ng-valid ng-dirty']");
     private String graph_level_xpath = "//*[contains(@transform,',";
-    private String graph_percent_xpath = ")')]/*[local-name()='text'][1]/*[local-name()='tspan']";
+    private String graph_percent_xpath = ")')]/*[local-name()='text'][1]/*[local-name()='tspan'][@x='40']";
     private String graph_country_xpath = ")')]/*[local-name()='text'][2]";
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
-    private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']";
+    //private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']";
+    private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']//*[local-name()='tspan'][@class='name']";
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
@@ -237,7 +238,8 @@ public class CommonUtils extends WebDriverUtils {
                                                                                         .replace("<tspan x=\"40\">","")
                                                                                         .replace("</tspan><tspan dy=\"14\" x=\"40\">","")
                                                                                         .replace("</tspan><tspan class=\"ellipsis\">","")
-                                                                                        .replace("</tspan>","").trim() +
+                                                                                        .replace("</tspan>","")
+                                                                                        .replace(" ","") +
                             executeScript("return arguments[0].innerHTML;", aPercent.get(i)).toString().replace("%","") +
                             executeScript("return arguments[0].innerHTML;", aCountry.get(i)).toString()
             );
@@ -245,7 +247,7 @@ public class CommonUtils extends WebDriverUtils {
 
         List eNodeList = new ArrayList();
         for (Map<String,String> row : nodesExamTable.getRows()) {
-            String legalTitle = row.get("NODES");
+            String legalTitle = row.get("NODES").replace(" ","");
             eNodeList.add(legalTitle);
         }
 

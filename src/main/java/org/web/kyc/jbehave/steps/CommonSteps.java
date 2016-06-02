@@ -42,7 +42,8 @@ public class CommonSteps {
     }
 
     @Then ("the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page $countriesHighlightListExamTable")
-    @Alias("the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page $countriesHighlightListExamTable")
+    @Aliases(values= {"the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page $countriesHighlightListExamTable",
+            "the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the full graphs page $countriesHighlightListExamTable"})
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         pageObject.commonUtils().sVerifyCountryHighlightList(countriesHighlightListExamTable);
     }
@@ -95,4 +96,10 @@ public class CommonSteps {
     public void verifyCountryHighlightDropDownSize(){
         pageObject.commonUtils().verifyCountryHighlightDropDownSize();
     }
+
+    @Then("the user should not see the nodes highlighted in the graph page")
+    public void verifyNoHighlightedNodes(){
+        pageObject.commonUtils().verifyNoHighlightedNodes();
+    }
+
 }

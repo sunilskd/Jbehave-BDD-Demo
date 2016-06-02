@@ -418,7 +418,6 @@ And the user should not see any nodes in level 2, above the root entity, in the 
 When the user enters percentage as abc in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 6, above the root entity, in the owners graph
-
 |NODES|
 |Top shareholdersowning less than 2,...|
 

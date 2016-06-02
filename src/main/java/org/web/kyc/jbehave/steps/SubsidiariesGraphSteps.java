@@ -18,6 +18,7 @@ public class SubsidiariesGraphSteps {
     }
 
     @Then("the user should see the list of below subsidiaries in level $level, below the root entity, in the subsidiaries graph $subsidiariesExamTable")
+    @Alias("the user should see the list of below subsidiaries in level $level, below the root entity, in the full graph $subsidiariesExamTable")
     public void verifyGraphNodes(String level, ExamplesTable subsidiariesExamTable){
         pageObject.commonUtils().verifyGraphNodes(Integer.toString(Integer.parseInt(level)*180), subsidiariesExamTable);
     }
@@ -44,12 +45,8 @@ public class SubsidiariesGraphSteps {
         pageObject.commonUtils().verifyNoCountryHighlightSelection();
     }
 
-    @Then("the user should not see the nodes highlighted in the graph page")
-    public void verifyNoHighlightedNodes(){
-        pageObject.commonUtils().verifyNoHighlightedNodes();
-    }
-
     @Then("the user should not see any nodes in level $level, below the root entity, in the subsidiaries graph")
+    @Alias("the user should not see any nodes in level $level, below the root entity, in the full graph")
     public void verifyStopTravelingPath(String level){
         pageObject.commonUtils().verifyStopTravelingPath(Integer.toString((Integer.parseInt(level) * 180)));
     }

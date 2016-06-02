@@ -267,10 +267,7 @@ And the user should see the list of below owners in level 3, above the root enti
 
 Examples:
 |fid|
-|LE-6|
 |LE-A|
-
-
 
 Scenario: Person owner has null percent ownership, do not display percent ownership on owner node on graph
 Given the user is on the ubo login page
@@ -279,32 +276,6 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 30, user is currently viewing, as the root in the owners graph
-Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
-|LEGAL TITLE|
-|QA Legal Entity 6|
-|QA Legal Entity 9|
-|QA Legal Entity 10|
-|QA Legal Entity 16|
-|QA Legal Entity 18|
-|QA Legal Entity 11|
-|QA Legal Entity 14|
-|QA Legal Entity 12|
-|QA Legal Entity 17|
-|QA Legal Entity 19|
-|Others|
-|QA Legal Entity 15|
-|QA Legal Entity 13|
-|QA Legal Entity 61|
-|QA Legal Entity 61|
-|QA Legal Entity 61|
-|QA Test Person 1|
-|QA Test Person 1|
-|QA Test Person 2|
-|Local Government, Legal Entity 61 owned by Local Government|
-|Local Government, Legal Entity 61 owned by Local Government|
-|Free float, Legal Entity 15 owned by Free float|
-|QA Test Person 15.93|
-|Local Government, Legal Entity 61 owned by Local Government|
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
@@ -314,16 +285,12 @@ Examples:
 |fid|
 |LE-30|
 
-
 Scenario: Covers below scenarios
 a. 0. "No country highlight" is default selection in country highlight drop-down
    1. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
    2. Select a country highlight, legal entities in the owners graph that have that country of operations are highlighted (including root node of graph if applicable)
    3. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
    4. Select "No country highlight", removes country highlight of legal entities
-
-
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -538,3 +505,41 @@ And the user should see the list of below owners in level 1, above the root enti
 Examples:
 |fid|
 |LE-61|
+
+Scenario: Verify tool tip displays legal title in graphs
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
+|LEGAL TITLE|
+|QA Legal Entity 6|
+|QA Legal Entity 9|
+|QA Legal Entity 10|
+|QA Legal Entity 16|
+|QA Legal Entity 18|
+|QA Legal Entity 11|
+|QA Legal Entity 14|
+|QA Legal Entity 12|
+|QA Legal Entity 17|
+|QA Legal Entity 19|
+|Others|
+|QA Legal Entity 15|
+|QA Legal Entity 13|
+|QA Legal Entity 61|
+|QA Legal Entity 61|
+|QA Legal Entity 61|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 2|
+|Local Government, Legal Entity 61 owned by Local Government|
+|Local Government, Legal Entity 61 owned by Local Government|
+|Free float, Legal Entity 15 owned by Free float|
+|QA Test Person 1|
+|Local Government, Legal Entity 61 owned by Local Government|
+
+Examples:
+|fid|
+|LE-6|
