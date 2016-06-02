@@ -228,6 +228,7 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
+|Treasury shares, 3.8;Trade Union...|
 
 Examples:
 |fid|

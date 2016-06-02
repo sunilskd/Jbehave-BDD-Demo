@@ -244,7 +244,7 @@ public class CommonUtils extends WebDriverUtils {
                                                                                         .replace("</tspan>","")
                                                                                         .replace(" ","") +
                             executeScript("return arguments[0].innerHTML;", aPercent.get(i)).toString().replace("%","") +
-                            executeScript("return arguments[0].innerHTML;", aCountry.get(i)).toString()
+                            executeScript("return arguments[0].innerHTML;", aCountry.get(i)).toString().replace(" ","")
             );
         }
 

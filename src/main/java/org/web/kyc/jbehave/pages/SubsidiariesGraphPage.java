@@ -23,8 +23,8 @@ public class SubsidiariesGraphPage extends WebDriverUtils {
     }
 
     public void verifySubsidiariesGraphRootNode(String legalEntity) {
-        verifySubsGraphHeader();
         waitForWebElementToAppear(By.xpath(subsidiaries_graph_level_xpath + "0" + subsidiaries_graph_legal_title_xpath));
+        verifySubsGraphHeader();
         assertEquals(legalEntity, getWebElementText(By.xpath(subsidiaries_graph_level_xpath + "0" + subsidiaries_graph_legal_title_xpath)));
     }
 
