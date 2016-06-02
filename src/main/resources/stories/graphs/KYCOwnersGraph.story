@@ -18,6 +18,7 @@ JIRA ID - KYC-34 - KYC user can view owners graph
 JIRA ID - KYC-138 - Owners Graph - Direct-Indirect filter
 JIRA ID - KYC-105 - KYC user can highlight legal entities by country in ownership graph
 JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners graph
+JIRA ID - KYC-254 - Side panel for free text ownership on owners graph
 
 Meta:@kycownersgraph @kyc
 
@@ -443,6 +444,32 @@ Examples:
 |fid|
 |LE-6|
 
+Scenario: Covers below scenarios
+a. 0. User clicks on free text in owners graph and a side panel should display with free text information under header "details"
+   1. User clicks on another free text, then the side panel is displayed with free text of the selected node
+   2. User clicks on close button on the side panel, then panel closed and user continues to be on owners graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+
+And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the owners graph
+Then the user should see below free text in the side panel of owners graph
+|FREETEXT|
+|Treasury shares, 3.8%; Trade Union Federations of SGB (where no federation owns 3% or more), 4.8%; Others, 23.4%|
+
+When the user clicks on the graph node with title Other shareholders, user is currently viewing in the owners graph
+Then the user should see below free text in the side panel of owners graph
+|FREETEXT|
+|Other shareholders owning less than 2%, 71.315 %|
+
+When the user clicks on close button on the side panel in the owners graph
+Then side panel should be closed and user should continue to be on owners graph page
+
+Examples:
+|fid|
+|LE-6|
 
 Scenario: KYC -33 Visual indentifier must not be displayed when free text appears multiple times on the graph
 
@@ -457,4 +484,3 @@ And the user verifies visual indicator is not displayed for free text ownership 
 Examples:
 |fid|nonEntityValue|
 |LE-6|Top shareholders owning less than 2%, 71.315 %|
-

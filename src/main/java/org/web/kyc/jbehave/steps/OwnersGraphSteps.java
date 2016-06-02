@@ -1,6 +1,5 @@
 package org.web.kyc.jbehave.steps;
 
-import org.eclipse.jetty.util.annotation.Name;
 import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -63,6 +62,7 @@ public class OwnersGraphSteps {
         pageObject.commonUtils().verifyStopTravelingPath(Integer.toString(600 - (Integer.parseInt(level) * 180)));
     }
 
+
     @Then("the user should see legal entity<legalEntityTitle> appears text under the node with count<countValue>")
     public void verifyingCountForMultipleDiplayedNodes(@Named("legalEntityTitle")String legalEntityTitle,@Named("countValue")String countValue){
         pageObject.ownersGraphPage().verifyingCountForMultipleDiplayedNodes(legalEntityTitle,countValue);
@@ -84,5 +84,24 @@ public class OwnersGraphSteps {
         pageObject.ownersGraphPage().selectingNodeToBeClicked(legalEntityTitle);
     }
 
+
+    @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the owners graph")
+    public void clickPartialLinkText(String linkText){
+        pageObject.commonUtils().clickPartialLinkText(linkText);
+    }
+
+    @Then("the user should see below free text in the side panel of owners graph $freeTextExampletable")
+    public void verifyFreeTextInSidePanel(ExamplesTable freeTextExampletable){
+        pageObject.ownersGraphPage().verifyFreeTextInSidePanel(freeTextExampletable);
+    }
+
+    @When("the user clicks on close button on the side panel in the owners graph")
+    public void closeSidePanel(){
+        pageObject.commonUtils().closeSidePanel();
+    }
+    @Then("side panel should be closed and user should continue to be on owners graph page")
+    public void verifySidePanelIsClosed(){
+        pageObject.commonUtils().verifySidePanelIsClosed();
+    }
 
 }

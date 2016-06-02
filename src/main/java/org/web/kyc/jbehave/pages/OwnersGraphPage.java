@@ -1,17 +1,11 @@
 package org.web.kyc.jbehave.pages;
 
+import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
-import java.security.Key;
-import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class OwnersGraphPage extends WebDriverUtils {
@@ -22,6 +16,7 @@ public class OwnersGraphPage extends WebDriverUtils {
     private By getOwners_graph_MultipleNode_title_xpath = By.xpath(".//*[local-name()='text']/*[local-name()='title']");
     private By owners_graph_MultipleNode_NonEntity_xpath = By.xpath(".//*[@class='node others']");
     private By owners_graph_MultipleNode_Highlight_xpath = By.xpath("//*[contains(@class,'highlight-multiple')]");
+    private By owners_graph_side_panel_free_text_xpath = By.xpath("//div[3]/div/p");
 
 
     public OwnersGraphPage(WebDriverProvider driverProvider) {
@@ -38,6 +33,7 @@ public class OwnersGraphPage extends WebDriverUtils {
         waitForWebElementToAppear(owners_graph_header_text_xpath);
         assertEquals("Ownership Graph", getWebElementText(owners_graph_header_text_xpath));
     }
+
 
     public void verifyingCountForMultipleDiplayedNodes(String legalEntityTitle, String countValue) {
         List<WebElement> multipleNode  = getWebElements(owners_graph_MultipleNode_xpath);
@@ -79,11 +75,18 @@ public class OwnersGraphPage extends WebDriverUtils {
         }
     }
 
-    public void verifyingHighLightDisplayedForMultipleNode(String expectedEntityTitle){
+    public void verifyingHighLightDisplayedForMultipleNode(String expectedEntityTitle) {
         List<WebElement> highlightNodesList = getWebElements(owners_graph_MultipleNode_Highlight_xpath);
-        for(int j=0;j<highlightNodesList.size();j++){
+        for (int j = 0; j < highlightNodesList.size(); j++) {
             String highlightedNodesTitle = highlightNodesList.get(j).findElement(getOwners_graph_MultipleNode_title_xpath).getText();
-            assertEquals(highlightedNodesTitle,expectedEntityTitle);
+            assertEquals(highlightedNodesTitle, expectedEntityTitle);
         }
+    }
+
+    public void verifyFreeTextInSidePanel(ExamplesTable freeTextExampletable){
+
+        String aDirectOwnerFreeText = getWebElementText(owners_graph_side_panel_free_text_xpath);
+        assertEquals(freeTextExampletable.getRow(0).get(freeTextExampletable.getHeaders().get(0)), aDirectOwnerFreeText);
+
     }
 }
