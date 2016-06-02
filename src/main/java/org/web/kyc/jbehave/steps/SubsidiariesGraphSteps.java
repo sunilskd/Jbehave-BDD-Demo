@@ -18,8 +18,9 @@ public class SubsidiariesGraphSteps {
     }
 
     @Then("the user should see the list of below subsidiaries in level $level, below the root entity, in the subsidiaries graph $subsidiariesExamTable")
-    public void verifySubsidiariesNodes(String level, ExamplesTable subsidiariesExamTable){
-        pageObject.subsidiariesGraphPage().verifySubsidiariesNodes(level, subsidiariesExamTable);
+    @Alias("the user should see the list of below subsidiaries in level $level, below the root entity, in the full graph $subsidiariesExamTable")
+    public void verifyGraphNodes(String level, ExamplesTable subsidiariesExamTable){
+        pageObject.commonUtils().verifyGraphNodes(Integer.toString(Integer.parseInt(level)*180), subsidiariesExamTable);
     }
 
     @Then("the user should see message displayed in place of graph explaining there are no subsidiaries")
@@ -35,8 +36,8 @@ public class SubsidiariesGraphSteps {
     }
 
     @Then("the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page $subsidiariesHighlightedExamTable")
-    public void verifySubsidiariesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable){
-        pageObject.subsidiariesGraphPage().verifySubsidiariesAreHighlightedForSelectedCountry(subsidiariesHighlightedExamTable);
+    public void verifyNodesAreHighlightedForSelectedCountry(ExamplesTable subsidiariesHighlightedExamTable){
+        pageObject.commonUtils().verifyNodesAreHighlightedForSelectedCountry(subsidiariesHighlightedExamTable);
     }
 
     @Then("the user should see no country highlight selected by default in country highlight drop-down in the subsidiaries graph page")
@@ -44,8 +45,9 @@ public class SubsidiariesGraphSteps {
         pageObject.commonUtils().verifyNoCountryHighlightSelection();
     }
 
-    @Then("the user should not see the nodes highlighted in the subsidiaries graph page")
-    public void verifyNoHighlightedNodes(){
-        pageObject.commonUtils().verifyNoHighlightedNodes();
+    @Then("the user should not see any nodes in level $level, below the root entity, in the subsidiaries graph")
+    @Alias("the user should not see any nodes in level $level, below the root entity, in the full graph")
+    public void verifyStopTravelingPath(String level){
+        pageObject.commonUtils().verifyStopTravelingPath(Integer.toString((Integer.parseInt(level) * 180)));
     }
 }
