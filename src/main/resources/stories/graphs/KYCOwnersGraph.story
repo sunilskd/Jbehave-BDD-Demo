@@ -484,3 +484,51 @@ And the user verifies visual indicator is not displayed for free text ownership 
 Examples:
 |fid|nonEntityValue|
 |LE-6|Top shareholders owning less than 2%, 71.315 %|
+
+Scenario: KYC -33 Root node appears in multiple times in the same path
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
+And the user should see legal entity<legalEntityTitle> appears text under the node with count<countValue>
+
+Examples:
+|fid|legalEntityTitle|countValue|
+|LE-56|QA Legal Entity 56|Appears: 2|
+
+
+Scenario: KYC -33 Covers below scenarios
+a. Legal Entity appears at multiple levels
+b. Person appears at multiple levels
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+And the user should see legal entity<legalEntityTitle> appears text under the node with count<countValue>
+
+Examples:
+|fid|legalEntityTitle|countValue|
+|LE-6|QA Legal Entity 61|Appears: 3|
+|LE-6|QA Test Person 1|Appears: 3|
+
+Scenario: KYC -33 Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the owners graph
+When the user clicks on <legalEntityTitle> node which is appearing multiple times
+Then the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>
+
+Examples:
+|fid|legalEntityTitle|
+|LE-9|QA Legal Entity 61|
