@@ -17,6 +17,8 @@ public class OwnersGraphPage extends WebDriverUtils {
     private By owners_graph_MultipleNode_NonEntity_xpath = By.xpath(".//*[@class='node others']");
     private By owners_graph_MultipleNode_Highlight_xpath = By.xpath("//*[contains(@class,'highlight-multiple')]");
     private By owners_graph_side_panel_free_text_xpath = By.xpath("//div[3]/div/p");
+    private By owners_graph_NonMultipleNodes_list_xpath = By.xpath(".//*[@class='node own bank']");
+    private By owners_graph_person_nodes_list_xpath = By.xpath(".//*[@class='node own person']");
 
 
     public OwnersGraphPage(WebDriverProvider driverProvider) {
@@ -46,16 +48,7 @@ public class OwnersGraphPage extends WebDriverUtils {
         }
     }
 
-    public void verifyIndicatorNotDisplayed(String nonEntityValue) {
-    List<WebElement> nonEntityNodes = getWebElements(owners_graph_MultipleNode_NonEntity_xpath);
-        for(int i=0;i<nonEntityNodes.size();i++){
-            String entityTile = nonEntityNodes.get(i).findElement(getOwners_graph_MultipleNode_title_xpath).getText();
-            if(entityTile.equalsIgnoreCase(nonEntityValue)){
-                String appearsCount = nonEntityNodes.get(i).findElements(By.tagName("text")).get(2).getText();
-                assertTrue(appearsCount.isEmpty());
-            }
-        }
-    }
+
 
 
     public List<WebElement> capturingNodesDisplayingMultipleTimes(){
@@ -89,4 +82,31 @@ public class OwnersGraphPage extends WebDriverUtils {
         assertEquals(freeTextExampletable.getRow(0).get(freeTextExampletable.getHeaders().get(0)), aDirectOwnerFreeText);
 
     }
+
+    public void verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(String entityType) {
+        List<WebElement> nodes = getWebElements(owners_graph_NonMultipleNodes_list_xpath);
+        comparingAndExtractingTitle(entityType, nodes);
+    }
+
+
+    public void verifyingVisualIndicatorNotDisplayedForEntityDiffFid(String entityType){
+        List<WebElement> personNodes = getWebElements(owners_graph_person_nodes_list_xpath);
+        comparingAndExtractingTitle(entityType, personNodes);
+    }
+
+    public void verifyIndicatorNotDisplayed(String nonEntityValue) {
+        List<WebElement> nonEntityNodes = getWebElements(owners_graph_MultipleNode_NonEntity_xpath);
+        comparingAndExtractingTitle(nonEntityValue, nonEntityNodes);
+    }
+
+    private void comparingAndExtractingTitle(String entityType, List<WebElement> nodes) {
+        for(WebElement node : nodes){
+            if(entityType.equalsIgnoreCase(node.findElement(getOwners_graph_MultipleNode_title_xpath).getText())){
+                String appearsCount = node.findElements(By.tagName("text")).get(2).getText();
+                assertTrue(appearsCount.isEmpty());
+                break;
+            }
+        }
+    }
+
 }

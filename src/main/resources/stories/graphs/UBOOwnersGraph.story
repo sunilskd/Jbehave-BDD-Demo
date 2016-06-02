@@ -616,3 +616,27 @@ Then the user should see nodes highlighted as clicked on one of the occurances<l
 Examples:
 |fid|legalEntityTitle|
 |LE-6|QA Test Person 1|
+
+Scenario: KYC-33 Visual Indicator not been displayed for Legal entities which are displayed only once
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the owners graph
+And the user should not see visual indicator for legal entity <entityType>, when displayed only once
+Examples:
+|fid|entityType|
+|LE-9|QA Legal Entity 16|
+
+Scenario: KYC-33 Visual Indicator not been displayed for persons with same name but different fid's
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+And the user not see visual indicator for entity with same name but different fid <entityType>
+Examples:
+|fid|entityType|
+|LE-A|QA Test Person A|

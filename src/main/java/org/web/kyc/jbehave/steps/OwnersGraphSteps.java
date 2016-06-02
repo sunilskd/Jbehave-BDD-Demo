@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.eclipse.jetty.util.annotation.Name;
 import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -104,5 +105,17 @@ public class OwnersGraphSteps {
     public void verifySidePanelIsClosed(){
         pageObject.commonUtils().verifySidePanelIsClosed();
     }
+
+    @Then("the user should not see visual indicator for legal entity <entityType>, when displayed only once")
+    public void verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(@Named("entityType") String entityType){
+        pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(entityType);
+    }
+
+    @Then("the user not see visual indicator for entity with same name but different fid <entityType>")
+    public void verifyingVisualIndicatorNotDisplayedForEntityDiffFid(@Named("entityType") String entityType){
+        pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForEntityDiffFid(entityType);
+    }
+
+
 
 }

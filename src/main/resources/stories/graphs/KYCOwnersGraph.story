@@ -499,9 +499,8 @@ Examples:
 |LE-56|QA Legal Entity 56|Appears: 2|
 
 
-Scenario: KYC -33 Covers below scenarios
-a. Legal Entity appears at multiple levels
-b. Person appears at multiple levels
+Scenario: KYC -33 Legal Entity appears at multiple levels
+
 
 
 Given the user is on the ubo login page
@@ -518,8 +517,6 @@ Examples:
 
 
 Scenario: KYC -33 Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
-
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -532,3 +529,16 @@ Then the user should see nodes highlighted as clicked on one of the occurances<l
 Examples:
 |fid|legalEntityTitle|
 |LE-9|QA Legal Entity 61|
+
+Scenario: KYC-33 Visual Indicator not been displayed for Legal entities which are displayed only once
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the owners graph
+And the user should not see visual indicator for legal entity <entityType>, when displayed only once
+Examples:
+|fid|entityType|
+|LE-9|QA Legal Entity 16|
+
