@@ -21,6 +21,7 @@ JIRA ID - KYC-105 - KYC user can highlight legal entities by country in ownershi
 JIRA ID - KYC-49 - UBO user can view ownership graph with UBOs
 JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners graph
 JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears multiple times in the ownership graph
+JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 
 Meta:@uboownersgraph @ubo
 
@@ -37,7 +38,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user verifies direct relationship checkbox is not checked on graph
+Then the user should see the direct relationship only filter checkbox unchecked by default in the graph
 
 Examples:
 |fid|
@@ -68,14 +69,14 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-When the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
-When the user unchecks direct relationship checkbox on graph
+When the user unchecks direct relationship only filter checkbox in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
@@ -669,7 +670,8 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
-And the user not see visual indicator for entity with same name but different fid <entityType>
+And the user should not see the visual indicator for entity with same name but different fid <entityType>
+
 Examples:
 |fid|entityType|
 |LE-A|QA Test Person A|
@@ -681,9 +683,53 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
-When the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
 
 Examples:
 |fid|legalEntityTitle|countValue|
 |LE-56|QA Legal Entity 56|Appears: 2|
+
+Scenario: Covers below scenarios
+a. 0. By default UBO checkbox is available but not checked
+   1. If graph has UBOs (owners that are type person), checkbox is clickable
+   2. User checks UBO highlight box, all person owners in the graph are highlighted
+   3. User unchecks UBO highlight box, highlight is removed from person owners
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph
+When the user clicks on the ultimate beneficial owners filter checkbox in the graph
+Then the user should see the ultimate beneficial owners highlighted in the graph
+|NODES|
+|QA Test Person A|
+|QA Test Person E|
+|QA Test Person A|
+|QA Test Person G|
+|QA Test Person D|
+|QA Test Person G|
+|QA Test Person B|
+|QA Test Person G|
+|QA Test Person H|
+|QA Test Person C|
+
+When the user clicks on the ultimate beneficial owners filter checkbox in the graph
+Then the user should see the highlight removed from ultimate beneficial owners in the graph
+
+Examples:
+|fid|
+|LE-A|
+
+Scenario: If graph does not have any UBOs, checkbox is not clickable
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
+
+Examples:
+|fid|
+|LE-60|

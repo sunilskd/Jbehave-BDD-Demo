@@ -10,6 +10,7 @@ KYC user does not have access to below entity types -
 
 Covers below features:
 JIRA ID - KYC-79 - UBO user can view full graph
+JIRA ID - KYC-229 - UBO user can highlight UBOs on the graph
 
 Meta:@kycfullgraph @kyc
 
@@ -351,7 +352,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
-When the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
 |QA Legal Entity 945.53UK|
@@ -368,7 +369,7 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 Then the user should not see any nodes in level 2, above the root entity, in the full graph
 Then the user should not see any nodes in level 2, below the root entity, in the full graph
 
-When the user unchecks direct relationship checkbox on graph
+When the user unchecks direct relationship only filter checkbox in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
 
 And the user should see the list of below owners in level 2, above the root entity, in the full graph
@@ -391,3 +392,15 @@ And the user should see the list of below subsidiaries in level 2, below the roo
 Examples:
 |fid|
 |LE-6|
+
+Scenario: By default UBO highlight checkbox is available on owners graph, but is disabled for KYC user and not selectable
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
+
+Examples:
+|fid|
+|LE-A|

@@ -63,13 +63,13 @@ public class CommonSteps {
         pageObject.commonUtils().verifyPercentFilterIsSetToZero();
     }
 
-    @Then("the user verifies direct relationship checkbox is not checked on graph")
-    public void verifyingDirectRelationshipCheckboxIsNotClicked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxIsNotClicked();}
+    @Then("the user should see the direct relationship only filter checkbox unchecked by default in the graph")
+    public void verifyingDirectRelationshipOnlyFilterIsUnchecked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxIsNotClicked();}
 
-    @When("the user clicks on direct relationship checkbox on graph")
+    @When("the user clicks on direct relationship only filter checkbox in the graph")
     public void clickOnDirectRelationshipCheckbox(){pageObject.commonUtils().clickOnDirectRelationshipCheckbox();}
 
-    @When("the user unchecks direct relationship checkbox on graph")
+    @When("the user unchecks direct relationship only filter checkbox in the  graph")
     public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationshipCheckbox();}
 
     @Then("the user should see the copyright notice: © Reed Business Information Limited (year)")
@@ -107,4 +107,28 @@ public class CommonSteps {
         pageObject.commonUtils().zoomingOutGraph();
     }
 
+    @Then("the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph")
+    public void verifyUBOFilterIsUncheckedDefault(){
+        pageObject.commonUtils().verifyUBOFilterIsUncheckedByDefault();
+    }
+
+    @When("the user clicks on the ultimate beneficial owners filter checkbox in the graph")
+    public void clickOnUBOFilterCheckbox(){
+        pageObject.commonUtils().clickOnUBOFilterCheckbox();
+    }
+
+    @Then("the user should see the ultimate beneficial owners highlighted in the graph $ubosHighlightedExamTable")
+    public void verifyUBOsAreHighlighted(ExamplesTable ubosHighlightedExamTable){
+        pageObject.commonUtils().verifyUBOsAreHighlighted(ubosHighlightedExamTable);
+    }
+
+    @Then("the user should see the highlight removed from ultimate beneficial owners in the graph")
+    public void verifyUBOHighlightIsRemoved(){
+        pageObject.commonUtils().verifyUBOHighlightIsRemoved();
+    }
+
+    @Then("the user should see the ultimate beneficial owners filter checkbox disabled in the graph")
+    public void verifyUBOFilterIsDisabled(){
+        pageObject.commonUtils().verifyUBOFilterIsDisabled();
+    }
 }

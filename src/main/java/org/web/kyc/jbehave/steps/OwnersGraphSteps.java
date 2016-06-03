@@ -106,7 +106,7 @@ public class OwnersGraphSteps {
         pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(entityType);
     }
 
-    @Then("the user not see visual indicator for entity with same name but different fid <entityType>")
+    @Then("the user should not see the visual indicator for entity with same name but different fid <entityType>")
     public void verifyingVisualIndicatorNotDisplayedForEntityDiffFid(@Named("entityType") String entityType){
         pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForEntityDiffFid(entityType);
     }

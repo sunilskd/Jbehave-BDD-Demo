@@ -9,6 +9,7 @@ JIRA ID - KYC-137 - Sub Graph - Direct-Indirect filter
 JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
 JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
 JIRA ID - KYC-318 - Country highlights is not working for the root node.
+JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -206,7 +207,7 @@ When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user verifies direct relationship checkbox is not checked on graph
+Then the user should see the direct relationship only filter checkbox unchecked by default in the graph
 
 Examples:
 |fid|
@@ -222,7 +223,7 @@ When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-When the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
@@ -233,7 +234,7 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
-When the user unchecks direct relationship checkbox on graph
+When the user unchecks direct relationship only filter checkbox in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
@@ -423,16 +424,16 @@ Scenario: To verify circular relationship
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the owners tab
+And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root in the owners graph
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root in the subsidiaries graph
 
-And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |NODES|
 |QA Legal Entity 54|
 |QA Legal Entity 5251.23|
 
-And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
 |NODES|
 |QA Legal Entity 53|
 |QA Legal Entity 5151.23|
@@ -440,3 +441,15 @@ And the user should see the list of below owners in level 2, above the root enti
 Examples:
 |fid|
 |LE-51|
+
+Scenario: Verify UBO filter is not available for subsidiaries
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should not see the ultimate beneficial owners filter checkbox in the subsidiaries graph
+
+Examples:
+|fid|
+|LE-6|

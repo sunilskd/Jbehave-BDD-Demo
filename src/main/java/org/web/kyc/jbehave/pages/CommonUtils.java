@@ -1,13 +1,11 @@
 package org.web.kyc.jbehave.pages;
 
 import org.apache.http.message.BasicNameValuePair;
-import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.*;
@@ -40,17 +38,23 @@ public class CommonUtils extends WebDriverUtils {
     private String graph_percent_xpath = ")')]/*[local-name()='text'][1]/*[local-name()='tspan'][@x='40']";
     private String graph_country_xpath = ")')]/*[local-name()='text'][2]";
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
-    //private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']";
     private String graph_legal_title_link_xpath = ")')]/*[local-name()='text']//*[local-name()='tspan'][@class='name']";
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
     private By graph_xpath = By.xpath(".//*[local-name()='svg']");
-    private By owners_graph_side_panel_close_button_xpath = By.xpath("//div[3]/button");
-    private By owners_graph_side_panel_closed_xpath = By.xpath("//h3[@class='ng-hide']");
-    private By owners_graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
-
+    private By graph_side_panel_close_button_xpath = By.xpath("//div[3]/button");
+    private By graph_side_panel_closed_xpath = By.xpath("//h3[@class='ng-hide']");
+    private By graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
+    private By graph_percent_filter_label_xpath = By.xpath("//*[@class='graph-controls']/div[1] //label");
+    private By graph_display_in_graph_label_xpath = By.xpath("//*[@class='graph-controls']/div[1] //h2");
+    private By graph_filter_direct_relationship_only_label_xpath = By.xpath("//div[@class='graph-controls']/div[2]/div");
+    private By graph_ubo_filter_label_xpath = By.xpath("//div[@class='graph-controls']/div[4]/div");
+    private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')]/*[local-name()='text']/*[local-name()='tspan'][1]");
+    private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//input[@data-ng-model='graphFilterState.ubo'][@class='ng-scope ng-pristine ng-valid']");
+    private By graph_ubo_filter_checkbox_xpath = By.xpath("//input[@data-ng-model='graphFilterState.ubo']");
+    private By graph_ubo_filter_checkbox_disabled_xpath = By.xpath("//input[@data-ng-model='graphFilterState.ubo'][@disabled='']");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -203,6 +207,8 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyPercentFilterIsSetToZero() {
         waitForWebElementToAppear(graph_percent_slider_bar_xpath);
+        assertEquals("% Ownership (Greater than or equal to value)", getWebElementText(graph_percent_filter_label_xpath));
+        assertEquals("DISPLAY IN GRAPH", getWebElementText(graph_display_in_graph_label_xpath));
         assertEquals("0", getWebElementsAttributeValue(graph_percent_slider_bar_xpath, "data-value").get(0));
     }
 
@@ -216,6 +222,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyingDirectRelationshipCheckboxIsNotClicked() {
+        assertEquals("Direct relationships only", getWebElementText(graph_filter_direct_relationship_only_label_xpath));
         assertTrue(isWebElementDisplayed(graph_filter_direct_relationship_only_xpath));
     }
 
@@ -365,7 +372,6 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
-
     public void verifyCountryHighlightDropDownSize() {
         List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
         assertTrue(aCountryHighlightList.size()==1);
@@ -397,12 +403,64 @@ public class CommonUtils extends WebDriverUtils {
         findElement(By.partialLinkText(linkText)).click();
     }
     public void closeSidePanel(){
-        findElement(owners_graph_side_panel_close_button_xpath).click();
+        findElement(graph_side_panel_close_button_xpath).click();
     }
 
     public void verifySidePanelIsClosed(){
-        assertTrue(isWebElementDisplayed(owners_graph_side_panel_closed_xpath));
-        assertTrue(isWebElementDisplayed(owners_graph_header_text_xpath));
+        assertTrue(isWebElementDisplayed(graph_side_panel_closed_xpath));
+        assertTrue(isWebElementDisplayed(graph_header_text_xpath));
     }
 
+    public void verifyUBOFilterIsUncheckedByDefault() {
+        waitForWebElementToAppear(graph_ubo_filter_label_xpath);
+        assertEquals("Ultimate Beneficial Owner", getWebElementText(graph_ubo_filter_label_xpath));
+        assertTrue(isWebElementDisplayed(graph_ubo_filter_checkbox_unchecked_state_xpath));
+    }
+
+    public void clickOnUBOFilterCheckbox() {
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        clickOnWebElement(graph_ubo_filter_checkbox_xpath);
+    }
+
+    public void verifyUBOsAreHighlighted(ExamplesTable ubosHighlightedExamTable) {
+        List<WebElement> highlightedUbos = getWebElements(graph_highlight_ubo_xpath);
+        List aNodeList = new ArrayList();
+        for(int i=0; i<highlightedUbos.size(); i++){
+            aNodeList.add(
+                    executeScript("return arguments[0].innerHTML;", highlightedUbos.get(i)).toString()
+                                                                        .replace("<tspan x=\"40\">","")
+                                                                        .replace("</tspan><tspan dy=\"14\" x=\"40\">","")
+                                                                        .replace("</tspan><tspan class=\"ellipsis\">","")
+                                                                        .replace("</tspan>",""));
+        }
+
+        List eNodeList = new ArrayList();
+        for (Map<String,String> row : ubosHighlightedExamTable.getRows()) {
+            String legalTitle = row.get("NODES");
+            eNodeList.add(legalTitle);
+        }
+
+        Collections.sort(eNodeList);
+        Collections.sort(aNodeList);
+
+        for (int i=0; i<eNodeList.size(); i++){
+            assertEquals("Node does not match at " + i, eNodeList.get(i), aNodeList.get(i));
+        }
+    }
+
+    public void verifyUBOHighlightIsRemoved() {
+        assertFalse(isWebElementDisplayed(graph_highlight_ubo_xpath));
+    }
+
+    public void verifyUBOFilterIsDisabled() {
+        assertTrue(isWebElementDisplayed(graph_ubo_filter_checkbox_disabled_xpath));
+    }
+
+    public void verifyNoUBOFilters() {
+        assertFalse(isWebElementDisplayed(graph_ubo_filter_checkbox_xpath));
+    }
 }

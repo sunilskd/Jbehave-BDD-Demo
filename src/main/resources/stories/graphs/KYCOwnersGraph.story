@@ -20,6 +20,7 @@ JIRA ID - KYC-105 - KYC user can highlight legal entities by country in ownershi
 JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners graph
 JIRA ID - KYC-254 - Side panel for free text ownership on owners graph
 JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears multiple times in the ownership graph
+JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 
 Meta:@kycownersgraph @kyc
 
@@ -217,7 +218,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user verifies direct relationship checkbox is not checked on graph
+Then the user should see the direct relationship only filter checkbox unchecked by default in the graph
 
 Examples:
 |fid|
@@ -233,7 +234,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-When the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
@@ -241,7 +242,7 @@ And the user should see the list of below owners in level 1, above the root enti
 |QA Legal Entity 10UK|
 
 Then the user should not see any nodes in level 2, above the root entity, in the owners graph
-When the user unchecks direct relationship checkbox on graph
+When the user unchecks direct relationship only filter checkbox in the  graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
@@ -266,7 +267,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-When the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the legal entity QA Legal Entity 61, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
@@ -571,10 +572,21 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
-When the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
 
 Examples:
 |fid|legalEntityTitle|countValue|
 |LE-56|QA Legal Entity 56|Appears: 2|
 
+Scenario: By default UBO highlight checkbox is available on owners graph, but is disabled for KYC user and not selectable
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
+
+Examples:
+|fid|
+|LE-A|

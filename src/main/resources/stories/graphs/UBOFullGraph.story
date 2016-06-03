@@ -10,6 +10,7 @@ UBO user does not have access to below entity types -
 
 Covers below features:
 JIRA ID - KYC-95 - UBO user can view full graph with UBOs
+JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 
 Meta:@ubofullgraph @ubo
 
@@ -405,7 +406,7 @@ And the user should see the list of below owners in level 3, above the root enti
 |QA Test Person G4.23|
 |QA Test Person C50.52|
 
-When the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
 |QA Test Person E49.23|
@@ -417,7 +418,7 @@ Then the user should see the list of below owners in level 1, above the root ent
 Then the user should not see any nodes in level 2, above the root entity, in the full graph
 Then the user should not see any nodes in level 2, below the root entity, in the full graph
 
-When the user unchecks direct relationship checkbox on graph
+When the user unchecks direct relationship only filter checkbox in the graph
 Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the full graph
 
 And the user should see the list of below owners in level 2, above the root entity, in the full graph
@@ -431,3 +432,26 @@ And the user should see the list of below owners in level 2, above the root enti
 Examples:
 |fid|
 |LE-A|
+
+Scenario: Covers below scenarios
+a. 0. By default UBO checkbox is available but not checked
+   1. If graph has UBOs (owners that are type person), checkbox is clickable
+   2. User checks UBO highlight box, all person owners in the graph are highlighted
+   3. User unchecks UBO highlight box, highlight is removed from person owners
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph
+When the user clicks on the ultimate beneficial owners filter checkbox in the graph
+Then the user should see the ultimate beneficial owners highlighted in the graph
+|NODES|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 2|
+
+Examples:
+|fid|
+|LE-6|
