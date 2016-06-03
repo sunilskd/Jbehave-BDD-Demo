@@ -423,6 +423,7 @@ And the user should see the list of below owners in level 1, above the root enti
 |QA Legal Entity B50.52|
 |QA Test Person A45.52|
 |QA Legal Entity C50.52|
+|QA Test Person A45.52|
 
 And the user should see the list of below owners in level 2, above the root entity, in the owners graph
 |NODES|

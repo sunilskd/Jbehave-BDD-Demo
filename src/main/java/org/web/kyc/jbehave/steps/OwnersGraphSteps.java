@@ -66,8 +66,8 @@ public class OwnersGraphSteps {
 
     @Then("the user should not see the visual indicator displayed for non-person/non-entity when appeared multiple time for <entity> in the graph")
     @Alias("the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph")
-    public void verifyIndicatorNotDisplayed(@Named("nonEntityValue") String nonEntityValue){
-        pageObject.ownersGraphPage().verifyIndicatorNotDisplayed(nonEntityValue);
+    public void verifyIndicatorNotDisplayed(@Named("entity") String entity){
+        pageObject.ownersGraphPage().verifyIndicatorNotDisplayed(entity);
     }
 
     @Then("the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph")
