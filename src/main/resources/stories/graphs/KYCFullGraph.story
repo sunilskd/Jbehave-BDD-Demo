@@ -11,6 +11,8 @@ KYC user does not have access to below entity types -
 Covers below features:
 JIRA ID - KYC-79 - UBO user can view full graph
 
+Meta:@kycfullgraph @kyc
+
 Scenario: KYC user login
 Given the user is on the ubo login page
 When the user login as a kyc user
@@ -201,7 +203,7 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should not see any nodes in level 1, below the root entity, in the full graph
 
-And the user should see the list of below owners in level 2, above the root entity, in the full graph
+And the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
 |QA Legal Entity 250.52UK|
 |QA Legal Entity 549.53Korea (Republic of)|
@@ -220,7 +222,7 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should not see any nodes in level 1, above the root entity, in the full graph
 
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
 |NODES|
 |QA Legal Entity 1451.53UK|
 
@@ -234,8 +236,158 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see message displayed in place of graph explaining there are no entities
+Then the user should not see any nodes in level 1, below the root entity, in the full graph
 
 Examples:
 |fid|
 |LE-62|
+
+Scenario: Covers below scenarios
+a. 0. "No country highlight" is default selection in country highlight drop-down
+   1. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+   2. Select a country highlight, legal entities in the owners graph that have that country of operations are highlighted (including root node of graph if applicable)
+   3. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+   4. Select "No country highlight", removes country highlight of legal entities
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see no country highlight selected by default in country highlight drop-down in the full graph page
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the full graphs page
+|COUNTRIES|
+|No country highlight|
+|Australia|
+|India|
+|Korea (Republic of)|
+|UK|
+|USA|
+
+When the user selects a country UK from the country highlight list in the full graph page
+Then the user should see the below nodes in the full graph that have the selected country of operations highlighted in the full graph page
+|NODES|
+|QA Legal Entity 2|
+|QA Legal Entity 6|
+|QA Legal Entity 1|
+|QA Legal Entity 1|
+|QA Legal Entity 1|
+|QA Legal Entity 6|
+|QA Legal Entity 10|
+|QA Legal Entity 9|
+|QA Legal Entity 11|
+|QA Legal Entity 12|
+|QA Legal Entity 14|
+|QA Legal Entity 13|
+When the user selects another country India from the country highlight list in the full graph page
+Then the user should see the below nodes in the full graph that have the selected country of operations highlighted in the full graph page
+|NODES|
+|QA Legal Entity 3|
+
+When the user de-selects the selected country by selecting No country highlight from the country highlight list in the full graph page
+Then the user should not see the nodes highlighted in the graph page
+
+Examples:
+|fid|
+|LE-6|
+
+Scenario: Covers below scenarios
+a. 0. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
+   1. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only owners that are owned by equal to or greater than selected percent appear on the graph
+   2. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph
+   3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
+   4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
+When the user enters percentage as 25 in ownership percentage filter text box in the graph
+
+Then the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
+|NODES|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
+|NODES|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53UK|
+
+And the user should see the list of below owners in level 1, above the root entity, in the full graph
+|NODES|
+|QA Legal Entity 945.53UK|
+
+When the user enters percentage as 100 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+And the user should not see any nodes in level 2, above the root entity, in the owners graph
+
+When the user enters percentage as 200 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+And the user should not see any nodes in level 2, above the root entity, in the owners graph
+
+When the user enters percentage as abc in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+
+And the user should see the list of below owners in level 6, above the root entity, in the full graph
+|NODES|
+|Top shareholdersowning less than 2,...|
+
+When the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+And the user should not see any nodes in level 2, above the root entity, in the full graph
+
+Examples:
+|fid|
+|LE-6|
+
+Scenario: Covers below scenarios
+a. 0. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
+   1. User un-checks "Direct Relationships Only" box, then graph updates to show all owners in any level
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+When the user clicks on direct relationship checkbox on graph
+Then the user should see the list of below owners in level 1, above the root entity, in the full graph
+|NODES|
+|QA Legal Entity 945.53UK|
+|QA Legal Entity 10UK|
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
+|NODES|
+|QA Legal Entity 35Australia|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 33Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+Then the user should not see any nodes in level 2, above the root entity, in the full graph
+Then the user should not see any nodes in level 2, below the root entity, in the full graph
+
+When the user unchecks direct relationship checkbox on graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+
+And the user should see the list of below owners in level 2, above the root entity, in the full graph
+|NODES|
+|QA Legal Entity 161.53USA|
+|QA Legal Entity 181.53USA|
+|QA Legal Entity 1151.53UK|
+|Treasury shares, 3.8;Trade Union...|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
+|NODES|
+|QA Legal Entity 3960.9Australia|
+|QA Legal Entity 437.9Korea (Republic of)|
+|QA Legal Entity 41Korea (Republic of)|
+|QA Legal Entity 4070.9Korea (Republic of)|
+|QA Legal Entity 42Korea (Republic of)|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53UK|
+
+Examples:
+|fid|
+|LE-6|

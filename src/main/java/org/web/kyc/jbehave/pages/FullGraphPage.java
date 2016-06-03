@@ -18,8 +18,8 @@ public class FullGraphPage extends WebDriverUtils {
     }
 
     public void verifyFullGraphRootNode(String legalEntity) {
-            verifyFullGraphHeader();
             waitForWebElementToAppear(By.xpath(full_graph_level_xpath + "0" + full_graph_legal_title_xpath));
+            verifyFullGraphHeader();
             assertEquals(legalEntity, getWebElementText(By.xpath(full_graph_level_xpath + "0" + full_graph_legal_title_xpath)));
     }
 

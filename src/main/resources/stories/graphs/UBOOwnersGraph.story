@@ -283,6 +283,7 @@ And the user should see the list of below owners in level 1, above the root enti
 |QA Legal Entity B50.52|
 |QA Test Person A45.52|
 |QA Legal Entity C50.52|
+|QA Test Person A45.52|
 
 And the user should see the list of below owners in level 2, above the root entity, in the owners graph
 |NODES|
@@ -481,8 +482,8 @@ Examples:
 |LE-A|
 
 Scenario: Covers below scenarios
-a. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graph
-b. If user moves slider to 0 percent, all owners appear on graph
+a. 0. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graph
+   1. If user moves slider to 0 percent, all owners appear on graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab

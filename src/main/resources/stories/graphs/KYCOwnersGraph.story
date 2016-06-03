@@ -395,11 +395,11 @@ Examples:
 |LE-10|
 
 Scenario: Covers below scenarios
-a. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
-b. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only owners that are owned by equal to or greater than selected percent appear on the graph
-c. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph
-d. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
-e. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
+a. 0. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
+   1. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only owners that are owned by equal to or greater than selected percent appear on the graph
+   2. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph
+   3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
+   4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -438,10 +438,12 @@ And the user should see the list of below owners in level 5, above the root enti
 When the user enters percentage as 100 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
+And the user should not see any nodes in level 2, below the root entity, in the full graph
 
 When the user enters percentage as 200 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
+And the user should not see any nodes in level 2, below the root entity, in the full graph
 
 When the user enters percentage as abc in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
@@ -454,9 +456,9 @@ Examples:
 |LE-6|
 
 Scenario: Covers below scenarios
-a. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graph
-b. If user moves slider to 0 percent, all owners appear on graph
-c. User applies percent filter that results in no owners on the graph, only root node is left on the graph
+a. 0. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graph
+   1. If user moves slider to 0 percent, all owners appear on graph
+   2. User applies percent filter that results in no owners on the graph, only root node is left on the graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
