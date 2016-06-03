@@ -175,6 +175,11 @@ public class GroupStructurePage extends WebDriverUtils {
     }
 
     public void compareSnapshotsForGroupStructure() {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         assertTrue(
                 compareImages(readProperties().getSnapshotPath() + "/expected/eGroupStructurePage.png",
                         readProperties().getSnapshotPath() + "/actual/aGroupStructurePage.png",

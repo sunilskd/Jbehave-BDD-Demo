@@ -242,6 +242,11 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void compareSnapshotsForOwners() {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         assertTrue(
                 compareImages(readProperties().getSnapshotPath() + "/expected/eOwnersPage.png",
                         readProperties().getSnapshotPath() + "/actual/aOwnersPage.png",

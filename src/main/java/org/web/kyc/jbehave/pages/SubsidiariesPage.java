@@ -171,6 +171,11 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void compareSnapshotsForSubsidiaries() {
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         assertTrue(
                 compareImages(readProperties().getSnapshotPath() + "/expected/eSubsidiariesPage.png",
                         readProperties().getSnapshotPath() + "/actual/aSubsidiariesPage.png",
