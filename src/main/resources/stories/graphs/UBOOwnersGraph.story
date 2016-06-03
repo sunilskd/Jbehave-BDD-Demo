@@ -20,6 +20,7 @@ JIRA ID - KYC-138 - Owners Graph - Direct-Indirect filter
 JIRA ID - KYC-105 - KYC user can highlight legal entities by country in ownership graph
 JIRA ID - KYC-49 - UBO user can view ownership graph with UBOs
 JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners graph
+JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 
 Meta:@uboownersgraph @ubo
 
@@ -654,3 +655,10 @@ Then the user should see legal entity<legalEntityTitle> appears text under the n
 Examples:
 |fid|legalEntityTitle|countValue|
 |LE-56|QA Legal Entity 56|Appears: 2|
+
+Scenario: KYC-229 UBO user can highlight UBOs on owners graph
+a. By default UBO checkbox is available but not checked
+b. If graph has UBOs (owners that are type person), checkbox is clickable
+c. User checks UBO highlight box, all person owners in the graph are highlighted
+d. User unchecks UBO highlight box, highlight is removed from person owners
+e. If graph does not have any UBOs, checkbox is not clickable
