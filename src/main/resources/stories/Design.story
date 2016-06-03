@@ -11,48 +11,68 @@ Meta: @id login
 Given the user is on the ubo login page
 When the user login as a kyc user
 
-Scenario: Highlight legal entities by country
-a. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
-b. "No country highlight" is default selection in country highlight drop-down
-c. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
-d. Select "No country highlight", removes country highlight of legal entities
-e. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+Scenario: UBO user can view footer and can navigate to respective links from subsidiaries graph page
 
+Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-
-Then country highlights should display with no country highlight option selected
-And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page
-|COUNTRIES|
-|No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
-|USA|
-
-When the user selects a country <country> from the country highlight list in the subsidiaries graph page
-Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
-|QA Legal Entity 5|
-|QA Legal Entity 43|
-|QA Legal Entity 41|
-|QA Legal Entity 40|
-|QA Legal Entity 42|
-|QA Legal Entity 45|
-
-When the user selects another country <changecountry> from the country highlight list in the subsidiaries graph page
-Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
-|QA Legal Entity 2|
-
-When the user de-selects the selected country by selecting No country highlight from the country highlight list in the subsidiaries graph page
-Then the user should see the below subsidiaries in the subsidiaries graph that have the selected country of operations highlighted in the subsidiaries graph page
-|SUBSIDIARIES|
+Then the user should see the copyright notice: © Reed Business Information Limited (year)
+When the user clicks on Contact Us link in footer section
+Then user is taken to a URL http://www.accuity.com/customer-support/ that opens in a new window
+When the user clicks on Help link in footer section
+Then user is taken to a URL http://www.bankersalmanac.com/addcon/help/default.aspx that opens in a new window
+When the user clicks on Portfolio link in footer section
+Then user is taken to a URL http://www.accuity.com/ that opens in a new window
+When the user clicks on About Us link in footer section
+Then user is taken to a URL http://www.accuity.com/about-us/ that opens in a new window
+When the user clicks on Terms & Conditions link in footer section
+Then user is taken to a URL http://www.accuity.com/terms-and-conditions/ that opens in a new window
+When the user clicks on Privacy Policy link in footer section
+Then user is taken to a URL http://www.accuity.com/privacy-policy/ that opens in a new window
+When the user clicks on Disclaimer link in footer section
+Then user is taken to a URL http://www.accuity.com/disclaimer/ that opens in a new window
+When the user clicks on Editorial Policy link in footer section
+Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
+When the user clicks on the logo logo-relx in footers section
+Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
+When the user clicks on the logo logo-rbi in footers section
+Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
 
 Examples:
-|fid|country|changecountry|
-|LE-6|Korea (Republic of)|USA|
+|fid|
+|211|
+
+Scenario: UBO user can view footer and can navigate to respective links from entity details page
+
+Meta:@footer @dynamic
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the entity details tab
+Then the user should see the copyright notice: © Reed Business Information Limited (year)
+When the user clicks on Contact Us link in footer section
+Then user is taken to a URL http://www.accuity.com/customer-support/ that opens in a new window
+When the user clicks on Help link in footer section
+Then user is taken to a URL http://www.bankersalmanac.com/addcon/help/default.aspx that opens in a new window
+When the user clicks on Portfolio link in footer section
+Then user is taken to a URL http://www.accuity.com/ that opens in a new window
+When the user clicks on About Us link in footer section
+Then user is taken to a URL http://www.accuity.com/about-us/ that opens in a new window
+When the user clicks on Terms & Conditions link in footer section
+Then user is taken to a URL http://www.accuity.com/terms-and-conditions/ that opens in a new window
+When the user clicks on Privacy Policy link in footer section
+Then user is taken to a URL http://www.accuity.com/privacy-policy/ that opens in a new window
+When the user clicks on Disclaimer link in footer section
+Then user is taken to a URL http://www.accuity.com/disclaimer/ that opens in a new window
+When the user clicks on Editorial Policy link in footer section
+Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
+When the user clicks on the logo logo-relx in footers section
+Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
+When the user clicks on the logo logo-rbi in footers section
+Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+
+Examples:
+|fid|
+|211|

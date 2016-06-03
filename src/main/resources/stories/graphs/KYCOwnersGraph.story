@@ -1,31 +1,186 @@
-Epic: UBO
+Epic: Ownership
 
-A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships
-will not result in funding illegal activities such as money laundering and terrorist financing. A key part of this process is to prove that there are
-no owners, including an ultimate beneficial owner which is a natural person, of the bank they will potentially do business with which are politically exposed
-or known to be involved in criminal activities. A UBO user of the application has paid for premium access, which includes the
-same access as a KYC user but with additional data about UBOs (people).
+A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships will not result in funding illegal activities such as money laundering and terrorist financing.
+A key part of this process is to find out if there are any owners of the bank they will potentially do business which are known to be risky or involved in criminal activities. The graph provides information about owners in a visual way so that it is easier to follow relationship paths.
 
-UBO user has access to below entity types -
+KYC user has access to below entity types -
 1. Legal Entities
-2. People
-3. Other entity types (non-person, non-entity)
+2. Free text ownership
 
-UBO user does not have access to below entity types -
-1. Free text ownership
+KYC user does not have access to below entity types -
+1. Person (UBOs)
+2. Other entity types (non-institution, non-person)
 
 Covers below features:
+JIRA ID - KYC-112 - KYC user can view free text ownership on owners graph
 JIRA ID - KYC-37 - KYC user can filter owners graph by percent ownership
+JIRA ID - KYC-34 - KYC user can view owners graph
 JIRA ID - KYC-138 - Owners Graph - Direct-Indirect filter
 JIRA ID - KYC-105 - KYC user can highlight legal entities by country in ownership graph
-JIRA ID - KYC-49 - UBO user can view ownership graph with UBOs
 JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners graph
+JIRA ID - KYC-254 - Side panel for free text ownership on owners graph
 
-Meta:@uboownersgraph @ubo
+Meta:@kycownersgraph @kyc
 
 Scenario: KYC user login
 Given the user is on the ubo login page
-When the user login as a ubo user
+When the user login as a kyc user
+
+Scenario: Covers below scenarios
+a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity on the owners graph above the entity it owns.
+   1. Owner has percent ownership, display percent on owner's node on graph
+   2. Owner has null percent ownership, do not display percent ownership on owner node on graph
+   3. Entity has owners of type person, do not display on the graph for KYC user
+   4. Free text ownership exists for entity user is viewing, display that free text in a node as a direct owner of the root node
+   5. Free text ownership does not exist for entity user is viewing, do not display free text on owners graph
+   6. Entity on the graph has a non-institution, non-person owner, do not display that owner on the graph for KYC user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 945.53UK|
+|QA Legal Entity 10UK|
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 161.53USA|
+|QA Legal Entity 181.53USA|
+|QA Legal Entity 1151.53UK|
+|Treasury shares, 3.8;Trade Union...|
+
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 14UK|
+|QA Legal Entity 12UK|
+|QA Legal Entity 1751.53USA|
+|QA Legal Entity 1951.53USA|
+|Other shareholdersowning less than 2,...|
+
+And the user should see the list of below owners in level 4, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 1551.53USA|
+|QA Legal Entity 1351.53UK|
+|QA Legal Entity 614.99|
+|QA Legal Entity 6114.99|
+|Top 20 shareholders,57.67; Others,...|
+
+And the user should see the list of below owners in level 5, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 6141.99|
+|Top shareholdersowning less than 2,...|
+|Top shareholdersowning less than 2,...|
+
+And the user should see the list of below owners in level 6, above the root entity, in the owners graph
+|NODES|
+|Top shareholdersowning less than 2,...|
+
+Examples:
+|fid|
+|LE-6|
+
+Scenario: Covers below scenarios
+a. Entity user is viewing does not have any active relationships to owners, display message "No known entities."
+b. Entity user is viewing does not have any owners, display message "No known entities."
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see message displayed in place of graph explaining there are no owners
+
+Examples:
+|fid|
+|LE-D|
+|LE-32|
+
+Scenario: Covers below scenarios
+a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
+   1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 2951.53India|
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 322.53India|
+|QA Legal Entity 30India|
+
+Examples:
+|fid|
+|LE-23|
+
+Scenario: Covers below scenarios
+a. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 5630.23|
+|Top shareholdersowning less than 2,...|
+
+Then the user should not see any nodes in level 4, above the root entity, in the owners graph
+
+Examples:
+|fid|
+|LE-56|
+
+Scenario: To verify circular relationship
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 5251.23|
+
+And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 5151.23|
+
+Examples:
+|fid|
+|LE-51|
+
+Scenario: To verify owners graph when entity user is viewing is also an owner of the same entity
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity Vontobel Holding AG, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|Vontrust Family Holding12.5Switzerland|
+|Vontobel Foundation10.9Switzerland|
+|Pellegrinus Holding AG4.2Switzerland|
+|Vontobel Holding AG2.5Switzerland|
+|Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
+|Dr Hans Vontobel,18.1; Ruth de la Cour...|
+
+Examples:
+|fid|
+|11262|
 
 Scenario: KYC-138 - Owners Graph - Direct-Indirect filter covers below scenarios
 a. By Default checkbox for Direct relationship is not selected
@@ -47,15 +202,6 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
    1. User un-checks "Direct Relationships Only" box, then graph updates to show all owners in any level
-   2. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity on the owners graph above the entity it owns.
-   3. Owner has percent ownership, display percent on owner's node on graph
-   4. Owner has null percent ownership, do not display percent ownership on owner node on graph
-   5. Entity user is viewing has free text ownership, do not display on the owners graph for UBO user
-   6. Entity on owners graph has non-institution, non-person entity type owner and the relationship is active, display that owner on the graph
-   7. non-institution, non-person entity type owner has percent ownership, display on the owner's node
-   8. non-institution, non-person entity type owner has null percent ownership, do not display percent ownership on owner's node
-   9. non-institution, non-person entity type owner has value for owner type and description, display owner type and description
-   10. If non-institution, non-person entity type owner has a value for owner type but no value for description, only display owner type in node
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -68,6 +214,7 @@ And the user should see the list of below owners in level 1, above the root enti
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
+Then the user should not see any nodes in level 2, above the root entity, in the owners graph
 When the user unchecks direct relationship checkbox on graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 
@@ -82,203 +229,35 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
 
-And the user should see the list of below owners in level 3, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 14UK|
-|QA Legal Entity 12UK|
-|QA Legal Entity 1751.53USA|
-|QA Legal Entity 1951.53USA|
-|Others9.52|
-
-And the user should see the list of below owners in level 4, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 1551.53USA|
-|QA Legal Entity 1351.53UK|
-|QA Legal Entity 614.99|
-|QA Legal Entity 6114.99|
-
-And the user should see the list of below owners in level 5, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 6141.99|
-|QA Test Person 15.93|
-|QA Test Person 15.93|
-|QA Test Person 251.93|
-|Local Government,Legal Entity 61 owned...59.52|
-|Local Government,Legal Entity 61 owned...59.52|
-|Free float, LegalEntity 15 owned by...|
-
-And the user should see the list of below owners in level 6, above the root entity, in the owners graph
-|NODES|
-|QA Test Person 15.93|
-|Local Government,Legal Entity 61 owned...59.52|
-
 Examples:
 |fid|
 |LE-6|
 
-Scenario: Covers below scenarios
-a. 0. Entity user is viewing does not have any active relationships to owners, display message "No known entities."
-   1. Entity user is viewing does not have any owners, display message "No known entities."
-b. 0. If owner is type person but the relationship is inactive, do not display that person as owner on the graph
+Scenario: User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph) including free text
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see message displayed in place of graph explaining there are no owners
-
-Examples:
-|fid|
-|LE-32|
-|LE-F|
-
-Scenario: Covers below scenarios
-a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
-   1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
-   2. If entity on owners graph has non-institution, non-person entity type owner but the relationship is inactive, do not display that owner on the graph
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root in the owners graph
-
+When the user clicks on direct relationship checkbox on graph
+Then the user should see the legal entity QA Legal Entity 61, user is currently viewing, as the root in the owners graph
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
-|QA Legal Entity 2951.53India|
+|Top shareholdersowning less than 2,...|
 
-And the user should see the list of below owners in level 2, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 322.53India|
-|QA Legal Entity 30India|
-
-And the user should see the list of below owners in level 3, above the root entity, in the owners graph
-|NODES|
-|QA Test Person 2|
+Then the user should not see any nodes in level 2, above the root entity, in the owners graph
 
 Examples:
 |fid|
-|LE-23|
+|LE-61|
 
-Scenario: Covers below scenarios
-a. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
+Scenario: Verify tool tip displays legal title in graphs
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
 
-And the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 5951.99|
-|QA Legal Entity 5520.23|
-|Others, Legal Entity56 owned by Others9.52|
-
-And the user should see the list of below owners in level 2, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 5730.99|
-
-And the user should see the list of below owners in level 3, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 5630.23|
-
-Then the user should not see any nodes in level 4, above the root entity, in the owners graph
-
-Examples:
-|fid|
-|LE-56|
-
-Scenario: To verify circular relationship
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root in the owners graph
-
-And the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 5251.23|
-|QA Test Person 110.93|
-
-And the user should see the list of below owners in level 2, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity 5151.23|
-|QA Test Person 29.93|
-
-Examples:
-|fid|
-|LE-51|
-
-Scenario: To verify owners graph when entity user is viewing is also an owner of the same entity
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity Vontobel Holding AG, user is currently viewing, as the root in the owners graph
-
-And the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|NODES|
-|Vontrust Family Holding12.5Switzerland|
-|Vontobel Foundation10.9Switzerland|
-|Pellegrinus Holding AG4.2Switzerland|
-|Vontobel Holding AG2.5Switzerland|
-|Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
-|Free float32.5|
-|Ruth de la Cour -Vontobel5.5|
-|Others, ExecutiveMembers|
-
-Examples:
-|fid|
-|11262|
-
-Scenario: Covers below scenarios
-a. 0. Entity user is viewing has owners that are type person and the relationship is active, display those owners on the graph
-   1. Person owner has percent ownership, display percent on owner's node on graph
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
-
-And the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|NODES|
-|QA Test Person E49.23|
-|QA Legal Entity B50.52|
-|QA Test Person A45.52|
-|QA Legal Entity C50.52|
-
-And the user should see the list of below owners in level 2, above the root entity, in the owners graph
-|NODES|
-|QA Test Person B40.23|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-|QA Test Person D49.23|
-|QA Test Person G4.93|
-
-And the user should see the list of below owners in level 3, above the root entity, in the owners graph
-|NODES|
-|QA Test Person H49.23|
-|QA Test Person G4.23|
-|QA Test Person C50.52|
-
-Examples:
-|fid|
-|LE-6|
-|LE-A|
-
-
-
-Scenario: Person owner has null percent ownership, do not display percent ownership on owner node on graph
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 30, user is currently viewing, as the root in the owners graph
 Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
 |LEGAL TITLE|
 |QA Legal Entity 6|
@@ -287,33 +266,25 @@ Then the user should see the legal title displayed in the nodes when the user ho
 |QA Legal Entity 16|
 |QA Legal Entity 18|
 |QA Legal Entity 11|
+|Treasury shares, 3.8; Trade Union Federations of SGB (where no federation owns 3 or more), 4.8; Others, 23.4|
 |QA Legal Entity 14|
 |QA Legal Entity 12|
 |QA Legal Entity 17|
 |QA Legal Entity 19|
-|Others|
+|Other shareholders owning less than 2, 71.315|
 |QA Legal Entity 15|
 |QA Legal Entity 13|
 |QA Legal Entity 61|
 |QA Legal Entity 61|
+|Top 20 shareholders, 57.67; Others, 42.33. There were no persons with a substantial shareholding in the Bank|
 |QA Legal Entity 61|
-|QA Test Person 1|
-|QA Test Person 1|
-|QA Test Person 2|
-|Local Government, Legal Entity 61 owned by Local Government|
-|Local Government, Legal Entity 61 owned by Local Government|
-|Free float, Legal Entity 15 owned by Free float|
-|QA Test Person 15.93|
-|Local Government, Legal Entity 61 owned by Local Government|
-
-And the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|NODES|
-|QA Test Person 2|
+|Top shareholders owning less than 2, 71.315|
+|Top shareholders owning less than 2, 71.315|
+|Top shareholders owning less than 2, 71.315|
 
 Examples:
 |fid|
-|LE-30|
-
+|LE-6|
 
 Scenario: Covers below scenarios
 a. 0. "No country highlight" is default selection in country highlight drop-down
@@ -321,14 +292,12 @@ a. 0. "No country highlight" is default selection in country highlight drop-down
    2. Select a country highlight, legal entities in the owners graph that have that country of operations are highlighted (including root node of graph if applicable)
    3. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
    4. Select "No country highlight", removes country highlight of legal entities
-
-
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+
 Then the user should see no country highlight selected by default in country highlight drop-down in the owners graph page
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page
 |COUNTRIES|
@@ -363,7 +332,7 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Country list is sorted alphabetically.
+Scenario: Country list is not displayed when No known entities
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -373,33 +342,30 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page
 |COUNTRIES|
 |No country highlight|
-|Canada|
-|Italy|
-|Norway|
-|South Africa|
-|UK|
-|USA|
+And the user verifies no other country names are listed in dropdown
 
 Examples:
 |fid|
-|444|
+|1|
 
-Scenario: Country list displaying root node country's
+Scenario: Free text ownership always remains visible on graph despite any filter applied
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see no country highlight selected by default in country highlight drop-down in the owners graph page
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page
-|COUNTRIES|
-|No country highlight|
-|UK|
-|USA|
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
+When the user enters percentage as 25 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 10, user is currently viewing, as the root in the owners graph
+
+And the user should see the list of below owners in level 1, above the root entity, in the owners graph
+|NODES|
+|QA Legal Entity 1151.53UK|
+|Treasury shares, 3.8;Trade Union...|
 
 Examples:
 |fid|
-|LE-9|
+|LE-10|
 
 Scenario: Covers below scenarios
 a. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
@@ -413,131 +379,111 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
-When the user enters percentage as 25 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+When the user enters percentage as 1 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graph
 |NODES|
-|QA Test Person E49.23|
-|QA Legal Entity B50.52|
-|QA Test Person A45.52|
-|QA Legal Entity C50.52|
+|QA Legal Entity 945.53UK|
 
 And the user should see the list of below owners in level 2, above the root entity, in the owners graph
 |NODES|
-|QA Test Person B40.23|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-|QA Test Person D49.23|
+|QA Legal Entity 161.53USA|
+|QA Legal Entity 181.53USA|
 
 And the user should see the list of below owners in level 3, above the root entity, in the owners graph
 |NODES|
-|QA Test Person H49.23|
-|QA Test Person C50.52|
+|QA Legal Entity 1751.53USA|
+|QA Legal Entity 1951.53USA|
+|Other shareholdersowning less than 2,...|
 
-When the user enters percentage as 0 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
-
-And the user should see the list of below owners in level 2, above the root entity, in the owners graph
+And the user should see the list of below owners in level 4, above the root entity, in the owners graph
 |NODES|
-|QA Test Person B40.23|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-|QA Test Person D49.23|
-|QA Test Person G4.93|
+|QA Legal Entity 614.99|
+|QA Legal Entity 6114.99|
+|Top 20 shareholders,57.67; Others,...|
 
-And the user should see the list of below owners in level 3, above the root entity, in the owners graph
+And the user should see the list of below owners in level 5, above the root entity, in the owners graph
 |NODES|
-|QA Test Person H49.23|
-|QA Test Person G4.23|
-|QA Test Person C50.52|
+|Top shareholdersowning less than 2,...|
+|Top shareholdersowning less than 2,...|
 
 When the user enters percentage as 100 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
 
 When the user enters percentage as 200 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
 
 When the user enters percentage as abc in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
-And the user should see the list of below owners in level 2, above the root entity, in the owners graph
-|NODES|
-|QA Test Person B40.23|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-|QA Test Person D49.23|
-|QA Test Person G4.93|
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+And the user should see the list of below owners in level 6, above the root entity, in the owners graph
 
-And the user should see the list of below owners in level 3, above the root entity, in the owners graph
 |NODES|
-|QA Test Person H49.23|
-|QA Test Person G4.23|
-|QA Test Person C50.52|
+|Top shareholdersowning less than 2,...|
 
 Examples:
 |fid|
-|LE-A|
+|LE-6|
 
 Scenario: Covers below scenarios
 a. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graph
 b. If user moves slider to 0 percent, all owners appear on graph
+c. User applies percent filter that results in no owners on the graph, only root node is left on the graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the graph
-
-Then the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|NODES|
-|QA Legal Entity B50.52|
-|QA Legal Entity C50.52|
-
-Then the user should see the list of below owners in level 2, above the root entity, in the owners graph
-|NODES|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-
-Then the user should see the list of below owners in level 3, above the root entity, in the owners graph
-|NODES|
-|QA Test Person C50.52|
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+And the user should not see any nodes in level 2, above the root entity, in the owners graph
 
 Examples:
 |fid|
-|LE-A|
+|LE-6|
 
-Scenario: User applies percent filter that results in no owners on the graph, only root node is left on the graph
+Scenario: Covers below scenarios
+a. 0. User clicks on free text in owners graph and a side panel should display with free text information under header "details"
+   1. User clicks on another free text, then the side panel is displayed with free text of the selected node
+   2. User clicks on close button on the side panel, then panel closed and user continues to be on owners graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-When the user enters percentage as 51 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
+
+And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the owners graph
+Then the user should see below free text in the side panel of owners graph
+|FREETEXT|
+|Treasury shares, 3.8%; Trade Union Federations of SGB (where no federation owns 3% or more), 4.8%; Others, 23.4%|
+
+When the user clicks on the graph node with title Other shareholders, user is currently viewing in the owners graph
+Then the user should see below free text in the side panel of owners graph
+|FREETEXT|
+|Other shareholders owning less than 2%, 71.315 %|
+
+When the user clicks on close button on the side panel in the owners graph
+Then side panel should be closed and user should continue to be on owners graph page
 
 Examples:
 |fid|
-|LE-A|
+|LE-6|
 
-Scenario: Percent filter should not filter out non-entity non-person
+Scenario: KYC -33 Visual indentifier must not be displayed when free text appears multiple times on the graph
+
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
-When the user enters percentage as 25 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 61, user is currently viewing, as the root in the owners graph
-
-And the user should see the list of below owners in level 1, above the root entity, in the owners graph
-|NODES|
-|Local Government,Legal Entity 61 owned...59.52|
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+And the user verifies visual indicator is not displayed for free text ownership when appeared multiple time<freeTextValue>
 
 Examples:
-|fid|
-|LE-61|
+|fid|nonEntityValue|
+|LE-6|Top shareholders owning less than 2%, 71.315 %|
 
 Scenario: KYC -33 Root node appears in multiple times in the same path
 Given the user is on the ubo login page
@@ -553,9 +499,8 @@ Examples:
 |LE-56|QA Legal Entity 56|Appears: 2|
 
 
-Scenario: KYC -33 Covers below scenarios
-a. Legal Entity appears at multiple levels
-b. Person appears at multiple levels
+Scenario: KYC -33 Legal Entity appears at multiple levels
+
 
 
 Given the user is on the ubo login page
@@ -569,25 +514,9 @@ And the user should see legal entity<legalEntityTitle> appears text under the no
 Examples:
 |fid|legalEntityTitle|countValue|
 |LE-6|QA Legal Entity 61|Appears: 3|
-|LE-6|QA Test Person 1|Appears: 3|
 
-Scenario: KYC -33 Visual indentifier must not be displayed when Non-person/Non-legal Entities appear multiple times on the graph
-
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
-And the user verifies visual indicator is not displayed for Non-Person/Non-Entity when appeared multiple time <nonEntityValue>
-
-Examples:
-|fid|nonEntityValue|
-|LE-6|Local Government, Legal Entity 61 owned by Local Government|
 
 Scenario: KYC -33 Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
-
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -601,22 +530,6 @@ Examples:
 |fid|legalEntityTitle|
 |LE-9|QA Legal Entity 61|
 
-
-Scenario: KYC -33 Person appears at multiple levels is highlighted when clicked on one of the occurances
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
-When the user zoom out of the graph
-And the user clicks on <legalEntityTitle> node which is appearing multiple times
-Then the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>
-
-Examples:
-|fid|legalEntityTitle|
-|LE-6|QA Test Person 1|
-
 Scenario: KYC-33 Visual Indicator not been displayed for Legal entities which are displayed only once
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -628,18 +541,6 @@ And the user should not see visual indicator for legal entity <entityType>, when
 Examples:
 |fid|entityType|
 |LE-9|QA Legal Entity 16|
-
-Scenario: KYC-33 Visual Indicator not been displayed for persons with same name but different fid's
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the owners graph
-And the user not see visual indicator for entity with same name but different fid <entityType>
-Examples:
-|fid|entityType|
-|LE-A|QA Test Person A|
 
 Scenario: KYC -33 Visual indicator count doesnt change even filter is applied
 Given the user is on the ubo login page
@@ -654,3 +555,4 @@ Then the user should see legal entity<legalEntityTitle> appears text under the n
 Examples:
 |fid|legalEntityTitle|countValue|
 |LE-56|QA Legal Entity 56|Appears: 2|
+
