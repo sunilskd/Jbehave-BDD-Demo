@@ -3,6 +3,12 @@ Epic: Ownership, Subsidiaries, Full Graph
 Covers below features:
 JIRA ID - KYC-147 pop open panel for more entity info on owners graph
 
+Meta:@sidepanel @ubo
+
+Scenario: KYC user login
+Given the user is on the ubo login page
+When the user login as a ubo user
+
 Scenario: View side panel for legal entity on owners graph
 a. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity
 b. With head office address elements with varying "UseInAddress" flag value true for each element (display element if UseInAddress is true)
@@ -26,6 +32,7 @@ s. If percent ownership exists for subsidiary relationship, display in list next
 t. If percent ownership is null, do not display a percent ownership next to subsidiary on list
 u. If country of operations exists for subsidiary entity, display next to subsidiary on list
 v. If country of operations does not exist for subsidiary entity, do not display next to subsidiary on list
+
 w. If active relationship to person owner exists for legal entity user selected or any entity in its path of ownership, display that person in the UBO list and display the legal title of the entity it directly owns
 x. If inactive relationship to person owner exists for legal entity user selected or any entity in its path of ownership, do not display that person in the UBO list
 y. If multiple people appear in the UBO list, sort by percent ownership first then by name
@@ -34,3 +41,12 @@ aa. If UBO relationship has null percent ownership, do not display percent next 
 bb. If no UBOs appear on the list, display UBO list header with message "No known entities." in place of the list
 cc. User clicks close icon, side panel hides
 dd. User clicks someplace else on screen outside of side panel, panel does not close
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+
+And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the owners graph
+Then the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked

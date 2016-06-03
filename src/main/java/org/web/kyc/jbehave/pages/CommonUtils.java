@@ -58,6 +58,10 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_side_panel_direct_owners_title_list_text_xpath =By.xpath("//*[@id='directly-owns']/tbody/tr/td[1]");
     private By graph_side_panel_direct_owners_country_list_text_xpath =By.xpath("//*[@id='directly-owns']/tbody/tr/td[2]");
     private By graph_side_panel_direct_owners_percent_ownership_list_text_xpath =By.xpath("//*[@id='directly-owns']/tbody/tr/td[3]");
+    private By graph_side_panel_ubo_title_list_text_xpath =By.xpath("//*[@id='ubo']/tbody/tr/td[1]");
+    private By graph_side_panel_ubo_entity_list_text_xpath =By.xpath("//*[@id='ubo']/tbody/tr/td[2]");
+    private By graph_side_panel_ubo_percent_ownership_list_text_xpath =By.xpath("//*[@id='ubo']/tbody/tr/td[3]");
+
     public static String selectedCountryHighlight = "";
     private String userType="";
 
