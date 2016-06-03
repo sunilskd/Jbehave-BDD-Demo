@@ -486,12 +486,12 @@ And the user clicks on the graph button
 And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the owners graph
 Then the user should see below free text in the side panel of owners graph
 |FREETEXT|
-|Treasury shares, 3.8%; Trade Union Federations of SGB (where no federation owns 3% or more), 4.8%; Others, 23.4%|
+|Treasury shares, 3.8; Trade Union Federations of SGB (where no federation owns 3 or more), 4.8; Others, 23.4|
 
 When the user clicks on the graph node with title Other shareholders, user is currently viewing in the owners graph
 Then the user should see below free text in the side panel of owners graph
 |FREETEXT|
-|Other shareholders owning less than 2%, 71.315 %|
+|Other shareholders owning less than 2, 71.315 |
 
 When the user clicks on close button on the side panel in the owners graph
 Then side panel should be closed and user should continue to be on owners graph page
@@ -511,7 +511,7 @@ And the user should not see the visual indicator displayed for free text ownersh
 
 Examples:
 |fid|entity|
-|LE-6|Top shareholders owning less than 2%, 71.315 %|
+|LE-6|Top shareholders owning less than 2, 71.315 |
 
 Scenario: Root node appears in multiple times in the same path
 Given the user is on the ubo login page

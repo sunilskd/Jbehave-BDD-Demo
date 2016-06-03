@@ -71,7 +71,7 @@ public class OwnersGraphPage extends WebDriverUtils {
 
     public void verifyFreeTextInSidePanel(ExamplesTable freeTextExampleTable){
         String aDirectOwnerFreeText = getWebElementText(owners_graph_side_panel_free_text_xpath);
-        assertEquals(freeTextExampleTable.getRow(0).get(freeTextExampleTable.getHeaders().get(0)), aDirectOwnerFreeText);
+        assertEquals(freeTextExampleTable.getRow(0).get(freeTextExampleTable.getHeaders().get(0)), aDirectOwnerFreeText.replace("%",""));
     }
 
     public void verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(String entityType) {
