@@ -94,6 +94,7 @@ public class WebDriverUtils extends WebDriverPage {
     }
 
     public void enterStringInInputBox(By by, String inputString) {
+        findElement(by).clear();
         findElement(by).sendKeys(inputString);
     }
 
@@ -125,5 +126,34 @@ public class WebDriverUtils extends WebDriverPage {
 
     public void takeSnapshot(String path){
         getDriverProvider().saveScreenshotTo(path);
+    }
+
+    public void moveSliderBarTo(By by, int x){
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        /* Clicking and holding on the slider bar and move by offset*/
+        moveMouseTo(by);
+        getActions().clickAndHold(findElement(by)).moveByOffset(x, 0).build().perform();
+        getActions().release(findElement(by)).build().perform();
+        try {
+            Thread.sleep(2000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void moveMouseTo(By by) {
+        getActions().moveToElement(findElement(by)).build().perform();
+    }
+
+    public WebElement getWebElementByTagName(String tagName){
+        return findElement(By.tagName(tagName));
+    }
+
+    public List<WebElement> getWebElementsByTagName(String tagName){
+        return findElements(By.tagName(tagName));
     }
 }

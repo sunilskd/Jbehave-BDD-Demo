@@ -30,7 +30,7 @@ Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: Covers below scenarios
+Scenario: Covers below scenariosgit
 a. 0. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
    1. Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
    2. If only ownerType is present display owner as "ownerType"
