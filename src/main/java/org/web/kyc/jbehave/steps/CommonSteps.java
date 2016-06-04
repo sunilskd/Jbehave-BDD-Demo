@@ -64,7 +64,7 @@ public class CommonSteps {
     }
 
     @Then("the user should see the direct relationship only filter checkbox unchecked by default in the graph")
-    public void verifyingDirectRelationshipOnlyFilterIsUnchecked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxIsNotClicked();}
+    public void verifyingDirectRelationshipOnlyFilterIsUnchecked(){pageObject.commonUtils().verifyingDirectRelationshipOnlyFilterIsUnchecked();}
 
     @When("the user clicks on direct relationship only filter checkbox in the graph")
     public void clickOnDirectRelationshipCheckbox(){pageObject.commonUtils().clickOnDirectRelationshipCheckbox();}
@@ -108,7 +108,7 @@ public class CommonSteps {
     }
 
     @Then("the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph")
-    public void verifyUBOFilterIsUncheckedDefault(){
+    public void verifyUBOFilterIsUncheckedByDefault(){
         pageObject.commonUtils().verifyUBOFilterIsUncheckedByDefault();
     }
 

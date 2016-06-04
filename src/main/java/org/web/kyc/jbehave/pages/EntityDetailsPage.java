@@ -10,6 +10,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.web.kyc.comparator.Comparator.compareImages;
+import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.ENTITY_DETAILS;
 
 public class EntityDetailsPage extends WebDriverUtils {
@@ -175,20 +176,12 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void aCaptureEntityDetailsPage() {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         takeSnapshot("./src/test/resources/actual/aEntityDetails.png");
     }
 
     public void compareSnapshotsForEntityDetails() {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         assertTrue(
                 compareImages(readProperties().getSnapshotPath() + "/expected/eEntityDetails.png",
                                 readProperties().getSnapshotPath() + "/actual/aEntityDetails.png",

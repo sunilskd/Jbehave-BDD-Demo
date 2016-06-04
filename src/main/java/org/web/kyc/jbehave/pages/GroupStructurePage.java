@@ -12,6 +12,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
+import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
 public class GroupStructurePage extends WebDriverUtils {
 
@@ -145,11 +146,7 @@ public class GroupStructurePage extends WebDriverUtils {
     }
 
     public void verifyUltimateOwner(String ultimateOwner) {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         assertEquals(ultimateOwner, getWebElementText(group_structure_ultimate_owner_text_xpath));
     }
 
@@ -166,20 +163,12 @@ public class GroupStructurePage extends WebDriverUtils {
     }
 
     public void aCaptureGroupStructurePage() {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         takeSnapshot("./src/test/resources/actual/aGroupStructurePage.png");
     }
 
     public void compareSnapshotsForGroupStructure() {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         assertTrue(
                 compareImages(readProperties().getSnapshotPath() + "/expected/eGroupStructurePage.png",
                         readProperties().getSnapshotPath() + "/actual/aGroupStructurePage.png",

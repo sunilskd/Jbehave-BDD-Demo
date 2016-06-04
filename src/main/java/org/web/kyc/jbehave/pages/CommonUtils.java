@@ -103,11 +103,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void selectCountryHighlight(String country) {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         waitForPageToLoad(15000L);
         selectedCountryHighlight = country;
         String highlightXpath = country_highlight_options_text_xpath + "[" + getElementIndexByValue(By.xpath(country_highlight_options_text_xpath), country) + "]";
@@ -133,11 +129,7 @@ public class CommonUtils extends WebDriverUtils {
             enterStringInInputBox(user_login_input_box_id, readProperties().getUboUser());
         }
         clickOnWebElement(login_button_xpath);
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(2000L);
     }
 
     public void userLogout() {
@@ -150,20 +142,12 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void clickOnGraphButton() {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         clickOnWebElement(graph_button_xpath);
     }
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
-        try {
-            Thread.sleep(5000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         verifyCountryHighlightsHeader();
         List<String> aCountryHighlightList = getWebElementsText(graph_country_highlight_list_text_xpath);
         for(int i =0; i<countriesHighlightListExamTable.getRowCount(); i++){
@@ -198,11 +182,7 @@ public class CommonUtils extends WebDriverUtils {
     public void enterPercentFilter(String percentFilter){
         waitForWebElementToAppear(graph_percent_filter_text_box_xpath);
         enterStringInInputBox(graph_percent_filter_text_box_xpath, percentFilter);
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
     }
 
     public void verifyPercentFilterIsSetToZero() {
@@ -213,26 +193,18 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void clickOnDirectRelationshipCheckbox() {
-        try{
-            Thread.sleep(5000L);
+        waitForInMilliSeconds(3000L);
         clickOnWebElement(graph_filter_direct_relationship_only_xpath);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
     }
 
-    public void verifyingDirectRelationshipCheckboxIsNotClicked() {
+    public void verifyingDirectRelationshipOnlyFilterIsUnchecked() {
         assertEquals("Direct relationships only", getWebElementText(graph_filter_direct_relationship_only_label_xpath));
         assertTrue(isWebElementDisplayed(graph_filter_direct_relationship_only_xpath));
     }
 
     public void unCheckDirectRelationshipCheckbox() {
-        try{
-            Thread.sleep(5000L);
-            clickOnWebElement(graph_filer_direct_relationship_only_uncheck_xpath);
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
+        clickOnWebElement(graph_filer_direct_relationship_only_uncheck_xpath);
     }
 
     public void verifyGraphNodes(String level, ExamplesTable nodesExamTable) {
@@ -303,11 +275,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyNoEntitiesMsg() {
         waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
     }
 
@@ -319,11 +287,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyFooterLinks(String footerLink){
         findElement(By.linkText(footerLink)).click();
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
     }
 
     public void verifyFooterLogos(String verifyFooterLogos){
@@ -332,11 +296,7 @@ public class CommonUtils extends WebDriverUtils {
 
 
     public void verifyURLOpensInNewWindow(String url){
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         for (String Handle : getWindowHandles()) {
             switchTo().window(Handle);
         }
@@ -378,28 +338,17 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyStopTravelingPath(String level) {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
     public void zoomingOutGraph(){
-            try{
-                WebElement elementToBeClicked = getWebElement(graph_xpath);
-                getActions().sendKeys(Keys.SHIFT).doubleClick(elementToBeClicked).build().perform();
-                Thread.sleep(3000L);
-            }catch(InterruptedException e){
-                e.printStackTrace();}
+        WebElement elementToBeClicked = getWebElement(graph_xpath);
+        getActions().sendKeys(Keys.SHIFT).doubleClick(elementToBeClicked).build().perform();
+        waitForInMilliSeconds(3000L);
      }
 
     public void clickPartialLinkText(String linkText){
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         findElement(By.partialLinkText(linkText)).click();
     }
     public void closeSidePanel(){
@@ -418,11 +367,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void clickOnUBOFilterCheckbox() {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         clickOnWebElement(graph_ubo_filter_checkbox_xpath);
     }
 
@@ -462,5 +407,13 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyNoUBOFilters() {
         assertFalse(isWebElementDisplayed(graph_ubo_filter_checkbox_xpath));
+    }
+
+    public static void waitForInMilliSeconds(long milliSeconds){
+        try {
+            Thread.sleep(milliSeconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

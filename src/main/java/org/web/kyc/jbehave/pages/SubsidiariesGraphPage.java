@@ -1,22 +1,15 @@
 package org.web.kyc.jbehave.pages;
 
-import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.*;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class SubsidiariesGraphPage extends WebDriverUtils {
 
     private By subsidiaries_graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
     private String subsidiaries_graph_level_xpath = "//*[contains(@transform,',";
     private String subsidiaries_graph_legal_title_xpath = "')]/*[local-name()='text']/*[local-name()='title']";
-    private By subsidiaries_graph_no_subs_message_text_xpath = By.xpath("//*[@id='content-view']/p");
 
     public SubsidiariesGraphPage(WebDriverProvider driverProvider) {
         super(driverProvider);

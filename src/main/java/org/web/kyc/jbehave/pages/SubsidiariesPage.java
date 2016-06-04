@@ -15,6 +15,7 @@ import java.util.TreeSet;
 import static org.junit.Assert.*;
 import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
+import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
 
 public class SubsidiariesPage extends WebDriverUtils {
@@ -150,11 +151,7 @@ public class SubsidiariesPage extends WebDriverUtils {
             }
         }
         clickOnWebElement(By.linkText(legalTitle));
-        try {
-            Thread.sleep(1000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
     }
 
     public void eCaptureSubsidiariesPage() {
@@ -162,20 +159,12 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void aCaptureSubsidiariesPage() {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         takeSnapshot("./src/test/resources/actual/aSubsidiariesPage.png");
     }
 
     public void compareSnapshotsForSubsidiaries() {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         assertTrue(
                 compareImages(readProperties().getSnapshotPath() + "/expected/eSubsidiariesPage.png",
                         readProperties().getSnapshotPath() + "/actual/aSubsidiariesPage.png",

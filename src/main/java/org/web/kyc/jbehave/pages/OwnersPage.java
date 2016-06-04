@@ -13,6 +13,7 @@ import java.util.TreeSet;
 import static org.junit.Assert.*;
 import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
+import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
 
 public class OwnersPage extends WebDriverUtils {
@@ -190,11 +191,7 @@ public class OwnersPage extends WebDriverUtils {
             }
         }
         clickOnWebElement(By.linkText(legalTitle));
-        try {
-            Thread.sleep(1000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
     }
 
     public void openLegalTitleInDirectOwnersListInNewWindow(String legalTitle) {
@@ -233,20 +230,12 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void aCaptureOwnersPage() {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         takeSnapshot("./src/test/resources/actual/aOwnersPage.png");
     }
 
     public void compareSnapshotsForOwners() {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         assertTrue(
                 compareImages(readProperties().getSnapshotPath() + "/expected/eOwnersPage.png",
                         readProperties().getSnapshotPath() + "/actual/aOwnersPage.png",
