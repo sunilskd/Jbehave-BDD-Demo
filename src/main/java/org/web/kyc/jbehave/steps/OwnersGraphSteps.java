@@ -124,5 +124,23 @@ public class OwnersGraphSteps {
         pageObject.commonUtils().dVerifyDirectlyOwnsSectionInSidePanel(nodeTitle);
     }
 
+    @When("the user clicks on the graph page")
+    public void userClicksOnGraph(){
+        pageObject.commonUtils().userClicksOnGraph();
+    }
 
+    @Then("the side panel should still exists on the graph")
+    public void verifySidePanelIsOpen(){
+        pageObject.commonUtils().verifySidePanelIsOpen();
+    }
+
+    @Then("the kyc user should not see ubo list in side panel of graph page")
+    public void verifyUboListIsNotDisplayed(){
+        pageObject.commonUtils().verifyUboListIsNotDisplayed();
+    }
+
+    @Then("the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <nodeTitle> user clicked $uboListExamTable")
+    public void dVerifyUBOSectionInSidePanel(ExamplesTable uboListExamTable){
+        pageObject.commonUtils().dVerifyUBOSectionInSidePanel(uboListExamTable);
+    }
 }
