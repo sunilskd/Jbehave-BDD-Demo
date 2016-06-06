@@ -6,6 +6,8 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.ButtonReleaseAction;
+import org.openqa.selenium.interactions.internal.Coordinates;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.*;
@@ -43,7 +45,8 @@ public class CommonUtils extends WebDriverUtils {
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
-    private By graph_xpath = By.xpath(".//*[local-name()='svg']");
+    //private By graph_xpath = By.xpath(".//*[local-name()='svg']");
+    private By graph_xpath = By.xpath(".//*[local-name()='g'][@class='drawarea']");
     private By graph_side_panel_close_button_xpath = By.xpath("//div[3]/button");
     private By graph_side_panel_closed_xpath = By.xpath("//h3[@class='ng-hide']");
     private By graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
@@ -67,6 +70,7 @@ public class CommonUtils extends WebDriverUtils {
         nvPairs.clear();
         nvPairs.add(new BasicNameValuePair("userType", userType));
         get(readProperties().getUrl() + "login");
+        manage().window().maximize();
     }
 
     public void clickOnOwnershipTab() {
@@ -144,6 +148,11 @@ public class CommonUtils extends WebDriverUtils {
     public void clickOnGraphButton() {
         waitForInMilliSeconds(3000L);
         clickOnWebElement(graph_button_xpath);
+        if(isWebElementDisplayed(graph_xpath)) {
+            executeScript
+                    ("return arguments[0].setAttribute(arguments[1],arguments[2]);",
+                            getWebElement(graph_xpath), "transform", "translate(868.6954528766546,353.85591147078947) scale(0.14742692172911015)");
+        }
     }
 
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
@@ -341,11 +350,10 @@ public class CommonUtils extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
-    public void zoomingOutGraph(){
-        WebElement elementToBeClicked = getWebElement(graph_xpath);
-        getActions().sendKeys(Keys.SHIFT).doubleClick(elementToBeClicked).perform();
-        waitForInMilliSeconds(3000L);
-     }
+//    public void zoomingOutGraph(){
+//        WebElement elementToBeClicked = getWebElement(graph_xpath);
+//        executeScript("return arguments[0].setAttribute(arguments[1],arguments[2]);", getWebElement(graph_xpath), "transform", "translate(868.6954528766546,353.85591147078947) scale(0.14742692172911015)");
+//     }
 
     public void clickPartialLinkText(String linkText){
         waitForInMilliSeconds(3000L);

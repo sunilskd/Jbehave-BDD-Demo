@@ -491,7 +491,7 @@ Then the user should see below free text in the side panel of owners graph
 When the user clicks on the graph node with title Other shareholders, user is currently viewing in the owners graph
 Then the user should see below free text in the side panel of owners graph
 |FREETEXT|
-|Other shareholders owning less than 2, 71.315 |
+|Other shareholders owning less than 2, 71.315|
 
 When the user clicks on close button on the side panel in the owners graph
 Then side panel should be closed and user should continue to be on owners graph page
@@ -528,7 +528,6 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-When the user zoom out of the graph
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
 And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph

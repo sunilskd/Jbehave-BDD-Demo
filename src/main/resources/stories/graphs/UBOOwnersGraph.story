@@ -608,7 +608,6 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-When the user zoom out of the graph
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
 And the user should not see the visual indicator displayed for non-person/non-entity when appeared multiple time for <entity> in the graph
@@ -628,7 +627,6 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-When the user zoom out of the graph
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
 And the user should not see the visual indicator displayed for non-person/non-entity when appeared multiple time for <entity> in the graph

@@ -11,6 +11,11 @@ KYC user does not have access to below entity types -
 Covers below features:
 JIRA ID - KYC-79 - UBO user can view full graph
 JIRA ID - KYC-229 - UBO user can highlight UBOs on the graph
+JIRA ID - KYC-116 - KYC user can view free text ownership on full graph
+JIRA ID - KYC-103 - KYC user can filter full graph by percent ownership
+JIRA ID - KYC-110 - KYC user can highlight legal entities by country in full graph
+JITA ID - KYC-158 - KYC user can see visual indicator for entity that appears multiple times on the full graph
+JITA ID - KYC-136 - Full Graph - Direct / Indirect Filter
 
 Meta:@kycfullgraph @kyc
 
@@ -433,7 +438,6 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
 And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-When the user zoom out of the graph
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
 And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph
