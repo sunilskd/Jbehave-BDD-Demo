@@ -246,7 +246,7 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. "No country highlight" is default selection in country highlight drop-down
    1. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
-   2. Select a country highlight, legal entities in the owners graph that have that country of operations are highlighted (including root node of graph if applicable)
+   2. Select a country highlight, legal entities in the full graph that have that country of operations are highlighted (including root node of graph if applicable)
    3. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
    4. Select "No country highlight", removes country highlight of legal entities
 Given the user is on the ubo login page
@@ -322,11 +322,11 @@ And the user should see the list of below owners in level 1, above the root enti
 
 When the user enters percentage as 100 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
-And the user should not see any nodes in level 2, above the root entity, in the owners graph
+And the user should not see any nodes in level 2, above the root entity, in the full graph
 
 When the user enters percentage as 200 in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
-And the user should not see any nodes in level 2, above the root entity, in the owners graph
+And the user should not see any nodes in level 2, above the root entity, in the full graph
 
 When the user enters percentage as abc in ownership percentage filter text box in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
@@ -393,14 +393,63 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: By default UBO highlight checkbox is available on owners graph, but is disabled for KYC user and not selectable
+Scenario: By default UBO highlight checkbox is available on full graph, but is disabled for KYC user and not selectable
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the owners tab
+And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
 
 Examples:
 |fid|
 |LE-A|
+
+Scenario: Covers below scenarios
+a. 0. Root node appears in multiple times in the same path
+   1. Visual indicator count doesnt change even filter is applied
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the full graph
+And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+When the user clicks on direct relationship only filter checkbox in the graph
+Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+
+Examples:
+|fid|legalEntityTitle|countValue|
+|LE-56|QA Legal Entity 56|Appears: 2|
+
+Scenario: Covers below scenarios
+a. 0. Legal Entity appears at multiple levels
+   1. Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
+   2. Visual indentifier must not be displayed when free text appears multiple times on the graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+When the user zoom out of the graph
+When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
+And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph
+
+Examples:
+|fid|legalEntityTitle|countValue|entity|
+|LE-6|QA Legal Entity 61|Appears: 3|Top shareholders owning less than 2, 71.315 |
+
+Scenario: Visual Indicator not been displayed for Legal entities which are displayed only once
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the full graph
+And the user should not see visual indicator for legal entity <entityType>, when displayed only once
+Examples:
+|fid|entityType|
+|LE-9|QA Legal Entity 16|

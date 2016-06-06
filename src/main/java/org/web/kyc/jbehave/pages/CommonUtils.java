@@ -343,7 +343,7 @@ public class CommonUtils extends WebDriverUtils {
     }
     public void zoomingOutGraph(){
         WebElement elementToBeClicked = getWebElement(graph_xpath);
-        getActions().sendKeys(Keys.SHIFT).doubleClick(elementToBeClicked).build().perform();
+        getActions().sendKeys(Keys.SHIFT).doubleClick(elementToBeClicked).perform();
         waitForInMilliSeconds(3000L);
      }
 

@@ -500,20 +500,9 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Visual indentifier must not be displayed when free text appears multiple times on the graph
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
-And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph
-
-Examples:
-|fid|entity|
-|LE-6|Top shareholders owning less than 2, 71.315 |
-
-Scenario: Root node appears in multiple times in the same path
+Scenario: Covers below scenarios
+a. 0. Root node appears in multiple times in the same path
+   1. Visual indicator count doesnt change even filter is applied
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -521,12 +510,17 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
 And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+When the user clicks on direct relationship only filter checkbox in the graph
+Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
 
 Examples:
 |fid|legalEntityTitle|countValue|
 |LE-56|QA Legal Entity 56|Appears: 2|
 
-Scenario: Legal Entity appears at multiple levels
+Scenario: Covers below scenarios
+a. 0. Legal Entity appears at multiple levels
+   1. Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
+   2. Visual indentifier must not be displayed when free text appears multiple times on the graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -534,24 +528,14 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
 And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-
-Examples:
-|fid|legalEntityTitle|countValue|
-|LE-6|QA Legal Entity 61|Appears: 3|
-
-Scenario: Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the owners graph
+When the user zoom out of the graph
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
+And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph
 
 Examples:
-|fid|legalEntityTitle|
-|LE-9|QA Legal Entity 61|
+|fid|legalEntityTitle|countValue|entity|
+|LE-6|QA Legal Entity 61|Appears: 3|Top shareholders owning less than 2, 71.315 |
 
 Scenario: Visual Indicator not been displayed for Legal entities which are displayed only once
 Given the user is on the ubo login page
@@ -561,23 +545,10 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the owners graph
 And the user should not see visual indicator for legal entity <entityType>, when displayed only once
+
 Examples:
 |fid|entityType|
 |LE-9|QA Legal Entity 16|
-
-Scenario: Visual indicator count doesnt change even filter is applied
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the owners graph
-When the user clicks on direct relationship only filter checkbox in the graph
-Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-
-Examples:
-|fid|legalEntityTitle|countValue|
-|LE-56|QA Legal Entity 56|Appears: 2|
 
 Scenario: By default UBO highlight checkbox is available on owners graph, but is disabled for KYC user and not selectable
 Given the user is on the ubo login page

@@ -28,7 +28,7 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    6. Entity on the subsidiary portion of graph has an inactive relationship where it is the owner, then do not display owned entity on graph
    7. Subsidiary relationship has percent ownership, display percent ownership on the subsidiary node
    8. Subsidiary relationship has null percent ownership, do not display a percent ownership on the subsidiary node
-   9. Entity on owners graph has non-institution, non-person entity type owner and the relationship is active, display that owner on the graph
+   9. Entity on full graph has non-institution, non-person entity type owner and the relationship is active, display that owner on the graph
    10. non-institution, non-person entity type owner has percent ownership, display on the owner's node
    11. non-institution, non-person entity type owner has null percent ownership, do not display percent ownership on owner's node
    12. non-institution, non-person entity type owner has value for owner type and description, display owner type and description
@@ -118,7 +118,7 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
    1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
-   2. If entity on owners graph has non-institution, non-person entity type owner but the relationship is inactive, do not display that owner on the graph
+   2. If entity on full graph has non-institution, non-person entity type owner but the relationship is inactive, do not display that owner on the graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -272,7 +272,7 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. "No country highlight" is default selection in country highlight drop-down
    1. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
-   2. Select a country highlight, legal entities in the owners graph that have that country of operations are highlighted (including root node of graph if applicable)
+   2. Select a country highlight, legal entities in the full graph that have that country of operations are highlighted (including root node of graph if applicable)
    3. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
    4. Select "No country highlight", removes country highlight of legal entities
 Given the user is on the ubo login page
@@ -441,7 +441,7 @@ a. 0. By default UBO checkbox is available but not checked
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the owners tab
+And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph
 When the user clicks on the ultimate beneficial owners filter checkbox in the graph
@@ -455,3 +455,69 @@ Then the user should see the ultimate beneficial owners highlighted in the graph
 Examples:
 |fid|
 |LE-6|
+
+Scenario: Covers below scenarios
+a. 0. Root node appears in multiple times in the same path
+   1. Visual indicator count doesnt change even filter is applied
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the full graph
+And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+When the user clicks on direct relationship only filter checkbox in the graph
+Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+
+Examples:
+|fid|legalEntityTitle|countValue|
+|LE-56|QA Legal Entity 56|Appears: 2|
+
+Scenario: Covers below scenarios
+a. 0. Legal Entity appears at multiple levels
+   1. Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
+   2. Visual indentifier must not be displayed when Non-person/Non-legal Entities appear multiple times on the graph
+b. 0. Person appears at multiple levels
+   1. Person appears at multiple levels is highlighted when clicked on one of the occurances
+   2. Visual indentifier must not be displayed when Non-person/Non-legal Entities appear multiple times on the graph
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+When the user zoom out of the graph
+When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
+And the user should not see the visual indicator displayed for non-person/non-entity when appeared multiple time for <entity> in the graph
+
+Examples:
+|fid|legalEntityTitle|countValue|entity|
+|LE-6|QA Legal Entity 61|Appears: 3|Local Government, Legal Entity 61 owned by Local Government|
+|LE-6|QA Test Person 1|Appears: 3|Local Government, Legal Entity 61 owned by Local Government|
+
+Scenario: Visual Indicator not been displayed for Legal entities which are displayed only once
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the full graph
+And the user should not see visual indicator for legal entity <entityType>, when displayed only once
+Examples:
+|fid|entityType|
+|LE-9|QA Legal Entity 16|
+
+Scenario: Visual Indicator not been displayed for persons with same name but different fid's
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root in the full graph
+And the user should not see the visual indicator for entity with same name but different fid <entityType>
+
+Examples:
+|fid|entityType|
+|LE-A|QA Test Person A|
