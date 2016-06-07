@@ -38,7 +38,7 @@ public class OwnersGraphPage extends WebDriverUtils {
         assertEquals("Ownership Graph", getWebElementText(owners_graph_header_text_xpath));
     }
 
-    public void verifyingCountForMultipleDiplayedNodes(String legalEntityTitle, String countValue) {
+    public void verifyingCountForMultipleDisplayedNodes(String legalEntityTitle, String countValue) {
         List<WebElement> multipleNode  = getWebElements(By.xpath(owners_graph_multiple_node_xpath));
         for(int i=0;i<multipleNode.size();i++){
           String entityTile = multipleNode.get(i).findElement(owners_graph_multiple_node_title_xpath).getText();

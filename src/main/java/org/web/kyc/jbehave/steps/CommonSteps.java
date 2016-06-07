@@ -102,11 +102,6 @@ public class CommonSteps {
         pageObject.commonUtils().verifyNoHighlightedNodes();
     }
 
-//    @When("the user zoom out of the graph")
-//    public void zoomingOutGraph(){
-//        pageObject.commonUtils().zoomingOutGraph();
-//    }
-
     @Then("the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph")
     public void verifyUBOFilterIsUncheckedByDefault(){
         pageObject.commonUtils().verifyUBOFilterIsUncheckedByDefault();

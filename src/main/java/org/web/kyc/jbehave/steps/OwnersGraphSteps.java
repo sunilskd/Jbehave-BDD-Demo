@@ -1,7 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
 import org.jbehave.core.annotations.*;
-import org.eclipse.jetty.util.annotation.Name;
 import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -48,9 +47,8 @@ public class OwnersGraphSteps {
     }
 
     @Then("the user should see message displayed in place of graph explaining there are no owners")
-    public void verifyNoOwnersMsg() {
+    public void verifyNoEntitiesMsg() {
         pageObject.commonUtils().verifyNoEntitiesMsg();
-
     }
 
     @Then("the user should not see any nodes in level $level, above the root entity, in the owners graph")
@@ -61,7 +59,7 @@ public class OwnersGraphSteps {
 
     @Then("the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph")
     public void verifyingCountForMultipleDisplayedNodes(@Named("legalEntityTitle")String legalEntityTitle, @Named("countValue")String countValue){
-        pageObject.ownersGraphPage().verifyingCountForMultipleDiplayedNodes(legalEntityTitle,countValue);
+        pageObject.ownersGraphPage().verifyingCountForMultipleDisplayedNodes(legalEntityTitle,countValue);
     }
 
     @Then("the user should not see the visual indicator displayed for non-person/non-entity when appeared multiple time for <entity> in the graph")
@@ -79,7 +77,6 @@ public class OwnersGraphSteps {
     public void selectingNodeToBeClicked(@Named("legalEntityTitle") String legalEntityTitle){
         pageObject.ownersGraphPage().selectingNodeToBeClicked(legalEntityTitle);
     }
-
 
     @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the owners graph")
     public void clickPartialLinkText(String linkText){
