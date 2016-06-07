@@ -125,10 +125,5 @@ public class SubsidiariesSteps {
     public void verifyCountryHighlightIsDeSelected(@Named("country") String deselectCountry){
         pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
     }
-
-    @Then("the user should not see the ultimate beneficial owners filter checkbox in the subsidiaries graph")
-    public void verifyNoUBOFilters(){
-        pageObject.commonUtils().verifyNoUBOFilters();
-    }
 }
 

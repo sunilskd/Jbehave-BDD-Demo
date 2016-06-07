@@ -50,4 +50,9 @@ public class SubsidiariesGraphSteps {
     public void verifyStopTravelingPath(String level){
         pageObject.commonUtils().verifyStopTravelingPath(Integer.toString((Integer.parseInt(level) * 180)));
     }
+
+    @Then("the user should not see the ultimate beneficial owners filter checkbox in the subsidiaries graph")
+    public void verifyNoUBOFilters(){
+        pageObject.commonUtils().verifyNoUBOFilters();
+    }
 }
