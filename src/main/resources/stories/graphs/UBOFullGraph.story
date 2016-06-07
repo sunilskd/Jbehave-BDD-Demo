@@ -346,6 +346,10 @@ And the user should see the list of below subsidiaries in level 2, below the roo
 |QA Legal Entity 149.53UK|
 |QA Legal Entity 250.53UK|
 
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the full graph
+|NODES|
+|QA Legal Entity 150.52UK|
+
 And the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
 |QA Legal Entity 945.53UK|
@@ -494,6 +498,7 @@ And the user should see the multiple appearance bar for <legalEntityTitle> indic
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
 And the user should not see the visual indicator displayed for non-person/non-entity when appeared multiple time for <entity> in the graph
+And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
 
 Examples:
 |fid|legalEntityTitle|countValue|entity|
@@ -524,3 +529,35 @@ And the user should not see the visual indicator for entity with same name but d
 Examples:
 |fid|entityType|
 |LE-A|QA Test Person A|
+
+Scenario: Verify percent filter is applied at all level
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
+When the user enters percentage as 45 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+And the user should see the list of below owners in level 1, above the root entity, in the full graph
+|NODES|
+|QA Test Person 945.53|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 149.53UK|
+|QA Legal Entity 250.53UK|
+
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 150.52UK|
+
+Examples:
+|fid|
+|LE-6|

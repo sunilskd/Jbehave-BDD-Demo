@@ -26,7 +26,7 @@ public class OwnersGraphSteps {
 
     @Then("the user should see the list of below owners in level $level, above the root entity, in the owners graph $ownersExamTable")
     public void verifyGraphNodes(String level, ExamplesTable ownersExamTable){
-        pageObject.commonUtils().verifyGraphNodes(Integer.toString(600 - (Integer.parseInt(level)*180)), ownersExamTable);
+        pageObject.commonUtils().verifyGraphNodes(Integer.toString(500 - (Integer.parseInt(level)*180)), ownersExamTable);
     }
 
     @Then("the user should see no country highlight selected by default in country highlight drop-down in the owners graph page")
@@ -99,12 +99,17 @@ public class OwnersGraphSteps {
     }
 
     @Then("the user should not see visual indicator for legal entity <entityType>, when displayed only once")
-    public void verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(@Named("entityType") String entityType){
-        pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(entityType);
+    public void verifyVisualIndicatorNotDisplayedForSingleLegalEntity(@Named("entityType") String entityType){
+        pageObject.ownersGraphPage().verifyVisualIndicatorNotDisplayedForSingleLegalEntity(entityType);
     }
 
     @Then("the user should not see the visual indicator for entity with same name but different fid <entityType>")
-    public void verifyingVisualIndicatorNotDisplayedForEntityDiffFid(@Named("entityType") String entityType){
-        pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForEntityDiffFid(entityType);
+    public void verifyVisualIndicatorNotDisplayedForEntityDiffFid(@Named("entityType") String entityType){
+        pageObject.ownersGraphPage().verifyVisualIndicatorNotDisplayedForEntityDiffFid(entityType);
+    }
+
+    @Then("the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph")
+    public void verifyVisualIndicatorNotDisplayedForSubsidiaries(){
+        pageObject.ownersGraphPage().verifyVisualIndicatorNotDisplayedForSubsidiaries();
     }
 }

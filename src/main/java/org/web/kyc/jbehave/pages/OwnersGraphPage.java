@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
@@ -22,15 +23,16 @@ public class OwnersGraphPage extends WebDriverUtils {
     private By owners_graph_side_panel_free_text_xpath = By.xpath("//div[3]/div/p");
     private By owners_graph_non_multiple_nodes_list_xpath = By.xpath(".//*[@class='node own bank']");
     private By owners_graph_person_nodes_list_xpath = By.xpath(".//*[@class='node own person']");
+    private By owners_graph_multiple_node_subsidiaries_xpath = By.xpath("//*[local-name()='g'][contains(@class,'sub')][contains(@class,'multiple')]");
 
     public OwnersGraphPage(WebDriverProvider driverProvider) {
         super(driverProvider);
     }
 
     public void verifyOwnersGraphRootNode(String legalEntity) {
-        waitForWebElementToAppear(By.xpath(owners_graph_level_xpath  + "600" + owners_graph_legal_title_xpath));
+        waitForWebElementToAppear(By.xpath(owners_graph_level_xpath  + "500" + owners_graph_legal_title_xpath));
         verifyOwnersGraphHeader();
-        assertEquals(legalEntity, getWebElementText(By.xpath(owners_graph_level_xpath  + "600" + owners_graph_legal_title_xpath)));
+        assertEquals(legalEntity, getWebElementText(By.xpath(owners_graph_level_xpath  + "500" + owners_graph_legal_title_xpath)));
     }
 
     public void verifyOwnersGraphHeader() {
@@ -73,12 +75,12 @@ public class OwnersGraphPage extends WebDriverUtils {
         assertEquals(freeTextExampleTable.getRow(0).get(freeTextExampleTable.getHeaders().get(0)), aDirectOwnerFreeText.replace("%",""));
     }
 
-    public void verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(String entityType) {
+    public void verifyVisualIndicatorNotDisplayedForSingleLegalEntity(String entityType) {
         List<WebElement> nodes = getWebElements(owners_graph_non_multiple_nodes_list_xpath);
         comparingAndExtractingTitle(entityType, nodes);
     }
 
-    public void verifyingVisualIndicatorNotDisplayedForEntityDiffFid(String entityType){
+    public void verifyVisualIndicatorNotDisplayedForEntityDiffFid(String entityType){
         List<WebElement> personNodes = getWebElements(owners_graph_person_nodes_list_xpath);
         comparingAndExtractingTitle(entityType, personNodes);
     }
@@ -93,9 +95,11 @@ public class OwnersGraphPage extends WebDriverUtils {
             if(entityType.equalsIgnoreCase(node.findElement(owners_graph_multiple_node_title_xpath).getText())){
                 String appearsCount = node.findElements(By.tagName("text")).get(2).getText();
                 assertTrue(appearsCount.isEmpty());
-                break;
             }
         }
     }
 
+    public void verifyVisualIndicatorNotDisplayedForSubsidiaries() {
+        assertFalse(isWebElementDisplayed(owners_graph_multiple_node_subsidiaries_xpath));
+    }
 }

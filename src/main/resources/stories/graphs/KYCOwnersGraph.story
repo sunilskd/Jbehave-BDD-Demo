@@ -512,6 +512,8 @@ Then the user should see the legal entity QA Legal Entity 56, user is currently 
 And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
 When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
+And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
 
 Examples:
 |fid|legalEntityTitle|countValue|
@@ -531,6 +533,7 @@ And the user should see the multiple appearance bar for <legalEntityTitle> indic
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
 And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph
+And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
 
 Examples:
 |fid|legalEntityTitle|countValue|entity|

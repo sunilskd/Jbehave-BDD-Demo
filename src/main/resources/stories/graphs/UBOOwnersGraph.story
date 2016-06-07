@@ -611,6 +611,7 @@ And the user should see the multiple appearance bar for <legalEntityTitle> indic
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
 And the user should not see the visual indicator displayed for non-person/non-entity when appeared multiple time for <entity> in the graph
+And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
 
 Examples:
 |fid|legalEntityTitle|countValue|entity|
@@ -630,6 +631,7 @@ And the user should see the multiple appearance bar for <legalEntityTitle> indic
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
 And the user should not see the visual indicator displayed for non-person/non-entity when appeared multiple time for <entity> in the graph
+And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
 
 Examples:
 |fid|legalEntityTitle|countValue|entity|
