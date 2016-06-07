@@ -69,6 +69,8 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_side_panel_stock_exchange_label_text_xpath= By.xpath("//tr[3]/th");
     private By graph_side_panel_direct_owners_label_text_xpath= By.xpath("//div[3]//h3[2]");
     private By graph_side_panel_ubo_label_text_xpath= By.xpath("//div[3]//h3[3]");
+    private By graph_side_panel_no_known_subs_message_text_xpath=By.xpath("//div[3]/div[2]/p[1]");
+    private By graph_side_panel_no_known_ubos_message_text_xpath=By.xpath("//div[3]/div[2]/p[2]");
     private Document entityDetailsDocument;
 
     public static String selectedCountryHighlight = "";
@@ -413,10 +415,20 @@ public class CommonUtils extends WebDriverUtils {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        zoomingOutGraph();
+       //zoomingOutGraph();
+        //getActions().click(getWebElement(By.partialLinkText(linkText))).build().perform();
        findElement(By.partialLinkText(linkText)).click();
-        //findElement(By.linkText(linkText)).click();
     }
+
+    public void clickGraphNode(String switchNode){
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        findElement(By.partialLinkText(switchNode)).click();
+     }
+
     public void closeSidePanel(){
         findElement(owners_graph_side_panel_close_button_xpath).click();
     }
@@ -519,6 +531,46 @@ public class CommonUtils extends WebDriverUtils {
                 assertEquals("Percentage owned does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(2)) + "%", aUBOPercentageOwnedList.get(i).getText());
             }
 
+        }
+    }
+
+    public void verifyNoKnowsEntitiesMessage(){
+        waitForWebElementToAppear(graph_side_panel_no_known_subs_message_text_xpath);
+        assertEquals("No known entities.", getWebElementText(graph_side_panel_no_known_subs_message_text_xpath));
+    }
+
+    public void verifyNoKnowsEntitiesMessageUBOs(){
+        waitForWebElementToAppear(graph_side_panel_no_known_ubos_message_text_xpath);
+        assertEquals("No known entities.", getWebElementText(graph_side_panel_no_known_ubos_message_text_xpath));
+    }
+
+    public void dVerifyDetailsSectionInSidePanelIsUpdated(String nodeTitle){
+
+        nvPairs.add(new BasicNameValuePair("name", nodeTitle));
+        for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
+            if("fid".equals(nameValuePair.getName())) {
+                nvPairs.remove(nameValuePair);
+            }
+        }
+
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
+        assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(),getWebElementText(graph_side_panel_title_text_xpath));
+        assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(),(getWebElementText(graph_side_panel_Bankersalmanac_ID_label_text_xpath)));
+        dVerifySidePanelLabels();
+        assertEquals(entityDetailsDocument.getElementsByTagName("headOfficeAddress").item(0).getTextContent().replace(", ",","),getWebElementText(graph_side_panel_headoffice_text_xpath).replace("\n","").replace(", ",","));
+        List<WebElement> aRegulatorsList = getWebElements(graph_side_panel_regulators_text_xpath);
+        for (int i =0; i < aRegulatorsList.size(); i++){
+            assertEquals("Regulator doesn't match at " + i, entityDetailsDocument.getElementsByTagName("regulator").item(i).getTextContent(), aRegulatorsList.get(i).getText());
+        }
+
+        List<WebElement> aStockExchangeList = getWebElements(graph_side_panel_stock_exchange_text_xpath);
+        for (int i =0; i < aStockExchangeList.size(); i++){
+            assertEquals("Stock Exchange doesn't match at " + i, entityDetailsDocument.getElementsByTagName("stockExchange").item(i).getTextContent(), aStockExchangeList.get(i).getText());
         }
     }
 

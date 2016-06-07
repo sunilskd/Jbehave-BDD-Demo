@@ -82,11 +82,15 @@ public class OwnersGraphSteps {
         pageObject.ownersGraphPage().selectingNodeToBeClicked(legalEntityTitle);
     }
 
-
-    @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the owners graph")
-    @Alias("the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the owners graph")
+    @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the graph")
+    @Alias("the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph")
     public void clickPartialLinkText(String nodeTitle){
         pageObject.commonUtils().clickPartialLinkText(nodeTitle);
+    }
+
+    @When("the user clicks on the graph node with title <switchNode>, in the owners graph")
+    public void clickGraphNode(@Named("switchNode") String switchNode){
+        pageObject.commonUtils().clickGraphNode(switchNode);
     }
 
     @Then("the user should see below free text in the side panel of owners graph $freeTextExampletable")
@@ -118,7 +122,10 @@ public class OwnersGraphSteps {
     public void dVerifyDetailsSectionInSidePanel(@Named("nodeTitle")String nodeTitle){
         pageObject.commonUtils().dVerifyDetailsSectionInSidePanel(nodeTitle);
     }
-
+    @Then("the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <switchNode> user clicked")
+    public void dVerifyDetailsSectionInSidePanelIsUpdated(@Named("switchNode")String nodeTitle){
+        pageObject.commonUtils().dVerifyDetailsSectionInSidePanelIsUpdated(nodeTitle);
+    }
     @Then("the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked")
     public void dVerifyDirectlyOwnsSectionInSidePanel(@Named("nodeTitle")String nodeTitle){
         pageObject.commonUtils().dVerifyDirectlyOwnsSectionInSidePanel(nodeTitle);
@@ -142,5 +149,15 @@ public class OwnersGraphSteps {
     @Then("the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <nodeTitle> user clicked $uboListExamTable")
     public void dVerifyUBOSectionInSidePanel(ExamplesTable uboListExamTable){
         pageObject.commonUtils().dVerifyUBOSectionInSidePanel(uboListExamTable);
+    }
+
+    @Then("the user should see message displayed as no known entities under direclty owns section in side panel of graph page")
+    public void verifyNoKnowsEntitiesMessage(){
+        pageObject.commonUtils().verifyNoKnowsEntitiesMessage();
+    }
+
+    @Then("the user should see message displayed as no known entities under ubo section in side panel of graph page")
+    public void verifyNoKnowsEntitiesMessageUBOs(){
+        pageObject.commonUtils().verifyNoKnowsEntitiesMessageUBOs();
     }
 }
