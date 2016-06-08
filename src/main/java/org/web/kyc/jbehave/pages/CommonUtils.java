@@ -84,6 +84,7 @@ public class CommonUtils extends WebDriverUtils {
         nvPairs.clear();
         nvPairs.add(new BasicNameValuePair("userType", userType));
         get(readProperties().getUrl() + "login");
+        manage().window().maximize();
     }
 
     public void clickOnOwnershipTab() {
@@ -415,9 +416,7 @@ public class CommonUtils extends WebDriverUtils {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-       //zoomingOutGraph();
-        //getActions().click(getWebElement(By.partialLinkText(linkText))).build().perform();
-       findElement(By.partialLinkText(linkText)).click();
+        findElement(By.partialLinkText(linkText)).click();
     }
 
     public void clickGraphNode(String switchNode){
@@ -440,13 +439,6 @@ public class CommonUtils extends WebDriverUtils {
 
     public void dVerifyDetailsSectionInSidePanel(String nodeTitle){
 
-       /* nvPairs.add(new BasicNameValuePair("name", nodeTitle));
-        for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if("fid".equals(nameValuePair.getName())) {
-                nvPairs.remove(nameValuePair);
-            }
-        }
-        */
         try {
             Thread.sleep(3000L);
         } catch (InterruptedException e) {
@@ -571,6 +563,19 @@ public class CommonUtils extends WebDriverUtils {
         List<WebElement> aStockExchangeList = getWebElements(graph_side_panel_stock_exchange_text_xpath);
         for (int i =0; i < aStockExchangeList.size(); i++){
             assertEquals("Stock Exchange doesn't match at " + i, entityDetailsDocument.getElementsByTagName("stockExchange").item(i).getTextContent(), aStockExchangeList.get(i).getText());
+        }
+
+        Document eSubsidiariesList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST, nvPairs);
+        List<WebElement> aSubsidiariesEntityName = getWebElements(graph_side_panel_direct_owners_title_list_text_xpath);
+        List<WebElement> aSubsidiariesCountryName = getWebElements(graph_side_panel_direct_owners_country_list_text_xpath);
+        List<WebElement> aSubsidiariesPercentageOwned = getWebElements(graph_side_panel_direct_owners_percent_ownership_list_text_xpath);
+        assertEquals("Subsidiaries count mismatch", eSubsidiariesList.getElementsByTagName("entityName").getLength(), aSubsidiariesEntityName.size());
+        for (int i = 0; i < aSubsidiariesEntityName.size(); i++) {
+            assertEquals("Legal title does not match at" + i, eSubsidiariesList.getElementsByTagName("entityName").item(i).getTextContent(), aSubsidiariesEntityName.get(i).getText());
+            assertEquals("Country name does not match at" + i, eSubsidiariesList.getElementsByTagName("countryOfOperations").item(i).getTextContent(), aSubsidiariesCountryName.get(i).getText());
+            if (!eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
+                assertEquals("Percentage owned does not match at" + i, (eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%"), aSubsidiariesPercentageOwned.get(i).getText());
+            }
         }
     }
 

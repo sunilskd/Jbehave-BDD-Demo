@@ -15,8 +15,6 @@ Scenario: View side panel for legal entity on owners graph
 a. 0. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity
    1. With head office address elements with varying "UseInAddress" flag value true for each element (display element if UseInAddress is true)
    2. With head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
-   3. User clicks close icon, side panel hides
-   4. User clicks someplace else on screen outside of side panel, panel does not close
 b. 0. Active regulation relationships exist for entity user is viewing, display in entity details summary section sorted alphabetically by legal title
    1. If active stock exchange relationship(s) exist, display legal title of stock exchange sort first by primary = true, then by legal title
 c. 0. If no regulation relationship exists, then display field label but no value
@@ -29,12 +27,9 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user clicks on the direct relationships only filter in the owners graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked
-When the user clicks on the graph page
-Then the side panel should still exists on the graph
-When the user clicks on close button on the side panel in the owners graph
-Then side panel should be closed and user should continue to be on owners graph page
 
 Examples:
 |fid|nodeTitle|
@@ -58,6 +53,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user clicks on the direct relationships only filter in the owners graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked
 
@@ -67,15 +63,21 @@ Examples:
 |1717|Berliner Volksbank eG|
 |200|Public Bank (Hong|
 
-Scenario: Do not display UBO list for KYC user or header for the list
+Scenario: Covers below scenarios
+a. 0. Do not display UBO list for KYC user or header for the list
+   1. User clicks close icon, side panel hides
+   2. User clicks someplace else on screen outside of side panel, panel does not close
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the kyc user should not see ubo list in side panel of graph page
+When the user clicks on the graph page
+Then the side panel should still exists on the graph
+When the user clicks on close button on the side panel in the owners graph
+Then side panel should be closed and user should continue to be on owners graph page
 
 Examples:
 |fid|nodeTitle|
@@ -104,6 +106,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+When the user enters percentage as 73 in ownership percentage filter text box in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see message displayed as no known entities under ubo section in side panel of graph page
 When the user clicks on the graph node with title <switchNode>, in the owners graph
@@ -131,6 +134,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+And the user clicks on direct relationship checkbox on graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked
 When the user clicks on the graph page
@@ -160,12 +164,15 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+When the user clicks on direct relationship checkbox on graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked
+When the user clicks on close button on the side panel in the owners graph
+Then side panel should be closed and user should continue to be on owners graph page
 
 Examples:
 |fid|nodeTitle|
-|146115|Investec Holdings|
+|LE-6|QA Legal Entity 6|
 |1717|Berliner Volksbank eG|
 |200|Public Bank (Hong|
 
@@ -175,7 +182,6 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the kyc user should not see ubo list in side panel of graph page
 
@@ -191,7 +197,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-
+And the user clicks on direct relationship checkbox on graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see message displayed as no known entities under direclty owns section in side panel of graph page
 Then the user should see message displayed as no known entities under ubo section in side panel of graph page
@@ -206,7 +212,6 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked
 When the user clicks on the graph node with title <switchNode>, in the owners graph
@@ -214,4 +219,4 @@ Then the user should see complete headoffice address, regulators and stock excha
 
 Examples:
 |fid|nodeTitle|switchNode|
-|211|Australia and New|Saigon Securities Inc|
+|112618|Moody Bank Holding|Moody National Bank|

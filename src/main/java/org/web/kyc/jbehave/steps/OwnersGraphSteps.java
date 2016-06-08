@@ -123,6 +123,7 @@ public class OwnersGraphSteps {
         pageObject.commonUtils().dVerifyDetailsSectionInSidePanel(nodeTitle);
     }
     @Then("the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <switchNode> user clicked")
+    @Alias("the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <switchNode> user clicked")
     public void dVerifyDetailsSectionInSidePanelIsUpdated(@Named("switchNode")String nodeTitle){
         pageObject.commonUtils().dVerifyDetailsSectionInSidePanelIsUpdated(nodeTitle);
     }
