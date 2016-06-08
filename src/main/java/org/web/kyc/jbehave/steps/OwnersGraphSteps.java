@@ -1,6 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
-import org.eclipse.jetty.util.annotation.Name;
+import org.jbehave.core.annotations.*;
 import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -19,20 +19,14 @@ public class OwnersGraphSteps {
         this.pageObject = pageObject;
     }
 
-    @Then("the user should see the legal entity $legalEntity, user is currently viewing, as the root in the owners graph")
+    @Then("the user should see the legal entity $legalEntity, user is currently viewing, as the root and highlighted in the owners graph")
     public void verifyOwnersGraphRootNode(@Named("legalEntity") String legalEntity){
         pageObject.ownersGraphPage().verifyOwnersGraphRootNode(legalEntity);
     }
 
     @Then("the user should see the list of below owners in level $level, above the root entity, in the owners graph $ownersExamTable")
     public void verifyGraphNodes(String level, ExamplesTable ownersExamTable){
-        pageObject.commonUtils().verifyGraphNodes(Integer.toString(600 - (Integer.parseInt(level)*180)), ownersExamTable);
-    }
-
-
-    @When("the user clicks on the direct relationships only filter in the owners graph")
-    public void clickOnDirectRelationshipOnlyFilter(){
-        pageObject.commonUtils().clickOnDirectRelationshipCheckbox();
+        pageObject.commonUtils().verifyGraphNodes(Integer.toString(500 - (Integer.parseInt(level)*180)), ownersExamTable);
     }
 
     @Then("the user should see no country highlight selected by default in country highlight drop-down in the owners graph page")
@@ -53,9 +47,8 @@ public class OwnersGraphSteps {
     }
 
     @Then("the user should see message displayed in place of graph explaining there are no owners")
-    public void verifyNoOwnersMsg() {
-        pageObject.commonUtils().verifyNoOwnersMsg();
-
+    public void verifyNoEntitiesMsg() {
+        pageObject.commonUtils().verifyNoEntitiesMsg();
     }
 
     @Then("the user should not see any nodes in level $level, above the root entity, in the owners graph")
@@ -64,36 +57,35 @@ public class OwnersGraphSteps {
     }
 
 
-    @Then("the user should see legal entity<legalEntityTitle> appears text under the node with count<countValue>")
-    public void verifyingCountForMultipleDiplayedNodes(@Named("legalEntityTitle")String legalEntityTitle,@Named("countValue")String countValue){
-        pageObject.ownersGraphPage().verifyingCountForMultipleDiplayedNodes(legalEntityTitle,countValue);
+    @Then("the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph")
+    public void verifyingCountForMultipleDisplayedNodes(@Named("legalEntityTitle")String legalEntityTitle, @Named("countValue")String countValue){
+        pageObject.ownersGraphPage().verifyingCountForMultipleDisplayedNodes(legalEntityTitle,countValue);
     }
 
-    @Then("the user verifies visual indicator is not displayed for Non-Person/Non-Entity when appeared multiple time <nonEntityValue>")
-    @Aliases(values={"the user verifies visual indicator is not displayed for free text ownership when appeared multiple time<freeTextValue>"})
-    public void verifyIndicatorNotDisplayed(@Named("nonEntityValue") String nonEntityValue){
-        pageObject.ownersGraphPage().verifyIndicatorNotDisplayed(nonEntityValue);
+    @Then("the user should not see the visual indicator displayed for non-person/non-entity when appeared multiple time for <entity> in the graph")
+    @Alias("the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph")
+    public void verifyIndicatorNotDisplayed(@Named("entity") String entity){
+        pageObject.ownersGraphPage().verifyIndicatorNotDisplayed(entity);
     }
 
-    @Then("the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>")
+    @Then("the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph")
     public void verifyingHighLightDisplayedForMultipleNode(@Named("legalEntityTitle") String legalEntityTitle){
         pageObject.ownersGraphPage().verifyingHighLightDisplayedForMultipleNode(legalEntityTitle);
     }
 
-    @When("the user clicks on <legalEntityTitle> node which is appearing multiple times")
+    @When("the user clicks on <legalEntityTitle> node which appears more than once in the graphs")
     public void selectingNodeToBeClicked(@Named("legalEntityTitle") String legalEntityTitle){
         pageObject.ownersGraphPage().selectingNodeToBeClicked(legalEntityTitle);
     }
-
 
     @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the owners graph")
     public void clickPartialLinkText(String linkText){
         pageObject.commonUtils().clickPartialLinkText(linkText);
     }
 
-    @Then("the user should see below free text in the side panel of owners graph $freeTextExampletable")
-    public void verifyFreeTextInSidePanel(ExamplesTable freeTextExampletable){
-        pageObject.ownersGraphPage().verifyFreeTextInSidePanel(freeTextExampletable);
+    @Then("the user should see below free text in the side panel of owners graph $freeTextExampleTable")
+    public void verifyFreeTextInSidePanel(ExamplesTable freeTextExampleTable){
+        pageObject.ownersGraphPage().verifyFreeTextInSidePanel(freeTextExampleTable);
     }
 
     @When("the user clicks on close button on the side panel in the owners graph")
@@ -107,15 +99,17 @@ public class OwnersGraphSteps {
     }
 
     @Then("the user should not see visual indicator for legal entity <entityType>, when displayed only once")
-    public void verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(@Named("entityType") String entityType){
-        pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(entityType);
+    public void verifyVisualIndicatorNotDisplayedForSingleLegalEntity(@Named("entityType") String entityType){
+        pageObject.ownersGraphPage().verifyVisualIndicatorNotDisplayedForSingleLegalEntity(entityType);
     }
 
-    @Then("the user not see visual indicator for entity with same name but different fid <entityType>")
-    public void verifyingVisualIndicatorNotDisplayedForEntityDiffFid(@Named("entityType") String entityType){
-        pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForEntityDiffFid(entityType);
+    @Then("the user should not see the visual indicator for entity with same name but different fid <entityType>")
+    public void verifyVisualIndicatorNotDisplayedForEntityDiffFid(@Named("entityType") String entityType){
+        pageObject.ownersGraphPage().verifyVisualIndicatorNotDisplayedForEntityDiffFid(entityType);
     }
 
-
-
+    @Then("the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph")
+    public void verifyVisualIndicatorNotDisplayedForSubsidiaries(){
+        pageObject.ownersGraphPage().verifyVisualIndicatorNotDisplayedForSubsidiaries();
+    }
 }

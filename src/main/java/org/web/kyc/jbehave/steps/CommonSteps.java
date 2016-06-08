@@ -42,7 +42,8 @@ public class CommonSteps {
     }
 
     @Then ("the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page $countriesHighlightListExamTable")
-    @Alias("the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page $countriesHighlightListExamTable")
+    @Aliases(values= {"the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page $countriesHighlightListExamTable",
+            "the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the full graphs page $countriesHighlightListExamTable"})
     public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
         pageObject.commonUtils().sVerifyCountryHighlightList(countriesHighlightListExamTable);
     }
@@ -62,13 +63,13 @@ public class CommonSteps {
         pageObject.commonUtils().verifyPercentFilterIsSetToZero();
     }
 
-    @Then("the user verifies direct relationship checkbox is not checked on graph")
-    public void verifyingDirectRelationshipCheckboxIsNotClicked(){pageObject.commonUtils().verifyingDirectRelationshipCheckboxIsNotClicked();}
+    @Then("the user should see the direct relationship only filter checkbox unchecked by default in the graph")
+    public void verifyingDirectRelationshipOnlyFilterIsUnchecked(){pageObject.commonUtils().verifyingDirectRelationshipOnlyFilterIsUnchecked();}
 
-    @When("the user clicks on direct relationship checkbox on graph")
+    @When("the user clicks on direct relationship only filter checkbox in the graph")
     public void clickOnDirectRelationshipCheckbox(){pageObject.commonUtils().clickOnDirectRelationshipCheckbox();}
 
-    @When("the user unchecks direct relationship checkbox on graph")
+    @When("the user unchecks direct relationship only filter checkbox in the  graph")
     public void unCheckDirectRelationshipCheckbox(){pageObject.commonUtils().unCheckDirectRelationshipCheckbox();}
 
     @Then("the user should see the copyright notice: © Reed Business Information Limited (year)")
@@ -96,9 +97,34 @@ public class CommonSteps {
         pageObject.commonUtils().verifyCountryHighlightDropDownSize();
     }
 
-    @When("the user zoom out of the graph")
-    public void zoomingOutGraph(){
-        pageObject.commonUtils().zoomingOutGraph();
+    @Then("the user should not see the nodes highlighted in the graph page")
+    public void verifyNoHighlightedNodes() {
+        pageObject.commonUtils().verifyNoHighlightedNodes();
+    }
+
+    @Then("the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph")
+    public void verifyUBOFilterIsUncheckedByDefault(){
+        pageObject.commonUtils().verifyUBOFilterIsUncheckedByDefault();
+    }
+
+    @When("the user clicks on the ultimate beneficial owners filter checkbox in the graph")
+    public void clickOnUBOFilterCheckbox(){
+        pageObject.commonUtils().clickOnUBOFilterCheckbox();
+    }
+
+    @Then("the user should see the ultimate beneficial owners highlighted in the graph $ubosHighlightedExamTable")
+    public void verifyUBOsAreHighlighted(ExamplesTable ubosHighlightedExamTable){
+        pageObject.commonUtils().verifyUBOsAreHighlighted(ubosHighlightedExamTable);
+    }
+
+    @Then("the user should see the highlight removed from ultimate beneficial owners in the graph")
+    public void verifyUBOHighlightIsRemoved(){
+        pageObject.commonUtils().verifyUBOHighlightIsRemoved();
+    }
+
+    @Then("the user should see the ultimate beneficial owners filter checkbox disabled in the graph")
+    public void verifyUBOFilterIsDisabled(){
+        pageObject.commonUtils().verifyUBOFilterIsDisabled();
     }
 
 }

@@ -9,70 +9,42 @@ e. Display all head office entity where useInaddress is true
 Scenario: KYC user login
 Meta: @id login
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 
-Scenario: UBO user can view footer and can navigate to respective links from subsidiaries graph page
-
-Meta:@footer @dynamic
+Scenario: Verify tool tip displays legal title in graphs
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the subsidiaries tab
+And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the copyright notice: © Reed Business Information Limited (year)
-When the user clicks on Contact Us link in footer section
-Then user is taken to a URL http://www.accuity.com/customer-support/ that opens in a new window
-When the user clicks on Help link in footer section
-Then user is taken to a URL http://www.bankersalmanac.com/addcon/help/default.aspx that opens in a new window
-When the user clicks on Portfolio link in footer section
-Then user is taken to a URL http://www.accuity.com/ that opens in a new window
-When the user clicks on About Us link in footer section
-Then user is taken to a URL http://www.accuity.com/about-us/ that opens in a new window
-When the user clicks on Terms & Conditions link in footer section
-Then user is taken to a URL http://www.accuity.com/terms-and-conditions/ that opens in a new window
-When the user clicks on Privacy Policy link in footer section
-Then user is taken to a URL http://www.accuity.com/privacy-policy/ that opens in a new window
-When the user clicks on Disclaimer link in footer section
-Then user is taken to a URL http://www.accuity.com/disclaimer/ that opens in a new window
-When the user clicks on Editorial Policy link in footer section
-Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
-When the user clicks on the logo logo-relx in footers section
-Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
-When the user clicks on the logo logo-rbi in footers section
-Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the owners graph
+Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
+|LEGAL TITLE|
+|QA Legal Entity 6|
+|QA Legal Entity 9|
+|QA Legal Entity 10|
+|QA Legal Entity 16|
+|QA Legal Entity 18|
+|QA Legal Entity 11|
+|QA Legal Entity 14|
+|QA Legal Entity 12|
+|QA Legal Entity 17|
+|QA Legal Entity 19|
+|Others|
+|QA Legal Entity 15|
+|QA Legal Entity 13|
+|QA Legal Entity 61|
+|QA Legal Entity 61|
+|QA Legal Entity 61|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 2|
+|Local Government, Legal Entity 61 owned by Local Government|
+|Local Government, Legal Entity 61 owned by Local Government|
+|Free float, Legal Entity 15 owned by Free float|
+|QA Test Person 1|
+|Local Government, Legal Entity 61 owned by Local Government|
 
 Examples:
 |fid|
-|211|
-
-Scenario: UBO user can view footer and can navigate to respective links from entity details page
-
-Meta:@footer @dynamic
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the entity details tab
-Then the user should see the copyright notice: © Reed Business Information Limited (year)
-When the user clicks on Contact Us link in footer section
-Then user is taken to a URL http://www.accuity.com/customer-support/ that opens in a new window
-When the user clicks on Help link in footer section
-Then user is taken to a URL http://www.bankersalmanac.com/addcon/help/default.aspx that opens in a new window
-When the user clicks on Portfolio link in footer section
-Then user is taken to a URL http://www.accuity.com/ that opens in a new window
-When the user clicks on About Us link in footer section
-Then user is taken to a URL http://www.accuity.com/about-us/ that opens in a new window
-When the user clicks on Terms & Conditions link in footer section
-Then user is taken to a URL http://www.accuity.com/terms-and-conditions/ that opens in a new window
-When the user clicks on Privacy Policy link in footer section
-Then user is taken to a URL http://www.accuity.com/privacy-policy/ that opens in a new window
-When the user clicks on Disclaimer link in footer section
-Then user is taken to a URL http://www.accuity.com/disclaimer/ that opens in a new window
-When the user clicks on Editorial Policy link in footer section
-Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
-When the user clicks on the logo logo-relx in footers section
-Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
-When the user clicks on the logo logo-rbi in footers section
-Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
-
-Examples:
-|fid|
-|211|
+|LE-6|
