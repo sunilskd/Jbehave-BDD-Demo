@@ -13,6 +13,7 @@ public class PageObject {
     private GroupStructurePage groupStructurePage;
     private SubsidiariesGraphPage subsidiariesGraphPage;
     private OwnersGraphPage ownersGraphPage;
+    private FullGraphPage fullGraphPage;
 
     public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -72,6 +73,13 @@ public class PageObject {
             ownersGraphPage = new OwnersGraphPage(driverProvider);
         }
         return ownersGraphPage;
+    }
+
+    public FullGraphPage fullGraphPage(){
+        if(fullGraphPage == null){
+            fullGraphPage = new FullGraphPage(driverProvider);
+        }
+        return fullGraphPage;
     }
 
 }

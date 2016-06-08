@@ -4,6 +4,7 @@ Covers below features:
 JIRA ID - KYC-147 pop open panel for more entity info on owners graph
 JIRA ID - KYC-294 KYC user can view UBO list header in owners list and side panel
 JIRA ID - KYC-338 No Known Entities" should be displayed when there are no direct subs or UBOs
+JIRA ID - KYC-353 Percentage ownership is truncating the 2nd decimal value if it is zero.
 
 Meta:@ubosidepanel @ubo
 
@@ -27,7 +28,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-And the user clicks on the direct relationships only filter in the owners graph
+When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked
 
@@ -52,7 +53,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-And the user clicks on the direct relationships only filter in the owners graph
+When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked
 
@@ -67,8 +68,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-And the user clicks on the direct relationships only filter in the owners graph
-And the user clicks on the graph node with title <switchNode>, user is currently viewing in the graph
+When the user clicks on direct relationship only filter checkbox in the graph
+And the user clicks on the graph node with title <switchNode>, in the owners graph
 Then the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <switchNode> user clicked
 
 Examples:
@@ -187,7 +188,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-And the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked
 When the user clicks on the graph page
@@ -216,7 +217,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-When the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked
 
@@ -253,7 +254,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-And the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see message displayed as no known entities under direclty owns section in side panel of graph page
 
@@ -269,7 +270,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-And the user clicks on direct relationship checkbox on graph
+When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see message displayed as no known entities under ubo section in side panel of graph page
 When the user clicks on the graph node with title <switchNode>, in the owners graph

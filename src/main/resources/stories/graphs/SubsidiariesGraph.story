@@ -9,6 +9,7 @@ JIRA ID - KYC-137 - Sub Graph - Direct-Indirect filter
 JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidiary graph
 JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
 JIRA ID - KYC-318 - Country highlights is not working for the root node.
+JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -32,7 +33,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |NODES|
@@ -80,7 +81,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 55, user is currently viewing, as the root in the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 55, user is currently viewing, as the root and highlighted in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |NODES|
@@ -100,6 +101,8 @@ And the user should see the list of below subsidiaries in level 4, below the roo
 |QA Legal Entity 5651.99|
 |QA Legal Entity 6056.99|
 
+And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
+
 Examples:
 |fid|
 |LE-55|
@@ -117,7 +120,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 52, user is currently viewing, as the root in the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 52, user is currently viewing, as the root and highlighted in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |NODES|
@@ -206,7 +209,7 @@ When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-Then the user verifies direct relationship checkbox is not checked on graph
+Then the user should see the direct relationship only filter checkbox unchecked by default in the graph
 
 Examples:
 |fid|
@@ -222,8 +225,8 @@ When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-When the user clicks on direct relationship checkbox on graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+When the user clicks on direct relationship only filter checkbox in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |NODES|
@@ -233,8 +236,8 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
-When the user unchecks direct relationship checkbox on graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+When the user unchecks direct relationship only filter checkbox in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |NODES|
@@ -312,7 +315,7 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
 When the user enters percentage as 25 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |NODES|
@@ -330,7 +333,7 @@ And the user should see the list of below subsidiaries in level 3, below the roo
 |QA Legal Entity 150.52UK|
 
 When the user enters percentage as 0 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the subsidiaries graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
 |NODES|
@@ -361,15 +364,15 @@ And the user should see the list of below subsidiaries in level 4, below the roo
 |QA Legal Entity 4671.9|
 
 When the user enters percentage as 100 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the subsidiaries graph
 And the user should not see any nodes in level 2, below the root entity, in the subsidiaries graph
 
 When the user enters percentage as 200 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the subsidiaries graph
 And the user should not see any nodes in level 2, below the root entity, in the subsidiaries graph
 
 When the user enters percentage as abc in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the subsidiaries graph
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the subsidiaries graph
 |NODES|
 |QA Legal Entity 4671.9|
@@ -377,7 +380,6 @@ And the user should see the list of below subsidiaries in level 4, below the roo
 Examples:
 |fid|
 |LE-6|
-
 
 Scenario: Covers below scenarios
 a. If user moves slider to percent 1-100, null percent subsidiaries are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
@@ -413,8 +415,69 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user enters percentage as 51 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 3, user is currently viewing, as the root in the subsidiaries graph
+Then the user should see the legal entity QA Legal Entity 3, user is currently viewing, as the root and highlighted in the subsidiaries graph
 
 Examples:
 |fid|
 |LE-3|
+
+Scenario: To verify circular relationship
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 54|
+|QA Legal Entity 5251.23|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 53|
+|QA Legal Entity 5151.23|
+
+Examples:
+|fid|
+|LE-51|
+
+Scenario: Verify UBO filter is not available for subsidiaries
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should not see the ultimate beneficial owners filter checkbox in the subsidiaries graph
+
+Examples:
+|fid|
+|LE-6|
+
+Scenario: Verify percent filter is applied at all level
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
+When the user enters percentage as 50 in ownership percentage filter text box in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the subsidiaries graph
+
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 250.53UK|
+
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the subsidiaries graph
+|NODES|
+|QA Legal Entity 150.52UK|
+
+Examples:
+|fid|
+|LE-6|
