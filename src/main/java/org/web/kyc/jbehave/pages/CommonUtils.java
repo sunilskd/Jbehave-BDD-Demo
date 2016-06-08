@@ -54,6 +54,9 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//input[@data-ng-model='graphFilterState.ubo'][@class='ng-scope ng-pristine ng-valid']");
     private By graph_ubo_filter_checkbox_xpath = By.xpath("//input[@data-ng-model='graphFilterState.ubo']");
     private By graph_ubo_filter_checkbox_disabled_xpath = By.xpath("//input[@data-ng-model='graphFilterState.ubo'][@disabled='']");
+    private By graph_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'node')]");
+    private String graph_owners_xpath = "//*[local-name()='g'][contains(@class,'own')][@parent=";
+    private String graph_subsidiaries_xpath = "//*[local-name()='g'][contains(@class,'own')][@parent=";
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -418,4 +421,26 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
+    public void verifyOwnersOfEntity(String legalEntity, ExamplesTable ownersExamTable) {
+        List<WebElement> nodes = getWebElements(graph_nodes_xpath);
+        List<String> ownersList = new ArrayList<>();
+        String id = "";
+
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes.get(i).findElement(By.xpath(".//*[local-name()='title']")).getText().equals(legalEntity)) {
+                id = nodes.get(i).getAttribute("id");
+                break;
+            }
+        }
+
+        List<WebElement> owners = getWebElements(By.xpath(graph_owners_xpath + id + "]"));
+        for(int i=0; i<owners.size(); i++){
+            ownersList.add(
+                    owners.get(i).findElement(By.xpath(graph_legal_title_link_xpath.replace(")')]","./"))).getText() +
+                    owners.get(i).findElement(By.xpath(graph_percent_xpath.replace(")')]","./"))).getText() +
+                    owners.get(i).findElement(By.xpath(graph_country_xpath.replace(")')]","./"))).getText()
+            );
+        }
+    }
+        //owners.add(nodes.get(i).findElement(By.xpath("//*[contains(@class,'sub')]")).findElement(By.xpath("//*[@parent=" + id + "]")).findElement(By.xpath("//*[local-name()='tspan']")).getText());
 }

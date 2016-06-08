@@ -165,4 +165,9 @@ public class OwnersSteps {
         pageObject.ownersPage().verifyNoUBOMsg();
     }
 
+    @Then("the user should see the below owners for the legal entity $legalEntity in the owners graph $ownersExamTable")
+    public void verifyOwnersOfEntity(String legalEntity, ExamplesTable ownersExamTable){
+        pageObject.commonUtils().verifyOwnersOfEntity(legalEntity, ownersExamTable);
+    }
+
 }
