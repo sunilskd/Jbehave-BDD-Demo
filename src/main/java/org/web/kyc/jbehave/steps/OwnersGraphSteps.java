@@ -19,7 +19,7 @@ public class OwnersGraphSteps {
         this.pageObject = pageObject;
     }
 
-    @Then("the user should see the legal entity $legalEntity, user is currently viewing, as the root in the owners graph")
+    @Then("the user should see the legal entity $legalEntity, user is currently viewing, as the root and highlighted in the owners graph")
     public void verifyOwnersGraphRootNode(@Named("legalEntity") String legalEntity){
         pageObject.ownersGraphPage().verifyOwnersGraphRootNode(legalEntity);
     }

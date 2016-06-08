@@ -147,7 +147,7 @@ public class CommonUtils extends WebDriverUtils {
         if(isWebElementDisplayed(graph_xpath)) {
             executeScript
                     ("return arguments[0].setAttribute(arguments[1],arguments[2]);",
-                            getWebElement(graph_xpath), "transform", "translate(868.6954528766546,353.85591147078947) scale(0.14742692172911015)");
+                            getWebElement(graph_xpath), "transform", "translate(629.735907505466,396.1689031324577) scale(0.36856730432277535)");
         }
     }
 
@@ -347,10 +347,11 @@ public class CommonUtils extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
 
-    public void clickPartialLinkText(String linkText){
+    public void clickPartialLinkText(String linkText) {
         waitForInMilliSeconds(3000L);
-        findElement(By.partialLinkText(linkText)).click();
+        getActions().click(getWebElement(By.xpath("//*[local-name()='tspan'][contains(text(),'" + linkText +"')]"))).perform();
     }
+
     public void closeSidePanel(){
         findElement(graph_side_panel_close_button_xpath).click();
     }
@@ -416,4 +417,5 @@ public class CommonUtils extends WebDriverUtils {
             e.printStackTrace();
         }
     }
+
 }

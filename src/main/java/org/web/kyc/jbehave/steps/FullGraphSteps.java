@@ -12,7 +12,7 @@ public class FullGraphSteps {
         this.pageObject = pageObject;
     }
 
-    @Then("the user should see the legal entity $legalEntity, user is currently viewing, as the root in the full graph")
+    @Then("the user should see the legal entity $legalEntity, user is currently viewing, as the root and highlighted in the full graph")
     public void verifyFullGraphRootNode(@Named("legalEntity") String legalEntity){
         pageObject.fullGraphPage().verifyFullGraphRootNode(legalEntity);
     }

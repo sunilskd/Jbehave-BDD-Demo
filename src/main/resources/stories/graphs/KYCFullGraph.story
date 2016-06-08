@@ -33,12 +33,13 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    6. Entity on the subsidiary portion of graph has an inactive relationship where it is the owner, then do not display owned entity on graph
    7. Subsidiary relationship has percent ownership, display percent ownership on the subsidiary node
    8. Subsidiary relationship has null percent ownership, do not display a percent ownership on the subsidiary node
+   9. Subsidiary graph should not display the free text
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
@@ -118,7 +119,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root and highlighted in the full graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
@@ -141,7 +142,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the full graph
 
 And the user should see the list of below owners in level 3, above the root entity, in the full graph
 |NODES|
@@ -165,7 +166,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted in the full graph
 
 And the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
@@ -302,6 +303,7 @@ a. 0. By default, percent filter is set to 0 for both input box and slider, all 
    2. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph
    3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
    4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
+   5. Display only root node when the applied percent filter doesn't result in any other nodes
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -330,22 +332,22 @@ And the user should see the list of below owners in level 1, above the root enti
 |QA Legal Entity 945.53UK|
 
 When the user enters percentage as 100 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
 And the user should not see any nodes in level 2, above the root entity, in the full graph
 
 When the user enters percentage as 200 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
 And the user should not see any nodes in level 2, above the root entity, in the full graph
 
 When the user enters percentage as abc in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
 
 And the user should see the list of below owners in level 6, above the root entity, in the full graph
 |NODES|
 |Top shareholdersowning less than 2,...|
 
 When the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
 And the user should not see any nodes in level 2, above the root entity, in the full graph
 
 Examples:
@@ -360,7 +362,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
 When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
@@ -379,7 +381,7 @@ Then the user should not see any nodes in level 2, above the root entity, in the
 Then the user should not see any nodes in level 2, below the root entity, in the full graph
 
 When the user unchecks direct relationship only filter checkbox in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
 
 And the user should see the list of below owners in level 2, above the root entity, in the full graph
 |NODES|
@@ -422,8 +424,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root in the full graph
-And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the full graph
+Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
 When the user clicks on direct relationship only filter checkbox in the graph
 Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
 And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
@@ -442,8 +444,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
-And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
+Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
 When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
 And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph
@@ -458,7 +460,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root and highlighted in the full graph
 And the user should not see visual indicator for legal entity <entityType>, when displayed only once
 
 Examples:
@@ -472,7 +474,7 @@ a. 0. User clicks on free text in owners graph and a side panel should display w
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the owners tab
+And the user clicks on the group structure tab
 And the user clicks on the graph button
 
 And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the owners graph
@@ -500,7 +502,7 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
 When the user enters percentage as 45 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
 |NODES|
@@ -509,7 +511,7 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 
 And the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
-|QA Test Person 945.53|
+|QA Legal Entity 945.53UK|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
 |NODES|

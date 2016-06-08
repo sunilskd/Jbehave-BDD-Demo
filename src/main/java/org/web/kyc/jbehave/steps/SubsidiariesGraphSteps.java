@@ -12,7 +12,7 @@ public class SubsidiariesGraphSteps {
         this.pageObject = pageObject;
     }
 
-    @Then("the user should see the legal entity $legalEntity, user is currently viewing, as the root in the subsidiaries graph")
+    @Then("the user should see the legal entity $legalEntity, user is currently viewing, as the root and highlighted in the subsidiaries graph")
     public void verifySubsidiariesGraphRootNode(@Named("legalEntity") String legalEntity){
         pageObject.subsidiariesGraphPage().verifySubsidiariesGraphRootNode(legalEntity);
     }

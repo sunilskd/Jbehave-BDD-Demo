@@ -14,7 +14,7 @@ import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
 public class OwnersGraphPage extends WebDriverUtils {
     private String owners_graph_level_xpath = "//*[contains(@transform,',";
-    private String owners_graph_legal_title_xpath = "')]/*[local-name()='text']/*[local-name()='title']";
+    private String owners_graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
     private By owners_graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
     private String owners_graph_multiple_node_xpath = ".//div[@class='graph-container']//*[contains(@class,'multiple')]";
     private By owners_graph_multiple_node_title_xpath = By.xpath(".//*[local-name()='text']/*[local-name()='title']");
@@ -24,6 +24,7 @@ public class OwnersGraphPage extends WebDriverUtils {
     private By owners_graph_non_multiple_nodes_list_xpath = By.xpath(".//*[@class='node own bank']");
     private By owners_graph_person_nodes_list_xpath = By.xpath(".//*[@class='node own person']");
     private By owners_graph_multiple_node_subsidiaries_xpath = By.xpath("//*[local-name()='g'][contains(@class,'sub')][contains(@class,'multiple')]");
+    private String graph_percent_xpath = ")')]/*[local-name()='text'][1]/*[local-name()='tspan'][@x='40']";
 
     public OwnersGraphPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -32,7 +33,9 @@ public class OwnersGraphPage extends WebDriverUtils {
     public void verifyOwnersGraphRootNode(String legalEntity) {
         waitForWebElementToAppear(By.xpath(owners_graph_level_xpath  + "500" + owners_graph_legal_title_xpath));
         verifyOwnersGraphHeader();
+        assertTrue(isWebElementDisplayed(By.xpath(owners_graph_level_xpath  + "500" + "')][contains(@class,'highlight-focus')]")));
         assertEquals(legalEntity, getWebElementText(By.xpath(owners_graph_level_xpath  + "500" + owners_graph_legal_title_xpath)));
+        assertEquals(getWebElementText(By.xpath(owners_graph_level_xpath  + "500" + graph_percent_xpath)),"");
     }
 
     public void verifyOwnersGraphHeader() {
@@ -71,8 +74,9 @@ public class OwnersGraphPage extends WebDriverUtils {
     }
 
     public void verifyFreeTextInSidePanel(ExamplesTable freeTextExampleTable){
+        waitForInMilliSeconds(3000L);
         String aDirectOwnerFreeText = getWebElementText(owners_graph_side_panel_free_text_xpath);
-        assertEquals(freeTextExampleTable.getRow(0).get(freeTextExampleTable.getHeaders().get(0)), aDirectOwnerFreeText.replace("%",""));
+        assertEquals(freeTextExampleTable.getRow(0).get(freeTextExampleTable.getHeaders().get(0)), aDirectOwnerFreeText.replace("%","").trim());
     }
 
     public void verifyVisualIndicatorNotDisplayedForSingleLegalEntity(String entityType) {
