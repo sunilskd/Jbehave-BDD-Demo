@@ -30,7 +30,7 @@ public class SubsidiariesGraphSteps {
 
     @When("the user selects a country $country from the country highlight list in the subsidiaries graph page")
     @Aliases(values={"the user selects another country $country from the country highlight list in the subsidiaries graph page",
-                    "the user de-selects the selected country by selecting $country from the country highlight list in the subsidiaries graph page"})
+            "the user de-selects the selected country by selecting $country from the country highlight list in the subsidiaries graph page"})
     public void selectCountryHighlightInGraphs(@Named("country") String country){
         pageObject.commonUtils().selectCountryHighlightInGraphs(country);
     }

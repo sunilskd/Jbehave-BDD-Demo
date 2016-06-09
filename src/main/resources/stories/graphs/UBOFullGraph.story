@@ -547,7 +547,7 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 
 And the user should see the list of below owners in level 1, above the root entity, in the full graph
 |NODES|
-|QA Test Person 945.53|
+|QA Legal Entity 945.53UK|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
 |NODES|
