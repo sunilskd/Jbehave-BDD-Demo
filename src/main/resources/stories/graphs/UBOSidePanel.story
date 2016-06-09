@@ -69,7 +69,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graph
-And the user clicks on the graph node with title <switchNode>, in the owners graph
+And the user clicks on the graph node with title <switchNode>, in the graph
 Then the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <switchNode> user clicked
 
 Examples:
@@ -163,7 +163,7 @@ And the user clicks on the graph button
 When the user enters percentage as 73 in ownership percentage filter text box in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see message displayed as no known entities under ubo section in side panel of graph page
-When the user clicks on the graph node with title <switchNode>, in the owners graph
+When the user clicks on the graph node with title <switchNode>, in the graph
 Then the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <switchNode> user clicked
 
 Examples:
@@ -273,7 +273,7 @@ And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
 Then the user should see message displayed as no known entities under ubo section in side panel of graph page
-When the user clicks on the graph node with title <switchNode>, in the owners graph
+When the user clicks on the graph node with title <switchNode>, in the graph
 Then the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <switchNode> user clicked
 
 Examples:

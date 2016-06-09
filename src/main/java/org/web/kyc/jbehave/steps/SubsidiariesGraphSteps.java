@@ -55,4 +55,10 @@ public class SubsidiariesGraphSteps {
     public void verifyNoUBOFilters(){
         pageObject.commonUtils().verifyNoUBOFilters();
     }
+
+    @Then("the user should see the below subsidiaries for the legal entity $legalEntity in the subsidiaries graph $subsidiariesExamTable")
+    @Alias("the user should see the below subsidiaries for the legal entity $legalEntity in the full graph $subsidiariesExamTable")
+    public void verifySubsidiariesOfEntity(String legalEntity, ExamplesTable subsidiariesExamTable){
+        pageObject.commonUtils().verifySubsidiariesOfEntity(legalEntity, subsidiariesExamTable);
+    }
 }

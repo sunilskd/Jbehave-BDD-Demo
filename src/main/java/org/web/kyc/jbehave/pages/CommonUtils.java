@@ -1,13 +1,10 @@
 package org.web.kyc.jbehave.pages;
 
 import org.apache.http.message.BasicNameValuePair;
-import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.w3c.dom.Document;
 
@@ -77,6 +74,9 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_filter_direct_relationship_only_label_xpath = By.xpath("//div[@class='graph-controls']/div[2]/div");
     private By graph_ubo_filter_label_xpath = By.xpath("//div[@class='graph-controls']/div[4]/div");
     private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')]/*[local-name()='text']/*[local-name()='tspan'][1]");
+    private By graph_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'node')]");
+    private String graph_owners_xpath = "//*[local-name()='g'][contains(@class,'own')][@parent=";
+    private String graph_subsidiaries_xpath = "//*[local-name()='g'][contains(@class,'sub')][@parent=";
     private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//input[@ng-model='filterState.ubo'][@class='ng-scope ng-pristine ng-valid']");
     private By graph_ubo_filter_checkbox_xpath = By.xpath("//input[@ng-model='filterState.ubo']");
     private By graph_ubo_filter_checkbox_disabled_xpath = By.xpath("//input[@ng-model='filterState.ubo'][@disabled='']");
@@ -568,6 +568,49 @@ public class CommonUtils extends WebDriverUtils {
             Thread.sleep(milliSeconds);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void verifyOwnersOfEntity(String legalEntity, ExamplesTable ownersExamTable){
+        verifyParentChildRelationship(legalEntity, ownersExamTable, graph_owners_xpath);
+    }
+
+    public void verifySubsidiariesOfEntity(String legalEntity, ExamplesTable ownersExamTable){
+        verifyParentChildRelationship(legalEntity, ownersExamTable, graph_subsidiaries_xpath);
+    }
+
+    public void verifyParentChildRelationship(String legalEntity, ExamplesTable ownersExamTable, String xpath) {
+        List<WebElement> nodes = getWebElements(graph_nodes_xpath);
+        List<String> aNodeList = new ArrayList<>();
+        String id = "";
+
+        for (int i = 0; i < nodes.size(); i++) {
+            if (nodes.get(i).findElement(By.xpath(".//*[local-name()='title']")).getText().equals(legalEntity)) {
+                id = nodes.get(i).getAttribute("id");
+                break;
+            }
+        }
+
+        List<WebElement> owners = getWebElements(By.xpath(xpath + id + "]"));
+        for(int i=0; i<owners.size(); i++){
+            aNodeList.add(
+                    owners.get(i).findElement(By.xpath(graph_legal_title_link_xpath.replace(")')]","./"))).getText().replace("%","") +
+                    owners.get(i).findElement(By.xpath(graph_percent_xpath.replace(")')]","./"))).getText().replace("%","") +
+                    owners.get(i).findElement(By.xpath(graph_country_xpath.replace(")')]","./"))).getText()
+            );
+        }
+
+        List eNodeList = new ArrayList();
+        for (Map<String,String> row : ownersExamTable.getRows()) {
+            String legalTitle = row.get("NODES");
+            eNodeList.add(legalTitle);
+        }
+
+        Collections.sort(eNodeList);
+        Collections.sort(aNodeList);
+
+        for (int i=0; i<eNodeList.size(); i++){
+            assertEquals("Node does not match at " + i, eNodeList.get(i), aNodeList.get(i));
         }
     }
 }
