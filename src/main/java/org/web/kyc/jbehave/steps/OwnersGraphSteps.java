@@ -163,4 +163,10 @@ public class OwnersGraphSteps {
     public void clickGraphNode(@Named("switchNode") String switchNode){
         pageObject.commonUtils().clickGraphNode(switchNode);
     }
+    
+    @Then("the user should see the below owners for the legal entity $legalEntity in the owners graph $ownersExamTable")
+    @Alias("the user should see the below owners for the legal entity $legalEntity in the full graph $ownersExamTable")
+    public void verifyOwnersOfEntity(String legalEntity, ExamplesTable ownersExamTable){
+        pageObject.commonUtils().verifyOwnersOfEntity(legalEntity, ownersExamTable);
+    }
 }
