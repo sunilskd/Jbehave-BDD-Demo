@@ -35,18 +35,6 @@ public class CommonSteps {
     public void userLogout(){
         pageObject.commonUtils().userLogout();
     }
-
-    @When("the user clicks on the graph button")
-    public void clickOnGraphButton(){
-        pageObject.commonUtils().clickOnGraphButton();
-    }
-
-    @Then ("the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the subsidiaries graphs page $countriesHighlightListExamTable")
-    @Aliases(values= {"the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the owners graphs page $countriesHighlightListExamTable",
-            "the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the full graphs page $countriesHighlightListExamTable"})
-    public void sVerifyCountryHighlightList(ExamplesTable countriesHighlightListExamTable) {
-        pageObject.commonUtils().sVerifyCountryHighlightList(countriesHighlightListExamTable);
-    }
     
     @When("the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to $slideTo in the graph")
     public void changePercentOwnershipUsingSlider(@Named("$slideTo") int slideTo){

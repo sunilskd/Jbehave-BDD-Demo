@@ -16,14 +16,6 @@ import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
 public class OwnersGraphPage extends WebDriverUtils {
 
-    private String owners_graph_level_xpath = "//*[contains(@transform,',";
-    private String owners_graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
-    private By owners_graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
-    private By owners_graph_MultipleNode_xpath = By.xpath(".//div[@class='graph-container']//*[contains(@class,'multiple')]");
-    private By getOwners_graph_MultipleNode_title_xpath = By.xpath(".//*[local-name()='text']/*[local-name()='title']");
-    private By owners_graph_MultipleNode_NonEntity_xpath = By.xpath(".//*[@class='node others']");
-    private By owners_graph_MultipleNode_Highlight_xpath = By.xpath("//*[contains(@class,'highlight-multiple')]");
-    private By owners_graph_NonMultipleNodes_list_xpath = By.xpath(".//*[@class='node own bank']");
     private String owners_graph_multiple_node_xpath = ".//div[@class='graph-container']//*[contains(@class,'multiple')]";
     private By owners_graph_multiple_node_title_xpath = By.xpath(".//*[local-name()='text']/*[local-name()='title']");
     private By owners_graph_multiple_node_non_entity_xpath = By.xpath(".//*[@class='node own others']");
@@ -31,24 +23,9 @@ public class OwnersGraphPage extends WebDriverUtils {
     private By owners_graph_side_panel_free_text_xpath = By.xpath("//div[3]/div/p");
     private By owners_graph_non_multiple_nodes_list_xpath = By.xpath(".//*[@class='node own bank']");
     private By owners_graph_person_nodes_list_xpath = By.xpath(".//*[@class='node own person']");
-    private By owners_graph_multiple_node_subsidiaries_xpath = By.xpath("//*[local-name()='g'][contains(@class,'sub')][contains(@class,'multiple')]");
-    private String graph_percent_xpath = ")')]/*[local-name()='text'][1]/*[local-name()='tspan'][@x='40']";
 
     public OwnersGraphPage(WebDriverProvider driverProvider) {
         super(driverProvider);
-    }
-
-    public void verifyOwnersGraphRootNode(String legalEntity) {
-        waitForWebElementToAppear(By.xpath(owners_graph_level_xpath  + "500" + owners_graph_legal_title_xpath));
-        verifyOwnersGraphHeader();
-        assertTrue(isWebElementDisplayed(By.xpath(owners_graph_level_xpath  + "500" + "')][contains(@class,'highlight-focus')]")));
-        assertEquals(legalEntity, getWebElementText(By.xpath(owners_graph_level_xpath  + "500" + owners_graph_legal_title_xpath)));
-        assertEquals(getWebElementText(By.xpath(owners_graph_level_xpath  + "500" + graph_percent_xpath)),"");
-    }
-
-    public void verifyOwnersGraphHeader() {
-        waitForWebElementToAppear(owners_graph_header_text_xpath);
-        assertEquals("Ownership Graph", getWebElementText(owners_graph_header_text_xpath));
     }
 
     public void verifyingCountForMultipleDisplayedNodes(String legalEntityTitle, String countValue) {
@@ -109,9 +86,5 @@ public class OwnersGraphPage extends WebDriverUtils {
                 assertTrue(appearsCount.isEmpty());
             }
         }
-    }
-
-    public void verifyVisualIndicatorNotDisplayedForSubsidiaries() {
-        assertFalse(isWebElementDisplayed(owners_graph_multiple_node_subsidiaries_xpath));
     }
 }

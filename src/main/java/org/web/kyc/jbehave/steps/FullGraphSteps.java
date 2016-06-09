@@ -12,21 +12,6 @@ public class FullGraphSteps {
         this.pageObject = pageObject;
     }
 
-    @Then("the user should see the legal entity $legalEntity, user is currently viewing, as the root and highlighted in the full graph")
-    public void verifyFullGraphRootNode(@Named("legalEntity") String legalEntity){
-        pageObject.fullGraphPage().verifyFullGraphRootNode(legalEntity);
-    }
-
-    @Then("the user should see the list of below owners in level $level, above the root entity, in the full graph $ownersExamTable")
-    public void verifyGraphNodes(String level, ExamplesTable ownersExamTable){
-        pageObject.commonUtils().verifyGraphNodes(Integer.toString(0 - (Integer.parseInt(level)*180)), ownersExamTable);
-    }
-
-    @Then("the user should see no country highlight selected by default in country highlight drop-down in the full graph page")
-    public void verifyNoCountryHighlightSelection(){
-        pageObject.commonUtils().verifyNoCountryHighlightSelection();
-    }
-
     @When("the user selects a country $country from the country highlight list in the full graph page")
     @Aliases(values={"the user selects another country $country from the country highlight list in the full graph page",
                         "the user de-selects the selected country by selecting $country from the country highlight list in the full graph page"})
@@ -42,10 +27,5 @@ public class FullGraphSteps {
     @Then("the user should not see any nodes in level $level, above the root entity, in the full graph")
     public void verifyStopTravelingPath(String level){
         pageObject.commonUtils().verifyStopTravelingPath(Integer.toString(0 - (Integer.parseInt(level) * 180)));
-    }
-
-    @Then("the user should see message displayed in place of graph explaining there are no entities")
-    public void verifyNoSubsidiariesMsg() {
-        pageObject.commonUtils().verifyNoEntitiesMsg();
     }
 }
