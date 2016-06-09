@@ -376,26 +376,8 @@ public class CommonUtils extends WebDriverUtils {
         }
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
-    public void zoomingOutGraph(){
-            try{
-                WebElement elementToBeClicked = getWebElement(graph_xpath);
-                getActions().sendKeys(Keys.SHIFT).doubleClick(elementToBeClicked).build().perform();
-                Thread.sleep(3000L);
-            }catch(InterruptedException e){
-                e.printStackTrace();}
-     }
 
-//    public void clickPartialLinkText(String linkText){
-//
-//        try {
-//            Thread.sleep(3000L);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        findElement(By.partialLinkText(linkText)).click();
-//    }
-
-    public void clickGraphNode(String switchNode){
+     public void clickGraphNode(String switchNode){
         try {
             Thread.sleep(3000L);
         } catch (InterruptedException e) {

@@ -119,11 +119,11 @@ public class OwnersGraphSteps {
         pageObject.commonUtils().dVerifyDetailsSectionInSidePanel(nodeTitle);
     }
     @Then("the user should see complete headoffice address, regulators and stock exchanges in details section of side panel for the node <switchNode> user clicked")
-    @Alias("the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <switchNode> user clicked")
+    @Alias("the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <switchNode> user clicked")
     public void dVerifyDetailsSectionInSidePanelIsUpdated(@Named("switchNode")String nodeTitle){
         pageObject.commonUtils().dVerifyDetailsSectionInSidePanelIsUpdated(nodeTitle);
     }
-    @Then("the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked")
+    @Then("the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked")
     public void dVerifyDirectlyOwnsSectionInSidePanel(@Named("nodeTitle")String nodeTitle){
         pageObject.commonUtils().dVerifyDirectlyOwnsSectionInSidePanel(nodeTitle);
     }
@@ -148,7 +148,7 @@ public class OwnersGraphSteps {
         pageObject.commonUtils().dVerifyUBOSectionInSidePanel(uboListExamTable);
     }
 
-    @Then("the user should see message displayed as no known entities under direclty owns section in side panel of graph page")
+    @Then("the user should see message displayed as no known entities under directly owns section in side panel of graph page")
     public void verifyNoKnowsEntitiesMessage(){
         pageObject.commonUtils().verifyNoKnowsEntitiesMessage();
     }

@@ -56,7 +56,7 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
-Then the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked
+Then the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked
 
 Examples:
 |fid|nodeTitle|
@@ -94,7 +94,7 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
-Then the user should see message displayed as no known entities under direclty owns section in side panel of graph page
+Then the user should see message displayed as no known entities under directly owns section in side panel of graph page
 Then the user should see message displayed as no known entities under ubo section in side panel of graph page
 
 Examples:
@@ -167,7 +167,7 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
-Then the user should see list of direct subsidairies with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked
+Then the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked
 When the user clicks on close button on the side panel in the owners graph
 Then side panel should be closed and user should continue to be on owners graph page
 
@@ -200,7 +200,7 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graph
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
-Then the user should see message displayed as no known entities under direclty owns section in side panel of graph page
+Then the user should see message displayed as no known entities under directly owns section in side panel of graph page
 Then the user should see message displayed as no known entities under ubo section in side panel of graph page
 
 Examples:
