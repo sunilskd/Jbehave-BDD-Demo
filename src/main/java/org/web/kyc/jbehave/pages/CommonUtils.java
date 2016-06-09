@@ -77,9 +77,9 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_filter_direct_relationship_only_label_xpath = By.xpath("//div[@class='graph-controls']/div[2]/div");
     private By graph_ubo_filter_label_xpath = By.xpath("//div[@class='graph-controls']/div[4]/div");
     private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')]/*[local-name()='text']/*[local-name()='tspan'][1]");
-    private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//input[@data-ng-model='graphFilterState.ubo'][@class='ng-scope ng-pristine ng-valid']");
-    private By graph_ubo_filter_checkbox_xpath = By.xpath("//input[@data-ng-model='graphFilterState.ubo']");
-    private By graph_ubo_filter_checkbox_disabled_xpath = By.xpath("//input[@data-ng-model='graphFilterState.ubo'][@disabled='']");
+    private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//input[@ng-model='filterState.ubo'][@class='ng-scope ng-pristine ng-valid']");
+    private By graph_ubo_filter_checkbox_xpath = By.xpath("//input[@ng-model='filterState.ubo']");
+    private By graph_ubo_filter_checkbox_disabled_xpath = By.xpath("//input[@ng-model='filterState.ubo'][@disabled='']");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -369,30 +369,18 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyStopTravelingPath(String level) {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(2000L);
         assertFalse(isWebElementDisplayed(By.xpath(graph_level_xpath + level + graph_legal_title_xpath)));
     }
 
      public void clickGraphNode(String switchNode){
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+         waitForInMilliSeconds(3000L);
         findElement(By.partialLinkText(switchNode)).click();
      }
 
     public void dVerifyDetailsSectionInSidePanel(String nodeTitle){
 
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
         assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(),getWebElementText(graph_side_panel_title_text_xpath));
         assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(),(getWebElementText(graph_side_panel_Bankersalmanac_ID_label_text_xpath)));
@@ -410,11 +398,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void dVerifyDirectlyOwnsSectionInSidePanel(String nodeTitle){
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         Document eSubsidiariesList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST, nvPairs);
         List<WebElement> aSubsidiariesEntityName = getWebElements(graph_side_panel_direct_owners_title_list_text_xpath);
         List<WebElement> aSubsidiariesCountryName = getWebElements(graph_side_panel_direct_owners_country_list_text_xpath);
@@ -430,11 +414,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void dVerifySidePanelLabels(){
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         assertEquals("Head Office",getWebElementText(graph_side_panel_head_office_label_text_xpath));
         assertEquals("Regulator",getWebElementText(graph_side_panel_regulator_label_text_xpath));
         assertEquals("Stock Exchange",getWebElementText(graph_side_panel_stock_exchange_label_text_xpath));
@@ -456,11 +436,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void dVerifyUBOSectionInSidePanel(ExamplesTable uboListExamTable) {
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         List<WebElement> aUBONameList = getWebElements(graph_side_panel_ubo_title_list_text_xpath);
         List<WebElement> aUBOEntityList = getWebElements(graph_side_panel_ubo_entity_list_text_xpath);
         List<WebElement> aUBOPercentageOwnedList = getWebElements(graph_side_panel_ubo_percent_ownership_list_text_xpath);
@@ -494,11 +470,7 @@ public class CommonUtils extends WebDriverUtils {
             }
         }
 
-        try {
-            Thread.sleep(3000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
         assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(), getWebElementText(graph_side_panel_title_text_xpath));
         assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(), (getWebElementText(graph_side_panel_Bankersalmanac_ID_label_text_xpath)));
@@ -520,7 +492,7 @@ public class CommonUtils extends WebDriverUtils {
         List<WebElement> aSubsidiariesPercentageOwned = getWebElements(graph_side_panel_direct_owners_percent_ownership_list_text_xpath);
         assertEquals("Subsidiaries count mismatch", eSubsidiariesList.getElementsByTagName("entityName").getLength(), aSubsidiariesEntityName.size());
         for (int i = 0; i < aSubsidiariesEntityName.size(); i++) {
-            assertEquals("Legal title does not match at" + i, eSubsidiariesList.getElementsByTagName("entityName").item(i).getTextContent(), aSubsidiariesEntityName.get(i).getText());
+            assertEquals("Legal title does not match at" + i, eSubsidiariesList.getElementsByTagName("entityName").item(i).getTextContent().replace("  "," "), aSubsidiariesEntityName.get(i).getText());
             assertEquals("Country name does not match at" + i, eSubsidiariesList.getElementsByTagName("countryOfOperations").item(i).getTextContent(), aSubsidiariesCountryName.get(i).getText());
             if (!eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
                 assertEquals("Percentage owned does not match at" + i, (eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%"), aSubsidiariesPercentageOwned.get(i).getText());

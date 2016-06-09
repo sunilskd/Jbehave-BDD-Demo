@@ -144,6 +144,7 @@ public class OwnersGraphSteps {
     }
 
     @Then("the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <nodeTitle> user clicked $uboListExamTable")
+    @Alias("the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <switchNode> user clicked $uboListExamTable")
     public void dVerifyUBOSectionInSidePanel(ExamplesTable uboListExamTable){
         pageObject.commonUtils().dVerifyUBOSectionInSidePanel(uboListExamTable);
     }
@@ -158,7 +159,7 @@ public class OwnersGraphSteps {
         pageObject.commonUtils().verifyNoKnowsEntitiesMessageUBOs();
     }
 
-    @When("the user clicks on the graph node with title <switchNode>, in the owners graph")
+    @When("the user clicks on the graph node with title <switchNode>, in the graph")
     public void clickGraphNode(@Named("switchNode") String switchNode){
         pageObject.commonUtils().clickGraphNode(switchNode);
     }
