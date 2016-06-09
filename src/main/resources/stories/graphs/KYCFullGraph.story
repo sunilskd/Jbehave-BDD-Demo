@@ -525,3 +525,55 @@ And the user should see the list of below subsidiaries in level 3, below the roo
 Examples:
 |fid|
 |LE-6|
+
+Scenario: Verify parent child relationship
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
+
+Then the user should see the below owners for the legal entity QA Legal Entity 6 in the full graph
+|NODES|
+|QA Legal Entity 945.53UK|
+|QA Legal Entity 10UK|
+
+Then the user should see the below owners for the legal entity QA Legal Entity 10 in the full graph
+|NODES|
+|QA Legal Entity 1151.53UK|
+|Treasury shares, 3.8;Trade Union...|
+
+Then the user should see the below owners for the legal entity QA Legal Entity 9 in the full graph
+|NODES|
+|QA Legal Entity 161.53USA|
+|QA Legal Entity 181.53USA|
+
+Then the user should see the below owners for the legal entity QA Legal Entity 18 in the full graph
+|NODES|
+|QA Legal Entity 1951.53USA|
+|Other shareholdersowning less than 2,...|
+
+Then the user should see the below owners for the legal entity QA Legal Entity 61 in the full graph
+|NODES|
+|Top shareholdersowning less than 2,...|
+
+Then the user should see the below subsidiaries for the legal entity QA Legal Entity 6 in the full graph
+|NODES|
+|QA Legal Entity 35Australia|
+|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 33Australia|
+|QA Legal Entity 550.53Korea (Republic of)|
+|QA Legal Entity 359.53India|
+
+Then the user should see the below subsidiaries for the legal entity QA Legal Entity 35 in the full graph
+|NODES|
+|QA Legal Entity 3960.9Australia|
+|QA Legal Entity 437.9Korea (Republic of)|
+|QA Legal Entity 41Korea (Republic of)|
+|QA Legal Entity 4070.9Korea (Republic of)|
+|QA Legal Entity 42Korea (Republic of)|
+
+Examples:
+|fid|
+|LE-6|

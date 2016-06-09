@@ -563,3 +563,39 @@ Then the user should see the ultimate beneficial owners filter checkbox disabled
 Examples:
 |fid|
 |LE-A|
+
+Scenario: Verify parent child relationship
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
+
+Then the user should see the below owners for the legal entity QA Legal Entity 6 in the owners graph
+|NODES|
+|QA Legal Entity 945.53UK|
+|QA Legal Entity 10UK|
+
+Then the user should see the below owners for the legal entity QA Legal Entity 10 in the owners graph
+|NODES|
+|QA Legal Entity 1151.53UK|
+|Treasury shares, 3.8;Trade Union...|
+
+Then the user should see the below owners for the legal entity QA Legal Entity 9 in the owners graph
+|NODES|
+|QA Legal Entity 161.53USA|
+|QA Legal Entity 181.53USA|
+
+Then the user should see the below owners for the legal entity QA Legal Entity 18 in the owners graph
+|NODES|
+|QA Legal Entity 1951.53USA|
+|Other shareholdersowning less than 2,...|
+
+Then the user should see the below owners for the legal entity QA Legal Entity 61 in the owners graph
+|NODES|
+|Top shareholdersowning less than 2,...|
+
+Examples:
+|fid|
+|LE-6|

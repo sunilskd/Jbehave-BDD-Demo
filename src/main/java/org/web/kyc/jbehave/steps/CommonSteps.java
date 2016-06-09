@@ -54,7 +54,7 @@ public class CommonSteps {
     }
 
     @When("the user enters percentage as $percentFilter in ownership percentage filter text box in the graph")
-    public void enterPercentFilter(@Named("percentFilter") String percentFilter){
+    public void enterPercentFilter(@Named("percentFilter") String percentFilter) {
         pageObject.commonUtils().enterPercentFilter(percentFilter);
     }
 
