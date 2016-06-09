@@ -4,8 +4,10 @@ import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.openqa.selenium.interactions.Actions;
-
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -13,9 +15,15 @@ import static org.junit.Assert.assertTrue;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
 public class OwnersGraphPage extends WebDriverUtils {
+
     private String owners_graph_level_xpath = "//*[contains(@transform,',";
     private String owners_graph_legal_title_xpath = ")')]/*[local-name()='text']/*[local-name()='title']";
     private By owners_graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
+    private By owners_graph_MultipleNode_xpath = By.xpath(".//div[@class='graph-container']//*[contains(@class,'multiple')]");
+    private By getOwners_graph_MultipleNode_title_xpath = By.xpath(".//*[local-name()='text']/*[local-name()='title']");
+    private By owners_graph_MultipleNode_NonEntity_xpath = By.xpath(".//*[@class='node others']");
+    private By owners_graph_MultipleNode_Highlight_xpath = By.xpath("//*[contains(@class,'highlight-multiple')]");
+    private By owners_graph_NonMultipleNodes_list_xpath = By.xpath(".//*[@class='node own bank']");
     private String owners_graph_multiple_node_xpath = ".//div[@class='graph-container']//*[contains(@class,'multiple')]";
     private By owners_graph_multiple_node_title_xpath = By.xpath(".//*[local-name()='text']/*[local-name()='title']");
     private By owners_graph_multiple_node_non_entity_xpath = By.xpath(".//*[@class='node own others']");
