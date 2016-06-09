@@ -58,7 +58,7 @@ public class CommonUtils extends WebDriverUtils {
     private By graph_side_panel_ubo_entity_list_text_xpath =By.xpath("//*[@id='ubo']/tbody/tr/td[2]");
     private By graph_side_panel_ubo_percent_ownership_list_text_xpath =By.xpath("//*[@id='ubo']/tbody/tr/td[3]");
     private By graph_side_panel_title_text_xpath= By.xpath("//div[3]/h2");
-    private By graph_side_panel_Bankersalmanac_ID_label_text_xpath= By.xpath("//div[3]/p");
+    private By graph_side_panel_bankers_almanac_ID_label_text_xpath= By.xpath("//div[3]/p");
     private By graph_side_panel_details_label_text_xpath= By.xpath("//div[3]/div[2]/h3[1]");
     private By graph_side_panel_head_office_label_text_xpath= By.xpath("//tr[1]/th");
     private By graph_side_panel_regulator_label_text_xpath= By.xpath("//tr[2]/th");
@@ -383,7 +383,7 @@ public class CommonUtils extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
         assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(),getWebElementText(graph_side_panel_title_text_xpath));
-        assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(),(getWebElementText(graph_side_panel_Bankersalmanac_ID_label_text_xpath)));
+        assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(),(getWebElementText(graph_side_panel_bankers_almanac_ID_label_text_xpath)));
         dVerifySidePanelLabels();
         assertEquals(entityDetailsDocument.getElementsByTagName("headOfficeAddress").item(0).getTextContent().replace(", ",","),getWebElementText(graph_side_panel_headoffice_text_xpath).replace("\n","").replace(", ",","));
         List<WebElement> aRegulatorsList = getWebElements(graph_side_panel_regulators_text_xpath);
@@ -473,7 +473,7 @@ public class CommonUtils extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
         assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(), getWebElementText(graph_side_panel_title_text_xpath));
-        assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(), (getWebElementText(graph_side_panel_Bankersalmanac_ID_label_text_xpath)));
+        assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(), (getWebElementText(graph_side_panel_bankers_almanac_ID_label_text_xpath)));
         dVerifySidePanelLabels();
         assertEquals(entityDetailsDocument.getElementsByTagName("headOfficeAddress").item(0).getTextContent().replace(", ", ","), getWebElementText(graph_side_panel_headoffice_text_xpath).replace("\n", "").replace(", ", ","));
         List<WebElement> aRegulatorsList = getWebElements(graph_side_panel_regulators_text_xpath);
