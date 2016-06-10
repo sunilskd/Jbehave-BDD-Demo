@@ -218,7 +218,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the direct relationship only filter checkbox unchecked by default in the graph
+Then the user should see the direct relationship only filter checkbox unchecked by default in the graphs
 
 Examples:
 |fid|
@@ -234,7 +234,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-When the user clicks on direct relationship only filter checkbox in the graph
+When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should see the list of below owners in level 1, above the root entity, in the owners graphs
 |NODES|
@@ -242,7 +242,7 @@ And the user should see the list of below owners in level 1, above the root enti
 |QA Legal Entity 10UK|
 
 Then the user should not see any nodes in level 2, above the root entity, in the owners graph
-When the user unchecks direct relationship only filter checkbox in the graph
+When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graphs
@@ -267,7 +267,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-When the user clicks on direct relationship only filter checkbox in the graph
+When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 61, user is currently viewing, as the root and highlighted in the graphs
 And the user should see the list of below owners in level 1, above the root entity, in the owners graphs
 |NODES|
@@ -327,15 +327,15 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs page
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
 |UK|
 |USA|
 
-When the user selects a country UK from the country highlight list in the owners graph page
+When the user selects a country UK from the country highlight list in the graphs
 
-Then the user should see the below owners in the owners graph that have the selected country of operations highlighted in the owners graph page
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
 |QA Legal Entity 6|
 |QA Legal Entity 10|
@@ -345,8 +345,8 @@ Then the user should see the below owners in the owners graph that have the sele
 |QA Legal Entity 14|
 |QA Legal Entity 13|
 
-When the user selects a country USA from the country highlight list in the owners graph page
-Then the user should see the below owners in the owners graph that have the selected country of operations highlighted in the owners graph page
+When the user selects a country USA from the country highlight list in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
 |QA Legal Entity 16|
 |QA Legal Entity 18|
@@ -354,8 +354,8 @@ Then the user should see the below owners in the owners graph that have the sele
 |QA Legal Entity 19|
 |QA Legal Entity 15|
 
-When the user de-selects the selected country by selecting No country highlight from the country highlight list in the owners graph page
-Then the user should not see the nodes highlighted in the graph page
+When the user de-selects the selected country by selecting No country highlight from the country highlight list in the graphs
+Then the user should not see the entities highlighted in the graphs
 
 Examples:
 |fid|
@@ -368,10 +368,9 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the below owners in the owners graph that have the selected country of operations highlighted in the owners graph page
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-And the user verifies no other country names are listed in dropdown
 
 Examples:
 |fid|
@@ -383,8 +382,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
-When the user enters percentage as 25 in ownership percentage filter text box in the graph
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
+When the user enters percentage as 25 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 10, user is currently viewing, as the root and highlighted in the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graphs
@@ -407,8 +406,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
-When the user enters percentage as 1 in ownership percentage filter text box in the graph
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
+When the user enters percentage as 1 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the owners graphs
@@ -437,17 +436,17 @@ And the user should see the list of below owners in level 5, above the root enti
 |Top shareholdersowning less than 2,...|
 |Top shareholdersowning less than 2,...|
 
-When the user enters percentage as 100 in ownership percentage filter text box in the graph
+When the user enters percentage as 100 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
-And the user should not see any nodes in level 2, below the root entity, in the full graph
+And the user should not see any nodes in level 2, below the root entity, in the graphs
 
-When the user enters percentage as 200 in ownership percentage filter text box in the graph
+When the user enters percentage as 200 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
-And the user should not see any nodes in level 2, below the root entity, in the full graph
+And the user should not see any nodes in level 2, below the root entity, in the graphs
 
-When the user enters percentage as abc in ownership percentage filter text box in the graph
+When the user enters percentage as abc in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should see the list of below owners in level 6, above the root entity, in the owners graphs
 |NODES|
@@ -484,18 +483,18 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 
-And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the owners graph
-Then the user should see below free text in the side panel of owners graph
+And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the graphs
+Then the user should see below free text in the side panel in the graphs
 |FREETEXT|
 |Treasury shares, 3.8; Trade Union Federations of SGB (where no federation owns 3 or more), 4.8; Others, 23.4|
 
-When the user clicks on the graph node with title Other shareholders, user is currently viewing in the owners graph
-Then the user should see below free text in the side panel of owners graph
+When the user clicks on the graph node with title Other shareholders, user is currently viewing in the graphs
+Then the user should see below free text in the side panel in the graphs
 |FREETEXT|
 |Other shareholders owning less than 2, 71.315|
 
-When the user clicks on close button on the side panel in the owners graph
-Then side panel should be closed and user should continue to be on owners graph page
+When the user clicks on close button on the side panel in the graphs
+Then the user should see the side panel closed and should be able to continue in the graphs
 
 Examples:
 |fid|
@@ -510,14 +509,14 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the graphs
-And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-When the user clicks on direct relationship only filter checkbox in the graph
-Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
+And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+When the user clicks on direct relationship only filter checkbox in the graphs
+Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
 And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
 
 Examples:
-|fid|legalEntityTitle|countValue|
+|fid|legalEntity|countValue|
 |LE-56|QA Legal Entity 56|Appears: 2|
 
 Scenario: Covers below scenarios
@@ -530,14 +529,14 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
-And the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
-Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
-And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph
+And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graphs
 And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
 
 Examples:
-|fid|legalEntityTitle|countValue|entity|
+|fid|legalEntity|countValue|entity|
 |LE-6|QA Legal Entity 61|Appears: 3|Top shareholders owning less than 2, 71.315 |
 
 Scenario: Visual Indicator not been displayed for Legal entities which are displayed only once
@@ -547,10 +546,10 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root and highlighted in the graphs
-And the user should not see visual indicator for legal entity <entityType>, when displayed only once
+And the user should not see visual indicator for legal entity <legalEntity>, when displayed only once
 
 Examples:
-|fid|entityType|
+|fid|legalEntity|
 |LE-9|QA Legal Entity 16|
 
 Scenario: By default UBO highlight checkbox is available on owners graphs, but is disabled for KYC user and not selectable
@@ -573,27 +572,27 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
-Then the user should see the below owners for the legal entity QA Legal Entity 6 in the owners graph
+Then the user should see the below owners for the legal entity QA Legal Entity 6 in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
-Then the user should see the below owners for the legal entity QA Legal Entity 10 in the owners graph
+Then the user should see the below owners for the legal entity QA Legal Entity 10 in the graphs
 |NODES|
 |QA Legal Entity 1151.53UK|
 |Treasury shares, 3.8;Trade Union...|
 
-Then the user should see the below owners for the legal entity QA Legal Entity 9 in the owners graph
+Then the user should see the below owners for the legal entity QA Legal Entity 9 in the graphs
 |NODES|
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 
-Then the user should see the below owners for the legal entity QA Legal Entity 18 in the owners graph
+Then the user should see the below owners for the legal entity QA Legal Entity 18 in the graphs
 |NODES|
 |QA Legal Entity 1951.53USA|
 |Other shareholdersowning less than 2,...|
 
-Then the user should see the below owners for the legal entity QA Legal Entity 61 in the owners graph
+Then the user should see the below owners for the legal entity QA Legal Entity 61 in the graphs
 |NODES|
 |Top shareholdersowning less than 2,...|
 

@@ -11,9 +11,9 @@ public class PageObject {
     private EntityDetailsPage entityDetailsPage;
     private AuditPage auditPage;
     private GroupStructurePage groupStructurePage;
-    private OwnersGraphPage ownersGraphPage;
     private GraphsPage graphsPage;
     private GraphControlsUtils graphControlsUtils;
+    private SidePanelUtils sidePanelUtils;
 
     public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -61,13 +61,6 @@ public class PageObject {
         return groupStructurePage;
     }
 
-    public OwnersGraphPage ownersGraphPage(){
-        if(ownersGraphPage == null){
-            ownersGraphPage = new OwnersGraphPage(driverProvider);
-        }
-        return ownersGraphPage;
-    }
-
     public GraphsPage graphsPage(){
         if(graphsPage == null){
             graphsPage = new GraphsPage(driverProvider);
@@ -80,5 +73,12 @@ public class PageObject {
             graphControlsUtils = new GraphControlsUtils(driverProvider);
         }
         return graphControlsUtils;
+    }
+
+    public SidePanelUtils sidePanelUtils(){
+        if(sidePanelUtils == null){
+            sidePanelUtils = new SidePanelUtils(driverProvider);
+        }
+        return sidePanelUtils;
     }
 }
