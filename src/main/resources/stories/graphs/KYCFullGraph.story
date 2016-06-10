@@ -39,14 +39,14 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the full graph
+And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 35Australia|
 |QA Legal Entity 3425.9Australia|
@@ -54,14 +54,14 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
-And the user should see the list of below owners in level 2, above the root entity, in the full graph
+And the user should see the list of below owners in level 2, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
 |Treasury shares, 3.8;Trade Union...|
 
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 3960.9Australia|
 |QA Legal Entity 437.9Korea (Republic of)|
@@ -71,7 +71,7 @@ And the user should see the list of below subsidiaries in level 2, below the roo
 |QA Legal Entity 149.53UK|
 |QA Legal Entity 250.53UK|
 
-And the user should see the list of below owners in level 3, above the root entity, in the full graph
+And the user should see the list of below owners in level 3, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 14UK|
 |QA Legal Entity 12UK|
@@ -79,13 +79,13 @@ And the user should see the list of below owners in level 3, above the root enti
 |QA Legal Entity 1951.53USA|
 |Other shareholdersowning less than 2,...|
 
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 4571.9Korea (Republic of)|
 |QA Legal Entity 150.52UK|
 |QA Legal Entity 110.23UK|
 
-And the user should see the list of below owners in level 4, above the root entity, in the full graph
+And the user should see the list of below owners in level 4, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 1551.53USA|
 |QA Legal Entity 1351.53UK|
@@ -93,17 +93,17 @@ And the user should see the list of below owners in level 4, above the root enti
 |QA Legal Entity 6114.99|
 |Top 20 shareholders,57.67; Others,...|
 
-And the user should see the list of below subsidiaries in level 4, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 4671.9|
 
-And the user should see the list of below owners in level 5, above the root entity, in the full graph
+And the user should see the list of below owners in level 5, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 6141.99|
 |Top shareholdersowning less than 2,...|
 |Top shareholdersowning less than 2,...|
 
-And the user should see the list of below owners in level 6, above the root entity, in the full graph
+And the user should see the list of below owners in level 6, above the root entity, in the graphs
 |NODES|
 |Top shareholdersowning less than 2,...|
 
@@ -119,13 +119,13 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root and highlighted in the full graph
+Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root and highlighted in the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the full graph
+And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 2951.53India|
 
-And the user should see the list of below owners in level 2, above the root entity, in the full graph
+And the user should see the list of below owners in level 2, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 322.53India|
 |QA Legal Entity 30India|
@@ -142,19 +142,19 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the full graph
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the graphs
 
-And the user should see the list of below owners in level 3, above the root entity, in the full graph
+And the user should see the list of below owners in level 3, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 5630.23|
 |Top shareholdersowning less than 2,...|
 
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 5651.99|
 |QA Legal Entity 6056.99|
 
-Then the user should not see any nodes in level 4, above the root entity, in the full graph
+Then the user should not see any nodes in level 4, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -166,22 +166,22 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted in the full graph
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted in the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the full graph
+And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 5251.23|
 
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 54|
 |QA Legal Entity 5251.23|
 
-And the user should see the list of below owners in level 2, above the root entity, in the full graph
+And the user should see the list of below owners in level 2, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 5151.23|
 
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 53|
 |QA Legal Entity 5151.23|
@@ -196,7 +196,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see message displayed in place of graph explaining there are no entities
+Then the user should see message displayed in place of graph explaining there are no entities in the graphs
 
 Examples:
 |fid|
@@ -208,9 +208,9 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should not see any nodes in level 1, below the root entity, in the full graph
+Then the user should not see any nodes in level 1, below the root entity, in the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the full graph
+And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 250.52UK|
 |QA Legal Entity 549.53Korea (Republic of)|
@@ -227,9 +227,9 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should not see any nodes in level 1, above the root entity, in the full graph
+Then the user should not see any nodes in level 1, above the root entity, in the graphs
 
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 1451.53UK|
 
@@ -243,7 +243,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should not see any nodes in level 1, below the root entity, in the full graph
+Then the user should not see any nodes in level 1, below the root entity, in the graphs
 
 Examples:
 |fid|
@@ -260,8 +260,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see no country highlight selected by default in country highlight drop-down in the full graph page
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the full graphs page
+Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
 |Australia|
@@ -270,8 +270,8 @@ And the user should see the list of below unique country of operations for each 
 |UK|
 |USA|
 
-When the user selects a country UK from the country highlight list in the full graph page
-Then the user should see the below nodes in the full graph that have the selected country of operations highlighted in the full graph page
+When the user selects a country UK from the country highlight list in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
 |QA Legal Entity 2|
 |QA Legal Entity 6|
@@ -285,13 +285,13 @@ Then the user should see the below nodes in the full graph that have the selecte
 |QA Legal Entity 12|
 |QA Legal Entity 14|
 |QA Legal Entity 13|
-When the user selects another country India from the country highlight list in the full graph page
-Then the user should see the below nodes in the full graph that have the selected country of operations highlighted in the full graph page
+When the user selects another country India from the country highlight list in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
 |QA Legal Entity 3|
 
-When the user de-selects the selected country by selecting No country highlight from the country highlight list in the full graph page
-Then the user should not see the nodes highlighted in the graph page
+When the user de-selects the selected country by selecting No country highlight from the country highlight list in the graphs
+Then the user should not see the entities highlighted in the graphs
 
 Examples:
 |fid|
@@ -309,46 +309,46 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
-When the user enters percentage as 25 in ownership percentage filter text box in the graph
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
+When the user enters percentage as 25 in ownership percentage filter text box in the graphs
 
-Then the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
+Then the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 3425.9Australia|
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 149.53UK|
 |QA Legal Entity 250.53UK|
 
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 150.52UK|
 
-And the user should see the list of below owners in level 1, above the root entity, in the full graph
+And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 
-When the user enters percentage as 100 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
-And the user should not see any nodes in level 2, above the root entity, in the full graph
+When the user enters percentage as 100 in ownership percentage filter text box in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+And the user should not see any nodes in level 2, above the root entity, in the graphs
 
-When the user enters percentage as 200 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
-And the user should not see any nodes in level 2, above the root entity, in the full graph
+When the user enters percentage as 200 in ownership percentage filter text box in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+And the user should not see any nodes in level 2, above the root entity, in the graphs
 
-When the user enters percentage as abc in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
+When the user enters percentage as abc in ownership percentage filter text box in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
-And the user should see the list of below owners in level 6, above the root entity, in the full graph
+And the user should see the list of below owners in level 6, above the root entity, in the graphs
 |NODES|
 |Top shareholdersowning less than 2,...|
 
 When the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
-And the user should not see any nodes in level 2, above the root entity, in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+And the user should not see any nodes in level 2, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -362,14 +362,14 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
-When the user clicks on direct relationship only filter checkbox in the graph
-Then the user should see the list of below owners in level 1, above the root entity, in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+When the user clicks on direct relationship only filter checkbox in the graphs
+Then the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 35Australia|
 |QA Legal Entity 3425.9Australia|
@@ -377,20 +377,20 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
-Then the user should not see any nodes in level 2, above the root entity, in the full graph
-Then the user should not see any nodes in level 2, below the root entity, in the full graph
+Then the user should not see any nodes in level 2, above the root entity, in the graphs
+Then the user should not see any nodes in level 2, below the root entity, in the graphs
 
-When the user unchecks direct relationship only filter checkbox in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
+When the user unchecks direct relationship only filter checkbox in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
-And the user should see the list of below owners in level 2, above the root entity, in the full graph
+And the user should see the list of below owners in level 2, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
 |Treasury shares, 3.8;Trade Union...|
 
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 3960.9Australia|
 |QA Legal Entity 437.9Korea (Republic of)|
@@ -424,15 +424,15 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the full graph
-Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-When the user clicks on direct relationship only filter checkbox in the graph
-Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
-And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graph
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+When the user clicks on direct relationship only filter checkbox in the graphs
+Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
+And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
 
 Examples:
-|fid|legalEntityTitle|countValue|
+|fid|legalEntity|countValue|
 |LE-56|QA Legal Entity 56|Appears: 2|
 
 Scenario: Covers below scenarios
@@ -444,15 +444,15 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
-Then the user should see the multiple appearance bar for <legalEntityTitle> indicating the number of times, <countValue> ,it appears in the graph
-When the user clicks on <legalEntityTitle> node which appears more than once in the graphs
-Then the user should see the nodes for <legalEntityTitle> highlighted everywhere it appears in the graph
-And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+And the user should not see the visual indicator displayed for free text ownership when appeared multiple time for <entity> in the graphs
 
 Examples:
-|fid|legalEntityTitle|countValue|entity|
-|LE-6|QA Legal Entity 61|Appears: 3|Top shareholders owning less than 2, 71.315 |
+|fid|legalEntity|countValue|entity|
+|LE-6|QA Legal Entity 61|Appears: 3|Top shareholders owning less than 2, 71.315|
 
 Scenario: Visual Indicator not been displayed for Legal entities which are displayed only once
 Given the user is on the ubo login page
@@ -460,11 +460,11 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root and highlighted in the full graph
-And the user should not see visual indicator for legal entity <entityType>, when displayed only once
+Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root and highlighted in the graphs
+And the user should not see visual indicator for legal entity <legalEntity>, when displayed only once
 
 Examples:
-|fid|entityType|
+|fid|legalEntity|
 |LE-9|QA Legal Entity 16|
 
 Scenario: Covers below scenarios
@@ -477,18 +477,18 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 
-And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the owners graph
-Then the user should see below free text in the side panel of owners graph
+And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the graphs
+Then the user should see below free text in the side panel in the graphs
 |FREETEXT|
 |Treasury shares, 3.8; Trade Union Federations of SGB (where no federation owns 3 or more), 4.8; Others, 23.4|
 
-When the user clicks on the graph node with title Other shareholders, user is currently viewing in the owners graph
-Then the user should see below free text in the side panel of owners graph
+When the user clicks on the graph node with title Other shareholders, user is currently viewing in the graphs
+Then the user should see below free text in the side panel in the graphs
 |FREETEXT|
 |Other shareholders owning less than 2, 71.315|
 
-When the user clicks on close button on the side panel in the owners graph
-Then side panel should be closed and user should continue to be on owners graph page
+When the user clicks on close button on the side panel in the graphs
+Then the user should see the side panel closed and should be able to continue in the graphs
 
 Examples:
 |fid|
@@ -500,25 +500,25 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graph
-When the user enters percentage as 45 in ownership percentage filter text box in the graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
+When the user enters percentage as 45 in ownership percentage filter text box in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
-And the user should see the list of below owners in level 1, above the root entity, in the full graph
+And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 149.53UK|
 |QA Legal Entity 250.53UK|
 
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the full graph
+And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 150.52UK|
 
@@ -532,33 +532,33 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the full graph
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
-Then the user should see the below owners for the legal entity QA Legal Entity 6 in the full graph
+Then the user should see the below owners for the legal entity QA Legal Entity 6 in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
-Then the user should see the below owners for the legal entity QA Legal Entity 10 in the full graph
+Then the user should see the below owners for the legal entity QA Legal Entity 10 in the graphs
 |NODES|
 |QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|
+|Treasury shares, 3.8;Trade Union...|s
 
-Then the user should see the below owners for the legal entity QA Legal Entity 9 in the full graph
+Then the user should see the below owners for the legal entity QA Legal Entity 9 in the graphs
 |NODES|
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 
-Then the user should see the below owners for the legal entity QA Legal Entity 18 in the full graph
+Then the user should see the below owners for the legal entity QA Legal Entity 18 in the graphs
 |NODES|
 |QA Legal Entity 1951.53USA|
 |Other shareholdersowning less than 2,...|
 
-Then the user should see the below owners for the legal entity QA Legal Entity 61 in the full graph
+Then the user should see the below owners for the legal entity QA Legal Entity 61 in the graphs
 |NODES|
 |Top shareholdersowning less than 2,...|
 
-Then the user should see the below subsidiaries for the legal entity QA Legal Entity 6 in the full graph
+Then the user should see the below subsidiaries for the legal entity QA Legal Entity 6 in the graphs
 |NODES|
 |QA Legal Entity 35Australia|
 |QA Legal Entity 3425.9Australia|
@@ -566,7 +566,7 @@ Then the user should see the below subsidiaries for the legal entity QA Legal En
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
-Then the user should see the below subsidiaries for the legal entity QA Legal Entity 35 in the full graph
+Then the user should see the below subsidiaries for the legal entity QA Legal Entity 35 in the graphs
 |NODES|
 |QA Legal Entity 3960.9Australia|
 |QA Legal Entity 437.9Korea (Republic of)|
