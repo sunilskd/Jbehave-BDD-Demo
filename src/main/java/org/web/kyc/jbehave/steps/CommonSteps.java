@@ -41,6 +41,7 @@ public class CommonSteps {
     }
 
     @When("the user clicks on $footerLink link in footer section")
+    @Alias("the user clicks on $footerLink link in error screen")
     public void verifyFooterLinks(@Named("$footerLink") String footerLink){pageObject.commonUtils().verifyFooterLinks(footerLink);
     }
 
