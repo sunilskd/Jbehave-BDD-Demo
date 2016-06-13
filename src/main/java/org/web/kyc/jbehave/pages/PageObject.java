@@ -14,6 +14,7 @@ public class PageObject {
     private GraphsPage graphsPage;
     private GraphControlsUtils graphControlsUtils;
     private SidePanelUtils sidePanelUtils;
+    private ErrorScreenPage errorScreenPage;
 
     public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -81,4 +82,12 @@ public class PageObject {
         }
         return sidePanelUtils;
     }
+
+    public ErrorScreenPage errorScreenPage(){
+        if(errorScreenPage == null){
+            errorScreenPage = new ErrorScreenPage(driverProvider);
+        }
+        return errorScreenPage;
+    }
+
 }
