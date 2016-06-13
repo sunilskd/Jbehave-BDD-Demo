@@ -5,6 +5,9 @@ JIRA ID - KYC-147 pop open panel for more entity info on owners graph
 JIRA ID - KYC-294 KYC user can view UBO list header in owners list and side panel
 JIRA ID - KYC-338 No Known Entities" should be displayed when there are no direct subs or UBOs
 JIRA ID - KYC-353 Percentage ownership is truncating the 2nd decimal value if it is zero.
+JIRA ID - KYC-16 KYC user can click link to another entity in owners graph
+JIRA ID - KYC-273 User can click link to another entity in full graph
+JIRA ID - KYC-73 KYC user can click link to another entity in subsidiary graph
 
 Meta:@ubosidepanel @ubo
 
