@@ -5,6 +5,9 @@ JIRA ID - KYC-147 pop open panel for more entity info on owners graph
 JIRA ID - KYC-294 KYC user can view UBO list header in owners list and side panel
 JIRA ID - KYC-149 Pop-open panel for more entity info on subsidiary graph
 JIRA ID - KYC-353 Percentage ownership is truncating the 2nd decimal value if it is zero.
+JIRA ID - KYC-16 KYC user can click link to another entity in owners graph
+JIRA ID - KYC-273 User can click link to another entity in full graph
+JIRA ID - KYC-73 KYC user can click link to another entity in subsidiary graph
 
 Meta:@kycsidepanel @kyc
 
@@ -220,3 +223,52 @@ Then the user should see complete head office address, regulators and stock exch
 Examples:
 |fid|nodeTitle|switchNode|
 |112618|Moody Bank Holding|Moody National Bank|
+
+Scenario: User is taken to the owners graph when clicks legal entity's title link in the side panel
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user clicks on direct relationship only filter checkbox in the graphs
+And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
+And the user clicks on the entity title on the side panel in the graph <nodeTitle>
+Then user is taken to the graph page of that legal entity <nodeTitle>
+Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
+
+Examples:
+|fid|nodeTitle|legalEntity|
+|LE-6|QA Legal Entity 10|QA Legal Entity 10|
+|LE-6|QA Legal Entity 6|QA Legal Entity 6|
+
+Scenario: User is taken to the subs graph when clicks legal entity's title link in the side panel
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
+And the user clicks on the entity title on the side panel in the graph <nodeTitle>
+Then user is taken to the graph page of that legal entity <nodeTitle>
+Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
+
+Examples:
+|fid|nodeTitle|legalEntity|
+|LE-6|QA Legal Entity 35|QA Legal Entity 35|
+|LE-6|QA Legal Entity 6|QA Legal Entity 6|
+
+Scenario: User is taken to the full graph when clicks legal entity's title link in the side panel
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
+And the user clicks on the entity title on the side panel in the graph <nodeTitle>
+Then the user should see the side panel closed and should be able to continue in the graphs
+Then user is taken to the graph page of that legal entity <nodeTitle>
+Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
+
+Examples:
+|fid|nodeTitle|legalEntity|
+|LE-6|QA Legal Entity 10|QA Legal Entity 10|

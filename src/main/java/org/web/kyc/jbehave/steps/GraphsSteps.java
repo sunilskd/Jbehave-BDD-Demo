@@ -143,4 +143,9 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyHoverOverToolTipInNodes(legalTitleExamTable);
     }
 
+    @Then("user is taken to the graph page of that legal entity <nodeTitle>")
+    public void verifyGraphPageOfLegalEntity(@Named("nodeTitle")String nodeTitle){
+        pageObject.graphsPage().verifyGraphPageOfLegalEntity(nodeTitle);
+    }
+
 }

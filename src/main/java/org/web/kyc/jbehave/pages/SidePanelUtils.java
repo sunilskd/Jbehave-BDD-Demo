@@ -180,4 +180,10 @@ public class SidePanelUtils extends WebDriverUtils {
         assertEquals("No known entities.", getWebElementText(graph_side_panel_no_known_ubos_message_text_xpath));
     }
 
+    public void clickEntityTitleOnSidePanel(String nodeTitle){
+        waitForInMilliSeconds(3000L);
+        assertEquals(nodeTitle,findElement(graph_side_panel_title_text_xpath).getText());
+        findElement(graph_side_panel_title_text_xpath).click();
+    }
+
 }
