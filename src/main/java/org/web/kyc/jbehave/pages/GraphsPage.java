@@ -44,6 +44,7 @@ public class GraphsPage extends WebDriverUtils {
     private String graph_owners_xpath = "//*[local-name()='g'][contains(@class,'own')][@parent=";
     private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')]/*[local-name()='text']/*[local-name()='tspan'][1]");
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
+    private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
 
     public GraphsPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -307,5 +308,10 @@ public class GraphsPage extends WebDriverUtils {
         for (int i=0; i<eNodeList.size(); i++){
             assertEquals("Node does not match at " + i, eNodeList.get(i), aNodeList.get(i));
         }
+    }
+
+    public void verifyGraphPageOfLegalEntity(String nodeTitle){
+        waitForInMilliSeconds(3000L);
+        assertEquals(nodeTitle,findElement(legal_entity_title_text_xpath).getText());
     }
 }

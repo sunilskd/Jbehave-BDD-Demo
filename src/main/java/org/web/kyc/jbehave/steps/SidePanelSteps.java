@@ -72,4 +72,9 @@ public class SidePanelSteps {
         pageObject.sidePanelUtils().verifyNoKnowsEntitiesMessageUBOs();
     }
 
+    @When("the user clicks on the entity title on the side panel in the graph <nodeTitle>")
+    public void clickEntityTitleOnSidePanel(@Named("nodeTitle")String nodeTitle){
+        pageObject.sidePanelUtils().clickEntityTitleOnSidePanel(nodeTitle);
+    }
+
 }
