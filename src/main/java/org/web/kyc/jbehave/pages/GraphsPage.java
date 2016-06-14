@@ -83,6 +83,7 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyGraphNodes(String level, ExamplesTable nodesExamTable) {
+        waitForInMilliSeconds(3000L);
         List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_level_xpath + level + ")')]" + graph_legal_entity_link_xpath));
         List<WebElement> aPercent = getWebElements(By.xpath(graph_level_xpath + level + ")')]" + graph_percent_xpath));
         List<WebElement> aCountry = getWebElements(By.xpath(graph_level_xpath + level + ")')]" + graph_country_xpath));
