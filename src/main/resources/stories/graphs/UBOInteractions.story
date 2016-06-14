@@ -5,12 +5,12 @@ This story is to cover the expected functionality when user applies multiple hig
 Covers below features:
 JIRA ID - KYC-266 interaction between percent filter and direct/indirect filter on all graphs
 
-Meta:@kycinteractions
+Meta:@ubointeractions
 
 Scenario: KYC user login
 Meta: @id login
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 
 Scenario: Covers below scenarios for owners graph
 a. 0. If user applies "direct relationships only" filter to graph, percent filter resets to 0
@@ -57,7 +57,6 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|
 
 And the user should see the list of below owners in level 3, above the root entity, in the owners graphs
 |NODES|
@@ -65,7 +64,7 @@ And the user should see the list of below owners in level 3, above the root enti
 |QA Legal Entity 12UK|
 |QA Legal Entity 1751.53USA|
 |QA Legal Entity 1951.53USA|
-|Other shareholdersowning less than 2,...|
+|Others9.52|
 
 And the user should see the list of below owners in level 4, above the root entity, in the owners graphs
 |NODES|
@@ -73,17 +72,21 @@ And the user should see the list of below owners in level 4, above the root enti
 |QA Legal Entity 1351.53UK|
 |QA Legal Entity 614.99|
 |QA Legal Entity 6114.99|
-|Top 20 shareholders,57.67; Others,...|
 
 And the user should see the list of below owners in level 5, above the root entity, in the owners graphs
 |NODES|
 |QA Legal Entity 6141.99|
-|Top shareholdersowning less than 2,...|
-|Top shareholdersowning less than 2,...|
+|QA Test Person 15.93|
+|QA Test Person 15.93|
+|QA Test Person 251.93|
+|Local Government,Legal Entity 61 owned...59.52|
+|Local Government,Legal Entity 61 owned...59.52|
+|Free float, LegalEntity 15 owned by...|
 
 And the user should see the list of below owners in level 6, above the root entity, in the owners graphs
 |NODES|
-|Top shareholdersowning less than 2,...|
+|QA Test Person 15.93|
+|Local Government,Legal Entity 61 owned...59.52|
 
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
 
@@ -173,7 +176,7 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: overs below scenarios for full graph
+Scenario: Covers below scenarios for full graph
 a. 0. If user applies "direct relationships only" filter to graph, percent filter resets to 0
    1. If user selects a percent filter after applying "direct relationships only" filter, graph filters out any entities that don't have equal to or greater than the selected percent and the direct filter remains in effect
    2. User applies direct relationships only filter and percent filter
@@ -251,7 +254,6 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|
 
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 |NODES|
@@ -269,7 +271,7 @@ And the user should see the list of below owners in level 3, above the root enti
 |QA Legal Entity 12UK|
 |QA Legal Entity 1751.53USA|
 |QA Legal Entity 1951.53USA|
-|Other shareholdersowning less than 2,...|
+|Others9.52|
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
@@ -283,7 +285,6 @@ And the user should see the list of below owners in level 4, above the root enti
 |QA Legal Entity 1351.53UK|
 |QA Legal Entity 614.99|
 |QA Legal Entity 6114.99|
-|Top 20 shareholders,57.67; Others,...|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
 |NODES|
@@ -292,16 +293,22 @@ And the user should see the list of below subsidiaries in level 4, below the roo
 And the user should see the list of below owners in level 5, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 6141.99|
-|Top shareholdersowning less than 2,...|
-|Top shareholdersowning less than 2,...|
+|QA Test Person 15.93|
+|QA Test Person 15.93|
+|QA Test Person 251.93|
+|Local Government,Legal Entity 61 owned...59.52|
+|Local Government,Legal Entity 61 owned...59.52|
+|Free float, LegalEntity 15 owned by...|
+
+And the user should not see any nodes in level 5, below the root entity, in the graphs
 
 And the user should see the list of below owners in level 6, above the root entity, in the graphs
 |NODES|
-|Top shareholdersowning less than 2,...|
+|QA Test Person 15.93|
+|Local Government,Legal Entity 61 owned...59.52|
 
 Examples:
 |fid|
 |LE-6|
-
 
 
