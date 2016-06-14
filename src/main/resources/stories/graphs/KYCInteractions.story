@@ -1,9 +1,11 @@
-Meta:@design
+Epic: Ownership, Subsidiaries, Full Graph
 
-Narrative:
-As a user
-I want to perform an action
-So that I can achieve a business goal
+This story is to cover the expected functionality when user applies multiple highlights or filters since they react to each other in various ways.
+
+Covers below features:
+JIRA ID - KYC-266 interaction between percent filter and direct/indirect filter on all graphs
+
+Meta:@interactions
 
 Scenario: KYC user login
 Meta: @id login
@@ -86,3 +88,15 @@ Then the user should see, percent filter is reset to 0 for both input box and sl
 Examples:
 |fid|
 |LE-6|
+
+Scenario: User applies percent filter and direct relationships only filter on subs graph
+a. If user applies "direct relationships only" filter to graph, percent filter resets to 0
+b. If user selects a percent filter after applying "direct relationships only" filter, graph filters out any entities that don't have equal to or greater than the selected percent and the direct filter remains in effect
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+When the user enters percentage as 45 in ownership percentage filter text box in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs

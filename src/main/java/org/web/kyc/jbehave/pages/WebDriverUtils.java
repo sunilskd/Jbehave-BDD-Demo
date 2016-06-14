@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
+
 /* Contains commonUtils webdriver methods to be used in page classes */
 
 public class WebDriverUtils extends WebDriverPage {
@@ -129,20 +131,12 @@ public class WebDriverUtils extends WebDriverPage {
     }
 
     public void moveSliderBarTo(By by, int x){
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(2000L);
         /* Clicking and holding on the slider bar and move by offset*/
         moveMouseTo(by);
         getActions().clickAndHold(findElement(by)).moveByOffset(x, 0).build().perform();
         getActions().release(findElement(by)).build().perform();
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
     }
 
     public void moveMouseTo(By by) {
