@@ -93,7 +93,7 @@ When the user clicks on close button on the side panel in the graphs
 Then the user should see the side panel closed and should be able to continue in the graphs
 
 Examples:
-|fid|switchNode|legalEntityTitle|
+|fid|switchNode|legalEntity|
 |LE-C|QA Legal Entity A|QA Test Person G|
 
 Scenario: display "No Known Entities" if there are no direct subsidiaries
