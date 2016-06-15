@@ -23,14 +23,15 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
    7. If user applies percent or direct filter, any highlights previously applied (country) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times count on a legal entity or person remains the same even if all times the entity appears are no longer visible
+
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-
 When the user enters percentage as 45 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+
 And the user should see the list of below owners in level 1, above the root entity, in the owners graphs
 |NODES|
 |QA Legal Entity 945.53UK|
@@ -43,6 +44,7 @@ And the user should see the list of below unique country of operations for each 
 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
+
 And the user should see the list of below owners in level 1, above the root entity, in the owners graphs
 |NODES|
 |QA Legal Entity 945.53UK|
@@ -131,6 +133,7 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
    7. If user applies percent or direct filter, any highlights previously applied (country) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times doesnt appear
+
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -259,6 +262,7 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
    7. If user applies percent or direct filter, any highlights previously applied (country) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times count on a legal entity or person remains the same even if all times the entity appears are no longer visible
+
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -420,6 +424,5 @@ Then the user should see the multiple appearance bar for <legalEntity> indicatin
 Examples:
 |fid|legalEntity|countValue|
 |LE-6|QA Legal Entity 61|Appears: 3|
-
 
 
