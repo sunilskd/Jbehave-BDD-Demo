@@ -39,6 +39,7 @@ public class GraphControlsSteps {
     public void clickOnDirectRelationshipCheckbox(){pageObject.graphControlsUtils().clickOnDirectRelationshipCheckbox();}
 
     @Then("the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs")
+    @Alias("the user should see, percent filter is reset to 0 for both input box and slider, in the graphs")
     public void verifyPercentFilterIsSetToZero() {
         pageObject.graphControlsUtils().verifyPercentFilterIsSetToZero();
     }
