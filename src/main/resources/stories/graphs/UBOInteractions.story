@@ -67,7 +67,6 @@ Then the user should see the list of below owners in level 1, above the root ent
 |QA Legal Entity 945.53UK|
 
 And the user should not see the entities highlighted in the graphs
-And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see the list of below owners in level 1, above the root entity, in the owners graphs
@@ -117,6 +116,9 @@ And the user should see the list of below unique country of operations for each 
 |No country highlight|
 |UK|
 |USA|
+
+When the user enters percentage as 1 in ownership percentage filter text box in the graphs
+Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 
 Examples:
 |fid|legalEntity|countValue|
@@ -426,7 +428,8 @@ And the user should see the list of below unique country of operations for each 
 |UK|
 |USA|
 
-And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+When the user enters percentage as 1 in ownership percentage filter text box in the graphs
+Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 
 Examples:
 |fid|legalEntity|countValue|
