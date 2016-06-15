@@ -316,4 +316,11 @@ public class GraphsPage extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         assertEquals(nodeTitle,findElement(legal_entity_title_text_xpath).getText());
     }
+
+    public void verifyingHighlightIsNotDisplayedForMultipleNode() {
+        waitForInMilliSeconds(3000L);
+        assertFalse(isWebElementDisplayed(graph_multiple_node_highlight_xpath));
+    }
+
+
 }

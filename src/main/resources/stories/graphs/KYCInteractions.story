@@ -21,7 +21,7 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    4. Country highlights drop down updates when percent filter applied
    5. Country highlights drop down updates when direct relationships only filter applied
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
-   7. If user applies percent or direct filter, any highlights previously applied (country) are removed and de-selected
+   7. If user applies percent or direct filter, any highlights previously applied (country,appears multiple) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times count on a legal entity or person remains the same even if all times the entity appears are no longer visible
 
 Given the user is on the ubo login page
@@ -116,8 +116,11 @@ And the user should see the list of below unique country of operations for each 
 |UK|
 |USA|
 
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 When the user enters percentage as 1 in ownership percentage filter text box in the graphs
 Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+And the user should not see the multiple appearance highlight on any node in the graphs
 
 Examples:
 |fid|legalEntity|countValue|
@@ -260,7 +263,7 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    4. Country highlights drop down updates when percent filter applied
    5. Country highlights drop down updates when direct relationships only filter applied
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
-   7. If user applies percent or direct filter, any highlights previously applied (country) are removed and de-selected
+   7. If user applies percent or direct filter, any highlights previously applied (country, appears multiple) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times count on a legal entity or person remains the same even if all times the entity appears are no longer visible
 
 Given the user is on the ubo login page
@@ -418,8 +421,11 @@ And the user should see the list of below unique country of operations for each 
 |UK|
 |USA|
 
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 When the user enters percentage as 1 in ownership percentage filter text box in the graphs
 Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+And the user should not see the multiple appearance highlight on any node in the graphs
 
 Examples:
 |fid|legalEntity|countValue|
