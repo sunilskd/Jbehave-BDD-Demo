@@ -6,7 +6,7 @@ Covers below features:
 JIRA ID - KYC-266 interaction between percent filter and direct/indirect filter on all graphs
 JIRA ID - KYC 265 interaction between filters and highlights on all graphs
 
-Meta:@kycinteractions
+Meta:@kycinteractions @kyc
 
 Scenario: KYC user login
 Meta: @id login
