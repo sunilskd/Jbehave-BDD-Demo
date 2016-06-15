@@ -148,4 +148,35 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyGraphPageOfLegalEntity(nodeTitle);
     }
 
+    @Then("the user captures the expected snapshot for the full graph page")
+    public void captureExpectedScreenShotForFullGraph(){ pageObject.graphsPage().captureExpectedScreenShotForFullGraph();}
+
+    @When("the user captures the actual snapshot for the full graph page")
+    public void captureActualScreenShotForFullGraph(){
+        pageObject.graphsPage().captureActualScreenShotForFullGraph();
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for full graph page")
+    public void compareSnapshotsForFullGraph(){
+        pageObject.graphsPage().compareSnapshotsForFullGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the owners graph page")
+    public void captureExpectedScreenShotForOwnersGraph(){ pageObject.graphsPage().captureExpectedScreenShotForOwnersGraph();}
+
+    @When("the user captures the actual snapshot for the owners graph page")
+    public void captureActualScreenShotForOwnersGraph(){pageObject.graphsPage().captureActualScreenShotForOwnersGraph();}
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for owners graph page")
+    public void compareSnapshotsForOwnersGraph(){pageObject.graphsPage().compareSnapshotsForOwnersGraph();}
+
+    @Then("the user captures the expected snapshot for the subsidiaries graph page")
+    public void captureExpectedScreenShotForSubsGraph(){pageObject.graphsPage().captureExpectedScreenShotForSubsGraph();}
+
+    @When("the user captures the actual snapshot for the subsidiaries graph page")
+    public void captureActualScreenShotForSubsGraph(){pageObject.graphsPage().captureActualScreenShotForSubsGraph();}
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for subsidiaries graph page")
+    public void compareSnapshotsForSubsGraph(){pageObject.graphsPage().compareSnapshotsForSubsGraph();}
+
 }

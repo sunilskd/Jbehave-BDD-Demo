@@ -14,6 +14,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
 public class GraphsPage extends WebDriverUtils {
@@ -210,14 +211,20 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void selectingNodeToBeClicked(String legalEntity){
-        List<WebElement> multipleNode  = getWebElements(By.xpath(graph_multiple_node_xpath));
-        for(int i=1;i<=multipleNode.size();i++){
-            String actualEntityTile = multipleNode.get(i).findElement(graph_multiple_node_title_xpath).getText();
-            if(legalEntity.equalsIgnoreCase(actualEntityTile)){
-                getActions().click(multipleNode.get(i)).build().perform();
-                break;
+        try{
+            Thread.sleep(3000L);
+            List<WebElement> multipleNode  = getWebElements(By.xpath(graph_multiple_node_xpath));
+            for(int i=1;i<=multipleNode.size();i++){
+                String actualEntityTile = multipleNode.get(i).findElement(graph_multiple_node_title_xpath).getText();
+                if(legalEntity.equalsIgnoreCase(actualEntityTile)){
+                    getActions().click(multipleNode.get(i)).build().perform();
+                    break;
+                }
             }
+        }catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
     }
 
     public void verifyingHighLightDisplayedForMultipleNode(String legalEntity) {
@@ -314,4 +321,96 @@ public class GraphsPage extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         assertEquals(nodeTitle,findElement(legal_entity_title_text_xpath).getText());
     }
+
+    public void captureExpectedScreenShotForFullGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eFullGraph.png");
+    }
+
+    public void captureActualScreenShotForFullGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aFullGraph.png");
+    }
+
+    public void compareSnapshotsForFullGraph() {
+        waitForInMilliSeconds(3000L);
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eFullGraph.png",
+                        readProperties().getSnapshotPath() + "/actual/aFullGraph.png",
+                        readProperties().getSnapshotPath() + "/difference/dFullGraph.png"));
+    }
+
+    public void captureExpectedScreenShotForFullGraphNonBankLegalEntity() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eFullGraphNonBankLegalEntity.png");
+    }
+
+    public void captureActualScreenShotForFullGraphNonBankLegalEntity() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aFullGraphNonBankLegalEntity.png");
+    }
+
+    public void compareSnapshotsForFullGraphNonBankLegalEntity() {
+        waitForInMilliSeconds(3000L);
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eFullGraphNonBankLegalEntity.png",
+                        readProperties().getSnapshotPath() + "/actual/aFullGraphNonBankLegalEntity.png",
+                        readProperties().getSnapshotPath() + "/difference/dFullGraphNonBankLegalEntity.png"));
+    }
+
+    public void captureExpectedScreenShotForOwnersGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eOwnersGraph.png");
+    }
+
+    public void captureActualScreenShotForOwnersGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/aOwnersGraph.png");
+    }
+
+    public void compareSnapshotsForOwnersGraph() {
+        waitForInMilliSeconds(3000L);
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eOwnersGraph.png",
+                        readProperties().getSnapshotPath() + "/actual/aOwnersGraph.png",
+                        readProperties().getSnapshotPath() + "/difference/dOwnersGraph.png"));
+    }
+
+    public void captureExpectedScreenShotForOwnersGraphNonBankLegalEntity() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eOwnersGraphNonBankLegalEntity.png");
+    }
+
+    public void captureActualScreenShotForOwnersGraphNonBankLegalEntity() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/aOwnersGraphNonBankLegalEntity.png");
+    }
+
+    public void compareSnapshotsForOwnersGraphNonBankLegalEntity() {
+        waitForInMilliSeconds(3000L);
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eOwnersGraphNonBankLegalEntity.png",
+                        readProperties().getSnapshotPath() + "/actual/aOwnersGraphNonBankLegalEntity.png",
+                        readProperties().getSnapshotPath() + "/difference/dOwnersGraphNonBankLegalEntity.png"));
+    }
+
+    public void captureExpectedScreenShotForSubsGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eSubsGraph.png");
+    }
+
+    public void captureActualScreenShotForSubsGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/aSubsGraph.png");
+    }
+
+    public void compareSnapshotsForSubsGraph() {
+        waitForInMilliSeconds(3000L);
+        assertTrue(
+                compareImages(readProperties().getSnapshotPath() + "/expected/eSubsGraph.png",
+                        readProperties().getSnapshotPath() + "/actual/aSubsGraph.png",
+                        readProperties().getSnapshotPath() + "/difference/dSubsGraph.png"));
+    }
+
+
 }
