@@ -148,8 +148,40 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyGraphPageOfLegalEntity(nodeTitle);
     }
 
+    @Then("the user captures the expected snapshot for the full graph")
+    public void captureExpectedScreenShotForFullGraph(){ pageObject.graphsPage().captureExpectedScreenShotForFullGraph();}
+
+    @When("the user captures the actual snapshot for the full graph")
+    public void captureActualScreenShotForFullGraph(){
+        pageObject.graphsPage().captureActualScreenShotForFullGraph();
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for full graph")
+    public void compareSnapshotsForFullGraph(){
+        pageObject.graphsPage().compareSnapshotsForFullGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the owners graph")
+    public void captureExpectedScreenShotForOwnersGraph(){ pageObject.graphsPage().captureExpectedScreenShotForOwnersGraph();}
+
+    @When("the user captures the actual snapshot for the owners graph")
+    public void captureActualScreenShotForOwnersGraph(){pageObject.graphsPage().captureActualScreenShotForOwnersGraph();}
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for owners graph")
+    public void compareSnapshotsForOwnersGraph(){pageObject.graphsPage().compareSnapshotsForOwnersGraph();}
+
+    @Then("the user captures the expected snapshot for the subsidiaries graph")
+    public void captureExpectedScreenShotForSubsGraph(){pageObject.graphsPage().captureExpectedScreenShotForSubsGraph();}
+
+    @When("the user captures the actual snapshot for the subsidiaries graph")
+    public void captureActualScreenShotForSubsGraph(){pageObject.graphsPage().captureActualScreenShotForSubsGraph();}
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for subsidiaries graph")
+    public void compareSnapshotsForSubsGraph(){pageObject.graphsPage().compareSnapshotsForSubsGraph();}
+
     @Then("the user should not see the multiple appearance highlight on any node in the graphs")
     public void verifyingHighlightIsNotDisplayedForMultipleNode(){
         pageObject.graphsPage().verifyingHighlightIsNotDisplayedForMultipleNode();
     }
+
 }

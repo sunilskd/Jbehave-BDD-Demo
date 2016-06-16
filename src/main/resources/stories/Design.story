@@ -108,7 +108,7 @@ And the user should see the list of below unique country of operations for each 
 
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 
-
 Examples:
 |fid|legalEntity|countValue|
 |LE-6|QA Legal Entity 61|Appears: 3|
+
