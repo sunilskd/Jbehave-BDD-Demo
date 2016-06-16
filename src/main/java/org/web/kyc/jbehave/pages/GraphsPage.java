@@ -188,12 +188,13 @@ public class GraphsPage extends WebDriverUtils {
 
     public void verifyingCountForMultipleDisplayedNodes(String legalEntity, String countValue) {
         List<WebElement> multipleNode  = getWebElements(By.xpath(graph_multiple_node_xpath));
-        for(int i=0;i<multipleNode.size();i++){
-            String entityTile = multipleNode.get(i).findElement(graph_multiple_node_title_xpath).getText();
-            if(entityTile.equalsIgnoreCase(legalEntity)){
-                String appearsCount = multipleNode.get(i).findElements(By.tagName("text")).get(2).getText();
-                assertEquals(appearsCount,countValue);
-            }
+        assertTrue(getWebElements(By.xpath(graph_multiple_node_xpath)).size()>0);
+        for (int i = 0; i < multipleNode.size(); i++) {
+                String entityTile = multipleNode.get(i).findElement(graph_multiple_node_title_xpath).getText();
+                if (entityTile.equalsIgnoreCase(legalEntity)) {
+                    String appearsCount = multipleNode.get(i).findElements(By.tagName("text")).get(2).getText();
+                    assertEquals(appearsCount, countValue);
+                }
         }
     }
 
@@ -378,6 +379,12 @@ public class GraphsPage extends WebDriverUtils {
                 compareImages(readProperties().getSnapshotPath() + "/expected/eSubsGraph.png",
                         readProperties().getSnapshotPath() + "/actual/aSubsGraph.png",
                         readProperties().getSnapshotPath() + "/difference/dSubsGraph.png"));
+
+    }
+    public void verifyingHighlightIsNotDisplayedForMultipleNode() {
+        waitForInMilliSeconds(3000L);
+        assertFalse(isWebElementDisplayed(graph_multiple_node_highlight_xpath));
+
     }
 
 

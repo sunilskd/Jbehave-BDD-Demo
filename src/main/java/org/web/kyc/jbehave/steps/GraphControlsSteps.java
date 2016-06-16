@@ -55,6 +55,7 @@ public class GraphControlsSteps {
     }
 
     @Then("the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph")
+    @Alias("the user should see the ultimate beneficial owners filter checkbox unchecked in the graph")
     public void verifyUBOFilterIsUncheckedByDefault(){
         pageObject.graphControlsUtils().verifyUBOFilterIsUncheckedByDefault();
     }

@@ -179,4 +179,9 @@ public class GraphsSteps {
     @Then("the user should see the actual snapshot matching the expected snapshot for subsidiaries graph")
     public void compareSnapshotsForSubsGraph(){pageObject.graphsPage().compareSnapshotsForSubsGraph();}
 
+    @Then("the user should not see the multiple appearance highlight on any node in the graphs")
+    public void verifyingHighlightIsNotDisplayedForMultipleNode(){
+        pageObject.graphsPage().verifyingHighlightIsNotDisplayedForMultipleNode();
+    }
+
 }
