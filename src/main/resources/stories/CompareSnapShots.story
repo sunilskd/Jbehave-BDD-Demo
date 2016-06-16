@@ -76,8 +76,8 @@ When the user clicks on <legalEntity> node which appears more than once in the g
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 When the user selects a country UK from the country highlight list in the graphs
 And the user clicks on the ultimate beneficial owners filter checkbox in the graph
-And the user captures the actual snapshot for the full graph page
-Then the user should see the actual snapshot matching the expected snapshot for full graph page
+And the user captures the actual snapshot for the full graph
+Then the user should see the actual snapshot matching the expected snapshot for full graph
 
 Examples:
 |fid|legalEntity|
@@ -99,8 +99,8 @@ When the user clicks on <legalEntity> node which appears more than once in the g
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 When the user selects a country UK from the country highlight list in the graphs
 And the user clicks on the ultimate beneficial owners filter checkbox in the graph
-And the user captures the actual snapshot for the owners graph page
-Then the user should see the actual snapshot matching the expected snapshot for owners graph page
+And the user captures the actual snapshot for the owners graph
+Then the user should see the actual snapshot matching the expected snapshot for owners graph
 
 Examples:
 |fid|legalEntity|
@@ -121,8 +121,8 @@ And the user clicks on the graph button
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 When the user selects a country UK from the country highlight list in the graphs
-And the user captures the actual snapshot for the subsidiaries graph page
-Then the user should see the actual snapshot matching the expected snapshot for subsidiaries graph page
+And the user captures the actual snapshot for the subsidiaries graph
+Then the user should see the actual snapshot matching the expected snapshot for subsidiaries graph
 
 Examples:
 |fid|legalEntity|

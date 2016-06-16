@@ -341,23 +341,6 @@ public class GraphsPage extends WebDriverUtils {
                         readProperties().getSnapshotPath() + "/difference/dFullGraph.png"));
     }
 
-    public void captureExpectedScreenShotForFullGraphNonBankLegalEntity() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eFullGraphNonBankLegalEntity.png");
-    }
-
-    public void captureActualScreenShotForFullGraphNonBankLegalEntity() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aFullGraphNonBankLegalEntity.png");
-    }
-
-    public void compareSnapshotsForFullGraphNonBankLegalEntity() {
-        waitForInMilliSeconds(3000L);
-        assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eFullGraphNonBankLegalEntity.png",
-                        readProperties().getSnapshotPath() + "/actual/aFullGraphNonBankLegalEntity.png",
-                        readProperties().getSnapshotPath() + "/difference/dFullGraphNonBankLegalEntity.png"));
-    }
 
     public void captureExpectedScreenShotForOwnersGraph() {
         waitForInMilliSeconds(3000L);
@@ -377,23 +360,7 @@ public class GraphsPage extends WebDriverUtils {
                         readProperties().getSnapshotPath() + "/difference/dOwnersGraph.png"));
     }
 
-    public void captureExpectedScreenShotForOwnersGraphNonBankLegalEntity() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eOwnersGraphNonBankLegalEntity.png");
-    }
 
-    public void captureActualScreenShotForOwnersGraphNonBankLegalEntity() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/aOwnersGraphNonBankLegalEntity.png");
-    }
-
-    public void compareSnapshotsForOwnersGraphNonBankLegalEntity() {
-        waitForInMilliSeconds(3000L);
-        assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eOwnersGraphNonBankLegalEntity.png",
-                        readProperties().getSnapshotPath() + "/actual/aOwnersGraphNonBankLegalEntity.png",
-                        readProperties().getSnapshotPath() + "/difference/dOwnersGraphNonBankLegalEntity.png"));
-    }
 
     public void captureExpectedScreenShotForSubsGraph() {
         waitForInMilliSeconds(3000L);
