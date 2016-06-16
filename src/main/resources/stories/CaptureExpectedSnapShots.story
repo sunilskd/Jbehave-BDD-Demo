@@ -84,7 +84,7 @@ Scenario: Capture expected screenshot for owners graph for validating below scen
     1. KYC-152 Display icon for legal entity is not a bank.
     2. KYC-153 Display icon for person.
     3. KYC-154 Display icon for non-person,non-institution owner on graph.
-Meta:@captureowners @ubo
+Meta:@captureowners @kyc
 Given the user is on the ubo login page
 When the user login as a kyc user
 When the user opens legal entity <fid>
