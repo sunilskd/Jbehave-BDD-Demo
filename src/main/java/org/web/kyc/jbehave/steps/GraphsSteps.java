@@ -148,4 +148,8 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyGraphPageOfLegalEntity(nodeTitle);
     }
 
+    @Then("the user should not see the multiple appearance highlight on any node in the graphs")
+    public void verifyingHighlightIsNotDisplayedForMultipleNode(){
+        pageObject.graphsPage().verifyingHighlightIsNotDisplayedForMultipleNode();
+    }
 }
