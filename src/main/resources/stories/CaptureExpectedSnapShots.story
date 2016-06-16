@@ -78,7 +78,6 @@ Examples:
 |fid|legalEntity|
 |LE-6|QA Legal Entity 61|
 
-
 Scenario: Capture expected screenshot for owners graph for validating below scenarios with KYC user
  a. 0. KYC-151 Display icon for legal entity that is a bank.
     1. KYC-152 Display icon for legal entity is not a bank.
@@ -99,7 +98,6 @@ Then the user captures the expected snapshot for the owners graph
 Examples:
 |fid|legalEntity|
 |LE-6|QA Legal Entity 61|
-
 
 Scenario: Capture expected screenshot for subsidiaries graph for validating below scenarios with KYC user
  a. 0. KYC-151 Display icon for legal entity that is a bank.

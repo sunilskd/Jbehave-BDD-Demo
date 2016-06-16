@@ -33,7 +33,7 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node <switchNode> user clicked in the graphs
+Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|
@@ -331,6 +331,3 @@ Then the user should see the legal entity <legalEntity>, user is currently viewi
 Examples:
 |fid|nodeTitle|legalEntity|
 |LE-6|QA Legal Entity 10|QA Legal Entity 10|
-
-
-

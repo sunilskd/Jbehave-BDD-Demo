@@ -19,15 +19,15 @@ public class GraphControlsUtils extends WebDriverUtils {
     private By graph_country_highlight_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //label");
     private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
     private By graph_filter_direct_relationship_only_label_xpath = By.xpath("//div[@class='graph-controls']/div[2]/div");
-    private String graph_filter_direct_relationship_only_xpath = "//input[@ng-model='filterState.relationship']";
+    private String graph_filter_direct_relationship_only_xpath = "//*[@kyc-direct-toggle-control='']//input";
     private By graph_percent_slider_bar_xpath = By.xpath("//*[@class='graph-controls'] //input[2]");
     private By graph_percent_filter_text_box_xpath = By.xpath("//*[@class='graph-controls']/div[1]/div/input[1]");
     private By graph_percent_filter_label_xpath = By.xpath("//*[@class='graph-controls']/div[1] //label");
     private By graph_display_in_graph_label_xpath = By.xpath("//*[@class='graph-controls']/div[1] //h2");
-    private By graph_ubo_filter_checkbox_xpath = By.xpath("//input[@ng-model='filterState.ubo']");
+    private By graph_ubo_filter_checkbox_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input");
     private By graph_ubo_filter_label_xpath = By.xpath("//div[@class='graph-controls']/div[4]/div");
-    private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//input[@ng-model='filterState.ubo'][@class='ng-scope ng-pristine ng-valid']");
-    private By graph_ubo_filter_checkbox_disabled_xpath = By.xpath("//input[@ng-model='filterState.ubo'][@disabled='']");
+    private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input[@class='ng-pristine ng-valid']");
+    private By graph_ubo_filter_checkbox_disabled_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input[@disabled='disabled']");
 
     public GraphControlsUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
