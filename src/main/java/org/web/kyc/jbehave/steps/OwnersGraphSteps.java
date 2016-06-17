@@ -1,6 +1,5 @@
 package org.web.kyc.jbehave.steps;
 
-import org.eclipse.jetty.util.annotation.Name;
 import org.jbehave.core.annotations.Aliases;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -63,29 +62,6 @@ public class OwnersGraphSteps {
         pageObject.commonUtils().verifyStopTravelingPath(Integer.toString(600 - (Integer.parseInt(level) * 180)));
     }
 
-
-    @Then("the user should see legal entity<legalEntityTitle> appears text under the node with count<countValue>")
-    public void verifyingCountForMultipleDiplayedNodes(@Named("legalEntityTitle")String legalEntityTitle,@Named("countValue")String countValue){
-        pageObject.ownersGraphPage().verifyingCountForMultipleDiplayedNodes(legalEntityTitle,countValue);
-    }
-
-    @Then("the user verifies visual indicator is not displayed for Non-Person/Non-Entity when appeared multiple time <nonEntityValue>")
-    @Aliases(values={"the user verifies visual indicator is not displayed for free text ownership when appeared multiple time<freeTextValue>"})
-    public void verifyIndicatorNotDisplayed(@Named("nonEntityValue") String nonEntityValue){
-        pageObject.ownersGraphPage().verifyIndicatorNotDisplayed(nonEntityValue);
-    }
-
-    @Then("the user should see nodes highlighted as clicked on one of the occurances<legalEntityTitle>")
-    public void verifyingHighLightDisplayedForMultipleNode(@Named("legalEntityTitle") String legalEntityTitle){
-        pageObject.ownersGraphPage().verifyingHighLightDisplayedForMultipleNode(legalEntityTitle);
-    }
-
-    @When("the user clicks on <legalEntityTitle> node which is appearing multiple times")
-    public void selectingNodeToBeClicked(@Named("legalEntityTitle") String legalEntityTitle){
-        pageObject.ownersGraphPage().selectingNodeToBeClicked(legalEntityTitle);
-    }
-
-
     @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the owners graph")
     public void clickPartialLinkText(String linkText){
         pageObject.commonUtils().clickPartialLinkText(linkText);
@@ -100,22 +76,8 @@ public class OwnersGraphSteps {
     public void closeSidePanel(){
         pageObject.commonUtils().closeSidePanel();
     }
-
     @Then("side panel should be closed and user should continue to be on owners graph page")
     public void verifySidePanelIsClosed(){
         pageObject.commonUtils().verifySidePanelIsClosed();
     }
-
-    @Then("the user should not see visual indicator for legal entity <entityType>, when displayed only once")
-    public void verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(@Named("entityType") String entityType){
-        pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForSingleLegalEntity(entityType);
-    }
-
-    @Then("the user not see visual indicator for entity with same name but different fid <entityType>")
-    public void verifyingVisualIndicatorNotDisplayedForEntityDiffFid(@Named("entityType") String entityType){
-        pageObject.ownersGraphPage().verifyingVisualIndicatorNotDisplayedForEntityDiffFid(entityType);
-    }
-
-
-
 }
