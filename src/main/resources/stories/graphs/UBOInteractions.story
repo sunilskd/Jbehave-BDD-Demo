@@ -5,6 +5,7 @@ This story is to cover the expected functionality when user applies multiple hig
 Covers below features:
 JIRA ID - KYC-266 interaction between percent filter and direct/indirect filter on all graphs
 JIRA ID - KYC 265 interaction between filters and highlights on all graphs
+JIRA ID - KYC-262 interaction between appears multiple highlight, country highlight and UBO highlight
 
 Meta:@ubointeractions @ubo
 
@@ -462,3 +463,185 @@ And the user should see the ultimate beneficial owners filter checkbox unchecked
 Examples:
 |fid|legalEntity|countValue|
 |LE-6|QA Legal Entity 61|Appears: 3|
+
+Scenario: Covers below scenarios for owners graph
+a. 0. If user applied UBO highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches UBO highlight takes style of UBO highlight
+   1. If user applied both UBO highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of UBO highlight
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user clicks on the ultimate beneficial owners filter checkbox in the graph
+Then the user should see the ultimate beneficial owners highlighted in the graph
+|NODES|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 2|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+Then the user should see the ultimate beneficial owners highlighted in the graph
+|NODES|
+|QA Test Person 2|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the ultimate beneficial owners highlighted in the graph
+|NODES|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 2|
+
+And the user should not see the multiple appearance highlight on any node in the graphs
+
+Examples:
+|fid|legalEntity|
+|LE-6|QA Test Person 1|
+
+Scenario: Covers below scenarios for owners graph
+a. 0. If user applied country highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches country highlight takes style of country highlight
+   1. If user applied both country highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of country highlight
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user selects a country Switzerland from the country highlight list in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+And the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+
+And the user should not see the multiple appearance highlight on any node in the graphs
+
+Examples:
+|fid|legalEntity|
+|11262|Vontobel Holding AG|
+
+Scenario: Covers below scenarios for full graph
+a. 0. If user applied UBO highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches UBO highlight takes style of UBO highlight
+   1. If user applied both UBO highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of UBO highlight
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user clicks on the ultimate beneficial owners filter checkbox in the graph
+Then the user should see the ultimate beneficial owners highlighted in the graph
+|NODES|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 2|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+Then the user should see the ultimate beneficial owners highlighted in the graph
+|NODES|
+|QA Test Person 2|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the ultimate beneficial owners highlighted in the graph
+|NODES|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 1|
+|QA Test Person 2|
+
+And the user should not see the multiple appearance highlight on any node in the graphs
+
+Examples:
+|fid|legalEntity|
+|LE-6|QA Test Person 1|
+
+Scenario: Covers below scenarios for full graph
+a. 0. If user applied country highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches country highlight takes style of country highlight
+   1. If user applied both country highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of country highlight
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user selects a country Switzerland from the country highlight list in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Harcourt Investment Consulting AG|
+|Vontobel Swiss Wealth Advisors AG|
+|Vontobel Securities AG|
+|Vontobel Fonds Services AG|
+|VT Investment (Zürich) AG|
+|Bank Vontobel AG|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Vontobel Beteiligungen AG|
+|Finanzgesellschaft Hugo Kahn & Co Ltd|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+And the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Harcourt Investment Consulting AG|
+|Vontobel Swiss Wealth Advisors AG|
+|Vontobel Securities AG|
+|Vontobel Fonds Services AG|
+|VT Investment (Zürich) AG|
+|Bank Vontobel AG|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Vontobel Beteiligungen AG|
+|Finanzgesellschaft Hugo Kahn & Co Ltd|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Harcourt Investment Consulting AG|
+|Vontobel Swiss Wealth Advisors AG|
+|Vontobel Securities AG|
+|Vontobel Fonds Services AG|
+|VT Investment (Zürich) AG|
+|Bank Vontobel AG|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Vontobel Beteiligungen AG|
+|Finanzgesellschaft Hugo Kahn & Co Ltd|
+
+And the user should not see the multiple appearance highlight on any node in the graphs
+
+Examples:
+|fid|legalEntity|
+|11262|Vontobel Holding AG|

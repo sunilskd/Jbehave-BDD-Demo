@@ -31,7 +31,7 @@ public class GraphsPage extends WebDriverUtils {
     private String graph_country_xpath = "/*[local-name()='text'][2]";
     private By graph_subsidiaries_multiple_node_xpath = By.xpath("//*[local-name()='g'][contains(@class,'sub')][contains(@class,'multiple')]");
     private By graph_no_known_entities_message_text_xpath = By.xpath("//*[@id='content-view']/p");
-    private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')]/*[local-name()='text']/*[local-name()='title']");
+    private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[local-name()='title']");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = "/*[local-name()='text']/*[local-name()='title']";
     private String graph_subsidiaries_xpath = "//*[local-name()='g'][contains(@class,'sub')][@parent=";
@@ -43,7 +43,7 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_non_multiple_nodes_list_xpath = By.xpath(".//*[@class='node own bank']");
     private By graph_person_nodes_list_xpath = By.xpath(".//*[@class='node own person']");
     private String graph_owners_xpath = "//*[local-name()='g'][contains(@class,'own')][@parent=";
-    private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')]/*[local-name()='text']/*[local-name()='tspan'][1]");
+    private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[local-name()='tspan'][1]");
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
 
@@ -137,17 +137,24 @@ public class GraphsPage extends WebDriverUtils {
 
     public void verifyEntitiesAreHighlightedForSelectedCountry(ExamplesTable highlightedEntitiesExamTable) {
         List<WebElement> webElements = getWebElements(graph_country_highlight_nodes_xpath);
-        List aNodeList = new ArrayList();
+        List<String> webElement = getWebElementsText(graph_country_highlight_nodes_xpath);
 
+        List aNodeList = new ArrayList();
         /* Comparing the size of actual and expected list */
         assertEquals(webElements.size(), highlightedEntitiesExamTable.getRowCount());
-
+        /*
         for (int i = 0; i < webElements.size(); i++) {
             aNodeList.add(
                     executeScript("return arguments[0].innerHTML;", webElements.get(i)).toString().replace(" ",""));
         }
+        */
+
+        for (int i = 0; i < webElement.size(); i++) {
+            aNodeList.add(webElement.get(i).toString().replace(" ",""));
+        }
 
         verifyNodes(aNodeList, highlightedEntitiesExamTable);
+
     }
 
     public void verifyNoCountryHighlightedNodes() {
