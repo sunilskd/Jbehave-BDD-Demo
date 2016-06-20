@@ -3,10 +3,6 @@ package org.web.kyc.jbehave.pages;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
-
-import static org.web.kyc.comparator.PDFComparator.*;
-
-import java.io.IOException;
 import java.util.Calendar;
 
 import static org.junit.Assert.*;
@@ -24,6 +20,7 @@ public class CommonUtils extends WebDriverUtils {
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_button_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
+    private By save_as_pdf_button_xpath = By.xpath("//*[@id='tools']/button[@name='download']");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -144,7 +141,8 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
-    public void comparePdfs() throws IOException {
-        comparePDFsContent("C:\\Users\\sahug\\Downloads\\owners_summar.pdf", "C:\\Users\\sahug\\Downloads\\owners_summary.pdf", "C:\\Users\\sahug\\Downloads");
+    public void clickOnSaveAsPDFIcon() {
+        waitForInMilliSeconds(3000L);
+        clickOnWebElement(save_as_pdf_button_xpath);
     }
 }

@@ -182,8 +182,8 @@ public class EntityDetailsPage extends WebDriverUtils {
     public void compareSnapshotsForEntityDetails() {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eEntityDetails.png",
-                                readProperties().getSnapshotPath() + "/actual/aEntityDetails.png",
-                                readProperties().getSnapshotPath() + "/difference/dEntityDetails.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eEntityDetails.png",
+                                readProperties().getTestResourcePath() + "/actual/aEntityDetails.png",
+                                readProperties().getTestResourcePath() + "/difference/dEntityDetails.png"));
     }
 }

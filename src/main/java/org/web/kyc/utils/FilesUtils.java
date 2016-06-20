@@ -1,9 +1,12 @@
 package org.web.kyc.utils;
 
+import org.codehaus.plexus.util.FileUtils;
+
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Properties;
 
-public class FileUtils {
+public class FilesUtils {
 
     public static void copyDirectory(File src, File dest) throws IOException {
         if (src.isDirectory()) {
@@ -40,14 +43,11 @@ public class FileUtils {
         }
     }
 
-    public String getProjectProperties(String propertyFile, String property) {
-        Properties properties = new Properties();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertyFile);
+    public static void directoryCleanUp(File file){
         try {
-            properties.load(inputStream);
+            FileUtils.cleanDirectory(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return properties.getProperty(property);
     }
 }

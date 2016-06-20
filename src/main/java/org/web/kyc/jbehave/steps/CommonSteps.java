@@ -54,8 +54,9 @@ public class CommonSteps {
     @Then("user is taken to a URL $url that opens in a new window")
     public void verifyURLOpensInNewWindow(@Named("$url") String url){pageObject.commonUtils().verifyURLOpensInNewWindow(url);}
 
-    @Given("compare pdfs")
-    public void comparePdfs() throws IOException {
-        pageObject.commonUtils().comparePdfs();
+    @When("the user clicks on the save as pdf icon")
+    public void clickOnSaveAsPDFIcon(){
+        pageObject.commonUtils().clickOnSaveAsPDFIcon();
     }
+
 }

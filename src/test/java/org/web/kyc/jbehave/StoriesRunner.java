@@ -20,7 +20,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
 import org.web.kyc.jbehave.pages.PageObject;
 import org.web.kyc.jbehave.steps.*;
-import org.web.kyc.utils.FileUtils;
 import org.web.kyc.utils.ReadProperties;
 
 import java.io.File;
@@ -30,6 +29,7 @@ import java.util.List;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.Format.CONSOLE;
+import static org.web.kyc.utils.FilesUtils.*;
 
 public class StoriesRunner extends JUnitStories {
 
@@ -65,17 +65,21 @@ public class StoriesRunner extends JUnitStories {
 
     @BeforeClass
     public static void setBrowser() {
+        directoryCleanUp(new File("./src/test/resources/pdfs/actual"));
+        directoryCleanUp(new File("./src/test/resources/pdfs/difference"));
         browser.setBrowser();
-
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         /* Setting system property REMOTE_WEBDRIVER_URL and desired capabilities */
         if (System.getProperty("browser").equals("remote")) {
             System.setProperty("REMOTE_WEBDRIVER_URL", URL);
-            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setCapability("browserstack.local", "true");
-
             driverProvider = new RemoteWebDriverProvider(desiredCapabilities);
-        } else {
-            driverProvider = new PropertyWebDriverProvider();
+
+        } else if (System.getProperty("browser").equals("firefox")){
+                    System.setProperty("JBEHAVE_WEBDRIVER_FIREFOX_PROFILE","KYC-AFT");
+                    driverProvider = new FirefoxWebDriverProvider();
+        }  else {
+                    driverProvider = new PropertyWebDriverProvider();
         }
 
         lifeCycleSteps = new PerStoriesWebDriverSteps(driverProvider);
@@ -92,8 +96,8 @@ public class StoriesRunner extends JUnitStories {
             File destGraphsDir = new File("./build/classes/jbehave");
             if (destReportsDir.exists()) {
                 try {
-                    FileUtils.copyDirectory(srcGraphsDir, destGraphsDir);
-                    FileUtils.copyDirectory(srcReportsDir, destReportsDir);
+                    copyDirectory(srcGraphsDir, destGraphsDir);
+                    copyDirectory(srcReportsDir, destReportsDir);
                 } catch (Exception e) {
                     System.out.println("The error message " + e.getMessage());
                 }

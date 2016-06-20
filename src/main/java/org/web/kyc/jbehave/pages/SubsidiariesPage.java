@@ -166,8 +166,8 @@ public class SubsidiariesPage extends WebDriverUtils {
     public void compareSnapshotsForSubsidiaries() {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eSubsidiariesPage.png",
-                        readProperties().getSnapshotPath() + "/actual/aSubsidiariesPage.png",
-                        readProperties().getSnapshotPath() + "/difference/dSubsidiariesPage.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesPage.png",
+                        readProperties().getTestResourcePath() + "/actual/aSubsidiariesPage.png",
+                        readProperties().getTestResourcePath() + "/difference/dSubsidiariesPage.png"));
     }
 }
