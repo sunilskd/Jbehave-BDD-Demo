@@ -4,7 +4,6 @@ import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -344,9 +343,9 @@ public class GraphsPage extends WebDriverUtils {
     public void compareSnapshotsForFullGraph() {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eFullGraph.png",
-                        readProperties().getSnapshotPath() + "/actual/aFullGraph.png",
-                        readProperties().getSnapshotPath() + "/difference/dFullGraph.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eFullGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aFullGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dFullGraph.png"));
     }
 
 
@@ -363,9 +362,9 @@ public class GraphsPage extends WebDriverUtils {
     public void compareSnapshotsForOwnersGraph() {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eOwnersGraph.png",
-                        readProperties().getSnapshotPath() + "/actual/aOwnersGraph.png",
-                        readProperties().getSnapshotPath() + "/difference/dOwnersGraph.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aOwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dOwnersGraph.png"));
     }
 
 
@@ -383,9 +382,9 @@ public class GraphsPage extends WebDriverUtils {
     public void compareSnapshotsForSubsGraph() {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eSubsGraph.png",
-                        readProperties().getSnapshotPath() + "/actual/aSubsGraph.png",
-                        readProperties().getSnapshotPath() + "/difference/dSubsGraph.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aSubsGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dSubsGraph.png"));
 
     }
     public void verifyingHighlightIsNotDisplayedForMultipleNode() {

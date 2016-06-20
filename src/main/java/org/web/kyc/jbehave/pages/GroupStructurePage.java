@@ -170,8 +170,8 @@ public class GroupStructurePage extends WebDriverUtils {
     public void compareSnapshotsForGroupStructure() {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eGroupStructurePage.png",
-                        readProperties().getSnapshotPath() + "/actual/aGroupStructurePage.png",
-                        readProperties().getSnapshotPath() + "/difference/dGroupStructurePage.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eGroupStructurePage.png",
+                        readProperties().getTestResourcePath() + "/actual/aGroupStructurePage.png",
+                        readProperties().getTestResourcePath() + "/difference/dGroupStructurePage.png"));
     }
 }

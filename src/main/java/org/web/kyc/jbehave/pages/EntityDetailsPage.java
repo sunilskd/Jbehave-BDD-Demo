@@ -5,7 +5,6 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
-import java.io.File;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -183,8 +182,8 @@ public class EntityDetailsPage extends WebDriverUtils {
     public void compareSnapshotsForEntityDetails() {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eEntityDetails.png",
-                                readProperties().getSnapshotPath() + "/actual/aEntityDetails.png",
-                                readProperties().getSnapshotPath() + "/difference/dEntityDetails.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eEntityDetails.png",
+                                readProperties().getTestResourcePath() + "/actual/aEntityDetails.png",
+                                readProperties().getTestResourcePath() + "/difference/dEntityDetails.png"));
     }
 }

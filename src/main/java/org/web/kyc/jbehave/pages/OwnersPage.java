@@ -6,15 +6,20 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import static org.junit.Assert.*;
 import static org.web.kyc.comparator.Comparator.compareImages;
+import static org.web.kyc.comparator.PDFComparator.comparePDFsContent;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
+import static org.web.kyc.utils.FilesUtils.*;
 
 public class OwnersPage extends WebDriverUtils {
 
@@ -237,9 +242,9 @@ public class OwnersPage extends WebDriverUtils {
     public void compareSnapshotsForOwners() {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eOwnersPage.png",
-                        readProperties().getSnapshotPath() + "/actual/aOwnersPage.png",
-                        readProperties().getSnapshotPath() + "/difference/dOwnersPage.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersPage.png",
+                        readProperties().getTestResourcePath() + "/actual/aOwnersPage.png",
+                        readProperties().getTestResourcePath() + "/difference/dOwnersPage.png"));
     }
 
     public void sVerifyUBOList(ExamplesTable uboListExamTable) {
@@ -266,4 +271,14 @@ public class OwnersPage extends WebDriverUtils {
         assertEquals("No known entities.", getWebElementText(no_ubo_msg_text_xpath));
     }
 
+    public void verifySavedPDFFile() {
+        waitForInMilliSeconds(3000L);
+        try {
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/owners_summary.pdf",
+                                readProperties().getTestResourcePath() + "/pdfs/actual/owners_summary.pdf",
+                                readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
