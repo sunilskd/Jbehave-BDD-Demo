@@ -431,4 +431,112 @@ Examples:
 |fid|legalEntity|countValue|
 |LE-6|QA Legal Entity 61|Appears: 3|
 
+Scenario: Covers below scenarios for full graph
+a. 0. If user applied country highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches country highlight takes style of country highlight
+   1. If user applied both country highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of country highlight
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user selects a country Switzerland from the country highlight list in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Harcourt Investment Consulting AG|
+|Vontobel Swiss Wealth Advisors AG|
+|Vontobel Securities AG|
+|Vontobel Fonds Services AG|
+|VT Investment (Zürich) AG|
+|Bank Vontobel AG|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Vontobel Beteiligungen AG|
+|Finanzgesellschaft Hugo Kahn & Co Ltd|
 
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+And the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Harcourt Investment Consulting AG|
+|Vontobel Swiss Wealth Advisors AG|
+|Vontobel Securities AG|
+|Vontobel Fonds Services AG|
+|VT Investment (Zürich) AG|
+|Bank Vontobel AG|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Vontobel Beteiligungen AG|
+|Finanzgesellschaft Hugo Kahn & Co Ltd|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Harcourt Investment Consulting AG|
+|Vontobel Swiss Wealth Advisors AG|
+|Vontobel Securities AG|
+|Vontobel Fonds Services AG|
+|VT Investment (Zürich) AG|
+|Bank Vontobel AG|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+|Vontobel Beteiligungen AG|
+|Finanzgesellschaft Hugo Kahn & Co Ltd|
+
+And the user should not see the multiple appearance highlight on any node in the graphs
+
+Examples:
+|fid|legalEntity|
+|11262|Vontobel Holding AG|
+
+Scenario: Covers below scenarios for owners graph
+a. 0. If user applied country highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches country highlight takes style of country highlight
+   1. If user applied both country highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of country highlight
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user selects a country Switzerland from the country highlight list in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+And the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|Pellegrinus Holding AG|
+|Vontobel Foundation|
+|Vontrust Family Holding|
+|Vontobel Holding AG|
+|Vontobel Holding AG|
+
+And the user should not see the multiple appearance highlight on any node in the graphs
+
+Examples:
+|fid|legalEntity|
+|11262|Vontobel Holding AG|
