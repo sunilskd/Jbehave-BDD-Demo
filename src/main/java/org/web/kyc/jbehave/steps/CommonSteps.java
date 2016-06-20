@@ -4,6 +4,8 @@ import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
 import org.web.kyc.jbehave.pages.PageObject;
 
+import java.io.IOException;
+
 public class CommonSteps {
     private final PageObject pageObject;
 
@@ -51,4 +53,9 @@ public class CommonSteps {
 
     @Then("user is taken to a URL $url that opens in a new window")
     public void verifyURLOpensInNewWindow(@Named("$url") String url){pageObject.commonUtils().verifyURLOpensInNewWindow(url);}
+
+    @Given("compare pdfs")
+    public void comparePdfs() throws IOException {
+        pageObject.commonUtils().comparePdfs();
+    }
 }

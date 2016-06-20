@@ -4,6 +4,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 
+import static org.web.kyc.comparator.PDFComparator.*;
+
+import java.io.IOException;
 import java.util.Calendar;
 
 import static org.junit.Assert.*;
@@ -141,4 +144,7 @@ public class CommonUtils extends WebDriverUtils {
         }
     }
 
+    public void comparePdfs() throws IOException {
+        comparePDFsContent("C:\\Users\\sahug\\Downloads\\owners_summar.pdf", "C:\\Users\\sahug\\Downloads\\owners_summary.pdf", "C:\\Users\\sahug\\Downloads");
+    }
 }

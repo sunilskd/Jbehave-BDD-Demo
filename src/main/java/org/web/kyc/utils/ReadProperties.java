@@ -19,6 +19,7 @@ public class ReadProperties {
     private String mlPath;
     private String snapshotPath;
     private String imageMagicPath;
+    private String downloadPath;
 
     public ReadProperties() {
         setUrl(getProjectProperties("testRunner.properties", "kyc.web.url"));
@@ -34,6 +35,7 @@ public class ReadProperties {
         setMlPath(getProjectProperties("testRunner.properties", "ml.admin.path"));
         setSnapshotPath(getProjectProperties("testRunner.properties", "kyc.snapshot.path"));
         setImageMagicPath(getProjectProperties("testRunner.properties", "image.magic.path"));
+        setImageMagicPath(getProjectProperties("testRunner.properties", "downloadPath"));
     }
 
     public String getMlPath() {
@@ -138,6 +140,14 @@ public class ReadProperties {
 
     public void setImageMagicPath(String imageMagicPath) {
         this.imageMagicPath = imageMagicPath;
+    }
+
+    public String getDownloadPath() {
+        return downloadPath;
+    }
+
+    public void setDownloadPath(String downloadPath) {
+        this.downloadPath = downloadPath;
     }
 
     public String getProjectProperties(String propertyFile, String property) {
