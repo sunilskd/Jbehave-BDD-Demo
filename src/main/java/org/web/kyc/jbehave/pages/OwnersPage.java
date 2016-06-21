@@ -281,4 +281,15 @@ public class OwnersPage extends WebDriverUtils {
             e.printStackTrace();
         }
     }
+
+    public void verifySavedPDFOwnersUBOCustomer() {
+        waitForInMilliSeconds(3000L);
+        try {
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/owners_ubo_summary.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/owners_ubo_summary.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

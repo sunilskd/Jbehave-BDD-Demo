@@ -169,4 +169,9 @@ public class OwnersSteps {
     public void verifySavedPDFFile(){
         pageObject.ownersPage().verifySavedPDFFile();
     }
+
+    @Then("the UBO user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners page")
+    public void verifySavedPDFOwnersUBOCustomer(){
+        pageObject.ownersPage().verifySavedPDFOwnersUBOCustomer();
+    }
 }
