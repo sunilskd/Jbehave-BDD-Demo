@@ -6,10 +6,7 @@ import org.openqa.selenium.By;
 import static org.junit.Assert.assertEquals;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
-/**
- * Created by singirikondas on 6/21/2016.
- */
-public class IntegrationPage extends WebDriverUtils {
+public class BAIntegrationPage extends WebDriverUtils {
 
     private By user_login_input_box_id = By.xpath("//*[@id='Username']");
     private By user_password_input_box_id = By.xpath("//*[@id='Password']");
@@ -18,7 +15,7 @@ public class IntegrationPage extends WebDriverUtils {
     private By logout_link_text_xpath = By.xpath(".//*[@id='ctl00_LoginBar_lnkLogin']/u");
     private String userType="";
 
-    public IntegrationPage(WebDriverProvider driverProvider) {
+    public BAIntegrationPage(WebDriverProvider driverProvider) {
         super(driverProvider);
     }
 
@@ -45,10 +42,11 @@ public class IntegrationPage extends WebDriverUtils {
         waitForInMilliSeconds(2000L);
     }
 
-    public void verifyBankersAlamanacPage(){
-        assertEquals(getCurrentUrl(),"http://batest.rbidev.ds/private/mbkhof.aspx?fid=2");
+    public void verifyBankersAlamanacPage(String fid){
+        assertEquals(getCurrentUrl(),"http://batest.rbidev.ds/private/mbkhof.aspx?fid=" + fid);
         waitForInMilliSeconds(2000L);
         clickOnWebElement(logout_link_text_xpath);
+        waitForInMilliSeconds(2000L);
     }
 
 }

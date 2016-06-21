@@ -15,7 +15,7 @@ public class PageObject {
     private GraphControlsUtils graphControlsUtils;
     private SidePanelUtils sidePanelUtils;
     private ErrorScreenPage errorScreenPage;
-    private IntegrationPage integrationPage;
+    private BAIntegrationPage baIntegrationPage;
 
     public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -91,11 +91,11 @@ public class PageObject {
         return errorScreenPage;
     }
 
-    public IntegrationPage integrationPage(){
-        if(integrationPage == null){
-            integrationPage = new IntegrationPage(driverProvider);
+    public BAIntegrationPage baIntegrationPage(){
+        if(baIntegrationPage == null){
+            baIntegrationPage = new BAIntegrationPage(driverProvider);
         }
-        return integrationPage;
+        return baIntegrationPage;
     }
 
 }
