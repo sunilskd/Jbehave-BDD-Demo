@@ -20,8 +20,8 @@ public class GraphControlsUtils extends WebDriverUtils {
     private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
     private By graph_filter_direct_relationship_only_label_xpath = By.xpath("//div[@class='graph-controls']/div[2]/div");
     private String graph_filter_direct_relationship_only_xpath = "//*[@kyc-direct-toggle-control='']//input";
-    private By graph_percent_slider_bar_xpath = By.xpath("//*[@class='graph-controls'] //input[2]");
-    private By graph_percent_filter_text_box_xpath = By.xpath("//*[@class='graph-controls']/div[1]/div/input[1]");
+    private By graph_percent_slider_bar_xpath = By.xpath("//div[@kyc-percent-text-range-control=''] //input[@type='range']");
+    private By graph_percent_filter_text_box_xpath = By.xpath("//div[@kyc-percent-text-range-control=''] //input[@type='text']");
     private By graph_percent_filter_label_xpath = By.xpath("//*[@class='graph-controls']/div[1] //label");
     private By graph_display_in_graph_label_xpath = By.xpath("//*[@class='graph-controls']/div[1] //h2");
     private By graph_ubo_filter_checkbox_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input");
@@ -73,6 +73,7 @@ public class GraphControlsUtils extends WebDriverUtils {
         assertEquals("% Ownership (Greater than or equal to value)", getWebElementText(graph_percent_filter_label_xpath));
         assertEquals("DISPLAY IN GRAPH", getWebElementText(graph_display_in_graph_label_xpath));
         assertEquals("0", getWebElementsAttributeValue(graph_percent_slider_bar_xpath, "value").get(0));
+        assertEquals("0", getWebElementsAttributeValue(graph_percent_filter_text_box_xpath, "value").get(0));
     }
 
     public void enterPercentFilter(String percentFilter){

@@ -356,7 +356,7 @@ public class GraphsPage extends WebDriverUtils {
 
     public void captureActualScreenShotForOwnersGraph() {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/aOwnersGraph.png");
+        takeSnapshot("./src/test/resources/actual/aOwnersGraph.png");
     }
 
     public void compareSnapshotsForOwnersGraph() {
@@ -367,8 +367,6 @@ public class GraphsPage extends WebDriverUtils {
                         readProperties().getTestResourcePath() + "/difference/dOwnersGraph.png"));
     }
 
-
-
     public void captureExpectedScreenShotForSubsGraph() {
         waitForInMilliSeconds(3000L);
         takeSnapshot("./src/test/resources/expected/eSubsGraph.png");
@@ -376,7 +374,7 @@ public class GraphsPage extends WebDriverUtils {
 
     public void captureActualScreenShotForSubsGraph() {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/aSubsGraph.png");
+        takeSnapshot("./src/test/resources/actual/aSubsGraph.png");
     }
 
     public void compareSnapshotsForSubsGraph() {

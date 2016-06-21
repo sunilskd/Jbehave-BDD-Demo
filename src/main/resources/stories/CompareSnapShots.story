@@ -61,11 +61,10 @@ Examples:
 |211|Australia|
 
 Scenario: Compare screenshot for full graph for validating below scenarios with UBO user
- a. 0. KYC-151 Display icon for legal entity that is a bank.
-    1. KYC-152 Display icon for legal entity is not a bank.
-    2. KYC-153 Display icon for person.
-    3. KYC-154 Display icon for non-person,non-institution owner on graph.
-
+ a. 0. Display icon for legal entity that is a bank.
+    1. Display icon for legal entity is not a bank.
+    2. Display icon for person.
+    3. Display icon for non-person,non-institution owner on graph.
 Given the user is on the ubo login page
 When the user login as a ubo user
 When the user opens legal entity <fid>
@@ -73,7 +72,6 @@ And the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 When the user clicks on <legalEntity> node which appears more than once in the graphs
-Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 When the user selects a country UK from the country highlight list in the graphs
 And the user clicks on the ultimate beneficial owners filter checkbox in the graph
 And the user captures the actual snapshot for the full graph
@@ -84,11 +82,10 @@ Examples:
 |LE-6|QA Legal Entity 61|
 
 Scenario: Compare screenshot for owners graph for validating below scenarios with UBO user
- a. 0. KYC-151 Display icon for legal entity that is a bank.
-    1. KYC-152 Display icon for legal entity is not a bank.
-    2. KYC-153 Display icon for person.
-    3. KYC-154 Display icon for non-person,non-institution owner on graph.
-
+ a. 0. Display icon for legal entity that is a bank.
+    1. Display icon for legal entity is not a bank.
+    2. Display icon for person.
+    3. Display icon for non-person,non-institution owner on graph.
 Given the user is on the ubo login page
 When the user login as a ubo user
 When the user opens legal entity <fid>
@@ -96,7 +93,6 @@ And the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on <legalEntity> node which appears more than once in the graphs
-Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 When the user selects a country UK from the country highlight list in the graphs
 And the user clicks on the ultimate beneficial owners filter checkbox in the graph
 And the user captures the actual snapshot for the owners graph
@@ -107,11 +103,10 @@ Examples:
 |LE-6|QA Legal Entity 61|
 
 Scenario: Compare screenshot for Subs graph for validating below scenarios with KYC user
- a. 0. KYC-151 Display icon for legal entity that is a bank.
-    1. KYC-152 Display icon for legal entity is not a bank.
-    2. KYC-153 Display icon for person.
-    3. KYC-154 Display icon for non-person,non-institution owner on graph.
-
+ a. 0. Display icon for legal entity that is a bank.
+    1. Display icon for legal entity is not a bank.
+    2. Display icon for person.
+    3. Display icon for non-person,non-institution owner on graph.
 Given the user is on the ubo login page
 When the user login as a kyc user
 When the user opens legal entity <fid>
@@ -119,7 +114,6 @@ And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user clicks on <legalEntity> node which appears more than once in the graphs
-Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 When the user selects a country UK from the country highlight list in the graphs
 And the user captures the actual snapshot for the subsidiaries graph
 Then the user should see the actual snapshot matching the expected snapshot for subsidiaries graph
