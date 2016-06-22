@@ -5,12 +5,14 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.web.kyc.comparator.Comparator.compareImages;
+import static org.web.kyc.comparator.PDFComparator.comparePDFsContent;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
@@ -173,5 +175,16 @@ public class GroupStructurePage extends WebDriverUtils {
                 compareImages(readProperties().getTestResourcePath() + "/expected/eGroupStructurePage.png",
                         readProperties().getTestResourcePath() + "/actual/aGroupStructurePage.png",
                         readProperties().getTestResourcePath() + "/difference/dGroupStructurePage.png"));
+    }
+
+    public void verifySavedPDFGroupStructureFile() {
+        waitForInMilliSeconds(3000L);
+        try {
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/groupStructure_summary.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/groupStructure_summary.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

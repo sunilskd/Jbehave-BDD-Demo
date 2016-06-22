@@ -21,6 +21,7 @@ JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners gr
 JIRA ID - KYC-254 - Side panel for free text ownership on owners graphs
 JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears multiple times in the ownership graphs
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graphs
+JIRA ID - KYC-330 - Remove links for person,non-entity or non-person in graphs
 
 Meta:@kycownersgraphs @kyc
 

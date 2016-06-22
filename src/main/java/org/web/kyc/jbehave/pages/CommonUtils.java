@@ -130,6 +130,7 @@ public class CommonUtils extends WebDriverUtils {
             switchTo().window(Handle);
         }
         assertEquals(url, getCurrentUrl());
+        close();
         switchTo().window((String) getWindowHandles().toArray()[0]);
     }
 

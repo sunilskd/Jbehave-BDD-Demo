@@ -4,7 +4,6 @@ Covers below features:
 JIRA ID - KYC-226 - Global 500 error message
 JIRA ID - KYC-225 - 404 error message
 
-
 Meta:@errorscreen @kyc
 
 Scenario: Below scenarios are covered

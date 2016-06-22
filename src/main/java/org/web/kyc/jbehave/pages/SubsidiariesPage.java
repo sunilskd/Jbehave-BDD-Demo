@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,7 @@ import java.util.TreeSet;
 
 import static org.junit.Assert.*;
 import static org.web.kyc.comparator.Comparator.compareImages;
+import static org.web.kyc.comparator.PDFComparator.comparePDFsContent;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
@@ -169,5 +171,16 @@ public class SubsidiariesPage extends WebDriverUtils {
                 compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesPage.png",
                         readProperties().getTestResourcePath() + "/actual/aSubsidiariesPage.png",
                         readProperties().getTestResourcePath() + "/difference/dSubsidiariesPage.png"));
+    }
+
+    public void verifySavedSubsidiariesPDFFile() {
+        waitForInMilliSeconds(3000L);
+        try {
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/subsidiaries_summary.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/subsidiaries_summary.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
