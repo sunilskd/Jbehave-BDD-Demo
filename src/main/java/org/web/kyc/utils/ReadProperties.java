@@ -20,6 +20,7 @@ public class ReadProperties {
     private String snapshotPath;
     private String imageMagicPath;
     private String downloadPath;
+    private String bankersAlmanacUrl;
 
     public ReadProperties() {
         setUrl(getProjectProperties("testRunner.properties", "kyc.web.url"));
@@ -35,6 +36,7 @@ public class ReadProperties {
         setMlPath(getProjectProperties("testRunner.properties", "ml.admin.path"));
         setTestResourcePath(getProjectProperties("testRunner.properties", "kyc.test.resource.path"));
         setImageMagicPath(getProjectProperties("testRunner.properties", "image.magic.path"));
+        setBankersAlmanacURL(getProjectProperties("testRunner.properties","ba.com.url"));
     }
 
     public String getMlPath() {
@@ -150,5 +152,13 @@ public class ReadProperties {
             e.printStackTrace();
         }
         return properties.getProperty(property);
+    }
+
+    public String getBankersAlmanacUrl() {
+        return bankersAlmanacUrl;
+    }
+
+    public void setBankersAlmanacURL(String bankersAlmanacUrl) {
+        this.bankersAlmanacUrl = bankersAlmanacUrl;
     }
 }
