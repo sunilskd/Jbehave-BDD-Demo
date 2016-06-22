@@ -16,7 +16,6 @@ Scenario: BA.com and UBO Integration scenario
 Meta:@baintegration
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
-When the user clicks on the ownership tab
 When the user clicks on view on bankers almanac
 Then the user should be navigated to the full details of that entity <fid> on bankersalmanac page
 
@@ -35,7 +34,6 @@ Scenario: BA.com and UBO Integration scenario
 Meta:@baintegration
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
-When the user clicks on the ownership tab
 When the user clicks on view on bankers almanac
 Then the user should be navigated to the full details of that entity <fid> on bankersalmanac page
 
