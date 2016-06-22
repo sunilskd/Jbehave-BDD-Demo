@@ -1,9 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
-import org.jbehave.core.annotations.Alias;
-import org.jbehave.core.annotations.Named;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
 import org.web.kyc.jbehave.pages.PageObject;
 
@@ -103,7 +100,8 @@ public class GraphsSteps {
 
 
     @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the graphs")
-    @Alias("the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph")
+    @Aliases(values = {"the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph",
+            "the user clicks on the person, non-person or non-entity graph node with title <nodeTitle>, user is currently viewing in the graph"})
     public void clickPartialLinkText(@Named("nodeTitle") String nodeTitle){
         pageObject.graphsPage().clickPartialLinkText(nodeTitle);
     }

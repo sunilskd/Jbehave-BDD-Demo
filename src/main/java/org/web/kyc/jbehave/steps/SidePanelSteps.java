@@ -26,6 +26,7 @@ public class SidePanelSteps {
     }
 
     @Then("the user should see the side panel closed and should be able to continue in the graphs")
+    @Alias("the user should not see the side panel for the person, non-person or non-entity in the graphs")
     public void verifySidePanelIsClosed(){
         pageObject.sidePanelUtils().verifySidePanelIsClosed();
     }

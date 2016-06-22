@@ -8,6 +8,7 @@ JIRA ID - KYC-353 Percentage ownership is truncating the 2nd decimal value if it
 JIRA ID - KYC-16 KYC user can click link to another entity in owners graph
 JIRA ID - KYC-273 User can click link to another entity in full graph
 JIRA ID - KYC-73 KYC user can click link to another entity in subsidiary graph
+JIRA ID - KYC-330 Remove links for person,non-entity or non-person in graphs.
 
 Meta:@ubosidepanel @ubo
 
@@ -331,3 +332,17 @@ Then the user should see the legal entity <legalEntity>, user is currently viewi
 Examples:
 |fid|nodeTitle|legalEntity|
 |LE-6|QA Legal Entity 10|QA Legal Entity 10|
+
+Scenario: Verify person, non-person or non-entity are not clickable
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user clicks on the person, non-person or non-entity graph node with title <nodeTitle>, user is currently viewing in the graph
+Then the user should not see the side panel for the person, non-person or non-entity in the graphs
+
+Examples:
+|fid|nodeTitle|
+|LE-6|QA Test Person 1|
+|LE-6|Others|
