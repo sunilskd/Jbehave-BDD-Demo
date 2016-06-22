@@ -26,7 +26,7 @@ public class GraphControlsUtils extends WebDriverUtils {
     private By graph_display_in_graph_label_xpath = By.xpath("//*[@class='graph-controls']/div[1] //h2");
     private By graph_ubo_filter_checkbox_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input");
     private By graph_ubo_filter_label_xpath = By.xpath("//div[@class='graph-controls']/div[4]/div");
-    private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input[@class='ng-pristine ng-valid']");
+    private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input[@value='false']");
     private By graph_ubo_filter_checkbox_disabled_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input[@disabled='disabled']");
 
     public GraphControlsUtils(WebDriverProvider driverProvider) {

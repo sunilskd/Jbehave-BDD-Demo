@@ -15,6 +15,7 @@ import org.jbehave.core.steps.InstanceStepsFactory;
 import org.jbehave.core.steps.SilentStepMonitor;
 import org.jbehave.web.selenium.*;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
@@ -63,10 +64,14 @@ public class StoriesRunner extends JUnitStories {
         }
     }
 
-    @BeforeClass
-    public static void setBrowser() {
+    @Before
+    public void cleanUp() {
         directoryCleanUp(new File("./src/test/resources/pdfs/actual"));
         directoryCleanUp(new File("./src/test/resources/pdfs/difference"));
+    }
+
+    @BeforeClass
+    public static void setBrowser() {
         browser.setBrowser();
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         /* Setting system property REMOTE_WEBDRIVER_URL and desired capabilities */
