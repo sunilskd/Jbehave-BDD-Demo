@@ -115,8 +115,8 @@ When the user selects a country UK from the country highlight list in the graphs
 Then the user captures the expected snapshot for the subsidiaries graph
 
 Examples:
-|fid|
-|LE-6|
+|fid|legalEntity|
+|LE-6|QA Legal Entity 61|
 
 
 

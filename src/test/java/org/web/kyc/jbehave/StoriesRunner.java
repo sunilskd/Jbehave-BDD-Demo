@@ -2,6 +2,7 @@ package org.web.kyc.jbehave;
 
 import org.jbehave.asciidoctor.reporter.AsciidoctorStoryReporter;
 import org.jbehave.core.Embeddable;
+import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.embedder.executors.SameThreadExecutors;
 import org.jbehave.core.io.CodeLocations;
