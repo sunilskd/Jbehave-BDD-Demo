@@ -34,4 +34,14 @@ public class BAIntegrationSteps {
         pageObject.baIntegrationPage().verifyBankersAlamanacPage(fid);
     }
 
+    @When("the user clicks on UBO Declaration Document")
+    public void clickUboDeclarationDocument(){
+        pageObject.baIntegrationPage().clickUboDeclarationDocument();
+    }
+
+    @Then("the user should be navigated to the ubo section of that entity <fid> on bankersalmanac page")
+    public void verifyBankersAlamanacUboSection(@Named("fid") String fid){
+        pageObject.baIntegrationPage().verifyBankersAlamanacUboSection(fid);
+    }
+
 }

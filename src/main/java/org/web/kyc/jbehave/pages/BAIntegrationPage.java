@@ -13,6 +13,7 @@ public class BAIntegrationPage extends WebDriverUtils {
     private By login_button_xpath = By.xpath("//*[@id='Submit']");
     private By view_on_bankers_almanac_button_xpath =By.xpath("//button[1]");
     private By logout_link_text_xpath = By.xpath(".//*[@id='ctl00_LoginBar_lnkLogin']/u");
+    private By ubo_declaration_document_link_text_xpath =By.xpath("//div[2]/div/a");
     private String userType="";
 
     public BAIntegrationPage(WebDriverProvider driverProvider) {
@@ -43,7 +44,19 @@ public class BAIntegrationPage extends WebDriverUtils {
     }
 
     public void verifyBankersAlamanacPage(String fid){
-        assertEquals(getCurrentUrl(),"http://batest.rbidev.ds/private/mbkhof.aspx?fid=" + fid);
+        assertEquals("http://batest.rbidev.ds/private/mbkhof.aspx?fid=" + fid,getCurrentUrl());
+        waitForInMilliSeconds(2000L);
+        clickOnWebElement(logout_link_text_xpath);
+        waitForInMilliSeconds(2000L);
+    }
+
+    public void clickUboDeclarationDocument(){
+        clickOnWebElement(ubo_declaration_document_link_text_xpath);
+        waitForInMilliSeconds(2000L);
+    }
+
+    public void verifyBankersAlamanacUboSection(String fid){
+        assertEquals("http://batest.rbidev.ds/private/mbkddrm.aspx?fid=" + fid +"#UBO",getCurrentUrl());
         waitForInMilliSeconds(2000L);
         clickOnWebElement(logout_link_text_xpath);
         waitForInMilliSeconds(2000L);
