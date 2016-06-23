@@ -29,6 +29,7 @@ JIRA ID - KYC-131 - Restrict entity types displayed on direct owners list by UBO
 JIRA ID - KYC-140 - Display source on owners list
 JIRA ID - KYC-271 - When only extended source is present the source is not displaying.
 JIRA ID - KYC-90 - UBO user can view list of UBOs
+JIRA ID - KYC-52 - User will see in product message on owners list if they do not have access to UBO data
 
 Meta:@owners @kyc @kycowners
 
@@ -64,8 +65,11 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
    1. Ownership free text exists and there are legal entities on owners list (display both, free text at bottom of list)
-b. Display only the first summary if there are multiple on the legal entity doc
-c. Only ownership free text exists on the owners list, no legal entities on the list (display free text, do not display "No known entities." message)
+   2. Do not display UBO section when UBOs do not extist
+b. 0. Display only the first summary if there are multiple on the legal entity doc
+   1. Do not display UBO section when UBOs do not extist
+c. 0. Only ownership free text exists on the owners list, no legal entities on the list (display free text, do not display "No known entities." message)
+   1. Do not display UBO section when UBOs do not extist
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -73,6 +77,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see the direct owners summary selected by default in the owners page
 Then the kyc user should see the free text at the bottom of the direct owner list for the selected institution in the owners page
+And the user should not see the ubo list header and the message that there are no ubos in the owners page
 
 Examples:
 |fid|
@@ -351,19 +356,17 @@ Examples:
 |173|50|
 |179281|10|
 
-Scenario: KYC use should not have access to view UBO list, and display mesage "No known entities"
+Scenario: Covers below scenarios
+a 0. User will see in product message on owners list if they do not have access to UBO data
+  1. User will see in product message on owners list if they do not have access to UBO data and the percent filter is applied
 Meta:@static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
-Then the kyc user should see message displayed as no known entities for KYC user
+Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
+When the user selects the percent filter option <percentFilter> in the owners page
 
 Examples:
-|fid|
-|12538|
-
-
-Scenario: KYC user logout
-Given the user is on the ubo login page
-When the user logout
+|fid|percentFilter|
+|12538|50|

@@ -176,6 +176,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see message displayed in place of list explaining there are no direct owners
+And the ubo user should see message displayed in place of list explaining there are no UBOs
 
 Examples:
 |fid|
@@ -212,6 +213,7 @@ And the user clicks on the owners tab
 Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
 Then the user should see message displayed in place of list explaining there are no direct owners
+And the ubo user should see message displayed in place of list explaining there are no UBOs
 
 Examples:
 |fid|percentFilter|
