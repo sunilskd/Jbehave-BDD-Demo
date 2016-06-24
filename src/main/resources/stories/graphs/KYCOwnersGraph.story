@@ -40,7 +40,7 @@ a. 0. An entity on the graphs (could be entity user is viewing) has owner that i
    4. Free text ownership exists for entity user is viewing, display that free text in a node as a direct owner of the root node
    5. Free text ownership does not exist for entity user is viewing, do not display free text on owners graphs
    6. Entity on the graphs has a non-institution, non-person owner, do not display that owner on the graphs for KYC user
-   7. User will see in product message on owners list if they do not have access to UBO data
+   7. User will see in product message on owners graph if they do not have access to UBO data
 ----
 image:KYCOwnersgraphs-Scenario-1.png[Scenario 1]
 ----
