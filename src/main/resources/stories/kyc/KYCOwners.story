@@ -202,6 +202,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see message displayed in place of list explaining there are no direct owners
+And the user should not see the ubo list header and the message that there are no ubos in the owners page
 
 Examples:
 |fid|
@@ -367,6 +368,7 @@ And the user clicks on the owners tab
 Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
 Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
+And the kyc user should not see the link to ubo declaration document in the owners page
 
 Examples:
 |fid|percentFilter|

@@ -169,6 +169,11 @@ public class OwnersSteps {
         pageObject.ownersPage().verifyInProductMessage();
     }
 
+    @Then("the ubo user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page")
+    public void verifyNoInProductMessage(){
+        pageObject.ownersPage().verifyNoInProductMessage();
+    }
+
     @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners page")
     public void verifySavedPDFFile(){
         pageObject.ownersPage().verifySavedPDFFile();
@@ -179,4 +184,8 @@ public class OwnersSteps {
         pageObject.ownersPage().verifyNoUBOSection();
     }
 
+    @Then("the kyc user should not see the link to ubo declaration document in the owners page")
+    public void verifyNoUBODDRLink(){
+        pageObject.ownersPage().verifyNoUBODDRLink();
+    }
 }

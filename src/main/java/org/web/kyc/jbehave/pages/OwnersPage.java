@@ -57,6 +57,7 @@ public class OwnersPage extends WebDriverUtils {
     private By ubo_source_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[5]");
     private By no_ubo_msg_text_xpath = By.xpath("//p[@class='notification']");
     private By in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
+    private By ubo_declaration_document_link_text_xpath =By.xpath("//div[2]/div/a");
 
     Set<String> eCountryHighlightList = new TreeSet<>();
 
@@ -296,5 +297,13 @@ public class OwnersPage extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(ubo_header_text_xpath));
         assertFalse(isWebElementDisplayed(no_ubo_msg_text_xpath));
         assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+    }
+
+    public void verifyNoInProductMessage() {
+        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+    }
+
+    public void verifyNoUBODDRLink() {
+        assertFalse(isWebElementDisplayed(ubo_declaration_document_link_text_xpath));
     }
 }
