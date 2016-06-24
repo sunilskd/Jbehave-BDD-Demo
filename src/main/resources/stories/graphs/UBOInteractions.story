@@ -3,9 +3,9 @@ Epic: Ownership, Subsidiaries, Full Graph
 This story is to cover the expected functionality when user applies multiple highlights or filters since they react to each other in various ways.
 
 Covers below features:
-JIRA ID - KYC-266 interaction between percent filter and direct/indirect filter on all graphs
-JIRA ID - KYC 265 interaction between filters and highlights on all graphs
-JIRA ID - KYC-262 interaction between appears multiple highlight, country highlight and UBO highlight
+JIRA ID - KYC-266 - Interaction between percent filter and direct/indirect filter on all graphs
+JIRA ID - KYC 265 - Interaction between filters and highlights on all graphs
+JIRA ID - KYC-262 - Interaction between appears multiple highlight, country highlight and UBO highlight
 
 Meta:@ubointeractions @ubo
 

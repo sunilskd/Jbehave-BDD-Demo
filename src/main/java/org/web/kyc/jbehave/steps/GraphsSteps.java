@@ -184,4 +184,18 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyingHighlightIsNotDisplayedForMultipleNode();
     }
 
+    @Then("the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs")
+    public void verifyInProductMessage(){
+        pageObject.graphsPage().verifyInProductMessage();
+    }
+
+    @Then("the kyc user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs")
+    public void verifyNoInProductMessage(){
+        pageObject.graphsPage().verifyNoInProductMessage();
+    }
+
+    @When("the user clicks on the tile of the free text entity $freeText (including the entity of interest) in the graphs")
+    public void clickOnFreeText(@Named("freeText") String freeText){
+        pageObject.graphsPage().clickOnFreeText(freeText);
+    }
 }

@@ -272,6 +272,7 @@ public class OwnersPage extends WebDriverUtils {
         waitForWebElementToAppear(no_ubo_msg_text_xpath);
         assertEquals("Ultimate Beneficial Owners", getWebElementText(ubo_header_text_xpath));
         assertEquals("No known entities.", getWebElementText(no_ubo_msg_text_xpath));
+        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
     }
 
     public void verifyInProductMessage(){

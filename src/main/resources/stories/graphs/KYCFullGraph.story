@@ -477,12 +477,12 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 
-And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the graphs
+When the user clicks on the tile of the free text entity Treasury shares, 3.8 (including the entity of interest) in the graphs
 Then the user should see below free text in the side panel in the graphs
 |FREETEXT|
 |Treasury shares, 3.8; Trade Union Federations of SGB (where no federation owns 3 or more), 4.8; Others, 23.4|
 
-When the user clicks on the graph node with title Other shareholders, user is currently viewing in the graphs
+When the user clicks on the tile of the free text entity Other shareholders (including the entity of interest) in the graphs
 Then the user should see below free text in the side panel in the graphs
 |FREETEXT|
 |Other shareholders owning less than 2, 71.315|

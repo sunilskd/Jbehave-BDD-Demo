@@ -57,12 +57,12 @@ public class SidePanelSteps {
         pageObject.sidePanelUtils().dVerifyUBOSectionInSidePanel(uboListExamTable);
     }
 
-    @Then("the user should see message displayed in place of list explaining there are no directly owned entities in the graphs")
+    @Then("the user should see message displayed in side panel in place of list explaining there are no directly owned entities in the graphs")
     public void verifyNoKnowsEntitiesMessage(){
         pageObject.sidePanelUtils().verifyNoKnowsEntitiesMessage();
     }
 
-    @Then("the user should see message displayed in place of list explaining there are no ultimate beneficial owners in the graphs")
+    @Then("the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs")
     public void verifyNoKnowsEntitiesMessageUBOs(){
         pageObject.sidePanelUtils().verifyNoKnowsEntitiesMessageUBOs();
     }

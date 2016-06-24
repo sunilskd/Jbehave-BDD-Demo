@@ -74,9 +74,9 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
-Then the user should see message displayed in place of list explaining there are no directly owned entities in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no directly owned entities in the graphs
 And the kyc user should not see ubo list in side panel in the graphs
-And the user should see message displayed in place of list explaining there are no ultimate beneficial owners in the graphs
+And the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
 
 Examples:
 |fid|nodeTitle|
