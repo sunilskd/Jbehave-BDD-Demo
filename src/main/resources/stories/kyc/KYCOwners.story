@@ -65,11 +65,11 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. Ownership free text exists on legal entity doc (display at bottom of list, do not display a meter for free text)
    1. Ownership free text exists and there are legal entities on owners list (display both, free text at bottom of list)
-   2. Do not display UBO section when UBOs do not extist
+   2. Do not display UBO section when UBOs do not exist
 b. 0. Display only the first summary if there are multiple on the legal entity doc
-   1. Do not display UBO section when UBOs do not extist
+   1. Do not display UBO section when UBOs do not exist
 c. 0. Only ownership free text exists on the owners list, no legal entities on the list (display free text, do not display "No known entities." message)
-   1. Do not display UBO section when UBOs do not extist
+   1. Do not display UBO section when UBOs do not exist
 Meta:@directOwners @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -366,6 +366,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
+Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
 
 Examples:
 |fid|percentFilter|
