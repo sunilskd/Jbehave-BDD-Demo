@@ -190,6 +190,7 @@ public class GraphsSteps {
     }
 
     @Then("the kyc user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs")
+    @Alias("the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs")
     public void verifyNoInProductMessage(){
         pageObject.graphsPage().verifyNoInProductMessage();
     }

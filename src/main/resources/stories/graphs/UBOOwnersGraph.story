@@ -39,7 +39,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the direct relationship only filter checkbox unchecked by default in the graphs
-Then the kyc user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+Then the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
@@ -731,6 +731,19 @@ Then the user should see the below owners for the legal entity QA Legal Entity 6
 |NODES|
 |QA Test Person 15.93|
 |Local Government,Legal Entity 61 owned...59.52|
+
+Examples:
+|fid|
+|LE-6|
+
+Scenario: Verify in product message is not displaying for the users with UBO access
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the direct relationship only filter checkbox unchecked by default in the graphs
+Then the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
