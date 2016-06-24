@@ -407,4 +407,5 @@ public class GraphsPage extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         getActions().click(getWebElement(By.xpath("//*[local-name()='tspan'][contains(text(),'" + freeText +"')]"))).perform();
     }
+
 }

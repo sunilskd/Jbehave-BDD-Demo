@@ -110,6 +110,8 @@ And the user should see the list of below owners in level 6, above the root enti
 |Top shareholdersowning less than 2,...|
 
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+When the user clicks on please subscribe link in the message displayed in the graph
+Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
 
 Examples:
 |fid|
@@ -136,6 +138,8 @@ And the user should see the list of below owners in level 2, above the root enti
 |QA Legal Entity 30India|
 
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+When the user clicks on please subscribe link in the message displayed in the graph
+Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
 
 Examples:
 |fid|
@@ -415,6 +419,8 @@ And the user should see the list of below subsidiaries in level 2, below the roo
 |QA Legal Entity 250.53UK|
 
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+When the user clicks on please subscribe link in the message displayed in the graph
+Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
 
 Examples:
 |fid|
@@ -428,6 +434,8 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+When the user clicks on please subscribe link in the message displayed in the graph
+Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
 
 Examples:
 |fid|

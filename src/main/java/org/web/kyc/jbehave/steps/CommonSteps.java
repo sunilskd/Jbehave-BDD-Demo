@@ -52,6 +52,7 @@ public class CommonSteps {
     }
 
     @Then("user is taken to a URL $url that opens in a new window")
+    @Alias("the user is taken to subscription page URL $url on accuity.com")
     public void verifyURLOpensInNewWindow(@Named("$url") String url){pageObject.commonUtils().verifyURLOpensInNewWindow(url);}
 
     @When("the user clicks on the save as pdf icon")
