@@ -15,6 +15,7 @@ JIRA ID - KYC-157 - UBO user can view full graph with non-person/non-entity owne
 JIRA ID - KYC-103 - KYC user can filter full graph by percent ownership
 JIRA ID - KYC-110 - KYC user can highlight legal entities by country in full graph
 JITA ID - KYC-136 - Full Graph - Direct / Indirect Filter
+JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
 
 Meta:@ubofullgraph @ubo
 
@@ -37,6 +38,7 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    11. non-institution, non-person entity type owner has null percent ownership, do not display percent ownership on owner's node
    12. non-institution, non-person entity type owner has value for owner type and description, display owner type and description
    13. If non-institution, non-person entity type owner has a value for owner type but no value for description, only display owner type in node
+   14. UBO user will not see in product message on full graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -115,6 +117,8 @@ And the user should see the list of below owners in level 6, above the root enti
 |QA Test Person 15.93|
 |Local Government,Legal Entity 61 owned...59.52|
 
+And the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+
 Examples:
 |fid|
 |LE-6|
@@ -123,6 +127,7 @@ Scenario: Covers below scenarios
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
    1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
    2. If entity on full graph has non-institution, non-person entity type owner but the relationship is inactive, do not display that owner on the graph
+   3. UBO user will not see in product message on full graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -142,6 +147,8 @@ And the user should see the list of below owners in level 2, above the root enti
 And the user should see the list of below owners in level 3, above the root entity, in the graphs
 |NODES|
 |QA Test Person 2|
+
+And the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|

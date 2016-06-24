@@ -14,8 +14,9 @@ JIRA ID - KYC-229 - UBO user can highlight UBOs on the graph
 JIRA ID - KYC-116 - KYC user can view free text ownership on full graph
 JIRA ID - KYC-103 - KYC user can filter full graph by percent ownership
 JIRA ID - KYC-110 - KYC user can highlight legal entities by country in full graph
-JITA ID - KYC-158 - KYC user can see visual indicator for entity that appears multiple times on the full graph
-JITA ID - KYC-136 - Full Graph - Direct / Indirect Filter
+JIRA ID - KYC-158 - KYC user can see visual indicator for entity that appears multiple times on the full graph
+JIRA ID - KYC-136 - Full Graph - Direct / Indirect Filter
+JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
 
 Meta:@kycfullgraph @kyc
 
@@ -34,6 +35,7 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    7. Subsidiary relationship has percent ownership, display percent ownership on the subsidiary node
    8. Subsidiary relationship has null percent ownership, do not display a percent ownership on the subsidiary node
    9. Subsidiary graph should not display the free text
+   10. User will see in product message on owners graph if they do not have access to UBO data
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -107,6 +109,8 @@ And the user should see the list of below owners in level 6, above the root enti
 |NODES|
 |Top shareholdersowning less than 2,...|
 
+And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+
 Examples:
 |fid|
 |LE-6|
@@ -114,6 +118,7 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
    1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
+   2. User will see in product message on full graph if they do not have access to UBO data , and UBOs exisits in any paths of the full graph
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -129,6 +134,8 @@ And the user should see the list of below owners in level 2, above the root enti
 |NODES|
 |QA Legal Entity 322.53India|
 |QA Legal Entity 30India|
+
+And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
@@ -190,13 +197,16 @@ Examples:
 |fid|
 |LE-51|
 
-Scenario: Entity user is viewing does not have owners or subsidiaries, display message "No known entities."
+Scenario: Covers below scenarios
+a. 0. Entity user is viewing does not have owners or subsidiaries, display message "No known entities."
+   1. Do not display in product message when there are no UBOs
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see message displayed in place of graph explaining there are no entities in the graphs
+And the kyc user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
@@ -237,13 +247,16 @@ Examples:
 |fid|
 |LE-15|
 
-Scenario: Entity on the subsidiary portion of graph has an active relationship where it is the owner but the owned entity is inactive, then do not display owned entity on graph
+Scenario: Covers below scenario
+a. 0. Entity on the subsidiary portion of graph has an active relationship where it is the owner but the owned entity is inactive, then do not display owned entity on graph
+   1. Do not display in product message when there are no UBOs
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should not see any nodes in level 1, below the root entity, in the graphs
+And the kyc user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
@@ -357,6 +370,7 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
    1. User un-checks "Direct Relationships Only" box, then graph updates to show all owners in any level
+   2. User will see in product message on owners graph if they do not have access to UBO data
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -400,6 +414,8 @@ And the user should see the list of below subsidiaries in level 2, below the roo
 |QA Legal Entity 149.53UK|
 |QA Legal Entity 250.53UK|
 
+And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+
 Examples:
 |fid|
 |LE-6|
@@ -411,6 +427,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
+And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
