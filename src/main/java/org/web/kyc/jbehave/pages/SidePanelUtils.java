@@ -30,9 +30,9 @@ public class SidePanelUtils extends WebDriverUtils {
     private By graph_side_panel_regulator_label_text_xpath= By.xpath("//tr[2]/th");
     private By graph_side_panel_stock_exchange_label_text_xpath= By.xpath("//tr[3]/th");
     private By graph_side_panel_direct_owners_label_text_xpath= By.xpath("//div[3]//h3[2]");
-    private By graph_side_panel_ubo_label_text_xpath= By.xpath("//div[3]//h3[3]");
+    private By graph_side_panel_ubo_label_text_xpath= By.xpath("//div[2]/div/h3");
     private By graph_side_panel_no_known_subs_message_text_xpath = By.xpath("//div[3]/div[2]/p[1]");
-    private By graph_side_panel_no_known_ubos_message_text_xpath = By.xpath("//div[3]/div[2]/p[2]");
+    private By graph_side_panel_no_known_ubos_message_text_xpath = By.xpath("//div[3]/div[2]/div/p");
     private By graph_side_panel_head_office_text_xpath =By.xpath("//tbody/tr/td/div");
     private By graph_side_panel_regulators_text_xpath =By.xpath("//tbody/tr[2]/td/span");
     private By graph_side_panel_stock_exchange_text_xpath =By.xpath("//tbody/tr[3]/td/span");
@@ -63,7 +63,7 @@ public class SidePanelUtils extends WebDriverUtils {
         assertTrue(isWebElementDisplayed(graph_header_text_xpath));
     }
 
-    public void dVerifyDetailsSectionInSidePanel(String nodeTitle){
+    public void dVerifyDetailsSectionInSidePanel(){
         waitForInMilliSeconds(3000L);
         entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
         assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(),getWebElementText(graph_side_panel_title_text_xpath));
@@ -83,54 +83,15 @@ public class SidePanelUtils extends WebDriverUtils {
 
     public void dVerifySidePanelLabels(){
         waitForInMilliSeconds(3000L);
-        assertEquals("Head Office",getWebElementText(graph_side_panel_head_office_label_text_xpath));
-        assertEquals("Regulator",getWebElementText(graph_side_panel_regulator_label_text_xpath));
-        assertEquals("Stock Exchange",getWebElementText(graph_side_panel_stock_exchange_label_text_xpath));
-        assertEquals("DIRECTLY OWNS",getWebElementText(graph_side_panel_direct_owners_label_text_xpath));
-        assertEquals("ULTIMATE BENEFICIAL OWNERS",getWebElementText(graph_side_panel_ubo_label_text_xpath));
-        assertEquals("DETAILS",getWebElementText(graph_side_panel_details_label_text_xpath));
+        assertEquals("Head Office", getWebElementText(graph_side_panel_head_office_label_text_xpath));
+        assertEquals("Regulator", getWebElementText(graph_side_panel_regulator_label_text_xpath));
+        assertEquals("Stock Exchange", getWebElementText(graph_side_panel_stock_exchange_label_text_xpath));
+        assertEquals("DIRECTLY OWNS", getWebElementText(graph_side_panel_direct_owners_label_text_xpath));
+        assertEquals("ULTIMATE BENEFICIAL OWNERS", getWebElementText(graph_side_panel_ubo_label_text_xpath));
+        assertEquals("DETAILS", getWebElementText(graph_side_panel_details_label_text_xpath));
     }
 
-    public void dVerifyDetailsSectionInSidePanelIsUpdated(String nodeTitle) {
-
-        nvPairs.add(new BasicNameValuePair("name", nodeTitle));
-        for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if ("fid".equals(nameValuePair.getName())) {
-                nvPairs.remove(nameValuePair);
-            }
-        }
-
-        waitForInMilliSeconds(3000L);
-        entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
-        assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(), getWebElementText(graph_side_panel_title_text_xpath));
-        assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(), (getWebElementText(graph_side_panel_bankers_almanac_ID_label_text_xpath)));
-        dVerifySidePanelLabels();
-        assertEquals(entityDetailsDocument.getElementsByTagName("headOfficeAddress").item(0).getTextContent().replace(", ", ","), getWebElementText(graph_side_panel_head_office_text_xpath).replace("\n", "").replace(", ", ","));
-        List<WebElement> aRegulatorsList    = getWebElements(graph_side_panel_regulators_text_xpath);
-        for (int i = 0; i < aRegulatorsList.size(); i++) {
-            assertEquals("Regulator doesn't match at " + i, entityDetailsDocument.getElementsByTagName("regulator").item(i).getTextContent(), aRegulatorsList.get(i).getText());
-        }
-
-        List<WebElement> aStockExchangeList = getWebElements(graph_side_panel_stock_exchange_text_xpath);
-        for (int i = 0; i < aStockExchangeList.size(); i++) {
-            assertEquals("Stock Exchange doesn't match at " + i, entityDetailsDocument.getElementsByTagName("stockExchange").item(i).getTextContent(), aStockExchangeList.get(i).getText());
-        }
-
-        Document eSubsidiariesList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST, nvPairs);
-        List<WebElement> aSubsidiariesEntityName = getWebElements(graph_side_panel_direct_owners_title_list_text_xpath);
-        List<WebElement> aSubsidiariesCountryName = getWebElements(graph_side_panel_direct_owners_country_list_text_xpath);
-        List<WebElement> aSubsidiariesPercentageOwned = getWebElements(graph_side_panel_direct_owners_percent_ownership_list_text_xpath);
-        assertEquals("Subsidiaries count mismatch", eSubsidiariesList.getElementsByTagName("entityName").getLength(), aSubsidiariesEntityName.size());
-        for (int i = 0; i < aSubsidiariesEntityName.size(); i++) {
-            assertEquals("Legal title does not match at" + i, eSubsidiariesList.getElementsByTagName("entityName").item(i).getTextContent().replace("  "," "), aSubsidiariesEntityName.get(i).getText());
-            assertEquals("Country name does not match at" + i, eSubsidiariesList.getElementsByTagName("countryOfOperations").item(i).getTextContent(), aSubsidiariesCountryName.get(i).getText());
-            if (!eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
-                assertEquals("Percentage owned does not match at" + i, (eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%"), aSubsidiariesPercentageOwned.get(i).getText());
-            }
-        }
-    }
-
-    public void dVerifyDirectlyOwnsSectionInSidePanel(String nodeTitle){
+    public void dVerifyDirectlyOwnsSectionInSidePanel(){
         waitForInMilliSeconds(3000L);
         Document eSubsidiariesList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST, nvPairs);
         List<WebElement> aSubsidiariesEntityName = getWebElements(graph_side_panel_direct_owners_title_list_text_xpath);

@@ -98,12 +98,14 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyingHighLightDisplayedForMultipleNode(legalEntity);
     }
 
+    @When("the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs")
+    public void clickOnNodeTitle(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().clickOnNodeTitle(nodeTitle);
+    }
 
-    @When("the user clicks on the graph node with title $nodeTitle, user is currently viewing in the graphs")
-    @Aliases(values = {"the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph",
-            "the user clicks on the person, non-person or non-entity graph node with title <nodeTitle>, user is currently viewing in the graph"})
-    public void clickPartialLinkText(@Named("nodeTitle") String nodeTitle){
-        pageObject.graphsPage().clickPartialLinkText(nodeTitle);
+    @When("the user clicks on the person, non-person or non-entity graph node with title <nodeTitle>, user is currently viewing in the graph")
+    public void clickOnNonPersonNonEntity(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().clickOnNonPersonNonEntity(nodeTitle);
     }
 
     @Then("the user should not see visual indicator for legal entity <legalEntity>, when displayed only once")
@@ -116,9 +118,9 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyVisualIndicatorNotDisplayedForEntityDiffFid(legalEntity);
     }
 
-    @When("the user clicks on the graph node with title <switchNode>, in the graphs")
+    @When("the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs")
     public void clickGraphNode(@Named("switchNode") String switchNode){
-        pageObject.graphsPage().clickGraphNode(switchNode);
+        pageObject.graphsPage().clickOnNodeTitle(switchNode);
     }
 
     @Then("the user should see the below owners for the legal entity $legalEntity in the graphs $ownersExamTable")

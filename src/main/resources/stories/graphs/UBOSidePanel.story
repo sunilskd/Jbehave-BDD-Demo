@@ -33,14 +33,14 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|
 |1038|BOA|
 |58285|Berlin Hyp AG|
-|52147|London Stock Exchange|
+|52147|London Stock Exchange Plc|
 |LE-6|QA Legal Entity 6|
 
 Scenario: Covers below scenarios
@@ -58,13 +58,13 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
-Then the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|
-|146115|Investec Holdings|
-|200|Public Bank (Hong|
+|146115|Investec Holdings (Ireland) Ltd|
+|200|Public Bank (Hong Kong) Limited|
 
 Scenario: If inactive subsidiary relationship exists, do not display that subsidiary on the directly owns list
 Given the user is on the ubo login page
@@ -73,8 +73,8 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
-And the user clicks on the graph node with title <switchNode>, in the graphs
-Then the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <switchNode> user clicked in the graphs
+When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
+Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|switchNode|
@@ -92,7 +92,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <nodeTitle> user clicked in the graphs
 |UBO NAME|ENTITY|PERCENTAGE OWNERSHIP|
 |QA Test Person C|QA Legal Entity D|50.52|
@@ -121,14 +121,14 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <nodeTitle> user clicked in the graphs
 |UBO NAME|ENTITY|PERCENTAGE OWNERSHIP|
 |Japan Finance Corporation|Japan Bank For International Cooperation||
 
 Examples:
 |fid|nodeTitle|
-|241440|Japan Bank For|
+|241440|Japan Bank For International Cooperation|
 
 Scenario: display "No Known Entities" if there are no direct subsidiaries
 Given the user is on the ubo login page
@@ -137,7 +137,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in place of list explaining there are no directly owned entities in the graphs
 
 Examples:
@@ -150,13 +150,12 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in place of list explaining there are no ultimate beneficial owners in the graphs
 
 Examples:
 |fid|nodeTitle|
-|211|Australia and New|
+|211|Australia and New Zealand Banking Group Limited|
 
 Scenario: User clicks on another node, side panel should refresh with updated information
 Given the user is on the ubo login page
@@ -165,14 +164,14 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user enters percentage as 73 in ownership percentage filter text box in the graphs
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in place of list explaining there are no ultimate beneficial owners in the graphs
-When the user clicks on the graph node with title <switchNode>, in the graphs
-Then the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <switchNode> user clicked in the graphs
+When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
+Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|switchNode|
-|200|Public Bank (Hong|Public Bank Berhad|
+|200|Public Bank (Hong Kong) Limited|Public Bank Berhad|
 
 Scenario: View side panel for legal entity on subsidiaries graph
 a. 0. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity
@@ -193,8 +192,8 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the side panel still open in the graphs
 When the user clicks on close button on the side panel in the graphs
@@ -222,14 +221,14 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
-Then the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|
 |LE-6|QA Legal Entity 6|
 |1717|Berliner Volksbank eG|
-|200|Public Bank (Hong|
+|200|Public Bank (Hong Kong) Limited|
 
 Scenario: Covers below scenarios
 A. 0. If active relationship to person owner exists for legal entity user selected or any entity in its path of ownership, display that person in the UBO list and display the legal title of the entity it directly owns
@@ -241,7 +240,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <nodeTitle> user clicked in the graphs
 |UBO NAME|ENTITY|PERCENTAGE OWNERSHIP|
 |QA Test Person C|QA Legal Entity D|50.52|
@@ -259,7 +258,7 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in place of list explaining there are no directly owned entities in the graphs
 
 Examples:
@@ -275,14 +274,14 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in place of list explaining there are no ultimate beneficial owners in the graphs
-When the user clicks on the graph node with title <switchNode>, in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node <switchNode> user clicked in the graphs
+When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
+Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|switchNode|
-|112618|Moody Bank Holding|Moody National Bank|
+|112618|Moody Bank Holding Company Inc|Moody National Bank|
 
 Scenario: User is taken to the owners graph when clicks legal entity's title link in the side panel
 Given the user is on the ubo login page
@@ -291,8 +290,8 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
-And the user clicks on the entity title on the side panel in the graph <nodeTitle>
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
 Then user is taken to the graph page of that legal entity <nodeTitle>
 Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
 
@@ -307,8 +306,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
-And the user clicks on the entity title on the side panel in the graph <nodeTitle>
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
 Then user is taken to the graph page of that legal entity <nodeTitle>
 Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
 
@@ -323,8 +322,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-And the user clicks on the graph node with title <nodeTitle>, user is currently viewing in the graph
-And the user clicks on the entity title on the side panel in the graph <nodeTitle>
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
 Then the user should see the side panel closed and should be able to continue in the graphs
 Then user is taken to the graph page of that legal entity <nodeTitle>
 Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs

@@ -31,20 +31,14 @@ public class SidePanelSteps {
         pageObject.sidePanelUtils().verifySidePanelIsClosed();
     }
 
-    @Then("the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node <nodeTitle> user clicked in the graphs")
-    public void dVerifyDetailsSectionInSidePanel(@Named("nodeTitle")String nodeTitle){
-        pageObject.sidePanelUtils().dVerifyDetailsSectionInSidePanel(nodeTitle);
+    @Then("the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs")
+    public void dVerifyDetailsSectionInSidePanel(){
+        pageObject.sidePanelUtils().dVerifyDetailsSectionInSidePanel();
     }
 
-    @Then("the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node <switchNode> user clicked in the graphs")
-    @Alias("the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <switchNode> user clicked in the graphs")
-    public void dVerifyDetailsSectionInSidePanelIsUpdated(@Named("switchNode")String nodeTitle){
-        pageObject.sidePanelUtils().dVerifyDetailsSectionInSidePanelIsUpdated(nodeTitle);
-    }
-
-    @Then("the user should see list of direct subsidiaries with entity title,country and percentage ownership in directly owns section of side panel for the node <nodeTitle> user clicked in the graphs")
-    public void dVerifyDirectlyOwnsSectionInSidePanel(@Named("nodeTitle")String nodeTitle){
-        pageObject.sidePanelUtils().dVerifyDirectlyOwnsSectionInSidePanel(nodeTitle);
+    @Then("the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs")
+    public void dVerifyDirectlyOwnsSectionInSidePanel(){
+        pageObject.sidePanelUtils().dVerifyDirectlyOwnsSectionInSidePanel();
     }
 
     @Then("the user should see the side panel still open in the graphs")
@@ -73,7 +67,7 @@ public class SidePanelSteps {
         pageObject.sidePanelUtils().verifyNoKnowsEntitiesMessageUBOs();
     }
 
-    @When("the user clicks on the entity title on the side panel in the graph <nodeTitle>")
+    @When("the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs")
     public void clickEntityTitleOnSidePanel(@Named("nodeTitle")String nodeTitle){
         pageObject.sidePanelUtils().clickEntityTitleOnSidePanel(nodeTitle);
     }

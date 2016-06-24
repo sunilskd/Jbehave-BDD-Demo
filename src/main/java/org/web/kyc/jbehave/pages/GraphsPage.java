@@ -1,8 +1,10 @@
 package org.web.kyc.jbehave.pages;
 
+import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = "/*[local-name()='text']/*[local-name()='title']";
     private String graph_subsidiaries_xpath = "//*[local-name()='g'][contains(@class,'sub')][@parent=";
-    private By graph_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'node')]");
+    private String graph_nodes_xpath = "//*[local-name()='g'][contains(@class,'node')]";
     private String graph_multiple_node_xpath = ".//div[@class='graph-container']//*[contains(@class,'multiple')]";
     private By graph_multiple_node_title_xpath = By.xpath(".//*[local-name()='text']/*[local-name()='title']");
     private By graph_multiple_node_non_entity_xpath = By.xpath(".//*[@class='node own others']");
@@ -101,8 +103,8 @@ public class GraphsPage extends WebDriverUtils {
                             .replace("</tspan><tspan class=\"ellipsis\">", "")
                             .replace("</tspan>", "")
                             .replace(" ", "") +
-                            executeScript("return arguments[0].innerHTML;", aPercent.get(i)).toString().replace("%", "") +
-                            executeScript("return arguments[0].innerHTML;", aCountry.get(i)).toString().replace(" ", "")
+                    executeScript("return arguments[0].innerHTML;", aPercent.get(i)).toString().replace("%", "") +
+                    executeScript("return arguments[0].innerHTML;", aCountry.get(i)).toString().replace(" ", "")
             );
         }
         verifyNodes(aNodeList, nodesExamTable);
@@ -141,19 +143,10 @@ public class GraphsPage extends WebDriverUtils {
         List aNodeList = new ArrayList();
         /* Comparing the size of actual and expected list */
         assertEquals(webElements.size(), highlightedEntitiesExamTable.getRowCount());
-        /*
-        for (int i = 0; i < webElements.size(); i++) {
-            aNodeList.add(
-                    executeScript("return arguments[0].innerHTML;", webElements.get(i)).toString().replace(" ",""));
-        }
-        */
-
         for (int i = 0; i < webElement.size(); i++) {
             aNodeList.add(webElement.get(i).toString().replace(" ",""));
         }
-
         verifyNodes(aNodeList, highlightedEntitiesExamTable);
-
     }
 
     public void verifyNoCountryHighlightedNodes() {
@@ -170,7 +163,7 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyParentChildRelationship(String legalEntity, ExamplesTable examTable, String xpath) {
-        List<WebElement> nodes = getWebElements(graph_nodes_xpath);
+        List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
         List<String> aNodeList = new ArrayList<>();
         String id = "";
 
@@ -232,7 +225,6 @@ public class GraphsPage extends WebDriverUtils {
         }catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     public void verifyingHighLightDisplayedForMultipleNode(String legalEntity) {
@@ -243,9 +235,25 @@ public class GraphsPage extends WebDriverUtils {
         }
     }
 
-    public void clickPartialLinkText(String linkText) {
+    public void clickOnNodeTitle(String nodeTitle) {
+        nvPairs.clear();
         waitForInMilliSeconds(3000L);
-        getActions().click(getWebElement(By.xpath("//*[local-name()='tspan'][contains(text(),'" + linkText +"')]"))).perform();
+        nvPairs.add(new BasicNameValuePair("name", nodeTitle));
+        List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
+        for(int i=0; i<nodes.size(); i++){
+            if(nodes.get(i).getText().contains(nodeTitle)){
+                getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']/*[local-name()='tspan'][1]"))).perform();
+            }
+        }
+    }
+
+    public void clickOnNonPersonNonEntity(String nodeTitle){
+        List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
+        for(int i=0; i<nodes.size(); i++){
+            if(nodes.get(i).getText().contains(nodeTitle)){
+                assertFalse(isWebElementDisplayed((By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']/*[local-name()='tspan'][1]"))));
+            }
+        }
     }
 
     public void verifyVisualIndicatorNotDisplayedForSingleLegalEntity(String legalEntity) {
@@ -256,11 +264,6 @@ public class GraphsPage extends WebDriverUtils {
     public void verifyVisualIndicatorNotDisplayedForEntityDiffFid(String legalEntity){
         List<WebElement> personNodes = getWebElements(graph_person_nodes_list_xpath);
         comparingAndExtractingTitle(legalEntity, personNodes);
-    }
-
-    public void clickGraphNode(String switchNode){
-        waitForInMilliSeconds(3000L);
-        findElement(By.partialLinkText(switchNode)).click();
     }
 
     public void verifyOwnersOfAnEntity(String legalEntity, ExamplesTable ownersExamTable){
@@ -383,13 +386,10 @@ public class GraphsPage extends WebDriverUtils {
                 compareImages(readProperties().getTestResourcePath() + "/expected/eSubsGraph.png",
                         readProperties().getTestResourcePath() + "/actual/aSubsGraph.png",
                         readProperties().getTestResourcePath() + "/difference/dSubsGraph.png"));
-
     }
+
     public void verifyingHighlightIsNotDisplayedForMultipleNode() {
         waitForInMilliSeconds(3000L);
         assertFalse(isWebElementDisplayed(graph_multiple_node_highlight_xpath));
-
     }
-
-
 }
