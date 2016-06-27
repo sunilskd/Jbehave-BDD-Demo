@@ -30,6 +30,7 @@ JIRA ID - KYC-140 - Display source on owners list
 JIRA ID - KYC-271 - When only extended source is present the source is not displaying.
 JIRA ID - KYC-90 - UBO user can view list of UBOs
 JIRA ID - KYC-52 - User will see in product message on owners list if they do not have access to UBO data
+JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
 
 Meta:@owners @kyc @kycowners
 

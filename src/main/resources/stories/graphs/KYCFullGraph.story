@@ -17,6 +17,7 @@ JIRA ID - KYC-110 - KYC user can highlight legal entities by country in full gra
 JIRA ID - KYC-158 - KYC user can see visual indicator for entity that appears multiple times on the full graph
 JIRA ID - KYC-136 - Full Graph - Direct / Indirect Filter
 JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
+JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
 
 Meta:@kycfullgraph @kyc
 

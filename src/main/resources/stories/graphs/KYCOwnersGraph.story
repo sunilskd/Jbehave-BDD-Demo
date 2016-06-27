@@ -23,6 +23,7 @@ JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears mul
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graphs
 JIRA ID - KYC-330 - Remove links for person,non-entity or non-person in graphs
 JIRA ID - KYC-155 - User will see in product message on owners graph if they do not have access to UBO data
+JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
 
 Meta:@kycownersgraphs @kyc
 
