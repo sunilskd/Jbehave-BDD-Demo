@@ -1,13 +1,13 @@
 Epic: Ownership, Subsidiaries, Full Graph
 
 Covers below features:
-JIRA ID - KYC-147 pop open panel for more entity info on owners graph
-JIRA ID - KYC-294 KYC user can view UBO list header in owners list and side panel
-JIRA ID - KYC-149 Pop-open panel for more entity info on subsidiary graph
-JIRA ID - KYC-353 Percentage ownership is truncating the 2nd decimal value if it is zero.
-JIRA ID - KYC-16 KYC user can click link to another entity in owners graph
-JIRA ID - KYC-273 User can click link to another entity in full graph
-JIRA ID - KYC-73 KYC user can click link to another entity in subsidiary graph
+JIRA ID - KYC-147 - Pop open panel for more entity info on owners graph
+JIRA ID - KYC-294 - KYC user can view UBO list header in owners list and side panel
+JIRA ID - KYC-149 - Pop-open panel for more entity info on subsidiary graph
+JIRA ID - KYC-353 - Percentage ownership is truncating the 2nd decimal value if it is zero.
+JIRA ID - KYC-16 - KYC user can click link to another entity in owners graph
+JIRA ID - KYC-273 - User can click link to another entity in full graph
+JIRA ID - KYC-73 - KYC user can click link to another entity in subsidiary graph
 
 Meta:@kycsidepanel @kyc
 
@@ -96,8 +96,8 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
-Then the user should see message displayed in place of list explaining there are no directly owned entities in the graphs
-Then the user should see message displayed in place of list explaining there are no ultimate beneficial owners in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no directly owned entities in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
 
 Examples:
 |fid|nodeTitle|
@@ -111,7 +111,7 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user enters percentage as 73 in ownership percentage filter text box in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
-Then the user should see message displayed in place of list explaining there are no ultimate beneficial owners in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
 Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
 
@@ -202,8 +202,8 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
-Then the user should see message displayed in place of list explaining there are no directly owned entities in the graphs
-Then the user should see message displayed in place of list explaining there are no ultimate beneficial owners in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no directly owned entities in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
 
 Examples:
 |fid|nodeTitle|

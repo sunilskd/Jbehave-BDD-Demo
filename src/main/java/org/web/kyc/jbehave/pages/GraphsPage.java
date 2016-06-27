@@ -47,6 +47,7 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[local-name()='tspan'][1]");
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
+    private By graph_in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
 
     public GraphsPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -134,6 +135,7 @@ public class GraphsPage extends WebDriverUtils {
         waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
         waitForInMilliSeconds(3000L);
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
+        assertFalse(isWebElementDisplayed(graph_in_product_msg_text_xpath));
     }
 
     public void verifyEntitiesAreHighlightedForSelectedCountry(ExamplesTable highlightedEntitiesExamTable) {
@@ -391,5 +393,18 @@ public class GraphsPage extends WebDriverUtils {
     public void verifyingHighlightIsNotDisplayedForMultipleNode() {
         waitForInMilliSeconds(3000L);
         assertFalse(isWebElementDisplayed(graph_multiple_node_highlight_xpath));
+    }
+
+    public void verifyInProductMessage() {
+        assertEquals("There is UBO data available for this entity. You currently do not have access to this data, please subscribe.", getWebElementText(graph_in_product_msg_text_xpath));
+    }
+
+    public void verifyNoInProductMessage() {
+        assertFalse(isWebElementDisplayed(graph_in_product_msg_text_xpath));
+    }
+
+    public void clickOnFreeText(String freeText) {
+        waitForInMilliSeconds(3000L);
+        getActions().click(getWebElement(By.xpath("//*[local-name()='tspan'][contains(text(),'" + freeText +"')]"))).perform();
     }
 }

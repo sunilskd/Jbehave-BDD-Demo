@@ -4,6 +4,8 @@ Covers below features:
 JIRA ID - KYC-150 Pop-open panel for more entity info on full graph
 JIRA ID - KYC-294 KYC user can view UBO list header in owners list and side panel
 JIRA ID - KYC-353 Percentage ownership is truncating the 2nd decimal value if it is zero.
+JIRA ID - KYC-353 Percentage ownership is truncating the 2nd decimal value if it is zero.
+JIRA ID - KYC-155 User will see in product message on owners graph if they do not have access to UBO data
 
 Meta:@ubosidepanelfullgraph @ubo
 
@@ -88,7 +90,7 @@ Then the user should see list of ubos with name, entity and percentage ownership
 |QA Test Person G|QA Legal Entity D|4.23|
 
 When the user clicks on <legalEntity> node which appears more than once in the graphs
-Then the user should see message displayed in place of list explaining there are no directly owned entities in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no directly owned entities in the graphs
 When the user clicks on close button on the side panel in the graphs
 Then the user should see the side panel closed and should be able to continue in the graphs
 
@@ -103,7 +105,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
-Then the user should see message displayed in place of list explaining there are no directly owned entities in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no directly owned entities in the graphs
 
 Examples:
 |fid|switchNode|
@@ -116,7 +118,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
-Then the user should see message displayed in place of list explaining there are no ultimate beneficial owners in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
 
 Examples:
 |fid|switchNode|

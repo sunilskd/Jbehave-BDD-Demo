@@ -22,6 +22,7 @@ JIRA ID - KYC-254 - Side panel for free text ownership on owners graphs
 JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears multiple times in the ownership graphs
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graphs
 JIRA ID - KYC-330 - Remove links for person,non-entity or non-person in graphs
+JIRA ID - KYC-155 - User will see in product message on owners graph if they do not have access to UBO data
 
 Meta:@kycownersgraphs @kyc
 
@@ -39,6 +40,7 @@ a. 0. An entity on the graphs (could be entity user is viewing) has owner that i
    4. Free text ownership exists for entity user is viewing, display that free text in a node as a direct owner of the root node
    5. Free text ownership does not exist for entity user is viewing, do not display free text on owners graphs
    6. Entity on the graphs has a non-institution, non-person owner, do not display that owner on the graphs for KYC user
+   7. User will see in product message on owners graph if they do not have access to UBO data
 ----
 image:KYCOwnersgraphs-Scenario-1.png[Scenario 1]
 ----
@@ -87,25 +89,40 @@ And the user should see the list of below owners in level 5, above the root enti
 And the user should see the list of below owners in level 6, above the root entity, in the owners graphs
 |NODES|
 |Top shareholdersowning less than 2,...|
+Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
 |LE-6|
 
-Scenario: Covers below scenarios
-a. Entity user is viewing does not have any active relationships to owners, display message "No known entities."
-b. Entity user is viewing does not have any owners, display message "No known entities."
+Scenario:
+a. 0. Entity user is viewing does not have any owners, display message "No known entities."
+   1. Do not display in product message when there are no UBOs
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see message displayed in place of graph explaining there are no entities in the graphs
+And the kyc user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+
+Examples:
+|fid|
+|LE-32|
+
+Scenario: Covers below scenarios
+a. 0. Entity user is viewing does not have any active relationships to legal entity owners do not display owners
+   1. User will see in product message on owners list if UBO's exist and they do not have access to UBO data
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
 |LE-D|
-|LE-32|
 
 Scenario: Scenario 2
 .Description
@@ -131,6 +148,8 @@ And the user should see the list of below owners in level 2, above the root enti
 |NODES|
 |QA Legal Entity 322.53India|
 |QA Legal Entity 30India|
+
+And the kyc user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
@@ -185,6 +204,8 @@ And the user should see the list of below owners in level 2, above the root enti
 |NODES|
 |QA Legal Entity 5151.23|
 
+And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+
 Examples:
 |fid|
 |LE-51|
@@ -205,6 +226,8 @@ And the user should see the list of below owners in level 1, above the root enti
 |Vontobel Holding AG2.5Switzerland|
 |Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
 |Dr Hans Vontobel,18.1; Ruth de la Cour...|
+
+And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
@@ -362,16 +385,21 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Country list is not displayed when No known entities
+Scenario: Covers below scenarios
+a. 0. Country highlight should display No country highlight even when there are no entities to display in the graphs
+   1. Do not display in product message when there are no entities to display in graphs
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
+
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
+
+And the kyc user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
 |fid|
@@ -484,12 +512,12 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 
-And the user clicks on the graph node with title Treasury shares, 3.8, user is currently viewing in the graphs
+When the user clicks on the tile of the free text entity Treasury shares, 3.8 (including the entity of interest) in the graphs
 Then the user should see below free text in the side panel in the graphs
 |FREETEXT|
 |Treasury shares, 3.8; Trade Union Federations of SGB (where no federation owns 3 or more), 4.8; Others, 23.4|
 
-When the user clicks on the graph node with title Other shareholders, user is currently viewing in the graphs
+When the user clicks on the tile of the free text entity Other shareholders (including the entity of interest) in the graphs
 Then the user should see below free text in the side panel in the graphs
 |FREETEXT|
 |Other shareholders owning less than 2, 71.315|

@@ -44,7 +44,7 @@ public class OwnersPage extends WebDriverUtils {
     private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners'] //tbody");
     private String direct_owners_row_for_country_xpath = "//*[td='";
     private By direct_owners_country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
-    private By ubo_header_text_xpath = By.xpath(".//*[@id='content-view']/div[2]/div/h1");
+    private By ubo_header_text_xpath = By.xpath("//*[@id='content-view']/div[2]/div/div/h1");
     private By ubo_name_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[1]");
     private By ubo_entity_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[2]");
     private By ubo_percentage_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[3]");
@@ -55,7 +55,10 @@ public class OwnersPage extends WebDriverUtils {
     private By ubo_percentage_owned_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[3]");
     private By ubo_date_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[4]");
     private By ubo_source_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[5]");
-    private By no_ubo_msg_text_xpath = By.xpath("//*[@id='content-view']/div[2]/p");
+    private By no_ubo_msg_text_xpath = By.xpath("//p[@class='notification']");
+    private By in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
+    private By ubo_declaration_document_link_text_xpath =By.xpath("//div[2]/div/a");
+
     Set<String> eCountryHighlightList = new TreeSet<>();
 
     public OwnersPage(WebDriverProvider driverProvider) {
@@ -268,7 +271,15 @@ public class OwnersPage extends WebDriverUtils {
 
     public void verifyNoUBOMsg() {
         waitForWebElementToAppear(no_ubo_msg_text_xpath);
+        assertEquals("Ultimate Beneficial Owners", getWebElementText(ubo_header_text_xpath));
         assertEquals("No known entities.", getWebElementText(no_ubo_msg_text_xpath));
+        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+    }
+
+    public void verifyInProductMessage(){
+        waitForWebElementToAppear(in_product_msg_text_xpath);
+        assertEquals("Ultimate Beneficial Owners", getWebElementText(ubo_header_text_xpath));
+        assertEquals("There is UBO data available for this entity. You currently do not have access to this data, please subscribe.", getWebElementText(in_product_msg_text_xpath));
     }
 
     public void verifySavedPDFFile() {
@@ -282,5 +293,17 @@ public class OwnersPage extends WebDriverUtils {
         }
     }
 
+    public void verifyNoUBOSection() {
+        assertFalse(isWebElementDisplayed(ubo_header_text_xpath));
+        assertFalse(isWebElementDisplayed(no_ubo_msg_text_xpath));
+        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+    }
 
+    public void verifyNoInProductMessage() {
+        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+    }
+
+    public void verifyNoUBODDRLink() {
+        assertFalse(isWebElementDisplayed(ubo_declaration_document_link_text_xpath));
+    }
 }
