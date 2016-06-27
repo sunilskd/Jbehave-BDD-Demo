@@ -177,7 +177,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see message displayed in place of list explaining there are no direct owners
 And the ubo user should see message displayed in place of list explaining there are no UBOs
-Then the ubo user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
+Then the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
 
 Examples:
 |fid|
