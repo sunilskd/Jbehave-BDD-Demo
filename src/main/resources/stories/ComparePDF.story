@@ -15,13 +15,14 @@ Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
+And the user clicks on display audit information link in owners page
 And the user selects a country <country> from the country highlight list in the owners page
 And the user clicks on the save as pdf icon
 Then the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners page
 
 Examples:
 |fid|country|
-|222566|Austria|
+|12538|USA|
 
 Scenario: KYC User can save list of subsidiaries
 Meta:@kyc
@@ -37,7 +38,7 @@ Then the user should be able to save the file including all content of current p
 
 Examples:
 |fid|country|
-|1038|UK|
+|1038|USA|
 
 Scenario: KYC User can save list of group structure
 Meta:@ubo
