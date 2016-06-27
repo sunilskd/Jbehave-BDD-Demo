@@ -90,6 +90,8 @@ And the user should see the list of below owners in level 6, above the root enti
 |NODES|
 |Top shareholdersowning less than 2,...|
 Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+When the user clicks on please subscribe link in the message displayed in the graph
+Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
 
 Examples:
 |fid|
