@@ -35,7 +35,7 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    7. Subsidiary relationship has percent ownership, display percent ownership on the subsidiary node
    8. Subsidiary relationship has null percent ownership, do not display a percent ownership on the subsidiary node
    9. Subsidiary graph should not display the free text
-   10. User will see in product message on owners graph if they do not have access to UBO data
+   10. User will see in product message on owners graph if they do not have access to UBO data and UBOs exisits fot the entity user is viewing.
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
