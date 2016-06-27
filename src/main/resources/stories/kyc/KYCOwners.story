@@ -359,8 +359,8 @@ Examples:
 |179281|10|
 
 Scenario: Covers below scenarios
-a 0. User will see in product message on owners list if they do not have access to UBO data
-  1. User will see in product message on owners list if they do not have access to UBO data and the percent filter is applied
+a 0. User will see in product message on owners list if UBO exists and they do not have access to UBO data
+  1. User will see in product message on owners list if UBO exists and they do not have access to UBO data and the percent filter is applied
 Meta:@static
 Given the user is on the ubo login page
 When the user opens legal entity <fid>

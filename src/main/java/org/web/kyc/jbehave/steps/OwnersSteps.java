@@ -169,7 +169,7 @@ public class OwnersSteps {
         pageObject.ownersPage().verifyInProductMessage();
     }
 
-    @Then("the ubo user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page")
+    @Then("the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page")
     public void verifyNoInProductMessage(){
         pageObject.ownersPage().verifyNoInProductMessage();
     }

@@ -114,8 +114,8 @@ Examples:
 |LE-32|
 
 Scenario: Covers below scenarios
-a. 0. Entity user is viewing does not have any active relationships to owners do not display owners
-   1. User will see in product message on owners list if they do not have access to UBO data
+a. 0. Entity user is viewing does not have any active relationships to legal entity owners do not display owners
+   1. User will see in product message on owners list if UBO's exist and they do not have access to UBO data
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
