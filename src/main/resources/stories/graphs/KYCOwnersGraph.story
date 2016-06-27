@@ -23,6 +23,7 @@ JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears mul
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graphs
 JIRA ID - KYC-330 - Remove links for person,non-entity or non-person in graphs
 JIRA ID - KYC-155 - User will see in product message on owners graph if they do not have access to UBO data
+JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
 
 Meta:@kycownersgraphs @kyc
 
@@ -40,7 +41,7 @@ a. 0. An entity on the graphs (could be entity user is viewing) has owner that i
    4. Free text ownership exists for entity user is viewing, display that free text in a node as a direct owner of the root node
    5. Free text ownership does not exist for entity user is viewing, do not display free text on owners graphs
    6. Entity on the graphs has a non-institution, non-person owner, do not display that owner on the graphs for KYC user
-   7. User will see in product message on owners graph if they do not have access to UBO data
+   7. User will see in product message on owners graph if they do not have access to UBO data and UBOs exisits fot the entity user is viewing.
 ----
 image:KYCOwnersgraphs-Scenario-1.png[Scenario 1]
 ----
@@ -90,6 +91,8 @@ And the user should see the list of below owners in level 6, above the root enti
 |NODES|
 |Top shareholdersowning less than 2,...|
 Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
+When the user clicks on please subscribe link in the message displayed in the graph
+Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
 
 Examples:
 |fid|

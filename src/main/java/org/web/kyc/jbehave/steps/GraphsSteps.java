@@ -199,4 +199,9 @@ public class GraphsSteps {
     public void clickOnFreeText(@Named("freeText") String freeText){
         pageObject.graphsPage().clickOnFreeText(freeText);
     }
+
+    @When("the user clicks on please subscribe link in the message displayed in the graph")
+    public void clickOnPleaseSubscribe(){
+        pageObject.commonUtils().clickOnPleaseSubscribe();
+    }
 }
