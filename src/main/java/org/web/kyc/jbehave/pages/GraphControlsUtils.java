@@ -16,18 +16,26 @@ public class GraphControlsUtils extends WebDriverUtils {
 
     private By graph_country_highlight_drop_down_xpath = By.xpath("//select");
     private By graph_country_highlight_list_text_xpath = By.xpath("//select/option");
-    private By graph_country_highlight_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //label");
-    private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@class='graph-controls']/div[3] //h2");
-    private By graph_filter_direct_relationship_only_label_xpath = By.xpath("//div[@class='graph-controls']/div[2]/div");
+    private By graph_highlight_in_graph_header_text_xpath = By.xpath("//div[@kyc-country-dropdown-control='']/h2");
+    private By graph_filter_direct_relationship_only_label_xpath = By.xpath("//div[@kyc-direct-toggle-control='']/div");
     private String graph_filter_direct_relationship_only_xpath = "//*[@kyc-direct-toggle-control='']//input";
     private By graph_percent_slider_bar_xpath = By.xpath("//div[@kyc-percent-text-range-control=''] //input[@type='range']");
     private By graph_percent_filter_text_box_xpath = By.xpath("//div[@kyc-percent-text-range-control=''] //input[@type='text']");
-    private By graph_percent_filter_label_xpath = By.xpath("//*[@class='graph-controls']/div[1] //label");
-    private By graph_display_in_graph_label_xpath = By.xpath("//*[@class='graph-controls']/div[1] //h2");
+    private By graph_percent_filter_label_xpath = By.xpath("//div[@kyc-percent-text-range-control='']/h2");
     private By graph_ubo_filter_checkbox_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input");
-    private By graph_ubo_filter_label_xpath = By.xpath("//div[@class='graph-controls']/div[4]/div");
+    private By graph_ubo_filter_label_xpath = By.xpath("//div[@kyc-ubo-toggle-control='']/div");
     private By graph_ubo_filter_checkbox_unchecked_state_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input[@value='false']");
     private By graph_ubo_filter_checkbox_disabled_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//input[@disabled='disabled']");
+    private By graph_zoom_label_xpath = By.xpath("//*[@kyc-zoom-percent-control='']/h2");
+    private By graph_zoom_icon_xpath = By.xpath("//*[@kyc-zoom-percent-control=''] //span");
+    private By graph_zoom_info_xpath = By.xpath("//*[@kyc-zoom-percent-control=''] //span/p");
+    private By graph_zoom_minus_sign_xpath = By.xpath("//button[@name='zoom-out']");
+    private By graph_zoom_plus_sign_xpath = By.xpath("//button[@name='zoom-in']");
+    private By graph_zoom_reset_sign_xpath = By.xpath("//button[@name='reset-zoom']");
+    private By graph_percent_filter_icon_xpath = By.xpath("//div[@kyc-percent-text-range-control=''] //span");
+    private By graph_percent_filter_info_xpath = By.xpath("//div[@kyc-percent-text-range-control=''] //span/p");
+    private By graph_country_highlight_icon_xpath = By.xpath("//div[@kyc-country-dropdown-control=''] //span");
+    private By graph_country_highlight_info_xpath = By.xpath("//div[@kyc-country-dropdown-control=''] //span/p");
 
     public GraphControlsUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -49,8 +57,7 @@ public class GraphControlsUtils extends WebDriverUtils {
     }
 
     public void verifyCountryHighlightsHeader() {
-        assertEquals("HIGHLIGHT IN GRAPH", getWebElementText(graph_highlight_in_graph_header_text_xpath));
-        assertEquals("Country", getWebElementText(graph_country_highlight_header_text_xpath));
+        assertEquals("HIGHLIGHT TILES IN GRAPH", getWebElementText(graph_highlight_in_graph_header_text_xpath));
     }
 
     public void selectCountryHighlightInGraphs(String country) {
@@ -59,7 +66,7 @@ public class GraphControlsUtils extends WebDriverUtils {
     }
 
     public void verifyingDirectRelationshipOnlyFilterIsUnchecked() {
-        assertEquals("Direct relationships only", getWebElementText(graph_filter_direct_relationship_only_label_xpath));
+        assertEquals("Display direct relationships only", getWebElementText(graph_filter_direct_relationship_only_label_xpath));
         assertTrue(isWebElementDisplayed(By.xpath(graph_filter_direct_relationship_only_xpath + "[@class='ng-pristine ng-valid']")));
     }
 
@@ -70,8 +77,7 @@ public class GraphControlsUtils extends WebDriverUtils {
 
     public void verifyPercentFilterIsSetToZero() {
         waitForWebElementToAppear(graph_percent_slider_bar_xpath);
-        assertEquals("% Ownership (Greater than or equal to value)", getWebElementText(graph_percent_filter_label_xpath));
-        assertEquals("DISPLAY IN GRAPH", getWebElementText(graph_display_in_graph_label_xpath));
+        assertEquals("DISPLAY OWNERSHIP PERCENTAGE", getWebElementText(graph_percent_filter_label_xpath));
         assertEquals("0", getWebElementsAttributeValue(graph_percent_slider_bar_xpath, "value").get(0));
         assertEquals("0", getWebElementsAttributeValue(graph_percent_filter_text_box_xpath, "value").get(0));
     }
@@ -88,7 +94,7 @@ public class GraphControlsUtils extends WebDriverUtils {
 
     public void verifyUBOFilterIsUncheckedByDefault() {
         waitForWebElementToAppear(graph_ubo_filter_label_xpath);
-        assertEquals("Ultimate Beneficial Owner", getWebElementText(graph_ubo_filter_label_xpath));
+        assertEquals("Highlight Ultimate Beneficial Owner", getWebElementText(graph_ubo_filter_label_xpath));
         assertTrue(isWebElementDisplayed(graph_ubo_filter_checkbox_unchecked_state_xpath));
     }
 
@@ -105,4 +111,46 @@ public class GraphControlsUtils extends WebDriverUtils {
         assertTrue(isWebElementDisplayed(graph_ubo_filter_checkbox_disabled_xpath));
     }
 
+    public void verifyZoomOption() {
+        assertEquals("GRAPH ZOOM", getWebElementText(graph_zoom_label_xpath));
+    }
+
+    public void hoverCursorOverIconForZoom() {
+        moveMouseTo(graph_zoom_icon_xpath);
+    }
+
+    public void hoverCursorOverIconForPercentFilter(){
+        moveMouseTo(graph_percent_filter_icon_xpath);
+    }
+
+    public void verifyZoomInfo() {
+        assertEquals("Use your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move.",
+                getWebElementText(graph_zoom_info_xpath));
+    }
+
+    public void clickOnMinusSign() {
+        clickOnWebElement(graph_zoom_minus_sign_xpath);
+    }
+
+    public void clickOnPlusSign() {
+        clickOnWebElement(graph_zoom_plus_sign_xpath);
+    }
+
+    public void clickOnResetButton() {
+        clickOnWebElement(graph_zoom_reset_sign_xpath);
+    }
+
+    public void hoverCursorOverIconForCountryHighlight() {
+        moveMouseTo(graph_country_highlight_icon_xpath);
+    }
+
+    public void verifyPercentFilterInfo() {
+        assertEquals("Display ownership greater than or equal to the value shown. Use slider or input to change the percentage.",
+                getWebElementText(graph_percent_filter_info_xpath));
+    }
+
+    public void verifyCountryHighlightInfo() {
+        assertEquals("Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.",
+                getWebElementText(graph_country_highlight_info_xpath));
+    }
 }

@@ -408,4 +408,130 @@ public class GraphsPage extends WebDriverUtils {
         getActions().click(getWebElement(By.xpath("//*[local-name()='tspan'][contains(text(),'" + freeText +"')]"))).perform();
     }
 
+    public void verifyOwnersGraphIsZoomedOut() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aOwnersGraphZoomOut.png");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersGraphZoomOut.png",
+                        readProperties().getTestResourcePath() + "/actual/aOwnersGraphZoomOut.png",
+                        readProperties().getTestResourcePath() + "/difference/dOwnersGraphZoomOut.png"));
+    }
+
+    public void verifyOwnersGraphIsZoomedIn() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aOwnersGraphZoomIn.png");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersGraphZoomIn.png",
+                        readProperties().getTestResourcePath() + "/actual/aOwnersGraphZoomIn.png",
+                        readProperties().getTestResourcePath() + "/difference/dOwnersGraphZoomIn.png"));
+    }
+
+    public void verifyOwnersGraphIsResetToOriginalPosition() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aOwnersGraphReset.png");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersGraphReset.png",
+                        readProperties().getTestResourcePath() + "/actual/aOwnersGraphReset.png",
+                        readProperties().getTestResourcePath() + "/difference/dOwnersGraphReset.png"));
+    }
+
+    public void captureZoomedOutOwnersGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eOwnersGraphZoomOut.png");
+    }
+
+    public void captureZoomedInOwnersGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eOwnersGraphZoomIn.png");
+    }
+
+    public void captureResetOwnersGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eOwnersGraphReset.png");
+    }
+
+    public void verifySubsidiariesGraphIsZoomedOut() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aSubsidiariesGraphZoomOut.png");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesGraphZoomOut.png",
+                        readProperties().getTestResourcePath() + "/actual/aSubsidiariesGraphZoomOut.png",
+                        readProperties().getTestResourcePath() + "/difference/dSubsidiariesGraphZoomOut.png"));
+    }
+
+    public void verifySubsidiariesGraphIsResetToOriginalPosition() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aSubsidiariesGraphReset.png");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesGraphReset.png",
+                        readProperties().getTestResourcePath() + "/actual/aSubsidiariesGraphReset.png",
+                        readProperties().getTestResourcePath() + "/difference/dSubsidiariesGraphReset.png"));
+    }
+
+    public void verifySubsidiariesGraphIsZoomedIn() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aSubsidiariesGraphZoomIn.png");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesGraphZoomIn.png",
+                        readProperties().getTestResourcePath() + "/actual/aSubsidiariesGraphZoomIn.png",
+                        readProperties().getTestResourcePath() + "/difference/dSubsidiariesGraphZoomIn.png"));
+    }
+
+    public void verifyFullGraphIsZoomedOut() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aFullGraphZoomOut.png");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eFullGraphZoomOut.png",
+                        readProperties().getTestResourcePath() + "/actual/aFullGraphZoomOut.png",
+                        readProperties().getTestResourcePath() + "/difference/dFullGraphZoomOut.png"));
+
+    }
+
+    public void verifyFullGraphIsResetToOriginalPosition() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aFullGraphReset.png");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eFullGraphReset.png",
+                        readProperties().getTestResourcePath() + "/actual/aFullGraphReset.png",
+                        readProperties().getTestResourcePath() + "/difference/dFullGraphReset.png"));
+    }
+
+    public void verifyFullGraphIsZoomedIn() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/aFullGraphZoomIn.png");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eFullGraphZoomIn.png",
+                        readProperties().getTestResourcePath() + "/actual/aFullGraphZoomIn.png",
+                        readProperties().getTestResourcePath() + "/difference/dFullGraphZoomIn.png"));
+    }
+
+    public void captureZoomedOutSubsidiariesGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eSubsidiariesGraphZoomOut.png");
+    }
+
+    public void captureResetSubsidiariesGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eSubsidiariesGraphReset.png");
+    }
+
+    public void captureZoomedInSubsidiariesGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eSubsidiariesGraphZoomIn.png");
+    }
+
+    public void captureZoomedOutFullGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eFullGraphZoomOut.png");
+    }
+
+    public void captureResetFullGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eFullGraphReset.png");
+    }
+
+    public void captureZoomedInFullGraph() {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eFullGraphZoomIn.png");
+    }
 }

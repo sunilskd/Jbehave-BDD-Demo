@@ -32,10 +32,10 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyGraphNodes(Integer.toString(0 - (Integer.parseInt(level)*180)), ownersExamTable);
     }
 
-    @Then("the user should see the list of below owners in level $level, above the root entity, in the owners graphs $ownersExamTable")
-    public void verifyGraphNodes(String level, ExamplesTable ownersExamTable){
-        pageObject.graphsPage().verifyGraphNodes(Integer.toString(500 - (Integer.parseInt(level)*180)), ownersExamTable);
-    }
+//    @Then("the user should see the list of below owners in level $level, above the root entity, in the owners graphs $ownersExamTable")
+//    public void verifyGraphNodes(String level, ExamplesTable ownersExamTable){
+//        pageObject.graphsPage().verifyGraphNodes(Integer.toString(0 - (Integer.parseInt(level)*180)), ownersExamTable);
+//    }
 
     @Then("the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs")
     public void verifyVisualIndicatorNotDisplayedForSubsidiaries(){
@@ -203,5 +203,95 @@ public class GraphsSteps {
     @When("the user clicks on please subscribe link in the message displayed in the graph")
     public void clickOnPleaseSubscribe(){
         pageObject.commonUtils().clickOnPleaseSubscribe();
+    }
+
+    @Then("the user should see the owners graph zoomed out on the graphs")
+    public void verifyOwnersGraphIsZoomedOut(){
+        pageObject.graphsPage().verifyOwnersGraphIsZoomedOut();
+    }
+
+    @Then("the user should see the subsidiaries graph zoomed out on the graphs")
+    public void verifySubsidiariesGraphIsZoomedOut(){
+        pageObject.graphsPage().verifySubsidiariesGraphIsZoomedOut();
+    }
+
+    @Then("the user should see the full graph zoomed out on the graphs")
+    public void verifyFullGraphIsZoomedOut(){
+        pageObject.graphsPage().verifyFullGraphIsZoomedOut();
+    }
+
+    @Then("the user should see the owners graph zoomed in on the graphs")
+    public void verifyOwnersGraphIsZoomedIn(){
+        pageObject.graphsPage().verifyOwnersGraphIsZoomedIn();
+    }
+
+    @Then("the user should see the subsidiaries graph zoomed in on the graphs")
+    public void verifySubsidiariesGraphIsZoomedIn(){
+        pageObject.graphsPage().verifySubsidiariesGraphIsZoomedIn();
+    }
+
+    @Then("the user should see the full graph zoomed in on the graphs")
+    public void verifyFullGraphIsZoomedIn(){
+        pageObject.graphsPage().verifyFullGraphIsZoomedIn();
+    }
+
+    @Then("the user should see the owners graph reset to whatever the original position was upon load on the graphs")
+    public void verifyOwnersGraphIsResetToOriginalPosition(){
+        pageObject.graphsPage().verifyOwnersGraphIsResetToOriginalPosition();
+    }
+
+    @Then("the user should see the subsidiaries graph reset to whatever the original position was upon load on the graphs")
+    public void verifySubsidiariesGraphIsResetToOriginalPosition(){
+        pageObject.graphsPage().verifySubsidiariesGraphIsResetToOriginalPosition();
+    }
+
+    @Then("the user should see the full graph reset to whatever the original position was upon load on the graphs")
+    public void verifyFullGraphIsResetToOriginalPosition(){
+        pageObject.graphsPage().verifyFullGraphIsResetToOriginalPosition();
+    }
+
+    @Then("the user captures the expected snapshot for the zoomed out owners graph")
+    public void captureZoomedOutOwnersGraph(){
+        pageObject.graphsPage().captureZoomedOutOwnersGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the zoomed out subsidiaries graph")
+    public void captureZoomedOutSubsidiariesGraph(){
+        pageObject.graphsPage().captureZoomedOutSubsidiariesGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the zoomed in owners graph")
+    public void captureZoomedInOwnersGraph(){
+        pageObject.graphsPage().captureZoomedInOwnersGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the reset owners graph")
+    public void captureResetOwnersGraph(){
+        pageObject.graphsPage().captureResetOwnersGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the reset subsidiaries graph")
+    public void captureResetSubsidiariesGraph(){
+        pageObject.graphsPage().captureResetSubsidiariesGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the zoomed in subsidiaries graph")
+    public void captureZoomedInSubsidiariesGraph(){
+        pageObject.graphsPage().captureZoomedInSubsidiariesGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the zoomed out full graph")
+    public void captureZoomedOutFullGraph(){
+        pageObject.graphsPage().captureZoomedOutFullGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the zoomed in full graph")
+    public void captureZoomedInFullGraph(){
+        pageObject.graphsPage().captureZoomedInFullGraph();
+    }
+
+    @Then("the user captures the expected snapshot for the reset full graph")
+    public void captureResetFullGraph(){
+        pageObject.graphsPage().captureResetFullGraph();
     }
 }

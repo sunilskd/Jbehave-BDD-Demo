@@ -75,5 +75,54 @@ public class GraphControlsSteps {
         pageObject.graphControlsUtils().verifyUBOFilterIsDisabled();
     }
 
+    @Then("the user should see the option to zoom graph in/out on the graphs")
+    public void verifyZoomOption(){
+        pageObject.graphControlsUtils().verifyZoomOption();
+    }
+
+    @When("the user hovers cursor over i icon next to zoom slider on the graphs")
+    public void hoverCursorOverIconForZoom(){
+        pageObject.graphControlsUtils().hoverCursorOverIconForZoom();
+    }
+
+    @When("the user hovers cursor over i icon next to percent filter on the graphs")
+    public void hoverCursorOverIconForPercentFilter(){
+        pageObject.graphControlsUtils().hoverCursorOverIconForPercentFilter();
+    }
+
+    @When("the user hovers cursor over i icon next to country highlight on the graphs")
+    public void hoverCursorOverIconForCountryHighlight(){
+        pageObject.graphControlsUtils().hoverCursorOverIconForCountryHighlight();
+    }
+
+    @Then("user should see the info 'Use your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move graphs' on the graphs")
+    public void verifyZoomInfo(){
+        pageObject.graphControlsUtils().verifyZoomInfo();
+    }
+
+    @Then("user should see the info 'Display ownership greater than or equal to the value shown. User slider or input to change the percentage.' on the graphs")
+    public void verifyPercentFilterInfo(){
+        pageObject.graphControlsUtils().verifyPercentFilterInfo();
+    }
+
+    @Then("user should see the info 'Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.' on the graphs")
+    public void verifyCountryHighlightInfo(){
+        pageObject.graphControlsUtils().verifyCountryHighlightInfo();
+    }
+
+    @When("the user clicks on the minus sign next to zoom slider on the graphs")
+    public void clickOnMinusSign(){
+        pageObject.graphControlsUtils().clickOnMinusSign();
+    }
+
+    @When("the user clicks on the plus sign next to zoom slider on the graphs")
+    public void clickOnPlusSign(){
+        pageObject.graphControlsUtils().clickOnPlusSign();
+    }
+
+    @When("the user clicks on the reset button next to zoom slider on the graphs")
+    public void clickOnResetButton(){
+        pageObject.graphControlsUtils().clickOnResetButton();
+    }
 
 }
