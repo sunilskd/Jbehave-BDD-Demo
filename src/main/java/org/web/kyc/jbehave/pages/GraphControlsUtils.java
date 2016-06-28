@@ -150,7 +150,7 @@ public class GraphControlsUtils extends WebDriverUtils {
     }
 
     public void verifyCountryHighlightInfo() {
-        assertEquals("Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for more info.",
+        assertEquals("Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.",
                 getWebElementText(graph_country_highlight_info_xpath));
     }
 }
