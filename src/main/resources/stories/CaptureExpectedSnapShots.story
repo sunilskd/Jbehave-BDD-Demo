@@ -121,13 +121,16 @@ Examples:
 Scenario: Capture owners graph zoom in/out/reset
 Meta:@captureOwnersGraphWithZoom
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+When the user selects a country UK from the country highlight list in the graphs
+And the user clicks on the ultimate beneficial owners filter checkbox in the graph
 When the user clicks on the minus sign next to zoom slider on the graphs
 And the user clicks on the minus sign next to zoom slider on the graphs
+When the user hovers cursor over i icon next to zoom slider on the graphs
 Then the user captures the expected snapshot for the zoomed out owners graph
 When the user clicks on the reset button next to zoom slider on the graphs
 Then the user captures the expected snapshot for the reset owners graph
@@ -147,8 +150,10 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+When the user enters percentage as 1 in ownership percentage filter text box in the graphs
 When the user clicks on the minus sign next to zoom slider on the graphs
 And the user clicks on the minus sign next to zoom slider on the graphs
+When the user hovers cursor over i icon next to percent filter on the graphs
 Then the user captures the expected snapshot for the zoomed out subsidiaries graph
 When the user clicks on the reset button next to zoom slider on the graphs
 Then the user captures the expected snapshot for the reset subsidiaries graph
@@ -163,13 +168,16 @@ Examples:
 Scenario: Capture full graph zoom in/out/reset
 Meta:@captureFullGraphWithZoom
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+And the user enters percentage as 1 in ownership percentage filter text box in the graphs
+And the user clicks on the ultimate beneficial owners filter checkbox in the graph
 When the user clicks on the minus sign next to zoom slider on the graphs
 And the user clicks on the minus sign next to zoom slider on the graphs
+When the user hovers cursor over i icon next to country highlight on the graphs
 Then the user captures the expected snapshot for the zoomed out full graph
 When the user clicks on the reset button next to zoom slider on the graphs
 Then the user captures the expected snapshot for the reset full graph
