@@ -85,7 +85,7 @@ And the user should see the list of below owners in level 3, above the root enti
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 4571.91Korea (Republic of)|
 |QA Legal Entity 150.52UK|
 |QA Legal Entity 110.23UK|
 
@@ -98,7 +98,7 @@ And the user should see the list of below owners in level 4, above the root enti
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4671.9|
+|QA Legal Entity 4671.91|
 
 And the user should see the list of below owners in level 5, above the root entity, in the graphs
 |NODES|
@@ -344,7 +344,7 @@ When the user enters percentage as 25 in ownership percentage filter text box in
 
 Then the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 3425.901Australia|
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 

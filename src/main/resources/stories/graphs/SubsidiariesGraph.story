@@ -55,13 +55,13 @@ And the user should see the list of below subsidiaries in level 2, below the roo
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 4571.91Korea (Republic of)|
 |QA Legal Entity 150.52UK|
 |QA Legal Entity 110.23UK|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4671.9|
+|QA Legal Entity 4671.91|
 
 Examples:
 |fid|
@@ -259,13 +259,13 @@ And the user should see the list of below subsidiaries in level 2, below the roo
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 4571.91Korea (Republic of)|
 |QA Legal Entity 150.52UK|
 |QA Legal Entity 110.23UK|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4671.9|
+|QA Legal Entity 4671.91|
 
 Examples:
 |fid|
@@ -355,13 +355,13 @@ And the user should see the list of below subsidiaries in level 2, below the roo
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 4571.91Korea (Republic of)|
 |QA Legal Entity 150.52UK|
 |QA Legal Entity 110.23UK|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4671.9|
+|QA Legal Entity 4671.91|
 
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
@@ -375,7 +375,7 @@ When the user enters percentage as abc in ownership percentage filter text box i
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4671.9|
+|QA Legal Entity 4671.91|
 
 Examples:
 |fid|

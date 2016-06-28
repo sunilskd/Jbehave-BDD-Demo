@@ -31,6 +31,7 @@ public class SidePanelUtils extends WebDriverUtils {
     private By graph_side_panel_stock_exchange_label_text_xpath= By.xpath("//tr[3]/th");
     private By graph_side_panel_direct_owners_label_text_xpath= By.xpath("//div[3]//h3[2]");
     private By graph_side_panel_ubo_label_text_xpath= By.xpath("//div[2]/div/h3");
+    private By graph_side_panel_no_ubo_section_xpath = By.xpath("//div[2]/div[@style='display: none;']/h3");
     private By graph_side_panel_no_known_subs_message_text_xpath = By.xpath("//div[3]/div[2]/p[1]");
     private By graph_side_panel_no_known_ubos_message_text_xpath = By.xpath("//div[3]/div[2]/div/p");
     private By graph_side_panel_head_office_text_xpath =By.xpath("//tbody/tr/td/div");
@@ -87,7 +88,6 @@ public class SidePanelUtils extends WebDriverUtils {
         assertEquals("Regulator", getWebElementText(graph_side_panel_regulator_label_text_xpath));
         assertEquals("Stock Exchange", getWebElementText(graph_side_panel_stock_exchange_label_text_xpath));
         assertEquals("DIRECTLY OWNS", getWebElementText(graph_side_panel_direct_owners_label_text_xpath));
-        assertEquals("ULTIMATE BENEFICIAL OWNERS", getWebElementText(graph_side_panel_ubo_label_text_xpath));
         assertEquals("DETAILS", getWebElementText(graph_side_panel_details_label_text_xpath));
     }
 
@@ -120,14 +120,13 @@ public class SidePanelUtils extends WebDriverUtils {
         List<WebElement> aUBONameList = getWebElements(graph_side_panel_ubo_title_list_text_xpath);
         List<WebElement> aUBOEntityList = getWebElements(graph_side_panel_ubo_entity_list_text_xpath);
         List<WebElement> aUBOPercentageOwnedList = getWebElements(graph_side_panel_ubo_percent_ownership_list_text_xpath);
-
+        assertEquals("ULTIMATE BENEFICIAL OWNERS", getWebElementText(graph_side_panel_ubo_label_text_xpath));
         for (int i = 0; i < aUBONameList.size(); i++) {
             assertEquals("UBO Name does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(0)), aUBONameList.get(i).getText());
             assertEquals("UBO Entity name does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(1)), aUBOEntityList.get(i).getText());
             if (!uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(2)).isEmpty()) {
                 assertEquals("Percentage owned does not match at" + i, uboListExamTable.getRow(i).get(uboListExamTable.getHeaders().get(2)) + "%", aUBOPercentageOwnedList.get(i).getText());
             }
-
         }
     }
 
@@ -147,4 +146,7 @@ public class SidePanelUtils extends WebDriverUtils {
         findElement(graph_side_panel_title_text_xpath).click();
     }
 
+    public void verifyNoUBOSectionInSidePanel() {
+        assertTrue(isWebElementDisplayed(graph_side_panel_no_ubo_section_xpath));
+    }
 }

@@ -118,6 +118,65 @@ Examples:
 |fid|legalEntity|
 |LE-6|QA Legal Entity 61|
 
+Scenario: Capture owners graph zoom in/out/reset
+Meta:@captureOwnersGraphWithZoom
+Given the user is on the ubo login page
+When the user login as a kyc user
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user clicks on the minus sign next to zoom slider on the graphs
+And the user clicks on the minus sign next to zoom slider on the graphs
+Then the user captures the expected snapshot for the zoomed out owners graph
+When the user clicks on the reset button next to zoom slider on the graphs
+Then the user captures the expected snapshot for the reset owners graph
+When the user clicks on the plus sign next to zoom slider on the graphs
+And the user clicks on the plus sign next to zoom slider on the graphs
+Then the user captures the expected snapshot for the zoomed in owners graph
 
+Examples:
+|fid|
+|LE-1|
 
+Scenario: Capture subsidiaries graph zoom in/out/reset
+Meta:@captureSubsidiariesGraphWithZoom
+Given the user is on the ubo login page
+When the user login as a kyc user
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+When the user clicks on the minus sign next to zoom slider on the graphs
+And the user clicks on the minus sign next to zoom slider on the graphs
+Then the user captures the expected snapshot for the zoomed out subsidiaries graph
+When the user clicks on the reset button next to zoom slider on the graphs
+Then the user captures the expected snapshot for the reset subsidiaries graph
+When the user clicks on the plus sign next to zoom slider on the graphs
+And the user clicks on the plus sign next to zoom slider on the graphs
+Then the user captures the expected snapshot for the zoomed in subsidiaries graph
 
+Examples:
+|fid|
+|LE-6|
+
+Scenario: Capture full graph zoom in/out/reset
+Meta:@captureFullGraphWithZoom
+Given the user is on the ubo login page
+When the user login as a kyc user
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user clicks on the minus sign next to zoom slider on the graphs
+And the user clicks on the minus sign next to zoom slider on the graphs
+Then the user captures the expected snapshot for the zoomed out full graph
+When the user clicks on the reset button next to zoom slider on the graphs
+Then the user captures the expected snapshot for the reset full graph
+When the user clicks on the plus sign next to zoom slider on the graphs
+And the user clicks on the plus sign next to zoom slider on the graphs
+Then the user captures the expected snapshot for the zoomed in full graph
+
+Examples:
+|fid|
+|LE-6|

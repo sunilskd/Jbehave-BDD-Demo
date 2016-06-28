@@ -72,4 +72,8 @@ public class SidePanelSteps {
         pageObject.sidePanelUtils().clickEntityTitleOnSidePanel(nodeTitle);
     }
 
+    @Then("the user should not see the ultimate beneficial owners section in the side panel in the graphs")
+    public void verifyNoUBOSectionInSidePanel(){
+        pageObject.sidePanelUtils().verifyNoUBOSectionInSidePanel();
+    }
 }

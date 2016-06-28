@@ -6,6 +6,9 @@ Covers below features:
 JIRA ID - KYC-266 - Interaction between percent filter and direct/indirect filter on all graphs
 JIRA ID - KYC 265 - Interaction between filters and highlights on all graphs
 JIRA ID - KYC-262 - Interaction between appears multiple highlight, country highlight and UBO highlight
+JIRA ID - KYC-371 - Zoom on owners graph
+JIRA ID - KYC-372 - Zoom on subsidiaries graph
+JIRA ID - KYC-371 - Zoom on full graph
 
 Meta:@ubointeractions @ubo
 
@@ -33,7 +36,7 @@ And the user clicks on the graph button
 
 When the user enters percentage as 45 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
-And the user should see the list of below owners in level 1, above the root entity, in the owners graphs
+And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 
@@ -45,7 +48,7 @@ And the user should see the list of below unique country of operations for each 
 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
-And the user should see the list of below owners in level 1, above the root entity, in the owners graphs
+And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
@@ -64,24 +67,24 @@ Then the user should see the below entities that have the selected country of op
 |QA Legal Entity 10|
 
 When the user enters percentage as 1 in ownership percentage filter text box in the graphs
-Then the user should see the list of below owners in level 1, above the root entity, in the owners graphs
+Then the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 
 And the user should not see the entities highlighted in the graphs
 When the user unchecks direct relationship only filter checkbox in the graphs
-Then the user should see the list of below owners in level 1, above the root entity, in the owners graphs
+Then the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
 |QA Legal Entity 10UK|
 
-And the user should see the list of below owners in level 2, above the root entity, in the owners graphs
+And the user should see the list of below owners in level 2, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 161.53USA|
 |QA Legal Entity 181.53USA|
 |QA Legal Entity 1151.53UK|
 
-And the user should see the list of below owners in level 3, above the root entity, in the owners graphs
+And the user should see the list of below owners in level 3, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 14UK|
 |QA Legal Entity 12UK|
@@ -89,14 +92,14 @@ And the user should see the list of below owners in level 3, above the root enti
 |QA Legal Entity 1951.53USA|
 |Others9.52|
 
-And the user should see the list of below owners in level 4, above the root entity, in the owners graphs
+And the user should see the list of below owners in level 4, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 1551.53USA|
 |QA Legal Entity 1351.53UK|
 |QA Legal Entity 614.99|
 |QA Legal Entity 6114.99|
 
-And the user should see the list of below owners in level 5, above the root entity, in the owners graphs
+And the user should see the list of below owners in level 5, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 6141.99|
 |QA Test Person 15.93|
@@ -106,7 +109,7 @@ And the user should see the list of below owners in level 5, above the root enti
 |Local Government,Legal Entity 61 owned...59.52|
 |Free float, LegalEntity 15 owned by...|
 
-And the user should see the list of below owners in level 6, above the root entity, in the owners graphs
+And the user should see the list of below owners in level 6, above the root entity, in the graphs
 |NODES|
 |QA Test Person 15.93|
 |Local Government,Legal Entity 61 owned...59.52|
@@ -159,7 +162,7 @@ Then the user should see the legal entity QA Legal Entity 6, user is currently v
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 3425.901Australia|
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
@@ -195,7 +198,7 @@ Then the user should see the legal entity QA Legal Entity 6, user is currently v
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 35Australia|
-|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 3425.901Australia|
 |QA Legal Entity 33Australia|
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
@@ -228,7 +231,7 @@ Then the user should see, percent filter is reset to 0 for both input box and sl
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 35Australia|
-|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 3425.901Australia|
 |QA Legal Entity 33Australia|
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
@@ -245,13 +248,13 @@ And the user should see the list of below subsidiaries in level 2, below the roo
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 4571.91Korea (Republic of)|
 |QA Legal Entity 150.52UK|
 |QA Legal Entity 110.23UK|
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4671.9|
+|QA Legal Entity 4671.91|
 
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -287,7 +290,7 @@ When the user enters percentage as 25 in ownership percentage filter text box in
 
 Then the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 3425.901Australia|
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
 
@@ -322,7 +325,7 @@ Then the user should see the list of below owners in level 1, above the root ent
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 35Australia|
-|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 3425.901Australia|
 |QA Legal Entity 33Australia|
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
@@ -372,7 +375,7 @@ And the user should see the list of below owners in level 1, above the root enti
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
 |QA Legal Entity 35Australia|
-|QA Legal Entity 3425.9Australia|
+|QA Legal Entity 3425.901Australia|
 |QA Legal Entity 33Australia|
 |QA Legal Entity 550.53Korea (Republic of)|
 |QA Legal Entity 359.53India|
@@ -403,7 +406,7 @@ And the user should see the list of below owners in level 3, above the root enti
 
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4571.9Korea (Republic of)|
+|QA Legal Entity 4571.91Korea (Republic of)|
 |QA Legal Entity 150.52UK|
 |QA Legal Entity 110.23UK|
 
@@ -416,7 +419,7 @@ And the user should see the list of below owners in level 4, above the root enti
 
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
 |NODES|
-|QA Legal Entity 4671.9|
+|QA Legal Entity 4671.91|
 
 And the user should see the list of below owners in level 5, above the root entity, in the graphs
 |NODES|
@@ -645,3 +648,65 @@ And the user should not see the multiple appearance highlight on any node in the
 Examples:
 |fid|legalEntity|
 |11262|Vontobel Holding AG|
+
+Scenario: Verify tool tip on ownsership graph
+a. 0. User hovers cursor over "i" icon next to zoom slider. Display text "User your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move."
+   1. User hovers cursor over "i" icon next to percent filter. Display text "Display ownership greater than or equal to the value shown. User slider or input to change the percentage."
+   2. User hovers cursor over "i" icon next to country highlight. Display text "Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information."
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user hovers cursor over i icon next to zoom slider on the graphs
+Then user should see the info 'Use your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move graphs' on the graphs
+When the user hovers cursor over i icon next to percent filter on the graphs
+Then user should see the info 'Display ownership greater than or equal to the value shown. User slider or input to change the percentage.' on the graphs
+When the user hovers cursor over i icon next to country highlight on the graphs
+Then user should see the info 'Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.' on the graphs
+
+Examples:
+|fid|
+|LE-6|
+
+
+Scenario: Verify tool tip on subsidiaries graph
+a. 0. User hovers cursor over "i" icon next to zoom slider. Display text "User your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move."
+   1. User hovers cursor over "i" icon next to percent filter. Display text "Display ownership greater than or equal to the value shown. User slider or input to change the percentage."
+   2. User hovers cursor over "i" icon next to country highlight. Display text "Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information."
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+When the user hovers cursor over i icon next to zoom slider on the graphs
+Then user should see the info 'Use your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move graphs' on the graphs
+When the user hovers cursor over i icon next to percent filter on the graphs
+Then user should see the info 'Display ownership greater than or equal to the value shown. User slider or input to change the percentage.' on the graphs
+When the user hovers cursor over i icon next to country highlight on the graphs
+Then user should see the info 'Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.' on the graphs
+
+Examples:
+|fid|
+|LE-6|
+
+
+Scenario: Verify tool tip on full graph
+a. 0. User hovers cursor over "i" icon next to zoom slider. Display text "User your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move."
+   1. User hovers cursor over "i" icon next to percent filter. Display text "Display ownership greater than or equal to the value shown. User slider or input to change the percentage."
+   2. User hovers cursor over "i" icon next to country highlight. Display text "Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information."
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user hovers cursor over i icon next to zoom slider on the graphs
+Then user should see the info 'Use your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move graphs' on the graphs
+When the user hovers cursor over i icon next to percent filter on the graphs
+Then user should see the info 'Display ownership greater than or equal to the value shown. User slider or input to change the percentage.' on the graphs
+When the user hovers cursor over i icon next to country highlight on the graphs
+Then user should see the info 'Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.' on the graphs
+
+Examples:
+|fid|
+|LE-6|
