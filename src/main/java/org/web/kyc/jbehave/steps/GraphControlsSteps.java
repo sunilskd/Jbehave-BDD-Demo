@@ -44,6 +44,11 @@ public class GraphControlsSteps {
         pageObject.graphControlsUtils().verifyPercentFilterIsSetToZero();
     }
 
+    @Then("the user should see, percent filter is reset to 100 for both input box and slider, in the graphs")
+    public void verifyPercentFilterIsSetToHundred() {
+        pageObject.graphControlsUtils().verifyPercentFilterIsSetToHundred();
+    }
+
     @When("the user enters percentage as $percentFilter in ownership percentage filter text box in the graphs")
     public void enterPercentFilter(@Named("percentFilter") String percentFilter) {
         pageObject.graphControlsUtils().enterPercentFilter(percentFilter);

@@ -24,6 +24,7 @@ JIRA ID - KYC-229 - UBO user can highlight UBOs on graphs
 JIRA ID - KYC-330 - Remove links for person,non-entity or non-person in graphs
 JIRA ID - KYC-155 - User will see in product message on owners graph if they do not have access to UBO data
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
+JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
 
 Meta:@kycownersgraphs @kyc
 
@@ -477,6 +478,7 @@ When the user enters percentage as 200 in ownership percentage filter text box i
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
 And the user should not see any nodes in level 2, below the root entity, in the graphs
+And the user should see, percent filter is reset to 100 for both input box and slider, in the graphs
 
 When the user enters percentage as abc in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs

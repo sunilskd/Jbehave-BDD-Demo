@@ -10,6 +10,7 @@ JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidia
 JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
 JIRA ID - KYC-318 - Country highlights is not working for the root node.
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
+JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -370,6 +371,7 @@ And the user should not see any nodes in level 2, below the root entity, in the 
 When the user enters percentage as 200 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should not see any nodes in level 2, below the root entity, in the graphs
+And the user should see, percent filter is reset to 100 for both input box and slider, in the graphs
 
 When the user enters percentage as abc in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs

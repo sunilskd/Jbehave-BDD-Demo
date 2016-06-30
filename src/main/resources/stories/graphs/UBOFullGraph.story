@@ -370,6 +370,7 @@ When the user enters percentage as 200 in ownership percentage filter text box i
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the graphs
 And the user should not see any nodes in level 2, below the root entity, in the graphs
+And the user should see, percent filter is reset to 100 for both input box and slider, in the graphs
 
 When the user enters percentage as abc in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs

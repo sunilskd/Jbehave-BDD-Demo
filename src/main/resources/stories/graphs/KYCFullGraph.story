@@ -18,6 +18,7 @@ JIRA ID - KYC-158 - KYC user can see visual indicator for entity that appears mu
 JIRA ID - KYC-136 - Full Graph - Direct / Indirect Filter
 JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
+JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
 
 Meta:@kycfullgraph @kyc
 
@@ -356,6 +357,7 @@ And the user should not see any nodes in level 2, above the root entity, in the 
 When the user enters percentage as 200 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the graphs
+And the user should see, percent filter is reset to 100 for both input box and slider, in the graphs
 
 When the user enters percentage as abc in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs

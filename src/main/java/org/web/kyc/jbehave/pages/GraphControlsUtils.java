@@ -82,6 +82,13 @@ public class GraphControlsUtils extends WebDriverUtils {
         assertEquals("0", getWebElementsAttributeValue(graph_percent_filter_text_box_xpath, "value").get(0));
     }
 
+    public void verifyPercentFilterIsSetToHundred() {
+        waitForWebElementToAppear(graph_percent_slider_bar_xpath);
+        assertEquals("DISPLAY OWNERSHIP PERCENTAGE", getWebElementText(graph_percent_filter_label_xpath));
+        assertEquals("100", getWebElementsAttributeValue(graph_percent_slider_bar_xpath, "value").get(0));
+        assertEquals("100", getWebElementsAttributeValue(graph_percent_filter_text_box_xpath, "value").get(0));
+    }
+
     public void enterPercentFilter(String percentFilter){
         waitForWebElementToAppear(graph_percent_filter_text_box_xpath);
         enterStringInInputBox(graph_percent_filter_text_box_xpath, percentFilter);
