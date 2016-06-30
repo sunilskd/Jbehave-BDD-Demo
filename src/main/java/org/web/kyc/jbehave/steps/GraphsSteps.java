@@ -32,11 +32,6 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyGraphNodes(Integer.toString(0 - (Integer.parseInt(level)*180)), ownersExamTable);
     }
 
-//    @Then("the user should see the list of below owners in level $level, above the root entity, in the owners graphs $ownersExamTable")
-//    public void verifyGraphNodes(String level, ExamplesTable ownersExamTable){
-//        pageObject.graphsPage().verifyGraphNodes(Integer.toString(0 - (Integer.parseInt(level)*180)), ownersExamTable);
-//    }
-
     @Then("the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs")
     public void verifyVisualIndicatorNotDisplayedForSubsidiaries(){
         pageObject.graphsPage().verifyVisualIndicatorNotDisplayedForSubsidiaries();
@@ -293,5 +288,20 @@ public class GraphsSteps {
     @Then("the user captures the expected snapshot for the reset full graph")
     public void captureResetFullGraph(){
         pageObject.graphsPage().captureResetFullGraph();
+    }
+
+    @Then("the user should see the subsidiaries graph")
+    public void verifySubsidiariesGraph(){
+        pageObject.graphsPage().verifySubsGraphHeader();
+    }
+
+    @Then("the user should see the owners graph")
+    public void verifyOwnersGraph(){
+        pageObject.graphsPage().verifyOwnersGraphHeader();
+    }
+
+    @Then("the user should see the full graph")
+    public void verifyFullGraph(){
+        pageObject.graphsPage().verifyFullGraphHeader();
     }
 }

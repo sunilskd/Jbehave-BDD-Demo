@@ -96,7 +96,7 @@ Then the user captures the expected snapshot for the owners graph
 
 Examples:
 |fid|legalEntity|
-|LE-6|QA Legal Entity 61|
+|LE-6|QA Test Person 1|
 
 Scenario: Capture expected screenshot for subsidiaries graph for validating below scenarios with KYC user
  a. 0. Display icon for legal entity that is a bank.
@@ -110,7 +110,6 @@ When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-When the user clicks on <legalEntity> node which appears more than once in the graphs
 When the user selects a country UK from the country highlight list in the graphs
 Then the user captures the expected snapshot for the subsidiaries graph
 

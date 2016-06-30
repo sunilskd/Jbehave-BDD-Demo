@@ -44,6 +44,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
@@ -133,6 +134,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root and highlighted in the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
@@ -162,6 +164,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
@@ -195,6 +198,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted in the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
@@ -227,6 +231,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see message displayed in place of graph explaining there are no entities in the graphs
 
 Examples:
@@ -239,6 +244,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should not see any nodes in level 1, below the root entity, in the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
@@ -258,6 +264,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should not see any nodes in level 1, above the root entity, in the graphs
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
@@ -274,6 +281,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see message displayed in place of graph explaining there are no entities in the graphs
 
 Examples:
@@ -291,6 +299,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -339,6 +348,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
 
@@ -398,6 +408,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted in the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
@@ -459,6 +470,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph
 When the user clicks on the ultimate beneficial owners filter checkbox in the graph
 Then the user should see the ultimate beneficial owners highlighted in the graph
@@ -480,6 +492,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
@@ -501,6 +514,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
@@ -519,6 +533,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root and highlighted in the graphs
 And the user should not see visual indicator for legal entity <legalEntity>, when displayed only once
 
@@ -545,6 +560,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 45 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
@@ -577,6 +593,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
 
 Then the user should see the below owners for the legal entity QA Legal Entity 11 in the graphs

@@ -215,11 +215,11 @@ public class GraphsPage extends WebDriverUtils {
 
     public void selectingNodeToBeClicked(String legalEntity){
         try{
-            Thread.sleep(3000L);
             List<WebElement> multipleNode  = getWebElements(By.xpath(graph_multiple_node_xpath));
             for(int i=1;i<=multipleNode.size();i++){
                 String actualEntityTile = multipleNode.get(i).findElement(graph_multiple_node_title_xpath).getText();
                 if(legalEntity.equalsIgnoreCase(actualEntityTile)){
+                    Thread.sleep(5000L);
                     getActions().click(multipleNode.get(i)).build().perform();
                     break;
                 }
@@ -534,4 +534,5 @@ public class GraphsPage extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         takeSnapshot("./src/test/resources/expected/eFullGraphZoomIn.png");
     }
+
 }
