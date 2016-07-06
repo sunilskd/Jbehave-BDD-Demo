@@ -59,6 +59,7 @@ public class StoriesRunner extends JUnitStories {
             try {
                 /* Required to run stories with annotated meta filters */
                 configuredEmbedder().useMetaFilters(Arrays.asList(getListOfStoriesToRun().split(",")));
+                System.out.print(getListOfStoriesToRun());
             } catch (IOException e) {
                 e.printStackTrace();
             }

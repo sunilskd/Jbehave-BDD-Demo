@@ -55,7 +55,7 @@ public class CommonSteps {
     @Alias("the user is taken to subscription page URL $url on accuity.com")
     public void verifyURLOpensInNewWindow(@Named("$url") String url){pageObject.commonUtils().verifyURLOpensInNewWindow(url);}
 
-    @When("the user clicks on the save as pdf icon")
+    @When("the user clicks on the save as pdf icon (display loading icon while generating saved pdf for lists)")
     public void clickOnSaveAsPDFIcon(){
         pageObject.commonUtils().clickOnSaveAsPDFIcon();
     }

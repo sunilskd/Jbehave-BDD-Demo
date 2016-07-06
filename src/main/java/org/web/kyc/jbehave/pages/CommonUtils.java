@@ -22,6 +22,7 @@ public class CommonUtils extends WebDriverUtils {
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
     private By save_as_pdf_button_xpath = By.xpath("//*[@id='tools']/button[@name='download']");
     private By product_message_please_subscribe_link_text_xpath=By.xpath("//p[1]/a");
+    private By spinner_xpath = By.xpath("//div[@class='kyc-loading-widget loader'][@style='display: block;']");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -145,7 +146,8 @@ public class CommonUtils extends WebDriverUtils {
 
     public void clickOnSaveAsPDFIcon() {
         clickOnWebElement(save_as_pdf_button_xpath);
-        waitForInMilliSeconds(3000L);
+        assertTrue(isWebElementDisplayed(spinner_xpath));
+        waitForInMilliSeconds(5000L);
     }
 
     public void clickOnPleaseSubscribe(){

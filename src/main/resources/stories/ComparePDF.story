@@ -6,6 +6,7 @@ Below story clicks on save icon on owners summary page and captures actual pdf w
 
 Covers below features:
 JIRA ID - KYC-67 - KYC user can save list of owners
+JIRA ID - KYC-358 - Display loading icon while generating saved pdf for lists
 
 Scenario: KYC User can save list of owners
 Meta:@ubo
@@ -17,7 +18,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on display audit information link in owners page
 And the user selects a country <country> from the country highlight list in the owners page
-And the user clicks on the save as pdf icon
+And the user clicks on the save as pdf icon (display loading icon while generating saved pdf for lists)
 Then the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners page
 
 Examples:
@@ -33,7 +34,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user selects a country <country> from the country highlight list in the subsidiaries page
-And the user clicks on the save as pdf icon
+And the user clicks on the save as pdf icon (display loading icon while generating saved pdf for lists)
 Then the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the subsidiaries page
 
 Examples:
@@ -49,7 +50,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user selects a country <country> from the country highlight list in the group structure page
-And the user clicks on the save as pdf icon
+And the user clicks on the save as pdf icon (display loading icon while generating saved pdf for lists)
 Then the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the group structure page
 
 Examples:
