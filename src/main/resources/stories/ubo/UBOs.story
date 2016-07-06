@@ -23,6 +23,7 @@ Covers below features:
 JIRA ID - KYC-90 -  UBO user can view list of UBOs
 JIRA ID - KYC-253 - Add source to UBO list
 JIRA ID - KYC-195 - UBO user can filter UBO list by percent ownership
+JIRA ID - KYC-315 - UBO list - dates are not displayed.
 
 Meta:@owners @ubo @ubos
 

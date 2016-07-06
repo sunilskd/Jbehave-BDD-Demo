@@ -16,6 +16,7 @@ JIRA ID - KYC-103 - KYC user can filter full graph by percent ownership
 JIRA ID - KYC-110 - KYC user can highlight legal entities by country in full graph
 JITA ID - KYC-136 - Full Graph - Direct / Indirect Filter
 JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
+JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
 
 Meta:@ubofullgraph @ubo
 
@@ -384,6 +385,7 @@ And the user should see, percent filter is reset to 100 for both input box and s
 
 When the user enters percentage as abc in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 
 And the user should see the list of below owners in level 6, above the root entity, in the graphs
 |NODES|

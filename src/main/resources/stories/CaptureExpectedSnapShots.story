@@ -187,3 +187,19 @@ Then the user captures the expected snapshot for the zoomed in full graph
 Examples:
 |fid|
 |LE-6|
+
+Scenario: KYC-360 - The icon for the root node is always displaying the icon for Bank. It should be based on the legalEntityType.
+Meta:@cpaturekyc360
+Given the user is on the ubo login page
+When the user login as a ubo user
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
+Then the user captures the expected snapshot for the <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|
+|3|Alphabet Nominees Ltd|

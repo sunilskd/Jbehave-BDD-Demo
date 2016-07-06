@@ -19,6 +19,7 @@ JIRA ID - KYC-136 - Full Graph - Direct / Indirect Filter
 JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
 JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
+JIRA ID - KYC-241 - Do not display the free text when the % filters are applied.
 
 Meta:@kycfullgraph @kyc
 
@@ -361,6 +362,7 @@ And the user should see, percent filter is reset to 100 for both input box and s
 
 When the user enters percentage as abc in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 
 And the user should see the list of below owners in level 6, above the root entity, in the graphs
 |NODES|
@@ -570,7 +572,7 @@ Then the user should see the below owners for the legal entity QA Legal Entity 6
 Then the user should see the below owners for the legal entity QA Legal Entity 10 in the graphs
 |NODES|
 |QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|s
+|Treasury shares, 3.8;Trade Union...|
 
 Then the user should see the below owners for the legal entity QA Legal Entity 9 in the graphs
 |NODES|
@@ -605,3 +607,19 @@ Then the user should see the below subsidiaries for the legal entity QA Legal En
 Examples:
 |fid|
 |LE-6|
+
+Scenario: Display the free text when the % filters are applied
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the legal entity QA Legal Entity 10, user is currently viewing, as the root and highlighted in the graphs
+When the user enters percentage as 100 in ownership percentage filter text box in the graphs
+Then the user should see the below owners for the legal entity QA Legal Entity 10 in the graphs
+|NODES|
+|Treasury shares, 3.8;Trade Union...|
+
+Examples:
+|fid|
+|LE-10|

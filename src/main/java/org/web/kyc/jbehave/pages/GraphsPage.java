@@ -535,4 +535,20 @@ public class GraphsPage extends WebDriverUtils {
         takeSnapshot("./src/test/resources/expected/eFullGraphZoomIn.png");
     }
 
+    public void captureExpectedSnapShotForFullGraph(String nodeTitle) {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/e"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png");
+    }
+
+    public void captureActualSnapShotForFullGraph(String nodeTitle) {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/a"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png");
+    }
+
+    public void compareExpectedAndActualSnapshotForFullGraph(String nodeTitle) {
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/e"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png",
+                        readProperties().getTestResourcePath() + "/actual/a"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png",
+                        readProperties().getTestResourcePath() + "/difference/d"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png"));
+    }
 }

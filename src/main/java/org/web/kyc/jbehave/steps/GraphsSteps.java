@@ -291,17 +291,32 @@ public class GraphsSteps {
     }
 
     @Then("the user should see the subsidiaries graph")
-    public void verifySubsidiariesGraph(){
+    public void verifySubsGraphHeader(){
         pageObject.graphsPage().verifySubsGraphHeader();
     }
 
     @Then("the user should see the owners graph")
-    public void verifyOwnersGraph(){
+    public void verifyOwnersGraphHeader(){
         pageObject.graphsPage().verifyOwnersGraphHeader();
     }
 
     @Then("the user should see the full graph")
-    public void verifyFullGraph(){
+    public void verifyFullGraphHeader(){
         pageObject.graphsPage().verifyFullGraphHeader();
+    }
+
+    @Then("the user captures the expected snapshot for the <nodeTitle> full graph")
+    public void captureExpectedSnapShotForFullGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureExpectedSnapShotForFullGraph(nodeTitle);
+    }
+
+    @Then("the user captures the actual snapshot for the <nodeTitle> full graph")
+    public void captureActualSnapShotForFullGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureActualSnapShotForFullGraph(nodeTitle);
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph")
+    public void compareExpectedAndActualSnapshotForFullGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().compareExpectedAndActualSnapshotForFullGraph(nodeTitle);
     }
 }

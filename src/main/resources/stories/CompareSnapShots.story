@@ -1,3 +1,7 @@
+Covers below features:
+JIRA ID - KYC-360 - The icon for the root node is always displaying the icon for Bank. It should be based on the legalEntityType.
+JIRA ID - KYC-347 - Non person/Non Entity and Free text using wrong icon
+
 Meta:@comparesnapshots
 
 Scenario: KYC user login
@@ -120,3 +124,19 @@ Then the user should see the actual snapshot matching the expected snapshot for 
 Examples:
 |fid|
 |LE-6|
+
+Scenario: The icon for the root node is always displaying the icon for Bank. It should be based on the legalEntityType.
+Given the user is on the ubo login page
+When the user login as a ubo user
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
+Then the user captures the actual snapshot for the <nodeTitle> full graph
+Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|
+|3|Alphabet Nominees Ltd|

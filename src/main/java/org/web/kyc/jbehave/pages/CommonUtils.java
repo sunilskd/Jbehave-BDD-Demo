@@ -144,8 +144,8 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void clickOnSaveAsPDFIcon() {
-        waitForInMilliSeconds(3000L);
         clickOnWebElement(save_as_pdf_button_xpath);
+        waitForInMilliSeconds(3000L);
     }
 
     public void clickOnPleaseSubscribe(){
