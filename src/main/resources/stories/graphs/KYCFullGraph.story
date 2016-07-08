@@ -20,6 +20,7 @@ JIRA ID - KYC-156 - User will see in product message on full graph if they do no
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
 JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
 JIRA ID - KYC-241 - Do not display the free text when the % filters are applied.
+JIRA-ID - KYC-397 - Truncate large full graph
 
 Meta:@kycfullgraph @kyc
 
@@ -623,3 +624,19 @@ Then the user should see the below owners for the legal entity QA Legal Entity 1
 Examples:
 |fid|
 |LE-10|
+
+Scenario: Truncate large full graph
+1. If legal entity in focus returns greater than 1500 triples for ownership and an ownership relationship has less than 5 percent, graph displays less than 500 owner nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
+2. If legal entity in focus returns 1500 triples or less, displays 500 owner nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+3. If legal entity in focus returns greater than 1500 triples for ownership, has an ownership relationship with less than 5 percent, and displays 500 owner nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+4. If legal entity in focus returns greater than 1500 triples for ownership but does not have any ownership relationship less than 5 percent, no paths are truncated
+5. If legal entity in focus displays less than 500 owner nodes, then level truncation does not apply
+6. If legal entity in focus returns greater than 1500 triples for subsidiaries and a subsidiary relationship has less than 5 percent, graph displays less than 500 subsidiary nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
+7. If legal entity in focus returns 1500 triples or less, displays 500 subsidiary nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+8. If legal entity in focus returns greater than 1500 triples for subsidiaries, has a subsidiary relationship with less than 5 percent, and displays 500 subsidiary nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+9. If legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated
+10. If legal entity in focus displays less than 500 owner nodes, then level truncation does not apply
+11. If valid UBOs exist in database but were all truncated by either condition and are not displayed, UBO in-product message does not appear
+12. If valid UBOs exist in database and were not part of a truncated path on the graph, UBO in-product message appears
+13. Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
+14. Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph
