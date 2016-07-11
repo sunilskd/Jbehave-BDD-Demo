@@ -160,6 +160,11 @@ public class SubsidiariesPage extends WebDriverUtils {
         takeSnapshot("./src/test/resources/expected/eSubsidiariesPage.png");
     }
 
+    public void eCaptureSubsidiariesPageTruncatedGraph(String imageName) {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eSubsidiariesPage"+imageName+".png");
+    }
+
     public void aCaptureSubsidiariesPage() {
         waitForInMilliSeconds(3000L);
         takeSnapshot("./src/test/resources/actual/aSubsidiariesPage.png");

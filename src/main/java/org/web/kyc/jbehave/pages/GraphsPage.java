@@ -20,7 +20,7 @@ import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
 public class GraphsPage extends WebDriverUtils {
 
-    private String graph_root_node = "//*[local-name()='g'][@id=0]";
+    private String graph_root_node = "//*[local-name()='g'][@id=1]";
     private String graph_root_node_highlight_xpath = "[contains(@class,'highlight-focus')]";
     private String graph_legal_entity_title_xpath = "/*[local-name()='text']/*[local-name()='title']";
     private String graph_percent_xpath = "/*[local-name()='text'][1]/*[local-name()='tspan'][@x='40']";
@@ -550,5 +550,28 @@ public class GraphsPage extends WebDriverUtils {
                 compareImages(readProperties().getTestResourcePath() + "/expected/e"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png",
                         readProperties().getTestResourcePath() + "/actual/a"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png",
                         readProperties().getTestResourcePath() + "/difference/d"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png"));
+    }
+
+    public void captureActualSnapShotForTruncatedGraph(String imageName) {
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/actual/a"+imageName+".png");
+    }
+
+    public void compareExpectedAndActualSnapshotForSubstruncatedGraph(String imageName) {
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesPage"+imageName+".png",
+                        readProperties().getTestResourcePath() + "/actual/a"+imageName+".png",
+                        readProperties().getTestResourcePath() + "/difference/d"+imageName+".png" ));
+    }
+
+    public void clickOnShowMoreLink(String nodeTitle) {
+        List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
+        for(int i=0; i<nodes.size(); i++){
+            if(nodes.get(i).getText().contains(nodeTitle)){
+                waitForInMilliSeconds(3000L);
+                getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][3]"))).perform();
+                break;
+            }
+        }
     }
 }

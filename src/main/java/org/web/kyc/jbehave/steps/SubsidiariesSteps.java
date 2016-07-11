@@ -130,5 +130,10 @@ public class SubsidiariesSteps {
     public void verifySavedSubsidiariesPDFFile(){
         pageObject.subsidiariesPage().verifySavedSubsidiariesPDFFile();
     }
+
+    @Then("the user captures the expected snapshot for the subsidiaries page <imageName>")
+    public void eCaptureSubsidiariesPageTruncatedGraph(@Named("imageName")String imageName){
+        pageObject.subsidiariesPage().eCaptureSubsidiariesPageTruncatedGraph(imageName);
+    }
 }
 

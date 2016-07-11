@@ -524,3 +524,44 @@ Then the user should see the below subsidiaries for the legal entity QA Legal En
 Examples:
 |fid|
 |LE-6|
+
+
+Scenario: KYC-396 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Cayman Islands|
+|France|
+|Hong Kong|
+|Ireland|
+|Japan|
+|Luxembourg|
+|Panama|
+|Singapore|
+|UK|
+
+When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Japan|
+
+Examples:
+|fid|nodeTitle|
+|9461|The Miyazaki Bank Ltd|
+
+Scenario: Truncate large full graph
+6. 5100 If legal entity in focus returns greater than 1500 triples for subsidiaries and a subsidiary relationship has less than 5 percent, graph displays less than 500 subsidiary nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
+7. 444 If legal entity in focus returns 1500 triples or less, displays 500 subsidiary nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+8. 90865 If legal entity in focus returns greater than 1500 triples for subsidiaries, has a subsidiary relationship with less than 5 percent, and displays 500 subsidiary nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+9. If legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated
+10. 477 If legal entity in focus displays less than 500 subs nodes, then level truncation does not apply
+13. 1038 Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
+14. 9461 Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph

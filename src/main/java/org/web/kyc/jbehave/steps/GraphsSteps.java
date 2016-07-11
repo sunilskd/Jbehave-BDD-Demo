@@ -319,4 +319,19 @@ public class GraphsSteps {
     public void compareExpectedAndActualSnapshotForFullGraph(@Named("nodeTitle") String nodeTitle){
         pageObject.graphsPage().compareExpectedAndActualSnapshotForFullGraph(nodeTitle);
     }
+
+    @Then("the user captures the actual snapshot for truncated graph <imageName>")
+    public void captureActualSnapShotForTruncatedGraph(@Named("imageName") String imageName){
+        pageObject.graphsPage().captureActualSnapShotForTruncatedGraph(imageName);
+    }
+
+    @Then("the user should see the actual snapshot matching the expected snapshot for truncated graph <imageName>")
+    public void compareExpectedAndActualSnapshotForSubstruncatedGraph(@Named("imageName") String imageName){
+        pageObject.graphsPage().compareExpectedAndActualSnapshotForSubstruncatedGraph(imageName);
+    }
+
+    @When("the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs")
+    public void clickOnShowMoreLink(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().clickOnShowMoreLink(nodeTitle);
+    }
 }
