@@ -22,6 +22,7 @@ JIRA ID - KYC-49 - UBO user can view ownership graph with UBOs
 JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners graph
 JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears multiple times in the ownership graph
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
+JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 
 Meta:@uboownersgraph @ubo
 
@@ -749,3 +750,17 @@ Then the ubo user should not see message displayed there is ubo data available f
 Examples:
 |fid|
 |LE-6|
+
+Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+And the user enters percentage as 35 in ownership percentage filter text box in the graphs
+And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then user is taken to the graph page of that legal entity <nodeTitle>
+
+Examples:
+|fid|nodeTitle|
+|51859|Banco Santander SA|

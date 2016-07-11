@@ -551,4 +551,16 @@ public class GraphsPage extends WebDriverUtils {
                         readProperties().getTestResourcePath() + "/actual/a"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png",
                         readProperties().getTestResourcePath() + "/difference/d"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png"));
     }
+
+    public void clickOnShowMoreLink(String nodeTitle) {
+        List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
+        for(int i=0; i<nodes.size(); i++){
+            if(nodes.get(i).getText().contains(nodeTitle)){
+                waitForInMilliSeconds(3000L);
+                getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][3]"))).perform();
+                break;
+            }
+        }
+    }
+
 }

@@ -319,4 +319,9 @@ public class GraphsSteps {
     public void compareExpectedAndActualSnapshotForFullGraph(@Named("nodeTitle") String nodeTitle){
         pageObject.graphsPage().compareExpectedAndActualSnapshotForFullGraph(nodeTitle);
     }
+
+    @When("the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs")
+    public void clickOnShowMoreLink(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().clickOnShowMoreLink(nodeTitle);
+    }
 }
