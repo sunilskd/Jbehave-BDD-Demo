@@ -17,6 +17,7 @@ JIRA ID - KYC-110 - KYC user can highlight legal entities by country in full gra
 JITA ID - KYC-136 - Full Graph - Direct / Indirect Filter
 JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
 JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
+JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 
 Meta:@ubofullgraph @ubo
 
@@ -633,3 +634,16 @@ Then the user should see the below subsidiaries for the legal entity QA Legal En
 Examples:
 |fid|
 |LE-6|
+
+Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
+
+Examples:
+|fid|nodeTitle|
+|9461|The Miyazaki Bank Ltd|

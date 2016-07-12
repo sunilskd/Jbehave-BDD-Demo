@@ -138,7 +138,7 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyHoverOverToolTipInNodes(legalTitleExamTable);
     }
 
-    @Then("user is taken to the graph page of that legal entity <nodeTitle>")
+    @Then("user is taken to the respective graph page of that legal entity <nodeTitle>")
     public void verifyGraphPageOfLegalEntity(@Named("nodeTitle")String nodeTitle){
         pageObject.graphsPage().verifyGraphPageOfLegalEntity(nodeTitle);
     }
@@ -318,5 +318,10 @@ public class GraphsSteps {
     @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph")
     public void compareExpectedAndActualSnapshotForFullGraph(@Named("nodeTitle") String nodeTitle){
         pageObject.graphsPage().compareExpectedAndActualSnapshotForFullGraph(nodeTitle);
+    }
+
+    @When("the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs")
+    public void clickOnShowMoreLink(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().clickOnShowMoreLink(nodeTitle);
     }
 }
