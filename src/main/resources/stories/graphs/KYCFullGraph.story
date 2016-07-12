@@ -632,7 +632,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
-Then user is taken to the graph page of that legal entity <nodeTitle>
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:
 |fid|nodeTitle|

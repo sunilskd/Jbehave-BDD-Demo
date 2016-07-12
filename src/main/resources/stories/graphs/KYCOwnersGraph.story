@@ -663,7 +663,7 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user enters percentage as 35 in ownership percentage filter text box in the graphs
 And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
-Then user is taken to the graph page of that legal entity <nodeTitle>
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:
 |fid|nodeTitle|
