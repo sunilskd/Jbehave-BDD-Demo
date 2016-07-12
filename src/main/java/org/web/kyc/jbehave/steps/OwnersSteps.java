@@ -160,9 +160,32 @@ public class OwnersSteps {
     }
 
     @Then("the ubo user should see message displayed in place of list explaining there are no UBOs")
-    @Alias("the kyc user should see message displayed as no known entities for KYC user")
     public void verifyNoUBOMsg(){
         pageObject.ownersPage().verifyNoUBOMsg();
     }
 
+    @Then("the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page")
+    public void verifyInProductMessage(){
+        pageObject.ownersPage().verifyInProductMessage();
+    }
+
+    @Then("the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page")
+    public void verifyNoInProductMessage(){
+        pageObject.ownersPage().verifyNoInProductMessage();
+    }
+
+    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners page")
+    public void verifySavedPDFFile(){
+        pageObject.ownersPage().verifySavedPDFFile();
+    }
+
+    @Then("the user should not see the ubo list header and the message that there are no ubos in the owners page")
+    public void verifyNoUBOSection(){
+        pageObject.ownersPage().verifyNoUBOSection();
+    }
+
+    @Then("the kyc user should not see the link to ubo declaration document in the owners page")
+    public void verifyNoUBODDRLink(){
+        pageObject.ownersPage().verifyNoUBODDRLink();
+    }
 }

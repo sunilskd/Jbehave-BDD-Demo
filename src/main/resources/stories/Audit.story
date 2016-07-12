@@ -4,6 +4,7 @@ Audit trail will show actions that Accuity has taken to update the ownership inf
 
 Covers below features:
 JIRA ID - KYC-118 - KYC user can view audit trail for ownership information collection
+JIRA ID - KYC-311 - Audit Trails date format is incorrect. The format should be DD MMM YYYY but is DD-MMM-YYYY.
 
 Meta:@owners @audit
 Scenario: UBO user login

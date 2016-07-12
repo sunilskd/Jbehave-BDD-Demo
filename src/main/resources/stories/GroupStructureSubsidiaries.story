@@ -126,7 +126,7 @@ Then the user should see the ultimate owner as QA Legal Entity 43 for the entity
 
 Then the user should see the indented list of subsidiaries for the focused institution QA Legal Entity 45 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 46||71.9|
+|QA Legal Entity 46||71.91|
 
 Examples:
 |fid|

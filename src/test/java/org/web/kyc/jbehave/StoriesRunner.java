@@ -2,6 +2,7 @@ package org.web.kyc.jbehave;
 
 import org.jbehave.asciidoctor.reporter.AsciidoctorStoryReporter;
 import org.jbehave.core.Embeddable;
+import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.embedder.executors.SameThreadExecutors;
 import org.jbehave.core.io.CodeLocations;
@@ -15,12 +16,12 @@ import org.jbehave.core.steps.InstanceStepsFactory;
 import org.jbehave.core.steps.SilentStepMonitor;
 import org.jbehave.web.selenium.*;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
 import org.web.kyc.jbehave.pages.PageObject;
 import org.web.kyc.jbehave.steps.*;
-import org.web.kyc.utils.FileUtils;
 import org.web.kyc.utils.ReadProperties;
 
 import java.io.File;
@@ -30,6 +31,7 @@ import java.util.List;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.Format.CONSOLE;
+import static org.web.kyc.utils.FilesUtils.*;
 
 public class StoriesRunner extends JUnitStories {
 
@@ -57,25 +59,34 @@ public class StoriesRunner extends JUnitStories {
             try {
                 /* Required to run stories with annotated meta filters */
                 configuredEmbedder().useMetaFilters(Arrays.asList(getListOfStoriesToRun().split(",")));
+                System.out.print(getListOfStoriesToRun());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    @Before
+    public void cleanUp() {
+        directoryCleanUp(new File("./src/test/resources/pdfs/actual"));
+        directoryCleanUp(new File("./src/test/resources/pdfs/difference"));
+    }
+
     @BeforeClass
     public static void setBrowser() {
         browser.setBrowser();
-
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         /* Setting system property REMOTE_WEBDRIVER_URL and desired capabilities */
         if (System.getProperty("browser").equals("remote")) {
             System.setProperty("REMOTE_WEBDRIVER_URL", URL);
-            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setCapability("browserstack.local", "true");
-
             driverProvider = new RemoteWebDriverProvider(desiredCapabilities);
-        } else {
-            driverProvider = new PropertyWebDriverProvider();
+
+        } else if (System.getProperty("browser").equals("firefox")){
+                    System.setProperty("JBEHAVE_WEBDRIVER_FIREFOX_PROFILE","KYC-AFT");
+                    driverProvider = new FirefoxWebDriverProvider();
+        }  else {
+                    driverProvider = new PropertyWebDriverProvider();
         }
 
         lifeCycleSteps = new PerStoriesWebDriverSteps(driverProvider);
@@ -92,8 +103,8 @@ public class StoriesRunner extends JUnitStories {
             File destGraphsDir = new File("./build/classes/jbehave");
             if (destReportsDir.exists()) {
                 try {
-                    FileUtils.copyDirectory(srcGraphsDir, destGraphsDir);
-                    FileUtils.copyDirectory(srcReportsDir, destReportsDir);
+                    copyDirectory(srcGraphsDir, destGraphsDir);
+                    copyDirectory(srcReportsDir, destReportsDir);
                 } catch (Exception e) {
                     System.out.println("The error message " + e.getMessage());
                 }
@@ -126,10 +137,13 @@ public class StoriesRunner extends JUnitStories {
                 new SubsidiariesSteps(pageObject),
                 new EntityDetailsSteps(pageObject),
                 new GroupStructureSteps(pageObject),
-                new SubsidiariesGraphSteps(pageObject),
                 lifeCycleSteps,
                 new AuditSteps(pageObject),
-                new OwnersGraphSteps(pageObject),
+                new GraphsSteps(pageObject),
+                new GraphControlsSteps(pageObject),
+                new SidePanelSteps(pageObject),
+                new ErrorScreenSteps(pageObject),
+                new BAIntegrationSteps(pageObject),
                 new WebDriverScreenshotOnFailure(driverProvider, configuration.storyReporterBuilder()));
     }
 

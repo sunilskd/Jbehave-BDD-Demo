@@ -9,11 +9,7 @@ import static org.web.kyc.jbehave.pages.WebDriverUtils.readProperties;
 
 /** Compare Images **/
 
-public class Comparator extends WebDriverPage {
-
-    public Comparator(WebDriverProvider driverProvider) {
-        super(driverProvider);
-    }
+public class Comparator {
 
     public static boolean compareImages(String exp, String act, String diff){
 

@@ -30,7 +30,7 @@ Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: Covers below scenarios
+Scenario: Covers below scenariosgit
 a. 0. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
    1. Person or institution or other entity type owner has percent ownership (Display percent ownership on list, display meter on list)
    2. If only ownerType is present display owner as "ownerType"
@@ -176,6 +176,8 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see message displayed in place of list explaining there are no direct owners
+And the ubo user should see message displayed in place of list explaining there are no UBOs
+Then the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
 
 Examples:
 |fid|
@@ -212,6 +214,7 @@ And the user clicks on the owners tab
 Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
 Then the user should see message displayed in place of list explaining there are no direct owners
+And the ubo user should see message displayed in place of list explaining there are no UBOs
 
 Examples:
 |fid|percentFilter|
