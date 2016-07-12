@@ -8,7 +8,7 @@ JIRA ID - KYC-129 - KYC user can view regulator on entity details
 JIRA ID - KYC-99 - KYC user can view stock exchange info
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
-
+JIRA ID - KYC-211 - LEIs are not sorted alphabetically in Entity Details Identifier Section
 
 Meta:@entitydetails @kyc @ubo
 

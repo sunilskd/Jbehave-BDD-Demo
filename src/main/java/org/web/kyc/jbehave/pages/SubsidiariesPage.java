@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +15,9 @@ import java.util.TreeSet;
 
 import static org.junit.Assert.*;
 import static org.web.kyc.comparator.Comparator.compareImages;
+import static org.web.kyc.comparator.PDFComparator.comparePDFsContent;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
+import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
 
 public class SubsidiariesPage extends WebDriverUtils {
@@ -150,11 +153,7 @@ public class SubsidiariesPage extends WebDriverUtils {
             }
         }
         clickOnWebElement(By.linkText(legalTitle));
-        try {
-            Thread.sleep(1000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
     }
 
     public void eCaptureSubsidiariesPage() {
@@ -162,18 +161,26 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void aCaptureSubsidiariesPage() {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         takeSnapshot("./src/test/resources/actual/aSubsidiariesPage.png");
     }
 
     public void compareSnapshotsForSubsidiaries() {
+        waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eSubsidiariesPage.png",
-                        readProperties().getSnapshotPath() + "/actual/aSubsidiariesPage.png",
-                        readProperties().getSnapshotPath() + "/difference/dSubsidiariesPage.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesPage.png",
+                        readProperties().getTestResourcePath() + "/actual/aSubsidiariesPage.png",
+                        readProperties().getTestResourcePath() + "/difference/dSubsidiariesPage.png"));
+    }
+
+    public void verifySavedSubsidiariesPDFFile() {
+        waitForInMilliSeconds(3000L);
+        try {
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/subsidiaries_summary.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/subsidiaries_summary.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

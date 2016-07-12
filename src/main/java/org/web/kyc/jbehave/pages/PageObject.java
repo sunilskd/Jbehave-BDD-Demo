@@ -11,8 +11,11 @@ public class PageObject {
     private EntityDetailsPage entityDetailsPage;
     private AuditPage auditPage;
     private GroupStructurePage groupStructurePage;
-    private SubsidiariesGraphPage subsidiariesGraphPage;
-    private OwnersGraphPage ownersGraphPage;
+    private GraphsPage graphsPage;
+    private GraphControlsUtils graphControlsUtils;
+    private SidePanelUtils sidePanelUtils;
+    private ErrorScreenPage errorScreenPage;
+    private BAIntegrationPage baIntegrationPage;
 
     public PageObject(WebDriverProvider driverProvider) {
         this.driverProvider = driverProvider;
@@ -60,18 +63,39 @@ public class PageObject {
         return groupStructurePage;
     }
 
-    public SubsidiariesGraphPage subsidiariesGraphPage(){
-        if(subsidiariesGraphPage == null){
-            subsidiariesGraphPage = new SubsidiariesGraphPage(driverProvider);
+    public GraphsPage graphsPage(){
+        if(graphsPage == null){
+            graphsPage = new GraphsPage(driverProvider);
         }
-        return subsidiariesGraphPage;
+        return graphsPage;
     }
 
-    public OwnersGraphPage ownersGraphPage(){
-        if(ownersGraphPage == null){
-            ownersGraphPage = new OwnersGraphPage(driverProvider);
+    public GraphControlsUtils graphControlsUtils(){
+        if(graphControlsUtils == null){
+            graphControlsUtils = new GraphControlsUtils(driverProvider);
         }
-        return ownersGraphPage;
+        return graphControlsUtils;
+    }
+
+    public SidePanelUtils sidePanelUtils(){
+        if(sidePanelUtils == null){
+            sidePanelUtils = new SidePanelUtils(driverProvider);
+        }
+        return sidePanelUtils;
+    }
+
+    public ErrorScreenPage errorScreenPage(){
+        if(errorScreenPage == null){
+            errorScreenPage = new ErrorScreenPage(driverProvider);
+        }
+        return errorScreenPage;
+    }
+
+    public BAIntegrationPage baIntegrationPage(){
+        if(baIntegrationPage == null){
+            baIntegrationPage = new BAIntegrationPage(driverProvider);
+        }
+        return baIntegrationPage;
     }
 
 }

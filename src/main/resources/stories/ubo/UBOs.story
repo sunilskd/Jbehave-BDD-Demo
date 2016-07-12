@@ -23,6 +23,7 @@ Covers below features:
 JIRA ID - KYC-90 -  UBO user can view list of UBOs
 JIRA ID - KYC-253 - Add source to UBO list
 JIRA ID - KYC-195 - UBO user can filter UBO list by percent ownership
+JIRA ID - KYC-315 - UBO list - dates are not displayed.
 
 Meta:@owners @ubo @ubos
 
@@ -50,6 +51,7 @@ Then the ubo user should see the below list of UBOs (person or persons)ordered b
 |QA Test Person D|QA Legal Entity C|49.23|27 Mar 2015|Legal Entity C owned by Person D|
 |QA Test Person E|QA Legal Entity A|49.23|27 Mar 2015|Legal Entity A owned by Person E, Legal Entity A is also owned by Person A|
 |QA Test Person H|QA Legal Entity D|49.23|27 Mar 2015|Legal Entity C owned by Person D|
+|QA Test Person A|QA Legal Entity A|45.52|Mar 2015||
 |QA Test Person A|QA Legal Entity A|45.52|Mar 2015||
 |QA Test Person B|QA Legal Entity B|40.23|27 Mar 2015|Legal Entity B owned by Person B|
 |QA Test Person G|QA Legal Entity C|4.93|27 Mar 2015|Legal Entity C owned by Person G|
@@ -101,7 +103,6 @@ And the user clicks on the owners tab
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
 |UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
 |Japan Finance Corporation|Japan Bank For International Cooperation||11 Nov 2011|Japan Bank For International Cooperation|
-
 
 Examples:
 |fid|

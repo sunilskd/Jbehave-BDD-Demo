@@ -6,14 +6,20 @@ import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import static org.junit.Assert.*;
 import static org.web.kyc.comparator.Comparator.compareImages;
+import static org.web.kyc.comparator.PDFComparator.comparePDFsContent;
 import static org.web.kyc.jbehave.pages.CommonUtils.selectedCountryHighlight;
+import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
+import static org.web.kyc.utils.FilesUtils.*;
 
 public class OwnersPage extends WebDriverUtils {
 
@@ -38,7 +44,7 @@ public class OwnersPage extends WebDriverUtils {
     private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners'] //tbody");
     private String direct_owners_row_for_country_xpath = "//*[td='";
     private By direct_owners_country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
-    private By ubo_header_text_xpath = By.xpath(".//*[@id='content-view']/div[2]/div/h1");
+    private By ubo_header_text_xpath = By.xpath("//*[@id='content-view']/div[2]/div/div/h1");
     private By ubo_name_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[1]");
     private By ubo_entity_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[2]");
     private By ubo_percentage_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[3]");
@@ -49,7 +55,10 @@ public class OwnersPage extends WebDriverUtils {
     private By ubo_percentage_owned_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[3]");
     private By ubo_date_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[4]");
     private By ubo_source_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[5]");
-    private By no_ubo_msg_text_xpath = By.xpath("//*[@id='content-view']/div[2]/p");
+    private By no_ubo_msg_text_xpath = By.xpath("//p[@class='notification']");
+    private By in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
+    private By ubo_declaration_document_link_text_xpath =By.xpath("//div[2]/div/a");
+
     Set<String> eCountryHighlightList = new TreeSet<>();
 
     public OwnersPage(WebDriverProvider driverProvider) {
@@ -88,7 +97,7 @@ public class OwnersPage extends WebDriverUtils {
     public void verifyDirectOwnersHeaders(){
         waitForWebElementToAppear(direct_owners_name_header_text_xpath);
         /* BUG - KYC-310*/
-        assertEquals("Owners", getWebElementText(direct_owners_header_text_xpath));
+        assertEquals("Direct Owners", getWebElementText(direct_owners_header_text_xpath));
         assertEquals("NAME",getWebElementText(direct_owners_name_header_text_xpath));
         assertEquals("COUNTRY",getWebElementText(direct_owners_country_header_text_xpath));
         assertEquals("%",getWebElementText(direct_owners_percentage_header_text_xpath));
@@ -190,11 +199,7 @@ public class OwnersPage extends WebDriverUtils {
             }
         }
         clickOnWebElement(By.linkText(legalTitle));
-        try {
-            Thread.sleep(1000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
     }
 
     public void openLegalTitleInDirectOwnersListInNewWindow(String legalTitle) {
@@ -233,19 +238,16 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void aCaptureOwnersPage() {
-        try {
-            Thread.sleep(2000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        waitForInMilliSeconds(3000L);
         takeSnapshot("./src/test/resources/actual/aOwnersPage.png");
     }
 
     public void compareSnapshotsForOwners() {
+        waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getSnapshotPath() + "/expected/eOwnersPage.png",
-                        readProperties().getSnapshotPath() + "/actual/aOwnersPage.png",
-                        readProperties().getSnapshotPath() + "/difference/dOwnersPage.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersPage.png",
+                        readProperties().getTestResourcePath() + "/actual/aOwnersPage.png",
+                        readProperties().getTestResourcePath() + "/difference/dOwnersPage.png"));
     }
 
     public void sVerifyUBOList(ExamplesTable uboListExamTable) {
@@ -269,7 +271,39 @@ public class OwnersPage extends WebDriverUtils {
 
     public void verifyNoUBOMsg() {
         waitForWebElementToAppear(no_ubo_msg_text_xpath);
+        assertEquals("Ultimate Beneficial Owners", getWebElementText(ubo_header_text_xpath));
         assertEquals("No known entities.", getWebElementText(no_ubo_msg_text_xpath));
+        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
     }
 
+    public void verifyInProductMessage(){
+        waitForWebElementToAppear(in_product_msg_text_xpath);
+        assertEquals("Ultimate Beneficial Owners", getWebElementText(ubo_header_text_xpath));
+        assertEquals("There is UBO data available for this entity. You currently do not have access to this data, please subscribe.", getWebElementText(in_product_msg_text_xpath));
+    }
+
+    public void verifySavedPDFFile() {
+        waitForInMilliSeconds(3000L);
+        try {
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/owners_summary.pdf",
+                                readProperties().getTestResourcePath() + "/pdfs/actual/owners_summary.pdf",
+                                readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifyNoUBOSection() {
+        assertFalse(isWebElementDisplayed(ubo_header_text_xpath));
+        assertFalse(isWebElementDisplayed(no_ubo_msg_text_xpath));
+        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+    }
+
+    public void verifyNoInProductMessage() {
+        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+    }
+
+    public void verifyNoUBODDRLink() {
+        assertFalse(isWebElementDisplayed(ubo_declaration_document_link_text_xpath));
+    }
 }
