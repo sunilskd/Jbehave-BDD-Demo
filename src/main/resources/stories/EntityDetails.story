@@ -103,11 +103,12 @@ And the user should see regulators information, sorted alphabetically in the ent
 |BOA|
 |Bundesanstalt für Finanzdienstleistungsaufsicht|
 
-And the user should see website information http://www.berlinhyp.de in the summary section of entity details page
+When the user clicks on <website> link in footer section
+Then user is taken to a URL http://www.berlinhyp.de/ that opens in a new window
 
 Examples:
-|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
-|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||
+|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|website|
+|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||http://www.berlinhyp.de|
 
 Scenario: KYC user can view active swift bic list in entity details
 Meta:@static
