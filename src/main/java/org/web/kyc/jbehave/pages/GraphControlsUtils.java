@@ -101,7 +101,7 @@ public class GraphControlsUtils extends WebDriverUtils {
 
     public void verifyUBOFilterIsUncheckedByDefault() {
         waitForWebElementToAppear(graph_ubo_filter_label_xpath);
-        assertEquals("Highlight Ultimate Beneficial Owner", getWebElementText(graph_ubo_filter_label_xpath));
+        assertEquals("Highlight Ultimate Beneficial Owners", getWebElementText(graph_ubo_filter_label_xpath));
         assertTrue(isWebElementDisplayed(graph_ubo_filter_checkbox_unchecked_state_xpath));
     }
 
