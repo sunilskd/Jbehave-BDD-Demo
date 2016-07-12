@@ -564,6 +564,13 @@ public class GraphsPage extends WebDriverUtils {
                         readProperties().getTestResourcePath() + "/difference/d"+imageName+".png" ));
     }
 
+    public void compareExpectedAndActualSnapshotForOwnerstruncatedGraph(String imageName) {
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eOwners"+imageName+".png",
+                        readProperties().getTestResourcePath() + "/actual/a"+imageName+".png",
+                        readProperties().getTestResourcePath() + "/difference/d"+imageName+".png" ));
+    }
+
     public void clickOnShowMoreLink(String nodeTitle) {
         List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
         for(int i=0; i<nodes.size(); i++){

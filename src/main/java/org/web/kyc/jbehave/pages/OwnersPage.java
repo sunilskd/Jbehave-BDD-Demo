@@ -306,4 +306,9 @@ public class OwnersPage extends WebDriverUtils {
     public void verifyNoUBODDRLink() {
         assertFalse(isWebElementDisplayed(ubo_declaration_document_link_text_xpath));
     }
+
+    public void eCaptureOwnersPageTruncatedGraph(String imageName) {
+        waitForInMilliSeconds(5000L);
+        takeSnapshot("./src/test/resources/expected/eOwners"+imageName+".png");
+    }
 }
