@@ -292,7 +292,7 @@ And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
-Then user is taken to the graph page of that legal entity <nodeTitle>
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
 
 Examples:
@@ -308,7 +308,7 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
-Then user is taken to the graph page of that legal entity <nodeTitle>
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
 
 Examples:
@@ -325,7 +325,7 @@ And the user clicks on the graph button
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
 Then the user should see the side panel closed and should be able to continue in the graphs
-Then user is taken to the graph page of that legal entity <nodeTitle>
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
 
 Examples:

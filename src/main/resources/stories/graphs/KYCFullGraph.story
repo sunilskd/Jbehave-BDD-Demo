@@ -20,6 +20,7 @@ JIRA ID - KYC-156 - User will see in product message on full graph if they do no
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
 JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
 JIRA ID - KYC-241 - Do not display the free text when the % filters are applied.
+JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 
 Meta:@kycfullgraph @kyc
 
@@ -622,3 +623,16 @@ Then the user should see the below owners for the legal entity QA Legal Entity 1
 Examples:
 |fid|
 |LE-10|
+
+Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
+
+Examples:
+|fid|nodeTitle|
+|9461|The Miyazaki Bank Ltd|
