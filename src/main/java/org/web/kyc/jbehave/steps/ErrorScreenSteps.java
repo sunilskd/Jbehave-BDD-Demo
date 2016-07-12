@@ -12,20 +12,29 @@ public class ErrorScreenSteps {
     }
 
     @When("the application is down due to any reason")
-    public void launchErrorScreen(){
-        pageObject.errorScreenPage().launchErrorScreen();
+    public void launchUnexpectedServerErrorScreen(){
+        pageObject.errorScreenPage().launchUnexpectedServerErrorScreen();
     }
 
-    @Then("the user should see 500 error screen")
-    public void verifyErrorMessageIsDisplayed(){
-        pageObject.errorScreenPage().verifyErrorMessageIsDisplayed();
+    @Then("the user should see 500 unexpected server error page")
+    public void verifyUnexpectedServerErrorPage(){
+        pageObject.errorScreenPage().verifyUnexpectedServerErrorPage();
     }
 
-    @Then("the user should see 404 error screen")
-    public void verifyErrorScreenIsDisplayed(){
-        pageObject.errorScreenPage().verifyErrorScreenIsDisplayed();
+    @Then("the user should see 404 page not found error page")
+    public void verifyPageNotFoundPage(){
+        pageObject.errorScreenPage().verifyPageNotFoundPage();
     }
 
+    @When("user tries to log in and is not successfully authenticated on new module")
+    public void launchAccessDeniedPage(){
+        pageObject.errorScreenPage().launchAccessDeniedPage();
+    }
+
+    @Then("the user should see 401 access denied error page")
+    public void verifyAccessDeniedPage(){
+        pageObject.errorScreenPage().verifyAccessDeniedPage();
+    }
 }
 
 

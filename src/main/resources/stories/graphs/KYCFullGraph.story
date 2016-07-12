@@ -459,7 +459,6 @@ Then the user should see the multiple appearance bar for <legalEntity> indicatin
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
-And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
 
 Examples:
 |fid|legalEntity|countValue|
