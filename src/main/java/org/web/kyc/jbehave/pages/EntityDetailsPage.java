@@ -194,5 +194,9 @@ public class EntityDetailsPage extends WebDriverUtils {
         assertEquals("Website" ,getWebElementText(entity_details_website_label_text_xpath));
     }
 
+    public void sVerifyWebsiteInfo(String website) {
+        assertEquals(website,getWebElementText(entity_details_website_text_xpath));
+        assertEquals("Website" ,getWebElementText(entity_details_website_label_text_xpath));
+    }
 
 }

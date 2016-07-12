@@ -112,4 +112,9 @@ public class EntityDetailsSteps {
     public void dVerifyWebsiteInfo(){
         pageObject.entityDetailsPage().dVerifyWebsiteInfo();
     }
+
+    @Then("the user should see website information $website in the summary section of entity details page")
+    public void sVerifyWebsiteInfo(@Named("$website") String website){
+        pageObject.entityDetailsPage().sVerifyWebsiteInfo(website);
+    }
 }

@@ -103,6 +103,8 @@ And the user should see regulators information, sorted alphabetically in the ent
 |BOA|
 |Bundesanstalt für Finanzdienstleistungsaufsicht|
 
+And the user should see website information http://www.berlinhyp.de in the summary section of entity details page
+
 Examples:
 |fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
 |58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||
