@@ -107,4 +107,9 @@ public class EntityDetailsSteps {
     public void compareSnapshotsForEntityDetails(){
         pageObject.entityDetailsPage().compareSnapshotsForEntityDetails();
     }
+
+    @Then("the user should see website information in the summary section of entity details page")
+    public void dVerifyWebsiteInfo(){
+        pageObject.entityDetailsPage().dVerifyWebsiteInfo();
+    }
 }

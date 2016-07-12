@@ -36,6 +36,8 @@ public class EntityDetailsPage extends WebDriverUtils {
     private By entity_details_stock_and_ticker_symbol_label_text_xpath=By.xpath(".//*[@id='entity-lei']/tbody/tr[2]/th");
     private By entity_details_regulators_list_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/td/span");
     private By entity_details_regulators_label_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/th");
+    private By entity_details_website_text_xpath=By.xpath("//td/a");
+    private By entity_details_website_label_text_xpath=By.xpath("//*[@id='entity-head-office']/tbody/tr[2]/th");
     private Document entityDetailsDocument;
 
     public EntityDetailsPage(WebDriverProvider driverProvider) {
@@ -186,4 +188,11 @@ public class EntityDetailsPage extends WebDriverUtils {
                                 readProperties().getTestResourcePath() + "/actual/aEntityDetails.png",
                                 readProperties().getTestResourcePath() + "/difference/dEntityDetails.png"));
     }
+
+    public void dVerifyWebsiteInfo() {
+        assertEquals(entityDetailsDocument.getElementsByTagName("website").item(0).getTextContent(),getWebElementText(entity_details_website_text_xpath));
+        assertEquals("Website" ,getWebElementText(entity_details_website_label_text_xpath));
+    }
+
+
 }
