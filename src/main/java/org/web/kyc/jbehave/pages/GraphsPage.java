@@ -575,13 +575,18 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void clickOnShowMoreLink(String nodeTitle) {
+        try{
         List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
         for(int i=0; i<nodes.size(); i++){
             if(nodes.get(i).getText().contains(nodeTitle)){
                 waitForInMilliSeconds(3000L);
                 getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][3]"))).perform();
+                Thread.sleep(5000L);
                 break;
             }
+        }
+    }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
