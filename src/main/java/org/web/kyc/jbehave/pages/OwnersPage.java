@@ -43,7 +43,7 @@ public class OwnersPage extends WebDriverUtils {
     private By direct_owners_source_text_xpath = By.xpath("//*[@id='direct-owners'] //td[5]");
     private By no_direct_owners_msg_text_xpath = By.xpath("//*[@class='notification ng-scope']");
     private By direct_owners_percentage_meter_bar_xpath = By.xpath("//*[@class='percent-meter ng-scope'] //div[@class='measure']");
-    private By direct_owners_no_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners'] //div[@class='meter ng-isolate-scope ng-hide']");
+    private By direct_owners_no_percentage_meter_bar_xpath = By.xpath("//*[@id='direct-owners'] //div[@class='meter ng-isolate-scope'][@style='display: none;']");
     private String direct_owners_highlighted_xpath = "//*[@id='direct-owners']  //*[@class='ng-scope highlight']";
     private By direct_owners_not_highlighted_xpath = By.xpath("//*[@id='direct-owners'] //tbody[@class='ng-scope']");
     private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners'] //tbody");

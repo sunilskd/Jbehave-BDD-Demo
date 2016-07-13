@@ -21,6 +21,7 @@ JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in produc
 JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
 JIRA ID - KYC-241 - Do not display the free text when the % filters are applied.
 JIRA-ID - KYC-397 - Truncate large full graph
+JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 
 Meta:@kycfullgraph @kyc
 
@@ -460,7 +461,6 @@ Then the user should see the multiple appearance bar for <legalEntity> indicatin
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
-And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
 
 Examples:
 |fid|legalEntity|countValue|
@@ -624,6 +624,19 @@ Then the user should see the below owners for the legal entity QA Legal Entity 1
 Examples:
 |fid|
 |LE-10|
+
+Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
+
+Examples:
+|fid|nodeTitle|
+|9461|The Miyazaki Bank Ltd|
 
 Scenario: Truncate large full graph
 1. If legal entity in focus returns greater than 1500 triples for ownership and an ownership relationship has less than 5 percent, graph displays less than 500 owner nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed

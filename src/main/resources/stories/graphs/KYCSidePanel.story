@@ -8,6 +8,7 @@ JIRA ID - KYC-353 - Percentage ownership is truncating the 2nd decimal value if 
 JIRA ID - KYC-16 - KYC user can click link to another entity in owners graph
 JIRA ID - KYC-273 - User can click link to another entity in full graph
 JIRA ID - KYC-73 - KYC user can click link to another entity in subsidiary graph
+JIRA ID - KYC-272 - User can view website in side panel for legal entity on a graph
 
 Meta:@kycsidepanel @kyc
 
@@ -19,6 +20,7 @@ Scenario: View side panel for legal entity on owners graph
 a. 0. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity
    1. With head office address elements with varying "UseInAddress" flag value true for each element (display element if UseInAddress is true)
    2. With head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
+   3. Entity With website, display hyperlink in details section of side panel
 b. 0. Active regulation relationships exist for entity user is viewing, display in entity details summary section sorted alphabetically by legal title
    1. If active stock exchange relationship(s) exist, display legal title of stock exchange sort first by primary = true, then by legal title
 c. 0. If no regulation relationship exists, then display field label but no value
@@ -26,6 +28,8 @@ c. 0. If no regulation relationship exists, then display field label but no valu
 d. 0. If no primary physical address exists for head office, display field label but no value
    1. If inactive stock exchange relationship, then display field label but no value
    2. If only inactive regulation relationship exists, then display field label but no value
+   3. If website is null, display field label in details section of side panel but no value
+e. If multiple websites are present, then display one website, whichever is found first on the details section of side panel
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -33,7 +37,7 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
+Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|
@@ -41,6 +45,7 @@ Examples:
 |58285|Berlin Hyp AG|
 |52147|London Stock Exchange Plc|
 |LE-6|QA Legal Entity 6|
+|732|Banco Indusval SA|
 
 Scenario: Covers below scenarios
 a. 0. If multiple active subsidiary relationships exist and are displayed on list, order by percent ownership first then by legal title
@@ -113,7 +118,7 @@ When the user enters percentage as 73 in ownership percentage filter text box in
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should not see the ultimate beneficial owners section in the side panel in the graphs
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
+Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|switchNode|
@@ -126,12 +131,14 @@ a. 0. User clicks title of legal entity on node (could be owner on graph or root
    3. User clicks close icon, side panel hides
    4. User clicks someplace else on screen outside of side panel, panel does not close
    5. If no stock exchange relationship exists, display field label but no value
+   6. Entity With website, display hyperlink in details section of side panel
 b. 0. Active regulation relationships exist for entity user is viewing, display in entity details summary section sorted alphabetically by legal title
    1. If active stock exchange relationship(s) exist, display legal title of stock exchange sort first by primary = true, then by legal title
 c. 0. If no regulation relationship exists, then display field label but no value
 d. 0. If no primary physical address exists for head office, display field label but no value
    1. If inactive stock exchange relationship, then display field label but no value
    2. If only inactive regulation relationship exists, then display field label but no value
+   3. If website is null, display field label in details section of side panel but no value
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -139,7 +146,7 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
+Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the side panel still open in the graphs
 When the user clicks on close button on the side panel in the graphs
@@ -216,9 +223,9 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
+Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
+Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|switchNode|
@@ -233,7 +240,7 @@ And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
-Then user is taken to the graph page of that legal entity <nodeTitle>
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
 
 Examples:
@@ -249,7 +256,7 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
-Then user is taken to the graph page of that legal entity <nodeTitle>
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
 
 Examples:
@@ -266,9 +273,24 @@ And the user clicks on the graph button
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
 Then the user should see the side panel closed and should be able to continue in the graphs
-Then user is taken to the graph page of that legal entity <nodeTitle>
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted in the graphs
 
 Examples:
 |fid|nodeTitle|legalEntity|
 |LE-6|QA Legal Entity 10|QA Legal Entity 10|
+
+Scenario: If multiple websites are present, then display one website, whichever is found first on the details section of side panel
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+When the user clicks on direct relationship only filter checkbox in the graphs
+And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
+When the user clicks on <website> link in the entity details section of side panel
+Then user is taken to a URL http://www.berlinhyp.de/ that opens in a new window
+
+Examples:
+|fid|nodeTitle|website|
+|732|Banco Indusval SA|http://www.bip.b.br|

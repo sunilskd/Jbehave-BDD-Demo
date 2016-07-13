@@ -114,7 +114,7 @@ public class CommonUtils extends WebDriverUtils {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         waitForWebElementToAppear(footer_copyrights_label_text_xpath);
         assertEquals("© Reed Business Information Limited " + year,getWebElementText(footer_copyrights_label_text_xpath));
-     }
+    }
 
     public void verifyFooterLinks(String footerLink){
         findElement(By.linkText(footerLink)).click();
@@ -122,7 +122,7 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyFooterLogos(String verifyFooterLogos){
-       findElement(By.className(verifyFooterLogos)).click();
+        findElement(By.className(verifyFooterLogos)).click();
     }
 
 

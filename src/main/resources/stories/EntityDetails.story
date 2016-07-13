@@ -9,6 +9,7 @@ JIRA ID - KYC-99 - KYC user can view stock exchange info
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
 JIRA ID - KYC-211 - LEIs are not sorted alphabetically in Entity Details Identifier Section
+JIRA ID - KYC-204 - Display legal entity website on entity details
 
 Meta:@entitydetails @kyc @ubo
 
@@ -22,6 +23,7 @@ a. 0. With head office address elements with varying "UseInAddress" flag values 
    2. With GIIN (display in identifiers section)
    3. With head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
    4. If active SWIFT BICs have assigned institution that is the entity user is viewing, then display SWIFT BICs on entity details sorted first by length (short to long) then by alpha-numeric
+   5. Entity With website, display hyperlink in summary section
 b. 0. With FATCA status value (display in identifiers section)
    1. If inactive SWIFT BIC has assigned institution that is the entity user is viewing, then do not display
 c. 0. KYC users should see Indetifiers labels even when there are no values for the identifiers
@@ -29,6 +31,7 @@ c. 0. KYC users should see Indetifiers labels even when there are no values for 
    2. If no LEI, display field label in identifiers section but no value
    3. If no FATCA status, display field label in identifiers section but no value
    4. If no active SWIFT BICs have assigned institution that is the entity user is viewing, display the field label but no value
+   5. If website is null, display field label in summary section but no value
 d. If no primary physical address exists for head office, display field label in summary section but no value
 e. Display all head office entity where useInaddress is true
 f. 0. Active regulation relationships exist for entity user is viewing, display in entity details summary section sorted alphabetically by legal title
@@ -42,6 +45,7 @@ j. If inactive stock exchange relationship, then display field label but no valu
 k. 0. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
    1. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
 l. If stock exchange relationship is active and stock exchange legal entity is inactive, then display field label but no value
+m. If multiple websites are present, then display one website, whichever is found first
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -53,6 +57,7 @@ And the user should see the list of swift bics sorted first by length (short to 
 And the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
 And the user should see the list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
 And the user should see regulators information, sorted by alphabetically in the entity details page
+And the user should see website information in the summary section of entity details page
 
 Examples:
 |fid|
@@ -68,6 +73,7 @@ Examples:
 |519|
 |15586|
 |1857|
+|732|
 
 Scenario: KYC user can view entity details
 Meta:@static
@@ -97,9 +103,12 @@ And the user should see regulators information, sorted alphabetically in the ent
 |BOA|
 |Bundesanstalt für Finanzdienstleistungsaufsicht|
 
+When the user clicks on <website> link in the entity details section
+Then user is taken to a URL http://www.berlinhyp.de/ that opens in a new window
+
 Examples:
-|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|
-|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||
+|fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|website|
+|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||http://www.berlinhyp.de|
 
 Scenario: KYC user can view active swift bic list in entity details
 Meta:@static

@@ -139,12 +139,4 @@ public class WebDriverUtils extends WebDriverPage {
     public void moveMouseTo(By by) {
         getActions().moveToElement(findElement(by)).build().perform();
     }
-
-    public WebElement getWebElementByTagName(String tagName){
-        return findElement(By.tagName(tagName));
-    }
-
-    public List<WebElement> getWebElementsByTagName(String tagName){
-        return findElements(By.tagName(tagName));
-    }
 }

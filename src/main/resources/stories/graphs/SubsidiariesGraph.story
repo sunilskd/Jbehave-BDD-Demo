@@ -11,6 +11,7 @@ JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
 JIRA ID - KYC-318 - Country highlights is not working for the root node.
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
+JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -525,13 +526,25 @@ Examples:
 |fid|
 |LE-6|
 
+Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
+
+Examples:
+|fid|nodeTitle|
+|9461|The Miyazaki Bank Ltd|
+
 
 Scenario: KYC-396 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
-And the user clicks on the graph button
 Then the user should see the subsidiaries graph
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs

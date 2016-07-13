@@ -23,7 +23,7 @@ public class GraphsPage extends WebDriverUtils {
     private String graph_root_node = "//*[local-name()='g'][@id=1]";
     private String graph_root_node_highlight_xpath = "[contains(@class,'highlight-focus')]";
     private String graph_legal_entity_title_xpath = "/*[local-name()='text']/*[local-name()='title']";
-    private String graph_percent_xpath = "/*[local-name()='text'][1]/*[local-name()='tspan'][@x='40']";
+    private String graph_percent_xpath = "/*[local-name()='text'][1]/*[local-name()='tspan'][@class='ownership'][@x='40']";
     private By graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
     private By graph_button_xpath = By.xpath("//*[@id='view-options']/ul/li[2]");
     private By graph_draw_area_xpath = By.xpath("//*[local-name()='g'][@class='drawarea']");
@@ -132,7 +132,7 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyNoEntitiesMsg() {
-        waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
+        //waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
         waitForInMilliSeconds(3000L);
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
         assertFalse(isWebElementDisplayed(graph_in_product_msg_text_xpath));
@@ -193,7 +193,7 @@ public class GraphsPage extends WebDriverUtils {
         for (int i = 0; i < multipleNode.size(); i++) {
                 String entityTile = multipleNode.get(i).findElement(graph_multiple_node_title_xpath).getText();
                 if (entityTile.equalsIgnoreCase(legalEntity)) {
-                    String appearsCount = multipleNode.get(i).findElements(By.tagName("text")).get(2).getText();
+                    String appearsCount = multipleNode.get(i).findElements(By.tagName("text")).get(3).getText();
                     assertEquals(appearsCount, countValue);
                 }
         }
@@ -244,7 +244,7 @@ public class GraphsPage extends WebDriverUtils {
         List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
         for(int i=0; i<nodes.size(); i++){
             if(nodes.get(i).getText().contains(nodeTitle)){
-                getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']/*[local-name()='tspan'][1]"))).perform();
+                getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']"))).perform();
             }
         }
     }
@@ -584,4 +584,5 @@ public class GraphsPage extends WebDriverUtils {
             }
         }
     }
+
 }
