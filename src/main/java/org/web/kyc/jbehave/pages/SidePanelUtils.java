@@ -43,7 +43,8 @@ public class SidePanelUtils extends WebDriverUtils {
     private By graph_side_panel_ubo_title_list_text_xpath =By.xpath("//*[@id='ubo']/tbody/tr/td[1]");
     private By graph_side_panel_ubo_entity_list_text_xpath =By.xpath("//*[@id='ubo']/tbody/tr/td[2]");
     private By graph_side_panel_ubo_percent_ownership_list_text_xpath =By.xpath("//*[@id='ubo']/tbody/tr/td[3]");
-
+    private By graph_side_panel_website_text_xpath =By.xpath("//tbody/tr[4]/td/a");
+    private By graph_side_panel_website_label_text_xpath =By.xpath("//tr[4]/th");
 
     public SidePanelUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -80,6 +81,7 @@ public class SidePanelUtils extends WebDriverUtils {
         for (int i =0; i < aStockExchangeList.size(); i++){
             assertEquals("Stock Exchange doesn't match at " + i, entityDetailsDocument.getElementsByTagName("stockExchange").item(i).getTextContent(), aStockExchangeList.get(i).getText());
         }
+        assertEquals(entityDetailsDocument.getElementsByTagName("website").item(0).getTextContent(),getWebElementText(graph_side_panel_website_text_xpath));
     }
 
     public void dVerifySidePanelLabels(){
@@ -89,6 +91,7 @@ public class SidePanelUtils extends WebDriverUtils {
         assertEquals("Stock Exchange", getWebElementText(graph_side_panel_stock_exchange_label_text_xpath));
         assertEquals("DIRECTLY OWNS", getWebElementText(graph_side_panel_direct_owners_label_text_xpath));
         assertEquals("DETAILS", getWebElementText(graph_side_panel_details_label_text_xpath));
+        assertEquals("Website", getWebElementText(graph_side_panel_website_label_text_xpath));
     }
 
     public void dVerifyDirectlyOwnsSectionInSidePanel(){

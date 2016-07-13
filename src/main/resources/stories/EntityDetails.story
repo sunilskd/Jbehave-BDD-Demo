@@ -103,7 +103,7 @@ And the user should see regulators information, sorted alphabetically in the ent
 |BOA|
 |Bundesanstalt für Finanzdienstleistungsaufsicht|
 
-When the user clicks on <website> link in footer section
+When the user clicks on <website> link in the entity details section
 Then user is taken to a URL http://www.berlinhyp.de/ that opens in a new window
 
 Examples:
