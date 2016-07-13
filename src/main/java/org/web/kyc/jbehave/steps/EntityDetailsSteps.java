@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -106,5 +107,20 @@ public class EntityDetailsSteps {
     @Then("the user should see the actual snapshot matching the expected snapshot for entity details page")
     public void compareSnapshotsForEntityDetails(){
         pageObject.entityDetailsPage().compareSnapshotsForEntityDetails();
+    }
+
+    @Then("the user should see website information in the summary section of entity details page")
+    public void dVerifyWebsiteInfo(){
+        pageObject.entityDetailsPage().dVerifyWebsiteInfo();
+    }
+
+    @Then("the user should see website information <website> in the summary section of entity details page")
+    public void sVerifyWebsiteInfo(@Named("website") String website){
+        pageObject.entityDetailsPage().sVerifyWebsiteInfo(website);
+    }
+
+    @When("the user clicks on <website> link in the entity details section")
+    @Alias("the user clicks on <website> link in the entity details section of side panel")
+    public void clickWebsiteUrl(@Named("website") String footerLink){pageObject.commonUtils().verifyFooterLinks(footerLink);
     }
 }

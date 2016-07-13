@@ -31,7 +31,7 @@ public class SidePanelSteps {
         pageObject.sidePanelUtils().verifySidePanelIsClosed();
     }
 
-    @Then("the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs")
+    @Then("the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs")
     public void dVerifyDetailsSectionInSidePanel(){
         pageObject.sidePanelUtils().dVerifyDetailsSectionInSidePanel();
     }
@@ -75,5 +75,9 @@ public class SidePanelSteps {
     @Then("the user should not see the ultimate beneficial owners section in the side panel in the graphs")
     public void verifyNoUBOSectionInSidePanel(){
         pageObject.sidePanelUtils().verifyNoUBOSectionInSidePanel();
+    }
+
+    @When("the user clicks on <website> link in the entity details section of side panel")
+    public void clickWebsiteUrl(@Named("website") String footerLink){pageObject.commonUtils().verifyFooterLinks(footerLink);
     }
 }

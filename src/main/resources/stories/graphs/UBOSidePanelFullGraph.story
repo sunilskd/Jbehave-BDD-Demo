@@ -6,6 +6,7 @@ JIRA ID - KYC-294 KYC user can view UBO list header in owners list and side pane
 JIRA ID - KYC-353 Percentage ownership is truncating the 2nd decimal value if it is zero.
 JIRA ID - KYC-353 Percentage ownership is truncating the 2nd decimal value if it is zero.
 JIRA ID - KYC-155 User will see in product message on owners graph if they do not have access to UBO data
+JIRA ID - KYC-272 - User can view website in side panel for legal entity on a graph
 
 Meta:@ubosidepanelfullgraph @ubo
 
@@ -17,6 +18,7 @@ Scenario: View side panel for legal entity on owners graph
 a. 0. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity
    1. With head office address elements with varying "UseInAddress" flag value true for each element (display element if UseInAddress is true)
    2. With head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
+   3. Entity With website, display hyperlink in details section of side panel
 b. 0. Active regulation relationships exist for entity user is viewing, display in entity details summary section sorted alphabetically by legal title
    1. If active stock exchange relationship(s) exist, display legal title of stock exchange sort first by primary = true, then by legal title
 c. 0. If no regulation relationship exists, then display field label but no value
@@ -24,6 +26,8 @@ c. 0. If no regulation relationship exists, then display field label but no valu
    2. If no primary physical address exists for head office, display field label but no value
    3. If inactive stock exchange relationship, then display field label but no value
    4. If only inactive regulation relationship exists, then display field label but no value
+   5. If website is null, display field label in details section of side panel but no value
+d. If multiple websites are present, then display one website, whichever is found first on the details section of side panel
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -31,13 +35,14 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
+Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|switchNode|
 |182042|BOA|
 |68997|Berlin Hyp AG|
 |LE-33|QA Legal Entity 6|
+|732|Banco Indusval SA|
 
 Scenario: Covers below scenarios
 a. 0. If multiple active subsidiary relationships exist and are displayed on list, order by percent ownership first then by legal title
@@ -132,7 +137,7 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
-Then the user should see complete head office address, regulators and stock exchanges in details section of side panel for the node user clicked in the graphs
+Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 
 Examples:
 |fid|nodeTitle|switchNode|
