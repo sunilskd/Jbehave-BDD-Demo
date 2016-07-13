@@ -153,13 +153,13 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the subsidiaries graph
-And the user captures the actual snapshot for truncated graph <imageName>
-And the user should see the actual snapshot matching the expected snapshot for truncated graph <imageName>
+And the user captures the actual snapshot for truncated graph <nodeTitle>
+And the user should see the actual snapshot matching the expected snapshot for truncated graph <nodeTitle>
 
 Examples:
-|fid|imageName|
-|5100|NipponLifeInsuranceCompany|
-|444|IntesaSanpaoloSpA|
+|fid|nodeTitle|
+|5100|Nippon Life Insurance Company|
+|444|Intesa Sanpaolo SpA|
 |90865|PNC Bancorp Inc|
 |477|Banco Bradesco SA|
 
@@ -171,12 +171,12 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the subsidiaries graph
 When the user enters percentage as 4 in ownership percentage filter text box in the graphs
-Then the user captures the actual snapshot for truncated graph <imageName>
-And the user should see the actual snapshot matching the expected snapshot for truncated graph <imageName>
+Then the user captures the actual snapshot for truncated graph <nodeTitle>
+And the user should see the actual snapshot matching the expected snapshot for truncated graph <nodeTitle>
 
 Examples:
-|fid|imageName|
-|9461|MeijiYasudaLifeInsuranceCompany|
+|fid|nodeTitle|
+|9461|Meiji Yasuda Life Insurance Company|
 
 Scenario: KYC-395 Verify below scenarios
 a. 0. If legal entity in focus returns 1500 triples or less, displays 500 owner nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
@@ -188,12 +188,12 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user captures the actual snapshot for truncated graph <imageName>
+Then the user captures the actual snapshot for truncated graph <nodeTitle>
 And the user should see the actual snapshot matching the expected snapshot for owners truncated graph <imageName>
 
 
 Examples:
-|fid|imageName|
+|fid|nodeTitle|
 |415|BancaPopolareValconcaScrl|
 |211|AustraliaandNewZealandBankingGroupLimited|
 |1038|BOA|
@@ -205,10 +205,10 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user enters percentage as 10 in ownership percentage filter text box in the graphs
-Then the user captures the actual snapshot for truncated graph <imageName>
+Then the user captures the actual snapshot for truncated graph <nodeTitle>
 And the user should see the actual snapshot matching the expected snapshot for owners truncated graph <imageName>
 
 
 Examples:
-|fid|imageName|
+|fid|nodeTitle|
 |211|AustraliaandNewZealandBankingGroupLimitedPercentageFilter|

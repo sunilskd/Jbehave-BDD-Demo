@@ -320,14 +320,14 @@ public class GraphsSteps {
         pageObject.graphsPage().compareExpectedAndActualSnapshotForFullGraph(nodeTitle);
     }
 
-    @Then("the user captures the actual snapshot for truncated graph <imageName>")
-    public void captureActualSnapShotForTruncatedGraph(@Named("imageName") String imageName){
-        pageObject.graphsPage().captureActualSnapShotForTruncatedGraph(imageName);
+    @Then("the user captures the actual snapshot for truncated graph <nodeTitle>")
+    public void captureActualSnapShotForTruncatedGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureActualSnapShotForTruncatedGraph(nodeTitle);
     }
 
-    @Then("the user should see the actual snapshot matching the expected snapshot for truncated graph <imageName>")
-    public void compareExpectedAndActualSnapshotForSubstruncatedGraph(@Named("imageName") String imageName){
-        pageObject.graphsPage().compareExpectedAndActualSnapshotForSubstruncatedGraph(imageName);
+    @Then("the user should see the actual snapshot matching the expected snapshot for truncated graph <nodeTitle>")
+    public void compareExpectedAndActualSnapshotForSubstruncatedGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().compareExpectedAndActualSnapshotForSubstruncatedGraph(nodeTitle);
     }
 
     @Then("the user should see the actual snapshot matching the expected snapshot for owners truncated graph <imageName>")

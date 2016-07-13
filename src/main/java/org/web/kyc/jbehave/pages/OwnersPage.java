@@ -1,13 +1,18 @@
 package org.web.kyc.jbehave.pages;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -307,8 +312,16 @@ public class OwnersPage extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(ubo_declaration_document_link_text_xpath));
     }
 
-    public void eCaptureOwnersPageTruncatedGraph(String imageName) {
-        waitForInMilliSeconds(5000L);
-        takeSnapshot("./src/test/resources/expected/eOwners"+imageName+".png");
+    public void eCaptureOwnersPageTruncatedGraph(String nodeTitle)  {
+        try {
+            nodeTitle = nodeTitle.replace(" ","");
+
+            File scrFile = ((TakesScreenshot) getDriverProvider().get()).getScreenshotAs(OutputType.FILE);
+            waitForInMilliSeconds(10000L);
+            FileUtils.copyFile(scrFile, new File("./src/test/resources/expected/eOwners"+nodeTitle+".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

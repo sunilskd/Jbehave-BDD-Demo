@@ -552,16 +552,18 @@ public class GraphsPage extends WebDriverUtils {
                         readProperties().getTestResourcePath() + "/difference/d"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png"));
     }
 
-    public void captureActualSnapShotForTruncatedGraph(String imageName) {
+    public void captureActualSnapShotForTruncatedGraph(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/a"+imageName+".png");
+        nodeTitle = nodeTitle.replace(" ","");
+        takeSnapshot("./src/test/resources/actual/a"+nodeTitle+".png");
     }
 
-    public void compareExpectedAndActualSnapshotForSubstruncatedGraph(String imageName) {
+    public void compareExpectedAndActualSnapshotForSubstruncatedGraph(String nodeTitle) {
+        nodeTitle = nodeTitle.replace(" ","");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesPage"+imageName+".png",
-                        readProperties().getTestResourcePath() + "/actual/a"+imageName+".png",
-                        readProperties().getTestResourcePath() + "/difference/d"+imageName+".png" ));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesPage"+nodeTitle+".png",
+                        readProperties().getTestResourcePath() + "/actual/a"+nodeTitle+".png",
+                        readProperties().getTestResourcePath() + "/difference/d"+nodeTitle+".png" ));
     }
 
     public void compareExpectedAndActualSnapshotForOwnerstruncatedGraph(String imageName) {
