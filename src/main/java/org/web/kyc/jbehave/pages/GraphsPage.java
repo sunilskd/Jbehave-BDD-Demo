@@ -23,7 +23,7 @@ public class GraphsPage extends WebDriverUtils {
     private String graph_root_node = "//*[local-name()='g'][@id=1]";
     private String graph_root_node_highlight_xpath = "[contains(@class,'highlight-focus')]";
     private String graph_legal_entity_title_xpath = "/*[local-name()='text']/*[local-name()='title']";
-    private String graph_percent_xpath = "/*[local-name()='text'][1]/*[local-name()='tspan'][@x='40']";
+    private String graph_percent_xpath = "/*[local-name()='text'][1]/*[local-name()='tspan'][@class='ownership'][@x='40']";
     private By graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
     private By graph_button_xpath = By.xpath("//*[@id='view-options']/ul/li[2]");
     private By graph_draw_area_xpath = By.xpath("//*[local-name()='g'][@class='drawarea']");
