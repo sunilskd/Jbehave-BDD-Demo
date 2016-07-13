@@ -330,9 +330,9 @@ public class GraphsSteps {
         pageObject.graphsPage().compareExpectedAndActualSnapshotForSubstruncatedGraph(nodeTitle);
     }
 
-    @Then("the user should see the actual snapshot matching the expected snapshot for owners truncated graph <imageName>")
-    public void compareExpectedAndActualSnapshotForOwnerstruncatedGraph(@Named("imageName") String imageName){
-        pageObject.graphsPage().compareExpectedAndActualSnapshotForOwnerstruncatedGraph(imageName);
+    @Then("the user should see the actual snapshot matching the expected snapshot for owners truncated graph <nodeTitle>")
+    public void compareExpectedAndActualSnapshotForOwnerstruncatedGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().compareExpectedAndActualSnapshotForOwnerstruncatedGraph(nodeTitle);
     }
 
     @When("the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs")

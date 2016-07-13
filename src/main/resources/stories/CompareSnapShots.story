@@ -189,14 +189,14 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user captures the actual snapshot for truncated graph <nodeTitle>
-And the user should see the actual snapshot matching the expected snapshot for owners truncated graph <imageName>
+And the user should see the actual snapshot matching the expected snapshot for owners truncated graph <nodeTitle>
 
 
 Examples:
 |fid|nodeTitle|
 |415|BancaPopolareValconcaScrl|
-|211|AustraliaandNewZealandBankingGroupLimited|
-|1038|BOA|
+|175270|Credit Agricole Caisse D'Epargne Investor Services (CACEIS)|
+
 
 Scenario: KYC-395 Verify Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph
 Given the user is on the ubo login page
@@ -204,11 +204,11 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-When the user enters percentage as 10 in ownership percentage filter text box in the graphs
+When the user enters percentage as 5 in ownership percentage filter text box in the graphs
 Then the user captures the actual snapshot for truncated graph <nodeTitle>
-And the user should see the actual snapshot matching the expected snapshot for owners truncated graph <imageName>
+And the user should see the actual snapshot matching the expected snapshot for owners truncated graph <nodeTitle>
 
 
 Examples:
 |fid|nodeTitle|
-|211|AustraliaandNewZealandBankingGroupLimitedPercentageFilter|
+|175270|Credit Agricole Caisse D'Epargne Investor Services (CACEIS) Percetage Filter|
