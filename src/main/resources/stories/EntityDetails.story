@@ -45,7 +45,6 @@ j. If inactive stock exchange relationship, then display field label but no valu
 k. 0. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
    1. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
 l. If stock exchange relationship is active and stock exchange legal entity is inactive, then display field label but no value
-m. If multiple websites are present, then display one website, whichever is found first
 Meta:@dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -73,7 +72,6 @@ Examples:
 |519|
 |15586|
 |1857|
-|732|
 
 Scenario: KYC user can view entity details
 Meta:@static
@@ -134,6 +132,17 @@ Then the user should see the swift bic list sorted first by length (short to lon
 Examples:
 |fid|
 |815|
+
+Scenario: If multiple websites are present, then display one website, whichever is found first
+Meta:@dynamic
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the entity details tab
+Then the user should see website information in the summary section of entity details page
+
+Examples:
+|fid|
+|732|
 
 Scenario: KYC user logout
 Given the user is on the ubo login page
