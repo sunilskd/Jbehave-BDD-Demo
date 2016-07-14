@@ -1,12 +1,13 @@
 package org.web.kyc.jbehave.pages;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -536,8 +537,16 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void captureExpectedSnapShotForFullGraph(String nodeTitle) {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/e"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png");
+//        takeSnapshot("./src/test/resources/expected/e"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png");
+        try {
+            waitForInMilliSeconds(3000L);
+            nodeTitle = nodeTitle.replace(" ","");
+            File scrFile = ((TakesScreenshot) getDriverProvider().get()).getScreenshotAs(OutputType.FILE);
+            waitForInMilliSeconds(10000L);
+            FileUtils.copyFile(scrFile, new File("./src/test/resources/expected/e"+nodeTitle+"FullGraphZoomIn.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void captureActualSnapShotForFullGraph(String nodeTitle) {

@@ -278,9 +278,7 @@ Examples:
 |175270|Credit Agricole Caisse D'Epargne Investor Services (CACEIS) Percetage Filter|
 
 
-Scenario: KYC-397 Verify below scenarios for full graph
-a. 0. If valid UBOs exist in database and were not part of a truncated path on the graph, UBO in-product message appears
-   1. If legal entity in focus returns 1500 triples or less, displays 500 owner nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+Scenario: KYC-397(Full Graph) Verify If legal entity in focus returns 1500 triples or less, displays 500 owner nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
 
 Given the user is on the ubo login page
 When the user login as a ubo user
@@ -296,7 +294,7 @@ Examples:
 |fid|nodeTitle|
 |30087|The Fukuoka Chuo Bank Ltd|
 
-Scenario: KYC-397 Verify Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph
+Scenario: KYC-397(Full Graph) Verify Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph
 Given the user is on the ubo login page
 When the user login as a ubo user
 Given the user is on the ubo login page
@@ -311,4 +309,35 @@ Then the user captures the expected snapshot for the <nodeTitle> full graph
 Examples:
 |fid|nodeTitle|
 |3670|Oesterreichische Kontrollbank AG|
+
+Scenario: KYC-397(Full Graph) Verify If valid UBOs exist in database and were not part of a truncated path on the graph, UBO in-product message appears
+
+Given the user is on the ubo login page
+When the user login as a kyc user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the full graph
+And the user captures the expected snapshot for the <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|
+|30087|The Fukuoka Chuo Bank Ltd KYC|
+
+Scenario: KYC-397(Full Graph) Verify below scenario for Full Graph If legal entity in focus displays less than 500 owner nodes, then level truncation does not apply
+Given the user is on the ubo login page
+When the user login as a ubo user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the full graph
+And the user captures the expected snapshot for the <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|
+|LE-6|QA Legal Entity 6|
 
