@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.pages;
 
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
@@ -172,21 +173,22 @@ public class EntityDetailsPage extends WebDriverUtils {
         }
     }
 
-    public void eCaptureEntityDetailsPage() {
-        takeSnapshot("./src/test/resources/expected/eEntityDetails.png");
+    public void eCaptureEntityDetailsPage(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/e" + nodeTitle.replace(" ","") + "EntityDetails.png");
     }
 
-    public void aCaptureEntityDetailsPage() {
+    public void aCaptureEntityDetailsPage(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aEntityDetails.png");
+        takeSnapshot("./src/test/resources/actual/a" + nodeTitle.replace(" ","") + "EntityDetails.png");
     }
 
-    public void compareSnapshotsForEntityDetails() {
+    public void compareSnapshotsForEntityDetails(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eEntityDetails.png",
-                                readProperties().getTestResourcePath() + "/actual/aEntityDetails.png",
-                                readProperties().getTestResourcePath() + "/difference/dEntityDetails.png"));
+                compareImages(
+                        readProperties().getTestResourcePath() + "/expected/e" + nodeTitle.replace(" ","") + "EntityDetails.png",
+                        readProperties().getTestResourcePath() + "/actual/a" + nodeTitle.replace(" ","") + "EntityDetails.png",
+                        readProperties().getTestResourcePath() + "/difference/d" + nodeTitle.replace(" ","") + "EntityDetails.png"));
     }
 
     public void dVerifyWebsiteInfo() {

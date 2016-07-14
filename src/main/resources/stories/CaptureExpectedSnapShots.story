@@ -6,11 +6,11 @@ Given the user is on the ubo login page
 When the user login as a kyc user
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
-And the user captures the expected snapshot for the entity details page
+And the user captures the expected snapshot for the <nodeTitle> entity details page
 
 Examples:
-|fid|
-|58285|
+|fid|nodeTitle|
+|58285|Berlin Hyp AG|
 
 Scenario: Capture subsidiaries snapshot
 Meta:@capturesubsidiaries @kyc
