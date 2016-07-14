@@ -312,16 +312,5 @@ public class OwnersPage extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(ubo_declaration_document_link_text_xpath));
     }
 
-    public void eCaptureOwnersPageTruncatedGraph(String nodeTitle)  {
-        try {
-            nodeTitle = nodeTitle.replace(" ","");
 
-            File scrFile = ((TakesScreenshot) getDriverProvider().get()).getScreenshotAs(OutputType.FILE);
-            waitForInMilliSeconds(10000L);
-            FileUtils.copyFile(scrFile, new File("./src/test/resources/expected/eOwners"+nodeTitle+".png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 }

@@ -189,8 +189,5 @@ public class OwnersSteps {
         pageObject.ownersPage().verifyNoUBODDRLink();
     }
 
-    @Then("the user captures the expected snapshot for the owners page <nodeTitle>")
-    public void eCaptureOwnersPageTruncatedGraph(@Named("nodeTitle")String nodeTitle){
-        pageObject.ownersPage().eCaptureOwnersPageTruncatedGraph(nodeTitle);
-    }
+
 }

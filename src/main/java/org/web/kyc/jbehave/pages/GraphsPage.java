@@ -537,16 +537,7 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void captureExpectedSnapShotForFullGraph(String nodeTitle) {
-//        takeSnapshot("./src/test/resources/expected/e"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png");
-        try {
-            waitForInMilliSeconds(3000L);
-            nodeTitle = nodeTitle.replace(" ","");
-            File scrFile = ((TakesScreenshot) getDriverProvider().get()).getScreenshotAs(OutputType.FILE);
-            waitForInMilliSeconds(10000L);
-            FileUtils.copyFile(scrFile, new File("./src/test/resources/expected/e"+nodeTitle+"FullGraphZoomIn.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        takeSnapshot("./src/test/resources/expected/e"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png");
     }
 
     public void captureActualSnapShotForFullGraph(String nodeTitle) {
@@ -597,6 +588,20 @@ public class GraphsPage extends WebDriverUtils {
     }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void eCaptureSubsidiariesPageTruncatedGraph(String nodeTitle) {
+        nodeTitle = nodeTitle.replace(" ","");
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eSubsidiariesPage"+nodeTitle+".png");
+    }
+
+    public void eCaptureOwnersPageTruncatedGraph(String nodeTitle)  {
+        nodeTitle = nodeTitle.replace(" ","");
+        waitForInMilliSeconds(3000L);
+        takeSnapshot("./src/test/resources/expected/eOwners"+nodeTitle+".png");
+
+
     }
 
 }

@@ -300,6 +300,7 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the full graph
 And the user captures the actual snapshot for the <nodeTitle> full graph
+And the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph
 
 Examples:
 |fid|nodeTitle|

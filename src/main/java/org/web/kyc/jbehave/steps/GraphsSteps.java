@@ -339,4 +339,14 @@ public class GraphsSteps {
     public void clickOnShowMoreLink(@Named("nodeTitle") String nodeTitle){
         pageObject.graphsPage().clickOnShowMoreLink(nodeTitle);
     }
+
+    @Then("the user captures the expected snapshot for the subsidiaries page <nodeTitle>")
+    public void eCaptureSubsidiariesPageTruncatedGraph(@Named("nodeTitle")String nodeTitle){
+        pageObject.graphsPage().eCaptureSubsidiariesPageTruncatedGraph(nodeTitle);
+    }
+
+    @Then("the user captures the expected snapshot for the owners page <nodeTitle>")
+    public void eCaptureOwnersPageTruncatedGraph(@Named("nodeTitle")String nodeTitle){
+        pageObject.graphsPage().eCaptureOwnersPageTruncatedGraph(nodeTitle);
+    }
 }

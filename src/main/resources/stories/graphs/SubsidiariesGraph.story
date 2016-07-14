@@ -571,10 +571,12 @@ Examples:
 |9461|The Miyazaki Bank Ltd|
 
 Scenario: Truncate large full graph
-6. 5100 If legal entity in focus returns greater than 1500 triples for subsidiaries and a subsidiary relationship has less than 5 percent, graph displays less than 500 subsidiary nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
-7. 444 If legal entity in focus returns 1500 triples or less, displays 500 subsidiary nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
-8. 90865 If legal entity in focus returns greater than 1500 triples for subsidiaries, has a subsidiary relationship with less than 5 percent, and displays 500 subsidiary nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
-9. If legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated
-10. 477 If legal entity in focus displays less than 500 subs nodes, then level truncation does not apply
-13. 1038 Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
-14. 9461 Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph
+
+
+
+
+Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated[Data Missing]
+
+
+
+

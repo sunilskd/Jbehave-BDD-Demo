@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.seleniumhq.selenium:selenium-java:2.52.0'
+    compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
     compile 'junit:junit:4.12'
     compile 'org.jbehave:jbehave-core:4.0.5'
     compile 'org.jbehave.web:jbehave-web-selenium:3.6-beta-2'

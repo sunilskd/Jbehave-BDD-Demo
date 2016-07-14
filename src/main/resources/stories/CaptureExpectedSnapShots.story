@@ -341,3 +341,26 @@ Examples:
 |fid|nodeTitle|
 |LE-6|QA Legal Entity 6|
 
+Scenario: KYC-397(Full Graph) Verify below scenario:
+1.Legal entity in focus returns greater than 1500 triples for subsidiaries and a subsidiary relationship has less than 5 percent, graph displays less than 500 subsidiary nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
+2.If legal entity in focus returns 1500 triples or less, displays 500 subsidiary nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+3.If legal entity in focus returns greater than 1500 triples for subsidiaries, has a subsidiary relationship with less than 5 percent, and displays 500 subsidiary nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+4.If legal entity in focus displays less than 500 subs nodes, then level truncation does not apply
+
+Given the user is on the ubo login page
+When the user login as a kyc user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the full graph
+And the user captures the expected snapshot for the <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|
+|5100|Nippon Life Insurance Company|
+|444|Intesa Sanpaolo SpA|
+|90865|PNC Bancorp Inc|
+|477|Banco Bradesco SA|
+
