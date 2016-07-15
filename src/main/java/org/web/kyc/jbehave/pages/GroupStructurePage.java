@@ -30,6 +30,7 @@ public class GroupStructurePage extends WebDriverUtils {
     private String group_structure_focused_entity_subsidiaries_text_xpath = "//li[div[div[@class='ng-binding ng-scope entity focus']='";
     private String group_structure_ultimate_owner_subsidiaries_text_xpath = "//*[@id='group-structure']/li/div";
     private String group_structure_focused_entity_owners_text_xpath = "//li[ul[li[div[div[@class='ng-binding ng-scope entity focus']='";
+    private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
 
     public GroupStructurePage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -160,21 +161,20 @@ public class GroupStructurePage extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(By.xpath(group_structure_majority_owners_text_xpath + legalEntity + "')]]]/div/div/a")));
     }
 
-    public void eCaptureGroupStructurePage() {
-        takeSnapshot("./src/test/resources/expected/eGroupStructurePage.png");
+    public void eCaptureGroupStructurePage(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/e"+ nodeTitle.replace(" ","") + "GroupStructurePage.png");
     }
 
-    public void aCaptureGroupStructurePage() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aGroupStructurePage.png");
+    public void aCaptureGroupStructurePage(String nodeTitle) {
+        takeSnapshot("./src/test/resources/actual/a" + nodeTitle.replace(" ","") + "GroupStructurePage.png");
     }
 
-    public void compareSnapshotsForGroupStructure() {
+    public void compareSnapshotsForGroupStructure(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eGroupStructurePage.png",
-                        readProperties().getTestResourcePath() + "/actual/aGroupStructurePage.png",
-                        readProperties().getTestResourcePath() + "/difference/dGroupStructurePage.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/e" + nodeTitle.replace(" ","") + "GroupStructurePage.png",
+                        readProperties().getTestResourcePath() + "/actual/a" + nodeTitle.replace(" ","") + "GroupStructurePage.png",
+                        readProperties().getTestResourcePath() + "/difference/d" + nodeTitle.replace(" ","") + "GroupStructurePage.png"));
     }
 
     public void verifySavedPDFGroupStructureFile() {

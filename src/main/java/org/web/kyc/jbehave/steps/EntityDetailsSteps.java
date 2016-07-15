@@ -94,19 +94,19 @@ public class EntityDetailsSteps {
         pageObject.entityDetailsPage().sVerifyRegulators(regulatorsExamTable);
     }
 
-    @When("the user captures the expected snapshot for the entity details page")
-    public void eCaptureEntityDetailsPage(){
-        pageObject.entityDetailsPage().eCaptureEntityDetailsPage();
+    @When("the user captures the expected snapshot for the <nodeTitle> entity details page")
+    public void eCaptureEntityDetailsPage(@Named("nodeTitle") String nodeTitle){
+        pageObject.entityDetailsPage().eCaptureEntityDetailsPage(nodeTitle);
     }
 
-    @When("the user captures the actual snapshot for the entity details page")
-    public void aCaptureEntityDetailsPage(){
-        pageObject.entityDetailsPage().aCaptureEntityDetailsPage();
+    @When("the user captures the actual snapshot for the <nodeTitle> entity details page")
+    public void aCaptureEntityDetailsPage(@Named("nodeTitle") String nodeTitle){
+        pageObject.entityDetailsPage().aCaptureEntityDetailsPage(nodeTitle);
     }
 
-    @Then("the user should see the actual snapshot matching the expected snapshot for entity details page")
-    public void compareSnapshotsForEntityDetails(){
-        pageObject.entityDetailsPage().compareSnapshotsForEntityDetails();
+    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> entity details page")
+    public void compareSnapshotsForEntityDetails(@Named("nodeTitle") String nodeTitle){
+        pageObject.entityDetailsPage().compareSnapshotsForEntityDetails(nodeTitle);
     }
 
     @Then("the user should see website information in the summary section of entity details page")

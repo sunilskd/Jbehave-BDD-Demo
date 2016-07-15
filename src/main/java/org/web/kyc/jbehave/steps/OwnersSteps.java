@@ -139,19 +139,19 @@ public class OwnersSteps {
         pageObject.ownersPage().sVerifyNoFreeTextInDirectOwnersList();
     }
 
-    @When("the user captures the expected snapshot for the owners page")
-    public void eCaptureOwnersPage(){
-        pageObject.ownersPage().eCaptureOwnersPage();
+    @When("the user captures the expected snapshot for the <nodeTitle> owners page")
+    public void eCaptureOwnersPage(@Named("nodeTitle") String nodeTitle){
+        pageObject.ownersPage().eCaptureOwnersPage(nodeTitle);
     }
 
-    @When("the user captures the actual snapshot for the owners page")
-    public void aCaptureOwnersPage(){
-        pageObject.ownersPage().aCaptureOwnersPage();
+    @When("the user captures the actual snapshot for the <nodeTitle> owners page")
+    public void aCaptureOwnersPage(@Named("nodeTitle") String nodeTitle){
+        pageObject.ownersPage().aCaptureOwnersPage(nodeTitle);
     }
 
-    @Then("the user should see the actual snapshot matching the expected snapshot for owners page")
-    public void compareSnapshotsForOwners(){
-        pageObject.ownersPage().compareSnapshotsForOwners();
+    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> owners page")
+    public void compareSnapshotsForOwners(@Named("nodeTitle") String nodeTitle){
+        pageObject.ownersPage().compareSnapshotsForOwners(nodeTitle);
     }
 
     @Then("the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page $UBOListExamTable")
@@ -188,4 +188,6 @@ public class OwnersSteps {
     public void verifyNoUBODDRLink(){
         pageObject.ownersPage().verifyNoUBODDRLink();
     }
+
+
 }

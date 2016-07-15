@@ -538,3 +538,45 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|nodeTitle|
 |9461|The Miyazaki Bank Ltd|
+
+
+Scenario: KYC-396 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+Then the user should see the subsidiaries graph
+Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Cayman Islands|
+|France|
+|Hong Kong|
+|Ireland|
+|Japan|
+|Luxembourg|
+|Panama|
+|Singapore|
+|UK|
+
+When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Japan|
+
+Examples:
+|fid|nodeTitle|
+|9461|The Miyazaki Bank Ltd|
+
+Scenario: Truncate large full graph
+
+
+
+
+Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated[Data Missing]
+
+
+
+

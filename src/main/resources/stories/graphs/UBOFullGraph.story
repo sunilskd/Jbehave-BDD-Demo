@@ -17,6 +17,7 @@ JIRA ID - KYC-110 - KYC user can highlight legal entities by country in full gra
 JITA ID - KYC-136 - Full Graph - Direct / Indirect Filter
 JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
 JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
+JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 
 Meta:@ubofullgraph @ubo
@@ -647,3 +648,42 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|nodeTitle|
 |9461|The Miyazaki Bank Ltd|
+
+Scenario: KYC-397 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the full graph
+Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Belgium|
+|France|
+|Japan|
+|Singapore|
+|UK|
+|USA|
+
+When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Argentina|
+
+Examples:
+|fid|nodeTitle|
+|30087|The Bank of New York Mellon Corporation|
+
+Scenario: Not implemented, Data missing
+1. If legal entity in focus returns greater than 1500 triples for ownership and an ownership relationship has less than 5 percent, graph displays less than 500 owner nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
+3. If legal entity in focus returns greater than 1500 triples for ownership, has an ownership relationship with less than 5 percent, and displays 500 owner nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+4. If legal entity in focus returns greater than 1500 triples for ownership but does not have any ownership relationship less than 5 percent, no paths are truncated
+9. If legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated
+11. If valid UBOs exist in database but were truncated by either condition and are not displayed, UBO highlight on graph is disabled
+
+
+
+

@@ -668,3 +668,72 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|nodeTitle|
 |51859|Banco Santander SA|
+
+Scenario: KYC-395 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the owners graph
+Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Angola|
+|Austria|
+|Belgium|
+|Bosnia-Herzegovina|
+|Brazil|
+|China|
+|Czech Republic|
+|France|
+|Germany|
+|Greece|
+|Hong Kong|
+|Hungary|
+|Italy|
+|Kazakhstan|
+|Libya|
+|Luxembourg|
+|Malaysia|
+|Netherlands|
+|Norway|
+|Pakistan|
+|Portugal|
+|Qatar|
+|Romania|
+|Russian Federation|
+|Singapore|
+|Slovakia|
+|Slovenia|
+|Spain|
+|Switzerland|
+|Turkey|
+|UAE|
+|UK|
+|USA|
+
+When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Canada|
+|Cayman Islands|
+|Italy|
+|South Africa|
+|UK|
+|USA|
+
+Examples:
+|fid|nodeTitle|
+|415|Blackrock Group Limited|
+
+
+Scenario: Scenarios pending as Data missing
+1. If legal entity in focus returns greater than 1500 triples for ownership and an ownership relationship has less than 5 percent, graph displays less than 500 owner nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
+3. If legal entity in focus returns greater than 1500 triples for ownership, has an ownership relationship with less than 5 percent, and displays 500 owner nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
+4. If legal entity in focus returns greater than 1500 triples for ownership but does not have any ownership relationship less than 5 percent, no paths are truncated
+
+
+

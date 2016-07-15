@@ -27,7 +27,6 @@ public class SubsidiariesSteps {
     @Then("the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page $subsidiariesListExamTable")
     public void sVerifySubsidiariesList(ExamplesTable subsidiariesListExamTable) {
         pageObject.subsidiariesPage().sVerifySubsidiariesList(subsidiariesListExamTable);
-
     }
 
     @Then("the user should see message displayed in place of list explaining there are no subsidiaries")
@@ -106,19 +105,19 @@ public class SubsidiariesSteps {
         pageObject.commonUtils().verifySummaryIsSelectedByDefault();
     }
 
-    @When("the user captures the expected snapshot for the subsidiaries page")
-    public void eCaptureSubsidiariesPage(){
-        pageObject.subsidiariesPage().eCaptureSubsidiariesPage();
+    @When("the user captures the expected snapshot for the <nodeTitle> subsidiaries page")
+    public void eCaptureSubsidiariesPage(@Named("nodeTitle") String nodeTitle){
+        pageObject.subsidiariesPage().eCaptureSubsidiariesPage(nodeTitle);
     }
 
-    @When("the user captures the actual snapshot for the subsidiaries page")
-    public void aCaptureSubsidiariesPage(){
-        pageObject.subsidiariesPage().aCaptureSubsidiariesPage();
+    @When("the user captures the actual snapshot for the <nodeTitle> subsidiaries page")
+    public void aCaptureSubsidiariesPage(@Named("nodeTitle") String nodeTitle){
+        pageObject.subsidiariesPage().aCaptureSubsidiariesPage(nodeTitle);
     }
 
-    @Then("the user should see the actual snapshot matching the expected snapshot for subsidiaries page")
-    public void compareSnapshotsForSubsidiaries(){
-        pageObject.subsidiariesPage().compareSnapshotsForSubsidiaries();
+    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> subsidiaries page")
+    public void compareSnapshotsForSubsidiaries(@Named("nodeTitle") String nodeTitle){
+        pageObject.subsidiariesPage().compareSnapshotsForSubsidiaries(nodeTitle);
     }
 
     @Then("the previously selected country <country> should be de-selected in the subsidiaries page")
@@ -130,5 +129,7 @@ public class SubsidiariesSteps {
     public void verifySavedSubsidiariesPDFFile(){
         pageObject.subsidiariesPage().verifySavedSubsidiariesPDFFile();
     }
+
+
 }
 

@@ -1,12 +1,13 @@
 package org.web.kyc.jbehave.pages;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -48,6 +49,7 @@ public class GraphsPage extends WebDriverUtils {
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
     private By graph_in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
+    private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
 
     public GraphsPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -351,59 +353,52 @@ public class GraphsPage extends WebDriverUtils {
         assertEquals(nodeTitle,findElement(legal_entity_title_text_xpath).getText());
     }
 
-    public void captureExpectedScreenShotForFullGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eFullGraph.png");
+    public void captureExpectedScreenShotForFullGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/e" + nodeTitle.replace(" ","") + "FullGraph.png");
     }
 
-    public void captureActualScreenShotForFullGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aFullGraph.png");
+    public void captureActualScreenShotForFullGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/actual/a" + nodeTitle.replace(" ","") + "FullGraph.png");
     }
 
-    public void compareSnapshotsForFullGraph() {
+    public void compareSnapshotsForFullGraph(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eFullGraph.png",
-                        readProperties().getTestResourcePath() + "/actual/aFullGraph.png",
-                        readProperties().getTestResourcePath() + "/difference/dFullGraph.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/e" + nodeTitle.replace(" ","") + "FullGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/a" + nodeTitle.replace(" ","") + "FullGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/d" + nodeTitle.replace(" ","") + "FullGraph.png"));
     }
 
-
-    public void captureExpectedScreenShotForOwnersGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eOwnersGraph.png");
+    public void captureExpectedScreenShotForOwnersGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/e" + nodeTitle.replace(" ","") + "OwnersGraph.png");
     }
 
-    public void captureActualScreenShotForOwnersGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aOwnersGraph.png");
+    public void captureActualScreenShotForOwnersGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/actual/a" + nodeTitle.replace(" ","") + "OwnersGraph.png");
     }
 
-    public void compareSnapshotsForOwnersGraph() {
+    public void compareSnapshotsForOwnersGraph(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersGraph.png",
-                        readProperties().getTestResourcePath() + "/actual/aOwnersGraph.png",
-                        readProperties().getTestResourcePath() + "/difference/dOwnersGraph.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/e" + nodeTitle.replace(" ","") + "OwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/a" + nodeTitle.replace(" ","") + "OwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/d" + nodeTitle.replace(" ","") + "OwnersGraph.png"));
     }
 
-    public void captureExpectedScreenShotForSubsGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eSubsGraph.png");
+    public void captureExpectedScreenShotForSubsGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/e" + nodeTitle.replace(" ","") + "SubsGraph.png");
     }
 
-    public void captureActualScreenShotForSubsGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aSubsGraph.png");
+    public void captureActualScreenShotForSubsGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/actual/a" + nodeTitle.replace(" ","") + "SubsGraph.png");
     }
 
-    public void compareSnapshotsForSubsGraph() {
+    public void compareSnapshotsForSubsGraph(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsGraph.png",
-                        readProperties().getTestResourcePath() + "/actual/aSubsGraph.png",
-                        readProperties().getTestResourcePath() + "/difference/dSubsGraph.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/e" + nodeTitle.replace(" ","") + "SubsGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/a" + nodeTitle.replace(" ","") + "SubsGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/d" + nodeTitle.replace(" ","") + "SubsGraph.png"));
     }
 
     public void verifyingHighlightIsNotDisplayedForMultipleNode() {
@@ -424,159 +419,169 @@ public class GraphsPage extends WebDriverUtils {
         getActions().click(getWebElement(By.xpath("//*[local-name()='tspan'][contains(text(),'" + freeText +"')]"))).perform();
     }
 
-    public void verifyOwnersGraphIsZoomedOut() {
+    public void verifyOwnersGraphIsZoomedOut(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aOwnersGraphZoomOut.png");
+        takeSnapshot("./src/test/resources/actual/aZoomedOut" + nodeTitle.replace(" ","") + "OwnersGraph.png");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersGraphZoomOut.png",
-                        readProperties().getTestResourcePath() + "/actual/aOwnersGraphZoomOut.png",
-                        readProperties().getTestResourcePath() + "/difference/dOwnersGraphZoomOut.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eZoomedOut" + nodeTitle.replace(" ","") + "OwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aZoomedOut" + nodeTitle.replace(" ","")  + "OwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dZoomedOut" + nodeTitle.replace(" ","") + "OwnersGraph.png"));
     }
 
-    public void verifyOwnersGraphIsZoomedIn() {
+    public void verifyOwnersGraphIsZoomedIn(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aOwnersGraphZoomIn.png");
+        takeSnapshot("./src/test/resources/actual/aZoomedIn" + nodeTitle.replace(" ","") + "OwnersGraph.png");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersGraphZoomIn.png",
-                        readProperties().getTestResourcePath() + "/actual/aOwnersGraphZoomIn.png",
-                        readProperties().getTestResourcePath() + "/difference/dOwnersGraphZoomIn.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eZoomedIn" + nodeTitle.replace(" ","") + "OwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aZoomedIn" + nodeTitle.replace(" ","") + "OwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dZoomedIn" + nodeTitle.replace(" ","") + "OwnersGraph.png"));
     }
 
-    public void verifyOwnersGraphIsResetToOriginalPosition() {
+    public void verifyOwnersGraphIsResetToOriginalPosition(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aOwnersGraphReset.png");
+        takeSnapshot("./src/test/resources/actual/aReset" + nodeTitle.replace(" ","") + "OwnersGraph.png");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersGraphReset.png",
-                        readProperties().getTestResourcePath() + "/actual/aOwnersGraphReset.png",
-                        readProperties().getTestResourcePath() + "/difference/dOwnersGraphReset.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eReset" + nodeTitle.replace(" ","") + "OwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aReset" + nodeTitle.replace(" ","") + "OwnersGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dReset" + nodeTitle.replace(" ","") + "OwnersGraph.png"));
     }
 
-    public void captureZoomedOutOwnersGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eOwnersGraphZoomOut.png");
+    public void captureZoomedOutOwnersGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/eZoomedOut" + nodeTitle.replace(" ","") + "OwnersGraphZoomOut.png");
     }
 
-    public void captureZoomedInOwnersGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eOwnersGraphZoomIn.png");
+    public void captureZoomedInOwnersGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/eZoomIn" + nodeTitle.replace(" ","") + "OwnersGraph.png");
     }
 
-    public void captureResetOwnersGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eOwnersGraphReset.png");
+    public void captureResetOwnersGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/eReset" + nodeTitle.replace(" ","") + "OwnersGraph.png");
     }
 
-    public void verifySubsidiariesGraphIsZoomedOut() {
+    public void verifySubsidiariesGraphIsZoomedOut(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aSubsidiariesGraphZoomOut.png");
+        takeSnapshot("./src/test/resources/actual/aZoomedOut" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesGraphZoomOut.png",
-                        readProperties().getTestResourcePath() + "/actual/aSubsidiariesGraphZoomOut.png",
-                        readProperties().getTestResourcePath() + "/difference/dSubsidiariesGraphZoomOut.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eZoomedOut" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aZoomedOut" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dZoomedOut" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png"));
     }
 
-    public void verifySubsidiariesGraphIsResetToOriginalPosition() {
+    public void verifySubsidiariesGraphIsResetToOriginalPosition(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aSubsidiariesGraphReset.png");
+        takeSnapshot("./src/test/resources/actual/aReset" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesGraphReset.png",
-                        readProperties().getTestResourcePath() + "/actual/aSubsidiariesGraphReset.png",
-                        readProperties().getTestResourcePath() + "/difference/dSubsidiariesGraphReset.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eReset" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aReset" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dReset" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png"));
     }
 
-    public void verifySubsidiariesGraphIsZoomedIn() {
+    public void verifySubsidiariesGraphIsZoomedIn(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aSubsidiariesGraphZoomIn.png");
+        takeSnapshot("./src/test/resources/actual/aZoomedIn" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesGraphZoomIn.png",
-                        readProperties().getTestResourcePath() + "/actual/aSubsidiariesGraphZoomIn.png",
-                        readProperties().getTestResourcePath() + "/difference/dSubsidiariesGraphZoomIn.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eZoomedIn" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aZoomedIn" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dZoomedIn" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png"));
     }
 
-    public void verifyFullGraphIsZoomedOut() {
+    public void verifyFullGraphIsZoomedOut(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aFullGraphZoomOut.png");
+        takeSnapshot("./src/test/resources/actual/aZoomedOut" + nodeTitle.replace(" ","") + "FullGraph.png");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eFullGraphZoomOut.png",
-                        readProperties().getTestResourcePath() + "/actual/aFullGraphZoomOut.png",
-                        readProperties().getTestResourcePath() + "/difference/dFullGraphZoomOut.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eZoomedOut" + nodeTitle.replace(" ","") + "FullGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aZoomedOut" + nodeTitle.replace(" ","") + "FullGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dZoomedOut" + nodeTitle.replace(" ","") + "FullGraph.png"));
 
     }
 
-    public void verifyFullGraphIsResetToOriginalPosition() {
+    public void verifyFullGraphIsResetToOriginalPosition(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aFullGraphReset.png");
+        takeSnapshot("./src/test/resources/actual/aReset" + nodeTitle.replace(" ","") + "FullGraph.png");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eFullGraphReset.png",
-                        readProperties().getTestResourcePath() + "/actual/aFullGraphReset.png",
-                        readProperties().getTestResourcePath() + "/difference/dFullGraphReset.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eReset" + nodeTitle.replace(" ","") + "FullGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aReset" + nodeTitle.replace(" ","") + "FullGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dReset" + nodeTitle.replace(" ","") + "FullGraph.png"));
     }
 
-    public void verifyFullGraphIsZoomedIn() {
+    public void verifyFullGraphIsZoomedIn(String nodeTitle) {
         waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aFullGraphZoomIn.png");
+        takeSnapshot("./src/test/resources/actual/aZoomedIn" + nodeTitle.replace(" ","") + "FullGraph.png");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eFullGraphZoomIn.png",
-                        readProperties().getTestResourcePath() + "/actual/aFullGraphZoomIn.png",
-                        readProperties().getTestResourcePath() + "/difference/dFullGraphZoomIn.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eZoomedIn" + nodeTitle.replace(" ","") + "FullGraph.png",
+                        readProperties().getTestResourcePath() + "/actual/aZoomedIn" + nodeTitle.replace(" ","") + "FullGraph.png",
+                        readProperties().getTestResourcePath() + "/difference/dZoomedIn" + nodeTitle.replace(" ","") + "FullGraph.png"));
     }
 
-    public void captureZoomedOutSubsidiariesGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eSubsidiariesGraphZoomOut.png");
+    public void captureZoomedOutSubsidiariesGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/eZoomedOut" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png");
     }
 
-    public void captureResetSubsidiariesGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eSubsidiariesGraphReset.png");
+    public void captureResetSubsidiariesGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/eReset" +nodeTitle.replace(" ","") + "SubsidiariesGraph.png");
     }
 
-    public void captureZoomedInSubsidiariesGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eSubsidiariesGraphZoomIn.png");
+    public void captureZoomedInSubsidiariesGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/eZoomedIn" + nodeTitle.replace(" ","") + "SubsidiariesGraph.png");
     }
 
-    public void captureZoomedOutFullGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eFullGraphZoomOut.png");
+    public void captureZoomedOutFullGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/eZoomedOut" + nodeTitle.replace(" "," ") + "FullGraph.png");
     }
 
-    public void captureResetFullGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eFullGraphReset.png");
+    public void captureResetFullGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/eReset" + nodeTitle.replace(" ","") + "FullGraph.png");
     }
 
-    public void captureZoomedInFullGraph() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/eFullGraphZoomIn.png");
+    public void captureZoomedInFullGraph(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/eZoomedIn" + nodeTitle.replace(" ","") + "FullGraph.png");
     }
 
-    public void captureExpectedSnapShotForFullGraph(String nodeTitle) {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/expected/e"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png");
+    public void captureActualSnapShotForTruncatedGraph(String nodeTitle) {
+        nodeTitle = nodeTitle.replace(" ","");
+        takeSnapshot("./src/test/resources/actual/a" + nodeTitle + ".png");
     }
 
-    public void captureActualSnapShotForFullGraph(String nodeTitle) {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/a"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png");
-    }
-
-    public void compareExpectedAndActualSnapshotForFullGraph(String nodeTitle) {
+    public void compareExpectedAndActualSnapshotForSubstruncatedGraph(String nodeTitle) {
+        nodeTitle = nodeTitle.replace(" ","");
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/e"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png",
-                        readProperties().getTestResourcePath() + "/actual/a"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png",
-                        readProperties().getTestResourcePath() + "/difference/d"+ nodeTitle.replace(" ","") + "FullGraphZoomIn.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesPage"+nodeTitle+".png",
+                        readProperties().getTestResourcePath() + "/actual/a"+nodeTitle+".png",
+                        readProperties().getTestResourcePath() + "/difference/d"+nodeTitle+".png" ));
+    }
+
+    public void compareExpectedAndActualSnapshotForOwnerstruncatedGraph(String nodeTitle) {
+        nodeTitle = nodeTitle.replace(" ","");
+        assertTrue(
+                compareImages(readProperties().getTestResourcePath() + "/expected/eOwners"+nodeTitle+".png",
+                        readProperties().getTestResourcePath() + "/actual/a"+nodeTitle+".png",
+                        readProperties().getTestResourcePath() + "/difference/d"+nodeTitle+".png" ));
     }
 
     public void clickOnShowMoreLink(String nodeTitle) {
+        try{
         List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
         for(int i=0; i<nodes.size(); i++){
             if(nodes.get(i).getText().contains(nodeTitle)){
                 waitForInMilliSeconds(3000L);
                 getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][3]"))).perform();
+                Thread.sleep(5000L);
                 break;
             }
         }
+    }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void eCaptureSubsidiariesPageTruncatedGraph(String nodeTitle) {
+        nodeTitle = nodeTitle.replace(" ","");
+        takeSnapshot("./src/test/resources/expected/eSubsidiariesPage"+nodeTitle+".png");
+    }
+
+    public void eCaptureOwnersPageTruncatedGraph(String nodeTitle)  {
+        nodeTitle = nodeTitle.replace(" ","");
+        takeSnapshot("./src/test/resources/expected/eOwners"+nodeTitle+".png");
     }
 
 }

@@ -98,19 +98,19 @@ public class GroupStructureSteps {
         pageObject.groupStructurePage().verifyNoMajorityOwnersForLegalEntity(legalEntity);
     }
 
-    @When("the user captures the expected snapshot for the group structure page")
-    public void eCaptureGroupStructurePage(){
-        pageObject.groupStructurePage().eCaptureGroupStructurePage();
+    @When("the user captures the expected snapshot for the <nodeTitle> group structure page")
+    public void eCaptureGroupStructurePage(@Named("nodeTitle") String nodeTitle){
+        pageObject.groupStructurePage().eCaptureGroupStructurePage(nodeTitle);
     }
 
-    @When("the user captures the actual snapshot for the group structure page")
-    public void aCaptureGroupStructurePage(){
-        pageObject.groupStructurePage().aCaptureGroupStructurePage();
+    @When("the user captures the actual snapshot for the <nodeTitle> group structure page")
+    public void aCaptureGroupStructurePage(@Named("nodeTitle") String nodeTitle){
+        pageObject.groupStructurePage().aCaptureGroupStructurePage(nodeTitle);
     }
 
-    @Then("the user should see the actual snapshot matching the expected snapshot for group structure page")
-    public void compareSnapshotsForGroupStructure(){
-        pageObject.groupStructurePage().compareSnapshotsForGroupStructure();
+    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> group structure page")
+    public void compareSnapshotsForGroupStructure(@Named("nodeTitle") String nodeTitle){
+        pageObject.groupStructurePage().compareSnapshotsForGroupStructure(nodeTitle);
     }
 
     @Then("the user should see the indented list of subsidiaries for the ultimate owner that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page $subsidiariesExamTable")

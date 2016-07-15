@@ -1,13 +1,18 @@
 package org.web.kyc.jbehave.pages;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -58,6 +63,7 @@ public class OwnersPage extends WebDriverUtils {
     private By no_ubo_msg_text_xpath = By.xpath("//p[@class='notification']");
     private By in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
     private By ubo_declaration_document_link_text_xpath =By.xpath("//div[2]/div/a");
+    private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
 
     Set<String> eCountryHighlightList = new TreeSet<>();
 
@@ -233,21 +239,20 @@ public class OwnersPage extends WebDriverUtils {
         assertFalse(isWebElementDisplayed(direct_owners_entity_free_text_xpath));
     }
 
-    public void eCaptureOwnersPage() {
-        takeSnapshot("./src/test/resources/expected/eOwnersPage.png");
+    public void eCaptureOwnersPage(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/e"+ nodeTitle.replace(" ","") + "OwnersPage.png");
     }
 
-    public void aCaptureOwnersPage() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aOwnersPage.png");
+    public void aCaptureOwnersPage(String nodeTitle) {
+        takeSnapshot("./src/test/resources/actual/a" + nodeTitle.replace(" ","") + "OwnersPage.png");
     }
 
-    public void compareSnapshotsForOwners() {
+    public void compareSnapshotsForOwners(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eOwnersPage.png",
-                        readProperties().getTestResourcePath() + "/actual/aOwnersPage.png",
-                        readProperties().getTestResourcePath() + "/difference/dOwnersPage.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/e" + nodeTitle.replace(" ","") + "OwnersPage.png",
+                        readProperties().getTestResourcePath() + "/actual/a" + nodeTitle.replace(" ","") + "OwnersPage.png",
+                        readProperties().getTestResourcePath() + "/difference/d" + nodeTitle.replace(" ","") + "OwnersPage.png"));
     }
 
     public void sVerifyUBOList(ExamplesTable uboListExamTable) {
@@ -306,4 +311,6 @@ public class OwnersPage extends WebDriverUtils {
     public void verifyNoUBODDRLink() {
         assertFalse(isWebElementDisplayed(ubo_declaration_document_link_text_xpath));
     }
+
+
 }
