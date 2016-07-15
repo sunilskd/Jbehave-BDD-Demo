@@ -39,6 +39,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     private By entity_details_regulators_label_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/th");
     private By entity_details_website_text_xpath=By.xpath("//td/a");
     private By entity_details_website_label_text_xpath=By.xpath("//*[@id='entity-head-office']/tbody/tr[2]/th");
+    private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
     private Document entityDetailsDocument;
 
     public EntityDetailsPage(WebDriverProvider driverProvider) {
@@ -178,7 +179,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void aCaptureEntityDetailsPage(String nodeTitle) {
-        waitForInMilliSeconds(3000L);
+        refreshCurrentPage();
         takeSnapshot("./src/test/resources/actual/a" + nodeTitle.replace(" ","") + "EntityDetails.png");
     }
 

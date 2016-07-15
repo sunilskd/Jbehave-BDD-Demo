@@ -143,36 +143,36 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyGraphPageOfLegalEntity(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the full graph")
-    public void captureExpectedScreenShotForFullGraph(){ pageObject.graphsPage().captureExpectedScreenShotForFullGraph();}
+    @Then("the user captures the expected snapshot for the <nodeTitle> full graph")
+    public void captureExpectedScreenShotForFullGraph(@Named("nodeTitle") String nodeTitle){ pageObject.graphsPage().captureExpectedScreenShotForFullGraph(nodeTitle);}
 
-    @When("the user captures the actual snapshot for the full graph")
-    public void captureActualScreenShotForFullGraph(){
-        pageObject.graphsPage().captureActualScreenShotForFullGraph();
+    @When("the user captures the actual snapshot for the <nodeTitle> full graph")
+    public void captureActualScreenShotForFullGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureActualScreenShotForFullGraph(nodeTitle);
     }
 
-    @Then("the user should see the actual snapshot matching the expected snapshot for full graph")
-    public void compareSnapshotsForFullGraph(){
-        pageObject.graphsPage().compareSnapshotsForFullGraph();
+    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph")
+    public void compareSnapshotsForFullGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().compareSnapshotsForFullGraph(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the owners graph")
-    public void captureExpectedScreenShotForOwnersGraph(){ pageObject.graphsPage().captureExpectedScreenShotForOwnersGraph();}
+    @Then("the user captures the expected snapshot for the <nodeTitle> owners graph")
+    public void captureExpectedScreenShotForOwnersGraph(@Named("nodeTitle") String nodeTitle){ pageObject.graphsPage().captureExpectedScreenShotForOwnersGraph(nodeTitle);}
 
-    @When("the user captures the actual snapshot for the owners graph")
-    public void captureActualScreenShotForOwnersGraph(){pageObject.graphsPage().captureActualScreenShotForOwnersGraph();}
+    @When("the user captures the actual snapshot for the <nodeTitle> owners graph")
+    public void captureActualScreenShotForOwnersGraph(@Named("nodeTitle") String nodeTitle){pageObject.graphsPage().captureActualScreenShotForOwnersGraph(nodeTitle);}
 
-    @Then("the user should see the actual snapshot matching the expected snapshot for owners graph")
-    public void compareSnapshotsForOwnersGraph(){pageObject.graphsPage().compareSnapshotsForOwnersGraph();}
+    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> owners graph")
+    public void compareSnapshotsForOwnersGraph(@Named("nodeTitle") String nodeTitle){pageObject.graphsPage().compareSnapshotsForOwnersGraph(nodeTitle);}
 
-    @Then("the user captures the expected snapshot for the subsidiaries graph")
-    public void captureExpectedScreenShotForSubsGraph(){pageObject.graphsPage().captureExpectedScreenShotForSubsGraph();}
+    @Then("the user captures the expected snapshot for the <nodeTitle> subsidiaries graph")
+    public void captureExpectedScreenShotForSubsGraph(@Named("nodeTitle") String nodeTitle){pageObject.graphsPage().captureExpectedScreenShotForSubsGraph(nodeTitle);}
 
-    @When("the user captures the actual snapshot for the subsidiaries graph")
-    public void captureActualScreenShotForSubsGraph(){pageObject.graphsPage().captureActualScreenShotForSubsGraph();}
+    @When("the user captures the actual snapshot for the <nodeTitle> subsidiaries graph")
+    public void captureActualScreenShotForSubsGraph(@Named("nodeTitle") String nodeTitle){pageObject.graphsPage().captureActualScreenShotForSubsGraph(nodeTitle);}
 
-    @Then("the user should see the actual snapshot matching the expected snapshot for subsidiaries graph")
-    public void compareSnapshotsForSubsGraph(){pageObject.graphsPage().compareSnapshotsForSubsGraph();}
+    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> subsidiaries graph")
+    public void compareSnapshotsForSubsGraph(@Named("nodeTitle") String nodeTitle){pageObject.graphsPage().compareSnapshotsForSubsGraph(nodeTitle);}
 
     @Then("the user should not see the multiple appearance highlight on any node in the graphs")
     public void verifyingHighlightIsNotDisplayedForMultipleNode(){
@@ -200,94 +200,94 @@ public class GraphsSteps {
         pageObject.commonUtils().clickOnPleaseSubscribe();
     }
 
-    @Then("the user should see the owners graph zoomed out on the graphs")
-    public void verifyOwnersGraphIsZoomedOut(){
-        pageObject.graphsPage().verifyOwnersGraphIsZoomedOut();
+    @Then("the user should see the zoomed out <nodeTitle> owners graphs")
+    public void verifyOwnersGraphIsZoomedOut(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().verifyOwnersGraphIsZoomedOut(nodeTitle);
     }
 
-    @Then("the user should see the subsidiaries graph zoomed out on the graphs")
-    public void verifySubsidiariesGraphIsZoomedOut(){
-        pageObject.graphsPage().verifySubsidiariesGraphIsZoomedOut();
+    @Then("the user should see the zoomed out <nodeTitle> subsidiaries graph")
+    public void verifySubsidiariesGraphIsZoomedOut(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().verifySubsidiariesGraphIsZoomedOut(nodeTitle);
     }
 
-    @Then("the user should see the full graph zoomed out on the graphs")
-    public void verifyFullGraphIsZoomedOut(){
-        pageObject.graphsPage().verifyFullGraphIsZoomedOut();
+    @Then("the user should see the zoomed out <nodeTitle> full graphs")
+    public void verifyFullGraphIsZoomedOut(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().verifyFullGraphIsZoomedOut(nodeTitle);
     }
 
-    @Then("the user should see the owners graph zoomed in on the graphs")
-    public void verifyOwnersGraphIsZoomedIn(){
-        pageObject.graphsPage().verifyOwnersGraphIsZoomedIn();
+    @Then("the user should see the zoomed in <nodeTitle> owners graphs")
+    public void verifyOwnersGraphIsZoomedIn(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().verifyOwnersGraphIsZoomedIn(nodeTitle);
     }
 
-    @Then("the user should see the subsidiaries graph zoomed in on the graphs")
-    public void verifySubsidiariesGraphIsZoomedIn(){
-        pageObject.graphsPage().verifySubsidiariesGraphIsZoomedIn();
+    @Then("the user should see the zoomed in <nodeTitle> subsidiaries graphs")
+    public void verifySubsidiariesGraphIsZoomedIn(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().verifySubsidiariesGraphIsZoomedIn(nodeTitle);
     }
 
-    @Then("the user should see the full graph zoomed in on the graphs")
-    public void verifyFullGraphIsZoomedIn(){
-        pageObject.graphsPage().verifyFullGraphIsZoomedIn();
+    @Then("the user should see the zoomed in <nodeTitle> full graphs")
+    public void verifyFullGraphIsZoomedIn(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().verifyFullGraphIsZoomedIn(nodeTitle);
     }
 
-    @Then("the user should see the owners graph reset to whatever the original position was upon load on the graphs")
-    public void verifyOwnersGraphIsResetToOriginalPosition(){
-        pageObject.graphsPage().verifyOwnersGraphIsResetToOriginalPosition();
+    @Then("the user should see the graph reset to whatever the original position was upon load on the <nodeTitle> owners graphs")
+    public void verifyOwnersGraphIsResetToOriginalPosition(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().verifyOwnersGraphIsResetToOriginalPosition(nodeTitle);
     }
 
-    @Then("the user should see the subsidiaries graph reset to whatever the original position was upon load on the graphs")
-    public void verifySubsidiariesGraphIsResetToOriginalPosition(){
-        pageObject.graphsPage().verifySubsidiariesGraphIsResetToOriginalPosition();
+    @Then("the user should see the graph reset to whatever the original position was upon load on the <nodeTitle> subsidiaries graphs")
+    public void verifySubsidiariesGraphIsResetToOriginalPosition(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().verifySubsidiariesGraphIsResetToOriginalPosition(nodeTitle);
     }
 
-    @Then("the user should see the full graph reset to whatever the original position was upon load on the graphs")
-    public void verifyFullGraphIsResetToOriginalPosition(){
-        pageObject.graphsPage().verifyFullGraphIsResetToOriginalPosition();
+    @Then("the user should see the graph reset to whatever the original position was upon load on the <nodeTitle> full graphs")
+    public void verifyFullGraphIsResetToOriginalPosition(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().verifyFullGraphIsResetToOriginalPosition(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the zoomed out owners graph")
-    public void captureZoomedOutOwnersGraph(){
-        pageObject.graphsPage().captureZoomedOutOwnersGraph();
+    @Then("the user captures the expected snapshot for the zoomed out <nodeTitle> owners graph")
+    public void captureZoomedOutOwnersGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureZoomedOutOwnersGraph(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the zoomed out subsidiaries graph")
-    public void captureZoomedOutSubsidiariesGraph(){
-        pageObject.graphsPage().captureZoomedOutSubsidiariesGraph();
+    @Then("the user captures the expected snapshot for the zoomed out <nodeTitle> subsidiaries graph")
+    public void captureZoomedOutSubsidiariesGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureZoomedOutSubsidiariesGraph(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the zoomed in owners graph")
-    public void captureZoomedInOwnersGraph(){
-        pageObject.graphsPage().captureZoomedInOwnersGraph();
+    @Then("the user captures the expected snapshot for the zoomed in <nodeTitle> owners graph")
+    public void captureZoomedInOwnersGraph(String nodeTitle){
+        pageObject.graphsPage().captureZoomedInOwnersGraph(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the reset owners graph")
-    public void captureResetOwnersGraph(){
-        pageObject.graphsPage().captureResetOwnersGraph();
+    @Then("the user captures the expected snapshot for the reset <nodeTitle> owners graph")
+    public void captureResetOwnersGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureResetOwnersGraph(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the reset subsidiaries graph")
-    public void captureResetSubsidiariesGraph(){
-        pageObject.graphsPage().captureResetSubsidiariesGraph();
+    @Then("the user captures the expected snapshot for the reset <nodeTitle> subsidiaries graph")
+    public void captureResetSubsidiariesGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureResetSubsidiariesGraph(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the zoomed in subsidiaries graph")
-    public void captureZoomedInSubsidiariesGraph(){
-        pageObject.graphsPage().captureZoomedInSubsidiariesGraph();
+    @Then("the user captures the expected snapshot for the zoomed in <nodeTitle> subsidiaries graph")
+    public void captureZoomedInSubsidiariesGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureZoomedInSubsidiariesGraph(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the zoomed out full graph")
-    public void captureZoomedOutFullGraph(){
-        pageObject.graphsPage().captureZoomedOutFullGraph();
+    @Then("the user captures the expected snapshot for the zoomed out <nodeTitle> full graph")
+    public void captureZoomedOutFullGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureZoomedOutFullGraph(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the zoomed in full graph")
-    public void captureZoomedInFullGraph(){
-        pageObject.graphsPage().captureZoomedInFullGraph();
+    @Then("the user captures the expected snapshot for the zoomed in <nodeTitle> full graph")
+    public void captureZoomedInFullGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureZoomedInFullGraph(nodeTitle);
     }
 
-    @Then("the user captures the expected snapshot for the reset full graph")
-    public void captureResetFullGraph(){
-        pageObject.graphsPage().captureResetFullGraph();
+    @Then("the user captures the expected snapshot for the reset <nodeTitle> full graph")
+    public void captureResetFullGraph(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().captureResetFullGraph(nodeTitle);
     }
 
     @Then("the user should see the subsidiaries graph")
@@ -305,20 +305,15 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyFullGraphHeader();
     }
 
-    @Then("the user captures the expected snapshot for the <nodeTitle> full graph")
-    public void captureExpectedSnapShotForFullGraph(@Named("nodeTitle") String nodeTitle){
-        pageObject.graphsPage().captureExpectedSnapShotForFullGraph(nodeTitle);
-    }
+//    @Then("the user captures the actual snapshot for the <nodeTitle> full graph")
+//    public void captureActualSnapShotForFullGraph(@Named("nodeTitle") String nodeTitle){
+//        pageObject.graphsPage().captureActualSnapShotForFullGraph(nodeTitle);
+//    }
 
-    @Then("the user captures the actual snapshot for the <nodeTitle> full graph")
-    public void captureActualSnapShotForFullGraph(@Named("nodeTitle") String nodeTitle){
-        pageObject.graphsPage().captureActualSnapShotForFullGraph(nodeTitle);
-    }
-
-    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph")
-    public void compareExpectedAndActualSnapshotForFullGraph(@Named("nodeTitle") String nodeTitle){
-        pageObject.graphsPage().compareExpectedAndActualSnapshotForFullGraph(nodeTitle);
-    }
+//    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph")
+//    public void compareExpectedAndActualSnapshotForFullGraph(@Named("nodeTitle") String nodeTitle){
+//        pageObject.graphsPage().compareExpectedAndActualSnapshotForFullGraph(nodeTitle);
+//    }
 
     @Then("the user captures the actual snapshot for truncated graph <nodeTitle>")
     public void captureActualSnapShotForTruncatedGraph(@Named("nodeTitle") String nodeTitle){

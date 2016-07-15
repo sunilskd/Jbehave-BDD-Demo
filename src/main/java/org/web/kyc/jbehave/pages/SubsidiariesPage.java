@@ -36,6 +36,8 @@ public class SubsidiariesPage extends WebDriverUtils {
     private String subsidiaries_highlighted_xpath = "//*[@id='subsidiaries']//tr[@class='highlight']";
     private String subsidiaries_row_for_country_xpath = "//*[@id='subsidiaries']/tbody[@class='ng-scope']//*[td='";
     private By subsidiaries_country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
+    private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
+
     Set<String> eCountryHighlightList = new TreeSet<>();
 
     public SubsidiariesPage(WebDriverProvider driverProvider) {
@@ -156,23 +158,20 @@ public class SubsidiariesPage extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
     }
 
-    public void eCaptureSubsidiariesPage() {
-        takeSnapshot("./src/test/resources/expected/eSubsidiariesPage.png");
+    public void eCaptureSubsidiariesPage(String nodeTitle) {
+        takeSnapshot("./src/test/resources/expected/e" + nodeTitle.replace(" ", "") +"SubsidiariesPage.png");
     }
 
-
-
-    public void aCaptureSubsidiariesPage() {
-        waitForInMilliSeconds(3000L);
-        takeSnapshot("./src/test/resources/actual/aSubsidiariesPage.png");
+    public void aCaptureSubsidiariesPage(String nodeTitle) {
+        takeSnapshot("./src/test/resources/actual/a" + nodeTitle.replace(" ","") + "SubsidiariesPage.png");
     }
 
-    public void compareSnapshotsForSubsidiaries() {
+    public void compareSnapshotsForSubsidiaries(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesPage.png",
-                        readProperties().getTestResourcePath() + "/actual/aSubsidiariesPage.png",
-                        readProperties().getTestResourcePath() + "/difference/dSubsidiariesPage.png"));
+                compareImages(readProperties().getTestResourcePath() + "/expected/e" + nodeTitle.replace(" ","") + "SubsidiariesPage.png",
+                        readProperties().getTestResourcePath() + "/actual/a" + nodeTitle.replace(" ","") + "SubsidiariesPage.png",
+                        readProperties().getTestResourcePath() + "/difference/d" + nodeTitle.replace(" ","") + "SubsidiariesPage.png"));
     }
 
     public void verifySavedSubsidiariesPDFFile() {

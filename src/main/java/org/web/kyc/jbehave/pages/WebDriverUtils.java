@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.web.kyc.rest.HttpRequest;
 import org.web.kyc.utils.ReadProperties;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -62,6 +61,14 @@ public class WebDriverUtils extends WebDriverPage {
         try {
             WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 20000);
             wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+        }
+    }
+
+    public void waitForWebElementToDisappear(By by) {
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriverProvider().get(), 20000);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(by));
         } catch (org.openqa.selenium.NoSuchElementException e) {
         }
     }
@@ -124,6 +131,7 @@ public class WebDriverUtils extends WebDriverPage {
     }
 
     public void takeSnapshot(String path){
+        waitForInMilliSeconds(5000L);
         getDriverProvider().saveScreenshotTo(path);
     }
 
@@ -139,4 +147,9 @@ public class WebDriverUtils extends WebDriverPage {
     public void moveMouseTo(By by) {
         getActions().moveToElement(findElement(by)).build().perform();
     }
+
+    public void refreshCurrentPage(){
+        navigate().refresh();
+    }
+
 }
