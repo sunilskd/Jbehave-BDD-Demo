@@ -537,27 +537,6 @@ public class GraphsPage extends WebDriverUtils {
         takeSnapshot("./src/test/resources/expected/eZoomedIn" + nodeTitle.replace(" ","") + "FullGraph.png");
     }
 
-    public void captureActualSnapShotForTruncatedGraph(String nodeTitle) {
-        nodeTitle = nodeTitle.replace(" ","");
-        takeSnapshot("./src/test/resources/actual/a" + nodeTitle + ".png");
-    }
-
-    public void compareExpectedAndActualSnapshotForSubstruncatedGraph(String nodeTitle) {
-        nodeTitle = nodeTitle.replace(" ","");
-        assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eSubsidiariesPage"+nodeTitle+".png",
-                        readProperties().getTestResourcePath() + "/actual/a"+nodeTitle+".png",
-                        readProperties().getTestResourcePath() + "/difference/d"+nodeTitle+".png" ));
-    }
-
-    public void compareExpectedAndActualSnapshotForOwnerstruncatedGraph(String nodeTitle) {
-        nodeTitle = nodeTitle.replace(" ","");
-        assertTrue(
-                compareImages(readProperties().getTestResourcePath() + "/expected/eOwners"+nodeTitle+".png",
-                        readProperties().getTestResourcePath() + "/actual/a"+nodeTitle+".png",
-                        readProperties().getTestResourcePath() + "/difference/d"+nodeTitle+".png" ));
-    }
-
     public void clickOnShowMoreLink(String nodeTitle) {
         try{
         List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));

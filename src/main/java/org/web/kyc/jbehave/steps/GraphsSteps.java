@@ -305,31 +305,6 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyFullGraphHeader();
     }
 
-//    @Then("the user captures the actual snapshot for the <nodeTitle> full graph")
-//    public void captureActualSnapShotForFullGraph(@Named("nodeTitle") String nodeTitle){
-//        pageObject.graphsPage().captureActualSnapShotForFullGraph(nodeTitle);
-//    }
-
-//    @Then("the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph")
-//    public void compareExpectedAndActualSnapshotForFullGraph(@Named("nodeTitle") String nodeTitle){
-//        pageObject.graphsPage().compareExpectedAndActualSnapshotForFullGraph(nodeTitle);
-//    }
-
-    @Then("the user captures the actual snapshot for truncated graph <nodeTitle>")
-    public void captureActualSnapShotForTruncatedGraph(@Named("nodeTitle") String nodeTitle){
-        pageObject.graphsPage().captureActualSnapShotForTruncatedGraph(nodeTitle);
-    }
-
-    @Then("the user should see the actual snapshot matching the expected snapshot for truncated graph <nodeTitle>")
-    public void compareExpectedAndActualSnapshotForSubstruncatedGraph(@Named("nodeTitle") String nodeTitle){
-        pageObject.graphsPage().compareExpectedAndActualSnapshotForSubstruncatedGraph(nodeTitle);
-    }
-
-    @Then("the user should see the actual snapshot matching the expected snapshot for owners truncated graph <nodeTitle>")
-    public void compareExpectedAndActualSnapshotForOwnerstruncatedGraph(@Named("nodeTitle") String nodeTitle){
-        pageObject.graphsPage().compareExpectedAndActualSnapshotForOwnerstruncatedGraph(nodeTitle);
-    }
-
     @When("the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs")
     public void clickOnShowMoreLink(@Named("nodeTitle") String nodeTitle){
         pageObject.graphsPage().clickOnShowMoreLink(nodeTitle);
