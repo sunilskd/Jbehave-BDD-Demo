@@ -83,5 +83,5 @@ And the user clicks on the plus sign next to zoom slider on the graphs
 Then the user should see the zoomed in <nodeTitle> full graphs
 
 Examples:
-|fid|
-|LE-6|
+|fid|nodeTitle|
+|LE-6|QA Legal Entity 6|

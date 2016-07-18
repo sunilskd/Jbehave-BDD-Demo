@@ -111,7 +111,7 @@ public class GraphsPage extends WebDriverUtils {
         /* Creating a list of actual owners list by concatenating legal title, percent and country */
         for (int i = 0; i < nodes.size(); i++) {
             aNodeList.add(
-                            aLegalTitles.get(i).toString().replace(" ","") +
+                            aLegalTitles.get(i).toString().replace(" ","").replace("%","") +
                             executeScript("return arguments[0].innerHTML;", aPercent.get(i)).toString().replace("%", "") +
                             executeScript("return arguments[0].innerHTML;", aCountry.get(i)).toString().replace(" ", "")
             );
