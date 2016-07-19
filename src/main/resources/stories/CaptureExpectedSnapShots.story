@@ -189,7 +189,6 @@ Examples:
 |LE-6|QA Legal Entity 6|
 
 Scenario: KYC-360 - The icon for the root node is always displaying the icon for Bank. It should be based on the legalEntityType.
-Meta:@cpaturekyc360
 Given the user is on the ubo login page
 When the user login as a ubo user
 When the user opens legal entity <fid>
@@ -241,21 +240,6 @@ Then the user captures the expected snapshot for the <nodeTitle> subsidiaries gr
 Examples:
 |fid|imageName|
 |9461|Meiji Yasuda Life Insurance Company|
-
-Scenario: KYC-397(Full Graph) Verify If legal entity in focus returns 1500 triples or less, displays 500 owner nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
-Given the user is on the ubo login page
-When the user login as a ubo user
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the group structure tab
-And the user clicks on the graph button
-Then the user should see the full graph
-And the user captures the expected snapshot for the <nodeTitle> full graph
-
-Examples:
-|fid|nodeTitle|
-|30087|The Fukuoka Chuo Bank Ltd|
 
 Scenario: KYC-397(Full Graph) Verify Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph
 Given the user is on the ubo login page
@@ -330,23 +314,9 @@ Examples:
 |415|Banca Popolare Valconca Scrl|
 |175270|Credit Agricole Caisse D'Epargne Investor Services (CACEIS)|
 
-Scenario: KYC-395 Verify Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph
-Meta:@skip
-Given the user is on the ubo login page
-When the user login as a kyc user
-Given the user is on the ubo login page
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-When the user enters percentage as 5 in ownership percentage filter text box in the graphs
-Then the user captures the expected snapshot for the <nodeTitle> owners graph
-
-Examples:
-|fid|nodeTitle|
-|175270|Credit Agricole Caisse D'Epargne Investor Services (CACEIS) Percetage Filter|
-
-Scenario: KYC-397(Full Graph) Verify If valid UBOs exist in database and were not part of a truncated path on the graph, UBO in-product message appears
+Scenario: Covers below scenarios
+a. KYC-397(Full Graph) Verify If valid UBOs exist in database and were not part of a truncated path on the graph, UBO in-product message appears
+b. KYC-397(Full Graph) Verify If legal entity in focus returns 1500 triples or less, displays 500 owner nodes, then the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
 Meta:@skip
 Given the user is on the ubo login page
 When the user login as a kyc user
@@ -360,4 +330,4 @@ And the user captures the expected snapshot for the <nodeTitle> full graph
 
 Examples:
 |fid|nodeTitle|
-|30087|The Fukuoka Chuo Bank Ltd KYC|
+|30087|The Fukuoka Chuo Bank Ltd|

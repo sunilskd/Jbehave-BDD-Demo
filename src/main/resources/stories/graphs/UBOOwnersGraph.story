@@ -764,3 +764,36 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|nodeTitle|
 |51859|Banco Santander SA|
+
+Scenario: KYC-395 Verify Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph
+Meta:@skip
+Given the user is on the ubo login page
+When the user login as a kyc user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user enters percentage as 5 in ownership percentage filter text box in the graphs
+
+Then the user should see the below owners for the legal entity Banca Popolare Valconca Scrl in the graphs
+|NODES|
+|Centrale SpA 14Italy|
+|CSE Consorzio Servizi Bancari Scarl 11.25Italy|
+
+Examples:
+|fid|nodeTitle|
+|175270|Credit Agricole Caisse D'Epargne Investor Services (CACEIS)|
+
+Scenario: Verify graph truncation notification message
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the full graph
+And the user should see the notification message that the graphs are truncated
+
+Examples:
+|fid|
+|544|

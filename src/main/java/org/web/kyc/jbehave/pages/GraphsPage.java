@@ -50,6 +50,7 @@ public class GraphsPage extends WebDriverUtils {
     private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
     private By graph_in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
     private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
+    private By graphs_truncated_notification_msg_xpath = By.xpath("//*[@id='content-view']/p");
 
     public GraphsPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -563,4 +564,7 @@ public class GraphsPage extends WebDriverUtils {
         takeSnapshot("./src/test/resources/expected/eOwners"+nodeTitle+".png");
     }
 
+    public void verifyGraphsAreTruncatedMsg() {
+        assertEquals("This graph is too large to display in your browser. Click the \"Show More\" link on tiles within the graph to show hidden segments in a new graph. Download the complete graph using the download button above (Complex graphs may take several minutes).",getWebElementText(graphs_truncated_notification_msg_xpath));
+    }
 }

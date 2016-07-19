@@ -10,7 +10,7 @@ JIRA ID - KYC-109 - KYC user can highlight legal entities by country in subsidia
 JIRA ID - KYC-104 - KYC user can filter subsidiary graph by percent ownership
 JIRA ID - KYC-318 - Country highlights is not working for the root node.
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
-JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
+JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 
 Meta:@subsidiariesgraph @kyc @ubo
@@ -570,13 +570,17 @@ Examples:
 |fid|nodeTitle|
 |9461|The Miyazaki Bank Ltd|
 
-Scenario: Truncate large full graph
+Scenario: Verify graph truncation notification message
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+And the user should see the notification message that the graphs are truncated
 
-
-
+Examples:
+|fid|
+|444|
 
 Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated[Data Missing]
-
-
-
-

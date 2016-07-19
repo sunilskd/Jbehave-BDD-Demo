@@ -24,12 +24,12 @@ public class GraphsSteps {
 
     @Then("the user should see the list of below subsidiaries in level $level, below the root entity, in the graphs $subsidiariesExamTable")
     public void verifySubsInTheGraphs(String level, ExamplesTable subsidiariesExamTable){
-        pageObject.graphsPage().verifyGraphNodes(Integer.toString(Integer.parseInt(level)*180), subsidiariesExamTable);
+        pageObject.graphsPage().verifyGraphNodes(Integer.toString(Integer.parseInt(level)*250), subsidiariesExamTable);
     }
 
     @Then("the user should see the list of below owners in level $level, above the root entity, in the graphs $ownersExamTable")
     public void verifyOwnersInTheGraphs(String level, ExamplesTable ownersExamTable){
-        pageObject.graphsPage().verifyGraphNodes(Integer.toString(0 - (Integer.parseInt(level)*180)), ownersExamTable);
+        pageObject.graphsPage().verifyGraphNodes(Integer.toString(0 - (Integer.parseInt(level)*250)), ownersExamTable);
     }
 
     @Then("the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs")
@@ -318,5 +318,10 @@ public class GraphsSteps {
     @Then("the user captures the expected snapshot for the owners page <nodeTitle>")
     public void eCaptureOwnersPageTruncatedGraph(@Named("nodeTitle")String nodeTitle){
         pageObject.graphsPage().eCaptureOwnersPageTruncatedGraph(nodeTitle);
+    }
+
+    @Then("the user should see the notification message that the graphs are truncated")
+    public void verifyGraphsAreTruncatedMsg(){
+        pageObject.graphsPage().verifyGraphsAreTruncatedMsg();
     }
 }
