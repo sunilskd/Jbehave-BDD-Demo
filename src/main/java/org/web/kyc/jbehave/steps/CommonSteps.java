@@ -1,10 +1,7 @@
 package org.web.kyc.jbehave.steps;
 
 import org.jbehave.core.annotations.*;
-import org.jbehave.core.model.ExamplesTable;
 import org.web.kyc.jbehave.pages.PageObject;
-
-import java.io.IOException;
 
 public class CommonSteps {
     private final PageObject pageObject;
@@ -14,8 +11,13 @@ public class CommonSteps {
     }
 
     @Given("the user is on the ubo login page")
-    public void open(){
-        pageObject.commonUtils().open();
+    public void openOwnershipModule(){
+        pageObject.commonUtils().openOwnershipModule();
+    }
+
+    @Given("the user is on the ubo print help page")
+    public void openPrintHelp(){
+        pageObject.commonUtils().openPrintHelp();
     }
 
     @When("the user clicks on the ownership tab")
@@ -43,12 +45,13 @@ public class CommonSteps {
     }
 
     @When("the user clicks on $footerLink link in footer section")
-    @Alias("the user clicks on $footerLink link in error screen")
-    public void verifyFooterLinks(@Named("$footerLink") String footerLink){pageObject.commonUtils().verifyFooterLinks(footerLink);
+    @Aliases(values={"the user clicks on $footerLink link in error screen",
+                    "the user clicks on the $footerLink link in the header section"})
+    public void clickOnHeaderOrFooterLinks(@Named("$footerLink") String footerLink){pageObject.commonUtils().clickOnLinks(footerLink);
     }
 
     @When("the user clicks on the logo $logo in footers section")
-    public void verifyFooterLogos(@Named("$logo") String logo){pageObject.commonUtils().verifyFooterLogos(logo);
+    public void verifyFooterLogos(@Named("$logo") String logo){pageObject.commonUtils().clickOnFooterLogos(logo);
     }
 
     @Then("user is taken to a URL $url that opens in a new window")
@@ -58,6 +61,16 @@ public class CommonSteps {
     @When("the user clicks on the save as pdf icon (display loading icon while generating saved pdf for lists)")
     public void clickOnSaveAsPDFIcon(){
         pageObject.commonUtils().clickOnSaveAsPDFIcon();
+    }
+
+    @Then("user should see the instructions to print from web browser open in new tab")
+    public void verifyPrintHelpPage(){
+        pageObject.commonUtils().verifyPrintHelpPage();
+    }
+
+    @Then("user should see the instructions to print from web browser")
+    public void verifyPrintInstruction(){
+        pageObject.commonUtils().verifyPrintInstruction();
     }
 
 }
