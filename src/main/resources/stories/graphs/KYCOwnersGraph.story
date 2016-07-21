@@ -371,8 +371,8 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|UK|
-|USA|
+|UK (7)|
+|USA (5)|
 
 When the user selects a country UK from the country highlight list in the graphs
 
@@ -680,50 +680,50 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Angola|
-|Austria|
-|Belgium|
-|Bosnia-Herzegovina|
-|Brazil|
-|China|
-|Czech Republic|
-|France|
-|Germany|
-|Greece|
-|Hong Kong|
-|Hungary|
-|Italy|
-|Kazakhstan|
-|Libya|
-|Luxembourg|
-|Malaysia|
-|Netherlands|
-|Norway|
-|Pakistan|
-|Portugal|
-|Qatar|
-|Romania|
-|Russian Federation|
-|Singapore|
-|Slovakia|
-|Slovenia|
-|Spain|
-|Switzerland|
-|Turkey|
-|UAE|
-|UK|
-|USA|
+|Angola (2)|
+|Austria (13)|
+|Belgium (7)|
+|Bosnia-Herzegovina (2)|
+|Brazil (1)|
+|China (3)|
+|Czech Republic (1)|
+|France (14)|
+|Germany (8)|
+|Greece (6)|
+|Hong Kong (1)|
+|Hungary (6)|
+|Italy (191)|
+|Kazakhstan (5)|
+|Libya (3)|
+|Luxembourg (12)|
+|Malaysia (3)|
+|Netherlands (10)|
+|Norway (21)|
+|Pakistan (13)|
+|Portugal (12)|
+|Qatar (1)|
+|Romania (1)|
+|Russian Federation (2)|
+|Singapore (2)|
+|Slovakia (4)|
+|Slovenia (4)|
+|Spain (56)|
+|Switzerland (2)|
+|Turkey (2)|
+|UAE (2)|
+|UK (15)|
+|USA (63)|
 
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Canada|
-|Cayman Islands|
-|Italy|
-|South Africa|
-|UK|
-|USA|
+|Canada (8)|
+|Cayman Islands (1)|
+|Italy (4)|
+|South Africa (12)|
+|UK (7)|
+|USA (353)|
 
 Examples:
 |fid|nodeTitle|

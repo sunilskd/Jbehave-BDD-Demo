@@ -110,7 +110,7 @@ public class GraphControlsSteps {
         pageObject.graphControlsUtils().verifyPercentFilterInfo();
     }
 
-    @Then("user should see the info 'Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.' on the graphs")
+    @Then("user should see the info 'Use these tools to highlight tiles within the graph. Counts (Total) reflect applied filters. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.' on the graphs")
     public void verifyCountryHighlightInfo(){
         pageObject.graphControlsUtils().verifyCountryHighlightInfo();
     }
@@ -128,6 +128,11 @@ public class GraphControlsSteps {
     @When("the user clicks on the reset button next to zoom slider on the graphs")
     public void clickOnResetButton(){
         pageObject.graphControlsUtils().clickOnResetButton();
+    }
+
+    @Then("the user should see UBO count as $UBOCount displayed next to UBO checkbox label")
+    public void verifyUBOCount(@Named("UBOCount") String UBOCount){
+        pageObject.graphControlsUtils().verifyUBOCount(UBOCount);
     }
 
 }

@@ -62,7 +62,7 @@ public class GraphsPage extends WebDriverUtils {
         if (isWebElementDisplayed(graph_draw_area_xpath)) {
             executeScript
                     ("return arguments[0].setAttribute(arguments[1],arguments[2]);",
-                            getWebElement(graph_draw_area_xpath), "transform", "translate(629.735907505466,396.1689031324577) scale(0.36856730432277535)");
+                            getWebElement(graph_draw_area_xpath), "transform", "translate(946.5,487.5) scale(0.397)");
         }
     }
 
@@ -235,7 +235,7 @@ public class GraphsPage extends WebDriverUtils {
     public void selectingNodeToBeClicked(String legalEntity){
         try{
             List<WebElement> multipleNode  = getWebElements(By.xpath(graph_multiple_node_xpath));
-            for(int i=1;i<=multipleNode.size();i++){
+            for(int i=0;i<multipleNode.size();i++){
                 String actualEntityTile = multipleNode.get(i).findElement(graph_multiple_node_title_xpath).getText();
                 if(legalEntity.equalsIgnoreCase(actualEntityTile)){
                     Thread.sleep(5000L);

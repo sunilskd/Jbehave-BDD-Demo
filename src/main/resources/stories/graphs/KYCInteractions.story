@@ -54,7 +54,7 @@ And the user should not see any nodes in level 2, above the root entity, in the 
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|UK|
+|UK (3)|
 
 When the user selects a country UK from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
@@ -113,8 +113,8 @@ And the user should see, percent filter is reset to 0 for both input box and sli
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|UK|
-|USA|
+|UK (7)|
+|USA (5)|
 
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
@@ -163,10 +163,10 @@ And the user should see the list of below subsidiaries in level 3, below the roo
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (1)|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (4)|
 
 When the user selects a country UK from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
@@ -193,10 +193,10 @@ And the user should not see the entities highlighted in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (3)|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (1)|
 
 When the user enters percentage as 50 in ownership percentage filter text box in the graphs
 Then the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
@@ -207,9 +207,9 @@ Then the user should see the list of below subsidiaries in level 1, below the ro
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|India|
-|Korea (Republic of)|
-|UK|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (1)|
 
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
@@ -244,10 +244,10 @@ And the user should see the list of below subsidiaries in level 4, below the roo
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (4)|
+|India (1)|
+|Korea (Republic of) (6)|
+|UK (5)|
 
 And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
 
@@ -295,10 +295,10 @@ And the user should see the list of below owners in level 1, above the root enti
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (1)|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (5)|
 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
@@ -318,10 +318,10 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (3)|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (3)|
 
 When the user selects a country Australia from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
@@ -415,11 +415,11 @@ And the user should see the list of below owners in level 6, above the root enti
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
-|USA|
+|Australia (4)|
+|India (1)|
+|Korea (Republic of) (6)|
+|UK (11)|
+|USA (5)|
 
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs

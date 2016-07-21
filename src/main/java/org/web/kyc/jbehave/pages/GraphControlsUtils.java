@@ -1,8 +1,10 @@
 package org.web.kyc.jbehave.pages;
 
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -36,6 +38,8 @@ public class GraphControlsUtils extends WebDriverUtils {
     private By graph_percent_filter_info_xpath = By.xpath("//div[@kyc-percent-text-range-control=''] //span/p");
     private By graph_country_highlight_icon_xpath = By.xpath("//div[@kyc-country-dropdown-control=''] //span");
     private By graph_country_highlight_info_xpath = By.xpath("//div[@kyc-country-dropdown-control=''] //span/p");
+    private By graph_ubo_count_text_xpath = By.xpath("//*[@id='content-view']/div[1]/div[5]/div/span");
+
 
     public GraphControlsUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -61,8 +65,9 @@ public class GraphControlsUtils extends WebDriverUtils {
     }
 
     public void selectCountryHighlightInGraphs(String country) {
-        Select dropDown = new Select(getWebElement(graph_country_highlight_drop_down_xpath));
-        dropDown.selectByVisibleText(country);
+        getWebElement(graph_country_highlight_drop_down_xpath).sendKeys(country);
+        getWebElement(graph_country_highlight_drop_down_xpath).sendKeys(Keys.ENTER);
+
     }
 
     public void verifyingDirectRelationshipOnlyFilterIsUnchecked() {
@@ -101,7 +106,7 @@ public class GraphControlsUtils extends WebDriverUtils {
 
     public void verifyUBOFilterIsUncheckedByDefault() {
         waitForWebElementToAppear(graph_ubo_filter_label_xpath);
-        assertEquals("Highlight Ultimate Beneficial Owners", getWebElementText(graph_ubo_filter_label_xpath));
+        assertEquals("Highlight Ultimate Beneficial Owners" + " " + getWebElementsText(graph_ubo_count_text_xpath), getWebElementText(graph_ubo_filter_label_xpath));
         assertTrue(isWebElementDisplayed(graph_ubo_filter_checkbox_unchecked_state_xpath));
     }
 
@@ -157,7 +162,11 @@ public class GraphControlsUtils extends WebDriverUtils {
     }
 
     public void verifyCountryHighlightInfo() {
-        assertEquals("Use these tools to highlight tiles within the graph. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.",
+        assertEquals("Use these tools to highlight tiles within the graph. Counts (Total) reflect applied filters. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.",
                 getWebElementText(graph_country_highlight_info_xpath));
+    }
+
+    public void verifyUBOCount(String UBOCount){
+        assertEquals(("(" + UBOCount + ")"),getWebElementText(graph_ubo_count_text_xpath));
     }
 }
