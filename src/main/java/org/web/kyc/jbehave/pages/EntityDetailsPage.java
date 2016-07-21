@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.ENTITY_DETAILS;
-import static org.web.kyc.xqueries.XQueryEnum.ENTITY_DETAILS_REGISTERED_OFFICE;
+
 
 public class EntityDetailsPage extends WebDriverUtils {
 
@@ -207,7 +207,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void verifyRegisteredOffice(){
-        entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS_REGISTERED_OFFICE, nvPairs);
+        entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
         List<WebElement> registeredOfficeDetails = findElement(entity_details_registered_office_xpath).findElements(By.tagName("span"));
         String officeAddress = "";
         for(WebElement detail : registeredOfficeDetails){
@@ -219,7 +219,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void verifyRegisteredOfficeNotDisplayed(){
-        entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS_REGISTERED_OFFICE, nvPairs);
+        entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
        if(entityDetailsDocument.getElementsByTagName("registeredOffice").item(0).getTextContent().replace(", ",",").equals("")){
         List<WebElement> container= findElements(entity_details_registered_office_container_xpath);
         assertTrue(container.size()==2);

@@ -11,7 +11,7 @@ JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
 JIRA ID - KYC-211 - LEIs are not sorted alphabetically in Entity Details Identifier Section
 JIRA ID - KYC-204 - Display legal entity website on entity details
 
-Meta:@entitydetails @kyc @ubo
+Meta:@entitydetails @kyc @ubo @registeredOffice
 
 Scenario: KYC user login
 Given the user is on the ubo login page
@@ -145,6 +145,7 @@ Examples:
 |732|
 
 Scenario: KYC-215 Covers below scenario
+Meta:@registeredOffice
 1. Display registered office details, Not displaying Sub Area details as UseInAddress flag is false
 2. Display registered office details, Not displaying Area details as UseInAddress flag is false
 3. Display registered office details, Not displaying Area  and SubArea details as UseInAddress flag is false
@@ -162,6 +163,7 @@ Examples:
 |62579|
 
 Scenario: KYC-215 Verify Registered office details are not displayed
+Meta:@registeredOffice
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
