@@ -144,6 +144,33 @@ Examples:
 |fid|
 |732|
 
+Scenario: KYC-215 Covers below scenario
+1. Display registered office details, Not displaying Sub Area details as UseInAddress flag is false
+2. Display registered office details, Not displaying Area details as UseInAddress flag is false
+3. Display registered office details, Not displaying Area  and SubArea details as UseInAddress flag is false
+4. Display registered office details, With all details
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+And the user clicks on the entity details tab
+Then the user verifies registered office details on entity page
+
+Examples:
+|fid|
+|16|
+|3314|
+|15106|
+|62579|
+
+Scenario: KYC-215 Verify Registered office details are not displayed
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+And the user clicks on the entity details tab
+Then the user verifies registered office details are not displayed
+
+Examples:
+|fid|
+|1038|
+
 Scenario: KYC user logout
 Given the user is on the ubo login page
 When the user logout
