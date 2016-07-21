@@ -219,9 +219,12 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void verifyRegisteredOfficeNotDisplayed(){
+        entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS_REGISTERED_OFFICE, nvPairs);
+       if(entityDetailsDocument.getElementsByTagName("registeredOffice").item(0).getTextContent().replace(", ",",").equals("")){
         List<WebElement> container= findElements(entity_details_registered_office_container_xpath);
         assertTrue(container.size()==2);
 
+    }
     }
 
 }
