@@ -125,7 +125,7 @@ public class EntityDetailsSteps {
     public void clickWebsiteUrl(@Named("website") String footerLink){pageObject.commonUtils().verifyFooterLinks(footerLink);
     }
 
-    @Then("the user verifies registered office details on entity page")
+    @Then("the user should see the registered office address(address line 1 line2 line3 line 4,city,area,subarea,country) respecting the useInAddres flag in summary section")
     public void verifyRegisteredOffice(){pageObject.entityDetailsPage().verifyRegisteredOffice();}
 
     @Then("the user verifies registered office details are not displayed")

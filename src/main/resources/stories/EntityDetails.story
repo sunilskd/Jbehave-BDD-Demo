@@ -146,14 +146,14 @@ Examples:
 
 Scenario: KYC-215 Covers below scenario
 Meta:@registeredOffice
-1. Display registered office details, Not displaying Sub Area details as UseInAddress flag is false
-2. Display registered office details, Not displaying Area details as UseInAddress flag is false
-3. Display registered office details, Not displaying Area  and SubArea details as UseInAddress flag is false
-4. Display registered office details, With all details
+1. Displaying registered office details by making useInAddress flag to false for SubArea
+2. Displaying registered office details by making useInAddress flag to false for Area
+3. Displaying registered office details by making useInAddress flag to false for SubArea and Area
+4. Displaying registered office details by making useInAddress flag to true for City,Area,Subarea and country
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
-Then the user verifies registered office details on entity page
+Then the user should see the registered office address(address line 1 line2 line3 line 4,city,area,subarea,country) respecting the useInAddres flag in summary section
 
 Examples:
 |fid|
@@ -162,7 +162,9 @@ Examples:
 |15106|
 |62579|
 
-Scenario: KYC-215 Verify Registered office details are not displayed
+Scenario: KYC-215 Verify below scenarios
+1. Registered office details are not displayed when address/function != registered office
+2. Registered office details are not displayed when location/@primary = false
 Meta:@registeredOffice
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -172,6 +174,7 @@ Then the user verifies registered office details are not displayed
 Examples:
 |fid|
 |1038|
+|31376|
 
 Scenario: KYC user logout
 Given the user is on the ubo login page
