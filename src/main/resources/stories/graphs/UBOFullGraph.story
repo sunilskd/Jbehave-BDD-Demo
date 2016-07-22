@@ -307,11 +307,11 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
-|USA|
+|Australia (4)|
+|India (1)|
+|Korea (Republic of) (6)|
+|UK (11)|
+|USA (5)|
 
 When the user selects a country UK from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
@@ -660,18 +660,18 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Belgium|
-|France|
-|Japan|
-|Singapore|
-|UK|
-|USA|
+|Belgium (5)|
+|France (27)|
+|Japan (524)|
+|Singapore (2)|
+|UK (2)|
+|USA (57)|
 
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Argentina|
+|Argentina (3)|
 
 Examples:
 |fid|nodeTitle|

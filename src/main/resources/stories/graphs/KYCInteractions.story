@@ -23,6 +23,8 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
    7. If user applies percent or direct filter, any highlights previously applied (country,appears multiple) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times count on a legal entity or person remains the same even if all times the entity appears are no longer visible
+   9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
+   10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
 
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -54,7 +56,7 @@ And the user should not see any nodes in level 2, above the root entity, in the 
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|UK|
+|UK (3)|
 
 When the user selects a country UK from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
@@ -113,8 +115,8 @@ And the user should see, percent filter is reset to 0 for both input box and sli
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|UK|
-|USA|
+|UK (7)|
+|USA (5)|
 
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
@@ -136,6 +138,8 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
    7. If user applies percent or direct filter, any highlights previously applied (country) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times doesnt appear
+   9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
+   10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
 
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -163,10 +167,10 @@ And the user should see the list of below subsidiaries in level 3, below the roo
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (1)|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (4)|
 
 When the user selects a country UK from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
@@ -193,10 +197,10 @@ And the user should not see the entities highlighted in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (3)|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (1)|
 
 When the user enters percentage as 50 in ownership percentage filter text box in the graphs
 Then the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
@@ -207,9 +211,9 @@ Then the user should see the list of below subsidiaries in level 1, below the ro
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|India|
-|Korea (Republic of)|
-|UK|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (1)|
 
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
@@ -244,10 +248,10 @@ And the user should see the list of below subsidiaries in level 4, below the roo
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (4)|
+|India (1)|
+|Korea (Republic of) (6)|
+|UK (5)|
 
 And the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs
 
@@ -265,6 +269,8 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
    7. If user applies percent or direct filter, any highlights previously applied (country, appears multiple) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times count on a legal entity or person remains the same even if all times the entity appears are no longer visible
+   9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
+   10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
 
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -295,10 +301,10 @@ And the user should see the list of below owners in level 1, above the root enti
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (1)|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (5)|
 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
@@ -318,10 +324,10 @@ And the user should see the list of below subsidiaries in level 1, below the roo
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
+|Australia (3)|
+|India (1)|
+|Korea (Republic of) (1)|
+|UK (3)|
 
 When the user selects a country Australia from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
@@ -415,11 +421,11 @@ And the user should see the list of below owners in level 6, above the root enti
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
-|USA|
+|Australia (4)|
+|India (1)|
+|Korea (Republic of) (6)|
+|UK (11)|
+|USA (5)|
 
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
@@ -434,6 +440,7 @@ Examples:
 Scenario: Covers below scenarios for full graph
 a. 0. If user applied country highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches country highlight takes style of country highlight
    1. If user applied both country highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of country highlight
+   2. if User selects country highlight and If user changes color of a highlighted tile to appears multiple, it still counts toward the country highlight count
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -475,6 +482,24 @@ And the user should see the below entities that have the selected country of ope
 |Vontobel Holding AG|
 |Vontobel Beteiligungen AG|
 |Finanzgesellschaft Hugo Kahn & Co Ltd|
+
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Austria (3)|
+|Bahamas (1)|
+|Cayman Islands (1)|
+|Czech Republic (1)|
+|Germany (5)|
+|Hong Kong (2)|
+|Hungary (3)|
+|Liechtenstein (1)|
+|Luxembourg (2)|
+|Singapore (1)|
+|Slovenia (1)|
+|Switzerland (14)|
+|UAE (2)|
+|USA (2)|
 
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
