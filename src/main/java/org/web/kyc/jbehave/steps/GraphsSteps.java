@@ -17,19 +17,19 @@ public class GraphsSteps {
         pageObject.graphsPage().clickOnGraphButton();
     }
 
-    @Then("the user should see the legal entity $rootEntity, user is currently viewing, as the root and highlighted in the graphs")
+    @Then("the user should see the legal entity $rootEntity, user is currently viewing, as the root and highlighted on the graphs")
     public void verifyRootNodeInTheGraphs(@Named("rootEntity") String rootEntity){
         pageObject.graphsPage().verifyRootNodeInTheGraphs(rootEntity);
     }
 
     @Then("the user should see the list of below subsidiaries in level $level, below the root entity, in the graphs $subsidiariesExamTable")
     public void verifySubsInTheGraphs(String level, ExamplesTable subsidiariesExamTable){
-        pageObject.graphsPage().verifyGraphNodes(Integer.toString(Integer.parseInt(level)*250), subsidiariesExamTable);
+        pageObject.graphsPage().verifyGraphNodesAtLevels(Integer.toString(Integer.parseInt(level)*250), subsidiariesExamTable);
     }
 
     @Then("the user should see the list of below owners in level $level, above the root entity, in the graphs $ownersExamTable")
     public void verifyOwnersInTheGraphs(String level, ExamplesTable ownersExamTable){
-        pageObject.graphsPage().verifyGraphNodes(Integer.toString(0 - (Integer.parseInt(level)*250)), ownersExamTable);
+        pageObject.graphsPage().verifyGraphNodesAtLevels(Integer.toString(0 - (Integer.parseInt(level)*250)), ownersExamTable);
     }
 
     @Then("the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs")
@@ -57,9 +57,9 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyStopTravelingPath(Integer.toString((Integer.parseInt(level) * 180)));
     }
 
-    @Then("the user should see the below subsidiaries for the legal entity $legalEntity in the graphs $subsidiariesExamTable")
-    public void verifySubsidiariesOfAnEntity(String legalEntity, ExamplesTable subsidiariesExamTable){
-        pageObject.graphsPage().verifySubsidiariesOfAnEntity(legalEntity, subsidiariesExamTable);
+    @Then("the user should see the below subsidiaries for the legal entity $legalEntity in the graphs")
+    public void verifySubsidiariesOfAnEntity(String legalEntity){
+        pageObject.graphsPage().verifySubsidiariesOfAnEntity(legalEntity);
     }
 
     @Then("the user should not see any nodes in level $level, above the root entity, in the owners graph")
@@ -118,9 +118,9 @@ public class GraphsSteps {
         pageObject.graphsPage().clickOnNodeTitle(switchNode);
     }
 
-    @Then("the user should see the below owners for the legal entity $legalEntity in the graphs $ownersExamTable")
-    public void verifyOwnersOfAnEntity(String legalEntity, ExamplesTable ownersExamTable){
-        pageObject.graphsPage().verifyOwnersOfAnEntity(legalEntity, ownersExamTable);
+    @Then("the user should see the below owners for the legal entity $legalEntity in the graphs")
+    public void verifyOwnersOfAnEntity(String legalEntity){
+        pageObject.graphsPage().verifyOwnersOfAnEntity(legalEntity);
     }
 
     @Then("the user should see the ultimate beneficial owners highlighted in the graph $ubosHighlightedExamTable")

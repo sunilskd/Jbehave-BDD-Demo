@@ -35,7 +35,7 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 
 When the user enters percentage as 45 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
 |QA Legal Entity 945.53UK|
@@ -158,7 +158,7 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
@@ -193,7 +193,7 @@ Then the user should see the below entities that have the selected country of op
 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 |NODES|
@@ -365,7 +365,7 @@ And the user should see the list of below unique country of operations for each 
 
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
 |NODES|
