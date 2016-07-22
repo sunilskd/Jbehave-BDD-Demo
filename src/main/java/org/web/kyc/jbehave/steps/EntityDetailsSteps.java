@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.eclipse.jetty.util.annotation.Name;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -123,4 +124,10 @@ public class EntityDetailsSteps {
     @Alias("the user clicks on <website> link in the entity details section of side panel")
     public void clickWebsiteUrl(@Named("website") String footerLink){pageObject.commonUtils().clickOnLinks(footerLink);
     }
+
+    @Then("the user should see the registered office address(address line 1 line2 line3 line 4,city,area,subarea,country) respecting the useInAddres flag in summary section")
+    public void verifyRegisteredOffice(){pageObject.entityDetailsPage().verifyRegisteredOffice();}
+
+    @Then("the user verifies registered office details are not displayed")
+    public void verifyRegisteredOfficeNotDisplayed(){pageObject.entityDetailsPage().verifyRegisteredOfficeNotDisplayed();}
 }

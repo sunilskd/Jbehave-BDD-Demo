@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.pages;
 
+import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
@@ -12,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.ENTITY_DETAILS;
+
 
 public class EntityDetailsPage extends WebDriverUtils {
 
@@ -39,6 +41,8 @@ public class EntityDetailsPage extends WebDriverUtils {
     private By entity_details_regulators_label_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/th");
     private By entity_details_website_text_xpath=By.xpath("//td/a");
     private By entity_details_website_label_text_xpath=By.xpath("//*[@id='entity-head-office']/tbody/tr[2]/th");
+    private By entity_details_registered_office_xpath = By.xpath(".//*[@id='entity-head-office']/tbody/tr[2]/td");
+    private By entity_details_registered_office_container_xpath = By.xpath(".//*[@id='entity-head-office']/tbody/tr");
     private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
     private Document entityDetailsDocument;
 
@@ -200,6 +204,22 @@ public class EntityDetailsPage extends WebDriverUtils {
     public void sVerifyWebsiteInfo(String website) {
         assertEquals(website,getWebElementText(entity_details_website_text_xpath));
         assertEquals("Website" ,getWebElementText(entity_details_website_label_text_xpath));
+    }
+
+    public void verifyRegisteredOffice(){
+        assertEquals(entityDetailsDocument.getElementsByTagName("registeredOffice").item(0).getTextContent().replace(", ",","),getWebElementText(entity_details_registered_office_xpath).replace("\n","").replace(", ",","));
+        List<WebElement> trContainer = findElements(entity_details_registered_office_container_xpath);
+        String registeredOfficeLabel = trContainer.get(1).findElement(By.tagName("th")).getText();
+        assertEquals(registeredOfficeLabel,"Registered Office");
+
+    }
+
+    public void verifyRegisteredOfficeNotDisplayed(){
+       if(entityDetailsDocument.getElementsByTagName("registeredOffice").item(0).getTextContent().replace(", ",",").equals("")){
+        List<WebElement> container= findElements(entity_details_registered_office_container_xpath);
+        assertTrue(container.size()==2);
+
+    }
     }
 
 }
