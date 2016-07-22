@@ -4,8 +4,9 @@ Footer displays all the links requred to navigate to view information related to
 
 Covers below features:
 JIRA ID - KYC-160 - KYC user can view footer information
+JIRA ID - KYC-414 - User can click link to print help
 
-Meta:@footer
+Meta:@headerandfooter
 Scenario: UBO user login
 Given the user is on the ubo login page
 When the user login as a ubo user
@@ -16,7 +17,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the group structure tab
+And the user clicks on the Print Help link in the header section
+Then user should see the instructions to print from web browser open in new tab
+When the user clicks on the group structure tab
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
 When the user clicks on Contact Us link in footer section
 Then user is taken to a URL http://www.accuity.com/customer-support/ that opens in a new window
@@ -49,7 +52,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the owners tab
+And the user clicks on the Print Help link in the header section
+Then user should see the instructions to print from web browser open in new tab
+When the user clicks on the owners tab
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
 When the user clicks on Contact Us link in footer section
 Then user is taken to a URL http://www.accuity.com/customer-support/ that opens in a new window
@@ -82,7 +87,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the subsidiaries tab
+And the user clicks on the Print Help link in the header section
+Then user should see the instructions to print from web browser open in new tab
+When the user clicks on the subsidiaries tab
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
 When the user clicks on Contact Us link in footer section
 Then user is taken to a URL http://www.accuity.com/customer-support/ that opens in a new window
@@ -115,7 +122,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the group structure tab
+And the user clicks on the Print Help link in the header section
+Then user should see the instructions to print from web browser open in new tab
+When the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
 When the user clicks on Contact Us link in footer section
@@ -149,7 +158,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the owners tab
+And the user clicks on the Print Help link in the header section
+Then user should see the instructions to print from web browser open in new tab
+When the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
 When the user clicks on Contact Us link in footer section
@@ -183,7 +194,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the subsidiaries tab
+And the user clicks on the Print Help link in the header section
+Then user should see the instructions to print from web browser open in new tab
+When the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
 When the user clicks on Contact Us link in footer section
@@ -217,6 +230,8 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
+And the user clicks on the Print Help link in the header section
+Then user should see the instructions to print from web browser open in new tab
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
 When the user clicks on Contact Us link in footer section
 Then user is taken to a URL http://www.accuity.com/customer-support/ that opens in a new window
@@ -242,3 +257,7 @@ Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new win
 Examples:
 |fid|
 |211|
+
+Scenario: Verify print help page instruction
+Given the user is on the ubo print help page
+Then user should see the instructions to print from web browser

@@ -121,6 +121,6 @@ public class EntityDetailsSteps {
 
     @When("the user clicks on <website> link in the entity details section")
     @Alias("the user clicks on <website> link in the entity details section of side panel")
-    public void clickWebsiteUrl(@Named("website") String footerLink){pageObject.commonUtils().verifyFooterLinks(footerLink);
+    public void clickWebsiteUrl(@Named("website") String footerLink){pageObject.commonUtils().clickOnLinks(footerLink);
     }
 }
