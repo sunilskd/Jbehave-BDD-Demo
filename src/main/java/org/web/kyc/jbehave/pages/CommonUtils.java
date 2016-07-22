@@ -31,10 +31,10 @@ public class CommonUtils extends WebDriverUtils {
         super(driverProvider);
     }
 
-    public void open() {
+    public void openOwnershipModule() {
         nvPairs.clear();
         nvPairs.add(new BasicNameValuePair("userType", userType));
-        get(readProperties().getUrl() + "login");
+        get(readProperties().getUrl() + "/#/login");
         manage().window().maximize();
     }
 
@@ -46,7 +46,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void openUrl(String url) {
         nvPairs.add(new BasicNameValuePair("fid", url));
-        get(readProperties().getUrl() + "legalEntity/" + url + "/ownership/owners");
+        get(readProperties().getUrl() + "/#/legalEntity/" + url + "/ownership/owners");
     }
 
     public void verifyPercentFilterOptions() {
@@ -116,15 +116,14 @@ public class CommonUtils extends WebDriverUtils {
         assertEquals("© Reed Business Information Limited " + year,getWebElementText(footer_copyrights_label_text_xpath));
     }
 
-    public void verifyFooterLinks(String footerLink){
+    public void clickOnLinks(String footerLink){
         findElement(By.linkText(footerLink)).click();
         waitForInMilliSeconds(3000L);
     }
 
-    public void verifyFooterLogos(String verifyFooterLogos){
+    public void clickOnFooterLogos(String verifyFooterLogos){
         findElement(By.className(verifyFooterLogos)).click();
     }
-
 
     public void verifyURLOpensInNewWindow(String url){
         waitForInMilliSeconds(3000L);
@@ -152,5 +151,23 @@ public class CommonUtils extends WebDriverUtils {
 
     public void clickOnPleaseSubscribe(){
         clickOnWebElement(product_message_please_subscribe_link_text_xpath);
+    }
+
+    public void verifyPrintHelpPage() {
+        verifyURLOpensInNewWindow(readProperties().getUrl() + "/printing-help.html");
+    }
+
+    public void openPrintHelp() {
+        get(readProperties().getUrl() + "/printing-help.html");
+        manage().window().maximize();
+    }
+
+    public void verifyPrintInstruction() {
+        assertEquals("Printing Help", getWebElementText(By.xpath("//h1")));
+        assertEquals("How to Print",getWebElementText(By.xpath("//h2[1]")));
+        assertEquals("Acrobat Reader 12",getWebElementText(By.xpath("//h2[2]")));
+        assertEquals("Acrobat Reader 11",getWebElementText(By.xpath("//h2[3]")));
+        assertEquals("PDF X-Change Viewer",getWebElementText(By.xpath("//h2[4]")));
+        assertEquals("Foxit",getWebElementText(By.xpath("//h2[5]")));
     }
 }

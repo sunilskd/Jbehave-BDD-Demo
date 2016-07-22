@@ -7,6 +7,7 @@ public enum XQueryEnum {
     SUBSIDIARIES_LIST("qa-kyc-ubo-getSubsidiariesList.xqy"),
     AUDIT_INFORMATION("qa-kyc-ubo-getOwnershipAuditTrail.xqy");
 
+
     private String xQueryName;
 
     XQueryEnum(String xQueryName) {
