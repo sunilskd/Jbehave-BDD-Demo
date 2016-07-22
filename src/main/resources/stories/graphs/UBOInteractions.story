@@ -641,6 +641,7 @@ And the user should see the list of below unique country of operations for each 
 |Czech Republic (1)|
 |Germany (5)|
 |Hong Kong (2)|
+|Hungary (3)|
 |Liechtenstein (1)|
 |Luxembourg (2)|
 |Singapore (1)|

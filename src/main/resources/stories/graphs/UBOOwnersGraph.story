@@ -337,8 +337,8 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|UK|
-|USA|
+|UK (7)|
+|USA (5)|
 
 When the user selects a country UK from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
@@ -377,12 +377,12 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Canada|
-|Italy|
-|Norway|
-|South Africa|
-|UK|
-|USA|
+|Canada (2)|
+|Italy (12)|
+|Norway (2)|
+|South Africa (3)|
+|UK (1)|
+|USA (92)|
 
 Examples:
 |fid|
@@ -398,8 +398,8 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|UK|
-|USA|
+|UK (1)|
+|USA (4)|
 
 Examples:
 |fid|

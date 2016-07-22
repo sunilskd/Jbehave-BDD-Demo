@@ -23,6 +23,8 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
    7. If user applies percent or direct filter, any highlights previously applied (country,appears multiple) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times count on a legal entity or person remains the same even if all times the entity appears are no longer visible
+   9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
+   10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
 
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -136,6 +138,8 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
    7. If user applies percent or direct filter, any highlights previously applied (country) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times doesnt appear
+   9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
+   10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
 
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -265,6 +269,8 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
    7. If user applies percent or direct filter, any highlights previously applied (country, appears multiple) are removed and de-selected
    8. If user applies percent or direct filter, appears multiple times count on a legal entity or person remains the same even if all times the entity appears are no longer visible
+   9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
+   10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
 
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -434,6 +440,7 @@ Examples:
 Scenario: Covers below scenarios for full graph
 a. 0. If user applied country highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches country highlight takes style of country highlight
    1. If user applied both country highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of country highlight
+   2. if User selects country highlight and If user changes color of a highlighted tile to appears multiple, it still counts toward the country highlight count
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -475,6 +482,24 @@ And the user should see the below entities that have the selected country of ope
 |Vontobel Holding AG|
 |Vontobel Beteiligungen AG|
 |Finanzgesellschaft Hugo Kahn & Co Ltd|
+
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Austria (3)|
+|Bahamas (1)|
+|Cayman Islands (1)|
+|Czech Republic (1)|
+|Germany (5)|
+|Hong Kong (2)|
+|Hungary (3)|
+|Liechtenstein (1)|
+|Luxembourg (2)|
+|Singapore (1)|
+|Slovenia (1)|
+|Switzerland (14)|
+|UAE (2)|
+|USA (2)|
 
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs

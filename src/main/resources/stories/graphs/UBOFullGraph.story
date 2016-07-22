@@ -671,7 +671,7 @@ When the user clicks on show more link which appears on the legal entity node <n
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Argentina|
+|Argentina (3)|
 
 Examples:
 |fid|nodeTitle|
