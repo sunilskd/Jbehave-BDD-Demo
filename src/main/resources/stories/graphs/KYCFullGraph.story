@@ -18,16 +18,12 @@ JIRA ID - KYC-158 - KYC user can see visual indicator for entity that appears mu
 JIRA ID - KYC-136 - Full Graph - Direct / Indirect Filter
 JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
-JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
-JIRA ID - KYC-241 - Do not display the free text when the % filters are applied.
+JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
+JIRA ID - KYC-241 - Do not display the free text when the filters are applied.
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 
 Meta:@kycfullgraph @kyc
-
-Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a kyc user
 
 Scenario: KYC user views full graph
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity as owner on graph above the entity it owns.
@@ -42,78 +38,20 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    9. Subsidiary graph should not display the free text
    10. User will see in product message on owners graph if they do not have access to UBO data and UBOs exisits fot the entity user is viewing.
 Given the user is on the ubo login page
+When the user login as a kyc user
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-|QA Legal Entity 10UK|
-
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 35Australia|
-|QA Legal Entity 3425.901Australia|
-|QA Legal Entity 33Australia|
-|QA Legal Entity 550.53Korea (Republic of)|
-|QA Legal Entity 359.53India|
-
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 161.53USA|
-|QA Legal Entity 181.53USA|
-|QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|
-
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 3960.9Australia|
-|QA Legal Entity 437.9Korea (Republic of)|
-|QA Legal Entity 41Korea (Republic of)|
-|QA Legal Entity 4070.9Korea (Republic of)|
-|QA Legal Entity 42Korea (Republic of)|
-|QA Legal Entity 149.53UK|
-|QA Legal Entity 250.53UK|
-
 And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 14UK|
-|QA Legal Entity 12UK|
-|QA Legal Entity 1751.53USA|
-|QA Legal Entity 1951.53USA|
-|Other shareholdersowning less than 2,...|
-
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 4571.91Korea (Republic of)|
-|QA Legal Entity 150.52UK|
-|QA Legal Entity 110.23UK|
-
 And the user should see the list of below owners in level 4, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 1551.53USA|
-|QA Legal Entity 1351.53UK|
-|QA Legal Entity 614.99|
-|QA Legal Entity 6114.99|
-|Top 20 shareholders,57.67; Others,...|
-
 And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 4671.91|
-
 And the user should see the list of below owners in level 5, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 6141.99|
-|Top shareholdersowning less than 2,...|
-|Top shareholdersowning less than 2,...|
-
 And the user should see the list of below owners in level 6, above the root entity, in the graphs
-|NODES|
-|Top shareholdersowning less than 2,...|
-
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
 Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
@@ -132,16 +70,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root and highlighted on the graphs
-
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 2951.53India|
-
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 322.53India|
-|QA Legal Entity 30India|
-
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
 Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
@@ -161,15 +90,7 @@ And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5630.23|
-|Top shareholdersowning less than 2,...|
-
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5651.99|
-|QA Legal Entity 6056.99|
-
 Then the user should not see any nodes in level 4, above the root entity, in the graphs
 
 Examples:
@@ -183,24 +104,8 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted on the graphs
-
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5251.23|
-
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 54|
-|QA Legal Entity 5251.23|
-
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5151.23|
-
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 53|
-|QA Legal Entity 5151.23|
 
 Examples:
 |fid|
@@ -228,13 +133,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should not see any nodes in level 1, below the root entity, in the graphs
-
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 250.52UK|
-|QA Legal Entity 549.53Korea (Republic of)|
-|QA Legal Entity 4010.23Korea (Republic of)|
-|QA Legal Entity 7UK|
+And the user should see the list of below owners in level 2, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -247,10 +146,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should not see any nodes in level 1, above the root entity, in the graphs
-
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 1451.53UK|
+And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 
 Examples:
 |fid|
@@ -286,11 +182,11 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia|
-|India|
-|Korea (Republic of)|
-|UK|
-|USA|
+|Australia (4)|
+|India (1)|
+|Korea (Republic of) (6)|
+|UK (11)|
+|USA (5)|
 
 When the user selects a country UK from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
@@ -333,26 +229,8 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
-
-Then the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 3425.901Australia|
-|QA Legal Entity 550.53Korea (Republic of)|
-|QA Legal Entity 359.53India|
-
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 149.53UK|
-|QA Legal Entity 250.53UK|
-
+Then the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 150.52UK|
-
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should not see any nodes in level 2, above the root entity, in the graphs
@@ -367,9 +245,6 @@ Then the user should see the legal entity QA Legal Entity 6, user is currently v
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 
 And the user should see the list of below owners in level 6, above the root entity, in the graphs
-|NODES|
-|Top shareholdersowning less than 2,...|
-
 When the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should not see any nodes in level 2, above the root entity, in the graphs
@@ -389,41 +264,12 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
-Then the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-|QA Legal Entity 10UK|
-
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 35Australia|
-|QA Legal Entity 3425.901Australia|
-|QA Legal Entity 33Australia|
-|QA Legal Entity 550.53Korea (Republic of)|
-|QA Legal Entity 359.53India|
-
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
 Then the user should not see any nodes in level 2, below the root entity, in the graphs
-
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 161.53USA|
-|QA Legal Entity 181.53USA|
-|QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|
-
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 3960.9Australia|
-|QA Legal Entity 437.9Korea (Republic of)|
-|QA Legal Entity 41Korea (Republic of)|
-|QA Legal Entity 4070.9Korea (Republic of)|
-|QA Legal Entity 42Korea (Republic of)|
-|QA Legal Entity 149.53UK|
-|QA Legal Entity 250.53UK|
 
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
@@ -534,24 +380,8 @@ And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 45 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 550.53Korea (Republic of)|
-|QA Legal Entity 359.53India|
-
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 149.53UK|
-|QA Legal Entity 250.53UK|
-
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
-|NODES|
-|QA Legal Entity 150.52UK|
 
 Examples:
 |fid|

@@ -57,42 +57,11 @@ Then the user should see the owners graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-|QA Legal Entity 10UK|
-
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 161.53USA|
-|QA Legal Entity 181.53USA|
-|QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|
-
 And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 14UK|
-|QA Legal Entity 12UK|
-|QA Legal Entity 1751.53USA|
-|QA Legal Entity 1951.53USA|
-|Other shareholdersowning less than 2,...|
-
 And the user should see the list of below owners in level 4, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 1551.53USA|
-|QA Legal Entity 1351.53UK|
-|QA Legal Entity 614.99|
-|QA Legal Entity 6114.99|
-|Top 20 shareholders,57.67; Others,...|
-
 And the user should see the list of below owners in level 5, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 6141.99|
-|Top shareholdersowning less than 2,...|
-|Top shareholdersowning less than 2,...|
-
 And the user should see the list of below owners in level 6, above the root entity, in the graphs
-|NODES|
-|Top shareholdersowning less than 2,...|
 Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
 Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
@@ -150,14 +119,7 @@ Then the user should see the owners graph
 Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 2951.53India|
-
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 322.53India|
-|QA Legal Entity 30India|
-
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
@@ -181,10 +143,6 @@ Then the user should see the owners graph
 Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5630.23|
-|Top shareholdersowning less than 2,...|
-
 Then the user should not see any nodes in level 4, above the root entity, in the owners graph
 
 Examples:
@@ -208,13 +166,7 @@ Then the user should see the owners graph
 Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5251.23|
-
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5151.23|
-
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
@@ -231,14 +183,6 @@ Then the user should see the owners graph
 Then the user should see the legal entity Vontobel Holding AG, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|Vontrust Family Holding12.5Switzerland|
-|Vontobel Foundation10.9Switzerland|
-|Pellegrinus Holding AG4.2Switzerland|
-|Vontobel Holding AG2.5Switzerland|
-|Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
-|Dr Hans Vontobel,18.1; Ruth de la Cour...|
-
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 
 Examples:
@@ -275,26 +219,12 @@ Then the user should see the owners graph
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-|QA Legal Entity 10UK|
-
 Then the user should not see any nodes in level 2, above the root entity, in the owners graph
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-|QA Legal Entity 10UK|
-
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 161.53USA|
-|QA Legal Entity 181.53USA|
-|QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|
-
 Examples:
 |fid|
 |LE-6|
@@ -309,9 +239,6 @@ Then the user should see the owners graph
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 61, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|Top shareholdersowning less than 2,...|
-
 Then the user should not see any nodes in level 2, above the root entity, in the owners graph
 
 Examples:
@@ -371,8 +298,8 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|UK|
-|USA|
+|UK (7)|
+|USA (5)|
 
 When the user selects a country UK from the country highlight list in the graphs
 
@@ -435,9 +362,6 @@ When the user enters percentage as 25 in ownership percentage filter text box in
 Then the user should see the legal entity QA Legal Entity 10, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 1151.53UK|
-|Treasury shares, 3.8;Trade Union...|
 
 Examples:
 |fid|
@@ -460,30 +384,10 @@ When the user enters percentage as 1 in ownership percentage filter text box in 
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 161.53USA|
-|QA Legal Entity 181.53USA|
-
 And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 1751.53USA|
-|QA Legal Entity 1951.53USA|
-|Other shareholdersowning less than 2,...|
-
 And the user should see the list of below owners in level 4, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 614.99|
-|QA Legal Entity 6114.99|
-|Top 20 shareholders,57.67; Others,...|
-
 And the user should see the list of below owners in level 5, above the root entity, in the graphs
-|NODES|
-|Top shareholdersowning less than 2,...|
-|Top shareholdersowning less than 2,...|
 
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
@@ -499,8 +403,6 @@ And the user should see, percent filter is reset to 100 for both input box and s
 When the user enters percentage as abc in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of below owners in level 6, above the root entity, in the graphs
-|NODES|
-|Top shareholdersowning less than 2,...|
 
 Examples:
 |fid|
@@ -662,50 +564,50 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Angola|
-|Austria|
-|Belgium|
-|Bosnia-Herzegovina|
-|Brazil|
-|China|
-|Czech Republic|
-|France|
-|Germany|
-|Greece|
-|Hong Kong|
-|Hungary|
-|Italy|
-|Kazakhstan|
-|Libya|
-|Luxembourg|
-|Malaysia|
-|Netherlands|
-|Norway|
-|Pakistan|
-|Portugal|
-|Qatar|
-|Romania|
-|Russian Federation|
-|Singapore|
-|Slovakia|
-|Slovenia|
-|Spain|
-|Switzerland|
-|Turkey|
-|UAE|
-|UK|
-|USA|
+|Angola (2)|
+|Austria (13)|
+|Belgium (7)|
+|Bosnia-Herzegovina (2)|
+|Brazil (1)|
+|China (3)|
+|Czech Republic (1)|
+|France (14)|
+|Germany (8)|
+|Greece (6)|
+|Hong Kong (1)|
+|Hungary (6)|
+|Italy (191)|
+|Kazakhstan (5)|
+|Libya (3)|
+|Luxembourg (12)|
+|Malaysia (3)|
+|Netherlands (10)|
+|Norway (21)|
+|Pakistan (13)|
+|Portugal (12)|
+|Qatar (1)|
+|Romania (1)|
+|Russian Federation (2)|
+|Singapore (2)|
+|Slovakia (4)|
+|Slovenia (4)|
+|Spain (56)|
+|Switzerland (2)|
+|Turkey (2)|
+|UAE (2)|
+|UK (15)|
+|USA (63)|
 
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Canada|
-|Cayman Islands|
-|Italy|
-|South Africa|
-|UK|
-|USA|
+|Canada (8)|
+|Cayman Islands (1)|
+|Italy (4)|
+|South Africa (12)|
+|UK (7)|
+|USA (353)|
 
 Examples:
 |fid|nodeTitle|

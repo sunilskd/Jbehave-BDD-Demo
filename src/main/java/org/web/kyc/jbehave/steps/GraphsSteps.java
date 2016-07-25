@@ -22,14 +22,14 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyRootNodeInTheGraphs(rootEntity);
     }
 
-    @Then("the user should see the list of below subsidiaries in level $level, below the root entity, in the graphs $subsidiariesExamTable")
-    public void verifySubsInTheGraphs(String level, ExamplesTable subsidiariesExamTable){
-        pageObject.graphsPage().verifyGraphNodesAtLevels(Integer.toString(Integer.parseInt(level)*250), subsidiariesExamTable);
+    @Then("the user should see the list of below subsidiaries in level $level, below the root entity, in the graphs")
+    public void verifySubsInTheGraphs(String level){
+        pageObject.graphsPage().dVerifyGraphNodesAtLevels(Integer.toString(Integer.parseInt(level)*250), "subsidiaries");
     }
 
-    @Then("the user should see the list of below owners in level $level, above the root entity, in the graphs $ownersExamTable")
-    public void verifyOwnersInTheGraphs(String level, ExamplesTable ownersExamTable){
-        pageObject.graphsPage().verifyGraphNodesAtLevels(Integer.toString(0 - (Integer.parseInt(level)*250)), ownersExamTable);
+    @Then("the user should see the list of below owners in level $level, above the root entity, in the graphs")
+    public void verifyOwnersInTheGraphs(String level){
+        pageObject.graphsPage().dVerifyGraphNodesAtLevels(Integer.toString(0 - (Integer.parseInt(level)*250)), "owners");
     }
 
     @Then("the user should not see the multiple appearance bar for subsidiaries indicating the number of times it appears in the graphs")
