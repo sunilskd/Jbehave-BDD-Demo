@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.web.kyc.jbehave.pages.WebDriverUtils.nvPairs;
+
 public class HttpRequest {
 
     HttpClient httpClient = new HttpClient();
@@ -72,6 +74,15 @@ public class HttpRequest {
             values.add(i, nodes.item(i).getTextContent());
         }
         return values;
+    }
+
+    public void removeNameValuePair(String name){
+        for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
+            if (name.equals(nameValuePair.getName())) {
+                nvPairs.remove(nameValuePair);
+                break;
+            }
+        }
     }
 
 }

@@ -25,6 +25,10 @@ JIRA ID - KYC-386 - User can click "more" link from truncated graph to open anot
 
 Meta:@kycfullgraph @kyc
 
+Scenario: Login
+Given the user is on the ubo login page
+When the user login as a kyc user
+
 Scenario: KYC user views full graph
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity as owner on graph above the entity it owns.
    1. Ownership relationship has percent ownership, display percent on owner's node on graph
@@ -38,7 +42,6 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    9. Subsidiary graph should not display the free text
    10. User will see in product message on owners graph if they do not have access to UBO data and UBOs exisits fot the entity user is viewing.
 Given the user is on the ubo login page
-When the user login as a kyc user
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -394,7 +397,6 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
 Then the user should see the below owners for the legal entity QA Legal Entity 6 in the graphs
 Then the user should see the below owners for the legal entity QA Legal Entity 10 in the graphs
 Then the user should see the below owners for the legal entity QA Legal Entity 9 in the graphs
@@ -417,7 +419,6 @@ Then the user should see the legal entity QA Legal Entity 10, user is currently 
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
 Then the user should see the below owners for the legal entity QA Legal Entity 10 in the graphs
 
-
 Examples:
 |fid|
 |LE-10|
@@ -428,6 +429,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+And the user resize graph to translate(952.9254483927203,194.0396342628783) scale(0.649)
 And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 

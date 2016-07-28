@@ -22,14 +22,3 @@ Examples:
 |fid|
 |abc|
 
-Scenario: Below scenarios are covered
-a. 0. User will see 500 error screen when application is down due to any reason
-   1. Use can navigates to ba.com from 500 screen
-When the application is down due to any reason
-Then the user should see 500 unexpected server error page
-When the user clicks on Bankers Almanac Helpdesk link in error screen
-Then user is taken to a URL http://www.bankersalmanac.com/addcon/ that opens in a new window
-
-Scenario: Show message "You are not authorized for this product" when user tries to log in and is not successfully authenticated on new module, valid session could not be created.
-When user tries to log in and is not successfully authenticated on new module
-Then the user should see 401 access denied error page

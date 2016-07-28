@@ -128,6 +128,6 @@ public class EntityDetailsSteps {
     @Then("the user should see the registered office address(address line 1 line2 line3 line 4,city,area,subarea,country) respecting the useInAddres flag in summary section")
     public void verifyRegisteredOffice(){pageObject.entityDetailsPage().verifyRegisteredOffice();}
 
-    @Then("the user verifies registered office details are not displayed")
+    @Then("the user should not see the registered office address and label on entity details page")
     public void verifyRegisteredOfficeNotDisplayed(){pageObject.entityDetailsPage().verifyRegisteredOfficeNotDisplayed();}
 }

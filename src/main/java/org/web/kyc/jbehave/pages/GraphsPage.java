@@ -29,7 +29,6 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_button_xpath = By.xpath("//*[@id='view-options']/ul/li[2]");
     private By graph_draw_area_xpath = By.xpath("//*[local-name()='g'][@class='drawarea']");
     private String graph_level_xpath = "//*[contains(@transform,',";
-    private String graph_legal_entity_link_xpath = "./*[local-name()='text']//*[local-name()='tspan'][@class='name']";
     private String graph_country_xpath = "/*[local-name()='text'][2]";
     private By graph_subsidiaries_multiple_node_xpath = By.xpath("//*[local-name()='g'][contains(@class,'sub')][contains(@class,'multiple')]");
     private By graph_no_known_entities_message_text_xpath = By.xpath("//*[@id='content-view']/p");
@@ -49,7 +48,6 @@ public class GraphsPage extends WebDriverUtils {
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
     private By graph_in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
-    private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
     private By graphs_truncated_notification_msg_xpath = By.xpath("//*[@id='content-view']/p");
 
     public GraphsPage(WebDriverProvider driverProvider) {
@@ -63,6 +61,16 @@ public class GraphsPage extends WebDriverUtils {
             executeScript
                     ("return arguments[0].setAttribute(arguments[1],arguments[2]);",
                             getWebElement(graph_draw_area_xpath), "transform", "translate(946.5,487.5) scale(0.397)");
+        }
+    }
+
+    public void resizeGraphs(String translate) {
+        waitForInMilliSeconds(3000L);
+        clickOnWebElement(graph_button_xpath);
+        if (isWebElementDisplayed(graph_draw_area_xpath)) {
+            executeScript
+                    ("return arguments[0].setAttribute(arguments[1],arguments[2]);",
+                            getWebElement(graph_draw_area_xpath), "transform", translate);
         }
     }
 
@@ -89,6 +97,7 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void dVerifyGraphNodesAtLevels(String level, String ownersOrSubs) {
+        waitForInMilliSeconds(2000L);
         String childLevel = "";
         List <String> eNodeList = new ArrayList<>();
         Document eDirectOwnersOrSubsList = null;
@@ -102,42 +111,32 @@ public class GraphsPage extends WebDriverUtils {
 
         for(int i=0; i<getNodesAtLevel(childLevel).get("aLegalTitle").size(); i++) {
             nvPairs.add(new BasicNameValuePair("name", getNodesAtLevel(childLevel).get("aLegalTitle").get(i).getText()));
-            for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
-                if ("fid".equals(nameValuePair.getName())) {
-                    nvPairs.remove(nameValuePair);
-                }
-            }
+            httpRequest().removeNameValuePair("fid");
             if(ownersOrSubs.equals("owners")){
                 eDirectOwnersOrSubsList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
             } else if(ownersOrSubs.equals("subsidiaries")){
                 eDirectOwnersOrSubsList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST, nvPairs);
             }
 
-            for (int j = 0; j < eDirectOwnersOrSubsList.getElementsByTagName("entity").getLength(); j++) {
-                if(eDirectOwnersOrSubsList.getElementsByTagName("entityName").item(j) != null){
-                    eNodeList.add(
-                                    eDirectOwnersOrSubsList.getElementsByTagName("entityName").item(j).getTextContent().replace("%", "").replace(" ", "") +
-                                    eDirectOwnersOrSubsList.getElementsByTagName("percentOwnership").item(j).getTextContent().replace("%", "").replace(" ", "") +
-                                    eDirectOwnersOrSubsList.getElementsByTagName("countryOfOperations").item(j).getTextContent().replace(" ", "")
-                    );
-                } else if(eDirectOwnersOrSubsList.getElementsByTagName("freeTextEntity").item(j) != null){
-                    eNodeList.add(eDirectOwnersOrSubsList.getElementsByTagName("freeTextEntity").item(j).getTextContent().replace("%", "").replace(" ", ""));
-                }
+            for (int j = 0; j < eDirectOwnersOrSubsList.getElementsByTagName("entityName").getLength(); j++) {
+                eNodeList.add(
+                                eDirectOwnersOrSubsList.getElementsByTagName("entityName").item(j).getTextContent().replace("%", "").replace(" ", "") +
+                                eDirectOwnersOrSubsList.getElementsByTagName("percentOwnership").item(j).getTextContent().replace("%", "").replace(" ", "") +
+                                eDirectOwnersOrSubsList.getElementsByTagName("countryOfOperations").item(j).getTextContent().replace(" ", "")
+                );
             }
 
-            for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
-                if ("name".equals(nameValuePair.getName())) {
-                    nvPairs.remove(nameValuePair);
-                    break;
-                }
+            for (int j = 0; j < eDirectOwnersOrSubsList.getElementsByTagName("freeTextEntity").getLength(); j++) {
+                eNodeList.add(eDirectOwnersOrSubsList.getElementsByTagName("freeTextEntity").item(j).getTextContent().replace("%", "").replace(" ", ""));
             }
+            httpRequest().removeNameValuePair("name");
         }
 
         List aNodeList = new ArrayList();
         /* Creating a list of actual owners list by concatenating legal title, percent and country */
         for (int i = 0; i < getNodesAtLevel(level).get("aNodes").size(); i++) {
             aNodeList.add(
-                            getNodesAtLevel(level).get("aLegalTitle").get(i).getText().replace(" ", "") +
+                            getNodesAtLevel(level).get("aLegalTitle").get(i).getText().replace("%", "").replace(" ", "") +
                             getNodesAtLevel(level).get("aPercent").get(i).getText().replace("%", "") +
                             getNodesAtLevel(level).get("aCountry").get(i).getText().replace(" ", "")
             );
@@ -216,26 +215,19 @@ public class GraphsPage extends WebDriverUtils {
     public void verifySubsidiariesOfAnEntity(String legalEntity) {
         /*Adding nvpair name to get the data using the legal title*/
         nvPairs.add(new BasicNameValuePair("name", legalEntity));
-        for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if ("fid".equals(nameValuePair.getName())) {
-                nvPairs.remove(nameValuePair);
-            }
-        }
+        httpRequest().removeNameValuePair("fid");
         List <String> eNodeList = new ArrayList<>();
         Document eDirectOwnersList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST, nvPairs);
-        for(int i=0; i<eDirectOwnersList.getElementsByTagName("entity").getLength(); i++){
+        for (int j = 0; j < eDirectOwnersList.getElementsByTagName("entityName").getLength(); j++) {
             eNodeList.add(
-                    eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent().replace("%", "").replace(" ","") +
-                    eDirectOwnersList.getElementsByTagName("percentOwnership").item(i).getTextContent().replace("%", "").replace(" ","") +
-                    eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent().replace(" ","")            );
+                            eDirectOwnersList.getElementsByTagName("entityName").item(j).getTextContent().replace("%", "").replace(" ", "") +
+                            eDirectOwnersList.getElementsByTagName("percentOwnership").item(j).getTextContent().replace("%", "").replace(" ", "") +
+                            eDirectOwnersList.getElementsByTagName("countryOfOperations").item(j).getTextContent().replace(" ", "")
+            );
         }
         verifyParentChildRelationship(legalEntity, eNodeList, graph_subsidiaries_xpath);
-        for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if ("name".equals(nameValuePair.getName())) {
-                nvPairs.remove(nameValuePair);
-                break;
-            }
-        }
+        httpRequest().removeNameValuePair("name");
+        httpRequest().removeNameValuePair("percentage");
     }
 
     public void verifyParentChildRelationship(String legalEntity, List eNodeList, String xpath) {
@@ -354,27 +346,24 @@ public class GraphsPage extends WebDriverUtils {
     public void verifyOwnersOfAnEntity(String legalEntity){
         /*Adding nvpair name to get the data using the legal title*/
         nvPairs.add(new BasicNameValuePair("name", legalEntity));
-        for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if ("fid".equals(nameValuePair.getName())) {
-                nvPairs.remove(nameValuePair);
-            }
-        }
+        httpRequest().removeNameValuePair("fid");
         List <String> eNodeList = new ArrayList<>();
         Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
-        for(int i=0; i<eDirectOwnersList.getElementsByTagName("entity").getLength(); i++){
+        for (int j = 0; j < eDirectOwnersList.getElementsByTagName("entityName").getLength(); j++) {
             eNodeList.add(
-                    eDirectOwnersList.getElementsByTagName("entityName").item(i).getTextContent().replace("%", "").replace(" ","") +
-                    eDirectOwnersList.getElementsByTagName("percentOwnership").item(i).getTextContent().replace("%", "").replace(" ","") +
-                    eDirectOwnersList.getElementsByTagName("countryOfOperations").item(i).getTextContent().replace(" ","")
+                            eDirectOwnersList.getElementsByTagName("entityName").item(j).getTextContent().replace("%", "").replace(" ", "") +
+                            eDirectOwnersList.getElementsByTagName("percentOwnership").item(j).getTextContent().replace("%", "").replace(" ", "") +
+                            eDirectOwnersList.getElementsByTagName("countryOfOperations").item(j).getTextContent().replace(" ", "")
             );
         }
-        verifyParentChildRelationship(legalEntity, eNodeList, graph_owners_xpath);
-        for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if ("name".equals(nameValuePair.getName())) {
-                nvPairs.remove(nameValuePair);
-                break;
-            }
+
+        for (int j = 0; j < eDirectOwnersList.getElementsByTagName("freeTextEntity").getLength(); j++) {
+                            eNodeList.add(eDirectOwnersList.getElementsByTagName("freeTextEntity").item(j).getTextContent().replace("%", "").replace(" ", ""));
         }
+
+        verifyParentChildRelationship(legalEntity, eNodeList, graph_owners_xpath);
+        httpRequest().removeNameValuePair("name");
+        httpRequest().removeNameValuePair("percentage");
     }
 
     public void verifyUBOsAreHighlighted(ExamplesTable ubosHighlightedExamTable) {

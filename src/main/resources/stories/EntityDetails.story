@@ -11,7 +11,7 @@ JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
 JIRA ID - KYC-211 - LEIs are not sorted alphabetically in Entity Details Identifier Section
 JIRA ID - KYC-204 - Display legal entity website on entity details
 
-Meta:@entitydetails @kyc @ubo @registeredOffice
+Meta:@entitydetails @kyc @ubo
 
 Scenario: KYC user login
 Given the user is on the ubo login page
@@ -145,11 +145,10 @@ Examples:
 |732|
 
 Scenario: KYC-215 Covers below scenario
-Meta:@registeredOffice
-1. Displaying registered office details by making useInAddress flag to false for SubArea
-2. Displaying registered office details by making useInAddress flag to false for Area
-3. Displaying registered office details by making useInAddress flag to false for SubArea and Area
-4. Displaying registered office details by making useInAddress flag to true for City,Area,Subarea and country
+a. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display subarea if UseInAddress is false)
+b. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display area if UseInAddress is false)
+c. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display subarea and area if UseInAddress is false)
+d. With registered office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
@@ -163,13 +162,12 @@ Examples:
 |62579|
 
 Scenario: KYC-215 Verify below scenarios
-1. Registered office details are not displayed when address/function != registered office
-2. Registered office details are not displayed when location/@primary = false
-Meta:@registeredOffice
+a. Do not display registered office if the address is not functioning as registered office (address/function != registered office)
+b. Do not display registered office if it is not the primary location (location/primary=false)
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
-Then the user verifies registered office details are not displayed
+Then the user should not see the registered office address and label on entity details page
 
 Examples:
 |fid|

@@ -39,7 +39,7 @@ And the user should not see any nodes in level 2, above the root entity, in the 
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|UK|
+|UK (2)|
 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
@@ -173,7 +173,7 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: overs below scenarios for full graph
+Scenario: Covers below scenarios for full graph
 a. 0. If user applies "direct relationships only" filter to graph, percent filter resets to 0
    1. If user selects a percent filter after applying "direct relationships only" filter, graph filters out any entities that don't have equal to or greater than the selected percent and the direct filter remains in effect
    2. User applies direct relationships only filter and percent filter
@@ -193,10 +193,8 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
 
-Then the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
+Then the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
 
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -208,8 +206,6 @@ And the user should see the list of below unique country of operations for each 
 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
-Then the user should see the list of below owners in level 1, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
@@ -226,16 +222,12 @@ Then the user should see the below entities that have the selected country of op
 |QA Legal Entity 35|
 
 When the user enters percentage as 45 in ownership percentage filter text box in the graphs
-Then the user should see the list of below owners in level 1, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-And the user should not see the entities highlighted in the graphs
+Then the user should not see the entities highlighted in the graphs
 
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
 And the user should see the list of below owners in level 2, above the root entity, in the graphs
 And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the list of below owners in level 3, above the root entity, in the graphs

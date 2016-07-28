@@ -363,7 +363,7 @@ And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 When the user clicks on <website> link in the entity details section of side panel
-Then user is taken to a URL http://www.berlinhyp.de/ that opens in a new window
+Then user is taken to a URL http://www.bip.b.br/ that opens in a new window
 
 Examples:
 |fid|nodeTitle|website|

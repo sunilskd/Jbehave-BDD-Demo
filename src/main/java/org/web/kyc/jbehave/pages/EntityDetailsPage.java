@@ -1,7 +1,5 @@
 package org.web.kyc.jbehave.pages;
 
-import org.apache.http.message.BasicNameValuePair;
-import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
@@ -9,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
@@ -39,11 +38,10 @@ public class EntityDetailsPage extends WebDriverUtils {
     private By entity_details_stock_and_ticker_symbol_label_text_xpath=By.xpath(".//*[@id='entity-lei']/tbody/tr[2]/th");
     private By entity_details_regulators_list_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/td/span");
     private By entity_details_regulators_label_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/th");
-    private By entity_details_website_text_xpath=By.xpath("//td/a");
-    private By entity_details_website_label_text_xpath=By.xpath("//*[@id='entity-head-office']/tbody/tr[2]/th");
-    private By entity_details_registered_office_xpath = By.xpath(".//*[@id='entity-head-office']/tbody/tr[2]/td");
-    private By entity_details_registered_office_container_xpath = By.xpath(".//*[@id='entity-head-office']/tbody/tr");
-    private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
+    private By entity_details_website_text_xpath=By.xpath("//tr[th='Website']/td/a");
+    private By entity_details_website_label_text_xpath=By.xpath("//tr[th='Website']/th");
+    private By entity_details_registered_office_address_xpath = By.xpath("//tr[th='Registered Office']/td");
+    private By entity_details_registered_office_label_xpath = By.xpath("//tr[th='Registered Office']/th");
     private Document entityDetailsDocument;
 
     public EntityDetailsPage(WebDriverProvider driverProvider) {
@@ -207,19 +205,13 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void verifyRegisteredOffice(){
-        assertEquals(entityDetailsDocument.getElementsByTagName("registeredOffice").item(0).getTextContent().replace(", ",","),getWebElementText(entity_details_registered_office_xpath).replace("\n","").replace(", ",","));
-        List<WebElement> trContainer = findElements(entity_details_registered_office_container_xpath);
-        String registeredOfficeLabel = trContainer.get(1).findElement(By.tagName("th")).getText();
-        assertEquals(registeredOfficeLabel,"Registered Office");
-
+        assertEquals(entityDetailsDocument.getElementsByTagName("registeredOffice").item(0).getTextContent().replace(", ",","),getWebElementText(entity_details_registered_office_address_xpath).replace("\n","").replace(", ",","));
+        assertEquals("Registered Office", getWebElementText(entity_details_registered_office_label_xpath));
     }
 
     public void verifyRegisteredOfficeNotDisplayed(){
-       if(entityDetailsDocument.getElementsByTagName("registeredOffice").item(0).getTextContent().replace(", ",",").equals("")){
-        List<WebElement> container= findElements(entity_details_registered_office_container_xpath);
-        assertTrue(container.size()==2);
-
-    }
+        assertFalse(isWebElementDisplayed(entity_details_registered_office_label_xpath));
+        assertFalse(isWebElementDisplayed(entity_details_registered_office_address_xpath));
     }
 
 }

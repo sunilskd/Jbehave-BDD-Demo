@@ -324,4 +324,9 @@ public class GraphsSteps {
     public void verifyGraphsAreTruncatedMsg(){
         pageObject.graphsPage().verifyGraphsAreTruncatedMsg();
     }
+
+    @When("the user resize graph to $translate")
+    public void resizeGraphs(@Named("translate") String translate){
+        pageObject.graphsPage().resizeGraphs(translate);
+    }
 }
