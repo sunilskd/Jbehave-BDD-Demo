@@ -47,14 +47,14 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
-And the user should see the list of below owners in level 4, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
-And the user should see the list of below owners in level 5, above the root entity, in the graphs
-And the user should see the list of below owners in level 6, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
+And the user should see the list of owners in level 4, above the root entity, in the graphs
+And the user should see the list of subsidiaries in level 4, below the root entity, in the graphs
+And the user should see the list of owners in level 5, above the root entity, in the graphs
+And the user should see the list of owners in level 6, above the root entity, in the graphs
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
 Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
@@ -73,7 +73,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
 Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
@@ -92,8 +92,8 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 Then the user should not see any nodes in level 4, above the root entity, in the graphs
 
 Examples:
@@ -107,8 +107,8 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 
 Examples:
 |fid|
@@ -136,7 +136,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should not see any nodes in level 1, below the root entity, in the graphs
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -149,7 +149,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should not see any nodes in level 1, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 
 Examples:
 |fid|
@@ -232,8 +232,8 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
-Then the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
+Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should not see any nodes in level 2, above the root entity, in the graphs
@@ -247,7 +247,7 @@ When the user enters percentage as abc in ownership percentage filter text box i
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 
-And the user should see the list of below owners in level 6, above the root entity, in the graphs
+And the user should see the list of owners in level 6, above the root entity, in the graphs
 When the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should not see any nodes in level 2, above the root entity, in the graphs
@@ -271,8 +271,8 @@ Then the user should not see any nodes in level 2, above the root entity, in the
 Then the user should not see any nodes in level 2, below the root entity, in the graphs
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
@@ -383,8 +383,8 @@ And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 45 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 
 Examples:
 |fid|
@@ -397,13 +397,13 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-Then the user should see the below owners for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the below owners for the legal entity QA Legal Entity 10 in the graphs
-Then the user should see the below owners for the legal entity QA Legal Entity 9 in the graphs
-Then the user should see the below owners for the legal entity QA Legal Entity 18 in the graphs
-Then the user should see the below owners for the legal entity QA Legal Entity 61 in the graphs
-Then the user should see the below subsidiaries for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the below subsidiaries for the legal entity QA Legal Entity 3 in the graphs
+Then the user should see the owners for the legal entity QA Legal Entity 6 in the graphs
+Then the user should see the owners for the legal entity QA Legal Entity 10 in the graphs
+Then the user should see the owners for the legal entity QA Legal Entity 9 in the graphs
+Then the user should see the owners for the legal entity QA Legal Entity 18 in the graphs
+Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
+Then the user should see the subsidiaries for the legal entity QA Legal Entity 6 in the graphs
+Then the user should see the subsidiaries for the legal entity QA Legal Entity 3 in the graphs
 
 Examples:
 |fid|
@@ -417,7 +417,7 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 10, user is currently viewing, as the root and highlighted on the graphs
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
-Then the user should see the below owners for the legal entity QA Legal Entity 10 in the graphs
+Then the user should see the owners for the legal entity QA Legal Entity 10 in the graphs
 
 Examples:
 |fid|

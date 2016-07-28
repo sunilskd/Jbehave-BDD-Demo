@@ -39,7 +39,7 @@ And the user clicks on the graph button
 
 When the user enters percentage as 45 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 1, above the root entity, in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -48,7 +48,7 @@ And the user should see the list of below unique country of operations for each 
 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 1, above the root entity, in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -63,15 +63,15 @@ Then the user should see the below entities that have the selected country of op
 |QA Legal Entity 10|
 
 When the user enters percentage as 1 in ownership percentage filter text box in the graphs
-Then the user should see the list of below owners in level 1, above the root entity, in the graphs
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
 And the user should not see the entities highlighted in the graphs
 When the user unchecks direct relationship only filter checkbox in the graphs
-Then the user should see the list of below owners in level 1, above the root entity, in the graphs
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-And the user should see the list of below owners in level 4, above the root entity, in the graphs
-And the user should see the list of below owners in level 5, above the root entity, in the graphs
-And the user should see the list of below owners in level 6, above the root entity, in the graphs
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
+And the user should see the list of owners in level 4, above the root entity, in the graphs
+And the user should see the list of owners in level 5, above the root entity, in the graphs
+And the user should see the list of owners in level 6, above the root entity, in the graphs
 
 And the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
@@ -121,9 +121,9 @@ And the user clicks on the graph button
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -145,7 +145,7 @@ When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
 And the user should not see the entities highlighted in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
@@ -157,7 +157,7 @@ And the user should see the list of below unique country of operations for each 
 |UK (1)|
 
 When the user enters percentage as 50 in ownership percentage filter text box in the graphs
-Then the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
+Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -168,10 +168,10 @@ And the user should see the list of below unique country of operations for each 
 
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
-And the user should see the list of below subsidiaries in level 1, below the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 4, below the root entity, in the graphs
 
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -206,8 +206,8 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
 
-Then the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
+Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
@@ -246,15 +246,15 @@ When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 3, below the root entity, in the graphs
-And the user should see the list of below owners in level 4, above the root entity, in the graphs
-And the user should see the list of below subsidiaries in level 4, below the root entity, in the graphs
-And the user should see the list of below owners in level 5, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
+And the user should see the list of owners in level 4, above the root entity, in the graphs
+And the user should see the list of subsidiaries in level 4, below the root entity, in the graphs
+And the user should see the list of owners in level 5, above the root entity, in the graphs
 And the user should not see any nodes in level 5, below the root entity, in the graphs
-And the user should see the list of below owners in level 6, above the root entity, in the graphs
+And the user should see the list of owners in level 6, above the root entity, in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|

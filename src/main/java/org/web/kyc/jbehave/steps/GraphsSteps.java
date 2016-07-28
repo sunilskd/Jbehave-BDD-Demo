@@ -22,12 +22,12 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyRootNodeInTheGraphs(rootEntity);
     }
 
-    @Then("the user should see the list of below subsidiaries in level $level, below the root entity, in the graphs")
+    @Then("the user should see the list of subsidiaries in level $level, below the root entity, in the graphs")
     public void verifySubsInTheGraphs(String level){
         pageObject.graphsPage().dVerifyGraphNodesAtLevels(Integer.toString(Integer.parseInt(level)*250), "subsidiaries");
     }
 
-    @Then("the user should see the list of below owners in level $level, above the root entity, in the graphs")
+    @Then("the user should see the list of owners in level $level, above the root entity, in the graphs")
     public void verifyOwnersInTheGraphs(String level){
         pageObject.graphsPage().dVerifyGraphNodesAtLevels(Integer.toString(0 - (Integer.parseInt(level)*250)), "owners");
     }
@@ -57,7 +57,7 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyStopTravelingPath(Integer.toString((Integer.parseInt(level) * 180)));
     }
 
-    @Then("the user should see the below subsidiaries for the legal entity $legalEntity in the graphs")
+    @Then("the user should see the subsidiaries for the legal entity $legalEntity in the graphs")
     public void verifySubsidiariesOfAnEntity(String legalEntity){
         pageObject.graphsPage().verifySubsidiariesOfAnEntity(legalEntity);
     }
@@ -118,7 +118,7 @@ public class GraphsSteps {
         pageObject.graphsPage().clickOnNodeTitle(switchNode);
     }
 
-    @Then("the user should see the below owners for the legal entity $legalEntity in the graphs")
+    @Then("the user should see the owners for the legal entity $legalEntity in the graphs")
     public void verifyOwnersOfAnEntity(String legalEntity){
         pageObject.graphsPage().verifyOwnersOfAnEntity(legalEntity);
     }
