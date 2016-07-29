@@ -18,11 +18,13 @@ import org.jbehave.web.selenium.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
 import org.web.kyc.jbehave.pages.PageObject;
 import org.web.kyc.jbehave.steps.*;
 import org.web.kyc.utils.ReadProperties;
+import org.web.kyc.utils.TestRecorder;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +48,7 @@ public class StoriesRunner extends JUnitStories {
     ReadProperties readProperties = new ReadProperties();
     private SeleniumContext context = new SeleniumContext();
     private ContextView contextView = new LocalFrameContextView().sized(500, 100);
+    private TestRecorder testRecorder = new TestRecorder();
 
     /* Customized HTML format class to include screenshot in reports */
     private Format screenShootingFormat = new ScreenShootingHtmlFormat(driverProvider);
@@ -70,6 +73,13 @@ public class StoriesRunner extends JUnitStories {
     public void cleanUp() {
         directoryCleanUp(new File("./src/test/resources/pdfs/actual"));
         directoryCleanUp(new File("./src/test/resources/pdfs/difference"));
+        try {
+            if(readProperties.getRecordAFT().equals("true")) {
+                testRecorder.startRecording();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @BeforeClass
@@ -110,6 +120,14 @@ public class StoriesRunner extends JUnitStories {
                 }
             }
         } catch (Exception e) {
+        }
+
+        try {
+            if(readProperties.getRecordAFT().equals("true")) {
+                testRecorder.stopRecording();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
