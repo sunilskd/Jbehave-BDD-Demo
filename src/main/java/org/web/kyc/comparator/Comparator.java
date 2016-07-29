@@ -15,8 +15,8 @@ public class Comparator {
 
     public static boolean compareImages(String exp, String act, String diff){
 
-        convertImage(exp);
-        convertImage(act);
+//        convertImage(exp);
+//        convertImage(act);
 
         // This instance wraps the compare command
         CompareCmd compare = new CompareCmd();
@@ -26,8 +26,8 @@ public class Comparator {
         IMOperation compareOp = new IMOperation();
 
         // Set the compare metric
-        compareOp.metric("mae");
-
+        compareOp.metric("rmse");
+        compareOp.subimageSearch();
         // Add the expected image
         compareOp.addImage(exp);
 
@@ -53,7 +53,7 @@ public class Comparator {
         convert.setSearchPath(readProperties().getImageMagicPath());
         IMOperation convertOp = new IMOperation();
         convertOp.addImage(exp);
-        convertOp.resize(1900, 1900);
+        convertOp.size(1900, 1900);
         convertOp.addImage(exp);
         try {
             convert.run(convertOp);
