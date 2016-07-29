@@ -35,7 +35,7 @@ public class CommonUtils extends WebDriverUtils {
         nvPairs.clear();
         nvPairs.add(new BasicNameValuePair("userType", userType));
         get(readProperties().getUrl() + "/#/login");
-        manage().window().maximize();
+        //manage().window().maximize();
     }
 
     public void clickOnOwnershipTab() {

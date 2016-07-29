@@ -76,6 +76,7 @@ public class StoriesRunner extends JUnitStories {
     public static void setBrowser() {
         browser.setBrowser();
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        desiredCapabilities.setCapability("screenResolution", "1920x1080");
         /* Setting system property REMOTE_WEBDRIVER_URL and desired capabilities */
         if (System.getProperty("browser").equals("remote")) {
             System.setProperty("REMOTE_WEBDRIVER_URL", URL);
