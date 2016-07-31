@@ -132,7 +132,7 @@ public class ReadProperties {
     }
 
     public void setTestResourcePath(String snapshotPath) {
-        this.snapshotPath = snapshotPath;
+        this.snapshotPath = System.getProperty("user.dir").toString().replace("\\","/") + snapshotPath;
     }
 
     public String getImageMagicPath() {
@@ -140,9 +140,15 @@ public class ReadProperties {
     }
 
     public void setImageMagicPath(String imageMagicPath) {
-        this.imageMagicPath = imageMagicPath;
+        this.imageMagicPath = System.getProperty("user.dir").toString().replace("\\","/") + imageMagicPath;
+    }
+    public String getBankersAlmanacUrl() {
+        return bankersAlmanacUrl;
     }
 
+    public void setBankersAlmanacURL(String bankersAlmanacUrl) {
+        this.bankersAlmanacUrl = bankersAlmanacUrl;
+    }
     public String getProjectProperties(String propertyFile, String property) {
         Properties properties = new Properties();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertyFile);
@@ -152,13 +158,5 @@ public class ReadProperties {
             e.printStackTrace();
         }
         return properties.getProperty(property);
-    }
-
-    public String getBankersAlmanacUrl() {
-        return bankersAlmanacUrl;
-    }
-
-    public void setBankersAlmanacURL(String bankersAlmanacUrl) {
-        this.bankersAlmanacUrl = bankersAlmanacUrl;
     }
 }
