@@ -125,6 +125,8 @@ public class StoriesRunner extends JUnitStories {
         try {
             if(readProperties.getRecordAFT().equals("true")) {
                 testRecorder.stopRecording();
+                /* Rename file as per the stories */
+                testRecorder.renameFile(getListOfStoriesToRun());
             }
         } catch (Exception e) {
             e.printStackTrace();
