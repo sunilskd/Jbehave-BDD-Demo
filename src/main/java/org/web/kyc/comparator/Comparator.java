@@ -5,7 +5,12 @@ import org.im4java.core.IM4JavaException;
 import org.im4java.process.StandardStream;
 import org.im4java.core.IMOperation;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.web.kyc.jbehave.pages.WebDriverUtils.readProperties;
 
@@ -28,11 +33,27 @@ public class Comparator {
         // Set the compare metric
         compareOp.metric("rmse");
         compareOp.subimageSearch();
-        // Add the expected image
-        compareOp.addImage(exp);
 
-        // Add the current image
-        compareOp.addImage(act);
+        /* The large image has to be added first. Checking the size below and then adding exp and act as per size*/
+        if(getImageSize(exp).get("width") > getImageSize(act).get("width")){
+            // Add the expected image
+            compareOp.addImage(exp);
+
+            // Add the current image
+            compareOp.addImage(act);
+        } else if(getImageSize(act).get("width") > getImageSize(exp).get("width")){
+            // Add the current image
+            compareOp.addImage(act);
+
+            // Add the expected image
+            compareOp.addImage(exp);
+        } else {
+            // Add the expected image
+            compareOp.addImage(exp);
+
+            // Add the current image
+            compareOp.addImage(act);
+        }
 
         // This stores the difference
         compareOp.addImage(diff);
@@ -64,6 +85,18 @@ public class Comparator {
         } catch (IM4JavaException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Map<String, Integer> getImageSize(String filename){
+        Map<String, Integer> imageDimension = new HashMap<>();
+        try {
+            BufferedImage image = ImageIO.read(new File(filename));
+            imageDimension.put("width", image.getWidth());
+            imageDimension.put("height", image.getHeight());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageDimension;
     }
 
 }
