@@ -72,55 +72,17 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-|QA Legal Entity 10UK|
-
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
+And the user should see the list of owners in level 1, above the root entity, in the graphs
 When the user unchecks direct relationship only filter checkbox in the graphs
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 945.53UK|
-|QA Legal Entity 10UK|
-
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 161.53USA|
-|QA Legal Entity 181.53USA|
-|QA Legal Entity 1151.53UK|
-
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 14UK|
-|QA Legal Entity 12UK|
-|QA Legal Entity 1751.53USA|
-|QA Legal Entity 1951.53USA|
-|Others9.52|
-
-And the user should see the list of below owners in level 4, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 1551.53USA|
-|QA Legal Entity 1351.53UK|
-|QA Legal Entity 614.99|
-|QA Legal Entity 6114.99|
-
-And the user should see the list of below owners in level 5, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 6141.99|
-|QA Test Person 15.93|
-|QA Test Person 15.93|
-|QA Test Person 251.93|
-|Local Government,Legal Entity 61 owned...59.52|
-|Local Government,Legal Entity 61 owned...59.52|
-|Free float, LegalEntity 15 owned by...|
-
-And the user should see the list of below owners in level 6, above the root entity, in the graphs
-|NODES|
-|QA Test Person 15.93|
-|Local Government,Legal Entity 61 owned...59.52|
+And the user should see the list of owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
+And the user should see the list of owners in level 4, above the root entity, in the graphs
+And the user should see the list of owners in level 5, above the root entity, in the graphs
+And the user should see the list of owners in level 6, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -157,20 +119,11 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 23, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 2951.53India|
-
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 322.53India|
-|QA Legal Entity 30India|
-
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Test Person 2|
+And the user should see the list of owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -189,22 +142,11 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5951.99|
-|QA Legal Entity 5520.23|
-|Others, Legal Entity56 owned by Others9.52|
-
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5730.99|
-
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5630.23|
-
+And the user should see the list of owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
 Then the user should not see any nodes in level 4, above the root entity, in the owners graph
 
 Examples:
@@ -224,18 +166,10 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5251.23|
-|QA Test Person 110.93|
-
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity 5151.23|
-|QA Test Person 29.93|
-
+And the user should see the list of owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
 Examples:
 |fid|
 |LE-51|
@@ -246,18 +180,9 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity Vontobel Holding AG, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity Vontobel Holding AG, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|Vontrust Family Holding12.5Switzerland|
-|Vontobel Foundation10.9Switzerland|
-|Pellegrinus Holding AG4.2Switzerland|
-|Vontobel Holding AG2.5Switzerland|
-|Kreditanstalt fur Wiederaufbau (KfW)0.5Germany|
-|Free float32.5|
-|Ruth de la Cour -Vontobel5.5|
-|Others, ExecutiveMembers|
+And the user should see the list of owners in level 1, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -278,29 +203,11 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Test Person E49.23|
-|QA Legal Entity B50.52|
-|QA Test Person A45.52|
-|QA Legal Entity C50.52|
-|QA Test Person A45.52|
-
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Test Person B40.23|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-|QA Test Person D49.23|
-|QA Test Person G4.93|
-
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Test Person H49.23|
-|QA Test Person G4.23|
-|QA Test Person C50.52|
+And the user should see the list of owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -312,11 +219,9 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 30, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 30, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Test Person 2|
+And the user should see the list of owners in level 1, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -418,69 +323,29 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Test Person E49.23|
-|QA Legal Entity B50.52|
-|QA Test Person A45.52|
-|QA Legal Entity C50.52|
-|QA Test Person A45.52|
-
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Test Person B40.23|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-|QA Test Person D49.23|
-
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Test Person H49.23|
-|QA Test Person C50.52|
-
+And the user should see the list of owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
 When the user enters percentage as 0 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Test Person B40.23|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-|QA Test Person D49.23|
-|QA Test Person G4.93|
-
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Test Person H49.23|
-|QA Test Person G4.23|
-|QA Test Person C50.52|
-
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted on the graphs
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
 
 When the user enters percentage as 200 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted on the graphs
 And the user should not see any nodes in level 2, above the root entity, in the owners graph
 And the user should see, percent filter is reset to 100 for both input box and slider, in the graphs
 
 When the user enters percentage as abc in ownership percentage filter text box in the graphs
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted in the graphs
-And the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Test Person B40.23|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-|QA Test Person D49.23|
-|QA Test Person G4.93|
-
-And the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Test Person H49.23|
-|QA Test Person G4.23|
-|QA Test Person C50.52|
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted on the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
+And the user should see the list of owners in level 3, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -496,19 +361,9 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 40 in the graph
 
-Then the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|QA Legal Entity B50.52|
-|QA Legal Entity C50.52|
-
-Then the user should see the list of below owners in level 2, above the root entity, in the graphs
-|NODES|
-|QA Test Person G50.222|
-|QA Legal Entity D50.52|
-
-Then the user should see the list of below owners in level 3, above the root entity, in the graphs
-|NODES|
-|QA Test Person C50.52|
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
+Then the user should see the list of owners in level 2, above the root entity, in the graphs
+Then the user should see the list of owners in level 3, above the root entity, in the graphs
 
 Examples:
 |fid|
@@ -521,7 +376,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user enters percentage as 51 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted on the graphs
 
 Examples:
 |fid|
@@ -535,12 +390,9 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity QA Legal Entity 61, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 61, user is currently viewing, as the root and highlighted on the graphs
 
-And the user should see the list of below owners in level 1, above the root entity, in the graphs
-|NODES|
-|Local Government,Legal Entity 61 owned...59.52|
-
+And the user should see the list of owners in level 1, above the root entity, in the graphs
 Examples:
 |fid|
 |LE-61|
@@ -551,7 +403,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
 |LEGAL TITLE|
 |QA Legal Entity 6|
@@ -591,7 +443,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 56, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
@@ -609,7 +461,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
@@ -629,7 +481,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
@@ -646,7 +498,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 9, user is currently viewing, as the root and highlighted on the graphs
 And the user should not see visual indicator for legal entity <legalEntity>, when displayed only once
 
 Examples:
@@ -659,7 +511,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity A, user is currently viewing, as the root and highlighted on the graphs
 And the user should not see the visual indicator for entity with same name but different fid <legalEntity>
 
 Examples:
@@ -716,23 +568,11 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted in the graphs
+Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
-Then the user should see the below owners for the legal entity QA Legal Entity 11 in the graphs
-|NODES|
-|QA Legal Entity 14UK|
-|QA Legal Entity 12UK|
-|Others9.52|
-
-Then the user should see the below owners for the legal entity QA Legal Entity 15 in the graphs
-|NODES|
-|QA Test Person 251.93|
-|Free float, LegalEntity 15 owned by...|
-
-Then the user should see the below owners for the legal entity QA Legal Entity 61 in the graphs
-|NODES|
-|QA Test Person 15.93|
-|Local Government,Legal Entity 61 owned...59.52|
+Then the user should see the owners for the legal entity QA Legal Entity 11 in the graphs
+Then the user should see the owners for the legal entity QA Legal Entity 15 in the graphs
+Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
 
 Examples:
 |fid|
@@ -758,6 +598,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user enters percentage as 35 in ownership percentage filter text box in the graphs
+And the user resize graph to translate(-9890.090379357129,1093.2601537970945) scale(0.604)
 And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
@@ -766,7 +607,6 @@ Examples:
 |51859|Banco Santander SA|
 
 Scenario: KYC-395 Verify Percent ownership filter works the same for truncated graphs, filtering nodes currently displayed on the graph
-Meta:@skip
 Given the user is on the ubo login page
 When the user login as a kyc user
 Given the user is on the ubo login page
@@ -775,15 +615,11 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user enters percentage as 5 in ownership percentage filter text box in the graphs
-
-Then the user should see the below owners for the legal entity Banca Popolare Valconca Scrl in the graphs
-|NODES|
-|Centrale SpA 14Italy|
-|CSE Consorzio Servizi Bancari Scarl 11.25Italy|
+Then the user should see the owners for the legal entity Caisse d'épargne et de prévoyance Ile de France in the graphs
 
 Examples:
-|fid|nodeTitle|
-|175270|Credit Agricole Caisse D'Epargne Investor Services (CACEIS)|
+|fid|
+|175270|
 
 Scenario: Verify graph truncation notification message
 Given the user is on the ubo login page
@@ -791,8 +627,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the full graph
-And the user should see the notification message that the graphs are truncated
+Then the user should see the notification message that the graphs are truncated
 
 Examples:
 |fid|
