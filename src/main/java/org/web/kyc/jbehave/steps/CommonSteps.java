@@ -50,6 +50,16 @@ public class CommonSteps {
     public void clickOnHeaderOrFooterLinks(@Named("$footerLink") String footerLink){pageObject.commonUtils().clickOnLinks(footerLink);
     }
 
+    @Then("the user should see the bankers almanac logo in top left corner")
+    public void verifyBankersAlmanacLogo(){
+        pageObject.commonUtils().verifyBankersAlmanacLogo();
+    }
+
+    @Then("the user should see the ownership module next to bankers almanac logo in top left corner")
+    public void verifyOwnershipModule(){
+        pageObject.commonUtils().verifyOwnershipModule();
+    }
+
     @When("the user clicks on the logo $logo in footers section")
     public void verifyFooterLogos(@Named("$logo") String logo){pageObject.commonUtils().clickOnFooterLogos(logo);
     }

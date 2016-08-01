@@ -5,6 +5,7 @@ Footer displays all the links requred to navigate to view information related to
 Covers below features:
 JIRA ID - KYC-160 - KYC user can view footer information
 JIRA ID - KYC-414 - User can click link to print help
+JIRA ID - KYC-424 - Rebranding
 
 Meta:@headerandfooter
 Scenario: UBO user login
@@ -17,7 +18,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the Print Help link in the header section
+Then the user should see the bankers almanac logo in top left corner
+And the user should see the ownership module next to bankers almanac logo in top left corner
+When the user clicks on the Print Help link in the header section
 Then user should see the instructions to print from web browser open in new tab
 When the user clicks on the group structure tab
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
@@ -39,8 +42,8 @@ When the user clicks on Editorial Policy link in footer section
 Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
 When the user clicks on the logo logo-relx in footers section
 Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
-When the user clicks on the logo logo-rbi in footers section
-Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+When the user clicks on the logo logo-accuity in footers section
+Then user is taken to a URL http://www.accuity.com/ that opens in a new window
 
 Examples:
 |fid|
@@ -52,7 +55,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the Print Help link in the header section
+Then the user should see the bankers almanac logo in top left corner
+And the user should see the ownership module next to bankers almanac logo in top left corner
+When the user clicks on the Print Help link in the header section
 Then user should see the instructions to print from web browser open in new tab
 When the user clicks on the owners tab
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
@@ -74,8 +79,8 @@ When the user clicks on Editorial Policy link in footer section
 Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
 When the user clicks on the logo logo-relx in footers section
 Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
-When the user clicks on the logo logo-rbi in footers section
-Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+When the user clicks on the logo logo-accuity in footers section
+Then user is taken to a URL http://www.accuity.com/ that opens in a new window
 
 Examples:
 |fid|
@@ -87,7 +92,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the Print Help link in the header section
+Then the user should see the bankers almanac logo in top left corner
+And the user should see the ownership module next to bankers almanac logo in top left corner
+When the user clicks on the Print Help link in the header section
 Then user should see the instructions to print from web browser open in new tab
 When the user clicks on the subsidiaries tab
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
@@ -109,8 +116,8 @@ When the user clicks on Editorial Policy link in footer section
 Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
 When the user clicks on the logo logo-relx in footers section
 Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
-When the user clicks on the logo logo-rbi in footers section
-Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+When the user clicks on the logo logo-accuity in footers section
+Then user is taken to a URL http://www.accuity.com/ that opens in a new window
 
 Examples:
 |fid|
@@ -122,7 +129,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the Print Help link in the header section
+Then the user should see the bankers almanac logo in top left corner
+And the user should see the ownership module next to bankers almanac logo in top left corner
+When the user clicks on the Print Help link in the header section
 Then user should see the instructions to print from web browser open in new tab
 When the user clicks on the group structure tab
 And the user clicks on the graph button
@@ -145,8 +154,8 @@ When the user clicks on Editorial Policy link in footer section
 Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
 When the user clicks on the logo logo-relx in footers section
 Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
-When the user clicks on the logo logo-rbi in footers section
-Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+When the user clicks on the logo logo-accuity in footers section
+Then user is taken to a URL http://www.accuity.com/ that opens in a new window
 
 Examples:
 |fid|
@@ -158,7 +167,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the Print Help link in the header section
+Then the user should see the bankers almanac logo in top left corner
+And the user should see the ownership module next to bankers almanac logo in top left corner
+When the user clicks on the Print Help link in the header section
 Then user should see the instructions to print from web browser open in new tab
 When the user clicks on the owners tab
 And the user clicks on the graph button
@@ -181,8 +192,8 @@ When the user clicks on Editorial Policy link in footer section
 Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
 When the user clicks on the logo logo-relx in footers section
 Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
-When the user clicks on the logo logo-rbi in footers section
-Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+When the user clicks on the logo logo-accuity in footers section
+Then user is taken to a URL http://www.accuity.com/ that opens in a new window
 
 Examples:
 |fid|
@@ -194,7 +205,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the Print Help link in the header section
+Then the user should see the bankers almanac logo in top left corner
+And the user should see the ownership module next to bankers almanac logo in top left corner
+When the user clicks on the Print Help link in the header section
 Then user should see the instructions to print from web browser open in new tab
 When the user clicks on the subsidiaries tab
 And the user clicks on the graph button
@@ -217,8 +230,8 @@ When the user clicks on Editorial Policy link in footer section
 Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
 When the user clicks on the logo logo-relx in footers section
 Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
-When the user clicks on the logo logo-rbi in footers section
-Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+When the user clicks on the logo logo-accuity in footers section
+Then user is taken to a URL http://www.accuity.com/ that opens in a new window
 
 Examples:
 |fid|
@@ -230,7 +243,9 @@ Meta:@footer @dynamic
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
-And the user clicks on the Print Help link in the header section
+Then the user should see the bankers almanac logo in top left corner
+And the user should see the ownership module next to bankers almanac logo in top left corner
+When the user clicks on the Print Help link in the header section
 Then user should see the instructions to print from web browser open in new tab
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
 When the user clicks on Contact Us link in footer section
@@ -251,8 +266,8 @@ When the user clicks on Editorial Policy link in footer section
 Then user is taken to a URL http://www.accuity.com/editorial-policy/ that opens in a new window
 When the user clicks on the logo logo-relx in footers section
 Then user is taken to a URL http://www.relx.com/Pages/Home.aspx that opens in a new window
-When the user clicks on the logo logo-rbi in footers section
-Then user is taken to a URL http://www.reedbusiness.com/ that opens in a new window
+When the user clicks on the logo logo-accuity in footers section
+Then user is taken to a URL http://www.accuity.com/ that opens in a new window
 
 Examples:
 |fid|

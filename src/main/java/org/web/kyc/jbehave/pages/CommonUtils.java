@@ -23,6 +23,7 @@ public class CommonUtils extends WebDriverUtils {
     private By save_as_pdf_button_xpath = By.xpath("//*[@id='tools']/button[@name='download']");
     private By product_message_please_subscribe_link_text_xpath=By.xpath("//p[1]/a");
     private By spinner_xpath = By.xpath("//div[@class='kyc-loading-widget loader'][@style='display: block;']");
+    private By bankers_almanac_logo_xpath = By.xpath("//*[@id='header']");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -34,6 +35,9 @@ public class CommonUtils extends WebDriverUtils {
     public void openOwnershipModule() {
         nvPairs.clear();
         nvPairs.add(new BasicNameValuePair("userType", userType));
+
+        /* Removing percentage name value pair at the start as percent filter are applied at each level */
+        httpRequest().removeNameValuePair("percentage");
         get(readProperties().getUrl() + "/#/login");
         manage().window().maximize();
     }
@@ -169,5 +173,13 @@ public class CommonUtils extends WebDriverUtils {
         assertEquals("Acrobat Reader 11",getWebElementText(By.xpath("//h2[3]")));
         assertEquals("PDF X-Change Viewer",getWebElementText(By.xpath("//h2[4]")));
         assertEquals("Foxit",getWebElementText(By.xpath("//h2[5]")));
+    }
+
+    public void verifyBankersAlmanacLogo() {
+        assertTrue(isWebElementDisplayed(bankers_almanac_logo_xpath));
+    }
+
+    public void verifyOwnershipModule() {
+        assertEquals("Ownership ModulePrint Help", getWebElementText(bankers_almanac_logo_xpath).replace("\n",""));
     }
 }

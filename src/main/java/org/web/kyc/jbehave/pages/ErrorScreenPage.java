@@ -17,6 +17,7 @@ public class ErrorScreenPage extends WebDriverUtils {
     }
 
     public void launchUnexpectedServerErrorScreen(){
+        waitForInMilliSeconds(3000L);
         get("https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/500");
         manage().window().maximize();
     }
@@ -36,6 +37,7 @@ public class ErrorScreenPage extends WebDriverUtils {
     }
 
     public void launchAccessDeniedPage() {
+        waitForInMilliSeconds(3000L);
         get("https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/401");
         manage().window().maximize();
     }
