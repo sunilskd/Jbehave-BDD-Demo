@@ -20,9 +20,8 @@ public class CommonUtils extends WebDriverUtils {
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_button_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
-    private By save_as_pdf_button_xpath = By.xpath("//*[@id='tools']/button[@name='download']");
+    private By save_as_pdf_button_xpath = By.xpath("//button[@title='Save as PDF']");
     private By product_message_please_subscribe_link_text_xpath=By.xpath("//p[1]/a");
-    private By spinner_xpath = By.xpath("//div[@class='kyc-loading-widget loader'][@style='display: block;']");
     private By bankers_almanac_logo_xpath = By.xpath("//*[@id='header']");
 
     public static String selectedCountryHighlight = "";
@@ -149,7 +148,6 @@ public class CommonUtils extends WebDriverUtils {
 
     public void clickOnSaveAsPDFIcon() {
         clickOnWebElement(save_as_pdf_button_xpath);
-        assertTrue(isWebElementDisplayed(spinner_xpath));
         waitForInMilliSeconds(5000L);
     }
 
