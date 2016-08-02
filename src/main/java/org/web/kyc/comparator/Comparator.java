@@ -35,24 +35,18 @@ public class Comparator {
         compareOp.subimageSearch();
 
         /* The large image has to be added first. Checking the size below and then adding exp and act as per size*/
-        if(getImageSize(exp).get("width") > getImageSize(act).get("width")){
+        if(getImageSize(exp).get("width")*getImageSize(exp).get("height") > getImageSize(act).get("width")*getImageSize(act).get("height")){
             // Add the expected image
             compareOp.addImage(exp);
 
             // Add the current image
             compareOp.addImage(act);
-        } else if(getImageSize(act).get("width") > getImageSize(exp).get("width")){
-            // Add the current image
-            compareOp.addImage(act);
-
-            // Add the expected image
-            compareOp.addImage(exp);
         } else {
             // Add the expected image
-            compareOp.addImage(exp);
+            compareOp.addImage(act);
 
             // Add the current image
-            compareOp.addImage(act);
+            compareOp.addImage(exp);
         }
 
         // This stores the difference
