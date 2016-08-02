@@ -27,7 +27,6 @@ c. 0. If no regulation relationship exists, then display field label but no valu
    3. If inactive stock exchange relationship, then display field label but no value
    4. If only inactive regulation relationship exists, then display field label but no value
    5. If website is null, display field label in details section of side panel but no value
-d. If multiple websites are present, then display one website, whichever is found first on the details section of side panel
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -42,6 +41,18 @@ Examples:
 |182042|BOA|
 |68997|Berlin Hyp AG|
 |LE-33|QA Legal Entity 6|
+
+Scenario: If multiple websites are present, then display one website, whichever is found first on the details section of side panel
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user clicks on direct relationship only filter checkbox in the graphs
+When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
+Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
+
+Examples:
 |732|Banco Indusval SA|
 
 Scenario: Covers below scenarios

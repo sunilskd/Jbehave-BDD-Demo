@@ -19,7 +19,7 @@ public class ReadProperties {
     private String mlPath;
     private String snapshotPath;
     private String imageMagicPath;
-    private String downloadPath;
+    private String recordAFT;
     private String bankersAlmanacUrl;
 
     public ReadProperties() {
@@ -37,6 +37,7 @@ public class ReadProperties {
         setTestResourcePath(getProjectProperties("testRunner.properties", "kyc.test.resource.path"));
         setImageMagicPath(getProjectProperties("testRunner.properties", "image.magic.path"));
         setBankersAlmanacURL(getProjectProperties("testRunner.properties","ba.com.url"));
+        setRecordAFT(getProjectProperties("testRunner.properties","record.aft"));
     }
 
     public String getMlPath() {
@@ -132,7 +133,7 @@ public class ReadProperties {
     }
 
     public void setTestResourcePath(String snapshotPath) {
-        this.snapshotPath = snapshotPath;
+        this.snapshotPath = System.getProperty("user.dir").toString().replace("\\","/") + snapshotPath;
     }
 
     public String getImageMagicPath() {
@@ -140,7 +141,22 @@ public class ReadProperties {
     }
 
     public void setImageMagicPath(String imageMagicPath) {
-        this.imageMagicPath = imageMagicPath;
+        this.imageMagicPath = System.getProperty("user.dir").toString().replace("\\","/") + imageMagicPath;
+    }
+    public String getBankersAlmanacUrl() {
+        return bankersAlmanacUrl;
+    }
+
+    public void setBankersAlmanacURL(String bankersAlmanacUrl) {
+        this.bankersAlmanacUrl = bankersAlmanacUrl;
+    }
+
+    public String getRecordAFT() {
+        return recordAFT;
+    }
+
+    public void setRecordAFT(String recordAFT) {
+        this.recordAFT = recordAFT;
     }
 
     public String getProjectProperties(String propertyFile, String property) {
@@ -152,13 +168,5 @@ public class ReadProperties {
             e.printStackTrace();
         }
         return properties.getProperty(property);
-    }
-
-    public String getBankersAlmanacUrl() {
-        return bankersAlmanacUrl;
-    }
-
-    public void setBankersAlmanacURL(String bankersAlmanacUrl) {
-        this.bankersAlmanacUrl = bankersAlmanacUrl;
     }
 }

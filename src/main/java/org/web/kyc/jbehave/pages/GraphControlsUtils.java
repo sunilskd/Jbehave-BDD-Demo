@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.pages;
 
+import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
@@ -40,7 +41,6 @@ public class GraphControlsUtils extends WebDriverUtils {
     private By graph_country_highlight_info_xpath = By.xpath("//div[@kyc-country-dropdown-control=''] //span/p");
     private By graph_ubo_count_text_xpath = By.xpath("//*[@id='content-view']/div[1]/div[5]/div/span");
 
-
     public GraphControlsUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
     }
@@ -78,6 +78,7 @@ public class GraphControlsUtils extends WebDriverUtils {
     public void clickOnDirectRelationshipCheckbox() {
         waitForInMilliSeconds(3000L);
         clickOnWebElement(By.xpath(graph_filter_direct_relationship_only_xpath));
+        httpRequest().removeNameValuePair("percentage");
     }
 
     public void verifyPercentFilterIsSetToZero() {
@@ -85,6 +86,8 @@ public class GraphControlsUtils extends WebDriverUtils {
         assertEquals("DISPLAY OWNERSHIP PERCENTAGE", getWebElementText(graph_percent_filter_label_xpath));
         assertEquals("0", getWebElementsAttributeValue(graph_percent_slider_bar_xpath, "value").get(0));
         assertEquals("0", getWebElementsAttributeValue(graph_percent_filter_text_box_xpath, "value").get(0));
+        /* Removing name value pair percent filter as it is 0*/
+        httpRequest().removeNameValuePair("percentage");
     }
 
     public void verifyPercentFilterIsSetToHundred() {
@@ -95,6 +98,12 @@ public class GraphControlsUtils extends WebDriverUtils {
     }
 
     public void enterPercentFilter(String percentFilter){
+        /* Temporary fix. Need to be made dynamic */
+        if(percentFilter.equals("abc")) {
+            nvPairs.add(new BasicNameValuePair("percentage", "0"));
+        } else{
+            nvPairs.add(new BasicNameValuePair("percentage", percentFilter));
+        }
         waitForWebElementToAppear(graph_percent_filter_text_box_xpath);
         enterStringInInputBox(graph_percent_filter_text_box_xpath, percentFilter);
         waitForInMilliSeconds(3000L);
@@ -106,7 +115,7 @@ public class GraphControlsUtils extends WebDriverUtils {
 
     public void verifyUBOFilterIsUncheckedByDefault() {
         waitForWebElementToAppear(graph_ubo_filter_label_xpath);
-        assertEquals("Highlight Ultimate Beneficial Owners" + " " + getWebElementsText(graph_ubo_count_text_xpath), getWebElementText(graph_ubo_filter_label_xpath));
+        assertTrue(getWebElementText(graph_ubo_filter_label_xpath).contains("Highlight Ultimate Beneficial Owners"));
         assertTrue(isWebElementDisplayed(graph_ubo_filter_checkbox_unchecked_state_xpath));
     }
 
@@ -117,6 +126,7 @@ public class GraphControlsUtils extends WebDriverUtils {
 
     public void changePercentOwnershipUsingSlider(int slideTo) {
         moveSliderBarTo(graph_percent_slider_bar_xpath, slideTo);
+        nvPairs.add(new BasicNameValuePair("percentage", getWebElementsAttributeValue(graph_percent_slider_bar_xpath, "value").get(0)));
     }
 
     public void verifyUBOFilterIsDisabled() {
