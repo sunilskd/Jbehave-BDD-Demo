@@ -102,6 +102,14 @@ public class CommonUtils extends WebDriverUtils {
         }
         clickOnWebElement(login_button_xpath);
         waitForInMilliSeconds(2000L);
+        verifyLoginIsSuccessful();
+    }
+
+    public void verifyLoginIsSuccessful(){
+        if(getCurrentUrl().contains("401")){
+            openOwnershipModule();
+            userLogin(userType);
+        }
     }
 
     public void userLogout() {
