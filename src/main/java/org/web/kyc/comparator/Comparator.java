@@ -1,9 +1,16 @@
 package org.web.kyc.comparator;
 import org.im4java.core.CompareCmd;
+import org.im4java.core.ConvertCmd;
+import org.im4java.core.IM4JavaException;
 import org.im4java.process.StandardStream;
 import org.im4java.core.IMOperation;
-import org.jbehave.web.selenium.WebDriverPage;
-import org.jbehave.web.selenium.WebDriverProvider;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.web.kyc.jbehave.pages.WebDriverUtils.readProperties;
 
@@ -13,33 +20,77 @@ public class Comparator {
 
     public static boolean compareImages(String exp, String act, String diff){
 
+//        convertImage(exp);
+//        convertImage(act);
+
         // This instance wraps the compare command
         CompareCmd compare = new CompareCmd();
 
         // For metric-output
         compare.setErrorConsumer(StandardStream.STDERR);
-        IMOperation cmpOp = new IMOperation();
+        IMOperation compareOp = new IMOperation();
 
         // Set the compare metric
-        cmpOp.metric("mae");
+        compareOp.metric("rmse");
+        compareOp.subimageSearch();
 
-        // Add the expected image
-        cmpOp.addImage(exp);
+        /* The large image has to be added first. Checking the size below and then adding exp and act as per size*/
+        if(getImageSize(exp).get("width")*getImageSize(exp).get("height") > getImageSize(act).get("width")*getImageSize(act).get("height")){
+            // Add the expected image
+            compareOp.addImage(exp);
 
-        // Add the current image
-        cmpOp.addImage(act);
+            // Add the current image
+            compareOp.addImage(act);
+        } else {
+            // Add the expected image
+            compareOp.addImage(act);
+
+            // Add the current image
+            compareOp.addImage(exp);
+        }
 
         // This stores the difference
-        cmpOp.addImage(diff);
+        compareOp.addImage(diff);
 
         try {
             // Do the compare
             compare.setSearchPath(readProperties().getImageMagicPath());
-            compare.run(cmpOp);
+            compare.run(compareOp);
             return true;
         }
         catch (Exception ex) {
             return false;
         }
     }
+
+    public static void convertImage(String exp){
+        ConvertCmd convert = new ConvertCmd();
+        convert.setSearchPath(readProperties().getImageMagicPath());
+        IMOperation convertOp = new IMOperation();
+        convertOp.addImage(exp);
+        convertOp.size(1900, 1900);
+        convertOp.addImage(exp);
+        try {
+            convert.run(convertOp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IM4JavaException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Map<String, Integer> getImageSize(String filename){
+        Map<String, Integer> imageDimension = new HashMap<>();
+        try {
+            BufferedImage image = ImageIO.read(new File(filename));
+            imageDimension.put("width", image.getWidth());
+            imageDimension.put("height", image.getHeight());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageDimension;
+    }
+
 }
