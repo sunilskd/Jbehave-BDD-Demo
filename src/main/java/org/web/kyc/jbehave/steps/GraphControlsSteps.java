@@ -135,4 +135,9 @@ public class GraphControlsSteps {
         pageObject.graphControlsUtils().verifyUBOCount(UBOCount);
     }
 
+    @Then("the user should not see UBO count displayed next to UBO checkbox label")
+    public void verifyNoUBOCount(){
+        pageObject.graphControlsUtils().verifyNoUBOCount();
+    }
+
 }

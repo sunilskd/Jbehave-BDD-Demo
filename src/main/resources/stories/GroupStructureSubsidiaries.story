@@ -38,7 +38,7 @@ Then the user should see the indented list of subsidiaries for the focused insti
 
 Then the user should see the indented list of subsidiaries for the institution QA Legal Entity 35 that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|QA Legal Entity 40|Korea (Republic of)|70.9|
+|QA Legal Entity 40|Korea (Republic of)|70.9045|
 |QA Legal Entity 39|Australia|60.9|
 |QA Legal Entity 41|Korea (Republic of)||
 |QA Legal Entity 42|Korea (Republic of)||

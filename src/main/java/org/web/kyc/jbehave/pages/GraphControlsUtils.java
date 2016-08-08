@@ -179,4 +179,8 @@ public class GraphControlsUtils extends WebDriverUtils {
     public void verifyUBOCount(String UBOCount){
         assertEquals(("(" + UBOCount + ")"),getWebElementText(graph_ubo_count_text_xpath));
     }
+
+    public void verifyNoUBOCount() {
+        assertFalse(isWebElementDisplayed(graph_ubo_count_text_xpath));
+    }
 }

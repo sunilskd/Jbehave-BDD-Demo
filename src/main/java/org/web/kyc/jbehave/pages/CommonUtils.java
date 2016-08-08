@@ -107,6 +107,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyLoginIsSuccessful(){
         if(getCurrentUrl().contains("401")){
+            refreshCurrentPage();
             openOwnershipModule();
             userLogin(userType);
         }

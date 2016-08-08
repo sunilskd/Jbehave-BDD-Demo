@@ -604,3 +604,20 @@ Then the user should see UBO count as 2 displayed next to UBO checkbox label
 Examples:
 |fid|legalEntity|
 |LE-A|QA Test Person G|
+
+
+Scenario: Verify UBO count scenarios in owners graph
+a. 1. Count of tiles currently visible that match UBO highlight is displayed
+   2. If a filter is applied, only tiles still visible after the filter count
+   3. If user changes color of a highlighted tile to appears multiple, it still counts toward the UBO highlight count
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+And the user clicks on direct relationship only filter checkbox in the graphs
+Then the user should not see UBO count displayed next to UBO checkbox label
+
+Examples:
+|fid|
+|LE-6|
