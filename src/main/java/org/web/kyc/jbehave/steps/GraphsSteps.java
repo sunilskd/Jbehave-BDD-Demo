@@ -329,4 +329,20 @@ public class GraphsSteps {
     public void resizeGraphs(@Named("translate") String translate){
         pageObject.graphsPage().resizeGraphs(translate);
     }
+
+    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the group structure graph page")
+    public void verifySavedPDFGroupStructureGraphFile(){
+        pageObject.graphsPage().verifySavedPDFGroupStructureGraphFile();
+    }
+
+    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners graph page")
+    public void verifySavedPDFOwnersGraphFile(){
+        pageObject.graphsPage().verifySavedPDFOwnersGraphFile();
+    }
+
+    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the subsidiarie graph page")
+    public void verifySavedPDFSubsidiariesGraphFile(){
+        pageObject.graphsPage().verifySavedPDFSubsidiariesGraphFile();
+    }
+
 }

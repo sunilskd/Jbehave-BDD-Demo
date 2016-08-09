@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.web.kyc.comparator.Comparator.compareImages;
+import static org.web.kyc.comparator.PDFComparator.comparePDFsContent;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
 import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
@@ -642,4 +643,40 @@ public class GraphsPage extends WebDriverUtils {
     public void verifyGraphsAreTruncatedMsg() {
         assertEquals("This graph is too large to display in your browser. Click the \"Show More\" link on tiles within the graph to show hidden segments in a new graph. Download the complete graph using the download button above (Complex graphs may take several minutes).",getWebElementText(graphs_truncated_notification_msg_xpath));
     }
+
+    public void verifySavedPDFGroupStructureGraphFile() {
+        waitForInMilliSeconds(3000L);
+        try {
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/groupStructure_graph.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/groupStructure_graph.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifySavedPDFOwnersGraphFile() {
+        waitForInMilliSeconds(3000L);
+        try {
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/owners_graph.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/owners_graph.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifySavedPDFSubsidiariesGraphFile() {
+        waitForInMilliSeconds(3000L);
+        try {
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/subsidiaries_graph.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/subsidiaries_graph.pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }
