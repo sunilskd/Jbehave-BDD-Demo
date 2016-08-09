@@ -82,14 +82,13 @@ Examples:
 Scenario: KYC User can save graph of owners
 Meta:@ubo
 Given the user is on the ubo login page
-When the user login as a ubo user
+When the user login as a kyc user
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user selects a country USA from the country highlight list in the graphs
-And the user clicks on the ultimate beneficial owners filter checkbox in the graph
 And the user clicks on the save as pdf icon (display loading icon while generating saved pdf for lists)
 Then the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners graph page
 
