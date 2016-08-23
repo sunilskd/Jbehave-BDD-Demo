@@ -43,7 +43,8 @@ public class StoriesRunner extends JUnitStories {
     /* Browserstack credentials */
     public static final String USERNAME = "ravisahu1";
     public static final String AUTOMATE_KEY = "usU2zSencBAxxm8Nniux";
-    public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
+    //public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
+    public static final String URL = "http://localhost:4444/wd/hub";
     static Browser browser = new Browser();
     private static WebDriverProvider driverProvider;
     private static WebDriverSteps lifeCycleSteps;
@@ -99,7 +100,8 @@ public class StoriesRunner extends JUnitStories {
         /* Setting system property REMOTE_WEBDRIVER_URL and desired capabilities */
         if (System.getProperty("browser").equals("remote")) {
             System.setProperty("REMOTE_WEBDRIVER_URL", URL);
-            desiredCapabilities.setCapability("browserstack.local", "true");
+            desiredCapabilities.setBrowserName("firefox");
+            //desiredCapabilities.setCapability("browserstack.local", "true");
             driverProvider = new RemoteWebDriverProvider(desiredCapabilities);
 
         } else if (System.getProperty("browser").equals("firefox")){
