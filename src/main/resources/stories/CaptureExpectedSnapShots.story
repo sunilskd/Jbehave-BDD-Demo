@@ -332,6 +332,25 @@ Examples:
 |fid|nodeTitle|
 |30087|The Fukuoka Chuo Bank Ltd|
 
+Scenario: Covers below scenarios
+a. KYC-455(Owners Graph) Verify truncated owners graph is displayed with all the truncation logics.
+Meta:@capturetruncatedownersgraph
+Given the user is on the ubo login page
+When the user login as a ubo user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+And the user resize graph to translate(955.6692913385826,367.47401301707407) scale(0.11800000000000001)
+When the user selects a country USA from the country highlight list in the graphs
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user captures the expected snapshot for the <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|legalEntity|
+|149414|Landmark Directors Limited|Blackrock Inc|
+
 Scenario: KYC user logout
 Meta: @id logout
 Given the user is on the ubo login page

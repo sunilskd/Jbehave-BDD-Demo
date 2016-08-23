@@ -23,6 +23,7 @@ JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners gr
 JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears multiple times in the ownership graph
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-455 - new truncation logic owners graph
 
 Meta:@uboownersgraph @ubo
 
@@ -632,6 +633,68 @@ Then the user should see the notification message that the graphs are truncated
 Examples:
 |fid|
 |544|
+
+Scenario: Covers below scenarios for truncated owners graph.
+a. 0. When triples are >125, then nodes with less than 5% are displayed but not the nodes potentially be after that node.
+   1. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
+   2. When triples are >125 & an entity appears more than once & first occurance has less than 5% ownership, then truncate the graph and display the path of second appearances
+   3. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case
+   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
+   5. UBO highlight is disabled for UBO and KYC user
+   6. Country highlight drop-down only displays country of operations of LEs displayed after truncation
+   7. "Appears count" on tiles only reflects appearances on the graph after truncation
+   8. click “show more” link on tiles to view hidden segments in a new graph.
+Given the user is on the ubo login page
+When the user login as a ubo user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+And the user resize graph to translate(955.6692913385826,367.47401301707407) scale(0.11800000000000001)
+When the user selects a country USA from the country highlight list in the graphs
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+When the user captures the actual snapshot for the <nodeTitle> full graph
+Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Belgium (1)|
+|Canada (2)|
+|Cayman Islands (1)|
+|France (3)|
+|Germany (2)|
+|Guernsey (2)|
+|Hong Kong (1)|
+|Luxembourg (1)|
+|Portugal (1)|
+|UK (8)|
+|USA (33)|
+
+When the user resize graph to translate(1253.1793966674943,1695.3853983257395) scale(0.55)
+And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
+
+Examples:
+|fid|nodeTitle|legalEntity|
+|149414|Landmark Directors Limited|Blackrock Inc|
+
+Scenario: Covers below scenarios for truncated owners graph
+a. 0. Verify graph truncation notification message when number of nodes are greater than 2500
+   1. Percent ownership filter options not affected by truncation.
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the notification message that the graphs are truncated when there are more than 2500 nodes
+When the user enters percentage as 7 in ownership percentage filter text box in the graphs
+And the user resize graph to translate(762.8473892309161,444.76565489373127) scale(0.1)
+Then the user should see the list of owners in level 12, above the root entity, in the graphs
+
+Examples:
+|fid|
+|250786|
 
 Scenario: KYC user logout
 Meta: @id logout
