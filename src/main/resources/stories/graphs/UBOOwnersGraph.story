@@ -632,3 +632,8 @@ Then the user should see the notification message that the graphs are truncated
 Examples:
 |fid|
 |544|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

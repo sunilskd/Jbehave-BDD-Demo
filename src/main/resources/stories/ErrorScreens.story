@@ -33,3 +33,8 @@ Then user is taken to a URL http://www.bankersalmanac.com/addcon/ that opens in 
 Scenario: Show message "You are not authorized for this product" when user tries to log in and is not successfully authenticated on new module, valid session could not be created.
 When user tries to log in and is not successfully authenticated on new module
 Then the user should see 401 access denied error page
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

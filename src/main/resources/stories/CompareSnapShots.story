@@ -270,3 +270,8 @@ Then the user should see the actual snapshot matching the expected snapshot for 
 Examples:
 |fid|nodeTitle|
 |30087|The Fukuoka Chuo Bank Ltd|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

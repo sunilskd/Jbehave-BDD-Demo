@@ -113,3 +113,8 @@ Then the user should be able to save the file including all content of current p
 Examples:
 |fid|
 |211|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

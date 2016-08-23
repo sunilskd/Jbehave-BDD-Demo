@@ -641,7 +641,7 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyGraphsAreTruncatedMsg() {
-        assertEquals("This graph is too large to display in your browser. Click the \"Show More\" link on tiles within the graph to show hidden segments in a new graph. Download the complete graph using the download button above (Complex graphs may take several minutes).",getWebElementText(graphs_truncated_notification_msg_xpath));
+        assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
     }
 
     public void verifySavedPDFGroupStructureGraphFile() {

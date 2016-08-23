@@ -52,3 +52,8 @@ Examples:
 |fid|
 |721|
 |211|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

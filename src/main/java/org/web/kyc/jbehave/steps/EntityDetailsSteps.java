@@ -61,9 +61,9 @@ public class EntityDetailsSteps {
     }
 
     @Then("the user should see the swift bic list sorted first by length (short to long) then by alpha-numerically in the entity details page $swiftBicExampleTable")
-    public void sVerifySwiftBicList(ExamplesTable swiftBicExampleTable){
-        pageObject.entityDetailsPage().sVerifySwiftBicList(swiftBicExampleTable);
-    }
+        public void sVerifySwiftBicList(ExamplesTable swiftBicExampleTable){
+            pageObject.entityDetailsPage().sVerifySwiftBicList(swiftBicExampleTable);
+        }
 
     @Then("the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page")
     public void dVerifyStockExchangeInformation(){

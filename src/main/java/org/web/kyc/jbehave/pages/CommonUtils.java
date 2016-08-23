@@ -39,6 +39,7 @@ public class CommonUtils extends WebDriverUtils {
         httpRequest().removeNameValuePair("percentage");
         get(readProperties().getUrl() + "/#/login");
         manage().window().maximize();
+        verifyLoginIsSuccessful();
     }
 
     public void clickOnOwnershipTab() {
@@ -50,6 +51,7 @@ public class CommonUtils extends WebDriverUtils {
     public void openUrl(String url) {
         nvPairs.add(new BasicNameValuePair("fid", url));
         get(readProperties().getUrl() + "/#/legalEntity/" + url + "/ownership/owners");
+        verifyLoginIsSuccessful();
     }
 
     public void verifyPercentFilterOptions() {
@@ -101,15 +103,15 @@ public class CommonUtils extends WebDriverUtils {
             enterStringInInputBox(user_login_input_box_id, readProperties().getUboUser());
         }
         clickOnWebElement(login_button_xpath);
-        waitForInMilliSeconds(2000L);
         verifyLoginIsSuccessful();
     }
 
     public void verifyLoginIsSuccessful(){
+        waitForInMilliSeconds(2000L);
         if(getCurrentUrl().contains("401")){
-            refreshCurrentPage();
-            openOwnershipModule();
-            userLogin(userType);
+            navigate().back();
+        } else if(getCurrentUrl().contains("404")){
+            navigate().back();
         }
     }
 

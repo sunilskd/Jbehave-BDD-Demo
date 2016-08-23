@@ -64,7 +64,7 @@ And the user should see the list of owners in level 5, above the root entity, in
 And the user should see the list of owners in level 6, above the root entity, in the graphs
 Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
-Then the user is taken to subscription page URL http://www.accuity.com/Util/login.aspx?ReturnUrl=%2ffinancial-counterparty-kyc%2fubo%2f on accuity.com
+Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC%7CBRSK%7CBAFPU-2016-0810-GLOB-ba-ubo%7CLookBook&sfid=701D0000000dwwH on accuity.com
 
 Examples:
 |fid|
@@ -552,7 +552,7 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:
 |fid|nodeTitle|
-|51859|Banco Santander SA|
+|51859|Santander Holding Internacional SA|
 
 Scenario: KYC-395 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
 Given the user is on the ubo login page
@@ -565,57 +565,29 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Angola (2)|
-|Austria (13)|
-|Belgium (7)|
-|Bosnia-Herzegovina (2)|
-|Brazil (1)|
-|China (3)|
-|Czech Republic (1)|
-|France (14)|
-|Germany (8)|
-|Greece (6)|
-|Hong Kong (1)|
-|Hungary (6)|
-|Italy (191)|
-|Kazakhstan (5)|
-|Libya (3)|
-|Luxembourg (12)|
-|Malaysia (3)|
-|Netherlands (10)|
-|Norway (21)|
-|Pakistan (13)|
-|Portugal (12)|
-|Qatar (1)|
-|Romania (1)|
-|Russian Federation (2)|
-|Singapore (2)|
-|Slovakia (4)|
-|Slovenia (4)|
-|Spain (56)|
-|Switzerland (2)|
-|Turkey (2)|
-|UAE (2)|
-|UK (15)|
-|USA (63)|
+|Belgium (1)|
+|Italy (12)|
 
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Canada (8)|
-|Cayman Islands (1)|
-|Italy (4)|
-|South Africa (12)|
-|UK (7)|
-|USA (353)|
+|Italy (52)|
+|Luxembourg (1)|
+|Norway (3)|
+|UK (1)|
+|USA (1)|
 
 Examples:
 |fid|nodeTitle|
-|415|Blackrock Group Limited|
-
+|415|Unione Fiduciaria SpA|
 
 Scenario: Scenarios pending as Data missing
 1. If legal entity in focus returns greater than 1500 triples for ownership and an ownership relationship has less than 5 percent, graph displays less than 500 owner nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
 3. If legal entity in focus returns greater than 1500 triples for ownership, has an ownership relationship with less than 5 percent, and displays 500 owner nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
 4. If legal entity in focus returns greater than 1500 triples for ownership but does not have any ownership relationship less than 5 percent, no paths are truncated
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

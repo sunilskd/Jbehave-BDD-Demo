@@ -13,6 +13,7 @@ import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
+import org.jbehave.core.steps.ParameterConverters;
 import org.jbehave.core.steps.SilentStepMonitor;
 import org.jbehave.web.selenium.*;
 import org.junit.After;
@@ -28,11 +29,13 @@ import org.web.kyc.utils.TestRecorder;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
-import static org.jbehave.core.reporters.Format.CONSOLE;
+import static org.jbehave.core.reporters.Format.*;
+import static org.jbehave.core.steps.ParameterConverters.DateConverter.DEFAULT_FORMAT;
 import static org.web.kyc.utils.FilesUtils.*;
 
 public class StoriesRunner extends JUnitStories {
@@ -47,7 +50,7 @@ public class StoriesRunner extends JUnitStories {
     private static PageObject pageObject;
     ReadProperties readProperties = new ReadProperties();
     private SeleniumContext context = new SeleniumContext();
-    private ContextView contextView = new LocalFrameContextView().sized(500, 100);
+    private ContextView contextView = new LocalFrameContextView().sized(0, 0);
     private TestRecorder testRecorder = new TestRecorder();
 
     /* Customized HTML format class to include screenshot in reports */
@@ -58,11 +61,14 @@ public class StoriesRunner extends JUnitStories {
             configuredEmbedder().useExecutorService(new SameThreadExecutors().create(
                     configuredEmbedder()
                             .embedderControls()
+                            .doGenerateViewAfterStories(true)
+                            .doIgnoreFailureInStories(false)
+                            .doIgnoreFailureInView(false)
+                            .useStoryTimeouts("900")
             ));
             try {
                 /* Required to run stories with annotated meta filters */
                 configuredEmbedder().useMetaFilters(Arrays.asList(getListOfStoriesToRun().split(",")));
-                System.out.print(getListOfStoriesToRun());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -145,10 +151,14 @@ public class StoriesRunner extends JUnitStories {
                 .useWebDriverProvider(driverProvider)
                 .useStepMonitor(new SeleniumStepMonitor(contextView, context, new SilentStepMonitor()))
                 .useStoryLoader(new LoadFromClasspath(embeddableClass))
+                .useParameterConverters(new ParameterConverters().addConverters(new ParameterConverters.DateConverter(new SimpleDateFormat("yyyy-MM-dd"))))
                 .useStoryReporterBuilder(new StoryReporterBuilder()
                         .withCodeLocation(codeLocationFromClass(embeddableClass))
-                        .withDefaultFormats()
-                        .withFormats(CONSOLE, screenShootingFormat, AsciidoctorStoryReporter.ASCIIDOC));
+                        .withFormats(org.jbehave.core.reporters.Format.STATS,
+                                        org.jbehave.core.reporters.Format.CONSOLE,
+                                        screenShootingFormat,
+                                        AsciidoctorStoryReporter.ASCIIDOC)
+                        .withDefaultFormats());
     }
 
     @Override

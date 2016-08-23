@@ -199,3 +199,8 @@ And the user should see the indented list of subsidiaries for the institution SB
 Examples:
 |fid|
 |1045|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

@@ -384,3 +384,8 @@ And the user should not see the multiple appearance highlight on any node in the
 Examples:
 |fid|legalEntity|
 |11262|Vontobel Holding AG|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

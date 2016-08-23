@@ -85,3 +85,8 @@ Then the user should see the zoomed in <nodeTitle> full graphs
 Examples:
 |fid|nodeTitle|
 |LE-6|QA Legal Entity 6|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

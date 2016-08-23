@@ -83,7 +83,6 @@ Then the user should see the summary with head office address <headOfficeAddress
 And the user should see the identifiers with giin <giin> and fatca status <fatcaStatus> for the selected institution in the entity details page
 And the user should see the identifiers with below leis, sorted alphabetically by issuer name, in the entity details page
 |LEIS|
-|Global Intermediary Identification Number NISWJ7.00001.ME.276|
 |WM Datenservice General Entity Identifier (GEI) 529900C4RSSBWXBSY931|
 
 And the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page

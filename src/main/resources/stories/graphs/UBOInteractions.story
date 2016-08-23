@@ -621,3 +621,8 @@ Then the user should not see UBO count displayed next to UBO checkbox label
 Examples:
 |fid|
 |LE-6|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

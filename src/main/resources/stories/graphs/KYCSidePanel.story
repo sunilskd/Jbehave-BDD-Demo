@@ -294,3 +294,8 @@ Then user is taken to a URL http://www.bip.b.br/ that opens in a new window
 Examples:
 |fid|nodeTitle|website|
 |732|Banco Indusval SA|http://www.bip.b.br|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

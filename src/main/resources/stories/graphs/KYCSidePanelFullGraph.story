@@ -100,3 +100,8 @@ Then the user should see complete head office address, regulators , stock exchan
 Examples:
 |fid|nodeTitle|switchNode|
 |112618|HomeTown Bank National|Moody National Bank|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

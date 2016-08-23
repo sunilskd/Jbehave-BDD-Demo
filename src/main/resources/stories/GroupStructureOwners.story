@@ -238,3 +238,8 @@ Then the user should see the legal entity QA Legal Entity 4, user is currently v
 Examples:
 |fid|
 |LE-4|
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout

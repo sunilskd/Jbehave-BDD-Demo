@@ -276,3 +276,8 @@ Examples:
 Scenario: Verify print help page instruction
 Given the user is on the ubo print help page
 Then user should see the instructions to print from web browser
+
+Scenario: KYC user logout
+Meta: @id logout
+Given the user is on the ubo login page
+When the user logout
