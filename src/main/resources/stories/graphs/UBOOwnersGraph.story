@@ -634,7 +634,7 @@ Examples:
 |fid|
 |544|
 
-Scenario: Covers below scenarios for truncated owners graph.
+Scenario: Covers below scenarios for truncated owners graph for UBO user.
 a. 0. When triples are >125, then nodes with less than 5% are displayed but not the nodes potentially be after that node.
    1. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
    2. When triples are >125 & an entity appears more than once & first occurance has less than 5% ownership, then truncate the graph and display the path of second appearances
@@ -679,7 +679,7 @@ Examples:
 |fid|nodeTitle|legalEntity|
 |149414|Landmark Directors Limited|Blackrock Inc|
 
-Scenario: Covers below scenarios for truncated owners graph
+Scenario: Covers below scenarios for truncated owners graph for a UBO user.
 a. 0. Verify graph truncation notification message when number of nodes are greater than 2500
    1. Percent ownership filter options not affected by truncation.
 Given the user is on the ubo login page
