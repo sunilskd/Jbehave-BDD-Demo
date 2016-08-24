@@ -655,7 +655,7 @@ And the user resize graph to translate(955.6692913385826,367.47401301707407) sca
 When the user selects a country USA from the country highlight list in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 When the user captures the actual snapshot for the <nodeTitle> full graph
-Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph
+Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> owners graph
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
