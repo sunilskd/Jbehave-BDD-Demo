@@ -271,6 +271,26 @@ Examples:
 |fid|nodeTitle|
 |30087|The Fukuoka Chuo Bank Ltd|
 
+Scenario: Capture expected screenshot for subsidiaries graph for validating below scenarios:
+ a. 0. Multiple nodes and 5% truncation message displayed for graphs having more than 125 triples.
+    1. Multiple nodes and 5 % truncation message displayed for graphs having circular relationship
+ b.  Truncation message appearing and for multiple similar node, Show more link appearing on others except one node.
+Given the user is on the ubo login page
+When the user login as a kyc user
+When the user opens legal entity <fid>
+And the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+And the user enters percentage as 4 in ownership percentage filter text box in the graphs
+And the user captures the actual snapshot for the <nodeTitle> subsidiaries graph
+Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> subsidiaries graph
+
+
+Examples:
+|fid|nodeTitle|
+|808|Banco BTG Pactual SA TruncatedGraph|
+|444|Intesa Sanpaolo SpA TruncatedGraph|
+
 Scenario: KYC user logout
 Meta: @id logout
 Given the user is on the ubo login page

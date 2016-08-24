@@ -50,6 +50,7 @@ public class GraphsPage extends WebDriverUtils {
     private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
     private By graph_in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
     private By graphs_truncated_notification_msg_xpath = By.xpath("//*[@id='content-view']/p");
+    private By subs_graphs_truncated_notification_with_nodecount_msg_xpath = By.xpath(".//*[@id='content-view']/div[1]/p");
 
     public GraphsPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -675,6 +676,11 @@ public class GraphsPage extends WebDriverUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void verifyGraphsAreTruncatedWithNodeCountMsgSubsPage(){
+
+        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",findElement(subs_graphs_truncated_notification_with_nodecount_msg_xpath).getText());
     }
 
 

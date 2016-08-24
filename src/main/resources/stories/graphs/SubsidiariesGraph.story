@@ -428,8 +428,53 @@ Examples:
 |fid|
 |444|
 
-Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated[Data Missing]
+Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated
+[Data Missing]
 
+Scenario: KYC-456 Covers below scenarios for truncated subs graph.
+a. Verify graph truncation notification message when number of nodes are greater than 2500
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+And the user should see the legal entity JPMorgan Chase & Co, user is currently viewing, as the root and highlighted on the graphs
+And the user should see the truncation notification message that the graphs are truncated as there are more 2500 nodes on subs page
+
+Examples:
+|fid|
+|7127|
+
+
+Scenario: KYC-456 Covers below scenarios for truncated subs graph.
+a. 0. Country highlight drop-down only displays country of operations of LEs displayed after truncation
+   1. Click “show more” link on tiles to view hidden segments in a new graph.
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+And the user should see the legal entity Banco de Chile, user is currently viewing, as the root and highlighted on the graphs
+And the user should see no country highlight selected by default in country highlight drop-down in the graphs
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Chile (46)|
+|Colombia (13)|
+|Panama (2)|
+|USA (1)|
+When the user resize graph to translate(1038.544473153289,155.8951005596037) scale(0.39321335741032265)
+When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
+Examples:
+|fid|nodeTitle|
+|544|Quiñenco SA|
 Scenario: KYC user logout
 Meta: @id logout
 Given the user is on the ubo login page
