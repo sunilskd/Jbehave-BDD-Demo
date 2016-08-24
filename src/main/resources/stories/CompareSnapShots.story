@@ -2,7 +2,7 @@ Covers below features:
 JIRA ID - KYC-360 - The icon for the root node is always displaying the icon for Bank. It should be based on the legalEntityType.
 JIRA ID - KYC-347 - Non person/Non Entity and Free text using wrong icon
 JIRA ID - KYC-455 - new truncation logic owners graph
-
+JIRA ID - KYC-457 - new truncation logic full graph
 Meta:@comparesnapshots
 
 Scenario: Compare entity details snapshots
@@ -283,7 +283,7 @@ a. 0. When triples are >125, then nodes with less than 5% are displayed but not 
    7. KYC user will see in-product UBO message (KYC-470 bug)
    8. Free text truncated as owned is <5%(Entity - FMR LLC)
 Given the user is on the ubo login page
-When the user login as a ubo user
+When the user login as a kyc user
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -296,6 +296,50 @@ Then the user should see the actual snapshot matching the expected snapshot for 
 Examples:
 |fid|nodeTitle|
 |149414|Landmark Directors Limited KYC|
+
+Scenario: KYC-457 Covers below scenarios for truncated full graph for UBO user.
+a. 0. When triples are >125, then nodes with less than 5% are displayed but not the nodes potentially be after that node.
+   1. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
+   2. When triples are >125 & an entity appears more than once & first occurance has less than 5% ownership, then truncate the graph and display the path of second appearances
+   3. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case
+   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
+   5. UBO highlight is enabled for UBO user
+   6. Verify circular relationship
+Given the user is on the ubo login page
+When the user login as a ubo user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the graph button
+And the user resize graph to translate(4558.5,288.89999626422735) scale(0.1)
+When the user clicks on the ultimate beneficial owners filter checkbox in the graph
+When the user captures the actual snapshot for the <nodeTitle> full graph
+Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|
+|217510|BPCE UBO|
+
+Scenario: KYC-457 Covers below scenarios for truncated full graph for KYC user.
+a. 0. When triples are <125, and nodes are >2500 then nodes containg 2500th node level will be displayed and remainig will levels will be truncated.
+   1. Verify graph truncation notification message when number of nodes are greater than 2500
+   2. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case
+   3. Display notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph."
+   4. "Appears count" on tiles only reflects appearances on the graph after truncation
+Given the user is on the ubo login page
+When the user login as a kyc user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the graph button
+And the user resize graph to translate(11384.441979011302,559.0051525281191) scale(0.1)
+When the user captures the actual snapshot for the <nodeTitle> full graph
+Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|
+|250786|Generali European Real Estate|
+
 
 Scenario: KYC user logout
 Meta: @id logout
