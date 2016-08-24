@@ -282,6 +282,7 @@ And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 And the user enters percentage as 4 in ownership percentage filter text box in the graphs
+And the user resize graph to translate(12444.729354203917,13.682508330066156) scale(0.42400000000000004)
 And the user captures the actual snapshot for the <nodeTitle> subsidiaries graph
 Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> subsidiaries graph
 

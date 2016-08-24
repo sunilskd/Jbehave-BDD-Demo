@@ -333,10 +333,10 @@ Examples:
 |30087|The Fukuoka Chuo Bank Ltd|
 
 
-Scenario: Capture expected screenshot for subsidiaries graph for validating below scenarios:
+Scenario: KYC-456 Capture expected screenshot for subsidiaries graph for validating below scenarios:
  a. 0. Multiple nodes and 5% truncation message displayed for graphs having more than 125 triples.
     1. Multiple nodes and 5 % truncation message displayed for graphs having circular relationship, Show more link is not displayed on the circular node.
-b.  0. Truncation message appearing and for multiple similar node, then only display path beyond the first left most occurance and do not display path beyond other appearances, Show more link displayed at other occurances of multiple node
+ b. 0. Truncation message appearing and for multiple similar node, then only display path beyond the first left most occurance and do not display path beyond other appearances, Show more link displayed at other occurances of multiple node
     1. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case.
 Given the user is on the ubo login page
 When the user login as a kyc user
@@ -345,6 +345,7 @@ And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 And the user enters percentage as 4 in ownership percentage filter text box in the graphs
+And the user resize graph to translate(12444.729354203917,13.682508330066156) scale(0.42400000000000004)
 Then the user captures the expected snapshot for the <nodeTitle> subsidiaries graph
 
 Examples:

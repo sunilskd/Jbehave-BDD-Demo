@@ -470,11 +470,12 @@ And the user should see the list of below unique country of operations for each 
 |Panama (2)|
 |USA (1)|
 When the user resize graph to translate(1038.544473153289,155.8951005596037) scale(0.39321335741032265)
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|nodeTitle|
 |544|Quiñenco SA|
+
 Scenario: KYC user logout
 Meta: @id logout
 Given the user is on the ubo login page
