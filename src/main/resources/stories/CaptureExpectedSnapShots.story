@@ -350,8 +350,8 @@ Then the user captures the expected snapshot for the <nodeTitle> subsidiaries gr
 
 Examples:
 |fid|nodeTitle|
-|808|Banco BTG Pactual SA TruncatedGraph|
-|444|Intesa Sanpaolo SpA TruncatedGraph|
+|808|Banco BTG Pactual SA|
+|444|Intesa Sanpaolo SpA|
 
 Scenario: KYC user logout
 Meta: @id logout
