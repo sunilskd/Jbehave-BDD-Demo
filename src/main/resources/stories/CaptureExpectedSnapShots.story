@@ -334,10 +334,10 @@ Examples:
 
 
 Scenario: KYC-456 Capture expected screenshot for subsidiaries graph for validating below scenarios:
- a. 0. Multiple nodes and 5% truncation message displayed for graphs having more than 125 triples.
-    1. Multiple nodes and 5 % truncation message displayed for graphs having circular relationship, Show more link is not displayed on the circular node.
- b. 0. Truncation message appearing and for multiple similar node, then only display path beyond the first left most occurance and do not display path beyond other appearances, Show more link displayed at other occurances of multiple node
-    1. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case.
+  a. 0. If the legal entity in focus has node count greater than 125, Notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
+     1. When triples are >125 & legal entity repeats itselfs in the path(Circular relationship), path is truncated at the second occurance and show more link is not displayed
+  b. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
+  c. Verify if the legal entity in focus has triple count greater than 125 and node count is greater than 2500, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.   1. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case.
 Given the user is on the ubo login page
 When the user login as a kyc user
 When the user opens legal entity <fid>
@@ -352,6 +352,7 @@ Examples:
 |fid|nodeTitle|
 |808|Banco BTG Pactual SA|
 |444|Intesa Sanpaolo SpA|
+|7127|JPMorgan Chase & Co|
 
 Scenario: KYC user logout
 Meta: @id logout

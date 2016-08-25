@@ -433,7 +433,7 @@ Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 trip
 [Data Missing]
 
 Scenario: KYC-456 Covers below scenarios for truncated subs graph.
-a. Verify graph truncation notification message when number of nodes are greater than 2500
+a. Verify if the legal entity in focus has triple count greater than 125 and node count is greater than 2500, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
 
 
 Given the user is on the ubo login page
@@ -451,8 +451,9 @@ Examples:
 
 
 Scenario: KYC-456 Covers below scenarios for truncated subs graph.
-a. 0. Country highlight drop-down only displays country of operations of LEs displayed after truncation
-   1. Click “show more” link on tiles to view hidden segments in a new graph.
+a. 0. Country highlight drop-down only displays country of operations of LEs displayed after truncation.
+   1. Verify show more link displayed for the nodes which have percetage less than 5 %.
+   2. Click “show more” link on tiles to view hidden segments in a new graph.
 
 
 Given the user is on the ubo login page
@@ -476,6 +477,10 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|nodeTitle|
 |544|Quiñenco SA|
+
+Scenario: KYC-456 Not implemented as Data Missing.
+1. If legal entity in focus returns greater than 2500 nodes and triple count is less than 125, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
+2. In the displayed graph same node appears multiple time and the first occurance of that node on the left has percentage less than 5%, So sub nodes for that multiple appearing nodes are displayed for the next occurance where percentage is greater than 5%.
 
 Scenario: KYC user logout
 Meta: @id logout
