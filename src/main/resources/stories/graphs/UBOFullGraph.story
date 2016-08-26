@@ -423,7 +423,7 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Scenario: KYC-457 User clicks on show more link and user is navigated to the respective graph page of that entity
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -437,7 +437,7 @@ Examples:
 |fid|nodeTitle|
 |9461|The Miyazaki Bank Ltd|
 
-Scenario: KYC-397 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
+Scenario: KYC-457 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -472,7 +472,7 @@ Examples:
 |fid|nodeTitle|
 |30087|Morgan Stanley & Co LLC|
 
-Scenario: Verify graph truncation notification message
+Scenario: KYC-457 Verify graph truncation notification message
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -486,11 +486,9 @@ Examples:
 |444|
 
 Scenario: Not implemented, Data missing
-1. If legal entity in focus returns greater than 1500 triples for ownership and an ownership relationship has less than 5 percent, graph displays less than 500 owner nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
-3. If legal entity in focus returns greater than 1500 triples for ownership, has an ownership relationship with less than 5 percent, and displays 500 owner nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
-4. If legal entity in focus returns greater than 1500 triples for ownership but does not have any ownership relationship less than 5 percent, no paths are truncated
-9. If legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated
-11. If valid UBOs exist in database but were truncated by either condition and are not displayed, UBO highlight on graph is disabled
+1. If legal entity in focus returns greater than 2500 nodes on both owners and subs side of full graph.
+2. If legal entity in focus returns greater than 125 triples on both owners and subs side of full graph.
+
 
 Scenario: KYC user logout
 Meta: @id logout

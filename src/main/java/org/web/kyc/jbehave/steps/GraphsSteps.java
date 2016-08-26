@@ -325,6 +325,11 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyGraphsAreTruncatedMsg();
     }
 
+    @Then("the user should see the notification message that the graphs are truncated when there are more than 2500 nodes")
+    public void verifyGraphsAreTruncatedWithNodeCountMsg(){
+        pageObject.graphsPage().verifyGraphsAreTruncatedWithNodeCountMsg();
+    }
+
     @When("the user resize graph to $translate")
     public void resizeGraphs(@Named("translate") String translate){
         pageObject.graphsPage().resizeGraphs(translate);

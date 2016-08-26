@@ -332,6 +332,76 @@ Examples:
 |fid|nodeTitle|
 |30087|The Fukuoka Chuo Bank Ltd|
 
+Scenario: Covers below scenarios for UBO user
+a. KYC-455(Owners Graph) Verify truncated owners graph is displayed with all the truncation logics.
+Meta:@capturetruncatedownersgraph
+Given the user is on the ubo login page
+When the user login as a ubo user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+And the user resize graph to translate(955.6692913385826,367.47401301707407) scale(0.11800000000000001)
+When the user selects a country USA from the country highlight list in the graphs
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user captures the expected snapshot for the <nodeTitle> owners graph
+
+Examples:
+|fid|nodeTitle|legalEntity|
+|149414|Landmark Directors Limited|Blackrock Inc|
+
+Scenario: Covers below scenarios for KYC user
+a. KYC-455(Owners Graph) Verify truncated owners graph is displayed with all the truncation logics.
+Meta:@capturetruncatedownersgraph
+Given the user is on the ubo login page
+When the user login as a kyc user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+And the user resize graph to translate(919.205780180313,466.8843658462901) scale(0.14500000000000005)
+Then the user captures the expected snapshot for the <nodeTitle> owners graph
+
+Examples:
+|fid|nodeTitle|legalEntity|
+|149414|Landmark Directors Limited KYC|Blackrock Inc|
+
+
+Scenario: Covers below scenarios for UBO user
+a. KYC-457(full Graph) Verify truncated full graph is displayed with all the truncation logics.
+Meta:@capturetruncatedfullgraph
+Given the user is on the ubo login page
+When the user login as a ubo user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the graph button
+And the user resize graph to translate(4558.5,288.89999626422735) scale(0.1)
+When the user clicks on the ultimate beneficial owners filter checkbox in the graph
+Then the user captures the expected snapshot for the <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|
+|217510|BPCE UBO|
+
+Scenario: Covers below scenarios for KYC user
+a. KYC-457(full Graph) Verify truncated full graph is displayed with all the truncation logics.
+Meta:@capturetruncatedfullgraph
+Given the user is on the ubo login page
+When the user login as a kyc user
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the graph button
+And the user resize graph to translate(11384.441979011302,559.0051525281191) scale(0.1)
+Then the user captures the expected snapshot for the <nodeTitle> full graph
+
+Examples:
+|fid|nodeTitle|
+|250786|Generali European Real Estate|
+
 Scenario: KYC user logout
 Meta: @id logout
 Given the user is on the ubo login page
