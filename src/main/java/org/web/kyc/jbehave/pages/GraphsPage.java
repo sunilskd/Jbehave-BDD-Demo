@@ -51,6 +51,8 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
     private By graphs_truncated_notification_msg_xpath = By.xpath("//*[@id='content-view']/p");
     private By subs_graphs_truncated_notification_with_nodecount_msg_xpath = By.xpath(".//*[@id='content-view'] //p[@class='notification attention ng-scope']");
+    private By graphs_truncated_notification_with_nodecount_msg_xpath = By.xpath("//*[@id='content-view']/div[2]/p");
+
 
     public GraphsPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -644,6 +646,10 @@ public class GraphsPage extends WebDriverUtils {
 
     public void verifyGraphsAreTruncatedMsg() {
         assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
+    }
+
+    public void verifyGraphsAreTruncatedWithNodeCountMsg(){
+        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_with_nodecount_msg_xpath));
     }
 
     public void verifySavedPDFGroupStructureGraphFile() {

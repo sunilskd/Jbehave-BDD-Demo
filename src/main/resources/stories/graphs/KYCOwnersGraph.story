@@ -26,6 +26,7 @@ JIRA ID - KYC-155 - User will see in product message on owners graph if they do 
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
 JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-455 - new truncation logic owners graph
 
 Meta:@kycownersgraphs @kyc
 
@@ -554,7 +555,9 @@ Examples:
 |fid|nodeTitle|
 |51859|Santander Holding Internacional SA|
 
-Scenario: KYC-395 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
+Scenario: KYC-455 Covers below scenarios for truncated owners graph for KYC user.
+a. 0. Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
+   1. click “show more” link on tiles to view hidden segments in a new graph.
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -582,10 +585,26 @@ Examples:
 |fid|nodeTitle|
 |415|Unione Fiduciaria SpA|
 
+Scenario: KYC-455 Covers below scenarios for truncated owners graph for a KYC user.
+a. 0. Verify graph truncation notification message when number of nodes are greater than 2500
+   1. Percent ownership filter options not affected by truncation.
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the notification message that the graphs are truncated when there are more than 2500 nodes
+When the user enters percentage as 7 in ownership percentage filter text box in the graphs
+And the user resize graph to translate(208.5,1229.8999939537052) scale(0.397)
+Then the user should see the list of owners in level 11, above the root entity, in the graphs
+
+Examples:
+|fid|
+|250786|
+
 Scenario: Scenarios pending as Data missing
-1. If legal entity in focus returns greater than 1500 triples for ownership and an ownership relationship has less than 5 percent, graph displays less than 500 owner nodes, then the rest of the path after the less than 5 percent nodes is truncated and not displayed
-3. If legal entity in focus returns greater than 1500 triples for ownership, has an ownership relationship with less than 5 percent, and displays 500 owner nodes, then the rest of the path after the less than 5 percent node is truncated and not displayed, and the level where the 500th node exists is completed and anything in the next level is truncated and not displayed
-4. If legal entity in focus returns greater than 1500 triples for ownership but does not have any ownership relationship less than 5 percent, no paths are truncated
+1. If legal entity in focus returns greater than 125 triples for ownership and an ownership relationship has >2500 owner nodes, then the message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph" should be displayed.
+
 
 Scenario: KYC user logout
 Meta: @id logout
