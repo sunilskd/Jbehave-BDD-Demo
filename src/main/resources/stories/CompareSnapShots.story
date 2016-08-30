@@ -1,10 +1,11 @@
 Covers below features:
 JIRA ID - KYC-360 - The icon for the root node is always displaying the icon for Bank. It should be based on the legalEntityType.
 JIRA ID - KYC-347 - Non person/Non Entity and Free text using wrong icon
+JIRA ID - KYC-456 - New truncation logic for subs graph
 JIRA ID - KYC-455 - new truncation logic owners graph
 JIRA ID - KYC-457 - new truncation logic full graph
-Meta:@comparesnapshots
 
+Meta:@comparesnapshots
 Scenario: Compare entity details snapshots
 Given the user is on the ubo login page
 When the user login as a ubo user
@@ -271,6 +272,30 @@ Then the user should see the actual snapshot matching the expected snapshot for 
 Examples:
 |fid|nodeTitle|
 |30087|The Fukuoka Chuo Bank Ltd|
+
+
+Scenario: KYC-456 Covers below scenarios:
+ a. 0. If the legal entity in focus has triple >125, Notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
+    1. When triples are >125 & legal entity repeats itselfs in the path(Circular relationship), path is truncated at the second occurance and show more link is not displayed
+ b. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
+ c. Verify if the legal entity in focus has triple count greater than 125 and node count is greater than 2500, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
+Given the user is on the ubo login page
+When the user login as a kyc user
+When the user opens legal entity <fid>
+And the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+And the user enters percentage as 4 in ownership percentage filter text box in the graphs
+And the user resize graph to translate(12444.729354203917,13.682508330066156) scale(0.42400000000000004)
+And the user captures the actual snapshot for the <nodeTitle> subsidiaries graph
+Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> subsidiaries graph
+
+
+Examples:
+|fid|nodeTitle|
+|808|Banco BTG Pactual SA|
+|444|Intesa Sanpaolo SpA|
+|7127|JPMorgan Chase & Co|
 
 Scenario: KYC-455 Covers below scenarios for truncated owners graph for KYC user.
 a. 0. When triples are >125, then nodes with less than 5% are displayed but not the nodes potentially be after that node.

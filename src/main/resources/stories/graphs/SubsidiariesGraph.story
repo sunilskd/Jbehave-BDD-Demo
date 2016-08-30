@@ -12,6 +12,7 @@ JIRA ID - KYC-318 - Country highlights is not working for the root node.
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-456 - New truncation logic for subs graph
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -410,7 +411,58 @@ Examples:
 |fid|
 |444|
 
-Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated[Data Missing]
+Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated
+[Data Missing]
+
+Scenario: KYC-456 Covers below scenarios for truncated subs graph.
+a. Verify if the legal entity in focus has triple count greater than 125 and node count is greater than 2500, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+And the user should see the legal entity JPMorgan Chase & Co, user is currently viewing, as the root and highlighted on the graphs
+And the user should see the truncation notification message that the graphs are truncated as there are more 2500 nodes on subs page
+
+Examples:
+|fid|
+|7127|
+
+
+Scenario: KYC-456 Covers below scenarios for truncated subs graph.
+a. 0. Country highlight drop-down only displays country of operations of LEs displayed after truncation.
+   1. Verify show more link displayed for the nodes which have percetage less than 5 %.
+   2. Click “show more” link on tiles to view hidden segments in a new graph.
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+And the user should see the legal entity Banco de Chile, user is currently viewing, as the root and highlighted on the graphs
+And the user should see no country highlight selected by default in country highlight drop-down in the graphs
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Chile (46)|
+|Colombia (13)|
+|Panama (2)|
+|USA (1)|
+When the user resize graph to translate(1038.544473153289,155.8951005596037) scale(0.39321335741032265)
+And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
+Examples:
+|fid|nodeTitle|
+|544|Quiñenco SA|
+
+Scenario: KYC-456 Not implemented as Data Missing.
+1. If legal entity in focus returns greater than 2500 nodes and triple count is less than 125, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
+2. In the displayed graph same node appears multiple time and the first occurance of that node on the left has percentage less than 5%, So sub nodes for that multiple appearing nodes are displayed for the next occurance where percentage is greater than 5%.
 
 Scenario: KYC user logout
 Meta: @id logout
