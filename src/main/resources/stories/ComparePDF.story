@@ -9,7 +9,7 @@ JIRA ID - KYC-67 - KYC user can save list of owners
 JIRA ID - KYC-358 - Display loading icon while generating saved pdf for lists
 JIRA ID - KYC-36 - KYC user can save non-truncated owners graph
 JIRA ID - KYC-81 - KYC user can save non-truncated full graph
-JIRA ID - KYC-71 - KYC user can save non-truncated subsidiary graph
+JIRA ID - KYC-400 - KYC user can save truncated subsidiary graph
 
 Scenario: KYC User can save list of owners
 Meta:@ubo
@@ -96,7 +96,7 @@ Examples:
 |fid|
 |1038|
 
-Scenario: KYC User can save graph of subsidiaries
+Scenario: KYC-400 User can save graph of subsidiaries
 Meta:@ubo
 Given the user is on the ubo login page
 When the user login as a ubo user
