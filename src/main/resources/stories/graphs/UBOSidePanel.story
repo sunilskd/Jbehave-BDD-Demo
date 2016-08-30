@@ -30,7 +30,6 @@ d. 0. If no primary physical address exists for head office, display field label
    1. If inactive stock exchange relationship, then display field label but no value
    2. If only inactive regulation relationship exists, then display field label but no value
    3. If website is null, display field label in details section of side panel but no value
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -55,7 +54,6 @@ a. 0. If multiple active subsidiary relationships exist and are displayed on lis
    5. If active subsidiary relationship exists, display that subsidiary on the directly owns list
    6. User clicks close icon, side panel hides
 b. 0. If subsidiary relationship exists but subsidiary entity is inactive, do not display that subsidiary on the directly owns list
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -70,7 +68,6 @@ Examples:
 |200|Public Bank (Hong Kong) Limited|
 
 Scenario: If inactive subsidiary relationship exists, do not display that subsidiary on the directly owns list
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -90,7 +87,6 @@ A. 0. If active relationship to person owner exists for legal entity user select
    3. If UBO relationship has percent ownership, display next to person on UBO list
    4. User clicks close icon, side panel hides
    5. User clicks someplace else on screen outside of side panel, panel does not close
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -119,7 +115,6 @@ Examples:
 |LE-A|QA Legal Entity A|
 
 Scenario: If UBO relationship has null percent ownership, do not display percent next to person on UBO list
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -134,7 +129,6 @@ Examples:
 |241440|Japan Bank For International Cooperation|
 
 Scenario: display "No Known Entities" if there are no direct subsidiaries
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -148,7 +142,6 @@ Examples:
 |LE-34|QA Legal Entity 34|
 
 Scenario: display "No Known Entities" under ubo section for kyc user
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -161,7 +154,6 @@ Examples:
 |211|Australia and New Zealand Banking Group Limited|
 
 Scenario: User clicks on another node, side panel should refresh with updated information
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -192,7 +184,6 @@ d. 0. If no primary physical address exists for head office, display field label
    2. If only inactive regulation relationship exists, then display field label but no value
    3. If website is null, display field label in details section of side panel but no value
 e. If multiple websites are present, then display one website, whichever is found first on the details section of side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -223,7 +214,6 @@ a. 0. If multiple active subsidiary relationships exist and are displayed on lis
    6. User clicks close icon, side panel hides
 b. 0. If inactive subsidiary relationship exists, do not display that subsidiary on the directly owns list
 c. 0. If subsidiary relationship exists but subsidiary entity is inactive, do not display that subsidiary on the directly owns list
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -243,7 +233,6 @@ A. 0. If active relationship to person owner exists for legal entity user select
    1. If inactive relationship to person owner exists for legal entity user selected or any entity in its path of ownership, do not display that person in the UBO list
    2. If multiple people appear in the UBO list, sort by percent ownership first then by name
    3. If UBO relationship has percent ownership, display next to person on UBO list
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -260,7 +249,6 @@ Examples:
 |LE-D|QA Legal Entity D|
 
 Scenario: display "No Known Entities" if there are no direct subsidiaries
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -276,7 +264,6 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. Display "No Known Entities" under ubo section for kyc user
    1. User clicks on another node, side panel should refresh with updated information
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -292,7 +279,6 @@ Examples:
 |112618|Moody Bank Holding Company Inc|Moody National Bank|
 
 Scenario: User is taken to the owners graph when clicks legal entity's title link in the side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -309,7 +295,6 @@ Examples:
 |LE-6|QA Legal Entity 6|QA Legal Entity 6|
 
 Scenario: User is taken to the subs graph when clicks legal entity's title link in the side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -325,7 +310,6 @@ Examples:
 |LE-6|QA Legal Entity 6|QA Legal Entity 6|
 
 Scenario: User is taken to the full graph when clicks legal entity's title link in the side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -341,7 +325,6 @@ Examples:
 |LE-6|QA Legal Entity 10|QA Legal Entity 10|
 
 Scenario: Verify person, non-person or non-entity are not clickable
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -355,7 +338,6 @@ Examples:
 |LE-6|Others|
 
 Scenario: If multiple websites are present, then display one website, whichever is found first on the details section of side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab

@@ -10,6 +10,7 @@ JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
 JIRA ID - KYC-211 - LEIs are not sorted alphabetically in Entity Details Identifier Section
 JIRA ID - KYC-204 - Display legal entity website on entity details
+JIRA ID - KYC-464 - Abbreviated name of stock exchange not displayed
 
 Meta:@entitydetails @kyc @ubo
 
@@ -46,7 +47,6 @@ k. 0. If abbreviated name does not exist for stock exchange, then display all ot
    1. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
 l. If stock exchange relationship is active and stock exchange legal entity is inactive, then display field label but no value
 Meta:@dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
 Then the user should see the headers with institution legal title and bankers almanac id in entity details page
@@ -75,7 +75,6 @@ Examples:
 
 Scenario: KYC user can view entity details
 Meta:@static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
 Then the user should see the headers with institution legal title <legalTitle> and bankers almanac id <bankersAlmanacId> in entity details page
@@ -109,7 +108,6 @@ Examples:
 
 Scenario: KYC user can view active swift bic list in entity details
 Meta:@static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
 Then the user should see the swift bic list sorted first by length (short to long) then by alpha-numerically in the entity details page
@@ -134,7 +132,6 @@ Examples:
 
 Scenario: If multiple websites are present, then display one website, whichever is found first
 Meta:@dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
 Then the user should see website information in the summary section of entity details page
@@ -148,7 +145,6 @@ a. With registered office address elements with varying "UseInAddress" flag valu
 b. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display area if UseInAddress is false)
 c. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display subarea and area if UseInAddress is false)
 d. With registered office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
 Then the user should see the registered office address(address line 1 line2 line3 line 4,city,area,subarea,country) respecting the useInAddres flag in summary section
@@ -163,7 +159,6 @@ Examples:
 Scenario: KYC-215 Verify below scenarios
 a. Do not display registered office if the address is not functioning as registered office (address/function != registered office)
 b. Do not display registered office if it is not the primary location (location/primary=false)
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
 Then the user should not see the registered office address and label on entity details page

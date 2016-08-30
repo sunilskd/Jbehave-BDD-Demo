@@ -60,7 +60,7 @@ Examples:
 |fid|country|
 |1038|USA|
 
-Scenario: KYC User can save graph of group structure
+Scenario: UBO User can save truncated graph of group structure
 Meta:@ubo
 Given the user is on the ubo login page
 When the user login as a ubo user
@@ -69,7 +69,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-And the user selects a country France from the country highlight list in the graphs
+And the user selects a country Brazil from the country highlight list in the graphs
 And the user clicks on the ultimate beneficial owners filter checkbox in the graph
 And the user clicks on <legalEntity> node which appears more than once in the graphs
 And the user clicks on the save as pdf icon (display loading icon while generating saved pdf for lists)
@@ -77,7 +77,7 @@ Then the user should be able to save the file including all content of current p
 
 Examples:
 |fid|legalEntity|
-|334181|BPCE|
+|217510|BPCE|
 
 Scenario: KYC User can save graph of owners
 Meta:@ubo

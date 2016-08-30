@@ -200,6 +200,17 @@ Examples:
 |fid|
 |1045|
 
+Scenario: Do not display country highlights when there are no entities to display in group structure
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should not see the country highlight options on the group strtucture page
+
+Examples:
+|fid|
+|30087|
+
 Scenario: KYC user logout
 Meta: @id logout
 Given the user is on the ubo login page

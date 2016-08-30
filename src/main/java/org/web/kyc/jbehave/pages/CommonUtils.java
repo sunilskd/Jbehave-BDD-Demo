@@ -20,7 +20,7 @@ public class CommonUtils extends WebDriverUtils {
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_button_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
-    private By save_as_pdf_button_xpath = By.xpath("//button[@title='Save as PDF']");
+    private By save_as_pdf_button_xpath = By.xpath("//*[@id='tools']/a[2]");
     private By product_message_please_subscribe_link_text_xpath=By.xpath("//p[1]/a");
     private By bankers_almanac_logo_xpath = By.xpath("//*[@id='header']");
 
@@ -32,8 +32,6 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void openOwnershipModule() {
-        nvPairs.clear();
-        nvPairs.add(new BasicNameValuePair("userType", userType));
 
         /* Removing percentage name value pair at the start as percent filter are applied at each level */
         httpRequest().removeNameValuePair("percentage");
@@ -49,9 +47,14 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void openUrl(String url) {
+        nvPairs.clear();
+        nvPairs.add(new BasicNameValuePair("userType", userType));
         nvPairs.add(new BasicNameValuePair("fid", url));
         get(readProperties().getUrl() + "/#/legalEntity/" + url + "/ownership/owners");
-        verifyLoginIsSuccessful();
+        waitForInMilliSeconds(1000L);
+        if(!getCurrentUrl().contains(url)){
+            get(readProperties().getUrl() + "/#/legalEntity/" + url + "/ownership/owners");
+        }
     }
 
     public void verifyPercentFilterOptions() {

@@ -1,13 +1,11 @@
 package org.web.kyc.jbehave.pages;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.*;
 import org.w3c.dom.Document;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -48,10 +46,10 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[local-name()='tspan'][1]");
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
-    private By graph_in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
-    private By graphs_truncated_notification_msg_xpath = By.xpath("//*[@id='content-view']/p");
-    private By subs_graphs_truncated_notification_with_nodecount_msg_xpath = By.xpath(".//*[@id='content-view'] //p[@class='notification attention ng-scope']");
-    private By graphs_truncated_notification_with_nodecount_msg_xpath = By.xpath("//*[@id='content-view']/div[2]/p");
+    private By subs_graphs_truncated_notification_with_node_count_msg_xpath = By.xpath(".//*[@id='content-view'] //p[@class='notification attention ng-scope']");
+    private By graph_in_product_msg_text_xpath = By.xpath(".//p[@class='notification subscribe graph']");
+    private By graphs_truncated_notification_msg_xpath = By.xpath("//p[@class='notification attention ng-scope']");
+    private By graphs_truncated_notification_with_node_count_msg_xpath = By.xpath("//*[@id='content-view']/div[2]/p");
 
 
     public GraphsPage(WebDriverProvider driverProvider) {
@@ -191,7 +189,7 @@ public class GraphsPage extends WebDriverUtils {
         //waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
         waitForInMilliSeconds(3000L);
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
-        assertFalse(isWebElementDisplayed(graph_in_product_msg_text_xpath));
+        //assertFalse(isWebElementDisplayed(graph_in_product_msg_text_xpath));
     }
 
     public void verifyEntitiesAreHighlightedForSelectedCountry(ExamplesTable highlightedEntitiesExamTable) {
@@ -318,14 +316,15 @@ public class GraphsPage extends WebDriverUtils {
 
     public void clickOnNodeTitle(String nodeTitle) {
         nvPairs.clear();
-        waitForInMilliSeconds(3000L);
         nvPairs.add(new BasicNameValuePair("name", nodeTitle));
         List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
         for(int i=0; i<nodes.size(); i++){
             if(nodes.get(i).getText().contains(nodeTitle)){
+                waitForInMilliSeconds(1500L);
                 getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']"))).perform();
             }
         }
+        waitForInMilliSeconds(3000L);
     }
 
     public void clickOnNonPersonNonEntity(String nodeTitle){
@@ -649,7 +648,7 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyGraphsAreTruncatedWithNodeCountMsg(){
-        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_with_nodecount_msg_xpath));
+        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
     }
 
     public void verifySavedPDFGroupStructureGraphFile() {
@@ -686,10 +685,6 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyGraphsAreTruncatedWithNodeCountMsgSubsPage(){
-
-        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(subs_graphs_truncated_notification_with_nodecount_msg_xpath));
+        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(subs_graphs_truncated_notification_with_node_count_msg_xpath));
     }
-
-
-
 }
