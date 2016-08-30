@@ -2,7 +2,6 @@ package org.web.kyc.jbehave;
 
 import org.jbehave.asciidoctor.reporter.AsciidoctorStoryReporter;
 import org.jbehave.core.Embeddable;
-import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.embedder.executors.SameThreadExecutors;
 import org.jbehave.core.io.CodeLocations;
@@ -19,7 +18,6 @@ import org.jbehave.web.selenium.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
 import org.web.kyc.jbehave.pages.PageObject;
@@ -34,9 +32,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
-import static org.jbehave.core.reporters.Format.*;
-import static org.jbehave.core.steps.ParameterConverters.DateConverter.DEFAULT_FORMAT;
-import static org.web.kyc.utils.FilesUtils.*;
+import static org.web.kyc.utils.FilesUtils.copyDirectory;
+import static org.web.kyc.utils.FilesUtils.directoryCleanUp;
 
 public class StoriesRunner extends JUnitStories {
 
@@ -51,7 +48,7 @@ public class StoriesRunner extends JUnitStories {
     private static PageObject pageObject;
     ReadProperties readProperties = new ReadProperties();
     private SeleniumContext context = new SeleniumContext();
-    private ContextView contextView = new LocalFrameContextView().sized(0, 0);
+    private ContextView contextView = new LocalFrameContextView().sized(50, 50);
     private TestRecorder testRecorder = new TestRecorder();
 
     /* Customized HTML format class to include screenshot in reports */
@@ -59,13 +56,9 @@ public class StoriesRunner extends JUnitStories {
 
     public StoriesRunner() {
         if (lifeCycleSteps instanceof PerStoriesWebDriverSteps) {
-            configuredEmbedder().useExecutorService(new SameThreadExecutors().create(
+                    configuredEmbedder().useExecutorService(new SameThreadExecutors().create(
                     configuredEmbedder()
                             .embedderControls()
-                            .doGenerateViewAfterStories(true)
-                            .doIgnoreFailureInStories(false)
-                            .doIgnoreFailureInView(false)
-                            .useStoryTimeouts("900")
             ));
             try {
                 /* Required to run stories with annotated meta filters */

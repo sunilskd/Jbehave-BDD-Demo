@@ -40,7 +40,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     private By entity_details_regulators_label_text_xpath =By.xpath("//*[@id='entity-regulator']/tbody/tr[1]/th");
     private By entity_details_website_text_xpath=By.xpath("//tr[th='Website']/td/a");
     private By entity_details_website_label_text_xpath=By.xpath("//tr[th='Website']/th");
-    private By entity_details_registered_office_address_xpath = By.xpath("//tr[th='Registered Office']/td");
+    private By entity_details_registered_office_address_xpath = By.xpath("//tr[th='Registered Office']/td/div");
     private By entity_details_registered_office_label_xpath = By.xpath("//tr[th='Registered Office']/th");
     private Document entityDetailsDocument;
 
@@ -67,6 +67,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void dVerifyHeadOfficeAddress() {
+        waitForInMilliSeconds(1500L);
         assertEquals("Head Office", getWebElementText(entity_details_head_office_label_text_xpath));
         assertEquals(entityDetailsDocument.getElementsByTagName("headOfficeAddress").item(0).getTextContent().replace(", ",","),getWebElementText(entity_details_head_office_address_text_xpath).replace("\n","").replace(", ",","));
     }
@@ -95,6 +96,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void sVerifyHeadOfficeAddress(String headOfficeAddress) {
+        waitForInMilliSeconds(1000L);
         assertEquals(headOfficeAddress, getWebElementText(entity_details_head_office_address_text_xpath).replace("\n", "").replace(", ", ","));
     }
 
@@ -195,6 +197,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void dVerifyWebsiteInfo() {
+        waitForInMilliSeconds(1000L);
         assertEquals(entityDetailsDocument.getElementsByTagName("website").item(0).getTextContent(),getWebElementText(entity_details_website_text_xpath));
         assertEquals("Website" ,getWebElementText(entity_details_website_label_text_xpath));
     }
@@ -205,6 +208,7 @@ public class EntityDetailsPage extends WebDriverUtils {
     }
 
     public void verifyRegisteredOffice(){
+        waitForInMilliSeconds(1000L);
         assertEquals(entityDetailsDocument.getElementsByTagName("registeredOffice").item(0).getTextContent().replace(", ",","),getWebElementText(entity_details_registered_office_address_xpath).replace("\n","").replace(", ",","));
         assertEquals("Registered Office", getWebElementText(entity_details_registered_office_label_xpath));
     }

@@ -340,7 +340,6 @@ Examples:
 |fid|nodeTitle|
 |250786|Generali European Real Estate|
 
-
 Scenario: KYC user logout
 Meta: @id logout
 Given the user is on the ubo login page

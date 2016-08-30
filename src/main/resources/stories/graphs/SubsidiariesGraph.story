@@ -30,7 +30,6 @@ a. 0. Entity on the graph (could be entity user is viewing or another entity on 
 image:Subsidiaries-Graph-Scenario-1.png[Scenario 1]
 ----
 ----
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -56,7 +55,6 @@ a. 1. Entity (including entity user is viewing) appears in the same path of the 
 image:Subsidiaries-Graph-Scenario-2.png[Scenario 2]
 ----
 ----
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -82,7 +80,6 @@ Stop traversing the path at a node which would create a circular relationship
 image:Subsidiaries-Graph-Scenario-3.png[Scenario 3]
 ----
 ----
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -101,7 +98,6 @@ Scenario: Covers below scenarios
 a. Entity user is viewing does not have any active relationships where it is the owner, then display message "No known entities"
 b. Entity user is viewing has no relationship where it is the owner and the owned entity is active, then display message "No known entities"
 c. If no legal entity that appears on graph has country of operations, drop-down still appears with "No country highlight" as default
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -121,7 +117,6 @@ a. 0. List country of operations for legal entities that appear on the graph in 
    2. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
    3. Select "No country highlight", removes country highlight of legal entities
    4. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -166,7 +161,6 @@ Scenario: KYC-137 - Sub Graph - Direct-Indirect filter covers below scenarios
 a. By Default checkbox for Direct relationship is not selected
 b. If no subsidiaries are present, filter is still available
 c. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -183,7 +177,6 @@ Examples:
 Scenario: Covers below scenarios
  a. 0. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
     1. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -206,7 +199,6 @@ Examples:
 |LE-6|
 
 Scenario: Verify tool tip displays legal title in graphs
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -242,7 +234,6 @@ b. If user enters a number between 1-100 in input box, slider position automatic
 c. If user enters 0 in input box, slider position automatically updates to match percent entered, all subsidiaries appear on the graph
 d. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only subsidiaries that are owned by 100 percent appear on graph
 e. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all subsidiaries are displayed in the graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -276,7 +267,6 @@ Examples:
 Scenario: Covers below scenarios
 a. If user moves slider to percent 1-100, null percent subsidiaries are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
 b. If user moves slider to 0 percent, all subsidiaries appear on graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -293,7 +283,6 @@ Examples:
 |LE-6|
 
 Scenario: User applies percent filter that results in no subsidiaries on the graph, only root node is left on the graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -307,7 +296,6 @@ Examples:
 |LE-3|
 
 Scenario: To verify circular relationship
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -323,7 +311,6 @@ Examples:
 |LE-51|
 
 Scenario: Verify UBO filter is not available for subsidiaries
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -336,7 +323,6 @@ Examples:
 |LE-6|
 
 Scenario: Verify percent filter is applied at all level
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -355,7 +341,6 @@ Examples:
 |LE-6|
 
 Scenario: Verify parent child relationship
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -370,7 +355,6 @@ Examples:
 |LE-6|
 
 Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -384,7 +368,6 @@ Examples:
 |9461|The Miyazaki Bank Ltd|
 
 Scenario: KYC-396 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -416,7 +399,6 @@ Examples:
 |9461|The Miyazaki Bank Ltd|
 
 Scenario: Verify graph truncation notification message
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab

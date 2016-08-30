@@ -30,7 +30,7 @@ public class GroupStructurePage extends WebDriverUtils {
     private String group_structure_focused_entity_subsidiaries_text_xpath = "//li[div[div[@class='ng-binding ng-scope entity focus']='";
     private String group_structure_ultimate_owner_subsidiaries_text_xpath = "//*[@id='group-structure']/li/div";
     private String group_structure_focused_entity_owners_text_xpath = "//li[ul[li[div[div[@class='ng-binding ng-scope entity focus']='";
-    private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
+    private By content_filter = By.xpath("//*[@id='content-filters']");
 
     public GroupStructurePage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -186,5 +186,9 @@ public class GroupStructurePage extends WebDriverUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void verifyNoCountryHighlights() {
+        assertEquals("", getWebElementText(content_filter));
     }
 }

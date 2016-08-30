@@ -39,7 +39,7 @@ public class GraphControlsUtils extends WebDriverUtils {
     private By graph_percent_filter_info_xpath = By.xpath("//div[@kyc-percent-text-range-control=''] //span/p");
     private By graph_country_highlight_icon_xpath = By.xpath("//div[@kyc-country-dropdown-control=''] //span");
     private By graph_country_highlight_info_xpath = By.xpath("//div[@kyc-country-dropdown-control=''] //span/p");
-    private By graph_ubo_count_text_xpath = By.xpath("//*[@id='content-view']/div[1]/div[5]/div/span");
+    private By graph_ubo_count_text_xpath = By.xpath("//span[@class=\"ng-binding ng-scope\"][@ng-if=\"ubo >= 1\"]");
 
     public GraphControlsUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -98,10 +98,13 @@ public class GraphControlsUtils extends WebDriverUtils {
     }
 
     public void enterPercentFilter(String percentFilter){
+        httpRequest().removeNameValuePair("percentage");
         /* Temporary fix. Need to be made dynamic */
         if(percentFilter.equals("abc")) {
             nvPairs.add(new BasicNameValuePair("percentage", "0"));
-        } else{
+        } else if (percentFilter.equals("0")){
+            httpRequest().removeNameValuePair("percentage");
+        } else {
             nvPairs.add(new BasicNameValuePair("percentage", percentFilter));
         }
         waitForWebElementToAppear(graph_percent_filter_text_box_xpath);

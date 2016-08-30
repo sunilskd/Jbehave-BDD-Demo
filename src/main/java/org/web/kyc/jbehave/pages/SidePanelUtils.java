@@ -18,22 +18,22 @@ import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
 
 public class SidePanelUtils extends WebDriverUtils {
 
-    private By graph_side_panel_free_text_xpath = By.xpath("//div[3]/div/p");
-    private By graph_side_panel_close_button_xpath = By.xpath("//div[3]/button");
+    private By graph_side_panel_free_text_xpath = By.xpath(".//div[@class=\"info\"][@data-ng-show='selectedEntity.type==\"Free-Text\"']");
+    private By graph_side_panel_close_button_xpath = By.xpath("//button[@name='close'][@type='button']");
     private By graph_side_panel_closed_xpath = By.xpath("//h3[@class='ng-hide']");
     private By graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
     private Document entityDetailsDocument;
-    private By graph_side_panel_title_text_xpath= By.xpath("//div[3]/h2");
-    private By graph_side_panel_bankers_almanac_ID_label_text_xpath= By.xpath("//div[3]/p");
-    private By graph_side_panel_details_label_text_xpath= By.xpath("//div[3]/div[2]/h3[1]");
+    private By graph_side_panel_title_text_xpath= By.xpath("//h2[@data-ng-show='selectedEntity.type==\"Legal Entity\"']");
+    private By graph_side_panel_bankers_almanac_ID_label_text_xpath= By.xpath("//P[@data-ng-show='selectedEntity.type==\"Legal Entity\" && legalEntity.fid']");
+    private By graph_side_panel_details_label_text_xpath= By.xpath("//div[@class='info']/h3[1]");
     private By graph_side_panel_head_office_label_text_xpath= By.xpath("//tr[1]/th");
     private By graph_side_panel_regulator_label_text_xpath= By.xpath("//tr[2]/th");
     private By graph_side_panel_stock_exchange_label_text_xpath= By.xpath("//tr[3]/th");
-    private By graph_side_panel_direct_owners_label_text_xpath= By.xpath("//div[3]//h3[2]");
+    private By graph_side_panel_direct_owners_label_text_xpath= By.xpath("//h3[2]");
     private By graph_side_panel_ubo_label_text_xpath= By.xpath("//div[2]/div/h3");
     private By graph_side_panel_no_ubo_section_xpath = By.xpath("//div[2]/div[@style='display: none;']/h3");
-    private By graph_side_panel_no_known_subs_message_text_xpath = By.xpath("//div[3]/div[2]/p[1]");
-    private By graph_side_panel_no_known_ubos_message_text_xpath = By.xpath("//div[3]/div[2]/div/p");
+    private By graph_side_panel_no_known_subs_message_text_xpath = By.xpath(".//p[@class=\"notification\"][@ng-show=\"subsidiaries.length === 0\"]");
+    private By graph_side_panel_no_known_ubos_message_text_xpath = By.xpath(".//p[@class=\"notification\"][@ng-show=\"ubos.length === 0\"]");
     private By graph_side_panel_head_office_text_xpath =By.xpath("//tbody/tr/td/div");
     private By graph_side_panel_regulators_text_xpath =By.xpath("//tbody/tr[2]/td/span");
     private By graph_side_panel_stock_exchange_text_xpath =By.xpath("//tbody/tr[3]/td/span");
@@ -68,8 +68,8 @@ public class SidePanelUtils extends WebDriverUtils {
     public void dVerifyDetailsSectionInSidePanel(){
         waitForInMilliSeconds(3000L);
         entityDetailsDocument = httpRequest().getResultsFormDataBase(ENTITY_DETAILS, nvPairs);
-        assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(),getWebElementText(graph_side_panel_title_text_xpath));
-        assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(),(getWebElementText(graph_side_panel_bankers_almanac_ID_label_text_xpath)));
+        assertEquals(entityDetailsDocument.getElementsByTagName("legalTitle").item(0).getTextContent(), getWebElementText(graph_side_panel_title_text_xpath));
+        assertEquals("Bankersalmanac.com ID: " + entityDetailsDocument.getElementsByTagName("bankersAlmanacID").item(0).getTextContent(), getWebElementText(graph_side_panel_bankers_almanac_ID_label_text_xpath));
         dVerifySidePanelLabels();
         assertEquals(entityDetailsDocument.getElementsByTagName("headOfficeAddress").item(0).getTextContent().replace(", ",","),getWebElementText(graph_side_panel_head_office_text_xpath).replace("\n","").replace(", ",","));
         List<WebElement> aRegulatorsList = getWebElements(graph_side_panel_regulators_text_xpath);
@@ -134,12 +134,12 @@ public class SidePanelUtils extends WebDriverUtils {
     }
 
     public void verifyNoKnowsEntitiesMessage(){
-        waitForWebElementToAppear(graph_side_panel_no_known_subs_message_text_xpath);
+        //waitForWebElementToAppear(graph_side_panel_no_known_subs_message_text_xpath);
         assertEquals("No known entities.", getWebElementText(graph_side_panel_no_known_subs_message_text_xpath));
     }
 
     public void verifyNoKnowsEntitiesMessageUBOs(){
-        waitForWebElementToAppear(graph_side_panel_no_known_ubos_message_text_xpath);
+        //waitForWebElementToAppear(graph_side_panel_no_known_ubos_message_text_xpath);
         assertEquals("No known entities.", getWebElementText(graph_side_panel_no_known_ubos_message_text_xpath));
     }
 
@@ -150,6 +150,6 @@ public class SidePanelUtils extends WebDriverUtils {
     }
 
     public void verifyNoUBOSectionInSidePanel() {
-        assertTrue(isWebElementDisplayed(graph_side_panel_no_ubo_section_xpath));
+        assertEquals("", getWebElementText(graph_side_panel_no_ubo_section_xpath));
     }
 }

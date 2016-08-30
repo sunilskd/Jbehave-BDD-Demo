@@ -32,8 +32,6 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void openOwnershipModule() {
-        nvPairs.clear();
-        nvPairs.add(new BasicNameValuePair("userType", userType));
 
         /* Removing percentage name value pair at the start as percent filter are applied at each level */
         httpRequest().removeNameValuePair("percentage");
@@ -49,9 +47,14 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void openUrl(String url) {
+        nvPairs.clear();
+        nvPairs.add(new BasicNameValuePair("userType", userType));
         nvPairs.add(new BasicNameValuePair("fid", url));
         get(readProperties().getUrl() + "/#/legalEntity/" + url + "/ownership/owners");
-        verifyLoginIsSuccessful();
+        waitForInMilliSeconds(1000L);
+        if(!getCurrentUrl().contains(url)){
+            get(readProperties().getUrl() + "/#/legalEntity/" + url + "/ownership/owners");
+        }
     }
 
     public void verifyPercentFilterOptions() {
