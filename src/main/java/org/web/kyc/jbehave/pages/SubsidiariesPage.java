@@ -174,12 +174,14 @@ public class SubsidiariesPage extends WebDriverUtils {
                         readProperties().getTestResourcePath() + "/difference/d" + nodeTitle.replace(" ","") + "SubsidiariesPage.png"));
     }
 
-    public void verifySavedSubsidiariesPDFFile() {
+
+    public void verifySavedSubsidiariesPDFFile(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         try {
-            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/subsidiaries_summary.pdf",
-                    readProperties().getTestResourcePath() + "/pdfs/actual/subsidiaries_summary.pdf",
-                    readProperties().getTestResourcePath() + "/pdfs/difference");
+            CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/subsidiaries_summary");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/"+nodeTitle.replace(" ","")+"_subsidiaries_summary",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/"+nodeTitle.replace(" ","")+"_subsidiaries_summary",
+                    readProperties().getTestResourcePath() + "/pdfs/difference/"+nodeTitle.replace(" ","")+"_subsidiaries_summary");
         } catch (IOException e) {
             e.printStackTrace();
         }

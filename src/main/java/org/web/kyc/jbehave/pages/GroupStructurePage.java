@@ -177,12 +177,25 @@ public class GroupStructurePage extends WebDriverUtils {
                         readProperties().getTestResourcePath() + "/difference/d" + nodeTitle.replace(" ","") + "GroupStructurePage.png"));
     }
 
-    public void verifySavedPDFGroupStructureFile() {
+    public void verifySavedPDFSubsidiariesGraphFile(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         try {
-            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/groupStructure_summary.pdf",
-                    readProperties().getTestResourcePath() + "/pdfs/actual/groupStructure_summary.pdf",
+
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/"+nodeTitle.replace(" ","")+"subsidiaries_graph",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/"+nodeTitle.replace(" ","")+"subsidiaries_graph",
                     readProperties().getTestResourcePath() + "/pdfs/difference");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifySavedPDFGroupStructureFile(String nodeTitle) {
+        waitForInMilliSeconds(3000L);
+        try {
+            CommonUtils.renamingDownLoadedFile(nodeTitle, "/pdfs/actual/groupStructure_summary");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + nodeTitle.replace(" ", "") + "_groupStructure_summary",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/" + nodeTitle.replace(" ", "") + "_groupStructure_summary",
+                    readProperties().getTestResourcePath() + "/pdfs/difference/" + nodeTitle.replace(" ", "") + "_groupStructure_summary");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -190,5 +203,6 @@ public class GroupStructurePage extends WebDriverUtils {
 
     public void verifyNoCountryHighlights() {
         assertEquals("", getWebElementText(content_filter));
+
     }
 }

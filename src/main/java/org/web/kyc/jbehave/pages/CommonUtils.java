@@ -3,6 +3,8 @@ package org.web.kyc.jbehave.pages;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+
+import java.io.File;
 import java.util.Calendar;
 
 import static org.junit.Assert.*;
@@ -20,7 +22,7 @@ public class CommonUtils extends WebDriverUtils {
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_button_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
-    private By save_as_pdf_button_xpath = By.xpath("//*[@id='tools']/a[2]");
+    private By save_as_pdf_button_xpath = By.xpath("//*[@id='tools']/a[@class='download ng-scope']");
     private By product_message_please_subscribe_link_text_xpath=By.xpath("//p[1]/a");
     private By bankers_almanac_logo_xpath = By.xpath("//*[@id='header']");
 
@@ -193,5 +195,15 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyOwnershipModule() {
         assertEquals("Ownership ModulePrint Help", getWebElementText(bankers_almanac_logo_xpath).replace("\n",""));
+    }
+
+    public static void renamingDownLoadedFile(String nodeTitle, String path){
+        File downloadedPDFFile = new File(readProperties().getTestResourcePath()+path);
+        File renamedFile = new File(readProperties().getTestResourcePath()+path.substring(0,13)+nodeTitle.replace(" ","")+"_"+path.substring(13));
+        if(downloadedPDFFile.renameTo(renamedFile))
+            System.out.println("Success");
+        else
+            System.out.println("Failure");
+
     }
 }

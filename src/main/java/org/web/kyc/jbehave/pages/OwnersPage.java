@@ -287,12 +287,16 @@ public class OwnersPage extends WebDriverUtils {
         assertEquals("There is UBO data available for this entity. You currently do not have access to this data, please subscribe.", getWebElementText(in_product_msg_text_xpath));
     }
 
-    public void verifySavedPDFFile() {
+
+
+    public void verifySavedPDFFile(String nodeTitle) {
         waitForInMilliSeconds(3000L);
         try {
-            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/owners_summary.pdf",
-                                readProperties().getTestResourcePath() + "/pdfs/actual/owners_summary.pdf",
-                                readProperties().getTestResourcePath() + "/pdfs/difference");
+
+            CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/owners_summary");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/"+nodeTitle.replace(" ","")+"_owners_summary",
+                                readProperties().getTestResourcePath() + "/pdfs/actual/"+nodeTitle.replace(" ","")+"_owners_summary",
+                                readProperties().getTestResourcePath() + "/pdfs/difference/"+nodeTitle.replace(" ","")+"_owners_summary");
         } catch (IOException e) {
             e.printStackTrace();
         }
