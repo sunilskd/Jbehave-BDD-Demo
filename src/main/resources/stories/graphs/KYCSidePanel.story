@@ -30,7 +30,6 @@ d. 0. If no primary physical address exists for head office, display field label
    2. If only inactive regulation relationship exists, then display field label but no value
    3. If website is null, display field label in details section of side panel but no value
 e. If multiple websites are present, then display one website, whichever is found first on the details section of side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -57,7 +56,6 @@ a. 0. If multiple active subsidiary relationships exist and are displayed on lis
    6. User clicks close icon, side panel hides
 b. 0. If inactive subsidiary relationship exists, do not display that subsidiary on the directly owns list
 c. 0. If subsidiary relationship exists but subsidiary entity is inactive, do not display that subsidiary on the directly owns list
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -76,7 +74,6 @@ Scenario: Covers below scenarios
 a. 0. Do not display UBO list for KYC user or header for the list
    1. User clicks close icon, side panel hides
    2. User clicks someplace else on screen outside of side panel, panel does not close
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -95,7 +92,6 @@ Examples:
 Scenario: Covers Below scenarios
 a. 0. display "No Known Entities" if there are no direct subsidiaries
    1. display "No Known Entities" under ubo section for kyc user
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -109,7 +105,6 @@ Examples:
 |LE-34|QA Legal Entity 34|
 
 Scenario: User clicks on another node, side panel should refresh with updated information
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -139,7 +134,6 @@ d. 0. If no primary physical address exists for head office, display field label
    1. If inactive stock exchange relationship, then display field label but no value
    2. If only inactive regulation relationship exists, then display field label but no value
    3. If website is null, display field label in details section of side panel but no value
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -169,7 +163,6 @@ a. 0. If multiple active subsidiary relationships exist and are displayed on lis
    6. User clicks close icon, side panel hides
 b. 0. If inactive subsidiary relationship exists, do not display that subsidiary on the directly owns list
 c. 0. If subsidiary relationship exists but subsidiary entity is inactive, do not display that subsidiary on the directly owns list
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -187,7 +180,6 @@ Examples:
 |200|Public Bank (Hong Kong) Limited|
 
 Scenario: Do not display UBO list for KYC user or header for the list
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -202,7 +194,6 @@ Examples:
 Scenario: Covers Below scenarios
 a. 0. display "No Known Entities" if there are no direct subsidiaries
    1. display "No Known Entities" under ubo section for kyc user
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -217,7 +208,6 @@ Examples:
 |LE-6|QA Legal Entity 34|
 
 Scenario: User clicks on another node, side panel should refresh with updated information
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -232,7 +222,6 @@ Examples:
 |112618|Moody Bank Holding Company Inc|Moody National Bank|
 
 Scenario: User is taken to the owners graph when clicks legal entity's title link in the side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -249,7 +238,6 @@ Examples:
 |LE-6|QA Legal Entity 6|QA Legal Entity 6|
 
 Scenario: User is taken to the subs graph when clicks legal entity's title link in the side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -265,7 +253,6 @@ Examples:
 |LE-6|QA Legal Entity 6|QA Legal Entity 6|
 
 Scenario: User is taken to the full graph when clicks legal entity's title link in the side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -281,7 +268,6 @@ Examples:
 |LE-6|QA Legal Entity 10|QA Legal Entity 10|
 
 Scenario: If multiple websites are present, then display one website, whichever is found first on the details section of side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab

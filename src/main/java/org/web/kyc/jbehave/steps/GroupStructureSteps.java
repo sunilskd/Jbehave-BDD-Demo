@@ -122,4 +122,10 @@ public class GroupStructureSteps {
     public void verifySavedPDFGroupStructureFile(@Named("nodeTitle") String nodeTitle){
         pageObject.groupStructurePage().verifySavedPDFGroupStructureFile(nodeTitle);
     }
+
+    @Then("the user should not see the country highlight options on the group strtucture page")
+    public void verifyNoCountryHighlights(){
+        pageObject.groupStructurePage().verifyNoCountryHighlights();
+    }
+
 }

@@ -26,7 +26,6 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
    10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
 
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -100,7 +99,6 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
    10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
 
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -186,7 +184,6 @@ a. 0. If user applies "direct relationships only" filter to graph, percent filte
    9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
    10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
 
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -260,7 +257,6 @@ Scenario: Covers below scenarios for full graph
 a. 0. If user applied country highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches country highlight takes style of country highlight
    1. If user applied both country highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of country highlight
    2. if User selects country highlight and If user changes color of a highlighted tile to appears multiple, it still counts toward the country highlight count
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -348,7 +344,6 @@ Examples:
 Scenario: Covers below scenarios for owners graph
 a. 0. If user applied country highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches country highlight takes style of country highlight
    1. If user applied both country highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of country highlight
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab

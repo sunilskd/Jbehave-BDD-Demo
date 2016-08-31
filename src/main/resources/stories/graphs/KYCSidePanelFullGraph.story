@@ -26,7 +26,6 @@ c. 0. If no regulation relationship exists, then display field label but no valu
    4. If only inactive regulation relationship exists, then display field label but no value
    5. If website is null, display field label in details section of side panel but no value
 d. If multiple websites are present, then display one website, whichever is found first on the details section of side panel
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -40,7 +39,7 @@ Examples:
 |182042|BOA|
 |68997|Berlin Hyp AG|
 |LE-33|QA Legal Entity 6|
-|732|Banco Indusval SA|
+|256168|Banco Indusval SA|
 
 Scenario: Covers below scenarios
 a. 0. If multiple active subsidiary relationships exist and are displayed on list, order by percent ownership first then by legal title
@@ -51,7 +50,6 @@ a. 0. If multiple active subsidiary relationships exist and are displayed on lis
    5. If active subsidiary relationship exists, display that subsidiary on the directly owns list
 b. 0. If inactive subsidiary relationship exists, do not display that subsidiary on the directly owns list
 c. 0. If subsidiary relationship exists but subsidiary entity is inactive, do not display that subsidiary on the directly owns list
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -72,7 +70,6 @@ a. 0. display "No Known Entities" if there are no direct subsidiaries
    2. Do not display UBO list for KYC user or header for the list
    3. User clicks close icon, side panel hides
    4. User clicks someplace else on screen outside of side panel, panel does not close
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -88,7 +85,6 @@ Examples:
 |LE-6|QA Legal Entity 34|
 
 Scenario: User clicks on another node, side panel should refresh with updated information
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab

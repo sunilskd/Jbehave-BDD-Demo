@@ -27,7 +27,6 @@ d. If there are multiple "Verified" dates, choose the most recent
 e. If there is a "Supplied" date and a "Verified" date, choose whichever is more recent
 f. If there is one action of type "Verified", display the date for whichever action is the most recent and display the label "Last updated on" for the action
 Meta:@audit @dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -49,7 +48,6 @@ a. 0. If no ownership review data exists for legal entity user is viewing, then 
    2. User clicks "Hide Audit Information", audit section collapses
 b. If there is no action of type "Supplied" or "Verified", do not display any actions or dates even if other action types exist for the legal entity user is viewing and display message "No audit information available."
 Meta:@audit @dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab

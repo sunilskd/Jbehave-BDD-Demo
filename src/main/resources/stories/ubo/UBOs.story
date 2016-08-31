@@ -40,7 +40,6 @@ a. 0. UBO user can view all direct and indirect owners that are people, in the o
    5. Display source as "source" when only source is present
    6. Do not display source when source and extecnded source are not present
 Meta:@static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -63,7 +62,6 @@ Examples:
 
 Scenario: UBO User can view list of Direct and Indirect UBOs, and not Inactive ownership relationship
 Meta:@static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -81,7 +79,6 @@ Examples:
 
 Scenario: UBO User can view multiple UBOs of the same enity
 Meta:@static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -96,7 +93,6 @@ Examples:
 
 Scenario: UBO User can view UBOs when percentage ownership is null
 Meta:@static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -110,7 +106,6 @@ Examples:
 
 Scenario: If there are no UBOs exists, display "No known entities"
 Meta:@static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -122,7 +117,6 @@ Examples:
 
 Scenario: UBO User can view list of all UBOs
 Meta:@static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -149,7 +143,6 @@ Examples:
 |12538|
 
 Scenario: UBO user can filter UBO list by percent ownership
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -166,7 +159,6 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. There are no UBOs to display, then display "No known entities"
    1. User selects view all filter, then display entire UBO list.
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -197,7 +189,6 @@ Examples:
 
 Scenario: UBO user can view UBO, of an entity owned by only one owner
 Meta:@static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab

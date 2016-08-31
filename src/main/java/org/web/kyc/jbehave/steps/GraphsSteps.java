@@ -350,4 +350,9 @@ public class GraphsSteps {
         pageObject.graphsPage().verifySavedPDFSubsidiariesGraphFile(nodeTitle);
     }
 
+    @Then("the user should see the truncation notification message that the graphs are truncated as there are more 2500 nodes on subs page")
+    public void verifyGraphsAreTruncatedWithNodeCountMsgSubsPage(){
+        pageObject.graphsPage().verifyGraphsAreTruncatedWithNodeCountMsgSubsPage();
+    }
+
 }

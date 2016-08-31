@@ -12,6 +12,7 @@ JIRA ID - KYC-318 - Country highlights is not working for the root node.
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-456 - New truncation logic for subs graph
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -30,7 +31,6 @@ a. 0. Entity on the graph (could be entity user is viewing or another entity on 
 image:Subsidiaries-Graph-Scenario-1.png[Scenario 1]
 ----
 ----
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -56,7 +56,6 @@ a. 1. Entity (including entity user is viewing) appears in the same path of the 
 image:Subsidiaries-Graph-Scenario-2.png[Scenario 2]
 ----
 ----
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -82,7 +81,6 @@ Stop traversing the path at a node which would create a circular relationship
 image:Subsidiaries-Graph-Scenario-3.png[Scenario 3]
 ----
 ----
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -101,7 +99,6 @@ Scenario: Covers below scenarios
 a. Entity user is viewing does not have any active relationships where it is the owner, then display message "No known entities"
 b. Entity user is viewing has no relationship where it is the owner and the owned entity is active, then display message "No known entities"
 c. If no legal entity that appears on graph has country of operations, drop-down still appears with "No country highlight" as default
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -121,7 +118,6 @@ a. 0. List country of operations for legal entities that appear on the graph in 
    2. Select a country highlight, legal entities in the subsidiaries graph that have that country of operations are highlighted (including root node of graph if applicable)
    3. Select "No country highlight", removes country highlight of legal entities
    4. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -166,7 +162,6 @@ Scenario: KYC-137 - Sub Graph - Direct-Indirect filter covers below scenarios
 a. By Default checkbox for Direct relationship is not selected
 b. If no subsidiaries are present, filter is still available
 c. If there are no subsidiaries beyond level 1 direct relationships, filter is still available
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -183,7 +178,6 @@ Examples:
 Scenario: Covers below scenarios
  a. 0. User selects "Direct Relationships Only", then graph updates to only show direct subsidiaries (level 1 of graph)
     1. User un-checks "Direct Relationships Only" box, then graph updates to show all subsidiaries in any level
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -206,7 +200,6 @@ Examples:
 |LE-6|
 
 Scenario: Verify tool tip displays legal title in graphs
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -242,7 +235,6 @@ b. If user enters a number between 1-100 in input box, slider position automatic
 c. If user enters 0 in input box, slider position automatically updates to match percent entered, all subsidiaries appear on the graph
 d. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only subsidiaries that are owned by 100 percent appear on graph
 e. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all subsidiaries are displayed in the graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -276,7 +268,6 @@ Examples:
 Scenario: Covers below scenarios
 a. If user moves slider to percent 1-100, null percent subsidiaries are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
 b. If user moves slider to 0 percent, all subsidiaries appear on graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -293,7 +284,6 @@ Examples:
 |LE-6|
 
 Scenario: User applies percent filter that results in no subsidiaries on the graph, only root node is left on the graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -307,7 +297,6 @@ Examples:
 |LE-3|
 
 Scenario: To verify circular relationship
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -323,7 +312,6 @@ Examples:
 |LE-51|
 
 Scenario: Verify UBO filter is not available for subsidiaries
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -336,7 +324,6 @@ Examples:
 |LE-6|
 
 Scenario: Verify percent filter is applied at all level
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -355,7 +342,6 @@ Examples:
 |LE-6|
 
 Scenario: Verify parent child relationship
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -370,7 +356,6 @@ Examples:
 |LE-6|
 
 Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -384,7 +369,6 @@ Examples:
 |9461|The Miyazaki Bank Ltd|
 
 Scenario: KYC-396 Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -416,7 +400,6 @@ Examples:
 |9461|The Miyazaki Bank Ltd|
 
 Scenario: Verify graph truncation notification message
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -428,7 +411,58 @@ Examples:
 |fid|
 |444|
 
-Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated[Data Missing]
+Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 triples for subsidiaries but does not have any ownership relationship less than 5 percent, no paths are truncated
+[Data Missing]
+
+Scenario: KYC-456 Covers below scenarios for truncated subs graph.
+a. Verify if the legal entity in focus has triple count greater than 125 and node count is greater than 2500, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+And the user should see the legal entity JPMorgan Chase & Co, user is currently viewing, as the root and highlighted on the graphs
+And the user should see the truncation notification message that the graphs are truncated as there are more 2500 nodes on subs page
+
+Examples:
+|fid|
+|7127|
+
+
+Scenario: KYC-456 Covers below scenarios for truncated subs graph.
+a. 0. Country highlight drop-down only displays country of operations of LEs displayed after truncation.
+   1. Verify show more link displayed for the nodes which have percetage less than 5 %.
+   2. Click “show more” link on tiles to view hidden segments in a new graph.
+
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+And the user should see the legal entity Banco de Chile, user is currently viewing, as the root and highlighted on the graphs
+And the user should see no country highlight selected by default in country highlight drop-down in the graphs
+And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Chile (46)|
+|Colombia (13)|
+|Panama (2)|
+|USA (1)|
+When the user resize graph to translate(1038.544473153289,155.8951005596037) scale(0.39321335741032265)
+And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then user is taken to the respective graph page of that legal entity <nodeTitle>
+Examples:
+|fid|nodeTitle|
+|544|Quiñenco SA|
+
+Scenario: KYC-456 Not implemented as Data Missing.
+1. If legal entity in focus returns greater than 2500 nodes and triple count is less than 125, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
+2. In the displayed graph same node appears multiple time and the first occurance of that node on the left has percentage less than 5%, So sub nodes for that multiple appearing nodes are displayed for the next occurance where percentage is greater than 5%.
 
 Scenario: KYC user logout
 Meta: @id logout

@@ -61,7 +61,7 @@ public class OwnersPage extends WebDriverUtils {
     private By ubo_date_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[4]");
     private By ubo_source_text_xpath = By.xpath("//*[@id='ubo'] /tbody/tr[1]/td[5]");
     private By no_ubo_msg_text_xpath = By.xpath("//p[@class='notification']");
-    private By in_product_msg_text_xpath = By.xpath("//p[@kyc-ubo-subscription='']");
+    private By in_product_msg_text_xpath = By.xpath("//p[@class='notification subscribe graph']");
     private By ubo_declaration_document_link_text_xpath =By.xpath("//div[2]/div/a");
     private By spinner_css = By.cssSelector("div.kyc-loading-widget.loader");
 
@@ -278,11 +278,11 @@ public class OwnersPage extends WebDriverUtils {
         waitForWebElementToAppear(no_ubo_msg_text_xpath);
         assertEquals("Ultimate Beneficial Owners", getWebElementText(ubo_header_text_xpath));
         assertEquals("No known entities.", getWebElementText(no_ubo_msg_text_xpath));
-        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+        //assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
     }
 
     public void verifyInProductMessage(){
-        waitForWebElementToAppear(in_product_msg_text_xpath);
+        waitForInMilliSeconds(1000L);
         assertEquals("Ultimate Beneficial Owners", getWebElementText(ubo_header_text_xpath));
         assertEquals("There is UBO data available for this entity. You currently do not have access to this data, please subscribe.", getWebElementText(in_product_msg_text_xpath));
     }
@@ -303,13 +303,15 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void verifyNoUBOSection() {
-        assertFalse(isWebElementDisplayed(ubo_header_text_xpath));
+        //assertFalse(isWebElementDisplayed(ubo_header_text_xpath));
         assertFalse(isWebElementDisplayed(no_ubo_msg_text_xpath));
-        assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+        assertEquals("", getWebElementText(in_product_msg_text_xpath));
+        assertEquals("", getWebElementText(ubo_header_text_xpath));
     }
 
     public void verifyNoInProductMessage() {
         assertFalse(isWebElementDisplayed(in_product_msg_text_xpath));
+        //assertEquals("", getWebElementText(in_product_msg_text_xpath));
     }
 
     public void verifyNoUBODDRLink() {

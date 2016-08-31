@@ -41,7 +41,6 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    8. Subsidiary relationship has null percent ownership, do not display a percent ownership on the subsidiary node
    9. Subsidiary graph should not display the free text
    10. User will see in product message on owners graph if they do not have access to UBO data and UBOs exisits fot the entity user is viewing.
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -67,7 +66,6 @@ Scenario: Covers below scenarios
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is inactive, do not display that entity as an owner on the graph
    1. An entity on the graph (could be entity user is viewing) has owner that is a legal entity but the relationship is inactive, do not display that entity as an owner on the graph
    2. User will see in product message on full graph if they do not have access to UBO data , and UBOs exisits in any paths of the full graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -85,7 +83,6 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
    1. Entity (including entity user is viewing) appears in the same path in the subsidiary portion of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -101,7 +98,6 @@ Examples:
 |LE-56|
 
 Scenario: To verify circular relationship
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -117,7 +113,6 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. Entity user is viewing does not have owners or subsidiaries, display message "No known entities."
    1. Do not display in product message when there are no UBOs
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -130,7 +125,6 @@ Examples:
 |LE-58|
 
 Scenario: Entity user is viewing has owners but not subsidiaries, show the owners on the graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -143,7 +137,6 @@ Examples:
 |LE-1|
 
 Scenario: Entity user is viewing has subsidiaries but not owners, show the subsidiaries on the graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -158,7 +151,7 @@ Examples:
 Scenario: Covers below scenario
 a. 0. Entity on the subsidiary portion of graph has an active relationship where it is the owner but the owned entity is inactive, then do not display owned entity on graph
    1. Do not display in product message when there are no UBOs
-Given the user is on the ubo login page
+
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -176,7 +169,6 @@ a. 0. "No country highlight" is default selection in country highlight drop-down
    2. Select a country highlight, legal entities in the full graph that have that country of operations are highlighted (including root node of graph if applicable)
    3. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
    4. Select "No country highlight", removes country highlight of legal entities
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -225,7 +217,6 @@ a. 0. By default, percent filter is set to 0 for both input box and slider, all 
    3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
    4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
    5. Display only root node when the applied percent filter doesn't result in any other nodes
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -260,7 +251,6 @@ Scenario: Covers below scenarios
 a. 0. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
    1. User un-checks "Direct Relationships Only" box, then graph updates to show all owners in any level
    2. User will see in product message on owners graph if they do not have access to UBO data
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -283,7 +273,6 @@ Examples:
 |LE-6|
 
 Scenario: By default UBO highlight checkbox is available on full graph, but is disabled for KYC user and not selectable
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -300,7 +289,6 @@ Examples:
 Scenario: Covers below scenarios
 a. 0. Root node appears in multiple times in the same path
    1. Visual indicator count doesnt change even filter is applied
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -319,7 +307,6 @@ Scenario: Covers below scenarios
 a. 0. Legal Entity appears at multiple levels
    1. Legal Entity appears at multiple levels is highlighted when clicked on one of the occurances
    2. Visual indentifier must not be displayed when free text appears multiple times on the graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -335,7 +322,6 @@ Examples:
 |LE-6|QA Legal Entity 61|Appears: 3|Top shareholders owning less than 2, 71.315|
 
 Scenario: Visual Indicator not been displayed for Legal entities which are displayed only once
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -351,7 +337,6 @@ Scenario: Covers below scenarios
 a. 0. User clicks on free text in owners graph and a side panel should display with free text information under header "details"
    1. User clicks on another free text, then the side panel is displayed with free text of the selected node
    2. User clicks on close button on the side panel, then panel closed and user continues to be on owners graph
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -375,7 +360,6 @@ Examples:
 |LE-6|
 
 Scenario: Verify percent filter is applied at all level
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -391,7 +375,6 @@ Examples:
 |LE-6|
 
 Scenario: Verify parent child relationship
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -410,7 +393,6 @@ Examples:
 |LE-6|
 
 Scenario: Display the free text when the % filters are applied
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -424,7 +406,6 @@ Examples:
 |LE-10|
 
 Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab

@@ -44,7 +44,6 @@ c. 0. If ownership relationship (with non-institution, non-person entity type ow
 d. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
 e. If ownerType is not present display owner as "entityReference/description"
 Meta:@directOwners @dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -62,7 +61,6 @@ Examples:
 
 Scenario: Verify percentage meter bar for direct owners (person or institution or other entity type)
 Meta:@directOwners @dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -76,7 +74,6 @@ Scenario: If owner has null percent ownership, then do not display a percent on 
 a. legal entity
 b. person
 Meta:@directOwners @dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -90,7 +87,6 @@ Examples:
 
 Scenario: UBO user can view direct owners that are legal entities and people as owners.
 Meta:@directOwners @static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -153,7 +149,6 @@ Examples:
 Scenario: User clicks and opens legal title of legal entity that appears in direct owners list in a new window
 (user is taken to the direct owners list of that new legal entity, verify that page refreshes to be in the context of the new legal entity)
 Meta:@directOwners @static
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -171,7 +166,6 @@ a. If there are no direct owners display "no results" for now
 b. If person or institution ownership relationship is inactive, do not display that person or institution on owners list
 c. If non entity or person owner ownership relationship is inactive, do not display those other entity type owners on owners list
 Meta:@directOwners @static @dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -191,7 +185,6 @@ a. 0. View all is selected by default (displays all direct owners regardless of 
 b. Selecting 25 and above filters out any entity that has null or less than 25 ownership
 c. Selecting 50 and above filters out any entity that has null or less than 50 ownership
 Meta:@directOwners @dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -207,7 +200,6 @@ Examples:
 
 Scenario: Select filter that results in no person or institution or non entity owners on the list (display no owners, display message no known entities)
 Meta:@directOwners @static @dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -222,7 +214,6 @@ Examples:
 
 Scenario: Select a second filter (first filter is de-selected, list updates to match new filter)
 Meta:@directOwners @static @dynamic
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab

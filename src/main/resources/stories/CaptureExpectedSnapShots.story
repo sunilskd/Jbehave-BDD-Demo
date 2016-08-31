@@ -114,79 +114,9 @@ When the user selects a country UK from the country highlight list in the graphs
 Then the user captures the expected snapshot for the <nodeTitle> subsidiaries graph
 
 Examples:
-|fid|legalEntity|nodeTitle|
-|LE-6|QA Legal Entity 61|QA Legal Entity 6|
-
-Scenario: Capture owners graph zoom in/out/reset
-Meta:@captureOwnersGraphWithZoom
-Given the user is on the ubo login page
-When the user login as a ubo user
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-When the user selects a country UK from the country highlight list in the graphs
-And the user clicks on the ultimate beneficial owners filter checkbox in the graph
-When the user clicks on the minus sign next to zoom slider on the graphs
-And the user clicks on the minus sign next to zoom slider on the graphs
-When the user hovers cursor over i icon next to zoom slider on the graphs
-Then the user captures the expected snapshot for the zoomed out <nodeTitle> owners graph
-When the user clicks on the reset button next to zoom slider on the graphs
-Then the user captures the expected snapshot for the reset <nodeTitle> owners graph
-When the user clicks on the plus sign next to zoom slider on the graphs
-And the user clicks on the plus sign next to zoom slider on the graphs
-Then the user captures the expected snapshot for the zoomed in <nodeTitle> owners graph
-
-Examples:
-|fid|nodeTitle|
-|LE-1|QA Legal Entity 1|
-
-Scenario: Capture subsidiaries graph zoom in/out/reset
-Meta:@captureSubsidiariesGraphWithZoom
-Given the user is on the ubo login page
-When the user login as a ubo user
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the subsidiaries tab
-And the user clicks on the graph button
-When the user enters percentage as 1 in ownership percentage filter text box in the graphs
-When the user clicks on the minus sign next to zoom slider on the graphs
-And the user clicks on the minus sign next to zoom slider on the graphs
-When the user hovers cursor over i icon next to percent filter on the graphs
-Then the user captures the expected snapshot for the zoomed out <nodeTitle> subsidiaries graph
-When the user clicks on the reset button next to zoom slider on the graphs
-Then the user captures the expected snapshot for the reset <nodeTitle> subsidiaries graph
-When the user clicks on the plus sign next to zoom slider on the graphs
-And the user clicks on the plus sign next to zoom slider on the graphs
-Then the user captures the expected snapshot for the zoomed in <nodeTitle> subsidiaries graph
-
-Examples:
 |fid|nodeTitle|
 |LE-6|QA Legal Entity 6|
 
-Scenario: Capture full graph zoom in/out/reset
-Meta:@captureFullGraphWithZoom
-Given the user is on the ubo login page
-When the user login as a ubo user
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the group structure tab
-And the user clicks on the graph button
-And the user enters percentage as 1 in ownership percentage filter text box in the graphs
-And the user clicks on the ultimate beneficial owners filter checkbox in the graph
-When the user clicks on the minus sign next to zoom slider on the graphs
-And the user clicks on the minus sign next to zoom slider on the graphs
-When the user hovers cursor over i icon next to country highlight on the graphs
-Then the user captures the expected snapshot for the zoomed out <nodeTitle> full graph
-When the user clicks on the reset button next to zoom slider on the graphs
-Then the user captures the expected snapshot for the reset <nodeTitle> full graph
-When the user clicks on the plus sign next to zoom slider on the graphs
-And the user clicks on the plus sign next to zoom slider on the graphs
-Then the user captures the expected snapshot for the zoomed in <nodeTitle> full graph
-
-Examples:
-|fid|nodeTitle|
-|LE-6|QA Legal Entity 6|
 
 Scenario: KYC-360 - The icon for the root node is always displaying the icon for Bank. It should be based on the legalEntityType.
 Given the user is on the ubo login page
@@ -332,6 +262,28 @@ Examples:
 |fid|nodeTitle|
 |30087|The Fukuoka Chuo Bank Ltd|
 
+
+Scenario: KYC-456 Capture expected screenshot for subsidiaries graph for validating below scenarios:
+  a. 0. If the legal entity in focus has triple >125, Notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
+     1. When triples are >125 & legal entity repeats itselfs in the path(Circular relationship), path is truncated at the second occurance and show more link is not displayed
+  b. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
+  c. Verify if the legal entity in focus has triple count greater than 125 and node count is greater than 2500, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.   1. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case.
+Given the user is on the ubo login page
+When the user login as a kyc user
+When the user opens legal entity <fid>
+And the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+And the user enters percentage as 4 in ownership percentage filter text box in the graphs
+And the user resize graph to translate(12444.729354203917,13.682508330066156) scale(0.42400000000000004)
+Then the user captures the expected snapshot for the <nodeTitle> subsidiaries graph
+
+Examples:
+|fid|nodeTitle|
+|808|Banco BTG Pactual SA|
+|444|Intesa Sanpaolo SpA|
+|7127|JPMorgan Chase & Co|
+
 Scenario: Covers below scenarios for UBO user
 a. KYC-455(Owners Graph) Verify truncated owners graph is displayed with all the truncation logics.
 Meta:@capturetruncatedownersgraph
@@ -401,6 +353,7 @@ Then the user captures the expected snapshot for the <nodeTitle> full graph
 Examples:
 |fid|nodeTitle|
 |250786|Generali European Real Estate|
+
 
 Scenario: KYC user logout
 Meta: @id logout

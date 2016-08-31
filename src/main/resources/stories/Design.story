@@ -10,36 +10,18 @@ Meta: @id login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
-Given the user is on the ubo login page
+Scenario: Covers below scenarios
+a. If there are no direct owners display "no results" for now
+b. If person or institution ownership relationship is inactive, do not display that person or institution on owners list
+c. If non entity or person owner ownership relationship is inactive, do not display those other entity type owners on owners list
+Meta:@directOwners @static @dynamic
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the group structure tab
-And the user clicks on the graph button
-Then the user should see the full graph
-Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Belgium (1)|
-|France (1)|
-|Japan (71)|
-|Singapore (1)|
-|USA (3)|
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
-Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Canada (2)|
-|Cayman Islands (12)|
-|China (2)|
-|Italy (1)|
-|Japan (10)|
-|Netherlands (5)|
-|South Africa (3)|
-|UK (1)|
-|USA (132)|
+And the user clicks on the owners tab
+Then the user should see message displayed in place of list explaining there are no direct owners
+And the ubo user should see message displayed in place of list explaining there are no UBOs
+Then the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
 
 Examples:
-|fid|nodeTitle|
-|30087|Morgan Stanley & Co LLC|
+|fid|
+|1|
