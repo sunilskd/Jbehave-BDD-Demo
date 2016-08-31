@@ -1,5 +1,6 @@
 package org.web.kyc.jbehave.steps;
 
+import org.eclipse.jetty.util.annotation.Name;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -125,9 +126,9 @@ public class SubsidiariesSteps {
         pageObject.commonUtils().verifyCountryHighlightIsDeSelected(deselectCountry);
     }
 
-    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the subsidiaries page")
-    public void verifySavedSubsidiariesPDFFile(){
-        pageObject.subsidiariesPage().verifySavedSubsidiariesPDFFile();
+    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the subsidiaries page <nodeTitle>")
+    public void verifySavedSubsidiariesPDFFile(@Named("nodeTitle") String nodeTitle){
+        pageObject.subsidiariesPage().verifySavedSubsidiariesPDFFile(nodeTitle);
     }
 
 

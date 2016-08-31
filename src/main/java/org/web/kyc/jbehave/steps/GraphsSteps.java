@@ -335,19 +335,19 @@ public class GraphsSteps {
         pageObject.graphsPage().resizeGraphs(translate);
     }
 
-    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the group structure graph page")
-    public void verifySavedPDFGroupStructureGraphFile(){
-        pageObject.graphsPage().verifySavedPDFGroupStructureGraphFile();
+    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the group structure graph page <nodeTitle>")
+    public void verifySavedPDFGroupStructureGraphFile(@Named("nodeTitle")String nodeTitle){
+        pageObject.graphsPage().verifySavedPDFGroupStructureGraphFile(nodeTitle);
     }
 
-    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners graph page")
-    public void verifySavedPDFOwnersGraphFile(){
-        pageObject.graphsPage().verifySavedPDFOwnersGraphFile();
+    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners graph page <nodeTitle>")
+    public void verifySavedPDFOwnersGraphFile(@Named("nodeTitle")String nodeTitle){
+        pageObject.graphsPage().verifySavedPDFOwnersGraphFile(nodeTitle);
     }
 
-    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the subsidiarie graph page")
-    public void verifySavedPDFSubsidiariesGraphFile(){
-        pageObject.graphsPage().verifySavedPDFSubsidiariesGraphFile();
+    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the subsidiarie graph page <nodeTitle>")
+    public void verifySavedPDFSubsidiariesGraphFile(@Named("nodeTitle")String nodeTitle){
+        pageObject.graphsPage().verifySavedPDFSubsidiariesGraphFile(nodeTitle);
     }
 
 }

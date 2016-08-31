@@ -174,9 +174,9 @@ public class OwnersSteps {
         pageObject.ownersPage().verifyNoInProductMessage();
     }
 
-    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners page")
-    public void verifySavedPDFFile(){
-        pageObject.ownersPage().verifySavedPDFFile();
+    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners page <nodeTitle>")
+    public void verifySavedPDFFile(@Named("nodeTitle") String nodeTitle){
+        pageObject.ownersPage().verifySavedPDFFile(nodeTitle);
     }
 
     @Then("the user should not see the ubo list header and the message that there are no ubos in the owners page")
