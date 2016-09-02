@@ -30,7 +30,7 @@ public class GraphsPage extends WebDriverUtils {
     private String graph_level_xpath = "//*[contains(@transform,',";
     private String graph_country_xpath = "/*[local-name()='text'][2]";
     private By graph_subsidiaries_multiple_node_xpath = By.xpath("//*[local-name()='g'][contains(@class,'sub')][contains(@class,'multiple')]");
-    private By graph_no_known_entities_message_text_xpath = By.xpath("//*[@id='content-view']/p");
+    private By graph_no_known_entities_message_text_xpath = By.xpath("//div[@class='notification']/p");
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[local-name()='title']");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = "/*[local-name()='text']/*[local-name()='title']";
@@ -46,9 +46,9 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[local-name()='tspan'][1]");
     private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
-    private By subs_graphs_truncated_notification_with_node_count_msg_xpath = By.xpath(".//*[@id='content-view'] //p[@class='notification attention ng-scope']");
-    private By graph_in_product_msg_text_xpath = By.xpath(".//p[@class='notification subscribe graph']");
-    private By graphs_truncated_notification_msg_xpath = By.xpath("//p[@class='notification attention ng-scope']");
+    //private By subs_graphs_truncated_notification_with_node_count_msg_xpath = By.xpath(".//*[@id='content-view'] //p[@class='notification attention ng-scope']");
+    private By graph_in_product_msg_text_xpath = By.xpath(".//div[@kyc-ubo-subscription-message=\"\"][@style='display: block;']");
+    private By graphs_truncated_notification_msg_xpath = By.xpath("//p[@class='attention ng-scope']");
     private By graphs_truncated_notification_with_node_count_msg_xpath = By.xpath("//*[@id='content-view']/div[2]/p");
 
 
@@ -689,7 +689,7 @@ public class GraphsPage extends WebDriverUtils {
 
 
     public void verifyGraphsAreTruncatedWithNodeCountMsgSubsPage(){
-        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(subs_graphs_truncated_notification_with_node_count_msg_xpath));
+        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
     }
 
 }

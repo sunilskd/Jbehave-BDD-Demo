@@ -8,6 +8,7 @@ import org.w3c.dom.Document;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 import static org.web.kyc.xqueries.XQueryEnum.AUDIT_INFORMATION;
 
 public class AuditPage extends WebDriverUtils {
@@ -32,6 +33,7 @@ public class AuditPage extends WebDriverUtils {
     }
 
     public void dVerifyAuditInformation() {
+        waitForInMilliSeconds(1000L);
         assertEquals("ACTION", getWebElementText(audit_action_header_text_xpath));
         assertEquals("DATE", getWebElementText(audit_date_header_text_xpath));
         Document eAuditInformation = httpRequest().getResultsFormDataBase(AUDIT_INFORMATION, nvPairs);

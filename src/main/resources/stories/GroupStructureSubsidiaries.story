@@ -6,7 +6,7 @@ The group structure allows an analyst to see "sibling" entities of the bank they
 Covers below features:
 JIRA ID - KYC-41 - KYC user can view group structure list
 
-Meta:@groupstructuresubsidiaries @kyc @ubo @groupstructure
+Meta:@groupstructuresubsidiaries @kyc @ubo
 
 Scenario: KYC user login
 Meta: @id login

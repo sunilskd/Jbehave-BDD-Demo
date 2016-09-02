@@ -416,8 +416,6 @@ Scenario: KYC-396 Verify if legal entity in focus returns greater than 1500 trip
 
 Scenario: KYC-456 Covers below scenarios for truncated subs graph.
 a. Verify if the legal entity in focus has triple count greater than 125 and node count is greater than 2500, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
-
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -431,13 +429,10 @@ Examples:
 |fid|
 |7127|
 
-
 Scenario: KYC-456 Covers below scenarios for truncated subs graph.
 a. 0. Country highlight drop-down only displays country of operations of LEs displayed after truncation.
    1. Verify show more link displayed for the nodes which have percetage less than 5 %.
    2. Click “show more” link on tiles to view hidden segments in a new graph.
-
-
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab

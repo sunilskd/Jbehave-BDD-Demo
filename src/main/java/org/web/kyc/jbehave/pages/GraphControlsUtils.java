@@ -65,6 +65,7 @@ public class GraphControlsUtils extends WebDriverUtils {
     }
 
     public void selectCountryHighlightInGraphs(String country) {
+        waitForInMilliSeconds(1000L);
         getWebElement(graph_country_highlight_drop_down_xpath).sendKeys(country);
         getWebElement(graph_country_highlight_drop_down_xpath).sendKeys(Keys.ENTER);
 

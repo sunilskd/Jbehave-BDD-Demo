@@ -39,7 +39,6 @@ public class CommonUtils extends WebDriverUtils {
         httpRequest().removeNameValuePair("percentage");
         get(readProperties().getUrl() + "/#/login");
         manage().window().maximize();
-        verifyLoginIsSuccessful();
     }
 
     public void clickOnOwnershipTab() {
@@ -113,10 +112,9 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyLoginIsSuccessful(){
         waitForInMilliSeconds(2000L);
-        if(getCurrentUrl().contains("401")){
-            navigate().back();
-        } else if(getCurrentUrl().contains("404")){
-            navigate().back();
+        if(!getWebElementText(By.xpath(".//*[@id='submitDebugText1']")).contains("tokenValue")){
+            openOwnershipModule();
+            userLogin(userType);
         }
     }
 

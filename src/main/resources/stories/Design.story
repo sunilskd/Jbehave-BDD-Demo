@@ -10,18 +10,21 @@ Meta: @id login
 Given the user is on the ubo login page
 When the user login as a ubo user
 
-Scenario: Covers below scenarios
-a. If there are no direct owners display "no results" for now
-b. If person or institution ownership relationship is inactive, do not display that person or institution on owners list
-c. If non entity or person owner ownership relationship is inactive, do not display those other entity type owners on owners list
-Meta:@directOwners @static @dynamic
+Scenario: Verify complete group structure
+Meta:@static
+Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the owners tab
-Then the user should see message displayed in place of list explaining there are no direct owners
-And the ubo user should see message displayed in place of list explaining there are no UBOs
-Then the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
+And the user clicks on the group structure tab
+
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+Then the user should see the indented list of subsidiaries for the ultimate owner that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
+|QA Legal Entity 4|Australia|51.53|
 
 Examples:
 |fid|
-|1|
+|LE-26|

@@ -603,7 +603,7 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the notification message that the graphs are truncated
 When the user resize graph to translate(975.25036431585,446.49504999258534) scale(0.226)
-Then the user should see the list of owners in level 4, above the root entity, in the graphs
+Then the user should see the list of owners in level 5, above the root entity, in the graphs
 
 Examples:
 |fid|

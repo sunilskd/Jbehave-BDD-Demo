@@ -18,6 +18,7 @@ import org.jbehave.web.selenium.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
 import org.web.kyc.jbehave.pages.PageObject;
@@ -38,9 +39,6 @@ import static org.web.kyc.utils.FilesUtils.directoryCleanUp;
 public class StoriesRunner extends JUnitStories {
 
     /* Browserstack credentials */
-    public static final String USERNAME = "ravisahu1";
-    public static final String AUTOMATE_KEY = "usU2zSencBAxxm8Nniux";
-    //public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
     public static final String URL = "http://localhost:4444/wd/hub";
     static Browser browser = new Browser();
     private static WebDriverProvider driverProvider;
@@ -189,5 +187,4 @@ public class StoriesRunner extends JUnitStories {
     protected List<String> storyPaths() {
         return new StoryFinder().findPaths(CodeLocations.codeLocationFromPath("./src/main/resources"), "**/*.story", "");
     }
-
 }
