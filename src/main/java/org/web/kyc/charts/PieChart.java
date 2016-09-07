@@ -1,4 +1,5 @@
 package org.web.kyc.charts;
+import org.apache.commons.io.FileUtils;
 import org.jbehave.core.reporters.PostStoryStatisticsCollector;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartRenderingInfo;
@@ -9,6 +10,8 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.urls.StandardPieURLGenerator;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.util.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.awt.*;
 import java.io.*;
@@ -88,7 +91,7 @@ public class PieChart {
 
         } catch (FileNotFoundException e) {
         }
-
+        updateJBehaveReports();
     }
 
     public static void drawChart(Double fail,Double pending, Double pass,Double total, String storyName) {
@@ -166,8 +169,34 @@ public class PieChart {
         } catch (IOException e) {
             System.out.println(e.toString());
         }
+    }
 
-
+    public static void updateJBehaveReports(){
+        Document html = null;
+        try {
+            html = Jsoup.parse(new File("F:\\workspace\\kyc-automated-functional-test\\build\\classes\\jbehave\\view\\reports.html"), "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        html.title();
+        html.getElementsByClass("story");
+        html.getElementsByAttributeValueContaining("href", "adoc");
+        for (int i=0; i<html.getElementsByAttributeValueContaining("href", "adoc").size(); i++) {
+//                html.getElementsByAttributeValue("href",
+//                        html.getElementsByClass("story").get(i).text() + ".html").append("| <a href=\"file:///F:/workspace/kyc-automated-functional-test/build/classes/jbehave/stories.graphs." + html.getElementsByClass("story").get(i).text() + ".adoc\">adoc</a>");
+            html.
+                    getElementsByAttributeValueContaining("href", "adoc")
+                    .get(i)
+                    .attr("href", "file:///F:/workspace/kyc-automated-functional-test/build/classes/jbehave/"
+                            + html
+                            .getElementsByAttributeValueContaining("href", "adoc").get(i).attr("href").replace(".html",""));
+        }
+        final File f = new File("F:\\workspace\\kyc-automated-functional-test\\build\\classes\\jbehave\\view\\reports.html");
+        try {
+            FileUtils.writeStringToFile(f, html.outerHtml(), "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
