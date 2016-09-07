@@ -93,9 +93,14 @@ public class GroupStructureSteps {
         pageObject.groupStructurePage().verifyNoSubsidiariesForLegalEntity(legalEntity);
     }
 
-    @Then("the user should not see any majority owners for the legal entity $legalEntity in the group structure page")
-    public void verifyNoMajorityOwnersForLegalEntity(@Named("legalEntity") String legalEntity){
-        pageObject.groupStructurePage().verifyNoMajorityOwnersForLegalEntity(legalEntity);
+//    @Then("the user should not see any majority owners for the legal entity $legalEntity in the group structure page")
+//    public void verifyNoGroupStructure(@Named("legalEntity") String legalEntity){
+//        pageObject.groupStructurePage().verifyNoGroupStructure(legalEntity);
+//    }
+
+    @Then("the user should not see group structure in the group structure page")
+    public void verifyNoMajorityOwnersForLegalEntity(){
+        pageObject.groupStructurePage().verifyNoGroupStructure();
     }
 
     @When("the user captures the expected snapshot for the <nodeTitle> group structure page")

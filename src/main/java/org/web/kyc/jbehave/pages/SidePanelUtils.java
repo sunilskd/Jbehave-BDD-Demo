@@ -32,8 +32,8 @@ public class SidePanelUtils extends WebDriverUtils {
     private By graph_side_panel_direct_owners_label_text_xpath= By.xpath("//h3[2]");
     private By graph_side_panel_ubo_label_text_xpath= By.xpath("//div[2]/div/h3");
     private By graph_side_panel_no_ubo_section_xpath = By.xpath("//div[2]/div[@style='display: none;']/h3");
-    private By graph_side_panel_no_known_subs_message_text_xpath = By.xpath(".//p[@class=\"notification\"][@ng-show=\"subsidiaries.length === 0\"]");
-    private By graph_side_panel_no_known_ubos_message_text_xpath = By.xpath(".//p[@class=\"notification\"][@ng-show=\"ubos.length === 0\"]");
+    private By graph_side_panel_no_known_subs_message_text_xpath = By.xpath(".//div[@class=\"notification\"][@ng-if=\"subsidiaries.length === 0\"]");
+    private By graph_side_panel_no_known_ubos_message_text_xpath = By.xpath(".//div[@class=\"notification\"][@ng-if=\"ubos.length === 0\"]");
     private By graph_side_panel_head_office_text_xpath =By.xpath("//tbody/tr/td/div");
     private By graph_side_panel_regulators_text_xpath =By.xpath("//tbody/tr[2]/td/span");
     private By graph_side_panel_stock_exchange_text_xpath =By.xpath("//tbody/tr[3]/td/span");

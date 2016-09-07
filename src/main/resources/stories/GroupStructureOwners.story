@@ -115,7 +115,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 Then the user should see the ultimate owner as QA Legal Entity 9 for the entity user is viewing in the group structure page
-And the user should not see any majority owners for the legal entity QA Legal Entity 9 in the group structure page
+And the user should not see group structure in the group structure page
 
 Examples:
 |fid|
