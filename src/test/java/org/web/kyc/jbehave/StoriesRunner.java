@@ -21,6 +21,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
+import org.web.kyc.charts.PieChart;
 import org.web.kyc.jbehave.pages.PageObject;
 import org.web.kyc.jbehave.steps.*;
 import org.web.kyc.utils.ReadProperties;
@@ -48,7 +49,7 @@ public class StoriesRunner extends JUnitStories {
     private SeleniumContext context = new SeleniumContext();
     private ContextView contextView = new LocalFrameContextView().sized(50, 50);
     private TestRecorder testRecorder = new TestRecorder();
-
+    private PieChart pieChart = new PieChart();
     /* Customized HTML format class to include screenshot in reports */
     private Format screenShootingFormat = new ScreenShootingHtmlFormat(driverProvider);
 
@@ -134,6 +135,7 @@ public class StoriesRunner extends JUnitStories {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        pieChart.createPieChart();
     }
 
     @Override

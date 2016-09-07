@@ -34,7 +34,7 @@ a. 0. If no ownership review data exists for legal entity user is viewing, then 
    1. By default audit section is collapsed
    2. User clicks "Hide Audit Information", audit section collapses
 b. If there is no action of type "Supplied" or "Verified", do not display any actions or dates even if other action types exist for the legal entity user is viewing and display message "No audit information available."
-Meta:@audit @dynamic
+Meta:@dynamic
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
