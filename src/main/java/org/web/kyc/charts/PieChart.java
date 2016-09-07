@@ -110,9 +110,12 @@ public class PieChart {
             final PiePlot plot = new PiePlot(data);
             //          plot.setInsets(new Insets(0, 5, 5, 5));
             // plot.setToolTipGenerator(new StandardPieItemLabelGenerator());
+            Color jbehaveGreen = new Color(76,153,0);
+            Color jbehaveAmber = new Color(204,204,0);
+
             plot.setSectionPaint("Fail ="+failPercent +"%", Color.RED);
-            plot.setSectionPaint("Pending ="+pendingPercent +"%", Color.LIGHT_GRAY);
-            plot.setSectionPaint("Pass ="+passPercent +"%", Color.GREEN);
+            plot.setSectionPaint("Pending ="+pendingPercent +"%", jbehaveAmber);
+            plot.setSectionPaint("Pass ="+passPercent +"%", jbehaveGreen);
             plot.setURLGenerator(new StandardPieURLGenerator("pie_chart_detail.jsp"));
             chart = new JFreeChart(storyName, JFreeChart.DEFAULT_TITLE_FONT, plot, true);
         } else {
