@@ -1,4 +1,9 @@
 Epic: Ownership
+----
+.Overall Report
+
+image:.ErrorScreens.stats.png
+----
 
 Covers below features:
 JIRA ID - KYC-226 - Global 500 error message

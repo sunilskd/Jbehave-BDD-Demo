@@ -1,4 +1,9 @@
 Epic: Full Graph
+----
+.Overall Report
+
+image:.graphs.KYCFullGraph.stats.png
+----
 
 KYC user has access to below entity types -
 1. Legal Entities

@@ -1,4 +1,9 @@
 Epic - Ownership
+----
+.Overall Report
+
+image:.BAIntegration.stats.png
+----
 
 KYC user can navigate to BA.com when viewing an entity on new platform
 

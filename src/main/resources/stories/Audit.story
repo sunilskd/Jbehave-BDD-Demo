@@ -1,4 +1,9 @@
 Epic - Ownership
+----
+.Overall Report
+
+image:.Audit.stats.png[Audit]
+----
 
 Audit trail will show actions that Accuity has taken to update the ownership information displayed so that a KYC analyst is confident the data we display is up-to-date.
 

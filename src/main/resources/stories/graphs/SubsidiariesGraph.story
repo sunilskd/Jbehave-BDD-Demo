@@ -1,4 +1,9 @@
 Epic: Subsidiaries
+----
+.Overall Report
+
+image:.graphs.SubsidiariesGraph.stats.png
+----
 
 A KYC analyst is researching an entity they will potentially do business with, they will review the subsidiaries owned by the entity they are researching.
 It is of added value to present it in graph form to the user, since they often prefer to view this information that way and would otherwise have to manually draw it.

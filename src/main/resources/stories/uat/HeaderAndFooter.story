@@ -1,4 +1,9 @@
 Epic - Ownership
+----
+.Overall Report
+
+image:.uat.HeaderAndFooter.stats.png
+----
 
 Footer displays all the links requred to navigate to view information related to RBI,RELX,Accuity. Also the footer has logs and copyrights information.
 

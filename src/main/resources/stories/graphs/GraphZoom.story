@@ -1,4 +1,9 @@
 Epics: Ownership, Subsidiaries, Full Graph
+----
+.Overall Report
+
+image:.graphs.GraphZoom.stats.png
+----
 
 Covers below features:
 JIRA ID - KYC-371 - Zoom on owners graph
