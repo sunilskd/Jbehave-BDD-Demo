@@ -70,19 +70,18 @@ public class PieChart {
                 fail = result[25];
                 pending = result[22];
                 // if(totalCount>0){  drawChart(failCount, pendingCount, passCount, totalCount);}
-                failCount = failCount + Integer.parseInt(Character.toString(fail.charAt(fail.length() - 1)));
-                passCount = passCount + Integer.parseInt(Character.toString(pass.charAt(pass.length() - 1)));
-                pendingCount = pendingCount + Integer.parseInt(Character.toString(pending.charAt(pending.length() - 1)));
-                totalCount = totalCount + Integer.parseInt(Character.toString(total.charAt(total.length() - 1)));
+                failCount = failCount + Integer.parseInt(fail.split("=",fail.length())[1]);
+                passCount = passCount + Integer.parseInt(pass.split("=",pass.length())[1]);
+                pendingCount = pendingCount + Integer.parseInt(pending.split("=",pending.length())[1]);
+                totalCount = totalCount + Integer.parseInt(total.split("=",total.length())[1]);
 
                 System.out.println(passCount + "      " + totalCount + "      " + failCount + "      " + pendingCount);
                 if (Integer.parseInt(Character.toString(total.charAt(total.length() - 1)))>0){
 
-                    drawChart(Double.parseDouble
-                                    (Character.toString(fail.charAt(fail.length() - 1))),
-                            Double.parseDouble(Character.toString(pending.charAt(pending.length() - 1))),
-                            Double.parseDouble(Character.toString(pass.charAt(pass.length() - 1))),
-                            Double.parseDouble(Character.toString(total.charAt(total.length() - 1))),
+                    drawChart(Double.parseDouble(fail.split("=",fail.length())[1]),
+                            Double.parseDouble(pending.split("=",pending.length())[1]),
+                            Double.parseDouble(pass.split("=",pass.length())[1]),
+                            Double.parseDouble(total.split("=",total.length())[1]),
                             statsfile.getName().split("stories",(statsfile.getName().length()-6))[1]);
 
                     drawChart(failCount, pendingCount, passCount, totalCount,"UBO Consolidated Report");
