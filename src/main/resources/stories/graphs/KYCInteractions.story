@@ -2,7 +2,7 @@ Epic: Ownership, Subsidiaries, Full Graph
 ----
 .Overall Report
 
-image:.graphs.KYCInteractions.stats.png
+image:.graphs.KYCInteractions.stats.png[KYC Interactions]
 ----
 
 This story is to cover the expected functionality when user applies multiple highlights or filters since they react to each other in various ways.

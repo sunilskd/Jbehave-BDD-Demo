@@ -147,7 +147,7 @@ public class CommonUtils extends WebDriverUtils {
         for (String Handle : getWindowHandles()) {
             switchTo().window(Handle);
         }
-        assertEquals(url, getCurrentUrl());
+        assertEquals(url.replace("%",""), getCurrentUrl().replace("%",""));
         close();
         switchTo().window((String) getWindowHandles().toArray()[0]);
     }

@@ -2,7 +2,7 @@ Epic: Ownership
 ----
 .Overall Report
 
-image:.ErrorScreens.stats.png
+image:.ErrorScreens.stats.png[Error Screen]
 ----
 
 Covers below features:
@@ -11,7 +11,7 @@ JIRA ID - KYC-225 - 404 error message
 JIRA ID - KYC-124 - KYC user can see a message if they didn't authenticate succesfully
 JIRA ID - KYC-384 - Display page title "Access Denied" for the 401 error message
 
-Meta:@errorscreen @kyc
+Meta:@errorscreens @kyc
 
 Scenario: Below scenarios are covered
 a. 0. User will see 404 error screen when an invalid fid is attempeted to retrieve

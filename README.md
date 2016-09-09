@@ -20,10 +20,7 @@ Release UBO (In-Progress)
 
 ## Firefox profiling and setup
 - ### Creating firefox profile manually
-- Close all running instances of firefox
-- Go to **Start > Run > type firefox.exe -p > Create Profile > Enter new profile name as "KYC-AFT" > Finish**
-- Select **"KYC-AFT"** from list and Start Firefox
-- Go to web app and save the SSL certification (follow the guidelines in the firefox-profile-creation.docx)
+- Setup the profile using the firefox-profile-creation.docx
 
 - ### Creating firefox profile using CMD
 - > cd C:\Program Files (x86)\Mozilla Firefox

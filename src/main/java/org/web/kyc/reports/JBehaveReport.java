@@ -2,6 +2,7 @@ package org.web.kyc.reports;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.web.kyc.utils.FilesUtils;
 import java.io.File;
 import java.io.IOException;
 
@@ -11,6 +12,8 @@ public class JBehaveReport {
     String projectDir = currentDirFile.getAbsolutePath();
 
     public void updateJBehaveReports(){
+        moveAdocFiles();
+        deleteAdocHtmlFiles();
         updateAdocHref();
         addConsolidatedPieChart();
     }
@@ -26,9 +29,8 @@ public class JBehaveReport {
             html.
                     getElementsByAttributeValueContaining("href", "adoc")
                     .get(i)
-                    .attr("href", "file:///" + projectDir + "/build/classes/jbehave/"
-                            + html
-                            .getElementsByAttributeValueContaining("href", "adoc").get(i).attr("href").replace(".html",""));
+                    .attr("href", html
+                                    .getElementsByAttributeValueContaining("href", "adoc").get(i).attr("href").replace(".html",""));
         }
         final File f = new File("./build/classes/jbehave/view/reports.html");
         try {
@@ -47,7 +49,7 @@ public class JBehaveReport {
         }
         html.getElementById("mainTable").append("" +
                 "<h2>UBO Consolidated Chart</h2>" +
-                "<IMG SRC=file:///" + projectDir + "/build/classes/jbehave/.png WIDTH=\"600\" HEIGHT=\"400\" BORDER=\"0\" USEMAP=\"#chart\">" +
+                "<IMG SRC=\".png\" WIDTH=\"600\" HEIGHT=\"400\" BORDER=\"0\" USEMAP=\"#chart\">" +
                 "<br>" +
                 "<br>" +
                 "<h2>UBO Consolidated Report</h2> "
@@ -58,5 +60,15 @@ public class JBehaveReport {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void moveAdocFiles() {
+        File dir = new File("./build/classes/jbehave/");
+        String destPath = "./build/classes/jbehave/view/";
+        FilesUtils.copyFiles(dir, destPath, ".adoc");
+    }
+    private void deleteAdocHtmlFiles() {
+        File dir = new File("./build/classes/jbehave/view/");
+        FilesUtils.deleteFiles(dir, ".adoc.html");
     }
 }

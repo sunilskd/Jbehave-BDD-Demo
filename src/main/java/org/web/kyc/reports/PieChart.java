@@ -37,7 +37,6 @@ public class PieChart {
 
             for (File statsfile : files) {
                 String fileNames = (statsfile.getPath());
-                System.out.println(statsfile.getName());
                 File text = new File(fileNames);
 
                 //Creating Scanner instances to read File in Java
@@ -56,8 +55,11 @@ public class PieChart {
                 passCount = passCount + Integer.parseInt(pass.split("=", pass.length())[1]);
                 pendingCount = pendingCount + Integer.parseInt(pending.split("=", pending.length())[1]);
                 totalCount = totalCount + Integer.parseInt(total.split("=", total.length())[1]);
+                System.out.println("---------------------------------------------------------------------------------------------");
+                System.out.println("|" + statsfile.getName() + "|");
+                System.out.println("|" + passCount + "      " + totalCount + "      " + failCount + "      " + pendingCount + "|");
+                System.out.println("---------------------------------------------------------------------------------------------");
 
-                System.out.println(passCount + "      " + totalCount + "      " + failCount + "      " + pendingCount);
                 if (Integer.parseInt(Character.toString(total.charAt(total.length() - 1)))>0){
 
                     drawChart(Double.parseDouble(fail.split("=", fail.length())[1]),
@@ -77,6 +79,8 @@ public class PieChart {
 
         final DefaultPieDataset data = new DefaultPieDataset();
         Double failPercent, passPercent, pendingPercent;
+        /* Calculating pending count as JBehave is calculating incorrectly */
+        if(pass+fail==total){pending =0.0;}
         failPercent = Double.valueOf(Math.round((fail/total)*100));
         passPercent = Double.valueOf(Math.round((pass/total)*100));
         pendingPercent = Double.valueOf(Math.round((pending/total)*100));
@@ -90,14 +94,15 @@ public class PieChart {
         // create the chart...
         if (drilldown) {
             final PiePlot plot = new PiePlot3D(data);
-            Color jBehaveGreen = new Color(76,153,0);
-            Color jBehaveAmber = new Color(204,204,0);
-            plot.setSectionPaint("Fail = " + failPercent + "%", Color.RED);
-            plot.setSectionPaint("Pending = " + pendingPercent + "%", jBehaveAmber);
-            plot.setSectionPaint("Pass = " + passPercent + "%", jBehaveGreen);
+            Color green = new Color(178,255,102);
+            Color yellow = new Color(255,255,153);
+            Color red = new Color(255,153,153);
+            plot.setSectionPaint("Fail = " + failPercent + "%", red);
+            plot.setSectionPaint("Pending = " + pendingPercent + "%", yellow);
+            plot.setSectionPaint("Pass = " + passPercent + "%", green);
             plot.setOutlineVisible(false);
             plot.setURLGenerator(new StandardPieURLGenerator("pie_chart_detail.jsp"));
-            chart = new JFreeChart(storyName, JFreeChart.DEFAULT_TITLE_FONT, plot, true);
+            chart = new JFreeChart("", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
         } else {
             chart = ChartFactory.createPieChart3D(
                     "UBO AFT Results",  // chart title
@@ -111,7 +116,7 @@ public class PieChart {
 
         try {
             final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
-            final File file1 = new File("./build/classes/jbehave/" + storyName + ".png");
+            final File file1 = new File("./build/classes/jbehave/view/" + storyName + ".png");
             ChartUtilities.saveChartAsPNG(file1, chart, 600, 400, info);
         } catch (IOException e) {
             System.out.println(e.toString());

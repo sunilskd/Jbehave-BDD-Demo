@@ -2,7 +2,7 @@ Epic: Subsidiaries
 ----
 .Overall Report
 
-image:.graphs.SubsidiariesGraph.stats.png
+image:.graphs.SubsidiariesGraph.stats.png[Subsidiaries Graph]
 ----
 
 A KYC analyst is researching an entity they will potentially do business with, they will review the subsidiaries owned by the entity they are researching.
@@ -436,7 +436,7 @@ Examples:
 
 Scenario: KYC-456 Covers below scenarios for truncated subs graph.
 a. 0. Country highlight drop-down only displays country of operations of LEs displayed after truncation.
-   1. Verify show more link displayed for the nodes which have percetage less than 5 %.
+   1. Verify show more link displayed for the nodes which have percetage less than 5 percent.
    2. Click “show more” link on tiles to view hidden segments in a new graph.
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -462,7 +462,7 @@ Examples:
 
 Scenario: KYC-456 Not implemented as Data Missing.
 1. If legal entity in focus returns greater than 2500 nodes and triple count is less than 125, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
-2. In the displayed graph same node appears multiple time and the first occurance of that node on the left has percentage less than 5%, So sub nodes for that multiple appearing nodes are displayed for the next occurance where percentage is greater than 5%.
+2. In the displayed graph same node appears multiple time and the first occurance of that node on the left has percentage less than 5 percent, So sub nodes for that multiple appearing nodes are displayed for the next occurance where percentage is greater than 5%.
 
 Scenario: KYC user logout
 Meta: @id logout

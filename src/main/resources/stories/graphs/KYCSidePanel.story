@@ -2,7 +2,7 @@ Epic: Ownership, Subsidiaries, Full Graph
 ----
 .Overall Report
 
-image:.graphs.KYCSidePanel.stats.png
+image:.graphs.KYCSidePanel.stats.png[KYC SidePanel]
 ----
 
 Covers below features:

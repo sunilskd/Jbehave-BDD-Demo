@@ -50,4 +50,34 @@ public class FilesUtils {
             e.printStackTrace();
         }
     }
+
+    public static void copyFiles(File srcDir, String destPath, final String fileNameEndsWith){
+        File[] files = srcDir.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(fileNameEndsWith);
+            }
+        });
+        for (File file : files) {
+            try {
+                com.google.common.io.Files.copy(file,
+                        new File(destPath + file.getName()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void deleteFiles(File src, final String fileNameEndsWith){
+        File[] files = src.listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.endsWith(fileNameEndsWith);
+            }
+        });
+        for (File file : files) {
+            file.delete();
+        }
+    }
+
 }
