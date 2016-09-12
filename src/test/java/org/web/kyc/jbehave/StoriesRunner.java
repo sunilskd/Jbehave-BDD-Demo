@@ -158,7 +158,8 @@ public class StoriesRunner extends JUnitStories {
                                         org.jbehave.core.reporters.Format.CONSOLE,
                                         screenShootingFormat,
                                         AsciidoctorStoryReporter.ASCIIDOC)
-                        .withDefaultFormats());
+                        .withDefaultFormats()
+                        .withFailureTrace(true));
     }
 
     @Override

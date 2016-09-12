@@ -48,11 +48,11 @@ public class JBehaveReport {
             e.printStackTrace();
         }
         html.getElementById("mainTable").append("" +
-                "<h2>UBO Consolidated Chart</h2>" +
+                "<h2>UBO Aggregate Chart</h2>" +
                 "<IMG SRC=\".png\" WIDTH=\"600\" HEIGHT=\"400\" BORDER=\"0\" USEMAP=\"#chart\">" +
                 "<br>" +
                 "<br>" +
-                "<h2>UBO Consolidated Report</h2> "
+                "<h2>UBO Aggregate Report</h2> "
         );
         final File f = new File("./build/classes/jbehave/view/reports.html");
         try {
