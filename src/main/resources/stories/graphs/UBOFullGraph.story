@@ -1,4 +1,9 @@
 Epic: Full Graph
+----
+.Overall Report
+
+image:.graphs.UBOFullGraph.stats.png[UBO Full Graph]
+----
 
 UBO user has access to below entity types -
 1. Legal Entities
@@ -16,7 +21,7 @@ JIRA ID - KYC-103 - KYC user can filter full graph by percent ownership
 JIRA ID - KYC-110 - KYC user can highlight legal entities by country in full graph
 JITA ID - KYC-136 - Full Graph - Direct / Indirect Filter
 JIRA ID - KYC-156 - User will see in product message on full graph if they do not have access to UBO data
-JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
+JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 

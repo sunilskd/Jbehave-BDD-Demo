@@ -1,3 +1,8 @@
+.Overall Report
+
+image:.CaptureExpectedSnapShots.stats.png
+----
+
 Meta:@captureexpectedsnapshots
 
 Scenario: Capture entity details snapshots

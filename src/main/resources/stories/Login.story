@@ -1,3 +1,8 @@
+.Overall Report
+
+image:.login.stats.png
+----
+
 Meta:@login
 
 Scenario: KYC user login

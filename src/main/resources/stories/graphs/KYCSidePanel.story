@@ -1,4 +1,9 @@
 Epic: Ownership, Subsidiaries, Full Graph
+----
+.Overall Report
+
+image:.graphs.KYCSidePanel.stats.png[KYC SidePanel]
+----
 
 Covers below features:
 JIRA ID - KYC-147 - Pop open panel for more entity info on owners graph

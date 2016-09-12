@@ -1,4 +1,9 @@
 Epic: Subsidiaries
+----
+.Overall Report
+
+image:.uat.Subsidiaries.stats.png
+----
 
 A KYC analyst is researching an entity they will potentially do business with, they will review the subsidiaries owned by the entity they are researching.
 

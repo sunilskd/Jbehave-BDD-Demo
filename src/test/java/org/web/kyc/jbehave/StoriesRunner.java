@@ -18,9 +18,10 @@ import org.jbehave.web.selenium.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
+import org.web.kyc.reports.JBehaveReport;
+import org.web.kyc.reports.PieChart;
 import org.web.kyc.jbehave.pages.PageObject;
 import org.web.kyc.jbehave.steps.*;
 import org.web.kyc.utils.ReadProperties;
@@ -48,7 +49,8 @@ public class StoriesRunner extends JUnitStories {
     private SeleniumContext context = new SeleniumContext();
     private ContextView contextView = new LocalFrameContextView().sized(50, 50);
     private TestRecorder testRecorder = new TestRecorder();
-
+    private PieChart pieChart = new PieChart();
+    private JBehaveReport jbehaveReport = new JBehaveReport();
     /* Customized HTML format class to include screenshot in reports */
     private Format screenShootingFormat = new ScreenShootingHtmlFormat(driverProvider);
 
@@ -134,6 +136,11 @@ public class StoriesRunner extends JUnitStories {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        /* Creating pie chart for each story and the consolidated results */
+        pieChart.createPieChart();
+
+        /*Updating the adoc href to point to correct adoc files*/
+        jbehaveReport.updateJBehaveReports();
     }
 
     @Override
@@ -151,7 +158,8 @@ public class StoriesRunner extends JUnitStories {
                                         org.jbehave.core.reporters.Format.CONSOLE,
                                         screenShootingFormat,
                                         AsciidoctorStoryReporter.ASCIIDOC)
-                        .withDefaultFormats());
+                        .withDefaultFormats()
+                        .withFailureTrace(true));
     }
 
     @Override

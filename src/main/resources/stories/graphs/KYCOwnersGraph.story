@@ -1,4 +1,9 @@
 Epic: Ownership
+----
+.Overall Report
+
+image:.graphs.KYCOwnersGraph.stats.png[KYC Owners Graph]
+----
 
 A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships will not result in funding illegal activities such as money laundering and terrorist financing.
 A key part of this process is to find out if there are any owners of the bank they will potentially do business which are known to be risky or involved in criminal activities. The graphs provides information about owners in a visual way so that it is easier to follow relationship paths.
@@ -24,7 +29,7 @@ JIRA ID - KYC-229 - UBO user can highlight UBOs on graphs
 JIRA ID - KYC-330 - Remove links for person,non-entity or non-person in graphs
 JIRA ID - KYC-155 - User will see in product message on owners graph if they do not have access to UBO data
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
-JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
+JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-455 - new truncation logic owners graph
 
@@ -64,7 +69,7 @@ And the user should see the list of owners in level 5, above the root entity, in
 And the user should see the list of owners in level 6, above the root entity, in the graphs
 Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
-Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC%7CBRSK%7CBAFPU-2016-0810-GLOB-ba-ubo%7CLookBook&sfid=701D0000000dwwH on accuity.com
+Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC7CBRSK7CBAFPU-2016-0810-GLOB-ba-ubo7CLookBook&sfid=701D0000000dwwH on accuity.com
 
 Examples:
 |fid|

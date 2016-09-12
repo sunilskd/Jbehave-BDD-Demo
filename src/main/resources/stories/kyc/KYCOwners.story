@@ -1,4 +1,9 @@
 Epic: Ownership
+----
+.Overall Report
+
+image:.kyc.KYCOwners.stats.png[KYC Owners]
+----
 
 A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships will not result in funding illegal activities such as money laundering and terrorist financing.
 A key part of this process is to find out if there are any owners of the bank they will potentially do business which are known to be risky or involved in criminal activities.
@@ -353,7 +358,7 @@ When the user selects the percent filter option <percentFilter> in the owners pa
 Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
 And the kyc user should not see the link to ubo declaration document in the owners page
 When the user clicks on please subscribe link in the message displayed in the graph
-Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC%7CBRSK%7CBAFPU-2016-0810-GLOB-ba-ubo%7CLookBook&sfid=701D0000000dwwH on accuity.com
+Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC7CBRSK7CBAFPU-2016-0810-GLOB-ba-ubo7CLookBook&sfid=701D0000000dwwH on accuity.com
 
 Examples:
 |fid|percentFilter|

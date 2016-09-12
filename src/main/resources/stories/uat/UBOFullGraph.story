@@ -1,4 +1,9 @@
 Epic: Full Graph
+----
+.Overall Report
+
+image:.uat.UBOFullGraph.stats.png
+----
 
 UBO user has access to below entity types -
 1. Legal Entities

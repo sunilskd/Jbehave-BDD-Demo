@@ -1,4 +1,8 @@
-Meta:@comparepdfs
+----
+.Overall Report
+
+image:.ComparePDF.stats.png
+----
 
 Narrative:
 This story covers the steps for comparing actual and expected pdf's.
@@ -10,6 +14,7 @@ JIRA ID - KYC-358 - Display loading icon while generating saved pdf for lists
 JIRA ID - KYC-36 - KYC user can save non-truncated owners graph
 JIRA ID - KYC-81 - KYC user can save non-truncated full graph
 JIRA ID - KYC-400 - KYC user can save truncated subsidiary graph
+Meta:@comparepdfs
 
 Scenario: KYC User can save list of owners
 Meta:@ubo

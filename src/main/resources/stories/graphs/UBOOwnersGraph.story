@@ -1,4 +1,9 @@
 Epic: UBO
+----
+.Overall Report
+
+image:.graphs.UBOOwnersGraph.stats.png[UBO Owners Graph]
+----
 
 A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships
 will not result in funding illegal activities such as money laundering and terrorist financing. A key part of this process is to prove that there are
@@ -610,11 +615,11 @@ Examples:
 |544|
 
 Scenario: KYC-455 Covers below scenarios for truncated owners graph for UBO user.
-a. 0. When triples are >125, then nodes with less than 5% are displayed but not the nodes potentially be after that node.
+a. 0. When triples are >125, then nodes with less than 5 percent are displayed but not the nodes potentially be after that node.
    1. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
-   2. When triples are >125 & an entity appears more than once & first occurance has less than 5% ownership, then truncate the graph and display the path of second appearances
-   3. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case
-   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
+   2. When triples are >125 & an entity appears more than once & first occurance has less than 5 percent ownership, then truncate the graph and display the path of second appearances
+   3. Null percent ownership do NOT trigger truncation. They are treated like 100 percent in this case
+   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5 percent ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
    5. UBO highlight is disabled for UBO and KYC user
    6. Country highlight drop-down only displays country of operations of LEs displayed after truncation
    7. "Appears count" on tiles only reflects appearances on the graph after truncation

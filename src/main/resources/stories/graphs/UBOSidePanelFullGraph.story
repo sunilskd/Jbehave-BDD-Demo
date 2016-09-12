@@ -1,4 +1,9 @@
 Epic: Ownership, Subsidiaries, Full Graph
+----
+.Overall Report
+
+image:.graphs.UBOSidePanelFullGraph.stats.png
+----
 
 Covers below features:
 JIRA ID - KYC-150 Pop-open panel for more entity info on full graph

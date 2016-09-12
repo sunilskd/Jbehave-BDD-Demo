@@ -1,4 +1,9 @@
 Epic: Group Structure
+----
+.Overall Report
+
+image:.uat.GroupStructure.stats.png
+----
 
 A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships will not result in funding illegal activities such as money laundering and terrorist financing.
 The group structure allows an analyst to see "sibling" entities of the bank they are researching, so they can know if the bank is related in any way to another entity known for risky activities.

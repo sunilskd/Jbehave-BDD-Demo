@@ -1,9 +1,9 @@
-Meta:@entityDetailsLive @live
+.Overall Report
 
-Narrative:
-As a user
-I want to perform an action
-So that I can achieve a business goal
+image:.uat.EntityDetails.stats.png
+----
+
+Meta:@entityDetailsLive @live
 
 Scenario: KYC user login
 Given the user is on the ubo login page
