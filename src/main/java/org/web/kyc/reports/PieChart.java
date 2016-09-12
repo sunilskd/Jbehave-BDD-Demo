@@ -60,7 +60,7 @@ public class PieChart {
                 System.out.println("|" + passCount + "      " + totalCount + "      " + failCount + "      " + pendingCount + "|");
                 System.out.println("---------------------------------------------------------------------------------------------");
 
-                if (Integer.parseInt(Character.toString(total.charAt(total.length() - 1)))>0){
+                if (Integer.parseInt(total.split("=",total.length())[1])>0){
 
                     drawChart(Double.parseDouble(fail.split("=", fail.length())[1]),
                             Double.parseDouble(pending.split("=", pending.length())[1]),
