@@ -16,6 +16,7 @@ JIRA ID - KYC-193 - KYC user can view SWIFT BICs on entity details
 JIRA ID - KYC-211 - LEIs are not sorted alphabetically in Entity Details Identifier Section
 JIRA ID - KYC-204 - Display legal entity website on entity details
 JIRA ID - KYC-464 - Abbreviated name of stock exchange not displayed
+JIRA ID - KYC-481 - Find head office address for entity details by address function
 
 Meta:@entitydetails @kyc @ubo
 

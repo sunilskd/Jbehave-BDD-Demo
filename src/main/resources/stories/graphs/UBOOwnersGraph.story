@@ -632,11 +632,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user resize graph to translate(955.6692913385826,367.47401301707407) scale(0.11800000000000001)
-When the user selects a country USA from the country highlight list in the graphs
-When the user clicks on <legalEntity> node which appears more than once in the graphs
-When the user captures the actual snapshot for the <nodeTitle> full graph
-Then the user should see the actual snapshot matching the expected snapshot for <nodeTitle> owners graph
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
+Then the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
 |Belgium (1)|
@@ -657,7 +653,7 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:
 |fid|nodeTitle|legalEntity|
-|149414|Landmark Directors Limited|Blackrock Inc|
+|149414|Barrow Hanley Mewhinney & Strauss LLC|Blackrock Inc|
 
 Scenario: KYC-455 Covers below scenarios for truncated owners graph for a UBO user.
 a. 0. Verify graph truncation notification message when number of nodes are greater than 2500

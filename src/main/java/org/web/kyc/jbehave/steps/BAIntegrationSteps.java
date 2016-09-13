@@ -31,7 +31,7 @@ public class BAIntegrationSteps {
 
     @Then("the user should be navigated to the full details of that entity <fid> on bankersalmanac page")
     public void verifyBankersAlamanacPage(@Named("fid") String fid){
-        pageObject.baIntegrationPage().verifyBankersAlamanacPage(fid);
+        pageObject.baIntegrationPage().verifyBankersAlmanacPage(fid);
     }
 
     @When("the user clicks on UBO Declaration Document")
