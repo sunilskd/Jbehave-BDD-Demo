@@ -49,7 +49,7 @@ public class JBehaveReport {
         }
         html.getElementById("mainTable").append("" +
                 "<h2>UBO Aggregate Chart</h2>" +
-                "<IMG SRC=\".png\" WIDTH=\"600\" HEIGHT=\"400\" BORDER=\"0\" USEMAP=\"#chart\">" +
+                "<IMG SRC=\".png\" WIDTH=\"600\" HEIGHT=\"400\" BORDER=\"0\" USEMAP=\"#barchart\">" +
                 "<br>" +
                 "<br>" +
                 "<h2>UBO Aggregate Report</h2> "

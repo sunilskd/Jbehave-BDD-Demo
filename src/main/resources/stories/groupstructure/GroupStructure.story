@@ -2,7 +2,7 @@ Epic: Group Structure
 ----
 .Overall Report
 
-image:.GroupStructure.stats.png[Group Structure]
+image:.groupstructure.GroupStructure.stats.png[Group Structure]
 ----
 
 A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships will not result in funding illegal activities such as money laundering and terrorist financing.

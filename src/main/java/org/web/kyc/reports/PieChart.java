@@ -55,6 +55,7 @@ public class PieChart {
                 passCount = passCount + Integer.parseInt(pass.split("=", pass.length())[1]);
                 pendingCount = pendingCount + Integer.parseInt(pending.split("=", pending.length())[1]);
                 totalCount = totalCount + Integer.parseInt(total.split("=", total.length())[1]);
+
                 System.out.println("---------------------------------------------------------------------------------------------");
                 System.out.println("|" + statsfile.getName() + "|");
                 System.out.println("|" + passCount + "      " + totalCount + "      " + failCount + "      " + pendingCount + "|");
@@ -91,7 +92,7 @@ public class PieChart {
         JFreeChart chart;
         final boolean drilldown = true;
 
-        // create the chart...
+        // createBarChart the barchart...
         if (drilldown) {
             final PiePlot plot = new PiePlot3D(data);
             Color green = new Color(178,255,102);
@@ -105,7 +106,7 @@ public class PieChart {
             chart = new JFreeChart("", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
         } else {
             chart = ChartFactory.createPieChart3D(
-                    "UBO AFT Results",  // chart title
+                    "UBO AFT Results",  // barchart title
                     data,               // data
                     true,               // include legend
                     true,

@@ -20,13 +20,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
+import org.web.kyc.reports.DualAxisChart;
 import org.web.kyc.reports.JBehaveReport;
 import org.web.kyc.reports.PieChart;
 import org.web.kyc.jbehave.pages.PageObject;
 import org.web.kyc.jbehave.steps.*;
 import org.web.kyc.utils.ReadProperties;
 import org.web.kyc.utils.TestRecorder;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -36,7 +36,7 @@ import java.util.List;
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.web.kyc.utils.FilesUtils.copyDirectory;
 import static org.web.kyc.utils.FilesUtils.directoryCleanUp;
-
+import static org.web.kyc.reports.DualAxisChart.createBarChart;
 public class StoriesRunner extends JUnitStories {
 
     /* Browserstack credentials */
@@ -51,6 +51,7 @@ public class StoriesRunner extends JUnitStories {
     private TestRecorder testRecorder = new TestRecorder();
     private PieChart pieChart = new PieChart();
     private JBehaveReport jbehaveReport = new JBehaveReport();
+    private DualAxisChart dualAxisChart;
     /* Customized HTML format class to include screenshot in reports */
     private Format screenShootingFormat = new ScreenShootingHtmlFormat(driverProvider);
 
@@ -138,6 +139,12 @@ public class StoriesRunner extends JUnitStories {
         }
         /* Creating pie chart for each story and the consolidated results */
         pieChart.createPieChart();
+
+        String features[] = readProperties.getFeatures().split(",");
+        /* Creating dual axis chart */
+        for(int i=0; i<features.length; i++) {
+            createBarChart(features[i] + " Chart", features[i]);
+        }
 
         /*Updating the adoc href to point to correct adoc files*/
         jbehaveReport.updateJBehaveReports();

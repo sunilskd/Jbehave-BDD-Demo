@@ -2,7 +2,7 @@ Epic: UBO
 ----
 .Overall Report
 
-image:.ubo.UBOs.stats.png[UBO]
+image:.owners.ubo.UBOs.stats.png[UBO]
 ----
 
 A KYC analyst has to follow a due diligence process to satisfy legal requirements to prove that any potential business partnerships

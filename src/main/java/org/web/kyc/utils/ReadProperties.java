@@ -21,6 +21,7 @@ public class ReadProperties {
     private String imageMagicPath;
     private String recordAFT;
     private String bankersAlmanacUrl;
+    private String features;
 
     public ReadProperties() {
         setUrl(getProjectProperties("testRunner.properties", "kyc.web.url"));
@@ -38,6 +39,7 @@ public class ReadProperties {
         setImageMagicPath(getProjectProperties("testRunner.properties", "image.magic.path"));
         setBankersAlmanacURL(getProjectProperties("testRunner.properties","ba.com.url"));
         setRecordAFT(getProjectProperties("testRunner.properties","record.aft"));
+        setFeatures(getProjectProperties("testRunner.properties","kyc.web.features"));
     }
 
     public String getMlPath() {
@@ -157,6 +159,14 @@ public class ReadProperties {
 
     public void setRecordAFT(String recordAFT) {
         this.recordAFT = recordAFT;
+    }
+
+    public String getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(String features) {
+        this.features = features;
     }
 
     public String getProjectProperties(String propertyFile, String property) {

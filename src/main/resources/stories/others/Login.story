@@ -1,6 +1,6 @@
 .Overall Report
 
-image:.login.stats.png
+image:.others.login.stats.png
 ----
 
 Meta:@login
