@@ -49,7 +49,7 @@ public class OwnersPage extends WebDriverUtils {
     private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners'] //tbody");
     private String direct_owners_row_for_country_xpath = "//*[td='";
     private By direct_owners_country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
-    private By ubo_header_text_xpath = By.xpath("//*[@id='content-view']/div[2]/div[2]/div/h1");
+    private By ubo_header_text_xpath = By.xpath(".//*[@product='UBO']/div/h1");
     private By ubo_name_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[1]");
     private By ubo_entity_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[2]");
     private By ubo_percentage_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[3]");
@@ -113,7 +113,6 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void verifyUBOHeaders(){
-        waitForWebElementToAppear(ubo_header_text_xpath);
         assertEquals("Ultimate Beneficial Owners", getWebElementText(ubo_header_text_xpath));
         assertEquals("NAME",getWebElementText(ubo_name_header_text_xpath));
         assertEquals("ENTITY",getWebElementText(ubo_entity_header_text_xpath));
