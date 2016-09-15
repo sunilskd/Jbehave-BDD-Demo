@@ -18,15 +18,14 @@ Given the user is on the ubo login page
 When the user login as a ubo user
 
 Scenario: Covers below scenarios for full graph
-a. 0.
-   2. if User selects country highlight and If user changes color of a highlighted tile to appears multiple, it still counts toward the country highlight count
-   0. If user applies "direct relationships only" filter to graph, percent filter resets to 0
-      1. If user selects a percent filter after applying "direct relationships only" filter, graph filters out any entities that don't have equal to or greater than the selected percent and the direct filter remains in effect
-      2. User applies direct relationships only filter and percent filter
-      3. User unchecks "direct relationships only" filter, percent filter resets to 0
-      4. Country highlights drop down updates when percent filter applied
-      5. Country highlights drop down updates when direct relationships only filter applied
-      9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
+a. 1. if User selects country highlight and If user changes color of a highlighted tile to appears multiple, it still counts toward the country highlight count
+   2. If user applies "direct relationships only" filter to graph, percent filter resets to 0
+   3. If user selects a percent filter after applying "direct relationships only" filter, graph filters out any entities that don't have equal to or greater than the selected percent and the direct filter remains in effect
+   4. User applies direct relationships only filter and percent filter
+   5. User unchecks "direct relationships only" filter, percent filter resets to 0
+   6. Country highlights drop down updates when percent filter applied
+   7. Country highlights drop down updates when direct relationships only filter applied
+   8. User selects country highlight ,Count of tiles currently visible that match that country is displayed
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -72,8 +71,6 @@ And the user should see the list of below unique country of operations for each 
 |UAE (2)|
 |USA (2)|
 
-
-
 When the user selects a country Hong Kong from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
@@ -93,6 +90,8 @@ And the user should see the list of below unique country of operations for each 
 |Switzerland (11)|
 |UAE (2)|
 |USA (2)|
+
+When the user unchecks direct relationship only filter checkbox in the graphs
 
 
 Examples:
