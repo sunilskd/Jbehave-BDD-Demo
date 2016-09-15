@@ -12,7 +12,7 @@ Meta:@subsidiariesLive @live
 
 Scenario: KYC user login
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 
 Scenario: Covers below scenarios
 a. 0. With percentage ownership; with country of operations; with validated date; with active legal entity subsidiaries; with active subsidiary relationships
@@ -54,8 +54,8 @@ Then the user should see the list of direct subsidiaries ordered by percentage o
 When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|VALIDATED DATE|
-|Acceptance Alliance LLC|USA||09 Apr 2010|
-|Banc of America Merchant Services LLC|USA||09 Apr 2010|
+|Acceptance Alliance LLC|USA|||
+|Banc of America Merchant Services LLC|USA|||
 
 Examples:
 |fid|percentFilter|

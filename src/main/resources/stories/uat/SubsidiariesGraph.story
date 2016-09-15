@@ -72,10 +72,12 @@ Then the user should see the direct relationship only filter checkbox unchecked 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity BIO, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
+And the user should not see any nodes in level 2, below the root entity, in the graphs
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity BIO, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 7, below the root entity, in the graphs
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 5 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity BIO, user is currently viewing, as the root and highlighted on the graphs

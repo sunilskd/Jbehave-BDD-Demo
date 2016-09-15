@@ -29,7 +29,7 @@ o. If subsidiary relationship document is inactive, do not display the subsidiar
 
 Scenario: KYC user login
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 
 Scenario: Covers below scenarios
 a. 0. Select a country highlight, legal entities in the group structure that have that country of operations are highlighted
@@ -46,7 +46,7 @@ When the user selects another country <changeCountry> from the country highlight
 Then the user should see the entities in the group structure that have the selected country of operations highlighted in the group structure page
 And the previously selected country <country> should be de-selected in the group structure page
 
-Then the user should see the ultimate owner as Intesa Sanpaolo SpA for the entity user is viewing in the group structure page
+Then the user should see the ultimate owner as BLOM BANK SAL for the entity user is viewing in the group structure page
 
 Then the user should see the majority owners for the institution Recovery Ltd in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
