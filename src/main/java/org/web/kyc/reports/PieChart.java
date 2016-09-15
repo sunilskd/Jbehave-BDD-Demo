@@ -76,7 +76,7 @@ public class PieChart {
         }
     }
 
-    public static void drawChart(Double fail,Double pending, Double pass,Double total, String storyName) {
+    public static void drawChart(Double fail, Double pending, Double pass, Double total, String storyName) {
 
         final DefaultPieDataset data = new DefaultPieDataset();
         Double failPercent, passPercent, pendingPercent;

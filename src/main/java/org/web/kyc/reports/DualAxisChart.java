@@ -62,7 +62,7 @@ public class DualAxisChart extends ApplicationFrame {
                     }
             }
 
-            JFreeChart barChart = ChartFactory.createBarChart(
+            JFreeChart barChart = ChartFactory.createBarChart3D(
                     applicationTitle,
                     chartTitle,
                     "Scenario",
@@ -74,7 +74,7 @@ public class DualAxisChart extends ApplicationFrame {
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new java.awt.Dimension(500, 500));
             setContentPane(chartPanel);
-            File BarChart = new File(chartTitle.replace(" ","") + "BarChart.png");
+            File BarChart = new File(chartTitle.replace(" ","") + "FeatureChart.png");
             ChartUtilities.saveChartAsPNG( BarChart , barChart , 500, 500);
 
         } catch (FileNotFoundException e) {
