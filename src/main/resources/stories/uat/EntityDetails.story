@@ -7,7 +7,7 @@ So that I can achieve a business goal
 
 Scenario: KYC user login
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 
 Scenario: Covers below scenarios
 a. 0. Display all head office entity where useInaddress is true

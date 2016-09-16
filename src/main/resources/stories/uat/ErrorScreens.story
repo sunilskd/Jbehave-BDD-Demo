@@ -12,7 +12,7 @@ Scenario: Below scenarios are covered
 a. 0. User will see 404 error screen when an invalid fid is attempeted to retrieve
    1. Use can navigates to ba.com from 404 screen
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 When the user opens legal entity <fid>
 Then the user should see 404 page not found error page
 When the user clicks on Bankers Almanac Helpdesk link in error screen
