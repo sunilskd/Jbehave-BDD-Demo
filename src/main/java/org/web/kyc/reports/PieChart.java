@@ -1,5 +1,4 @@
 package org.web.kyc.reports;
-import org.apache.commons.io.FileUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.ChartUtilities;
@@ -9,9 +8,6 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.urls.StandardPieURLGenerator;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import java.awt.*;
 import java.io.*;
 import java.util.Scanner;

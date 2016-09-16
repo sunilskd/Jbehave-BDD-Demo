@@ -1,15 +1,11 @@
 package org.web.kyc.reports;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.BarRenderer3D;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
@@ -72,9 +68,13 @@ public class BarChart extends ApplicationFrame {
                 }
             }
 
+            /* For displaying count on bars*/
             BarRenderer3D renderer3D = new BarRenderer3D();
             renderer3D.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
             renderer3D.setBaseItemLabelsVisible(true);
+            renderer3D.setSeriesPaint(0, new java.awt.Color(102,178,255));
+            renderer3D.setSeriesPaint(1, new java.awt.Color(178,255,102));
+            renderer3D.setSeriesPaint(2, new java.awt.Color(255,153,153));
 
             JFreeChart barChart = ChartFactory.createBarChart3D(
                     applicationTitle,
@@ -103,9 +103,9 @@ public class BarChart extends ApplicationFrame {
         final String total = "Total";
         final String pass = "Pass";
         final String fail = "Fail";
-        defaultCategoryDataset.addValue(storyFail, fail, storyName);
         defaultCategoryDataset.addValue(storyTotal, total, storyName);
         defaultCategoryDataset.addValue(storyPass, pass, storyName);
+        defaultCategoryDataset.addValue(storyFail, fail, storyName);
         return defaultCategoryDataset;
     }
 
