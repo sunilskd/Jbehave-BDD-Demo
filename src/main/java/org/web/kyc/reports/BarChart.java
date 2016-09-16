@@ -4,7 +4,12 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.BarRenderer3D;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
@@ -67,15 +72,20 @@ public class BarChart extends ApplicationFrame {
                 }
             }
 
+            BarRenderer3D renderer3D = new BarRenderer3D();
+            renderer3D.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+            renderer3D.setBaseItemLabelsVisible(true);
+
             JFreeChart barChart = ChartFactory.createBarChart3D(
                     applicationTitle,
                     "Features",
                     "Scenarios",
                     categoryDataset,
                     PlotOrientation.VERTICAL,
-                    true, true, false);
+                    true, true, true);
 
             barChart.setBackgroundPaint(java.awt.Color.white);
+            barChart.getCategoryPlot().setRenderer(renderer3D);
             ChartPanel chartPanel = new ChartPanel(barChart);
             chartPanel.setPreferredSize(new java.awt.Dimension(1500, 700));
             setContentPane(chartPanel);
