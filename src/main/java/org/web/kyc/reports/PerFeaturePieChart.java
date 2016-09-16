@@ -9,7 +9,6 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.urls.StandardPieURLGenerator;
 import org.jfree.data.general.DefaultPieDataset;
-
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,13 +19,16 @@ import java.util.Scanner;
 public class PerFeaturePieChart {
 
     public void createPieChart(final String chartTitle) {
+
         String pass, total, fail, pending;
-        Double passCount=0.0, failCount=0.0,totalCount=0.0,pendingCount=0.0;;
+        Double passCount=0.0, failCount=0.0,totalCount=0.0,pendingCount=0.0;
+
         try {
             File dir = new File("./build/classes/jbehave/");
             File[] statsFiles = dir.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
+
                     //return name.endsWith(".stats");
                     String pattern = "^[a-z]*\\." + chartTitle.replace(" ","").toLowerCase() + "\\.[a-z A-z]*\\.stats$";
                     return name.matches(pattern);
@@ -66,11 +68,14 @@ public class PerFeaturePieChart {
 
         final DefaultPieDataset data = new DefaultPieDataset();
         Double failPercent, passPercent, pendingPercent;
+
         /* Calculating pending count as JBehave is calculating incorrectly */
         if(pass+fail==total){pending =0.0;}
+
         failPercent = Double.valueOf(Math.round((fail/total)*100));
         passPercent = Double.valueOf(Math.round((pass/total)*100));
         pendingPercent = Double.valueOf(Math.round((pending/total)*100));
+
         data.setValue("Fail = " + failPercent + "%", fail);
         data.setValue("Pending = " + pendingPercent +"%", pending);
         data.setValue("Pass = " + passPercent + "%", pass);
@@ -78,18 +83,21 @@ public class PerFeaturePieChart {
         JFreeChart chart;
         final boolean drilldown = true;
 
-        // createBarChart the barchart...
         if (drilldown) {
+
             final PiePlot plot = new PiePlot3D(data);
             Color green = new Color(178,255,102);
             Color yellow = new Color(255,255,153);
             Color red = new Color(255,153,153);
+
             plot.setSectionPaint("Fail = " + failPercent + "%", red);
             plot.setSectionPaint("Pending = " + pendingPercent + "%", yellow);
             plot.setSectionPaint("Pass = " + passPercent + "%", green);
             plot.setOutlineVisible(false);
             plot.setURLGenerator(new StandardPieURLGenerator("pie_chart_detail.jsp"));
+
             chart = new JFreeChart("", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
+
         } else {
             chart = ChartFactory.createPieChart3D(
                     "UBO AFT Results",  // barchart title

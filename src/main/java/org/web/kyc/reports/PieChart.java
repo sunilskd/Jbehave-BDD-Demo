@@ -78,11 +78,14 @@ public class PieChart {
 
         final DefaultPieDataset data = new DefaultPieDataset();
         Double failPercent, passPercent, pendingPercent;
+
         /* Calculating pending count as JBehave is calculating incorrectly */
         if(pass+fail==total){pending =0.0;}
+
         failPercent = Double.valueOf(Math.round((fail/total)*100));
         passPercent = Double.valueOf(Math.round((pass/total)*100));
         pendingPercent = Double.valueOf(Math.round((pending/total)*100));
+
         data.setValue("Fail = " + failPercent + "%", fail);
         data.setValue("Pending = " + pendingPercent +"%", pending);
         data.setValue("Pass = " + passPercent + "%", pass);
@@ -96,12 +99,15 @@ public class PieChart {
             Color green = new Color(178,255,102);
             Color yellow = new Color(255,255,153);
             Color red = new Color(255,153,153);
+
             plot.setSectionPaint("Fail = " + failPercent + "%", red);
             plot.setSectionPaint("Pending = " + pendingPercent + "%", yellow);
             plot.setSectionPaint("Pass = " + passPercent + "%", green);
             plot.setOutlineVisible(false);
             plot.setURLGenerator(new StandardPieURLGenerator("pie_chart_detail.jsp"));
+
             chart = new JFreeChart(storyName, JFreeChart.DEFAULT_TITLE_FONT, plot, true);
+
         } else {
             chart = ChartFactory.createPieChart3D(
                     "UBO AFT Results",  // barchart title

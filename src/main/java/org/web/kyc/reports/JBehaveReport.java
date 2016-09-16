@@ -8,9 +8,6 @@ import java.io.IOException;
 
 public class JBehaveReport {
 
-    File currentDirFile = new File("");
-    String projectDir = currentDirFile.getAbsolutePath();
-
     public void updateJBehaveReports(){
         moveAdocFiles();
         deleteAdocHtmlFiles();
