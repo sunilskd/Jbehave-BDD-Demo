@@ -1,5 +1,5 @@
 package org.web.kyc.reports;
-import org.apache.commons.io.FileUtils;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.ChartUtilities;
@@ -9,38 +9,36 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.urls.StandardPieURLGenerator;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class PieChart {
+public class PerFeaturePieChart {
 
-    public PieChart() {
-        super();
-    }
-
-    public void createPieChart() {
+    public void createPieChart(final String chartTitle) {
         String pass, total, fail, pending;
-        Double passCount=0.0, failCount=0.0,totalCount=0.0,pendingCount=0.0;
-
+        Double passCount=0.0, failCount=0.0,totalCount=0.0,pendingCount=0.0;;
         try {
             File dir = new File("./build/classes/jbehave/");
-            File [] files = dir.listFiles(new FilenameFilter() {
+            File[] statsFiles = dir.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
-                    return name.endsWith(".stats");
+                    //return name.endsWith(".stats");
+                    String pattern = "^[a-z]*\\." + chartTitle.replace(" ","").toLowerCase() + "\\.[a-z A-z]*\\.stats$";
+                    return name.matches(pattern);
                 }
             });
 
-            for (File statsfile : files) {
-                String fileNames = (statsfile.getPath());
-                File text = new File(fileNames);
+            for (File statsFile : statsFiles) {
+                String statsFilePath = (statsFile.getPath());
+                File statFileNames= new File(statsFilePath);
 
                 //Creating Scanner instances to read File in Java
-                Scanner scnr = new Scanner(text);
+                Scanner scnr = new Scanner(statFileNames);
                 String[] result = new String[28];
 
                 for (int i = 0; i < 27; i++) {
@@ -53,25 +51,11 @@ public class PieChart {
 
                 failCount = failCount + Integer.parseInt(fail.split("=", fail.length())[1]);
                 passCount = passCount + Integer.parseInt(pass.split("=", pass.length())[1]);
-                pendingCount = pendingCount + Integer.parseInt(pending.split("=", pending.length())[1]);
                 totalCount = totalCount + Integer.parseInt(total.split("=", total.length())[1]);
-
-                /*
-                System.out.println("---------------------------------------------------------------------------------------------");
-                System.out.println("|" + statsfile.getName() + "|");
-                System.out.println("|" + passCount + "      " + totalCount + "      " + failCount + "      " + pendingCount + "|");
-                System.out.println("---------------------------------------------------------------------------------------------");
-                */
+                pendingCount = pendingCount + Integer.parseInt(pending.split("=", pending.length())[1]);
 
                 if (Integer.parseInt(total.split("=",total.length())[1])>0){
-
-                    drawChart(Double.parseDouble(fail.split("=", fail.length())[1]),
-                            Double.parseDouble(pending.split("=", pending.length())[1]),
-                            Double.parseDouble(pass.split("=", pass.length())[1]),
-                            Double.parseDouble(total.split("=", total.length())[1]),
-                            "");
-
-                    drawChart(failCount, pendingCount, passCount, totalCount,"UBO Consolidated Stories Chart");
+                    drawChart(failCount, pendingCount, passCount, totalCount, chartTitle + "FeaturePieChart");
                 }
             }
         } catch (FileNotFoundException e) {
@@ -105,7 +89,7 @@ public class PieChart {
             plot.setSectionPaint("Pass = " + passPercent + "%", green);
             plot.setOutlineVisible(false);
             plot.setURLGenerator(new StandardPieURLGenerator("pie_chart_detail.jsp"));
-            chart = new JFreeChart(storyName, JFreeChart.DEFAULT_TITLE_FONT, plot, true);
+            chart = new JFreeChart("", JFreeChart.DEFAULT_TITLE_FONT, plot, true);
         } else {
             chart = ChartFactory.createPieChart3D(
                     "UBO AFT Results",  // barchart title
@@ -120,13 +104,9 @@ public class PieChart {
         try {
             final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
             final File file1 = new File("./build/classes/jbehave/view/" + storyName + ".png");
-            ChartUtilities.saveChartAsPNG(file1, chart, 700, 500, info);
+            ChartUtilities.saveChartAsPNG(file1, chart, 600, 400, info);
         } catch (IOException e) {
             System.out.println(e.toString());
         }
     }
-
 }
-
-
-

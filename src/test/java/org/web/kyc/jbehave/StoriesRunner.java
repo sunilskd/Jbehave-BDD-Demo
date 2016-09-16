@@ -20,8 +20,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
-import org.web.kyc.reports.DualAxisChart;
+import org.web.kyc.reports.BarChart;
 import org.web.kyc.reports.JBehaveReport;
+import org.web.kyc.reports.PerFeaturePieChart;
 import org.web.kyc.reports.PieChart;
 import org.web.kyc.jbehave.pages.PageObject;
 import org.web.kyc.jbehave.steps.*;
@@ -36,11 +37,12 @@ import java.util.List;
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.web.kyc.utils.FilesUtils.copyDirectory;
 import static org.web.kyc.utils.FilesUtils.directoryCleanUp;
-import static org.web.kyc.reports.DualAxisChart.createBarChart;
+import static org.web.kyc.reports.BarChart.createBarChart;
 public class StoriesRunner extends JUnitStories {
 
-    /* Browserstack credentials */
+    /* Selenium HUB URL*/
     public static final String URL = "http://localhost:4444/wd/hub";
+
     static Browser browser = new Browser();
     private static WebDriverProvider driverProvider;
     private static WebDriverSteps lifeCycleSteps;
@@ -50,8 +52,15 @@ public class StoriesRunner extends JUnitStories {
     private ContextView contextView = new LocalFrameContextView().sized(50, 50);
     private TestRecorder testRecorder = new TestRecorder();
     private PieChart pieChart = new PieChart();
+    private PerFeaturePieChart perFeaturePieChart = new PerFeaturePieChart();
     private JBehaveReport jbehaveReport = new JBehaveReport();
-    private DualAxisChart dualAxisChart;
+    private BarChart barChart;
+
+    /* /* Browserstack credentials */
+//    public static final String USERNAME = "ravisahu1";
+//    public static final String AUTOMATE_KEY = "usU2zSencBAxxm8Nniux";
+//    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
+
     /* Customized HTML format class to include screenshot in reports */
     private Format screenShootingFormat = new ScreenShootingHtmlFormat(driverProvider);
 
@@ -88,12 +97,21 @@ public class StoriesRunner extends JUnitStories {
         browser.setBrowser();
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
+        /* Browser stack capabilities */
+//        desiredCapabilities.setCapability("browser", "IE");
+//        desiredCapabilities.setCapability("browser_version", "9.0");
+//        desiredCapabilities.setCapability("os", "Windows");
+//        desiredCapabilities.setCapability("os_version", "XP");
+//        desiredCapabilities.setCapability("browserstack.debug", "true");
+
         /* Setting browser resolution */
         //desiredCapabilities.setCapability("screenResolution", "1920x1080");
 
         /* Setting system property REMOTE_WEBDRIVER_URL and desired capabilities */
         if (System.getProperty("browser").equals("remote")) {
+
             System.setProperty("REMOTE_WEBDRIVER_URL", URL);
+
             desiredCapabilities.setBrowserName("firefox");
             //desiredCapabilities.setCapability("browserstack.local", "true");
             driverProvider = new RemoteWebDriverProvider(desiredCapabilities);
@@ -140,11 +158,11 @@ public class StoriesRunner extends JUnitStories {
         /* Creating pie chart for each story and the consolidated results */
         pieChart.createPieChart();
 
-        String features[] = readProperties.getFeatures().split(",");
-        /* Creating dual axis chart */
-        for(int i=0; i<features.length; i++) {
-            createBarChart(features[i] + " Chart", features[i]);
-        }
+        /* Creating feature bar chart*/
+        barChart.createBarChart("UBO Features Chart");
+
+        /* Creating feature pie chart*/
+        //perFeaturePieChart.createPieChart("KYC Features Bar Chart");
 
         /*Updating the adoc href to point to correct adoc files*/
         jbehaveReport.updateJBehaveReports();
