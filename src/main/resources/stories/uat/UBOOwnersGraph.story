@@ -66,7 +66,7 @@ Examples:
 |69867|
 
 
-Scenario: Country list is sorted alphabetically.
+Scenario: Covers below scenarios
 a. 0. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
    1. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only owners that are owned by equal to or greater than selected percent appear on the graph
    2. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph

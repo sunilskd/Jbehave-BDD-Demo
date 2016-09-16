@@ -36,6 +36,7 @@ When the user resize graph to translate(917.5,266.5) scale(0.397)
 When the user enters percentage as 90 in ownership percentage filter text box in the graphs
 Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+Then the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 And the user should not see any nodes in level 1, above the root entity, in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -52,8 +53,10 @@ And the user should see the list of below unique country of operations for each 
 |UAE (2)|
 |USA (2)|
 
+When the user selects a country Franec from the country highlight list in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
+Then the user should not see the entities highlighted in the graphs
 And the user should see the list of owners in level 1, above the root entity, in the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the graphs
@@ -71,7 +74,7 @@ And the user should see the list of below unique country of operations for each 
 |UAE (2)|
 |USA (2)|
 
-When the user selects a country Hong Kong from the country highlight list in the graphs
+When the user selects a country Norway from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
 |Vontobel Wealth Management (Hong Kong) Ltd|
@@ -92,8 +95,13 @@ And the user should see the list of below unique country of operations for each 
 |USA (2)|
 
 When the user unchecks direct relationship only filter checkbox in the graphs
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+When the user selects a country USA from the country highlight list in the graphs
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should not see the multiple appearance highlight on any node in the graphs
 
 
 Examples:
 |fid|legalEntity|
-|11262|Vontobel Holding AG|
+|444|Vanguard Group Inc|

@@ -37,15 +37,15 @@ a. 0. Person or institution or other entity type owner is active and Ownership r
    2. If only ownerType is present display owner as "ownerType"
    3. Display source as "source, extended source" when both source and extended source are present
    4. Display source as "source" when only source is present
-   Do not display source when source and extecnded source are not present
+   5. Do not display source when source and extecnded source are not present
 b. 0. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
    1. If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
-   Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
-c. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
+   2. Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
+c. 0. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
 d. 0. If ownerType is not present display owner as "entityReference/description"
    1. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
-Verify percentage meter bar for direct owners (person or institution or other entity type)
-e. UBO user can view direct owners that has people as owners.
+   2. Verify percentage meter bar for direct owners (person or institution or other entity type)
+e. 0. UBO user can view direct owners that has people as owners.
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
