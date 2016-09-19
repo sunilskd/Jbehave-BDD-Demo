@@ -10,7 +10,7 @@ public class FilesUtils {
 
     public static void copyDirectory(File src, File dest) throws IOException {
         if (src.isDirectory()) {
-            //if directory not exists, create it
+            //if directory not exists, createBarChart it
             if (!dest.exists()) {
                 dest.mkdir();
                 /* Uncomment below code to print the copied resource information */

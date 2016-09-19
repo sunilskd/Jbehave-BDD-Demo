@@ -1,6 +1,6 @@
 .Overall Report
 
-image:.CompareSnapShots.stats.png
+image:.others.CompareSnapShots.stats.png
 ----
 
 Covers below features:

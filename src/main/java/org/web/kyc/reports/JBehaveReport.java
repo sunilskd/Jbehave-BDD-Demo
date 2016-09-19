@@ -8,9 +8,6 @@ import java.io.IOException;
 
 public class JBehaveReport {
 
-    File currentDirFile = new File("");
-    String projectDir = currentDirFile.getAbsolutePath();
-
     public void updateJBehaveReports(){
         moveAdocFiles();
         deleteAdocHtmlFiles();
@@ -48,8 +45,10 @@ public class JBehaveReport {
             e.printStackTrace();
         }
         html.getElementById("mainTable").append("" +
-                "<h2>UBO Aggregate Chart</h2>" +
-                "<IMG SRC=\".png\" WIDTH=\"600\" HEIGHT=\"400\" BORDER=\"0\" USEMAP=\"#chart\">" +
+                "<div>" +
+                "<IMG SRC=\"UBO Consolidated Stories Chart.png\" WIDTH=\"700\" HEIGHT=\"500\" BORDER=\"0\" USEMAP=\"#barchart\">" +
+                "<IMG SRC=\"FeatureChart.png\" WIDTH=\"1100\" HEIGHT=\"500\" BORDER=\"0\" USEMAP=\"#barchart\">" +
+                "</div>" +
                 "<br>" +
                 "<br>" +
                 "<h2>UBO Aggregate Report</h2> "

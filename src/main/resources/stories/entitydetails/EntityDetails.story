@@ -2,7 +2,7 @@ Epic - Ownership
 ----
 .Overall Report
 
-image:.EntityDetails.stats.png[Entity Details]
+image:.entitydetails.EntityDetails.stats.png[Entity Details]
 ----
 
 KYC user is performing due diligence on a potential business partner, so they need to see identifying information about the entity to make sure it is the one they are researching.
@@ -177,4 +177,3 @@ Examples:
 Scenario: KYC user logout
 Given the user is on the ubo login page
 When the user logout
-

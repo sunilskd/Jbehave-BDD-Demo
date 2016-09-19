@@ -2,7 +2,7 @@ Epic: Ownership
 ----
 .Overall Report
 
-image:.ErrorScreens.stats.png[Error Screen]
+image:.others.ErrorScreens.stats.png[Error Screen]
 ----
 
 Covers below features:

@@ -1,6 +1,6 @@
 .Overall Report
 
-image:.CaptureExpectedSnapShots.stats.png
+image:.others.CaptureExpectedSnapShots.stats.png
 ----
 
 Meta:@captureexpectedsnapshots

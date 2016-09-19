@@ -1,7 +1,7 @@
 ----
 .Overall Report
 
-image:.ComparePDF.stats.png
+image:.others.ComparePDF.stats.png
 ----
 
 Narrative:
