@@ -69,6 +69,8 @@ public class StoriesRunner extends JUnitStories {
                     configuredEmbedder().useExecutorService(new SameThreadExecutors().create(
                     configuredEmbedder()
                             .embedderControls()
+                            .useStoryTimeouts("1000")
+
             ));
             try {
                 /* Required to run stories with annotated meta filters */
