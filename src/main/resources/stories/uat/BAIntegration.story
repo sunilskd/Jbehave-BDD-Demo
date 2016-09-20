@@ -6,12 +6,12 @@ Covers below features:
 JIRA ID - KYC-14 - KYC user can navigate to BA.com when viewing an entity on new platform
 JIRA ID - KYC-111 - UBO user can follow a link to the UBO declaration document from the UBO list
 
-Scenario: BA.com and UBO Integration scenario with KYC user
 Meta:@baintegrationLive @live
+Scenario: BA.com and UBO Integration scenario with KYC user
 Given the user is on bankers almanac page
-When the user login as a kyc user to bankers almanac page
+When the user login as a ubo user to bankers almanac page
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 When the user opens legal entity <fid>
 When the user clicks on view on bankers almanac
 Then the user should be navigated to the full details of that entity <fid> on bankersalmanac page
@@ -50,6 +50,10 @@ Examples:
 |fid|
 |721|
 |211|
+
+Scenario: Stay logged in BA.com
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: KYC user logout
 Meta: @id logout

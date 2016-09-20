@@ -11,7 +11,7 @@ public class BAIntegrationPage extends WebDriverUtils {
     private By user_login_input_box_id = By.xpath("//*[@id='Username']");
     private By user_password_input_box_id = By.xpath("//*[@id='Password']");
     private By login_button_xpath = By.xpath("//*[@id='Submit']");
-    private By view_on_bankers_almanac_button_xpath =By.xpath("//button[1]");
+    private By view_on_bankers_almanac_button_xpath =By.xpath(".//*[@id='tools']/a[1]");
     private By logout_link_text_xpath = By.xpath(".//*[@id='ctl00_LoginBar_lnkLogin']/u");
     private By ubo_declaration_document_link_text_xpath =By.xpath("//div/div/div/a");
     private String userType="";
