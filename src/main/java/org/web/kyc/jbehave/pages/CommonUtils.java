@@ -3,10 +3,10 @@ package org.web.kyc.jbehave.pages;
 import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.util.Calendar;
-
 import static org.junit.Assert.*;
 
 /* Contains commonUtils methods to be used in page classes */
@@ -38,6 +38,12 @@ public class CommonUtils extends WebDriverUtils {
         /* Removing percentage name value pair at the start as percent filter are applied at each level */
         httpRequest().removeNameValuePair("percentage");
         get(readProperties().getUrl() + "/#/login");
+
+        if(getCapabilities().getBrowserName().equals("internet explorer")){
+            waitForWebElementToAppear(By.xpath("//a[@id='overridelink']"));
+            clickOnWebElement(By.xpath("//a[@id='overridelink']"));
+            waitForInMilliSeconds(2000L);
+        }
         manage().window().maximize();
     }
 

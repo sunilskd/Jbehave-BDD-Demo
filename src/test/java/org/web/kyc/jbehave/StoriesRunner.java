@@ -47,7 +47,7 @@ public class StoriesRunner extends JUnitStories {
     private static WebDriverProvider driverProvider;
     private static WebDriverSteps lifeCycleSteps;
     private static PageObject pageObject;
-    ReadProperties readProperties = new ReadProperties();
+    static ReadProperties readProperties = new ReadProperties();
     private SeleniumContext context = new SeleniumContext();
     private ContextView contextView = new LocalFrameContextView().sized(50, 50);
     private TestRecorder testRecorder = new TestRecorder();
@@ -70,7 +70,6 @@ public class StoriesRunner extends JUnitStories {
                     configuredEmbedder()
                             .embedderControls()
                             .useStoryTimeouts("1000")
-
             ));
             try {
                 /* Required to run stories with annotated meta filters */
@@ -114,7 +113,8 @@ public class StoriesRunner extends JUnitStories {
 
             System.setProperty("REMOTE_WEBDRIVER_URL", URL);
 
-            desiredCapabilities.setBrowserName("firefox");
+            /* FIREFOX - firefox; IE- internet explorer; CHROME - chrome*/
+            desiredCapabilities.setBrowserName(readProperties.getRemoteBrowser());
             //desiredCapabilities.setCapability("browserstack.local", "true");
             driverProvider = new RemoteWebDriverProvider(desiredCapabilities);
 

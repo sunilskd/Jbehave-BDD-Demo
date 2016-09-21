@@ -22,6 +22,7 @@ public class ReadProperties {
     private String recordAFT;
     private String bankersAlmanacUrl;
     private String features;
+    private String remoteBrowser;
 
     public ReadProperties() {
         setUrl(getProjectProperties("testRunner.properties", "kyc.web.url"));
@@ -40,6 +41,7 @@ public class ReadProperties {
         setBankersAlmanacURL(getProjectProperties("testRunner.properties","ba.com.url"));
         setRecordAFT(getProjectProperties("testRunner.properties","record.aft"));
         setFeatures(getProjectProperties("testRunner.properties","kyc.web.features"));
+        setRemoteBrowser(getProjectProperties("testRunner.properties","kyc.web.remote.browser"));
     }
 
     public String getMlPath() {
@@ -169,6 +171,13 @@ public class ReadProperties {
         this.features = features;
     }
 
+    public String getRemoteBrowser() {
+        return remoteBrowser;
+    }
+
+    public void setRemoteBrowser(String remoteBrowser) {
+        this.remoteBrowser = remoteBrowser;
+    }
     public String getProjectProperties(String propertyFile, String property) {
         Properties properties = new Properties();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertyFile);

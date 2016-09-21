@@ -135,6 +135,7 @@ Then the user should see message displayed in place of graph explaining there ar
 Examples:
 |fid|
 |LE-58|
+|13129|
 
 Scenario: Entity user is viewing has owners but not subsidiaries, show the owners on the graph
 When the user opens legal entity <fid>

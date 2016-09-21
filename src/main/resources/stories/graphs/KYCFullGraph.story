@@ -128,6 +128,7 @@ And the kyc user should not see message displayed there is ubo data available fo
 Examples:
 |fid|
 |LE-58|
+|13129|
 
 Scenario: Entity user is viewing has owners but not subsidiaries, show the owners on the graph
 When the user opens legal entity <fid>

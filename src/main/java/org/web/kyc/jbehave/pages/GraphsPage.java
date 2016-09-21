@@ -644,11 +644,11 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyGraphsAreTruncatedMsg() {
-        assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
+        assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
     }
 
     public void verifyGraphsAreTruncatedWithNodeCountMsg(){
-        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
+        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the \"show more\" link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
     }
 
     public void verifySavedPDFGroupStructureGraphFile(String nodeTitle) {
@@ -689,7 +689,7 @@ public class GraphsPage extends WebDriverUtils {
 
 
     public void verifyGraphsAreTruncatedWithNodeCountMsgSubsPage(){
-        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
+        assertEquals(" This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph. When downloading this information, it will be presented as a list due to the size of the graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
     }
 
 }

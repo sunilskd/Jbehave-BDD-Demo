@@ -116,6 +116,7 @@ Examples:
 |fid|
 |LE-58|
 |LE-46|
+|13129|
 
 Scenario: Highlight legal entities by country
 a. 0. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
