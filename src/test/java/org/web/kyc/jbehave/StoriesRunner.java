@@ -18,6 +18,7 @@ import org.jbehave.web.selenium.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.web.kyc.browser.Browser;
 import org.web.kyc.reports.BarChart;
@@ -38,6 +39,8 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.web.kyc.utils.FilesUtils.copyDirectory;
 import static org.web.kyc.utils.FilesUtils.directoryCleanUp;
 import static org.web.kyc.reports.BarChart.createBarChart;
+
+//@RunWith(Parallelized.class)
 public class StoriesRunner extends JUnitStories {
 
     /* Selenium HUB URL*/
@@ -194,7 +197,7 @@ public class StoriesRunner extends JUnitStories {
         Configuration configuration = configuration();
         return new InstanceStepsFactory(configuration,
                 /* Add all step classes here */
-                new CommonSteps(pageObject),
+                new CommonSteps(pageObject, driverProvider),
                 new OwnersSteps(pageObject),
                 new SubsidiariesSteps(pageObject),
                 new EntityDetailsSteps(pageObject),
