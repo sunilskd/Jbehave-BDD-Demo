@@ -606,7 +606,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the notification message that the graphs are truncated
+Then the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
 When the user resize graph to translate(975.25036431585,446.49504999258534) scale(0.226)
 Then the user should see the list of owners in level 5, above the root entity, in the graphs
 
@@ -663,7 +663,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-Then the user should see the notification message that the graphs are truncated when there are more than 2500 nodes
+Then the user should see the notification message that the graphs are truncated as it has more than 125 triples and more than 2500 nodes and the pdf will be downloaded as a list
 When the user enters percentage as 7 in ownership percentage filter text box in the graphs
 And the user resize graph to translate(762.8473892309161,444.76565489373127) scale(0.1)
 Then the user should see the list of owners in level 12, above the root entity, in the graphs

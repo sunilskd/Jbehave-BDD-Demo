@@ -123,9 +123,9 @@ public class GroupStructureSteps {
         pageObject.groupStructurePage().sVerifySubsidiariesForUltimateOwner(subsidiariesExamTable);
     }
 
-    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the group structure page <nodeTitle>")
-    public void verifySavedPDFGroupStructureFile(@Named("nodeTitle") String nodeTitle){
-        pageObject.groupStructurePage().verifySavedPDFGroupStructureFile(nodeTitle);
+    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the group structure page")
+    public void verifySavedPDFGroupStructureFile(@Named("fid") String fid){
+        pageObject.groupStructurePage().verifySavedPDFGroupStructureFile(fid);
     }
 
     @Then("the user should not see the country highlight options on the group strtucture page")

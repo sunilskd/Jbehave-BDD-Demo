@@ -643,45 +643,82 @@ public class GraphsPage extends WebDriverUtils {
         takeSnapshot("./src/test/resources/expected/eOwners"+nodeTitle+".png");
     }
 
-    public void verifyGraphsAreTruncatedMsg() {
+    public void verifyGraphsAreTruncatedBy5PerLogicMsg() {
         assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
     }
 
-    public void verifyGraphsAreTruncatedWithNodeCountMsg(){
+    public void verifyGraphsAreTruncatedBy2500NodesLogicMsg(){
         assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the \"show more\" link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
     }
 
-    public void verifySavedPDFGroupStructureGraphFile(String nodeTitle) {
+    public void verifySavedPDFGroupStructureGraphFile(String fid) {
         waitForInMilliSeconds(3000L);
         try {
-            CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/groupStructure_graph");
-            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/"+nodeTitle.replace(" ","")+"_groupStructure_graph",
-                    readProperties().getTestResourcePath() + "/pdfs/actual/"+nodeTitle.replace(" ","")+"_groupStructure_graph",
-                    readProperties().getTestResourcePath() + "/pdfs/difference/"+nodeTitle.replace(" ","")+"_groupStructure_graph");
+            //CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/groupStructure_graph");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + "groupStructure_graph_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/" + "groupStructure_graph_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference/" + "groupStructure_graph_" + fid + ".pdf");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void verifySavedPDFOwnersGraphFile(String nodeTitle) {
+    public void verifySavedPDFGroupStructureGraphAsListFile(String fid) {
         waitForInMilliSeconds(3000L);
         try {
-            CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/owners_graph");
-            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/"+nodeTitle.replace(" ","")+"_owners_graph",
-                    readProperties().getTestResourcePath() + "/pdfs/actual/"+nodeTitle.replace(" ","")+"_owners_graph",
-                    readProperties().getTestResourcePath() + "/pdfs/difference/"+nodeTitle.replace(" ","")+"_owners_graph");
+            //CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/groupStructure_graph");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + "groupStructure_list_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/" + "groupStructure_list_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference/" + "groupStructure_list_" + fid + ".pdf");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void verifySavedPDFSubsidiariesGraphFile(String nodeTitle) {
+    public void verifySavedPDFOwnersGraphFile(String fid) {
         waitForInMilliSeconds(3000L);
         try {
-            CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/subsidiaries_graph");
-            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/"+nodeTitle.replace(" ","")+"_subsidiaries_graph",
-                    readProperties().getTestResourcePath() + "/pdfs/actual/"+nodeTitle.replace(" ","")+"_subsidiaries_graph",
-                    readProperties().getTestResourcePath() + "/pdfs/difference/"+nodeTitle.replace(" ","")+"_subsidiaries_graph");
+            //CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/owners_graph");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + "owners_graph_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/" + "owners_graph_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference/"+ "owners_graph_" + fid + ".pdf");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifySavedPDFOwnersGraphAsListFile(String fid) {
+        waitForInMilliSeconds(3000L);
+        try {
+            //CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/owners_graph");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + "owners_list_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/" + "owners_list_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference/"+ "owners_list_" + fid + ".pdf");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void verifySavedPDFSubsidiariesGraphFile(String fid) {
+        waitForInMilliSeconds(3000L);
+        try {
+            //CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/subsidiaries_graph");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + "subsidiaries_graph_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/" + "subsidiaries_graph_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference/" + "subsidiaries_graph_" + fid + ".pdf");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void verifySavedPDFSubsidiariesGraphAsListFile(String fid) {
+        waitForInMilliSeconds(3000L);
+        try {
+            //CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/subsidiaries_graph");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + "subsidiaries_list_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/" + "subsidiaries_list_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference/" + "subsidiaries_list_" + fid + ".pdf");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -689,7 +726,14 @@ public class GraphsPage extends WebDriverUtils {
 
 
     public void verifyGraphsAreTruncatedWithNodeCountMsgSubsPage(){
-        assertEquals(" This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph. When downloading this information, it will be presented as a list due to the size of the graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
+        assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph. When downloading this information, it will be presented as a list due to the size of the graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
     }
 
+    public void verifyGraphsAreTruncatedBy2500NodesLogicAndPdfAsAListMsg() {
+        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the \"show more\" link on tiles to view hidden segments in a new graph. When downloading this information, it will be presented as a list due to the size of the graph.",getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
+    }
+
+    public void verifyGraphsAreTruncatedBy5PerLogicAndPdfAsAListMsg() {
+        assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph. When downloading this information, it will be presented as a list due to the size of the graph.", getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
+    }
 }

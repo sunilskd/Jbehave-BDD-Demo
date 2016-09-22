@@ -320,14 +320,24 @@ public class GraphsSteps {
         pageObject.graphsPage().eCaptureOwnersPageTruncatedGraph(nodeTitle);
     }
 
-    @Then("the user should see the notification message that the graphs are truncated")
-    public void verifyGraphsAreTruncatedMsg(){
-        pageObject.graphsPage().verifyGraphsAreTruncatedMsg();
+    @Then("the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5")
+    public void verifyGraphsAreTruncatedBy5PerLogicMsg(){
+        pageObject.graphsPage().verifyGraphsAreTruncatedBy5PerLogicMsg();
     }
 
-    @Then("the user should see the notification message that the graphs are truncated when there are more than 2500 nodes")
-    public void verifyGraphsAreTruncatedWithNodeCountMsg(){
-        pageObject.graphsPage().verifyGraphsAreTruncatedWithNodeCountMsg();
+    @Then("the user should see the notification message that the graphs are truncated as it has more than 125 triples and more than 2500 nodes")
+    public void verifyGraphsAreTruncatedBy2500NodesLogicMsg(){
+        pageObject.graphsPage().verifyGraphsAreTruncatedBy2500NodesLogicMsg();
+    }
+
+    @Then("the user should see the notification message that the graphs are truncated as it has more than 125 triples and more than 2500 nodes and the pdf will be downloaded as a list")
+    public void verifyGraphsAreTruncatedBy2500NodesLogicAndPdfAsAListMsg(){
+        pageObject.graphsPage().verifyGraphsAreTruncatedBy2500NodesLogicAndPdfAsAListMsg();
+    }
+
+    @Then("the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5 and the pdf will be downloaded as a list")
+    public void verifyGraphsAreTruncatedBy5PerLogicAndPdfAsAListMsg(){
+        pageObject.graphsPage().verifyGraphsAreTruncatedBy5PerLogicAndPdfAsAListMsg();
     }
 
     @When("the user resize graph to $translate")
@@ -335,24 +345,39 @@ public class GraphsSteps {
         pageObject.graphsPage().resizeGraphs(translate);
     }
 
-    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the group structure graph page <nodeTitle>")
-    public void verifySavedPDFGroupStructureGraphFile(@Named("nodeTitle")String nodeTitle){
-        pageObject.graphsPage().verifySavedPDFGroupStructureGraphFile(nodeTitle);
+    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the group structure graph page")
+    public void verifySavedPDFGroupStructureGraphFile(@Named("fid")String fid){
+        pageObject.graphsPage().verifySavedPDFGroupStructureGraphFile(fid);
     }
 
-    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners graph page <nodeTitle>")
-    public void verifySavedPDFOwnersGraphFile(@Named("nodeTitle")String nodeTitle){
-        pageObject.graphsPage().verifySavedPDFOwnersGraphFile(nodeTitle);
+    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file as a list) in the group structure graph page")
+    public void verifySavedPDFGroupStructureGraphAsListFile(@Named("fid")String fid){
+        pageObject.graphsPage().verifySavedPDFGroupStructureGraphAsListFile(fid);
     }
 
-    @Then("the user should be able to save the file including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the subsidiarie graph page <nodeTitle>")
-    public void verifySavedPDFSubsidiariesGraphFile(@Named("nodeTitle")String nodeTitle){
-        pageObject.graphsPage().verifySavedPDFSubsidiariesGraphFile(nodeTitle);
+    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners graph page")
+    public void verifySavedPDFOwnersGraphFile(@Named("fid")String fid){
+        pageObject.graphsPage().verifySavedPDFOwnersGraphFile(fid);
     }
 
-    @Then("the user should see the truncation notification message that the graphs are truncated as there are more 2500 nodes on subs page")
-    public void verifyGraphsAreTruncatedWithNodeCountMsgSubsPage(){
-        pageObject.graphsPage().verifyGraphsAreTruncatedWithNodeCountMsgSubsPage();
+    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file as a list) in the owners graph page")
+    public void verifySavedPDFOwnersGraphAsListFile(@Named("fid")String fid){
+        pageObject.graphsPage().verifySavedPDFOwnersGraphAsListFile(fid);
     }
+
+    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the subsidiaries graph page")
+    public void verifySavedPDFSubsidiariesGraphFile(@Named("fid") String fid){
+        pageObject.graphsPage().verifySavedPDFSubsidiariesGraphFile(fid);
+    }
+
+    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file as a list) in the subsidiaries graph page")
+    public void verifySavedPDFSubsidiariesGraphAsListFile(@Named("fid") String fid){
+        pageObject.graphsPage().verifySavedPDFSubsidiariesGraphAsListFile(fid);
+    }
+
+//    @Then("the user should see the truncation notification message that the graphs are truncated as there are more 2500 nodes on subs page")
+//    public void verifyGraphsAreTruncatedWithNodeCountMsgSubsPage(){
+//        pageObject.graphsPage().verifyGraphsAreTruncatedWithNodeCountMsgSubsPage();
+//    }
 
 }

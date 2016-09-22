@@ -411,7 +411,7 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the subsidiaries graph
-And the user should see the notification message that the graphs are truncated
+And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
 
 Examples:
 |fid|
@@ -429,7 +429,7 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the subsidiaries graph
 And the user should see the legal entity JPMorgan Chase & Co, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the truncation notification message that the graphs are truncated as there are more 2500 nodes on subs page
+And the user should see the notification message that the graphs are truncated as it has more than 125 triples and more than 2500 nodes and the pdf will be downloaded as a list
 
 Examples:
 |fid|
