@@ -45,7 +45,6 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
 |UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|Legal Entity D owned by Person C|
 |Agnew Meyer Robert|Banco BISA SA|1.24|||
 |Jose Luis Aranguren Aguirre|Banco BISA SA|0.88|||
 |Jorge Eduardo Rengel Sillerico|Banco BISA SA|0.68|||
@@ -57,7 +56,6 @@ When the user changes the percent filter option to View All in the owners page
 
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
 |UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|QA Test Person C|QA Legal Entity D|50.52|27 Mar 2015|Legal Entity D owned by Person C|
 |Agnew Meyer Robert|Banco BISA SA|1.24|||
 |Jose Luis Aranguren Aguirre|Banco BISA SA|0.88|||
 |Jorge Eduardo Rengel Sillerico|Banco BISA SA|0.68|||

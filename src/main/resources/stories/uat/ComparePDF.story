@@ -29,7 +29,7 @@ Examples:
 
 Scenario: KYC User can save list of subsidiaries
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -77,7 +77,7 @@ Examples:
 
 Scenario: KYC User can save truncated graph of owners
 Given the user is on the ubo login page
-When the user login as a kyc user
+When the user login as a ubo user
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
