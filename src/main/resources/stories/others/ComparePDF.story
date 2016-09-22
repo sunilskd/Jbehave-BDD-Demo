@@ -119,7 +119,7 @@ Examples:
 |fid|
 |211|
 
-Scenario: Verify owners graph with bredth > 1250 nodes
+Scenario: Verify owners graph with breadth > 1250 nodes
 Given the user is on the ubo login page
 When the user login as a ubo user
 Given the user is on the ubo login page
@@ -134,7 +134,7 @@ Examples:
 |fid|
 |194093|
 
-Scenario: Verify subsidiaries graph with bredth > 1250 nodes
+Scenario: Verify subsidiaries graph with breadth > 1250 nodes
 Given the user is on the ubo login page
 When the user login as a ubo user
 Given the user is on the ubo login page
@@ -149,7 +149,7 @@ Examples:
 |fid|
 |266890|
 
-Scenario: Verify group structure graph with bredth > 1250 nodes
+Scenario: Verify group structure graph with breadth > 1250 nodes
 Given the user is on the ubo login page
 When the user login as a ubo user
 Given the user is on the ubo login page
