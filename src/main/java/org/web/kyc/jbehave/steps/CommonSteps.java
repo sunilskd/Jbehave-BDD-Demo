@@ -6,10 +6,10 @@ import org.web.kyc.jbehave.pages.PageObject;
 
 public class CommonSteps {
 
-    private PageObject pageObject;
+    private final PageObject pageObject;
 
-    public CommonSteps(PageObject pageObject, WebDriverProvider webDriverProvider) {
-        this.pageObject = new PageObject(webDriverProvider);
+    public CommonSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @Given("the user is on the ubo login page")

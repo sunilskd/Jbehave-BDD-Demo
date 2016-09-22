@@ -6,13 +6,15 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
+import org.jbehave.web.selenium.WebDriverProvider;
 import org.web.kyc.jbehave.pages.PageObject;
 
 public class EntityDetailsSteps {
+
     private final PageObject pageObject;
 
-    public EntityDetailsSteps(PageObject pageObject) {
-        this.pageObject = pageObject;
+    public EntityDetailsSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @When("the user clicks on the entity details tab")

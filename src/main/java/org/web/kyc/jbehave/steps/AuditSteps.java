@@ -2,13 +2,15 @@ package org.web.kyc.jbehave.steps;
 
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.jbehave.web.selenium.WebDriverProvider;
 import org.web.kyc.jbehave.pages.PageObject;
 
 public class AuditSteps {
+
     private final PageObject pageObject;
 
-    public AuditSteps(PageObject pageObject) {
-        this.pageObject = pageObject;
+    public AuditSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @When("the user clicks on display audit information link in owners page")

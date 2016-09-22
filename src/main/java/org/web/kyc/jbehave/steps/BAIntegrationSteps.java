@@ -4,14 +4,15 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.annotations.Then;
+import org.jbehave.web.selenium.WebDriverProvider;
 import org.web.kyc.jbehave.pages.PageObject;
 
 public class BAIntegrationSteps {
 
     private final PageObject pageObject;
 
-    public BAIntegrationSteps(PageObject pageObject) {
-        this.pageObject = pageObject;
+    public BAIntegrationSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @Given("the user is on bankers almanac page")
