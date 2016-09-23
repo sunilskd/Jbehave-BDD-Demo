@@ -3,6 +3,7 @@ import org.jbehave.asciidoctor.reporter.AsciidoctorStoryReporter;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.embedder.Embedder;
 import org.jbehave.core.embedder.EmbedderControls;
+import org.jbehave.core.embedder.executors.SameThreadExecutors;
 import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
@@ -19,9 +20,13 @@ public class StoryEmbedder extends Embedder {
 	private WebDriverProvider webDriverProvider;
 	private SeleniumContext context = new SeleniumContext();
 	private ContextView contextView = new LocalFrameContextView().sized(50, 50);
+	private static WebDriverSteps lifeCycleSteps;
+	private Format screenShootingFormat;
 
 	public StoryEmbedder(WebDriverProvider webDriverProvider) {
 		this.webDriverProvider = webDriverProvider;
+		lifeCycleSteps = new PerStoriesWebDriverSteps(webDriverProvider);
+		screenShootingFormat = new ScreenShootingHtmlFormat(webDriverProvider);
 	}
 
 	 @Override
@@ -42,7 +47,7 @@ public class StoryEmbedder extends Embedder {
 							.withCodeLocation(codeLocationFromClass(embedderClass))
 							.withFormats(org.jbehave.core.reporters.Format.STATS,
 									org.jbehave.core.reporters.Format.CONSOLE,
-									new ScreenShootingHtmlFormat(webDriverProvider),
+									screenShootingFormat,
 									AsciidoctorStoryReporter.ASCIIDOC)
 							.withDefaultFormats()
 							.withFailureTrace(true));
@@ -58,6 +63,7 @@ public class StoryEmbedder extends Embedder {
 				new SubsidiariesSteps(webDriverProvider),
 				new EntityDetailsSteps(webDriverProvider),
 				new GroupStructureSteps(webDriverProvider),
+				lifeCycleSteps,
 				new AuditSteps(webDriverProvider),
 				new GraphsSteps(webDriverProvider),
 				new GraphControlsSteps(webDriverProvider),

@@ -6,6 +6,7 @@ import org.jbehave.core.io.StoryFinder;
 import org.jbehave.web.selenium.*;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -20,8 +21,8 @@ import static com.google.common.collect.Lists.newArrayList;
 @RunWith(Parallelized.class)
 public class RunTestsInParallel {
 
-    public WebDriverProvider webDriverProvider;
-    public String browser;
+    public static WebDriverProvider webDriverProvider;
+    public static String browser;
     public String storyName;
 
     public RunTestsInParallel(String browser, String storyName) {
@@ -29,8 +30,8 @@ public class RunTestsInParallel {
         this.storyName = storyName;
     }
 
-        @Before
-        public void setUp () {
+        @BeforeClass
+        public static void setUp () {
             String URL = "http://localhost:4444/wd/hub";
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setCapability("browserName", browser);
