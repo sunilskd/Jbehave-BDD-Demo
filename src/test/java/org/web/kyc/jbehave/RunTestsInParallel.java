@@ -6,12 +6,10 @@ import org.jbehave.core.io.StoryFinder;
 import org.jbehave.web.selenium.*;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
+import org.junit.runners.Parameterized.Parameters;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -30,8 +28,8 @@ public class RunTestsInParallel {
         this.storyName = storyName;
     }
 
-        @BeforeClass
-        public static void setUp () {
+        @Before
+        public void setUp () {
             String URL = "http://localhost:4444/wd/hub";
             DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
             desiredCapabilities.setCapability("browserName", browser);
@@ -44,12 +42,9 @@ public class RunTestsInParallel {
             webDriverProvider.get().quit();
         }
 
-        @Parameterized.Parameters
+        @Parameters
         public static Collection<Object[]> data () {
             Object[][] data = new Object[][]{
-                    //{ "firefox", "+google,+accuity" },
-//                    {"firefox", "+google"},
-//                    {"firefox", "+accuity"},
                       {"chrome", "+audit"}};
             return Arrays.asList(data);
         }
