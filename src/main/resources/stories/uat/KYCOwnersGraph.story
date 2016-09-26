@@ -30,9 +30,9 @@ JIRA ID - KYC-455 - new truncation logic owners graph
 
 Meta:@kycownersgraphsLive @live
 
-Scenario: Login
-Given the user is on the ubo login page
-When the user login as a kyc user
+Scenario: KYC user login
+Given the user is on bankers almanac page
+When the user login as a kyc user to bankers almanac page
 
 Scenario: KYC user views owners graph
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity as owner on graph above the entity it owns.
@@ -90,7 +90,6 @@ Then the user should see the list of owners in level 1, above the root entity, i
 Then the user should see the list of owners in level 2, above the root entity, in the graphs
 Then the user should not see any nodes in level 3, above the root entity, in the graphs
 
-
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
 Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
@@ -122,7 +121,6 @@ Examples:
 |30087|Japan Trustee Services|Appears: 3|The Howa Bank Ltd|
 
 
-Scenario: KYC user logout
-Meta: @id logout
-Given the user is on the ubo login page
-When the user logout
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

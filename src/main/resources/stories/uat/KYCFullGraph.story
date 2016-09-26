@@ -25,9 +25,9 @@ JIRA ID - KYC-386 - User can click "more" link from truncated graph to open anot
 
 Meta:@kycfullgraphLive @live
 
-Scenario: Login
-Given the user is on the ubo login page
-When the user login as a kyc user
+Scenario: kyc user login
+Given the user is on bankers almanac page
+When the user login as a kyc user to bankers almanac page
 
 Scenario: KYC user views full graph
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity as owner on graph above the entity it owns.
@@ -123,6 +123,5 @@ Examples:
 
 
 Scenario: KYC user logout
-Meta: @id logout
-Given the user is on the ubo login page
-When the user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

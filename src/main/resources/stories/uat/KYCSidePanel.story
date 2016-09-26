@@ -13,8 +13,8 @@ JIRA ID - KYC-272 - User can view website in side panel for legal entity on a gr
 Meta:@kycsidepanelLive @live
 
 Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a kyc user
+Given the user is on bankers almanac page
+When the user login as a kyc user to bankers almanac page
 
 Scenario: View side panel for legal entity on owners graph
 a. 0. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity
@@ -142,6 +142,5 @@ Examples:
 
 
 Scenario: KYC user logout
-Meta: @id logout
-Given the user is on the ubo login page
-When the user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

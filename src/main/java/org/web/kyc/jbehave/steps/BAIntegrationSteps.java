@@ -44,4 +44,9 @@ public class BAIntegrationSteps {
         pageObject.baIntegrationPage().verifyBankersAlamanacUboSection(fid);
     }
 
+    @When("the user logout from banker almanac page")
+    public void userLogsOutOfBankersAlmanac(){
+        pageObject.baIntegrationPage().userLogsOutOfBankersAlmanac();
+    }
+
 }

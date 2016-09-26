@@ -9,11 +9,10 @@ JIRA ID - KYC-424 - Rebranding
 
 Meta:@headerandfooterLive @live
 Scenario: UBO user login
-Given the user is on the ubo login page
-When the user login as a ubo user
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: UBO user can view footer and can navigate to respective links from group structure summary page
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 Then the user should see the bankers almanac logo in top left corner
@@ -50,3 +49,7 @@ Examples:
 Scenario: Verify print help page instruction
 Given the user is on the ubo print help page
 Then user should see the instructions to print from web browser
+
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

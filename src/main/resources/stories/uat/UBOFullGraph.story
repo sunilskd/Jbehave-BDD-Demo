@@ -22,9 +22,9 @@ JIRA ID - KYC-386 - User can click "more" link from truncated graph to open anot
 
 Meta:@ubofullgraphLive @live
 
-Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a ubo user
+Scenario: UBO user login
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: UBO user views full graph
 a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity as owner on graph above the entity it owns.
@@ -51,7 +51,6 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    21. Subsidiary relationship has percent ownership, display percent ownership on the subsidiary node
    22. Subsidiary relationship has null percent ownership, do not display a percent ownership on the subsidiary node
    23. Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -135,3 +134,7 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|countValue|legalEntity|nodeTitle|
 |444|Appears: 3|Intesa Sanpaolo SpA|JPMorgan Chase & Co|
+
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

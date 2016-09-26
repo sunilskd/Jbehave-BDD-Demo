@@ -9,9 +9,8 @@ JIRA ID - KYC 265 - Interaction between filters and highlights on all graphs
 Meta:@kycinteractionsLive @kyclive
 
 Scenario: KYC user login
-Meta: @id login
-Given the user is on the ubo login page
-When the user login as a kyc user
+Given the user is on bankers almanac page
+When the user login as a kyc user to bankers almanac page
 
 Scenario: KYC user views full graph
 a. 0. If user applies "direct relationships only" filter to graph, percent filter resets to 0
@@ -112,6 +111,5 @@ Examples:
 |30087|Japan Trustee Services|Appears: 3|The Howa Bank Ltd|
 
 Scenario: KYC user logout
-Meta: @id logout
-Given the user is on the ubo login page
-When the user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

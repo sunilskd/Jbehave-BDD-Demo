@@ -35,8 +35,8 @@ JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in produc
 Meta:@live @kycownersLive
 
 Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a kyc user
+Given the user is on bankers almanac page
+When the user login as a kyc user to bankers almanac page
 
 Scenario: Covers below scenarios
 a. 0. With percentage ownership; with country of operations; with active legal entity direct owners; with active direct owners relationships validated date and source
@@ -188,6 +188,5 @@ Examples:
 |12538|50|
 
 Scenario: KYC user logout
-Meta: @id logout
-Given the user is on the ubo login page
-When the user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

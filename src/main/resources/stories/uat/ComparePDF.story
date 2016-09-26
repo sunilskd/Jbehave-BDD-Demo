@@ -11,10 +11,11 @@ JIRA ID - KYC-36 - KYC user can save non-truncated owners graph
 JIRA ID - KYC-81 - KYC user can save non-truncated full graph
 JIRA ID - KYC-400 - KYC user can save truncated subsidiary graph
 
-Scenario: KYC User can save list of owners
-Given the user is on the ubo login page
-When the user login as a ubo user
-Given the user is on the ubo login page
+Scenario: UBO user login
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
+
+Scenario: UBO User can save list of owners
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -27,10 +28,7 @@ Examples:
 |fid|country|nodeTitle|
 |12538|USA|HomeTown Bank National Association|
 
-Scenario: KYC User can save list of subsidiaries
-Given the user is on the ubo login page
-When the user login as a ubo user
-Given the user is on the ubo login page
+Scenario: UBO User can save list of subsidiaries
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -42,10 +40,7 @@ Examples:
 |fid|country|nodeTitle|
 |1038|USA|BOA|
 
-Scenario: KYC User can save list of group structure
-Given the user is on the ubo login page
-When the user login as a ubo user
-Given the user is on the ubo login page
+Scenario: UBo User can save list of group structure
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -58,9 +53,6 @@ Examples:
 |1038|USA|BOA|
 
 Scenario: UBO User can save truncated graph of group structure
-Given the user is on the ubo login page
-When the user login as a ubo user
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -75,10 +67,7 @@ Examples:
 |fid|legalEntity|nodeTitle|
 |217510|BPCE|BPCE|
 
-Scenario: KYC User can save truncated graph of owners
-Given the user is on the ubo login page
-When the user login as a ubo user
-Given the user is on the ubo login page
+Scenario: UBO User can save truncated graph of owners
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -92,10 +81,6 @@ Examples:
 |1038|BOA|
 
 Scenario: KYC-400 User can save truncated graph of subsidiaries
-
-Given the user is on the ubo login page
-When the user login as a ubo user
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -109,7 +94,6 @@ Examples:
 |fid|nodeTitle|
 |211|Australia and New Zealand Banking Group Limited|
 
-Scenario: KYC user logout
-Meta: @id logout
-Given the user is on the ubo login page
-When the user logout
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

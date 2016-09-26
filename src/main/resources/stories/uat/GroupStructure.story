@@ -10,6 +10,10 @@ JIRA ID - KYC-75 - KYC user can click link to another entity in group structure 
 
 Meta:@groupstructureLive @live
 
+Scenario: UBO user login
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
+
 Scenario: Story covers below scenarios
 a. Entity user is viewing is highlighted in the list
 b. Entity displayed on list (could be entity user is viewing) has at least one legal entity owner that is active, the ownership relationship is active, and the entity owns greater than 50 percent of the entity user is viewing, then display owning entity indented at a higher level in the list.
@@ -26,16 +30,9 @@ l. Multiple entities are at the same level of indentation in the list, then sort
 m. If null percent ownership, do not display percent ownership for that relationship
 n. If no country of operations for legal entity on list, do not display country of operations
 o. If subsidiary relationship document is inactive, do not display the subsidiary entity on list
+p. Select a country highlight, legal entities in the group structure that have that country of operations are highlighted
+q. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
 
-Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a ubo user
-
-Scenario: Covers below scenarios
-a. 0. Select a country highlight, legal entities in the group structure that have that country of operations are highlighted
-   1. Select a second country (de-selects previous filter, highlight legal entities by new selected country and removes highlight of legal entities by previous country)
-   Verify complete group structure
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -117,3 +114,7 @@ Then the user should see the indented list of subsidiaries for the institution P
 Examples:
 |fid|country|changeCountry|
 |444|Italy|USA|
+
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

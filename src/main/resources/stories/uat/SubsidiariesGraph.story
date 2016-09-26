@@ -15,9 +15,9 @@ JIRA ID - KYC-386 - User can click "more" link from truncated graph to open anot
 
 Meta:@subsidiariesgraphLive @live
 
-Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a ubo user
+Scenario: UBO user login
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: Verify below scenarios
 a. 0. Entity on the graph (could be entity user is viewing or another entity on graph) has at least one active relationship where it is the owner and the owned entity is also active, display owned entity as subsidiary on graph and display percent ownership on subsidiary
@@ -33,7 +33,6 @@ a. 0. Entity on the graph (could be entity user is viewing or another entity on 
    10. By default, percent filter is set to 0 for both input box and slider, all subsidiaries are displayed in the graph
    11. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
    12. Verify UBO filter is not available for subsidiaries
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -94,7 +93,6 @@ Scenario: Verify below scenarios
 a. 0. Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
    1. User clicks on show more link and user is navigated to the respective graph page of that entity
    2. Verify graph truncation notification message
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -126,10 +124,7 @@ Examples:
 |fid|nodeTitle|
 |9461|Ballane SAS|
 
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page
 
-Scenario: Scenario not display the free text
-Scenario: Scenario circular relationship
-Scenario: Covers below scenarios
-a. Entity user is viewing does not have any active relationships where it is the owner, then display message "No known entities"
-b. Entity user is viewing has no relationship where it is the owner and the owned entity is active, then display message "No known entities"
-c. If no legal entity that appears on graph has country of operations, drop-down still appears with "No country highlight" as default

@@ -26,9 +26,9 @@ JIRA ID - KYC-386 - User can click "more" link from truncated graph to open anot
 
 Meta:@uboownersgraphLive @live
 
-Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a ubo user
+Scenario: UBO user login
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: Covers below scenarios
 a. 0. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
@@ -39,7 +39,6 @@ a. 0. User selects "Direct Relationships Only", then graph updates to only show 
    5. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
    6.  By Default checkbox for Direct relationship is not selected
    7. If no owners are present, filter is still available
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -84,7 +83,6 @@ a. 0. By default, percent filter is set to 0 for both input box and slider, all 
    14. Person owner has percent ownership, display percent on owner's node on graph
    15. Select a country highlight, legal entities in the owners graph that have that country of operations are highlighted (including root node of graph if applicable)
    16. Select "No country highlight", removes country highlight of legal entities
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -139,11 +137,9 @@ Examples:
 |fid|countValue|legalEntity|nodeTitle|
 |444|Appears: 3|Intesa Sanpaolo SpA|JPMorgan Chase & Co|
 
-Scenario: Entity (including entity user is viewing) appears in the same path of the graph more than once, then stop traversing path after second appearance only displaying an entity a maximum of two times in one path
-Scenario: To verify circular relationship
-Scenario: To verify owners graph when entity user is viewing is also an owner of the same entity
-Scenario: Person owner has null percent ownership, do not display percent ownership on owner node on graph
-
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page
 
 
 

@@ -13,9 +13,9 @@ JIRA ID - KYC-415 - User can see count of tiles that match a highlight
 
 Meta:@ubointeractionsLive @live
 
-Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a ubo user
+Scenario: UBO user login
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: Covers below scenarios for full graph
 a. 1. if User selects country highlight and If user changes color of a highlighted tile to appears multiple, it still counts toward the country highlight count
@@ -26,7 +26,6 @@ a. 1. if User selects country highlight and If user changes color of a highlight
    6. Country highlights drop down updates when percent filter applied
    7. Country highlights drop down updates when direct relationships only filter applied
    8. User selects country highlight ,Count of tiles currently visible that match that country is displayed
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -101,7 +100,10 @@ When the user selects a country USA from the country highlight list in the graph
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should not see the multiple appearance highlight on any node in the graphs
 
-
 Examples:
 |fid|legalEntity|
 |444|Vanguard Group Inc|
+
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page
