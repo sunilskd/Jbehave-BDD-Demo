@@ -32,11 +32,10 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity Intesa Sanpaolo SpA, user is currently viewing, as the root and highlighted on the graphs
+Then the user should see the legal entity The Fukuoka Chuo Bank Ltd, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of owners in level 2, above the root entity, in the graphs
 And the user should see the list of owners in level 3, above the root entity, in the graphs
 And the user should see the list of owners in level 4, above the root entity, in the graphs
-And the user should see the list of owners in level 5, above the root entity, in the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
@@ -65,7 +64,9 @@ When the user de-selects the selected country by selecting No country highlight 
 Then the user should not see the entities highlighted in the graphs
 
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
+When the user selects a country Japan from the country highlight list in the graphs
 When the user enters percentage as 9 in ownership percentage filter text box in the graphs
+Then the user should not see the entities highlighted in the graphs
 Then the user should see the list of owners in level 1, above the root entity, in the graphs
 Then the user should see the list of owners in level 2, above the root entity, in the graphs
 Then the user should not see any nodes in level 3, above the root entity, in the graphs
@@ -80,6 +81,18 @@ Then the user should see, percent filter is reset to 0 for both input box and sl
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
 Then the user should not see any nodes in level 2, below the root entity, in the graphs
 Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+When the user clicks on <legalEntity> node which appears more than once in the graphs
+Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
+And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Japan (13)|
+
+When the user enters percentage as 100 in ownership percentage filter text box in the graphs
+Then the user should see the owners for the legal entity The Fukuoka Chuo Bank in the graphs
+Then the user should not see the entities highlighted in the graphs
+When the user unchecks direct relationship only filter checkbox in the graphs
+Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
 
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
@@ -89,9 +102,6 @@ And the user should see the list of below unique country of operations for each 
 |COUNTRIES|
 |No country highlight|
 |Japan (29)|
-
-When the user enters percentage as 100 in ownership percentage filter text box in the graphs
-Then the user should see the owners for the legal entity The Fukuoka Chuo Bank in the graphs
 
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
