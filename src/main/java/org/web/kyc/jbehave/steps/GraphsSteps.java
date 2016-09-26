@@ -345,32 +345,35 @@ public class GraphsSteps {
         pageObject.graphsPage().resizeGraphs(translate);
     }
 
-    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the group structure graph page")
+    @Then("the user should be able to save the file <fid> (highlighted nodes will be shown only on saved graph and not list, filter panel will not be shown for graph or list) in the group structure graph page")
+    @Alias("the user should be able to save the file <fid>, as a list instead of the graph (highlighted nodes will be shown only on saved graph and not list, filter panel will not be shown for graph or list) in the group structure graph page")
     public void verifySavedPDFGroupStructureGraphFile(@Named("fid")String fid){
         pageObject.graphsPage().verifySavedPDFGroupStructureGraphFile(fid);
     }
 
-    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file as a list) in the group structure graph page")
+    @Then("the user should be able to save the file <fid> (highlighted nodes will be shown only on saved graph and not list, filter panel will not be shown for graph or list) in the group structure graph page")
     public void verifySavedPDFGroupStructureGraphAsListFile(@Named("fid")String fid){
         pageObject.graphsPage().verifySavedPDFGroupStructureGraphAsListFile(fid);
     }
 
-    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the owners graph page")
+    @Then("the user should be able to save the file <fid> (highlighted nodes will be shown only on saved graph and not list, filter panel will not be shown for graph or list) in the owners graph page")
+    @Alias("the user should be able to save the file <fid>, as a list instead of the graph (highlighted nodes will be shown only on saved graph and not list, filter panel will not be shown for graph or list) in the owners graph page")
     public void verifySavedPDFOwnersGraphFile(@Named("fid")String fid){
         pageObject.graphsPage().verifySavedPDFOwnersGraphFile(fid);
     }
 
-    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file as a list) in the owners graph page")
+    @Then("the user should be able to save the file <fid> (highlighted nodes will be shown only on saved graph and not list, filter panel will not be shown for graph or list) in the owners graph page")
     public void verifySavedPDFOwnersGraphAsListFile(@Named("fid")String fid){
         pageObject.graphsPage().verifySavedPDFOwnersGraphAsListFile(fid);
     }
 
-    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file) in the subsidiaries graph page")
+    @Then("the user should be able to save the file <fid> (highlighted nodes will be shown only on saved graph and not list, filter panel will not be shown for graph or list) in the subsidiaries graph page")
+    @Alias("the user should be able to save the file <fid>, as a list instead of the graph (highlighted nodes will be shown only on saved graph and not list, filter panel will not be shown for graph or list) in the subsidiaries graph page")
     public void verifySavedPDFSubsidiariesGraphFile(@Named("fid") String fid){
         pageObject.graphsPage().verifySavedPDFSubsidiariesGraphFile(fid);
     }
 
-    @Then("the user should be able to save the file <fid> including all content of current page regardless of screen resolution or browser viewport (Applied filters and highlights will be shown on saved file as a list) in the subsidiaries graph page")
+    @Then("the user should be able to save the file <fid> (highlighted nodes will be shown only on saved graph and not list, filter panel will not be shown for graph or list) in the subsidiaries graph page")
     public void verifySavedPDFSubsidiariesGraphAsListFile(@Named("fid") String fid){
         pageObject.graphsPage().verifySavedPDFSubsidiariesGraphAsListFile(fid);
     }
