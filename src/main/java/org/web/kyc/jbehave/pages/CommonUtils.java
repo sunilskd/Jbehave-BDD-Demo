@@ -204,7 +204,7 @@ public class CommonUtils extends WebDriverUtils {
 
     public static void renamingDownLoadedFile(String nodeTitle, String path){
         File downloadedPDFFile = new File(readProperties().getTestResourcePath()+path);
-        File renamedFile = new File(readProperties().getTestResourcePath()+path.substring(0,13)+nodeTitle.replace(" ","")+"_"+path.substring(13));
+        File renamedFile = new File(readProperties().getTestResourcePath() + path.substring(0,13) + nodeTitle.replace(" ","") + "-" + path.substring(13));
         if(downloadedPDFFile.renameTo(renamedFile))
             System.out.println("Success");
         else

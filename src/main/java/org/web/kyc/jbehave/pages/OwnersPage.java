@@ -289,14 +289,14 @@ public class OwnersPage extends WebDriverUtils {
 
 
 
-    public void verifySavedPDFFile(String nodeTitle) {
+    public void verifySavedPDFFile(String fid) {
         waitForInMilliSeconds(3000L);
         try {
 
-            CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/owners_summary");
-            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/"+nodeTitle.replace(" ","")+"_owners_summary",
-                                readProperties().getTestResourcePath() + "/pdfs/actual/"+nodeTitle.replace(" ","")+"_owners_summary",
-                                readProperties().getTestResourcePath() + "/pdfs/difference/"+nodeTitle.replace(" ","")+"_owners_summary");
+            //CommonUtils.renamingDownLoadedFile(nodeTitle,"/pdfs/actual/owners_summary");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + "owners_summary_" + fid + ".pdf",
+                                readProperties().getTestResourcePath() + "/pdfs/actual/" + "owners_summary_" + fid + ".pdf",
+                                readProperties().getTestResourcePath() + "/pdfs/difference/" + "owners_summary_" + fid + ".pdf");
         } catch (IOException e) {
             e.printStackTrace();
         }

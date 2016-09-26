@@ -204,13 +204,13 @@ public class GroupStructurePage extends WebDriverUtils {
         }
     }
 
-    public void verifySavedPDFGroupStructureFile(String nodeTitle) {
+    public void verifySavedPDFGroupStructureFile(String fid) {
         waitForInMilliSeconds(3000L);
         try {
-            CommonUtils.renamingDownLoadedFile(nodeTitle, "/pdfs/actual/groupStructure_summary");
-            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + nodeTitle.replace(" ", "") + "_groupStructure_summary",
-                    readProperties().getTestResourcePath() + "/pdfs/actual/" + nodeTitle.replace(" ", "") + "_groupStructure_summary",
-                    readProperties().getTestResourcePath() + "/pdfs/difference/" + nodeTitle.replace(" ", "") + "_groupStructure_summary");
+            //CommonUtils.renamingDownLoadedFile(nodeTitle, "/pdfs/actual/groupStructure_summary");
+            comparePDFsContent(readProperties().getTestResourcePath() + "/pdfs/expected/" + "groupStructure_summary_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/actual/" +  "groupStructure_summary_" + fid + ".pdf",
+                    readProperties().getTestResourcePath() + "/pdfs/difference/" + "groupStructure_summary_" + fid + ".pdf");
         } catch (IOException e) {
             e.printStackTrace();
         }
