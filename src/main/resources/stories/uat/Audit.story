@@ -13,8 +13,8 @@ JIRA ID - KYC-311 - Audit Trails date format is incorrect. The format should be 
 
 Meta:@auditLive @live
 Scenario: UBO user login
-Given the user is on the ubo login page
-When the user login as a ubo user
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: KYC user can view audit trail
 a. 0. User clicks "Display Audit Information", audit section expands with legal title of legal entity user is viewing in the header of the table, button user clicked is renamed to "Hide Audit Information"
@@ -23,7 +23,6 @@ a. 0. User clicks "Display Audit Information", audit section expands with legal 
    3. Sort list of actions by date, listing the most recent at the top
    4. If action date has accuracy attribute of day, then display day, month, and year
    5  If there is only a "Supplied" date, display that as the "Last updated on" date
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -51,4 +50,8 @@ Then the audit section should collapse and Owners list should be moved to top se
 Examples:
 |fid|
 |211|
+
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page
 

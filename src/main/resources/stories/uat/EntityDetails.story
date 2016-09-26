@@ -5,9 +5,9 @@ image:.uat.EntityDetails.stats.png
 
 Meta:@entityDetailsLive @live
 
-Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a kyc user
+Scenario: UBO user login
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: Covers below scenarios
 a. 0. Display all head office entity where useInaddress is true
@@ -24,7 +24,7 @@ d. 0. If active stock exchange relationship(s) exist, display legal title of sto
 e. 0. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
    1. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
 
-Given the user is on the ubo login page
+
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
 Then the user should see the headers with institution legal title and bankers almanac id in entity details page
@@ -39,7 +39,7 @@ And the user should see website information in the summary section of entity det
 Examples:
 |fid|
 |1038|
-|815|
-|58285|
-|4236|
-|15586|
+
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

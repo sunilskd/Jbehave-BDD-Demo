@@ -16,8 +16,8 @@ JIRA ID - KYC-188 - Display relationship validated date on subsidiary list
 Meta:@subsidiariesLive @live
 
 Scenario: KYC user login
-Given the user is on the ubo login page
-When the user login as a kyc user
+Given the user is on bankers almanac page
+When the user login as a kyc user to bankers almanac page
 
 Scenario: Covers below scenarios
 a. 0. With percentage ownership; with country of operations; with validated date; with active legal entity subsidiaries; with active subsidiary relationships
@@ -28,7 +28,6 @@ a. 0. With percentage ownership; with country of operations; with validated date
    5. Select a country highlight, legal entities in the subsidiaries list that have that country of operations are highlighted
 b. If percentage ownership is null then display record with no percentage ownership
 c. 0. If country of operations is not present then display records with no country
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -48,7 +47,6 @@ Scenario: User clicks and opens legal title of legal entity that appears in subs
 Select a second filter (first filter is de-selected, list updates to match new filter)
 View all is selected by default (displays all direct subsidiaries regardless of percent ownership)
    1. Selecting 10 and above filters out any entities owned by less than 10 or have null ownership
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -59,15 +57,14 @@ Then the user should see the list of direct subsidiaries ordered by percentage o
 When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|VALIDATED DATE|
-|Acceptance Alliance LLC|USA||09 Apr 2010|
-|Banc of America Merchant Services LLC|USA||09 Apr 2010|
+|Acceptance Alliance LLC|USA|||
+|Banc of America Merchant Services LLC|USA|||
 
 Examples:
 |fid|percentFilter|
 |1038|10|
 
 Scenario: If there are no subsidiaries display "No known entities" for now;
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -79,7 +76,6 @@ Examples:
 |fid|percentFilter|
 |269306|10|
 
-
 Scenario: KYC user logout
-Given the user is on the ubo login page
-When the user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

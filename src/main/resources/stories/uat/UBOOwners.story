@@ -32,8 +32,8 @@ JIRA ID - KYC-131 - Restrict entity types displayed on direct owners list by UBO
 Meta:@uboownersLive @live
 
 Scenario: UBO user login
-Given the user is on the ubo login page
-When the user login as a ubo user
+Given the user is on bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: Covers below scenarios
 a. 0. Person or institution or other entity type owner is active and Ownership relationship is active (Display on direct owners list, sorted in list with other owner types first by percent ownership, then alphabetically by personSortKey)
@@ -41,16 +41,15 @@ a. 0. Person or institution or other entity type owner is active and Ownership r
    2. If only ownerType is present display owner as "ownerType"
    3. Display source as "source, extended source" when both source and extended source are present
    4. Display source as "source" when only source is present
-   Do not display source when source and extecnded source are not present
+   5. Do not display source when source and extecnded source are not present
 b. 0. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
    1. If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
-   Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
-c. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
+   2. Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
+c. 0. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
 d. 0. If ownerType is not present display owner as "entityReference/description"
    1. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
-Verify percentage meter bar for direct owners (person or institution or other entity type)
-e. UBO user can view direct owners that has people as owners.
-Given the user is on the ubo login page
+   2. Verify percentage meter bar for direct owners (person or institution or other entity type)
+e. 0. UBO user can view direct owners that has people as owners.
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -73,7 +72,6 @@ a. 0. User clicks and opens legal title of legal entity that appears in direct o
    1. Select a second filter (first filter is de-selected, list updates to match new filter)
    2. View all is selected by default (displays all direct owners regardless of percent ownership);
    3. Selecting 10 and above filters out any entity that has null or less than 10 ownership
-Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -90,5 +88,5 @@ Examples:
 |12538|10|
 
 Scenario: UBO user logout
-Given the user is on the ubo login page
-When the user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page

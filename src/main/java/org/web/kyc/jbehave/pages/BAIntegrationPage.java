@@ -11,7 +11,8 @@ public class BAIntegrationPage extends WebDriverUtils {
     private By user_login_input_box_id = By.xpath("//*[@id='Username']");
     private By user_password_input_box_id = By.xpath("//*[@id='Password']");
     private By login_button_xpath = By.xpath("//*[@id='Submit']");
-    private By view_on_bankers_almanac_button_xpath =By.xpath("//a[@class='ba-link']");
+    private By view_enhanced_ubo_app__xpath =By.xpath("//*[@id='newUBOlink']");
+    private By view_on_bankers_almanac_button_xpath =By.xpath(".//*[@id='tools']/a[1]");
     private By logout_link_text_xpath = By.xpath(".//*[@id='ctl00_LoginBar_lnkLogin']/u");
     private By ubo_declaration_document_link_text_xpath =By.xpath("//div/div/div/a");
     private String userType="";
@@ -21,7 +22,7 @@ public class BAIntegrationPage extends WebDriverUtils {
     }
 
     public void launchBankersAlmanac() {
-        get(readProperties().getBankersAlmanacUrl());
+        get(readProperties().getBankersAlmanacUrl()+"formslogin.aspx");
         manage().window().maximize();
     }
 
@@ -36,6 +37,9 @@ public class BAIntegrationPage extends WebDriverUtils {
         enterStringInInputBox(user_password_input_box_id, "password");
         clickOnWebElement(login_button_xpath);
         waitForInMilliSeconds(2000L);
+        get(readProperties().getBankersAlmanacUrl()+"private/mbkssi.aspx?fid=1038&source=searchbar");
+        waitForInMilliSeconds(2000L);
+        clickOnWebElement(view_enhanced_ubo_app__xpath);
     }
 
     public void clickViewOnBankersAlmanac(){
@@ -43,11 +47,17 @@ public class BAIntegrationPage extends WebDriverUtils {
         waitForInMilliSeconds(2000L);
     }
 
-    public void verifyBankersAlmanacPage(String fid){
+
+    public void verifyBankersAlmanacPage(String fid) {
         waitForInMilliSeconds(3000L);
         assertEquals("http://batest.rbidev.ds/private/mbkhof.aspx?fid=" + fid, getCurrentUrl());
+    }
+
+    public void userLogsOutOfBankersAlmanac(){
+
         clickOnWebElement(logout_link_text_xpath);
         waitForInMilliSeconds(2000L);
+
     }
 
     public void clickUboDeclarationDocument(){
