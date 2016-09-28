@@ -4,10 +4,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.jbehave.core.model.ExamplesTable;
 import org.jbehave.web.selenium.WebDriverProvider;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.w3c.dom.Document;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -31,7 +33,7 @@ public class GraphsPage extends WebDriverUtils {
     private String graph_country_xpath = "/*[local-name()='text'][2]";
     private By graph_subsidiaries_multiple_node_xpath = By.xpath("//*[local-name()='g'][contains(@class,'sub')][contains(@class,'multiple')]");
     private By graph_no_known_entities_message_text_xpath = By.xpath("//div[@class='notification']/p");
-    private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[local-name()='title']");
+    private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')][not(contains(@class,'highlight-multiple'))]");
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = "/*[local-name()='text']/*[local-name()='title']";
     private String graph_subsidiaries_xpath = "//*[local-name()='g'][contains(@class,'sub')][@parent=";
@@ -79,8 +81,9 @@ public class GraphsPage extends WebDriverUtils {
     public void verifyRootNodeInTheGraphs(String rootEntity) {
         waitForWebElementToAppear(By.xpath(graph_root_node));
         assertTrue(isWebElementDisplayed(By.xpath(graph_root_node + graph_root_node_highlight_xpath)));
-        assertEquals(rootEntity, getWebElementText(By.xpath(graph_root_node + graph_legal_entity_title_xpath)));
-        assertEquals("", getWebElementText(By.xpath(graph_root_node + graph_percent_xpath)));
+        assertEquals(rootEntity, getWebElementText(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']")));
+        assertFalse(isWebElementDisplayed(By.xpath(graph_root_node + graph_percent_xpath)));
+        //assertEquals("", getWebElementText(By.xpath(graph_root_node + graph_percent_xpath)));
     }
 
     public void verifySubsGraphHeader() {
@@ -101,8 +104,6 @@ public class GraphsPage extends WebDriverUtils {
     public void dVerifyGraphNodesAtLevels(String level, String ownersOrSubs) {
         waitForInMilliSeconds(2000L);
         String childLevel = "";
-        List <String> eNodeList = new ArrayList<>();
-        Document eDirectOwnersOrSubsList = null;
 
         /* Getting the child level. The levels are 250 apart*/
         if(ownersOrSubs.equals("owners")){
@@ -111,9 +112,22 @@ public class GraphsPage extends WebDriverUtils {
             childLevel = String.valueOf(Integer.parseInt(level) - 250);
         }
 
-        for(int i=0; i<getNodesAtLevel(childLevel).get("aLegalTitle").size(); i++) {
-            nvPairs.add(new BasicNameValuePair("name", getNodesAtLevel(childLevel).get("aLegalTitle").get(i).getText()));
+        List <String> eNodeList = getExpectedNodesList(childLevel, ownersOrSubs);
+        List aNodeList = getActualNodesList(level);
+
+        verifyGraph(aNodeList, eNodeList);
+    }
+
+    public List<String> getExpectedNodesList(String level, String ownersOrSubs){
+        List <String> eNodeList = new ArrayList<>();
+        List<String> aLegalTitle = getNodesAtLevel(level).get("aLegalTitle");
+        Document eDirectOwnersOrSubsList = null;
+
+        for(int i=0; i<aLegalTitle.size(); i++) {
+
+            nvPairs.add(new BasicNameValuePair("name", aLegalTitle.get(i)));
             httpRequest().removeNameValuePair("fid");
+
             if(ownersOrSubs.equals("owners")){
                 eDirectOwnersOrSubsList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
             } else if(ownersOrSubs.equals("subsidiaries")){
@@ -122,37 +136,66 @@ public class GraphsPage extends WebDriverUtils {
 
             for (int j = 0; j < eDirectOwnersOrSubsList.getElementsByTagName("entityName").getLength(); j++) {
                 eNodeList.add(
-                                eDirectOwnersOrSubsList.getElementsByTagName("entityName").item(j).getTextContent().replace("%", "").replace(" ", "") +
-                                eDirectOwnersOrSubsList.getElementsByTagName("percentOwnership").item(j).getTextContent().replace("%", "").replace(" ", "") +
-                                eDirectOwnersOrSubsList.getElementsByTagName("countryOfOperations").item(j).getTextContent().replace(" ", "")
+                        eDirectOwnersOrSubsList.getElementsByTagName("entityName").item(j).getTextContent().replace("%", "").replace(" ", "") +
+                        eDirectOwnersOrSubsList.getElementsByTagName("percentOwnership").item(j).getTextContent().replace("%", "").replace(" ", "") +
+                        eDirectOwnersOrSubsList.getElementsByTagName("countryOfOperations").item(j).getTextContent().replace(" ", "")
                 );
             }
 
             for (int j = 0; j < eDirectOwnersOrSubsList.getElementsByTagName("freeTextEntity").getLength(); j++) {
-                eNodeList.add(eDirectOwnersOrSubsList.getElementsByTagName("freeTextEntity").item(j).getTextContent().replace("%", "").replace(" ", ""));
+                        eNodeList.add(eDirectOwnersOrSubsList.getElementsByTagName("freeTextEntity").item(j).getTextContent().replace("%", "").replace(" ", ""));
             }
+
             httpRequest().removeNameValuePair("name");
         }
-
-        List aNodeList = new ArrayList();
-        /* Creating a list of actual owners list by concatenating legal title, percent and country */
-        for (int i = 0; i < getNodesAtLevel(level).get("aNodes").size(); i++) {
-            aNodeList.add(
-                            getNodesAtLevel(level).get("aLegalTitle").get(i).getText().replace("%", "").replace(" ", "") +
-                            getNodesAtLevel(level).get("aPercent").get(i).getText().replace("%", "") +
-                            getNodesAtLevel(level).get("aCountry").get(i).getText().replace(" ", "")
-            );
-        }
-
-        verifyGraph(aNodeList, eNodeList);
+        return eNodeList;
     }
 
-    public Map<String, List<WebElement>> getNodesAtLevel(String level){
-        Map<String, List<WebElement>> graphElementMap = new HashMap<>();
-        graphElementMap.put("aNodes", getWebElements(By.xpath(graph_level_xpath + level + ")')]")));
-        graphElementMap.put("aLegalTitle", getWebElements(By.xpath(graph_level_xpath + level + ")')]" + "//*[local-name()='title']")));
-        graphElementMap.put("aPercent", getWebElements(By.xpath(graph_level_xpath + level + ")')]" + graph_percent_xpath)));
-        graphElementMap.put("aCountry", getWebElements(By.xpath(graph_level_xpath + level + ")')]" + graph_country_xpath)));
+    public List<String> getActualNodesList(String level){
+        List aNodeList = new ArrayList();
+        Map<String, List<String>> aNodeMap = getNodesAtLevel(level);
+
+        /* Creating a list of actual owners list by concatenating legal title, percent and country */
+        for (int i = 0; i < aNodeMap.get("aNodes").size(); i++) {
+            aNodeList.add(
+                    aNodeMap.get("aLegalTitle").get(i).replace("%", "").replace(" ", "") +
+                    aNodeMap.get("aPercent").get(i).replace("%", "") +
+                    aNodeMap.get("aCountry").get(i).replace(" ", "")
+            );
+        }
+        return aNodeList;
+    }
+
+    public Map<String, List<String>> getNodesAtLevel(String level){
+
+        Map<String, List<String>> graphElementMap = new HashMap<>();
+        List<WebElement> nodes = getWebElements(By.xpath(graph_level_xpath + level + ")')]"));
+        List<String> aLegalTitle = new ArrayList<>();
+        List<String> aPercent = new ArrayList<>();
+        List<String> aCountry = new ArrayList<>();
+
+        graphElementMap.put("aNodes", getWebElementsText(By.xpath(graph_level_xpath + level + ")')]")));
+        manage().timeouts().implicitlyWait(1, TimeUnit.MILLISECONDS);
+
+        for(int i=0; i<nodes.size(); i++){
+            try {
+                aLegalTitle.add(nodes.get(i).findElement(By.cssSelector("title")).getText());
+            } catch (NoSuchElementException e) {
+                aLegalTitle.add(nodes.get(i).findElement(By.cssSelector(".name")).getText());
+            }
+
+            try {
+                aPercent.add(nodes.get(i).findElement(By.cssSelector(".ownership")).getText());
+            } catch (NoSuchElementException e) {
+                aPercent.add("");
+            }
+
+            aCountry.add(nodes.get(i).findElement(By.cssSelector("[text-anchor=\"middle\"]")).getText());
+        }
+
+        graphElementMap.put("aLegalTitle", aLegalTitle);
+        graphElementMap.put("aPercent", aPercent);
+        graphElementMap.put("aCountry", aCountry);
         return graphElementMap;
     }
 
@@ -186,21 +229,25 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyNoEntitiesMsg() {
-        //waitForWebElementToAppear(graph_no_known_entities_message_text_xpath);
         waitForInMilliSeconds(3000L);
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
-        //assertFalse(isWebElementDisplayed(graph_in_product_msg_text_xpath));
     }
 
     public void verifyEntitiesAreHighlightedForSelectedCountry(ExamplesTable highlightedEntitiesExamTable) {
         List<WebElement> webElements = getWebElements(graph_country_highlight_nodes_xpath);
-        List<String> webElement = getWebElementsText(graph_country_highlight_nodes_xpath);
+        List<WebElement> webElement = getWebElements(graph_country_highlight_nodes_xpath);
 
         List aNodeList = new ArrayList();
         /* Comparing the size of actual and expected list */
         assertEquals(webElements.size(), highlightedEntitiesExamTable.getRowCount());
+
         for (int i = 0; i < webElement.size(); i++) {
-            aNodeList.add(webElement.get(i).toString().replace(" ",""));
+            String legalName="";
+            for (int j=0; j < webElement.get(i).findElements(By.cssSelector(".name")).size(); j++){
+                legalName = legalName.concat(webElement.get(i).findElements(By.cssSelector(".name")).get(j).getText());
+            }
+
+            aNodeList.add(legalName.replace(" ",""));
         }
         verifyNodes(aNodeList, highlightedEntitiesExamTable);
     }
@@ -233,11 +280,15 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyParentChildRelationship(String legalEntity, List eNodeList, String xpath) {
+        String legalTitleName;
         List<String> aNodeList = new ArrayList<>();
         List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
         String id = "";
+        manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
         for (int i = 0; i < nodes.size(); i++) {
-            if (nodes.get(i).findElement(By.xpath(".//*[local-name()='title']")).getText().equals(legalEntity)) {
+            legalTitleName = nodes.get(i).findElement(By.cssSelector(".name")).getText();
+            if (legalTitleName.equals(legalEntity)) {
                 id = nodes.get(i).getAttribute("id");
                 break;
             }
@@ -245,32 +296,47 @@ public class GraphsPage extends WebDriverUtils {
 
         List<WebElement> owners = getWebElements(By.xpath(xpath + id + "]"));
         List aLegalTitles = new ArrayList();
+
         for(int i=0; i<owners.size(); i++){
-            String aLegalTitle = "";
-            List<WebElement> legalTitle = owners.get(i).findElements(By.xpath(".//*[local-name()='title']"));
-            for(int j=0; j<legalTitle.size(); j++){
-                aLegalTitle = aLegalTitle.concat(legalTitle.get(j).getText());
+            try {
+                aLegalTitles.add(owners.get(i).findElement(By.cssSelector("title")).getText());
+            } catch (NoSuchElementException e) {
+                aLegalTitles.add(owners.get(i).findElement(By.cssSelector(".name")).getText());
             }
-            aLegalTitles.add(aLegalTitle);
         }
 
         for (int i = 0; i < owners.size(); i++) {
+            String legalName = aLegalTitles.get(i).toString().replace("%", "").replace(" ","");
+            String percentage;
+
+            try{
+                percentage = owners.get(i).findElement(By.cssSelector(".ownership")).getText().replace("%", "").replace(" ","");
+            } catch (NoSuchElementException e){
+                percentage = "";
+            }
+
+            String country = owners.get(i).findElement(By.cssSelector("[text-anchor=\"middle\"]")).getText().replace(" ","");
+
             aNodeList.add(
-                            aLegalTitles.get(i).toString().replace("%", "").replace(" ","") +
-                            owners.get(i).findElement(By.xpath("." + graph_percent_xpath)).getText().replace("%", "").replace(" ","") +
-                            owners.get(i).findElement(By.xpath("." + graph_country_xpath)).getText().replace(" ","")
+                    legalName + percentage + country
             );
         }
         verifyGraph(aNodeList, eNodeList);
     }
 
     public void verifyingCountForMultipleDisplayedNodes(String legalEntity, String countValue) {
+        String entityTile;
         List<WebElement> multipleNode  = getWebElements(By.xpath(graph_multiple_node_xpath));
         assertTrue(getWebElements(By.xpath(graph_multiple_node_xpath)).size()>0);
         for (int i = 0; i < multipleNode.size(); i++) {
-                String entityTile = multipleNode.get(i).findElement(graph_multiple_node_title_xpath).getText();
+                manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+                try {
+                    entityTile = multipleNode.get(i).findElement(By.cssSelector(".name")).getText();
+                } catch (NoSuchElementException e){
+                    entityTile = multipleNode.get(i).findElement(By.cssSelector("title")).getText();
+                }
                 if (entityTile.equalsIgnoreCase(legalEntity)) {
-                    String appearsCount = multipleNode.get(i).findElements(By.tagName("text")).get(3).getText();
+                    String appearsCount = multipleNode.get(i).findElement(By.className("count")).getText();
                     assertEquals(appearsCount, countValue);
                 }
         }
@@ -282,19 +348,30 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     private void comparingAndExtractingTitle(String entityType, List<WebElement> nodes) {
+        String multipleNodeTitle;
         for(WebElement node : nodes){
-            if(entityType.equalsIgnoreCase(node.findElement(graph_multiple_node_title_xpath).getText())){
-                String appearsCount = node.findElements(By.tagName("text")).get(2).getText();
-                assertTrue(appearsCount.isEmpty());
+            try{
+                multipleNodeTitle = node.findElement(By.cssSelector("title")).getText();
+            } catch (NoSuchElementException e) {
+                multipleNodeTitle = node.findElement(By.cssSelector(".name")).getText();
+            }
+
+            if(entityType.equalsIgnoreCase(multipleNodeTitle)){
+                assertFalse(isWebElementDisplayed(node.findElements(By.className("count"))));
             }
         }
     }
 
     public void selectingNodeToBeClicked(String legalEntity){
+        String actualEntityTile;
         try{
             List<WebElement> multipleNode  = getWebElements(By.xpath(graph_multiple_node_xpath));
             for(int i=0;i<multipleNode.size();i++){
-                String actualEntityTile = multipleNode.get(i).findElement(graph_multiple_node_title_xpath).getText();
+                try {
+                    actualEntityTile = multipleNode.get(i).findElement(By.cssSelector("title")).getText();
+                } catch (NoSuchElementException e) {
+                    actualEntityTile = multipleNode.get(i).findElement(By.cssSelector(".name")).getText();
+                }
                 if(legalEntity.equalsIgnoreCase(actualEntityTile)){
                     Thread.sleep(5000L);
                     getActions().click(multipleNode.get(i)).build().perform();
@@ -307,9 +384,14 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyingHighLightDisplayedForMultipleNode(String legalEntity) {
+        String highlightedNodesTitle;
         List<WebElement> highlightNodesList = getWebElements(graph_multiple_node_highlight_xpath);
         for (int j = 0; j < highlightNodesList.size(); j++) {
-            String highlightedNodesTitle = highlightNodesList.get(j).findElement(graph_multiple_node_title_xpath).getText();
+            try{
+                highlightedNodesTitle = highlightNodesList.get(j).findElement(By.cssSelector("title")).getText();
+            } catch (NoSuchElementException e) {
+                highlightedNodesTitle = highlightNodesList.get(j).findElement(By.cssSelector(".name")).getText();
+            }
             assertEquals(highlightedNodesTitle, legalEntity);
         }
     }
@@ -622,8 +704,8 @@ public class GraphsPage extends WebDriverUtils {
         for(int i=0; i<nodes.size(); i++){
             if(nodes.get(i).getText().contains(nodeTitle)){
                 waitForInMilliSeconds(3000L);
-                assertEquals(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][3]")).getText(),"Show More");
-                getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][3]"))).perform();
+                assertEquals(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][@class='show-more']")).getText(),"Show More");
+                getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][@class='show-more']"))).perform();
                 Thread.sleep(5000L);
                 break;
             }

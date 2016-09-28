@@ -75,8 +75,13 @@ public class WebDriverUtils extends WebDriverPage {
 
     /* Returns true if element is present */
     public Boolean isWebElementDisplayed(By by) {
-        manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         return findElements(by).size() != 0;
+    }
+
+    public Boolean isWebElementDisplayed(List<WebElement> webElements) {
+        manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        return webElements.size() != 0;
     }
 
     public List<String> getWebElementsAttributeValue(By by, String attribute) {
@@ -111,6 +116,7 @@ public class WebDriverUtils extends WebDriverPage {
         }
         return webElementsText;
     }
+
 
     public void waitForPageToLoad(Long seconds) {
         manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
