@@ -10,7 +10,6 @@ import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.*;
 import org.jbehave.web.selenium.*;
 import org.web.kyc.jbehave.steps.*;
-
 import java.text.SimpleDateFormat;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
@@ -27,6 +26,11 @@ public class StoryEmbedder extends Embedder {
 		this.webDriverProvider = webDriverProvider;
 		lifeCycleSteps = new PerStoriesWebDriverSteps(webDriverProvider);
 		screenShootingFormat = new ScreenShootingHtmlFormat(webDriverProvider);
+
+        if (lifeCycleSteps instanceof PerStoriesWebDriverSteps) {
+            useExecutorService(new SameThreadExecutors().create(
+                    embedderControls()));
+        }
 	}
 
 	 @Override

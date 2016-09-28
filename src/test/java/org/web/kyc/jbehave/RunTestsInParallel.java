@@ -45,7 +45,8 @@ public class RunTestsInParallel {
         @Parameters
         public static Collection<Object[]> data () {
             Object[][] data = new Object[][]{
-                      {"chrome", "+audit"}};
+                      {"chrome", "+audit"},
+                      {"chrome", "+entitydetails"}};
             return Arrays.asList(data);
         }
 
