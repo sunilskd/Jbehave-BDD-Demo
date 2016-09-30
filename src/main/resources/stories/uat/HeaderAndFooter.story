@@ -27,7 +27,7 @@ Then user should see the instructions to print from web browser open in new tab
 When the user clicks on the group structure tab
 Then the user should see the copyright notice: © Reed Business Information Limited (year)
 When the user clicks on Contact Us link in footer section
-Then user is taken to a URL http://www.accuity.com/customer-support/ that opens in a new window
+Then user is taken to a URL http://www.accuity.com/support/ that opens in a new window
 When the user clicks on Help link in footer section
 Then user is taken to a URL http://www.bankersalmanac.com/addcon/help/default.aspx that opens in a new window
 When the user clicks on Portfolio link in footer section

@@ -645,6 +645,7 @@ public class GraphsPage extends WebDriverUtils {
 
     public void verifyGraphsAreTruncatedBy5PerLogicMsg() {
         assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
+
     }
 
     public void verifyGraphsAreTruncatedBy2500NodesLogicMsg(){

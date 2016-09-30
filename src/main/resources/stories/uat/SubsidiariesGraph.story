@@ -104,7 +104,7 @@ And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the subsidiaries graph
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the notification message that the graphs are truncated
+And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|

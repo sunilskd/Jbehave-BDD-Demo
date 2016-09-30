@@ -103,7 +103,7 @@ When the user clicks on the tile of the another legal entity <switchNode> (inclu
 Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
 
 Examples:
-|fid|switchNodenodeTitle|nodeTitle|
+|fid|switchNode|nodeTitle|
 |200|Public Bank (Hong Kong) Limited|Public Bank Berhad|
 
 Scenario: User can click on the website in sidepanel

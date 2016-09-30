@@ -79,6 +79,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
 |UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|A E Usoltsev|Blackrock Inc|20|||
 |Mrs Nada Aoueini|BLOM BANK SAL|5|09 Mar 2016|BLOM BANK SAL, direct from institution|
 
 Examples:

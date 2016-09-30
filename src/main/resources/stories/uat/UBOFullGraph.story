@@ -61,7 +61,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
-Then the user should see the notification message that the graphs are truncated
+And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
