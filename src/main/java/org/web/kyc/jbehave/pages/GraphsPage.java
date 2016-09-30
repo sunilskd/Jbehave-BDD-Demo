@@ -28,7 +28,7 @@ public class GraphsPage extends WebDriverUtils {
     private String graph_percent_xpath = "/*[local-name()='text'][1]/*[local-name()='tspan'][@class='ownership'][@x='40']";
     private By graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
     private By graph_button_xpath = By.xpath("//*[@id='view-options']/ul/li[2]");
-    private By graph_draw_area_xpath = By.xpath("//*[local-name()='g'][@class='drawarea']");
+    private By graph_draw_area_xpath = By.xpath("//*[local-name()='g'][@id='drawarea']");
     private String graph_level_xpath = "//*[contains(@transform,',";
     private String graph_country_xpath = "/*[local-name()='text'][2]";
     private By graph_subsidiaries_multiple_node_xpath = By.xpath("//*[local-name()='g'][contains(@class,'sub')][contains(@class,'multiple')]");
@@ -178,10 +178,14 @@ public class GraphsPage extends WebDriverUtils {
         manage().timeouts().implicitlyWait(1, TimeUnit.MILLISECONDS);
 
         for(int i=0; i<nodes.size(); i++){
+            String legalTitle = "";
             try {
                 aLegalTitle.add(nodes.get(i).findElement(By.cssSelector("title")).getText());
             } catch (NoSuchElementException e) {
-                aLegalTitle.add(nodes.get(i).findElement(By.cssSelector(".name")).getText());
+                for(int j=0; j<nodes.get(i).findElements(By.cssSelector(".name")).size(); j++){
+                    legalTitle = legalTitle.concat(nodes.get(i).findElements(By.cssSelector(".name")).get(j).getText());
+                }
+                aLegalTitle.add(legalTitle);
             }
 
             try {
@@ -702,7 +706,7 @@ public class GraphsPage extends WebDriverUtils {
         try{
         List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
         for(int i=0; i<nodes.size(); i++){
-            if(nodes.get(i).getText().contains(nodeTitle)){
+            if(nodes.get(i).getText().replace(" ","").contains(nodeTitle.replace(" ",""))){
                 waitForInMilliSeconds(3000L);
                 assertEquals(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][@class='show-more']")).getText(),"Show More");
                 getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][@class='show-more']"))).perform();

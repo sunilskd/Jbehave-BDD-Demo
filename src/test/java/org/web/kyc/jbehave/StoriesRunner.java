@@ -38,6 +38,7 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.web.kyc.utils.FilesUtils.copyDirectory;
 import static org.web.kyc.utils.FilesUtils.directoryCleanUp;
 import static org.web.kyc.reports.BarChart.createBarChart;
+
 public class StoriesRunner extends JUnitStories {
 
     /* Selenium HUB URL*/
@@ -194,18 +195,18 @@ public class StoriesRunner extends JUnitStories {
         Configuration configuration = configuration();
         return new InstanceStepsFactory(configuration,
                 /* Add all step classes here */
-                new CommonSteps(pageObject),
-                new OwnersSteps(pageObject),
-                new SubsidiariesSteps(pageObject),
-                new EntityDetailsSteps(pageObject),
-                new GroupStructureSteps(pageObject),
+                new CommonSteps(driverProvider),
+                new OwnersSteps(driverProvider),
+                new SubsidiariesSteps(driverProvider),
+                new EntityDetailsSteps(driverProvider),
+                new GroupStructureSteps(driverProvider),
                 lifeCycleSteps,
-                new AuditSteps(pageObject),
-                new GraphsSteps(pageObject),
-                new GraphControlsSteps(pageObject),
-                new SidePanelSteps(pageObject),
-                new ErrorScreenSteps(pageObject),
-                new BAIntegrationSteps(pageObject),
+                new AuditSteps(driverProvider),
+                new GraphsSteps(driverProvider),
+                new GraphControlsSteps(driverProvider),
+                new SidePanelSteps(driverProvider),
+                new ErrorScreenSteps(driverProvider),
+                new BAIntegrationSteps(driverProvider),
                 new WebDriverScreenshotOnFailure(driverProvider, configuration.storyReporterBuilder()));
     }
 

@@ -2,14 +2,15 @@ package org.web.kyc.jbehave.steps;
 
 import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
+import org.jbehave.web.selenium.WebDriverProvider;
 import org.web.kyc.jbehave.pages.PageObject;
 
 public class GraphsSteps {
 
     private final PageObject pageObject;
 
-    public GraphsSteps(PageObject pageObject) {
-        this.pageObject = pageObject;
+    public GraphsSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @When("the user clicks on the graph button")
