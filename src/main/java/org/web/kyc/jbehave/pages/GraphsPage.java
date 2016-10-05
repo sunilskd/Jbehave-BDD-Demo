@@ -49,7 +49,7 @@ public class GraphsPage extends WebDriverUtils {
     //private By subs_graphs_truncated_notification_with_node_count_msg_xpath = By.xpath(".//*[@id='content-view'] //p[@class='notification attention ng-scope']");
     private By graph_in_product_msg_text_xpath = By.xpath(".//div[@kyc-ubo-subscription-message=\"\"][@style='display: block;']");
     private By graphs_truncated_notification_msg_xpath = By.xpath("//p[@class='attention ng-scope']");
-    private By graphs_truncated_notification_with_node_count_msg_xpath = By.xpath("//*[@id='content-view']/div[2]/div[1]/p");
+    private By graphs_truncated_notification_with_node_count_msg_xpath = By.xpath("//p[contains(@ng-if,'graphSize' )]");
 
 
     public GraphsPage(WebDriverProvider driverProvider) {
