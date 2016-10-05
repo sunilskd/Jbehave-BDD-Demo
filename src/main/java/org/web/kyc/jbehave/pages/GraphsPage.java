@@ -194,7 +194,11 @@ public class GraphsPage extends WebDriverUtils {
                 aPercent.add("");
             }
 
-            aCountry.add(nodes.get(i).findElement(By.cssSelector("[text-anchor=\"middle\"]")).getText());
+            try {
+                aCountry.add(nodes.get(i).findElement(By.cssSelector("[text-anchor=\"middle\"]")).getText());
+            } catch (NoSuchElementException e) {
+                aCountry.add("");
+            }
         }
 
         graphElementMap.put("aLegalTitle", aLegalTitle);
@@ -312,6 +316,7 @@ public class GraphsPage extends WebDriverUtils {
         for (int i = 0; i < owners.size(); i++) {
             String legalName = aLegalTitles.get(i).toString().replace("%", "").replace(" ","");
             String percentage;
+            String country;
 
             try{
                 percentage = owners.get(i).findElement(By.cssSelector(".ownership")).getText().replace("%", "").replace(" ","");
@@ -319,7 +324,11 @@ public class GraphsPage extends WebDriverUtils {
                 percentage = "";
             }
 
-            String country = owners.get(i).findElement(By.cssSelector("[text-anchor=\"middle\"]")).getText().replace(" ","");
+            try{
+                country = owners.get(i).findElement(By.cssSelector("[text-anchor=\"middle\"]")).getText().replace(" ","");
+            } catch (NoSuchElementException e){
+                country = "";
+            }
 
             aNodeList.add(
                     legalName + percentage + country

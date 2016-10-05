@@ -395,7 +395,6 @@ And the user clicks on the graph button
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
 |LEGAL TITLE|
-|Others|
 |Local Government, Legal Entity 61 owned by Local Government|
 |Local Government, Legal Entity 61 owned by Local Government|
 |Free float, Legal Entity 15 owned by Free float|
