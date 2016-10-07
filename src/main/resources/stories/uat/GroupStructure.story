@@ -48,15 +48,15 @@ When the user selects another country <changeCountry> from the country highlight
 Then the user should see the entities in the group structure that have the selected country of operations highlighted in the group structure page
 And the previously selected country <country> should be de-selected in the group structure page
 
-Then the user should see the ultimate owner as BLOM BANK SAL for the entity user is viewing in the group structure page
+Then the user should see the ultimate owner as Intesa Sanpaolo SpA for the entity user is viewing in the group structure page
 
 Then the user should see the majority owners for the institution Recovery Ltd in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|CIB Bank Zrt|Hungary|67.69|
+|CIB Bank Zrt|Hungary|67.6905|
 
 Then the user should see the majority owners for the institution Lux Gest Asset Management SA in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|100|
+|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|99.207|
 
 Then the user should see the majority owners for the institution Societá per La Riscossione dei Tributi SpA in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|

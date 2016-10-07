@@ -56,11 +56,10 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity Intesa Sanpaolo SpA, user is currently viewing, as the root and highlighted on the graphs
+Then the user should see the legal entity The Fukuoka Chuo Bank Ltd, user is currently viewing, as the root and highlighted on the graphs
+And the user should see the list of owners in level 1, above the root entity, in the graphs
 And the user should see the list of owners in level 2, above the root entity, in the graphs
 And the user should see the list of owners in level 3, above the root entity, in the graphs
-And the user should see the list of owners in level 4, above the root entity, in the graphs
-And the user should see the list of owners in level 5, above the root entity, in the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
@@ -71,11 +70,6 @@ Then the user should see the ultimate beneficial owners filter checkbox disabled
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Australia (4)|
-
 When the user selects a country UK from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
@@ -91,6 +85,11 @@ Then the user should not see the entities highlighted in the graphs
 
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 9 in ownership percentage filter text box in the graphs
+Then the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Japan (3)|
+
 Then the user should see the list of owners in level 1, above the root entity, in the graphs
 Then the user should see the list of owners in level 2, above the root entity, in the graphs
 Then the user should not see any nodes in level 3, above the root entity, in the graphs

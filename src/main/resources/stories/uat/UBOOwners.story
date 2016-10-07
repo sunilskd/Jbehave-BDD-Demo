@@ -45,7 +45,6 @@ a. 0. Person or institution or other entity type owner is active and Ownership r
 b. 0. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
    1. If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
    2. Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
-c. 0. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
 d. 0. If ownerType is not present display owner as "entityReference/description"
    1. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
    2. Verify percentage meter bar for direct owners (person or institution or other entity type)
@@ -62,7 +61,6 @@ Examples:
 |fid|
 |12538|
 |3112|
-|28691|
 |11262|
 |242960|
 

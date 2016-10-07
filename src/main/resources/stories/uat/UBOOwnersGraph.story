@@ -63,7 +63,7 @@ Then the user should see no country highlight selected by default in country hig
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Malaysia (12)|
+|Malaysia (27)|
 
 Examples:
 |fid|
@@ -115,17 +115,16 @@ Then the user should see, by default, percent filter set to 0 for both input box
 When the user enters percentage as 2 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity Intesa Sanpaolo SpA, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of owners in level 1, above the root entity, in the graphs
-And the user should see the list of owners in level 2, above the root entity, in the graphs
 When the user selects a country Norway from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
 |Norges Bank|
-|State of the Kingdom of Norway|
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the graphs
 Then the user should not see the entities highlighted in the graphs
 When the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 0 in the graph
 Then the user should see the list of owners in level 1, above the root entity, in the graphs
+And the user should see the list of owners in level 2, above the root entity, in the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 Then the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph
 When the user clicks on the ultimate beneficial owners filter checkbox in the graph

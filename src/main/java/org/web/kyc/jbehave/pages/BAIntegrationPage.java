@@ -67,7 +67,7 @@ public class BAIntegrationPage extends WebDriverUtils {
 
     public void verifyBankersAlamanacUboSection(String fid){
         waitForInMilliSeconds(2000L);
-        assertEquals("http://batest.rbidev.ds/private/mbkddrm.aspx?fid=" + fid +"#UBO",getCurrentUrl());
+        assertEquals("http://bauat.rbidev.ds/private/mbkddrm.aspx?fid=" + fid +"#UBO",getCurrentUrl());
         clickOnWebElement(logout_link_text_xpath);
         waitForInMilliSeconds(2000L);
     }
