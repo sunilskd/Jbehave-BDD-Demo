@@ -31,7 +31,7 @@ Then the user should see audit information with legal title of legal entity user
 
 Examples:
 |fid|
-|4521|
+|1991|
 
 Scenario: Verify Audit information
 a. 0. If no ownership review data exists for legal entity user is viewing, then display message "No audit information available."
@@ -49,7 +49,7 @@ Then the audit section should collapse and Owners list should be moved to top se
 
 Examples:
 |fid|
-|211|
+|4521|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

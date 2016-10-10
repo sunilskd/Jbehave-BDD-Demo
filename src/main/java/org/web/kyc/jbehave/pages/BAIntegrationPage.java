@@ -8,10 +8,7 @@ import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
 
 public class BAIntegrationPage extends WebDriverUtils {
 
-    private By user_login_input_box_id = By.xpath("//*[@id='Username']");
-    private By user_password_input_box_id = By.xpath("//*[@id='Password']");
-    private By login_button_xpath = By.xpath("//*[@id='Submit']");
-    private By view_enhanced_ubo_app__xpath =By.xpath("//*[@id='newUBOlink']");
+
     private By view_on_bankers_almanac_button_xpath =By.xpath(".//*[@id='tools']/a[1]");
     private By logout_link_text_xpath = By.xpath(".//*[@id='ctl00_LoginBar_lnkLogin']/u");
     private By ubo_declaration_document_link_text_xpath =By.xpath("//div/div/div/a");
@@ -26,23 +23,7 @@ public class BAIntegrationPage extends WebDriverUtils {
         manage().window().maximize();
     }
 
-    public void userLogin(String userType) {
-        this.userType = userType;
-        waitForWebElementToAppear(user_login_input_box_id);
-        if (userType.equals("kyc")) {
-            enterStringInInputBox(user_login_input_box_id, readProperties().getKycUser());
-        } else if (userType.equals("ubo")) {
-            enterStringInInputBox(user_login_input_box_id, readProperties().getUboUser());
-        }
-        enterStringInInputBox(user_password_input_box_id, "password");
-        clickOnWebElement(login_button_xpath);
-        waitForInMilliSeconds(2000L);
-        get(readProperties().getBankersAlmanacUrl()+"private/mbkssi.aspx?fid=1038&source=searchbar");
-        waitForInMilliSeconds(2000L);
-        clickOnWebElement(view_enhanced_ubo_app__xpath);
-    }
-
-    public void clickViewOnBankersAlmanac(){
+     public void clickViewOnBankersAlmanac(){
         clickOnWebElement(view_on_bankers_almanac_button_xpath);
         waitForInMilliSeconds(2000L);
     }

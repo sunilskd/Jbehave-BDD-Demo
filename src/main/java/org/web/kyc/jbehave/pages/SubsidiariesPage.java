@@ -136,7 +136,8 @@ public class SubsidiariesPage extends WebDriverUtils {
     }
 
     public void openLegalTitleInSubsidiariesListInNewWindow(String legalTitle) {
-        waitForWebElementToAppear(subsidiaries_entity_name_text_xpath);
+        //waitForWebElementToAppear(subsidiaries_entity_name_text_xpath);
+        waitForInMilliSeconds(3000L);
         nvPairs.add(new BasicNameValuePair("name", legalTitle));
         for (org.apache.http.NameValuePair nameValuePair : nvPairs) {
             if ("fid".equals(nameValuePair.getName())) {

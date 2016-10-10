@@ -62,83 +62,44 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
+When the user resize graph to translate(874.7809172019674,402.21141296230286) scale(0.25942406786224503)
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Albania (2)|
-|Australia (11)|
-|Bangladesh (1)|
-|Belgium (6)|
-|Bermuda (11)|
-|Bosnia-Herzegovina (4)|
-|Brazil (2)|
-|Cameroon (1)|
-|Canada (16)|
-|Chile (1)|
-|China (1)|
-|Croatia (10)|
-|Egypt (2)|
-|France (14)|
-|Germany (4)|
-|Guadeloupe (1)|
-|Guernsey (1)|
-|Hungary (23)|
-|Ireland (6)|
-|Italy (277)|
-|Japan (30)|
-|Lebanon (2)|
-|Luxembourg (116)|
-|Norway (7)|
-|Romania (7)|
-|Russian Federation (5)|
-|Slovakia (10)|
-|Slovenia (8)|
-|South Africa (5)|
-|Spain (1)|
-|St Lucia (1)|
-|Switzerland (2)|
-|Tunisia (2)|
-|Uganda (1)|
-|UK (13)|
-|Ukraine (1)|
-|USA (556)|
-
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 2 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity Intesa Sanpaolo SpA, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of owners in level 1, above the root entity, in the graphs
+Then the user should see the legal entity Banco Indusval SA, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of owners in level 2, above the root entity, in the graphs
-When the user selects a country Norway from the country highlight list in the graphs
+Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+When the user enters percentage as 100 in ownership percentage filter text box in the graphs
+When the user selects a country Brazil from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
-|Norges Bank|
-|State of the Kingdom of Norway|
+|Banco Indusval SA|
+|Banco Indusval SA|
+|BI&P Comércio de Cereais Ltda|
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the graphs
 Then the user should not see the entities highlighted in the graphs
 When the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 0 in the graph
-Then the user should see the list of owners in level 1, above the root entity, in the graphs
+When the user enters percentage as 0 in ownership percentage filter text box in the graphs
+Then the user should see the list of owners in level 2, above the root entity, in the graphs
+Then the user should see the list of owners in level 3, above the root entity, in the graphs
+Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
+When the user enters percentage as 17 in ownership percentage filter text box in the graphs
 Then the user should see the ultimate beneficial owners filter checkbox unchecked by default in the graph
 When the user clicks on the ultimate beneficial owners filter checkbox in the graph
-When the user resize graph to translate(103.29471032745596,355.8186382754924) scale(0.1)
 Then the user should see the ultimate beneficial owners highlighted in the graph
 |NODES|
-|Mrs Nada Aoueini|
+|Manoel Felix Cintra|
+|Luiz Masagão Ribeiro|
 
-When the user enters percentage as 51 in ownership percentage filter text box in the graphs
-When the user resize graph to translate(1008.589110477431,306.03967399687065) scale(0.1)
-Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
-Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
-When the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 0 in the graph
-When the user resize graph to translate(-9524.62870605469,2084.3533395156865) scale(0.9910000000000001)
+When the user enters percentage as 0 in ownership percentage filter text box in the graphs
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:
 |fid|countValue|legalEntity|nodeTitle|
-|444|Appears: 3|Intesa Sanpaolo SpA|JPMorgan Chase & Co|
+|732|Appears: 2|MSL Inc|JPMorgan Chase & Co|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

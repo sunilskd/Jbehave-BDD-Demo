@@ -17,14 +17,18 @@ public class CommonUtils extends WebDriverUtils {
     private By percent_filter_option_header_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Display %']/h2");
     private String percent_filter_options_text_xpath = "//*[@id='content-filters'] //div[h2='Display %']/ul/li";
     private String country_highlight_options_text_xpath = "//*[@id='content-filters'] //div[h2='Highlight']/ul/li";
-    private By user_login_input_box_id = By.xpath("//input[@id='login']");
-    private By login_button_xpath = By.xpath("//button[1]");
+    //private By user_login_input_box_id = By.xpath("//input[@id='login']");
+    //private By login_button_xpath = By.xpath("//button[1]");
     private By logout_button_xpath = By.xpath("//button[1]");
     private By summary_button_selected_text_xpath = By.xpath("//*[@id='view-options']/ul/li[@class='selected']");
     private By footer_copyrights_label_text_xpath = By.xpath("//*[@id='footer']/p");
     private By save_as_pdf_button_xpath = By.xpath("//*[@id='tools']/a[@class='download ng-scope']");
     private By product_message_please_subscribe_link_text_xpath=By.xpath("//p[1]/a");
     private By bankers_almanac_logo_xpath = By.xpath("//*[@id='header']");
+    private By user_login_input_box_id = By.xpath("//*[@id='Username']");
+    private By user_password_input_box_id = By.xpath("//*[@id='Password']");
+    private By login_button_xpath = By.xpath("//*[@id='Submit']");
+    private By view_enhanced_ubo_app__xpath =By.xpath("//*[@id='newUBOlink']");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -210,5 +214,21 @@ public class CommonUtils extends WebDriverUtils {
         else
             System.out.println("Failure");
 
+    }
+
+    public void baUserLogin(String userType) {
+        this.userType = userType;
+        waitForWebElementToAppear(user_login_input_box_id);
+        if (userType.equals("kyc")) {
+            enterStringInInputBox(user_login_input_box_id, readProperties().getKycUser());
+        } else if (userType.equals("ubo")) {
+            enterStringInInputBox(user_login_input_box_id, readProperties().getUboUser());
+        }
+        enterStringInInputBox(user_password_input_box_id, "password");
+        clickOnWebElement(login_button_xpath);
+        waitForInMilliSeconds(2000L);
+        get(readProperties().getBankersAlmanacUrl()+"private/mbkssi.aspx?fid=1038&source=searchbar");
+        waitForInMilliSeconds(2000L);
+        clickOnWebElement(view_enhanced_ubo_app__xpath);
     }
 }
