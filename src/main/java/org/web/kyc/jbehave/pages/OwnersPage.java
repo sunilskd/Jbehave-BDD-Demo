@@ -211,11 +211,7 @@ public class OwnersPage extends WebDriverUtils {
     public void openLegalTitleInDirectOwnersListInNewWindow(String legalTitle) {
         waitForPageToLoad(15000L);
         nvPairs.add(new BasicNameValuePair("name", legalTitle));
-        for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if("fid".equals(nameValuePair.getName())) {
-                nvPairs.remove(nameValuePair);
-            }
-        }
+        httpRequest().removeNameValuePair("fid");
         openLinkInNewWindow(By.linkText(legalTitle));
     }
 
