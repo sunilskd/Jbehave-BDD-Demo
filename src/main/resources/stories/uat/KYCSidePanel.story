@@ -61,7 +61,7 @@ Then the user should see the legal entity <legalEntity>, user is currently viewi
 
 Examples:
 |fid|nodeTitle|legalEntity|
-|182119|Bank of America|Bank of America National Association|
+|182119|Bank of America National Association|Bank of America National Association|
 
 Scenario: View side panel for legal entity on subsidiary graph
 a. 0. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity
@@ -93,7 +93,7 @@ Then the user should see complete head office address, regulators , stock exchan
 
 Examples:
 |fid|nodeTitle|switchNode|
-|1038|Bank of America National Association|Elko Asset Management|
+|1038|Bank of America National Association|BANA Holding Corporation|
 
 Scenario: View side panel for legal entity on full graph
 a. 0. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity
@@ -125,20 +125,6 @@ Then the user should see complete head office address, regulators , stock exchan
 Examples:
 |fid|nodeTitle|switchNode|
 |1038|Bank of America National Association|BANA Holding Corporation|
-
-Scenario: User is taken to the owners graph when clicks legal entity's title link in the side panel
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the graph button
-When the user clicks on direct relationship only filter checkbox in the graphs
-And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
-And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
-Then user is taken to the respective graph page of that legal entity <nodeTitle>
-Then the user should see the legal entity <legalEntity>, user is currently viewing, as the root and highlighted on the graphs
-
-Examples:
-|fid|nodeTitle|legalEntity|
-|182119|Bank of America|Bank of America National Association|
 
 
 Scenario: KYC user logout

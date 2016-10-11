@@ -64,23 +64,21 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011||
-|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|Stock Company Saint-Petersburg Currency Exchange, From Institution's Website|
-|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|oswsxkqrmbsdvqc, Third Party Supplier|
-|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|Stock Company Saint-Petersburg Currency Exchange|
-|Central Bank of the Russian Federation|Russian Federation|8.9|28 Oct 2011|Stock Company Saint-Petersburg Currency Exchange|
-|Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|Stock Company Saint-Petersburg Currency Exchange, Direct From Institution|
-|Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|Stock Company Saint-Petersburg Currency Exchange|
-|Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|Stock Company Saint-Petersburg Currency Exchange, Third Party Supplier|
+|VTB Bank (public joint-stock company)|Russian Federation|12.736|||
+|'Vitabank' PJSC|Russian Federation|10.967|||
+|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|||
+|Central Bank of the Russian Federation|Russian Federation|8.9|||
+|Sviaz-Bank|Russian Federation|2.594|||
+|Baltic Financial Agency Bank|Russian Federation|2.299|||
+|Petersburg Settlement Centre Limited|Russian Federation|0.59|||
 Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
-
+Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011||
-|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|Stock Company Saint-Petersburg Currency Exchange, From Institution's Website|
-|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|oswsxkqrmbsdvqc, Third Party Supplier|
-|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|Stock Company Saint-Petersburg Currency Exchange|
+|VTB Bank (public joint-stock company)|Russian Federation|||
+|'Vitabank' PJSC|Russian Federation|10.967|||
+|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|||
 
 Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
@@ -88,14 +86,14 @@ And the user should see the percentage meter bar in the direct owners list
 When the user changes the percent filter option to View All in the owners page
 Then the kyc user should see the below list of direct owners ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|VTB Bank (public joint-stock company)|Russian Federation|12.736|29 Mar 2011||
-|Sberbank of Russia|Russian Federation|10.967|19 Nov 2010|Stock Company Saint-Petersburg Currency Exchange, From Institution's Website|
-|'Vitabank' PJSC|Russian Federation|10.967|21 Aug 2005|oswsxkqrmbsdvqc, Third Party Supplier|
-|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|25 May 2012|Stock Company Saint-Petersburg Currency Exchange|
-|Central Bank of the Russian Federation|Russian Federation|8.9|28 Oct 2011|Stock Company Saint-Petersburg Currency Exchange|
-|Sviaz-Bank|Russian Federation|2.594|29 Oct 2010|Stock Company Saint-Petersburg Currency Exchange, Direct From Institution|
-|Baltic Financial Agency Bank|Russian Federation|2.299|29 Oct 2010|Stock Company Saint-Petersburg Currency Exchange|
-|Petersburg Settlement Centre Limited|Russian Federation|0.59|21 Aug 2005|Stock Company Saint-Petersburg Currency Exchange, Third Party Supplier|
+|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
+|VTB Bank (public joint-stock company)|Russian Federation|12.736|||
+|'Vitabank' PJSC|Russian Federation|10.967|||
+|Public Joint-Stock Company 'Baltiyskiy Bank'|Russian Federation|10.9|||
+|Central Bank of the Russian Federation|Russian Federation|8.9|||
+|Sviaz-Bank|Russian Federation|2.594|||
+|Baltic Financial Agency Bank|Russian Federation|2.299|||
+|Petersburg Settlement Centre Limited|Russian Federation|0.59|||
 
 Then the kyc user should see the free text <directOwnerFreeText> at the bottom of the direct owner list for the selected institution in the owners page
 And the user should see the percentage meter bar in the direct owners list
@@ -118,7 +116,7 @@ Then the kyc user should see the free text <directOwnerFreeText> at the bottom o
 
 Examples:
 |fid|directOwnerFreeText|
-|46637|Free float, 47.68. Except Bank of Russia, no other shareholders with 5 or more of the bank's charter capital|
+|46637|City Property Management Committee, 1.297%|
 
 Scenario: Covers below scenarios
 a. If there are no direct owners display "No known entities" for now
@@ -132,22 +130,7 @@ And the user should not see the ubo list header and the message that there are n
 
 Examples:
 |fid|
-|140612|
-
-Scenario: Covers below scenarios
-a. 0. View all is selected by default (displays all direct owners regardless of percent ownership);
-   1. Selecting 10 and above filters out any entity that has null or less than 10 ownership
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page
-When the user selects the percent filter option <percentFilter> in the owners page
-Then the kyc user should see the direct owners ordered by percentage ownership then asc by legal title, filtered by selected percent filter, for the selected institution in the owners page
-
-Examples:
-|fid|percentFilter|
-|211|10|
-
+|136093|
 
 Scenario: Covers below scenarios
 a. 0. Legal entities in list have country of operations.
@@ -170,22 +153,6 @@ Examples:
 |173|Jordan|Lebanon|
 
 
-Scenario: Covers below scenarios
-a 0. User will see in product message on owners list if UBO exists and they do not have access to UBO data
-  1. User will see in product message on owners list if UBO exists and they do not have access to UBO data and the percent filter is applied
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
-When the user selects the percent filter option <percentFilter> in the owners page
-Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the owners page
-And the kyc user should not see the link to ubo declaration document in the owners page
-When the user clicks on please subscribe link in the message displayed in the graph
-Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC%7CBRSK%7CBAFPU-2016-0810-GLOB-ba-ubo%7CLookBook&sfid=701D0000000dwwH on accuity.com
-
-Examples:
-|fid|percentFilter|
-|12538|50|
 
 Scenario: KYC user logout
 Given the user is on bankers almanac page

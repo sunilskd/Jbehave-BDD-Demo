@@ -31,7 +31,7 @@ public class BAIntegrationPage extends WebDriverUtils {
 
     public void verifyBankersAlmanacPage(String fid) {
         waitForInMilliSeconds(3000L);
-        assertEquals("http://batest.rbidev.ds/private/mbkhof.aspx?fid=" + fid, getCurrentUrl());
+        assertEquals("http://bauat.rbidev.ds/private/mbkhof.aspx?fid=" + fid, getCurrentUrl());
     }
 
     public void userLogsOutOfBankersAlmanac(){

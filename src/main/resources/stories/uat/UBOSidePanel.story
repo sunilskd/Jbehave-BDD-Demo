@@ -54,6 +54,7 @@ And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
+Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
 
 Examples:
 |fid|nodeTitle|
@@ -74,10 +75,17 @@ And the user clicks on the graph button
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <nodeTitle> user clicked in the graphs
 |UBO NAME|ENTITY|PERCENTAGE OWNERSHIP|
-|Agnew Meyer Robert|Banco BISA SA|1.24|
+|Fernando Bedoya Ballivan|Corporacion de Inversiones B&S SA|67.6|
+|Eugenia Saenz de Bedoya|Corporacion de Inversiones B&S SA|13.45|
+|Milton Careaga Alurraide|Banco Nacional de Bolivia SA|4.83|
+|Robert Meyer Agnew|Banco Nacional de Bolivia SA|3.59|
+|Celso Alvarado Amez|Banco Nacional de Bolivia SA|1.75|
+|Roberto Rojas|Banco Union SA|1.4071|
+|Agnew Meyer|Banco BISA SA|1.24|
 |Jose Luis Aranguren Aguirre|Banco BISA SA|0.88|
 |Jorge Eduardo Rengel Sillerico|Banco BISA SA|0.68|
 |Tomás Barrios Santivañez|Banco BISA SA|0.23|
+|Jorge Guillermo Valdez|Banco Union SA|0.023|
 
 Then the user should see message displayed in side panel in place of list explaining there are no directly owned entities in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
@@ -97,7 +105,6 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user enters percentage as 73 in ownership percentage filter text box in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
-Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
 When the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
 Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
