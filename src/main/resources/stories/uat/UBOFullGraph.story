@@ -94,6 +94,7 @@ Then the user should see the ultimate beneficial owners highlighted in the graph
 |Luiz Masagão Ribeiro|
 
 When the user enters percentage as 0 in ownership percentage filter text box in the graphs
+When the user resize graph to translate(937.1853468602143,420.9054998507785) scale(0.23591920265324964)
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 

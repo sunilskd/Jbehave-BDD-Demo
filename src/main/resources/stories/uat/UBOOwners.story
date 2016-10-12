@@ -89,7 +89,7 @@ Then the user should see the percent filter View All de-selected in the owners p
 When the user clicks and opens the legal title Moody Bank Holding Company Inc in direct owners list in new window in the owners page
 Then the ubo user should see the below list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|Moody Bancshares Inc|USA||||
+|Moody Bancshares Inc|USA|24.85%|29 Jul 2016|Federal Reserve System, from institution's website|
 
 Examples:
 |fid|percentFilter|
