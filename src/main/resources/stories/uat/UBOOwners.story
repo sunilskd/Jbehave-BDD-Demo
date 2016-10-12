@@ -63,13 +63,15 @@ Examples:
 |3112|
 |11262|
 
-Scenario: UBO user can view direct owners that has people as owners.
+Scenario: UBO user can view direct owners that has people as owners & User clicks and opens legal title of legal entity that appears in direct owners list in a new window
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the user should see the direct owners summary selected by default in the owners page
 Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
 Then the ubo user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page
+When the user clicks and opens the legal title Timeworth Ltd in direct owners list in new window in the owners page
+Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
 
 Examples:
 |242960|
@@ -86,10 +88,6 @@ And the user clicks on the owners tab
 Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
 Then the user should see the percent filter View All de-selected in the owners page
-When the user clicks and opens the legal title Moody Bank Holding Company Inc in direct owners list in new window in the owners page
-Then the ubo user should see the below list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|Moody Bancshares Inc|USA|24.85%|29 Jul 2016|Federal Reserve System, from institution's website|
 
 Examples:
 |fid|percentFilter|

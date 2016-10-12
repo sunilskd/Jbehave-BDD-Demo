@@ -111,7 +111,7 @@ Then the user should see list of direct subsidiaries with entity title, country 
 
 Examples:
 |fid|switchNode|nodeTitle|
-|200|Public Bank (Hong Kong) Limited|Public Bank Berhad|
+|200|Public Bank Berhad|Public Financial Holdings Ltd|
 
 Scenario: User can click on the website in sidepanel
 When the user opens legal entity <fid>
