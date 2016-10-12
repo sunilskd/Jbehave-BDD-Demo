@@ -54,7 +54,7 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    21. Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
-And the user clicks on the group structure tab
+And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the legal entity Banco Indusval SA, user is currently viewing, as the root and highlighted on the graphs
 When the user resize graph to translate(1003.9459234383133,436.36120867136754) scale(0.27509397800157526)

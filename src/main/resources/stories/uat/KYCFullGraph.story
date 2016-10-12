@@ -88,7 +88,6 @@ Then the user should see the list of below unique country of operations for each
 |Brazil (9)|
 
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
-Then the user should see the list of owners in level 2, above the root entity, in the graphs
 Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 Then the user should not see any nodes in level 3, below the root entity, in the graphs
 
