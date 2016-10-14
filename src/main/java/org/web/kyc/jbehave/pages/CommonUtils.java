@@ -229,7 +229,7 @@ public class CommonUtils extends WebDriverUtils {
         waitForInMilliSeconds(2000L);
         get(readProperties().getBankersAlmanacUrl()+"private/mbkssi.aspx?fid=1038&source=searchbar");
         waitForInMilliSeconds(2000L);
-        //clickOnWebElement(view_enhanced_ubo_app__xpath);
-        openLinkInNewWindow(view_enhanced_ubo_app__xpath);
+        clickOnWebElement(view_enhanced_ubo_app__xpath);
+        //openLinkInNewWindow(view_enhanced_ubo_app__xpath);
     }
 }

@@ -50,7 +50,7 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    17. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only owners that are owned by equal to or greater than selected percent appear on the graph
    18. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
    19. By default UBO highlight checkbox is available on full graph, but is disabled for KYC user and not selectable
-   20. Display the free text when the % filters are applied
+   20. Display the free text when the filters are applied
    21. Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -96,7 +96,7 @@ Then the user should not see any nodes in level 2, above the root entity, in the
 Then the user should not see any nodes in level 2, below the root entity, in the graphs
 
 When the user clicks on please subscribe link in the message displayed in the graph
-Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC%7CBRSK%7CBAFPU-2016-0810-GLOB-ba-ubo%7CLookBook&sfid=701D0000000dwwH on accuity.com
+Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC7CBRSK7CBAFPU-2016-0810-GLOB-ba-ubo7CLookBook&sfid=701D0000000dwwH on accuity.com
 
 Examples:
 |fid|legalEntity|

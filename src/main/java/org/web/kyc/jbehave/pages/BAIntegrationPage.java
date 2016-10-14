@@ -35,7 +35,7 @@ public class BAIntegrationPage extends WebDriverUtils {
     }
 
     public void userLogsOutOfBankersAlmanac(){
-        get("http://bauat.rbidev.ds/private/seaban.aspx");
+      //  get("http://bauat.rbidev.ds/private/seaban.aspx");
         clickOnWebElement(logout_link_text_xpath);
         waitForInMilliSeconds(2000L);
 
