@@ -46,7 +46,6 @@ Then the user should see the subsidiaries graph
 Then the user should see the legal entity Meiji Yasuda Life Insurance Company, user is currently viewing, as the root and highlighted on the graphs
 When the user resize graph to translate(911.3523338409951,261.07685334650387) scale(0.11800000000000001)
 Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
 And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
 When the user selects a country France from the country highlight list in the graphs
@@ -69,15 +68,13 @@ And the user should not see any nodes in level 2, below the root entity, in the 
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity Meiji Yasuda Life Insurance Company, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 5 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity Meiji Yasuda Life Insurance Company, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 Then the user should not see the ultimate beneficial owners filter checkbox in the subsidiaries graph
+When the user resize graph to translate(982.7238516845703,25.972469911575274) scale(0.9910000000000001)
+When the user enters percentage as 0 in ownership percentage filter text box in the graphs
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
@@ -88,6 +85,23 @@ Examples:
 |fid|nodeTitle|
 |9461|The Aichi Bank Ltd|
 
+
+Scenario: Verify subsidiary graph levels are displayed
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see the subsidiaries graph
+Then the user should see the legal entity Heathrow LLC, user is currently viewing, as the root and highlighted on the graphs
+When the user resize graph to translate(920.6980212892895,14.733231612468046) scale(0.5490778136885829)
+Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 4, below the root entity, in the graphs
+
+Examples:
+|fid|
+|98585|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

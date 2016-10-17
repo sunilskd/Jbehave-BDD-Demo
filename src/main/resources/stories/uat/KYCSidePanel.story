@@ -46,7 +46,7 @@ Then the user should see complete head office address, regulators , stock exchan
 
 Examples:
 |fid|nodeTitle|switchNode|
-|1038|Bank of America National Association|LIHTC Fund 2010-6 LLC|
+|1038|Bank of America National Association|BANA Holding Corporation|
 
 Scenario: User is taken to the owners graph when clicks legal entity's title link in the side panel
 When the user opens legal entity <fid>
