@@ -102,7 +102,7 @@ public class SidePanelUtils extends WebDriverUtils {
         List<WebElement> aSubsidiariesPercentageOwned = getWebElements(graph_side_panel_direct_owners_percent_ownership_list_text_xpath);
         assertEquals("Subsidiaries count mismatch", eSubsidiariesList.getElementsByTagName("entityName").getLength(), aSubsidiariesEntityName.size());
         for (int i = 0; i < aSubsidiariesEntityName.size(); i++) {
-            assertEquals("Legal title does not match at" + i, eSubsidiariesList.getElementsByTagName("entityName").item(i).getTextContent(), aSubsidiariesEntityName.get(i).getText());
+            assertEquals("Legal title does not match at" + i, eSubsidiariesList.getElementsByTagName("entityName").item(i).getTextContent().replace(" ",""), aSubsidiariesEntityName.get(i).getText().replace(" ",""));
             assertEquals("Country name does not match at" + i, eSubsidiariesList.getElementsByTagName("countryOfOperations").item(i).getTextContent(), aSubsidiariesCountryName.get(i).getText());
             if (!eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent().isEmpty()) {
                 assertEquals("Percentage owned does not match at" + i, (eSubsidiariesList.getElementsByTagName("percentOwnership").item(i).getTextContent() + "%"), aSubsidiariesPercentageOwned.get(i).getText());

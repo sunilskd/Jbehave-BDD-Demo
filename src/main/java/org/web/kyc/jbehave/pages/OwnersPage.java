@@ -253,6 +253,7 @@ public class OwnersPage extends WebDriverUtils {
 
     public void sVerifyUBOList(ExamplesTable uboListExamTable) {
         waitForWebElementToAppear(ubo_name_text_xpath);
+        waitForInMilliSeconds(3000L);
         verifyUBOHeaders();
         List<WebElement> aUBOName = getWebElements(ubo_name_text_xpath);
         List<WebElement> aUBOEntityName = getWebElements(ubo_entity_name_text_xpath);
