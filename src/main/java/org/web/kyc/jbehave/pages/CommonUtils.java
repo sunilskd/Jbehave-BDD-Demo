@@ -224,7 +224,7 @@ public class CommonUtils extends WebDriverUtils {
         } else if (userType.equals("ubo")) {
             enterStringInInputBox(user_login_input_box_id, readProperties().getUboUser());
         }
-        enterStringInInputBox(user_password_input_box_id, "password");
+        enterStringInInputBox(user_password_input_box_id, "bankers");
         clickOnWebElement(login_button_xpath);
         waitForInMilliSeconds(2000L);
         get(readProperties().getBankersAlmanacUrl()+"private/mbkssi.aspx?fid=1038&source=searchbar");
