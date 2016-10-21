@@ -43,91 +43,65 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the subsidiaries graph
-Then the user should see the legal entity BIO, user is currently viewing, as the root and highlighted on the graphs
-When the user resize graph to translate(701.8609045988187,383.0603029629543) scale(0.1)
+Then the user should see the legal entity Meiji Yasuda Life Insurance Company, user is currently viewing, as the root and highlighted on the graphs
+When the user resize graph to translate(911.3523338409951,261.07685334650387) scale(0.11800000000000001)
 Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
-
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Belgium (1)|
-|Benin (48)|
-|Burkina Faso (1)|
-|Burundi (2)|
-|Chad (1)|
-|Congo (Democratic Republic of) (1)|
-
-When the user selects a country Burundi from the country highlight list in the graphs
+And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
+When the user selects a country France from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
-|Banque de Crédit de Bujumbura SM|
-|Banque Nationale pour le Développement Economique SM|
+|Sociéte Générale|
 
-When the user selects another country Ghana from the country highlight list in the graphs
+When the user selects another country Ireland from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
-|Bank of Africa - Ghana|
+|Diamond Airfinance (Ireland) Limited|
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the graphs
 Then the user should not see the entities highlighted in the graphs
 Then the user should see the direct relationship only filter checkbox unchecked by default in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
-Then the user should see the legal entity BIO, user is currently viewing, as the root and highlighted on the graphs
+Then the user should see the legal entity Meiji Yasuda Life Insurance Company, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should not see any nodes in level 2, below the root entity, in the graphs
 When the user unchecks direct relationship only filter checkbox in the graphs
-Then the user should see the legal entity BIO, user is currently viewing, as the root and highlighted on the graphs
+Then the user should see the legal entity Meiji Yasuda Life Insurance Company, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 7, below the root entity, in the graphs
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 5 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity BIO, user is currently viewing, as the root and highlighted on the graphs
+Then the user should see the legal entity Meiji Yasuda Life Insurance Company, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 Then the user should not see the ultimate beneficial owners filter checkbox in the subsidiaries graph
+When the user resize graph to translate(982.7238516845703,25.972469911575274) scale(0.9910000000000001)
+When the user enters percentage as 0 in ownership percentage filter text box in the graphs
+When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
+|COUNTRIES|
+|No country highlight|
+|Japan (5)|
 
 Examples:
-|fid|
-|285271|
+|fid|nodeTitle|
+|9461|The Aichi Bank Ltd|
 
-Scenario: Verify below scenarios
-a. 0. Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
-   1. User clicks on show more link and user is navigated to the respective graph page of that entity
-   2. Verify graph truncation notification message
+
+Scenario: Verify subsidiary graph levels are displayed
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the subsidiaries graph
-Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the notification message that the graphs are truncated
-And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Albania (1)|
-|Algeria (1)|
-|Australia (3)|
-|Belgium (6)|
-|Benin (1)|
-|Bermuda (1)|
-|Bulgaria (1)|
-|Burkina Faso (1)|
-
-When the user resize graph to translate(553.5,346.5817501726486) scale(0.397)
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
-Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|France (1)|
-|USA (1)|
+Then the user should see the legal entity Heathrow LLC, user is currently viewing, as the root and highlighted on the graphs
+When the user resize graph to translate(920.6980212892895,14.733231612468046) scale(0.5490778136885829)
+Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
+And the user should see the list of subsidiaries in level 4, below the root entity, in the graphs
 
 Examples:
-|fid|nodeTitle|
-|9461|Ballane SAS|
+|fid|
+|98585|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

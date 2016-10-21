@@ -35,70 +35,73 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-
-When the user resize graph to translate(917.5,266.5) scale(0.397)
+When the user resize graph to translate(898.3741874779042,259.4939128665061) scale(0.19757611705949005)
 When the user enters percentage as 90 in ownership percentage filter text box in the graphs
-Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 Then the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
 And the user should not see any nodes in level 1, above the root entity, in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Bahamas (1)|
-|Cayman Islands (1)|
-|Germany (2)|
-|Hong Kong (2)|
-|Liechtenstein (1)|
-|Luxembourg (2)|
-|Singapore (1)|
-|Slovenia (1)|
-|Switzerland (9)|
-|UAE (2)|
-|USA (2)|
+|Albania (1)|
+|Bosnia-Herzegovina (1)|
+|Brazil (1)|
+|Croatia (5)|
+|France (2)|
+|Ireland (4)|
+|Italy (24)|
+|Luxembourg (23)|
+|Romania (2)|
+|Slovakia (4)|
+|Slovenia (2)|
+|Switzerland (1)|
+|UK (1)|
+|Ukraine (1)|
+|USA (3)|
 
 When the user selects a country Franec from the country highlight list in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
 Then the user should not see the entities highlighted in the graphs
-And the user should see the list of owners in level 1, above the root entity, in the graphs
-And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should not see any nodes in level 2, above the root entity, in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Austria (1)|
-|Cayman Islands (1)|
-|Germany (3)|
-|Hong Kong (2)|
-|Liechtenstein (1)|
-|Luxembourg (2)|
-|Singapore (1)|
-|Switzerland (11)|
-|UAE (2)|
+|Albania (1)|
+|Brazil (1)|
+|China (1)|
+|Egypt (1)|
+|France (1)|
+|Hungary (1)|
+|Ireland (1)|
+|Italy (79)|
+|Luxembourg (7)|
+|Norway (1)|
+|Romania (1)|
+|Russian Federation (1)|
+|Serbia (1)|
+|Slovenia (1)|
+|Spain (1)|
+|Tunisia (1)|
+|Ukraine (1)|
 |USA (2)|
 
 When the user selects a country Norway from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
-|Vontobel Wealth Management (Hong Kong) Ltd|
-|Vontobel Asia Pacific Ltd|
+|Norges Bank|
 
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Austria (1)|
-|Cayman Islands (1)|
-|Germany (3)|
-|Hong Kong (2)|
-|Liechtenstein (1)|
-|Luxembourg (2)|
-|Singapore (1)|
-|Switzerland (11)|
-|UAE (2)|
-|USA (2)|
+Examples:
+|fid|legalEntity|
+|444|Vanguard Group Inc|
 
-When the user unchecks direct relationship only filter checkbox in the graphs
+
+Scenario: Verify multiple highlights
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user resize graph to translate(898.3741874779042,259.4939128665061) scale(0.19757611705949005)
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 When the user selects a country USA from the country highlight list in the graphs
@@ -107,7 +110,8 @@ Then the user should not see the multiple appearance highlight on any node in th
 
 Examples:
 |fid|legalEntity|
-|444|Vanguard Group Inc|
+|732|MSL Inc|
+
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page
