@@ -22,10 +22,10 @@ a. 0. User clicks "Display Audit Information", audit section expands with legal 
    2. If action date has accuracy attribute of day, then display day, month, and year
    3. If action date has accuracy attribute of month, then display only month and year
    4. If action date has accuracy attribute of year, then display only year
-b. If "Attempt" actions that exist all have a date earlier than the "Supplied" "Verified" or "Denied" date then do not display any actions in audit trail. Display message "No audit information available."
-c. Sort all listed actions and their corresponding dates from most recent to least recent
-d. If an action does not have a date associated to it, the app will ignore that action and not consider it for display or display logic
-e. If there are multiple attempts made on the same day display all attempts made later than the "Supplied" "Verified" or "Denied" date
+b. Sort all listed actions and their corresponding dates from most recent to least recent
+c. If an action does not have a date associated to it, the app will ignore that action and not consider it for display or display logic
+d. If there are multiple attempts made on the same day display all attempts made later than the "Supplied" "Verified" or "Denied" date
+e. If no actions of type "Supplied," "Verified" or "Denied" exist and "Attempt" actions exist then display all "Attempt" actions in the audit trail.
 Meta:@audit @dynamic
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -36,16 +36,18 @@ Then the user should see audit information with legal title of legal entity user
 Examples:
 |fid|
 |3|
-|6|
 |4|
 |7|
 |8|
+|9|
 
 Scenario: Verify Audit information
 a. 0. If no ownership review data exists for legal entity user is viewing, then display message "No audit information available."
    1. By default audit section is collapsed
    2. User clicks "Hide Audit Information", audit section collapses
-b. If there is no action of type "Supplied" or "Verified", do not display any actions or dates even if other action types exist for the legal entity user is viewing and display message "No audit information available."
+b. If no actions of type "attempt" exist at all then display message "No audit information available."
+c. If "Attempt" actions that exist have date equals to the "Supplied" "Verified" or "Denied" date then do not display any actions in audit trail. Display message "No audit information available."
+d. If "Attempt" actions that exist all have a date earlier than the "Supplied" "Verified" or "Denied" date then do not display any actions in audit trail. Display message "No audit information available."
 Meta:@audit @dynamic
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -59,6 +61,8 @@ Examples:
 |fid|
 |211|
 |5|
+|11|
+|6|
 
 Scenario: KYC user logout
 Meta: @id logout
