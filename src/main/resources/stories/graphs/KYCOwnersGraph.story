@@ -32,6 +32,7 @@ JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in produc
 JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-455 - new truncation logic owners graph
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@kycownersgraphs @kyc
 
@@ -365,6 +366,7 @@ a. 0. By default, percent filter is set to 0 for both input box and slider, all 
    2. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graphs
    3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graphs
    4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graphs
+   5. Null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -400,9 +402,10 @@ Examples:
 |LE-6|
 
 Scenario: Covers below scenarios
-a. 0. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graphs, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graphs
+a. 0. If user moves slider to percent 1-100, null percent relationships remain on the graph and are never filtered out by the percent filter, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graphs
    1. If user moves slider to 0 percent, all owners appear on graphs
    2. User applies percent filter that results in no owners on the graphs, only root node is left on the graphs
+   3. Null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -570,6 +573,7 @@ Examples:
 Scenario: KYC-455 Covers below scenarios for truncated owners graph for a KYC user.
 a. 0. Verify graph truncation notification message when number of nodes are greater than 2500
    1. Percent ownership filter options not affected by truncation.
+   2. Null percent relationships remain on the graph and are never filtered out by the percent filter
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab

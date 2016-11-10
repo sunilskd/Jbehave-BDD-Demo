@@ -15,8 +15,8 @@ import static org.junit.Assert.assertTrue;
 import static org.web.kyc.comparator.Comparator.compareImages;
 import static org.web.kyc.comparator.PDFComparator.comparePDFsContent;
 import static org.web.kyc.jbehave.pages.CommonUtils.waitForInMilliSeconds;
-import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST;
-import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST;
+import static org.web.kyc.xqueries.XQueryEnum.DIRECT_OWNERS_LIST_GRAPH;
+import static org.web.kyc.xqueries.XQueryEnum.SUBSIDIARIES_LIST_GRAPH;
 
 public class GraphsPage extends WebDriverUtils {
 
@@ -115,9 +115,9 @@ public class GraphsPage extends WebDriverUtils {
             nvPairs.add(new BasicNameValuePair("name", getNodesAtLevel(childLevel).get("aLegalTitle").get(i).getText()));
             httpRequest().removeNameValuePair("fid");
             if(ownersOrSubs.equals("owners")){
-                eDirectOwnersOrSubsList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
+                eDirectOwnersOrSubsList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST_GRAPH, nvPairs);
             } else if(ownersOrSubs.equals("subsidiaries")){
-                eDirectOwnersOrSubsList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST, nvPairs);
+                eDirectOwnersOrSubsList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST_GRAPH, nvPairs);
             }
 
             for (int j = 0; j < eDirectOwnersOrSubsList.getElementsByTagName("entityName").getLength(); j++) {
@@ -219,7 +219,7 @@ public class GraphsPage extends WebDriverUtils {
         nvPairs.add(new BasicNameValuePair("name", legalEntity));
         httpRequest().removeNameValuePair("fid");
         List <String> eNodeList = new ArrayList<>();
-        Document eDirectOwnersList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST, nvPairs);
+        Document eDirectOwnersList = httpRequest().getResultsFormDataBase(SUBSIDIARIES_LIST_GRAPH, nvPairs);
         for (int j = 0; j < eDirectOwnersList.getElementsByTagName("entityName").getLength(); j++) {
             eNodeList.add(
                             eDirectOwnersList.getElementsByTagName("entityName").item(j).getTextContent().replace("%", "").replace(" ", "") +
@@ -351,7 +351,7 @@ public class GraphsPage extends WebDriverUtils {
         nvPairs.add(new BasicNameValuePair("name", legalEntity));
         httpRequest().removeNameValuePair("fid");
         List <String> eNodeList = new ArrayList<>();
-        Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST, nvPairs);
+        Document eDirectOwnersList = httpRequest().getResultsFormDataBase(DIRECT_OWNERS_LIST_GRAPH, nvPairs);
         for (int j = 0; j < eDirectOwnersList.getElementsByTagName("entityName").getLength(); j++) {
             eNodeList.add(
                             eDirectOwnersList.getElementsByTagName("entityName").item(j).getTextContent().replace("%", "").replace(" ", "") +
