@@ -201,10 +201,11 @@ And the user should see the list of subsidiaries in level 3, below the root enti
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Australia (1)|
+|Australia (4)|
 |India (1)|
-|Korea (Republic of) (1)|
-|UK (5)|
+|Korea (Republic of) (4)|
+|UK (10)|
+|USA (1)|
 
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs

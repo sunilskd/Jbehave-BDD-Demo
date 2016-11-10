@@ -27,6 +27,7 @@ JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user e
 JIRA ID - KYC-241 - Do not display the free text when the filters are applied.
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@kycfullgraph @kyc
 
@@ -223,6 +224,7 @@ a. 0. By default, percent filter is set to 0 for both input box and slider, all 
    3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
    4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
    5. Display only root node when the applied percent filter doesn't result in any other nodes
+   6. Null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -365,7 +367,7 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Verify percent filter is applied at all level
+Scenario: Verify percent filter is applied at all level and null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
