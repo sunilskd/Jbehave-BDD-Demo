@@ -232,4 +232,8 @@ public class CommonUtils extends WebDriverUtils {
         clickOnWebElement(view_enhanced_ubo_app__xpath);
         //openLinkInNewWindow(view_enhanced_ubo_app__xpath);
     }
+
+    public void verifyAppName(){
+        assertEquals("Bankers Almanac Ownership Module", getTitle());
+    }
 }

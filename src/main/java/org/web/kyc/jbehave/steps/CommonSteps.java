@@ -88,4 +88,10 @@ public class CommonSteps {
         pageObject.commonUtils().baUserLogin(userType);
     }
 
+    @Then("the user should see name of the app on browser tab as Bankers Almanac Ownership Module")
+    public void verifyAppName(){
+        pageObject.commonUtils().verifyAppName();
+    }
+
+
 }
