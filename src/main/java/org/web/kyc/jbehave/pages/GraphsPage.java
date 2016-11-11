@@ -64,7 +64,7 @@ public class GraphsPage extends WebDriverUtils {
                     ("return arguments[0].setAttribute(arguments[1],arguments[2]);",
                             getWebElement(graph_draw_area_xpath), "transform", "translate(946.5,487.5) scale(0.397)");
         }
-        getWebElementsTextJS("//*[local-name()='g'][contains(@class,'highlight-country')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[name()='title'][1]");
+        getWebElementTextJS("//*[local-name()='g'][contains(@class,'highlight-country')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[name()='title'][1]");
     }
 
     public void resizeGraphs(String translate) {
