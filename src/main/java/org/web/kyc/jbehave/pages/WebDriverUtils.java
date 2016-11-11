@@ -152,4 +152,48 @@ public class WebDriverUtils extends WebDriverPage {
         navigate().refresh();
     }
 
+    public List<String> getWebElementsTextJS(String xpath){
+
+        String script = "var iterator = document.evaluate(" + xpath + ", document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);" +
+                        "var list = [];" +
+                        "try" +
+                        "{" +
+                        "var thisNode = iterator.iterateNext();" +
+                        "while (thisNode)" +
+                        "{" +
+                        "list.push(thisNode.textContent);" +
+                        "thisNode = iterator.iterateNext();" +
+                        "}" +
+                        "}" +
+                "catch (e)" +
+                "{" +
+                "dump( 'Error: Document tree modified during iteration ' + e );" +
+                "}";
+
+        String s =
+                "function getText()" +
+                "{" +
+                "var iterator = window.document.evaluate(\"" + xpath + "\", document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);\n" +
+                "var list = [];\n" +
+                "try {\n" +
+                "  var thisNode = iterator.iterateNext();\n" +
+                "  \n" +
+                "  while (thisNode) {\n" +
+                "    //alert( thisNode.textContent );\n" +
+                "    list.push(thisNode.textContent);\n" +
+                "    thisNode = iterator.iterateNext();\n" +
+                "  }            \n" +
+                "}\n" +
+                "catch (e) {\n" +
+                "  dump( 'Error: Document tree modified during iteration ' + e );\n" +
+                "}" +
+                "return list[0]" +
+                "};" +
+                "getText()";
+
+    //String s = "function showAlert() { alert('success'); }; showAlert()" ;
+
+        return (List<String>) executeScript(s);
+    }
+
 }
