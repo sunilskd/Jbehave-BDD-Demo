@@ -15,6 +15,7 @@ JIRA ID - KYC-273 User can click link to another entity in full graph
 JIRA ID - KYC-73 KYC user can click link to another entity in subsidiary graph
 JIRA ID - KYC-330 Remove links for person,non-entity or non-person in graphs.
 JIRA ID - KYC-272 - User can view website in side panel for legal entity on a graph
+JIRA ID - KYC-484 - Display zip code for addresses in entity details
 
 Meta:@ubosidepanel @ubo
 
@@ -27,14 +28,18 @@ a. 0. User clicks title of legal entity on node (could be owner on graph or root
    1. With head office address elements with varying "UseInAddress" flag value true for each element (display element if UseInAddress is true)
    2. With head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
    3. Entity With website, display hyperlink in details section of side panel
+   4. Displaye zip code in head office address position as afterArea
 b. 0. Active regulation relationships exist for entity user is viewing, display in entity details summary section sorted alphabetically by legal title
    1. If active stock exchange relationship(s) exist, display legal title of stock exchange sort first by primary = true, then by legal title
+   2. Displaye zip code in head office address position as beforeCity
 c. 0. If no regulation relationship exists, then display field label but no value
    1. If no stock exchange relationship exists, display field label but no value
+   2. Displaye zip code in head office address position as afterSubArea
 d. 0. If no primary physical address exists for head office, display field label but no value
    1. If inactive stock exchange relationship, then display field label but no value
    2. If only inactive regulation relationship exists, then display field label but no value
    3. If website is null, display field label in details section of side panel but no value
+e. Displaye zip code in head office address position as afterCity
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -49,6 +54,7 @@ Examples:
 |58285|Berlin Hyp AG|
 |52147|London Stock Exchange Plc|
 |LE-6|QA Legal Entity 6|
+|240817|Wuhu Yangzi Rural Commercial Bank|
 
 Scenario: Covers below scenarios
 a. 0. If multiple active subsidiary relationships exist and are displayed on list, order by percent ownership first then by legal title
