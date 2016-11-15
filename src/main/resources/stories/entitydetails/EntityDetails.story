@@ -19,6 +19,7 @@ JIRA ID - KYC-464 - Abbreviated name of stock exchange not displayed
 JIRA ID - KYC-481 - Find head office address for entity details by address function
 JIRA ID - KYC-484 - Display zip code for addresses in entity details
 JIRA ID - KYC-588 - Address is displayed as Null in entity details page and side panel instead of empty values.
+JIRA ID - KYC-587 - City and Area information is not displayed when zip code and position are NULL
 
 Meta:@entitydetails @kyc @ubo
 
@@ -77,16 +78,16 @@ And the user should see website information in the summary section of entity det
 
 Examples:
 |fid|
-|1038|afterArea
-|815|null
+|1038|
+|815|
 |269306|
 |277123|
-|498|beforeCity
+|498|
 |58285|
-|52147|afterSubArea
+|52147|
 |17062|
 |4236|
-|519|afterCity
+|519|
 |15586|
 |1857|
 ||
