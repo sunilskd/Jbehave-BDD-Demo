@@ -40,6 +40,8 @@ d. 0. If no primary physical address exists for head office, display field label
    2. If only inactive regulation relationship exists, then display field label but no value
    3. If website is null, display field label in details section of side panel but no value
 e. Displaye zip code in head office address position as afterCity
+f. Displaye zip code in head office address position as beforeSubArea
+g. Displaye zip code in head office address position as beforeArea
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -55,6 +57,8 @@ Examples:
 |52147|London Stock Exchange Plc|
 |LE-6|QA Legal Entity 6|
 |240817|Wuhu Yangzi Rural Commercial Bank|
+|3979|HSBC Private Bank (UK) Limited|
+|131845|Citizens Bank of Pennsylvania|
 
 Scenario: Covers below scenarios
 a. 0. If multiple active subsidiary relationships exist and are displayed on list, order by percent ownership first then by legal title

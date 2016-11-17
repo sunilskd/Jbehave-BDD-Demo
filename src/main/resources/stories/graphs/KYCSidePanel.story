@@ -41,6 +41,8 @@ d. 0. If no primary physical address exists for head office, display field label
    4. Address is NOT displayed as Null in side panel and empty value to be displayed when address is null.
 e. If multiple websites are present, then display one website, whichever is found first on the details section of side panel
 f. Displaye zip code in head office address position as afterCity
+g. Displaye zip code in head office address position as beforeSubArea
+h. Displaye zip code in head office address position as beforeArea
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -57,6 +59,8 @@ Examples:
 |LE-6|QA Legal Entity 6|
 |732|Banco Indusval SA|
 |240817|Wuhu Yangzi Rural Commercial Bank|
+|3979|HSBC Private Bank (UK) Limited|
+|131845|Citizens Bank of Pennsylvania|
 
 Scenario: Covers below scenarios
 a. 0. If multiple active subsidiary relationships exist and are displayed on list, order by percent ownership first then by legal title
