@@ -25,6 +25,7 @@ JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user e
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
+JIRA ID - KYC-586 - Root node is displayed even when its "No know Entity" fid on a full graph.
 
 Meta:@ubofullgraph @ubo
 
@@ -125,7 +126,7 @@ Examples:
 |fid|
 |LE-51|
 
-Scenario: Entity user is viewing does not have owners or subsidiaries, display message "No known entities."
+Scenario: Entity user is viewing does not have owners or subsidiaries, display message "No known entities." and no nodes are displayed.
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab

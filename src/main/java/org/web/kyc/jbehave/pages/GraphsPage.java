@@ -190,6 +190,7 @@ public class GraphsPage extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
         //assertFalse(isWebElementDisplayed(graph_in_product_msg_text_xpath));
+        assertFalse(isWebElementDisplayed(By.xpath(graph_root_node)));
     }
 
     public void verifyEntitiesAreHighlightedForSelectedCountry(ExamplesTable highlightedEntitiesExamTable) {
