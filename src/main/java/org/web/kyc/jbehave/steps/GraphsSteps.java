@@ -57,10 +57,10 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyStopTravelingPath(Integer.toString((Integer.parseInt(level) * 180)));
     }
 
-    @Then("the user should see the subsidiaries for the legal entity $legalEntity in the graphs")
-    public void verifySubsidiariesOfAnEntity(String legalEntity){
-        pageObject.graphsPage().verifySubsidiariesOfAnEntity(legalEntity);
-    }
+//    @Then("the user should see the subsidiaries for the legal entity $legalEntity in the graphs")
+//    public void verifySubsidiariesOfAnEntity(String legalEntity){
+//        pageObject.graphsPage().verifySubsidiariesOfAnEntity(legalEntity);
+//    }
 
     @Then("the user should not see any nodes in level $level, above the root entity, in the owners graph")
     public void verifyStopTravelingOwnersPath(String level){
@@ -118,10 +118,10 @@ public class GraphsSteps {
         pageObject.graphsPage().clickOnNodeTitle(switchNode);
     }
 
-    @Then("the user should see the owners for the legal entity $legalEntity in the graphs")
-    public void verifyOwnersOfAnEntity(String legalEntity){
-        pageObject.graphsPage().verifyOwnersOfAnEntity(legalEntity);
-    }
+//    @Then("the user should see the owners for the legal entity $legalEntity in the graphs")
+//    public void verifyOwnersOfAnEntity(String legalEntity){
+//        pageObject.graphsPage().verifyOwnersOfAnEntity(legalEntity);
+//    }
 
     @Then("the user should see the ultimate beneficial owners highlighted in the graph $ubosHighlightedExamTable")
     public void verifyUBOsAreHighlighted(ExamplesTable ubosHighlightedExamTable){

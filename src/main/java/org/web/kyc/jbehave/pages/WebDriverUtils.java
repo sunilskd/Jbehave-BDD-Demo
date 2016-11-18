@@ -204,4 +204,31 @@ public class WebDriverUtils extends WebDriverPage {
 
     }
 
+    public List<WebElement> getWebElementsJS(String xpath){
+
+        String script = "function getText()" +
+                "{" +
+                "var iterator = window.document.evaluate(\"" + xpath + "\", document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);\n" +
+                "var list = [];\n" +
+                "try {\n" +
+                "  var thisNode = iterator.iterateNext();\n" +
+                "  \n" +
+                "  while (thisNode) {\n" +
+                "    //alert( thisNode.textContent );\n" +
+                "    list.push(thisNode);\n" +
+                "    thisNode = iterator.iterateNext();\n" +
+                "  }            \n" +
+                "}\n" +
+                "catch (e) {\n" +
+                "  dump( 'Error: Document tree modified during iteration ' + e );\n" +
+                "}" +
+                "return list" +
+                "};" +
+                "return getText()";
+
+        return (List<WebElement>) executeScript(script);
+
+    }
+
+
 }

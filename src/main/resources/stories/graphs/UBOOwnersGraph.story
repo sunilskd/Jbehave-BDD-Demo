@@ -546,21 +546,6 @@ Examples:
 |fid|
 |LE-60|
 
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-Then the user should see the owners for the legal entity QA Legal Entity 11 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 15 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: Verify in product message is not displaying for the users with UBO access
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -594,7 +579,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user enters percentage as 5 in ownership percentage filter text box in the graphs
-Then the user should see the owners for the legal entity Caisse d'épargne et de prévoyance Ile de France in the graphs
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
 
 Examples:
 |fid|

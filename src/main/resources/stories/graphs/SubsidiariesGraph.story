@@ -349,20 +349,6 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the subsidiaries tab
-And the user clicks on the graph button
-Then the user should see the subsidiaries graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 3 in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
