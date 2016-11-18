@@ -40,6 +40,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
+When the user resize graph to translate(951.5,363.39999396514895) scale(0.9910000000000001)
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 
@@ -66,6 +67,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
+When the user resize graph to translate(951.5,363.39999396514895) scale(0.9910000000000001)
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
 
@@ -217,6 +219,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+When the user resize graph to translate(951.5,363.39999396514895) scale(0.9910000000000001)
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs

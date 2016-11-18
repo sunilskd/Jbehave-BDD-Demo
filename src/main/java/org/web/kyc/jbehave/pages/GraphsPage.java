@@ -342,7 +342,7 @@ public class GraphsPage extends WebDriverUtils {
         nvPairs.add(new BasicNameValuePair("name", nodeTitle));
         List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
         for(int i=0; i<nodes.size(); i++){
-            if(nodes.get(i).getText().contains(nodeTitle)){
+            if(nodes.get(i).getText().replace(" ","").contains(nodeTitle.replace(" ",""))){
                 waitForInMilliSeconds(1500L);
                 getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text']/*[local-name()='a']/*[local-name()='tspan']"))).perform();
             }
