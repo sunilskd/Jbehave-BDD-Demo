@@ -108,7 +108,7 @@ And the user should see the identifiers with below leis, sorted alphabetically b
 
 And the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
 |STOCK EXCHANGES|
-|Börse Berlin AG PRIMARY|
+|Börse Berlin AG|
 |Deutsche Börse AG|
 
 And the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
@@ -126,7 +126,7 @@ Then user is taken to a URL http://www.berlinhyp.de/ that opens in a new window
 
 Examples:
 |fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|website|
-|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||http://www.berlinhyp.de|
+|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,10787,Berlin,Germany|NISWJ7.00001.ME.276||http://www.berlinhyp.de|
 
 Scenario: KYC user can view active swift bic list in entity details
 Meta:@static
