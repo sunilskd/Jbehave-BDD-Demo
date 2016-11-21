@@ -28,6 +28,7 @@ JIRA ID - KYC-241 - Do not display the free text when the filters are applied.
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@kycfullgraph @kyc
 
@@ -460,6 +461,18 @@ Then the user should see the list of below unique country of operations for each
 Examples:
 |fid|nodeTitle|
 |30087|Morgan Stanley & Co LLC|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: KYC user logout
 Meta: @id logout

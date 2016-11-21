@@ -30,6 +30,7 @@ JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-455 - new truncation logic owners graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@uboownersgraph @ubo
 
@@ -673,6 +674,18 @@ Then the user should see the list of owners in level 12, above the root entity, 
 Examples:
 |fid|
 |250786|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: KYC user logout
 Meta: @id logout

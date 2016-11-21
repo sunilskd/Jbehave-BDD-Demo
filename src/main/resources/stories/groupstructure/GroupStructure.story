@@ -12,6 +12,7 @@ Covers below features:
 JIRA ID - KYC-41 - KYC user can view group structure list
 JIRA ID - KYC-107 - KYC user can highlight legal entities by country in group structure list
 JIRA ID - KYC-75 - KYC user can click link to another entity in group structure list
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@groupstructure @kyc @ubo
 
@@ -215,6 +216,17 @@ Then the user should not see the country highlight options on the group strtuctu
 Examples:
 |fid|
 |30087|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: KYC user logout
 Meta: @id logout
