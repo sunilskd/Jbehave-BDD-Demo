@@ -32,6 +32,7 @@ JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in produc
 JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-455 - new truncation logic owners graph
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@kycownersgraphs @kyc
 
@@ -241,26 +242,6 @@ Examples:
 |fid|
 |LE-61|
 
-Scenario: Verify tool tip displays legal title in graphss
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the owners graph
-
-Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
-|LEGAL TITLE|
-|Treasury shares, 3.8; Trade Union Federations of SGB (where no federation owns 3 or more), 4.8; Others, 23.4|
-|Other shareholders owning less than 2, 71.315|
-|Top 20 shareholders, 57.67; Others, 42.33. There were no persons with a substantial shareholding in the Bank|
-|Top shareholders owning less than 2, 71.315|
-|Top shareholders owning less than 2, 71.315|
-|Top shareholders owning less than 2, 71.315|
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: Covers below scenarios
 a. 0. "No country highlight" is default selection in country highlight drop-down
    1. List country of operations for legal entities that appear on the graphs in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
@@ -350,6 +331,7 @@ a. 0. By default, percent filter is set to 0 for both input box and slider, all 
    2. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graphs
    3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graphs
    4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graphs
+   5. Null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -385,9 +367,10 @@ Examples:
 |LE-6|
 
 Scenario: Covers below scenarios
-a. 0. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graphs, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graphs
+a. 0. If user moves slider to percent 1-100, null percent relationships remain on the graph and are never filtered out by the percent filter, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graphs
    1. If user moves slider to 0 percent, all owners appear on graphs
    2. User applies percent filter that results in no owners on the graphs, only root node is left on the graphs
+   3. Null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -490,24 +473,6 @@ Examples:
 |fid|
 |LE-A|
 
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the owners graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-Then the user should see the owners for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 10 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 9 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 18 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -555,6 +520,7 @@ Examples:
 Scenario: KYC-455 Covers below scenarios for truncated owners graph for a KYC user.
 a. 0. Verify graph truncation notification message when number of nodes are greater than 2500
    1. Percent ownership filter options not affected by truncation.
+   2. Null percent relationships remain on the graph and are never filtered out by the percent filter
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab

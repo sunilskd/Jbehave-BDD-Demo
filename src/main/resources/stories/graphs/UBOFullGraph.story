@@ -24,6 +24,7 @@ JIRA ID - KYC-156 - User will see in product message on full graph if they do no
 JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@ubofullgraph @ubo
 
@@ -52,6 +53,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the full graph
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of owners in level 2, above the root entity, in the graphs
@@ -227,11 +229,13 @@ a. 0. By default, percent filter is set to 0 for both input box and slider, all 
    2. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph
    3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
    4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
+   5. Null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the full graph
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
 Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
@@ -340,6 +344,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the full graph
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
@@ -377,7 +382,7 @@ Examples:
 |fid|legalEntity|
 |LE-A|QA Test Person A|
 
-Scenario: Verify percent filter is applied at all level
+Scenario: Verify percent filter is applied at all level and null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -388,24 +393,6 @@ When the user enters percentage as 45 in ownership percentage filter text box in
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the group structure tab
-And the user clicks on the graph button
-Then the user should see the full graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-Then the user should see the owners for the legal entity QA Legal Entity 11 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 15 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 3 in the graphs
 
 Examples:
 |fid|
@@ -442,7 +429,7 @@ And the user should see the list of below unique country of operations for each 
 |Singapore (1)|
 |USA (3)|
 
-When the user resize graph to translate(1145.7962725943123,445.13903116672043) scale(0.649)
+When the user resize graph to translate(1427.2441095903441,474.9631934419525) scale(0.5950000000000001)
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|

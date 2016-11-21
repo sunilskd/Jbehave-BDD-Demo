@@ -49,7 +49,7 @@ public class OwnersPage extends WebDriverUtils {
     private By direct_owners_rows_xpath = By.xpath("//*[@id='direct-owners'] //tbody");
     private String direct_owners_row_for_country_xpath = "//*[td='";
     private By direct_owners_country_highlight_list_text_xpath = By.xpath("//*[@id='content-filters'] //div[h2='Highlight']/ul/li");
-    private By ubo_header_text_xpath = By.xpath(".//*[@product='UBO']/div/h1");
+    private By ubo_header_text_xpath = By.xpath("//*[@id='content-view']/div[2]/div[1]/div/h1");
     private By ubo_name_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[1]");
     private By ubo_entity_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[2]");
     private By ubo_percentage_header_text_xpath = By.xpath("//*[@id='ubo'] /thead/tr/th[3]");
@@ -211,11 +211,7 @@ public class OwnersPage extends WebDriverUtils {
     public void openLegalTitleInDirectOwnersListInNewWindow(String legalTitle) {
         waitForPageToLoad(15000L);
         nvPairs.add(new BasicNameValuePair("name", legalTitle));
-        for(org.apache.http.NameValuePair nameValuePair : nvPairs) {
-            if("fid".equals(nameValuePair.getName())) {
-                nvPairs.remove(nameValuePair);
-            }
-        }
+        httpRequest().removeNameValuePair("fid");
         openLinkInNewWindow(By.linkText(legalTitle));
     }
 
@@ -256,7 +252,8 @@ public class OwnersPage extends WebDriverUtils {
     }
 
     public void sVerifyUBOList(ExamplesTable uboListExamTable) {
-        waitForWebElementToAppear(ubo_name_text_xpath);
+        //waitForWebElementToAppear(ubo_name_text_xpath);
+        waitForInMilliSeconds(3000L);
         verifyUBOHeaders();
         List<WebElement> aUBOName = getWebElements(ubo_name_text_xpath);
         List<WebElement> aUBOEntityName = getWebElements(ubo_entity_name_text_xpath);

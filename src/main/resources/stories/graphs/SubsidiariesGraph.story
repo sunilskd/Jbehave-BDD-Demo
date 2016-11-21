@@ -18,6 +18,7 @@ JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-456 - New truncation logic for subs graph
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -206,11 +207,12 @@ Examples:
 |LE-6|
 
 Scenario: Covers below scenarios
-a. By default, percent filter is set to 0 for both input box and slider, all subsidiaries are displayed in the graph
-b. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
-c. If user enters 0 in input box, slider position automatically updates to match percent entered, all subsidiaries appear on the graph
-d. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only subsidiaries that are owned by 100 percent appear on graph
-e. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all subsidiaries are displayed in the graph
+a. 0. By default, percent filter is set to 0 for both input box and slider, all subsidiaries are displayed in the graph
+   1. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
+   2. If user enters 0 in input box, slider position automatically updates to match percent entered, all subsidiaries appear on the graph
+   3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only subsidiaries that are owned by 100 percent appear on graph
+   4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all subsidiaries are displayed in the graph
+   5. Null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -242,7 +244,7 @@ Examples:
 |LE-6|
 
 Scenario: Covers below scenarios
-a. If user moves slider to percent 1-100, null percent subsidiaries are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
+a. If user moves slider to percent 1-100, null percent relationships remain on the graph and are never filtered out by the percent filter, input box automatically updates to reflect percent selected by slider, only subsidiaries that are owned by equal to or greater than selected percent appear on the graph
 b. If user moves slider to 0 percent, all subsidiaries appear on graph
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -299,7 +301,7 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Verify percent filter is applied at all level
+Scenario: Verify percent filter is applied at all level and null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
@@ -312,20 +314,6 @@ Then the user should see the legal entity QA Legal Entity 6, user is currently v
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the subsidiaries tab
-And the user clicks on the graph button
-Then the user should see the subsidiaries graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 3 in the graphs
 
 Examples:
 |fid|

@@ -41,49 +41,37 @@ a. 0. UBO user can view all direct and indirect owners that are people, in the o
    1. UBOs are ordered by percentage ownership, then alphabetically by personSortKey.
    2. Do not display source when source and extecnded source are not present
    3. UBO User can view multiple UBOs of the same enity
-   4. There are no UBOs to display, then display "No known entities"
-   5. User selects view all filter, then display entire UBO list.
-   6. UBO user can filter UBO list by percent ownership
+   4. User selects view all filter, then display entire UBO list.
+   5. UBO user can filter UBO list by percent ownership
+   6. UBOs has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
+   7. UBOs has source as "source, extended source" when both source and extended source are present
+   8. Display source as "source" when only source is present
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
 |UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|Agnew Meyer Robert|Banco BISA SA|1.24|||
+|Fernando Bedoya Ballivan|Corporacion de Inversiones B&S SA|67.6|08 Jun 2016|Banco Nacional de Bolivia SA, direct from institution|
+|Eugenia Saenz de Bedoya|Corporacion de Inversiones B&S SA|13.45|08 Jun 2016|Banco Nacional de Bolivia SA, direct from institution|
+|Milton Careaga Alurraide|Banco Nacional de Bolivia SA|4.83|||
+|Robert Meyer Agnew|Banco Nacional de Bolivia SA|3.59|||
+|Celso Alvarado Amez|Banco Nacional de Bolivia SA|1.75|||
+|Roberto Rojas|Banco Union SA|1.4071|||
+|Agnew Meyer|Banco BISA SA|1.24|||
 |Jose Luis Aranguren Aguirre|Banco BISA SA|0.88|||
 |Jorge Eduardo Rengel Sillerico|Banco BISA SA|0.68|||
 |Tomás Barrios Santivañez|Banco BISA SA|0.23|||
+|Jorge Guillermo Valdez|Banco Union SA|0.023|||
 
 When the user selects the percent filter option <percentFilter> in the owners page
-Then the ubo user should see message displayed in place of list explaining there are no UBOs
-When the user changes the percent filter option to View All in the owners page
-
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
 |UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|Agnew Meyer Robert|Banco BISA SA|1.24|||
-|Jose Luis Aranguren Aguirre|Banco BISA SA|0.88|||
-|Jorge Eduardo Rengel Sillerico|Banco BISA SA|0.68|||
-|Tomás Barrios Santivañez|Banco BISA SA|0.23|||
+|Fernando Bedoya Ballivan|Corporacion de Inversiones B&S SA|67.6|08 Jun 2016|Banco Nacional de Bolivia SA, direct from institution|
+|Eugenia Saenz de Bedoya|Corporacion de Inversiones B&S SA|13.45|08 Jun 2016|Banco Nacional de Bolivia SA, direct from institution|
 
 Examples:
 |fid|percentFilter|
 |104464|10|
-
-
-Scenario: Covers below scenario
-a. 0. UBOs has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
-   1. UBOs has source as "source, extended source" when both source and extended source are present
-   2. Display source as "source" when only source is present
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
-|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|Mrs Nada Aoueini|BLOM BANK SAL|5|09 Mar 2016|BLOM BANK SAL, direct from institution|
-
-Examples:
-|fid|
-|225719|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

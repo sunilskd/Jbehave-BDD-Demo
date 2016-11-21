@@ -17,7 +17,7 @@ Meta:@subsidiariesLive @live
 
 Scenario: KYC user login
 Given the user is on bankers almanac page
-When the user login as a kyc user to bankers almanac page
+When the user login as a ubo user to bankers almanac page
 
 Scenario: Covers below scenarios
 a. 0. With percentage ownership; with country of operations; with validated date; with active legal entity subsidiaries; with active subsidiary relationships

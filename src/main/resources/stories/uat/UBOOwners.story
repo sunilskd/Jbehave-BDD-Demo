@@ -45,7 +45,6 @@ a. 0. Person or institution or other entity type owner is active and Ownership r
 b. 0. If ownership relationship (with non-institution, non-person entity type owners) does not have validated date, do not display validated date on list next to the record
    1. If entityReference/description and ownerType are present display owner as "ownerType, entityReference/description"
    2. Ownership relationship has validated date with accuracy attribute of day, month or year (If day, display day, month and year. If month, display only month and year. If year, display only year)
-c. 0. If entityReference/description and ownerType are not present do not display owner name and display percent ownership and validated date in the direct owners list
 d. 0. If ownerType is not present display owner as "entityReference/description"
    1. If ownership relationship (with person or institution) does not have validated date, do not display validated date on list next to the record
    2. Verify percentage meter bar for direct owners (person or institution or other entity type)
@@ -62,8 +61,19 @@ Examples:
 |fid|
 |12538|
 |3112|
-|28691|
 |11262|
+
+Scenario: UBO user can view direct owners that has people as owners & User clicks and opens legal title of legal entity that appears in direct owners list in a new window
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+Then the user should see the direct owners summary selected by default in the owners page
+Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
+Then the ubo user should not see the free text at the bottom of the direct owner list for the selected institution in the owners page
+When the user clicks and opens the legal title Timeworth Ltd in direct owners list in new window in the owners page
+Then the ubo user should see the list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by owners name for the selected institution in the owners page
+
+Examples:
 |242960|
 
 Scenario: Covers below scenarios
@@ -78,10 +88,6 @@ And the user clicks on the owners tab
 Then the user should see the optional percent filters all, 10, 25 and 50 and above for direct owners and ubo with all selected by default in the owners page
 When the user selects the percent filter option <percentFilter> in the owners page
 Then the user should see the percent filter View All de-selected in the owners page
-When the user clicks and opens the legal title Moody Bank Holding Company Inc in direct owners list in new window in the owners page
-Then the ubo user should see the below list of direct owners (person or institution or other entity type) ordered by percentage ownership then asc by legal title for the selected institution in the owners page
-|LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|Moody Bancshares Inc|USA||||
 
 Examples:
 |fid|percentFilter|

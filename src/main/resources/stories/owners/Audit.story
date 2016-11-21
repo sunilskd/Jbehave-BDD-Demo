@@ -10,6 +10,7 @@ Audit trail will show actions that Accuity has taken to update the ownership inf
 Covers below features:
 JIRA ID - KYC-118 - KYC user can view audit trail for ownership information collection
 JIRA ID - KYC-311 - Audit Trails date format is incorrect. The format should be DD MMM YYYY but is DD-MMM-YYYY.
+JIRA ID - KYC-463 - Display only attempts in audit trail
 
 Meta:@owners @audit
 Scenario: UBO user login
@@ -18,19 +19,14 @@ When the user login as a ubo user
 
 Scenario: KYC user can view audit trail
 a. 0. User clicks "Display Audit Information", audit section expands with legal title of legal entity user is viewing in the header of the table, button user clicked is renamed to "Hide Audit Information"
-   1. If there is one action of type "Supplied", display the date for whichever action is the most recent and display the label "Last updated on" for the action
-   2. If there is an action of type "Attempt" or "Denied" that is more recent than the "Supplied" or "Verified" date, display the dates for those actions and display the label "Update attempted on" for the actions
-   3. Sort list of actions by date, listing the most recent at the top
-   4. If action date has accuracy attribute of day, then display day, month, and year
-   5. If action date has accuracy attribute of month, then display only month and year
-   6. If action date has accuracy attribute of year, then display only year
-   7. If there is only a "Supplied" date, display that as the "Last updated on" date
-b. 0. If there is an action of type "Supplied" or "Verified" but no actions of "Attempt" or "Denied" that are more recent, display only the date for the more recent "Supplied" or "Verified"
-   1. If there is only a "Verified" date, display that as the "Last updated on" date
-c. If there are multiple "Supplied" dates, choose the most recent
-d. If there are multiple "Verified" dates, choose the most recent
-e. If there is a "Supplied" date and a "Verified" date, choose whichever is more recent
-f. If there is one action of type "Verified", display the date for whichever action is the most recent and display the label "Last updated on" for the action
+   2. If action date has accuracy attribute of day, then display day, month, and year
+   3. If action date has accuracy attribute of month, then display only month and year
+   4. If action date has accuracy attribute of year, then display only year
+   5. List dates for any action of type "Attempt" that has a date after the most recent "Supplied", Verified", or "Denied" date in the database
+b. Sort all listed actions and their corresponding dates from most recent to least recent
+c. If an action does not have a date associated to it, the app will ignore that action and not consider it for display or display logic
+d. If there are multiple attempts made on the same day display all attempts made later than the most recent "Supplied" "Verified" or "Denied" date
+e. If no actions of type "Supplied," "Verified" or "Denied" exist and "Attempt" actions exist then display all "Attempt" actions in the audit trail.
 Meta:@audit @dynamic
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -41,17 +37,18 @@ Then the user should see audit information with legal title of legal entity user
 Examples:
 |fid|
 |3|
-|6|
+|4|
 |7|
 |8|
 |9|
-|4|
 
-Scenario: Verify Audit information
+Scenario: Verify no audit information available
 a. 0. If no ownership review data exists for legal entity user is viewing, then display message "No audit information available."
    1. By default audit section is collapsed
    2. User clicks "Hide Audit Information", audit section collapses
-b. If there is no action of type "Supplied" or "Verified", do not display any actions or dates even if other action types exist for the legal entity user is viewing and display message "No audit information available."
+b. If no actions of type "attempt" exist at all then display message "No audit information available."
+c. If "Attempt" actions that exist have date equals to the most recent "Supplied" "Verified" or "Denied" date then do not display any actions in audit trail. Display message "No audit information available."
+d. If "Attempt" actions that exist all have a date earlier than the most recent "Supplied" "Verified" or "Denied" date then do not display any actions in audit trail. Display message "No audit information available."
 Meta:@audit @dynamic
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -65,6 +62,8 @@ Examples:
 |fid|
 |211|
 |5|
+|11|
+|6|
 
 Scenario: KYC user logout
 Meta: @id logout

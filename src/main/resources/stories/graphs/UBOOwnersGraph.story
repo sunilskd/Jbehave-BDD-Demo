@@ -29,6 +29,7 @@ JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears mul
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-455 - new truncation logic owners graph
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@uboownersgraph @ubo
 
@@ -75,6 +76,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of owners in level 1, above the root entity, in the graphs
@@ -305,11 +307,12 @@ Examples:
 |LE-9|
 
 Scenario: Covers below scenarios
-a. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
-b. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only owners that are owned by equal to or greater than selected percent appear on the graph
-c. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph
-d. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
-e. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
+a. 0. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
+   1. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only owners that are owned by equal to or greater than selected percent appear on the graph
+   2. If user enters 0 in input box, slider position automatically updates to match percent entered, all owners appear on the graph
+   3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
+   4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
+   5. Null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -345,7 +348,7 @@ Examples:
 |LE-A|
 
 Scenario: Covers below scenarios
-a. 0. If user moves slider to percent 1-100, null percent owners are filtered out and not displayed on the graph, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graph
+a. 0. If user moves slider to percent 1-100, null percent relationships remain on the graph and are never filtered out by the percent filter, input box automatically updates to reflect percent selected by slider, only owners that are owned by equal to or greater than selected percent appear on the graph
    1. If user moves slider to 0 percent, all owners appear on graph
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -387,23 +390,6 @@ Examples:
 |fid|
 |LE-61|
 
-Scenario: Verify tool tip displays legal title in graphs
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
-|LEGAL TITLE|
-|Local Government, Legal Entity 61 owned by Local Government|
-|Local Government, Legal Entity 61 owned by Local Government|
-|Free float, Legal Entity 15 owned by Free float|
-|Local Government, Legal Entity 61 owned by Local Government|
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: Covers below scenarios
 a. 0. Root node appears in multiple times in the same path
    1. Visual indicator count doesnt change even filter is applied
@@ -428,6 +414,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
@@ -447,6 +434,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
@@ -524,21 +512,6 @@ Examples:
 |fid|
 |LE-60|
 
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-Then the user should see the owners for the legal entity QA Legal Entity 11 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 15 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: Verify in product message is not displaying for the users with UBO access
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -572,7 +545,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user enters percentage as 5 in ownership percentage filter text box in the graphs
-Then the user should see the owners for the legal entity Caisse d'épargne et de prévoyance Ile de France in the graphs
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
 
 Examples:
 |fid|

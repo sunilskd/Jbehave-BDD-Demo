@@ -48,19 +48,19 @@ When the user selects another country <changeCountry> from the country highlight
 Then the user should see the entities in the group structure that have the selected country of operations highlighted in the group structure page
 And the previously selected country <country> should be de-selected in the group structure page
 
-Then the user should see the ultimate owner as BLOM BANK SAL for the entity user is viewing in the group structure page
+Then the user should see the ultimate owner as Intesa Sanpaolo SpA for the entity user is viewing in the group structure page
 
 Then the user should see the majority owners for the institution Recovery Ltd in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|CIB Bank Zrt|Hungary|67.69|
+|CIB Bank Zrt|Hungary|67.6905|
 
 Then the user should see the majority owners for the institution Lux Gest Asset Management SA in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|100|
+|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|99.207|
 
-Then the user should see the majority owners for the institution Societá per La Riscossione dei Tributi SpA in the group structure page
+Then the user should see the majority owners for the institution Infogroup ScpA in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Casse di Risparmio dell'Umbria SpA|Italy|87.85|
+|Banca CR Firenze SpA|Italy|89.74|
 
 Then the user should see the majority owners for the institution Banca IMI Securities Corp in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
@@ -78,10 +78,8 @@ And the user should see the indented list of subsidiaries for the institution FI
 |Fideuram Fiduciaria SpA|Italy|100|
 |Fideuram Gestions SA (Luxembourg)|Luxembourg|100|
 |Financiere Fideuram SA|France|100|
-|Sanpaolo Invest (Ireland) Ltd|Ireland|100|
 |Sanpaolo Invest SIM SpA|Italy|100|
 |Fideuram Investimenti SGR SpA|Italy|99.5|
-|MC Gestioni Società di gestione del risparmio per azioni|Italy|91.39|
 |Auriga Sistemi-Finanza Quantitativa Srl|Italy|80|
 
 And the user should see the indented list of subsidiaries for the institution IMI Capital Markets USA Corp that are owned through majority ownership path or null percent, ordered by percent ownership, then alphabetically by legal title in group structure page
@@ -99,7 +97,7 @@ Then the user should see the legal entity Eurizon Capital SA, user is currently 
 
 Then the user should see the majority owners for the institution Lux Gest Asset Management SA in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|100|
+|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|99.207|
 
 Then the user should see the majority owners for the institution Auriga Sistemi-Finanza Quantitativa Srl in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
@@ -115,6 +113,7 @@ Then the user should see the indented list of subsidiaries for the institution P
 |PBZ Leasing doo|Croatia|100|
 |PBZ Nekretnine doo|Croatia|100|
 |PBZ Stambena Stedionica dd|Croatia|100|
+|Intesa Sanpaolo banka dd Bosna i Hercegovina|Bosnia-Herzegovina|94.95|
 
 Examples:
 |fid|country|changeCountry|

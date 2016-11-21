@@ -27,6 +27,7 @@ JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user e
 JIRA ID - KYC-241 - Do not display the free text when the filters are applied.
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@kycfullgraph @kyc
 
@@ -135,6 +136,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+And the user resize graph to translate(946.1673813093672,578.0779379814662) scale(0.23500000000000001)
 Then the user should not see any nodes in level 1, below the root entity, in the graphs
 And the user should see the list of owners in level 2, above the root entity, in the graphs
 
@@ -147,6 +149,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+And the user resize graph to translate(946.1673813093672,578.0779379814662) scale(0.23500000000000001)
 Then the user should not see any nodes in level 1, above the root entity, in the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 
@@ -223,6 +226,7 @@ a. 0. By default, percent filter is set to 0 for both input box and slider, all 
    3. If user enters number greater than 100 in input box, input box automatically updates to display 100, slider bar automatically moves to 100, only owners that are owned by 100 percent appear on graph
    4. If user enters a character than is not a number in the input box, input box automatically updates to display 0, slider bar automatically moves to 0, all owners are displayed in the graph
    5. Display only root node when the applied percent filter doesn't result in any other nodes
+   6. Null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -365,7 +369,7 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Verify percent filter is applied at all level
+Scenario: Verify percent filter is applied at all level and null percent relationships remain on the graph and are never filtered out by the percent filter
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
@@ -380,36 +384,18 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the group structure tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 10 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 9 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 18 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 3 in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: Display the free text when the percent filters are applied
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 10, user is currently viewing, as the root and highlighted on the graphs
+Then the user should see the legal entity QA Legal Entity 15, user is currently viewing, as the root and highlighted on the graphs
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 10 in the graphs
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
 
 Examples:
 |fid|
-|LE-10|
+|LE-15|
 
 Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
 When the user opens legal entity <fid>

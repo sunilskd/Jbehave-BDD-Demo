@@ -39,6 +39,10 @@ And the user should see website information in the summary section of entity det
 Examples:
 |fid|
 |1038|
+|815|
+|58285|
+|4236|
+|15586|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

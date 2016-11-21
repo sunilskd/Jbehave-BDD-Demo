@@ -20,11 +20,6 @@ public class BAIntegrationSteps {
         pageObject.baIntegrationPage().launchBankersAlmanac();
     }
 
-    @When("the user login as a $userType user to bankers almanac page")
-    public void userLogin(@Named("userType") String userType){
-        pageObject.baIntegrationPage().userLogin(userType);
-    }
-
     @When("the user clicks on view on bankers almanac")
     public void clickViewOnBankersAlmanac(){
         pageObject.baIntegrationPage().clickViewOnBankersAlmanac();

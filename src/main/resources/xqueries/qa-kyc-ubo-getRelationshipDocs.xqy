@@ -21,3 +21,23 @@ let $relationshipDocs := cts:search(/relationship,
                       
 return $relationshipDocs
 };
+
+declare function getRelationshipsByName($name as xs:string, $searchedEntityPartyType as xs:string, $relationshipType as xs:string)
+{
+let $legalEntity := qa-kyc-ubo-getLegalEntityDoc:getLegalEntityDocByName($name)
+let $relationshipDocs := cts:search(/relationship,
+                      cts:and-query((
+                      cts:collection-query(("current")),
+                      cts:collection-query(("relationship")),
+                      cts:collection-query("source-fdb"), 
+                      cts:element-value-query(xs:QName("status"), "active"),  
+                      cts:element-query(xs:QName("relationshipType"), $relationshipType),
+                      cts:element-query(xs:QName("party"), 
+                      cts:and-query((
+                      cts:element-query(xs:QName("partyType"), $searchedEntityPartyType),
+                      cts:element-query(xs:QName("entityType"), "institution"),
+                      cts:path-range-query("/relationship/parties/party/entityReference/link/@href", "=", $legalEntity/@resource, "collation=http://marklogic.com/collation/")
+                      ))))))
+                      
+return $relationshipDocs
+};

@@ -85,4 +85,9 @@ public class CommonSteps {
         pageObject.commonUtils().verifyPrintInstruction();
     }
 
+    @When("the user login as a $userType user to bankers almanac page")
+    public void baUserLogin(@Named("userType") String userType){
+        pageObject.commonUtils().baUserLogin(userType);
+    }
+
 }

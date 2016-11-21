@@ -13,102 +13,77 @@ Given the user is on bankers almanac page
 When the user login as a kyc user to bankers almanac page
 
 Scenario: KYC user views full graph
-a. 0. If user applies "direct relationships only" filter to graph, percent filter resets to 0
-   1. If user selects a percent filter after applying "direct relationships only" filter, graph filters out any entities that don't have equal to or greater than the selected percent and the direct filter remains in effect
-   2. User applies direct relationships only filter and percent filter
-   3. User unchecks "direct relationships only" filter, percent filter resets to 0
-   4. Country highlights drop down updates when percent filter applied
-   5. Country highlights drop down updates when direct relationships only filter applied
-   6. Country highlights drop down updates when direct relationships only filter and percent filter are applied
-   7. If user applies percent or direct filter, any highlights previously applied (country,appears multiple) are removed and de-selected
-   8. If user applies percent or direct filter, appears multiple times count on a legal entity or person remains the same even if all times the entity appears are no longer visible
-   9. User selects country highlight ,Count of tiles currently visible that match that country is displayed
-   10. User selects country highlight and If a filter is applied, only tiles still visible after the filter count
-   11. If user applied country highlight then applies appears multiple highlight, then any tile that matches both takes style of appears multiple highlight, any tile that only matches country highlight takes style of country highlight
-   12. If user applied both country highlight and appears multiple highlight then removes appears multiple highlight, then any tile that previously matched both takes style of country highlight
-
+a. 0. An entity on the graph (could be entity user is viewing) has owner that is a legal entity which is active, display that entity as owner on graph above the entity it owns.
+   1. Ownership relationship has percent ownership, display percent on owner's node on graph
+   2. Ownership relationship has null percent ownership, do not display percent ownership on owner node on graph
+   3. Free text ownership exists for entity user is viewing, display that free text in a node as a direct owner of the root node
+   4. Free text ownership does not exist for entity user is viewing, do not display free text as owner on full graph
+   5. Entity on the graph (could be entity user is viewing or another subsidiary entity on graph) has at least one active relationship where it is the owner and the owned entity is also active, display owned entity as subsidiary on graph and display percent ownership on subsidiary
+   6. Entity on the subsidiary portion of graph has an inactive relationship where it is the owner, then do not display owned entity on graph
+   7. Subsidiary relationship has percent ownership, display percent ownership on the subsidiary node
+   8. Subsidiary relationship has null percent ownership, do not display a percent ownership on the subsidiary node
+   9. Subsidiary graph should not display the free text
+   10. User will see in product message on owners graph if they do not have access to UBO data and UBOs exisits fot the entity user is viewing.
+   11. "No country highlight" is default selection in country highlight drop-down
+   12. List country of operations for legal entities that appear on the graph in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
+   13. Select a country highlight, legal entities in the full graph that have that country of operations are highlighted (including root node of graph if applicable)
+   14. If user selects a second country in highlight drop-down, highlight legal entities by new selected country and remove highlight of legal entities by previous country)
+   15. Select "No country highlight", removes country highlight of legal entities
+   16. By default, percent filter is set to 0 for both input box and slider, all owners are displayed in the graph
+   17. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only owners that are owned by equal to or greater than selected percent appear on the graph
+   18. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
+   19. By default UBO highlight checkbox is available on full graph, but is disabled for KYC user and not selectable
+   20. Display the free text when the filters are applied
+   21. Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity The Fukuoka Chuo Bank Ltd, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of owners in level 2, above the root entity, in the graphs
+Then the user should see the legal entity Banco Indusval SA, user is currently viewing, as the root and highlighted on the graphs
+When the user resize graph to translate(1003.9459234383133,436.36120867136754) scale(0.27509397800157526)
+Then the user should see the list of owners in level 2, above the root entity, in the graphs
 And the user should see the list of owners in level 3, above the root entity, in the graphs
-And the user should see the list of owners in level 4, above the root entity, in the graphs
-And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 3, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 4, below the root entity, in the graphs
-And the user should see the list of subsidiaries in level 5, below the root entity, in the graphs
 And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
+And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Cayman Islands (4)|
-|Japan (77)|
-
-When the user selects a country Cayman Islands from the country highlight list in the graphs
+When the user selects a country UK from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
-|Hiroshima Finance (Cayman) Limited|
-|Hiroshima Preferred Capital Cayman Limited|
-|Hiroshima Finance (Cayman) Limited|
-|Hiroshima Preferred Capital Cayman Limited|
+|Generation Investment Management Ll|
+
+When the user selects another country Belgium from the country highlight list in the graphs
+Then the user should see the below entities that have the selected country of operations highlighted in the graphs
+|NODES|
+|The Bank of New York Mellon SA/NV 10|
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the graphs
 Then the user should not see the entities highlighted in the graphs
 
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
-When the user selects a country Japan from the country highlight list in the graphs
-When the user enters percentage as 9 in ownership percentage filter text box in the graphs
-Then the user should not see the entities highlighted in the graphs
-Then the user should see the list of owners in level 1, above the root entity, in the graphs
-Then the user should see the list of owners in level 2, above the root entity, in the graphs
-Then the user should not see any nodes in level 3, above the root entity, in the graphs
-Then the user should not see any nodes in level 1, below the root entity, in the graphs
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
+When the user enters percentage as 68 in ownership percentage filter text box in the graphs
+Then the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Japan (3)|
+|Brazil (9)|
+
+Then the user should not see any nodes in level 2, above the root entity, in the graphs
+Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
+Then the user should not see any nodes in level 3, below the root entity, in the graphs
 
 When the user clicks on direct relationship only filter checkbox in the graphs
-Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
 Then the user should not see any nodes in level 2, below the root entity, in the graphs
-Then the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
-When the user clicks on <legalEntity> node which appears more than once in the graphs
-Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
-And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Japan (13)|
 
-When the user enters percentage as 100 in ownership percentage filter text box in the graphs
-Then the user should see the owners for the legal entity The Fukuoka Chuo Bank in the graphs
-Then the user should not see the entities highlighted in the graphs
-When the user unchecks direct relationship only filter checkbox in the graphs
-Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
-
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
-Then user is taken to the respective graph page of that legal entity <nodeTitle>
-
-Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
-And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
-|COUNTRIES|
-|No country highlight|
-|Japan (29)|
-
-And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
-Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC%7CBRSK%7CBAFPU-2016-0810-GLOB-ba-ubo%7CLookBook&sfid=701D0000000dwwH on accuity.com
+Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC7CBRSK7CBAFPU-2016-0810-GLOB-ba-ubo7CLookBook&sfid=701D0000000dwwH on accuity.com
 
 Examples:
-|fid|legalEntity|countValue|nodeTitle|
-|30087|Japan Trustee Services|Appears: 3|The Howa Bank Ltd|
+|fid|legalEntity|
+|732|MSL Inc|
 
 Scenario: KYC user logout
 Given the user is on bankers almanac page
