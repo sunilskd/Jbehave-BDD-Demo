@@ -75,7 +75,7 @@ public class GraphControlsSteps {
         pageObject.graphControlsUtils().changePercentOwnershipUsingSlider(slideTo);
     }
 
-    @Then("the user should see the ultimate beneficial owners filter checkbox disabled in the graph")
+    @Then("the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph")
     public void verifyUBOFilterIsDisabled(){
         pageObject.graphControlsUtils().verifyUBOFilterIsDisabled();
     }

@@ -29,6 +29,7 @@ JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
+JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
 
 Meta:@kycfullgraph @kyc
 
@@ -286,7 +287,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
+Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
 Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC7CBRSK7CBAFPU-2016-0810-GLOB-ba-ubo7CLookBook&sfid=701D0000000dwwH on accuity.com
