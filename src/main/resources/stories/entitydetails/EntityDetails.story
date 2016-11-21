@@ -17,6 +17,9 @@ JIRA ID - KYC-211 - LEIs are not sorted alphabetically in Entity Details Identif
 JIRA ID - KYC-204 - Display legal entity website on entity details
 JIRA ID - KYC-464 - Abbreviated name of stock exchange not displayed
 JIRA ID - KYC-481 - Find head office address for entity details by address function
+JIRA ID - KYC-484 - Display zip code for addresses in entity details
+JIRA ID - KYC-588 - Address is displayed as Null in entity details page and side panel instead of empty values.
+JIRA ID - KYC-587 - City and Area information is not displayed when zip code and position are NULL
 
 Meta:@entitydetails @kyc @ubo
 
@@ -31,8 +34,10 @@ a. 0. With head office address elements with varying "UseInAddress" flag values 
    3. With head office address elements with varying "UseInAddress" flag value false for each element (do not display element if UseInAddress is false)
    4. If active SWIFT BICs have assigned institution that is the entity user is viewing, then display SWIFT BICs on entity details sorted first by length (short to long) then by alpha-numeric
    5. Entity With website, display hyperlink in summary section
+   6. Displaye zip code in head office address position as afterArea
 b. 0. With FATCA status value (display in identifiers section)
    1. If inactive SWIFT BIC has assigned institution that is the entity user is viewing, then do not display
+   2. Do not displaye zip code when zip code and position are null
 c. 0. KYC users should see Indetifiers labels even when there are no values for the identifiers
    1. If no GIIN, display field label in identifiers section but no value
    2. If no LEI, display field label in identifiers section but no value
@@ -40,18 +45,25 @@ c. 0. KYC users should see Indetifiers labels even when there are no values for 
    4. If no active SWIFT BICs have assigned institution that is the entity user is viewing, display the field label but no value
    5. If website is null, display field label in summary section but no value
 d. If no primary physical address exists for head office, display field label in summary section but no value
-e. Display all head office entity where useInaddress is true
+e. 0. Display all head office entity where useInaddress is true
+   1. Displaye zip code in head office address position as beforeCity
 f. 0. Active regulation relationships exist for entity user is viewing, display in entity details summary section sorted alphabetically by legal title
 g. 0. If no active regulation relationship exists, then display field label but no value
    1. If no stock exchange relationship exisits, display field label in summary section but no value
    2. If no stock exchange relationship exisits, display field label in identifier section but no value
+   3. Displaye zip code in head office address position as afterSubArea
 h. If regulation relationship is inactive, then display field label but no value
 i. 0. If active stock exchange relationship(s) exist, display legal title of stock exchange and abbreviated name in summary section sort first by primary = true, then by legal title
    1. If active stock exchange relationship(s) exist, display abbreviated name of stock exchange and ticker symbol for that stock exchange relationship in identifiers section, sort first by primary = true, then by abbreviated stock exchange name
-j. If inactive stock exchange relationship, then display field label but no value
+j. 0. If inactive stock exchange relationship, then display field label but no value
+   1. Displaye zip code in head office address position as afterCity
 k. 0. If abbreviated name does not exist for stock exchange, then display all other available stock exchange info but not abbreviated name in summary or identifiers section
    1. If no ticker symbol exists, display all other available info but no ticker symbol in identifiers section
 l. If stock exchange relationship is active and stock exchange legal entity is inactive, then display field label but no value
+m. Displaye zip code in head office address position as beforeSubArea
+n. Displaye zip code in head office address position as beforeArea
+0. Do not display null in address when there is no address to display.
+p. Display only City,area and country when all other fileds are null.
 Meta:@dynamic
 When the user opens legal entity <fid>
 When the user clicks on the entity details tab
@@ -78,6 +90,10 @@ Examples:
 |519|
 |15586|
 |1857|
+|273919|
+|297370|
+|328210|
+|103769|
 
 Scenario: KYC user can view entity details
 Meta:@static
@@ -92,7 +108,7 @@ And the user should see the identifiers with below leis, sorted alphabetically b
 
 And the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
 |STOCK EXCHANGES|
-|Börse Berlin AG PRIMARY|
+|Börse Berlin AG|
 |Deutsche Börse AG|
 
 And the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
@@ -110,7 +126,7 @@ Then user is taken to a URL http://www.berlinhyp.de/ that opens in a new window
 
 Examples:
 |fid|legalTitle|bankersAlmanacId|headOfficeAddress|giin|fatcaStatus|website|
-|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,Berlin,Germany|NISWJ7.00001.ME.276||http://www.berlinhyp.de|
+|58285|Berlin Hyp AG|Bankersalmanac.com ID: 58285|Budapester Strasse 1,10787,Berlin,Germany|NISWJ7.00001.ME.276||http://www.berlinhyp.de|
 
 Scenario: KYC user can view active swift bic list in entity details
 Meta:@static
@@ -147,10 +163,18 @@ Examples:
 |732|
 
 Scenario: KYC-215 Covers below scenario
-a. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display subarea if UseInAddress is false)
-b. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display area if UseInAddress is false)
-c. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display subarea and area if UseInAddress is false)
+a. 0. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display subarea if UseInAddress is false)
+   1. Displaye zip code in registered office address position as afterCity
+b. 0. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display area if UseInAddress is false)
+   1. Displaye zip code in registered office address position as beforeCity
+c. 0. With registered office address elements with varying "UseInAddress" flag value false for each element (do not display subarea and area if UseInAddress is false)
+   1. Do not displaye zip code in registered office address when zip code and position are null
 d. With registered office address elements with varying "UseInAddress" flag values for each element (display element if UseInAddress is true) (display head office address in summary section)
+e. Displaye zip code in registered office address position as afterSubArea
+f. Displaye zip code in registered office address position as beforeSubArea
+g. Displaye zip code in registered office address position as afterArea
+h. Displaye zip code in registered office address position as beforeArea
+
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
 Then the user should see the registered office address(address line 1 line2 line3 line 4,city,area,subarea,country) respecting the useInAddres flag in summary section
@@ -161,6 +185,12 @@ Examples:
 |3314|
 |15106|
 |62579|
+|65476|
+|3979|
+|70959|
+|131845|
+
+
 
 Scenario: KYC-215 Verify below scenarios
 a. Do not display registered office if the address is not functioning as registered office (address/function != registered office)

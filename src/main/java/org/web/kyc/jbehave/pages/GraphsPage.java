@@ -30,28 +30,21 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_button_xpath = By.xpath("//*[@id='view-options']/ul/li[2]");
     private By graph_draw_area_xpath = By.xpath("//*[local-name()='g'][@id='drawarea']");
     private String graph_level_xpath = "//*[contains(@transform,',";
-    private String graph_country_xpath = "/*[local-name()='text'][2]";
     private By graph_subsidiaries_multiple_node_xpath = By.xpath("//*[local-name()='g'][contains(@class,'sub')][contains(@class,'multiple')]");
     private By graph_no_known_entities_message_text_xpath = By.xpath("//div[@class='notification']/p");
     private By graph_country_highlight_nodes_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-country')][not(contains(@class,'highlight-multiple'))]");
-    String graph_country_highlight_nodes = "//*[local-name()='g'][contains(@class,'highlight-country')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[local-name()='title']";
     private By graph_country_highlight_nodes_verify_xpath = By.xpath("//*[local-name()='rect'][contains(@class,'country-highlight')]");
     private String graph_legal_title_xpath = "/*[local-name()='text']/*[local-name()='title']";
     private String graph_subsidiaries_xpath = "//*[local-name()='g'][contains(@class,'sub')][@parent=";
     private String graph_nodes_xpath = "//*[local-name()='g'][contains(@class,'node')]";
     private String graph_multiple_node_xpath = "//div[@class='graph-container']//*[contains(@class,'multiple')]";
-    private By graph_multiple_node_title_xpath = By.xpath("//*[local-name()='text']/*[local-name()='title']");
-    String graph_multiple_node_title_text = "//*[local-name()='text']/*[local-name()='title']";
     private By graph_multiple_node_non_entity_xpath = By.xpath(".//*[@class='node own others']");
     private By graph_multiple_node_highlight_xpath = By.xpath("//*[contains(@class,'highlight-multiple')]");
-    String graph_multiple_node_highlight_text = "//*[contains(@class,'highlight-multiple')]";
     private By graph_non_multiple_nodes_list_xpath = By.xpath(".//*[@class='node own bank']");
     private By graph_person_nodes_list_xpath = By.xpath(".//*[@class='node own person']");
     private String graph_owners_xpath = "//*[local-name()='g'][contains(@class,'own')][@parent=";
     private By graph_highlight_ubo_xpath = By.xpath("//*[local-name()='g'][contains(@class,'highlight-ubo')][not(contains(@class,'highlight-multiple'))]/*[local-name()='text']/*[local-name()='tspan'][1]");
-    private String graph_legal_title_tool_tip_xpath = "//*[@class='graph-container']//*[local-name()='title']";
     private By legal_entity_title_text_xpath = By.xpath("//*[@id='entity-details']/h1");
-    //private By subs_graphs_truncated_notification_with_node_count_msg_xpath = By.xpath(".//*[@id='content-view'] //p[@class='notification attention ng-scope']");
     private By graph_in_product_msg_text_xpath = By.xpath(".//div[@kyc-ubo-subscription-message=\"\"][@style='display: block;']");
     private By graphs_truncated_notification_msg_xpath = By.xpath("//p[@class='attention ng-scope']");
     private By graphs_truncated_notification_with_node_count_msg_xpath = By.xpath("//p[contains(@ng-if,'graphSize' )]");
@@ -243,6 +236,8 @@ public class GraphsPage extends WebDriverUtils {
     public void verifyNoEntitiesMsg() {
         waitForInMilliSeconds(3000L);
         assertEquals("No known entities.", getWebElementText(graph_no_known_entities_message_text_xpath));
+        //assertFalse(isWebElementDisplayed(graph_in_product_msg_text_xpath));
+        assertFalse(isWebElementDisplayed(By.xpath(graph_root_node)));
     }
 
     public void verifyEntitiesAreHighlightedForSelectedCountry(ExamplesTable highlightedEntitiesExamTable) {
@@ -502,37 +497,7 @@ public class GraphsPage extends WebDriverUtils {
     public void verifyUBOHighlightIsRemoved() {
         assertFalse(isWebElementDisplayed(graph_highlight_ubo_xpath));
     }
-
-//    public void verifyHoverOverToolTipInNodes(ExamplesTable legalTitleExamTable) {
-//        //waitForWebElementToAppear(By.xpath(graph_legal_title_tool_tip_xpath));
-//        //List<WebElement> aLegalTitle = getWebElements(By.xpath(graph_legal_title_tool_tip_xpath));
-//        List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
-//        List<WebElement> aLegalTitle = String.valueOf(executeScript("return arguments[0].getElementsByTagName(\"title\").textContent;",highlightNodesList.get(j)));
-//        List aNodeList = new ArrayList();
-//
-//        /* Comparing the size of actual and expected list */
-//        assertEquals(aLegalTitle.size(),legalTitleExamTable.getRowCount());
-//
-//        for (int i =0; i<aLegalTitle.size(); i++) {
-//            aNodeList.add(
-//                    executeScript("return arguments[0].innerHTML;", aLegalTitle.get(i)).toString().replace("%","").trim());
-//        }
-//
-//        List eNodeList = new ArrayList();
-//        for (Map<String,String> row : legalTitleExamTable.getRows()) {
-//            String legalTitle = row.get("LEGAL TITLE");
-//            eNodeList.add(legalTitle);
-//        }
-//
-//        /* Ordering both actual and expected list as the node position changes every time a page loads */
-//        Collections.sort(eNodeList);
-//        Collections.sort(aNodeList);
-//
-//        for (int i=0; i<eNodeList.size(); i++){
-//            assertEquals("Node does not match at " + i, eNodeList.get(i), aNodeList.get(i));
-//        }
-//    }
-
+    
     public void verifyGraphPageOfLegalEntity(String nodeTitle){
         waitForInMilliSeconds(3000L);
         assertEquals(nodeTitle,findElement(legal_entity_title_text_xpath).getText());
