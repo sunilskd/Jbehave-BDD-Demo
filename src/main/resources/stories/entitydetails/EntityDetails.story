@@ -206,7 +206,7 @@ Examples:
 Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
 When the user opens legal entity <fid>
 And the user clicks on the entity details tab
-When the user manipulates URL to navigate to an 286840
+When the user manipulates URL to navigate to 286840
 Then the user should see the inactive institution page with message "No ownership information available"
 
 Examples:

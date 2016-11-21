@@ -221,7 +221,7 @@ Scenario: When the user manipulates URL to navigate to an FID for an inactive le
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
-When the user manipulates URL to navigate to an 286840
+When the user manipulates URL to navigate to 286840
 Then the user should see the inactive institution page with message "No ownership information available"
 
 Examples:
