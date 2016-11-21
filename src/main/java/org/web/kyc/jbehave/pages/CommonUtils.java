@@ -63,10 +63,10 @@ public class CommonUtils extends WebDriverUtils {
         nvPairs.clear();
         nvPairs.add(new BasicNameValuePair("userType", userType));
         nvPairs.add(new BasicNameValuePair("fid", url));
-        get(readProperties().getUrl() + "/#/legalEntity/" + url + "/ownership/owners");
+        get(readProperties().getUrl() + "/#/legalEntity/" + url);
         waitForInMilliSeconds(1000L);
         if(!getCurrentUrl().contains(url)){
-            get(readProperties().getUrl() + "/#/legalEntity/" + url + "/ownership/owners");
+            get(readProperties().getUrl() + "/#/legalEntity/" + url);
         }
     }
 

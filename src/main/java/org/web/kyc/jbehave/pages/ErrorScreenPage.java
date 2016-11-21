@@ -10,7 +10,7 @@ public class ErrorScreenPage extends WebDriverUtils {
 
     private By error_header_text_xpath= By.xpath("//h1");
     private By error_line1_text_xpath= By.xpath("//p[1]");
-    private By error_line2_text_xpath= By.xpath("//p[3]");
+    private By error_line2_text_xpath= By.xpath("//p[2]");
 
     public ErrorScreenPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -18,7 +18,7 @@ public class ErrorScreenPage extends WebDriverUtils {
 
     public void launchUnexpectedServerErrorScreen(){
         waitForInMilliSeconds(3000L);
-        get("https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/500");
+        get(readProperties().getUrl() + "/#/500");
         manage().window().maximize();
     }
 
@@ -38,7 +38,7 @@ public class ErrorScreenPage extends WebDriverUtils {
 
     public void launchAccessDeniedPage() {
         waitForInMilliSeconds(3000L);
-        get("https://internal-uboqa-web-1999720210.us-east-1.elb.amazonaws.com/kyc-webapp/#/401");
+        get(readProperties().getUrl() + "/#/401");
         manage().window().maximize();
     }
 
