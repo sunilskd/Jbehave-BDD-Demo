@@ -19,6 +19,7 @@ JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user e
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-456 - New truncation logic for subs graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@subsidiariesgraph @kyc @ubo
 
@@ -462,6 +463,18 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|nodeTitle|
 |544|Quiñenco SA|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+When the user manipulates URL to navigate to an 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: KYC-456 Not implemented as Data Missing.
 1. If legal entity in focus returns greater than 2500 nodes and triple count is less than 125, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
