@@ -40,6 +40,7 @@ public class GraphControlsUtils extends WebDriverUtils {
     private By graph_country_highlight_icon_xpath = By.xpath("//div[@kyc-country-dropdown-control=''] //span");
     private By graph_country_highlight_info_xpath = By.xpath("//div[@kyc-country-dropdown-control=''] //span/p");
     private By graph_ubo_count_text_xpath = By.xpath("//span[@class=\"ng-binding ng-scope\"][@ng-if=\"ubo >= 1\"]");
+    private By graph_ubo_filter_label_disabled_xpath = By.xpath("//*[@kyc-ubo-toggle-control='']//label[@class='disabled']");
 
     public GraphControlsUtils(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -135,6 +136,7 @@ public class GraphControlsUtils extends WebDriverUtils {
 
     public void verifyUBOFilterIsDisabled() {
         assertTrue(isWebElementDisplayed(graph_ubo_filter_checkbox_disabled_xpath));
+        assertTrue(isWebElementDisplayed(graph_ubo_filter_label_disabled_xpath ));
     }
 
     public void verifyZoomOption() {

@@ -33,6 +33,7 @@ JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user e
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-455 - new truncation logic owners graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
+JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
 
 Meta:@kycownersgraphs @kyc
 
@@ -467,7 +468,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the owners graph
-Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
+Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
 
 Examples:
 |fid|

@@ -94,7 +94,7 @@ public class GraphsPage extends WebDriverUtils {
 
     public void verifyFullGraphHeader() {
         waitForWebElementToAppear(graph_header_text_xpath);
-        assertEquals("Ownership + Subsidiary Graph", getWebElementText(graph_header_text_xpath));
+        assertEquals("Complete Ownership + Subsidiary Graph", getWebElementText(graph_header_text_xpath));
     }
 
     public void dVerifyGraphNodesAtLevels(String level, String ownersOrSubs) {

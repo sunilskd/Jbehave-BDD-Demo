@@ -26,6 +26,7 @@ JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 JIRA ID - KYC-586 - Root node is displayed even when its "No know Entity" fid on a full graph.
+JIRA ID - KYC-559 - Change name of full graph to "Complete Ownership + Subsidiary Graph"
 
 Meta:@ubofullgraph @ubo
 
@@ -281,6 +282,7 @@ Then the user should see the legal entity QA Legal Entity A, user is currently v
 And the user should see the list of owners in level 2, above the root entity, in the graphs
 And the user should see the list of owners in level 3, above the root entity, in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
+Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
 Then the user should not see any nodes in level 2, below the root entity, in the graphs
 

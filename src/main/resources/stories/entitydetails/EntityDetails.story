@@ -20,6 +20,7 @@ JIRA ID - KYC-481 - Find head office address for entity details by address funct
 JIRA ID - KYC-484 - Display zip code for addresses in entity details
 JIRA ID - KYC-588 - Address is displayed as Null in entity details page and side panel instead of empty values.
 JIRA ID - KYC-587 - City and Area information is not displayed when zip code and position are NULL
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@entitydetails @kyc @ubo
 
@@ -108,13 +109,13 @@ And the user should see the identifiers with below leis, sorted alphabetically b
 
 And the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
 |STOCK EXCHANGES|
-|Börse Berlin AG|
-|Deutsche Börse AG|
+|Börse Berlin AG (Börse Berlin AG)|
+|Deutsche Börse AG (Deutsche Börse AG)|
 
 And the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
 |STOCK SYMBOL|
-|THJC|
-|KJHJ|
+|Börse Berlin AG: THJC|
+|Deutsche Börse AG: KJHJ|
 
 And the user should see regulators information, sorted alphabetically in the entity details page
 |REGULATORS|
@@ -190,8 +191,6 @@ Examples:
 |70959|
 |131845|
 
-
-
 Scenario: KYC-215 Verify below scenarios
 a. Do not display registered office if the address is not functioning as registered office (address/function != registered office)
 b. Do not display registered office if it is not the primary location (location/primary=false)
@@ -203,6 +202,16 @@ Examples:
 |fid|
 |1038|
 |31376|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+And the user clicks on the entity details tab
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: KYC user logout
 Given the user is on the ubo login page

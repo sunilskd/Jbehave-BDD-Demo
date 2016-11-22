@@ -12,6 +12,7 @@ JIRA ID - KYC-45 - KYC user can view direct subsidiaries
 JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-188 - Display relationship validated date on subsidiary list
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@subsidiaries @kyc @ubo
 
@@ -285,6 +286,17 @@ Then the user should not see any country in country highlights list in the subsi
 Examples:
 |fid|percentFilter|
 |173|50|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: KYC user logout
 Given the user is on the ubo login page

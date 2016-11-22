@@ -31,6 +31,7 @@ public class GroupStructurePage extends WebDriverUtils {
     private String group_structure_ultimate_owner_subsidiaries_text_xpath = "//*[@id='group-structure']";
     private String group_structure_focused_entity_owners_text_xpath = ".//ul[li/div/div='";
     private By content_filter = By.xpath("//*[@id='content-filters']");
+    private By group_structure_header_text_xpath = By.xpath("//*[@id='content-view'] //h1");
 
     public GroupStructurePage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -166,6 +167,7 @@ public class GroupStructurePage extends WebDriverUtils {
     public void verifyUltimateOwner(String ultimateOwner) {
         waitForInMilliSeconds(3000L);
         assertEquals(ultimateOwner, getWebElementText(group_structure_ultimate_owner_text_xpath));
+        verifyGroupStructureHeader();
     }
 
     public void verifyNoSubsidiariesForLegalEntity(String legalEntity) {
@@ -220,4 +222,9 @@ public class GroupStructurePage extends WebDriverUtils {
         assertEquals("", getWebElementText(content_filter));
 
     }
+
+    public void verifyGroupStructureHeader(){
+        assertEquals("Majority Ownership Group Structure", getWebElementText(group_structure_header_text_xpath));
+    }
+
 }

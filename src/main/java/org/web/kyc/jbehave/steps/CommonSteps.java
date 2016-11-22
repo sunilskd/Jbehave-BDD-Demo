@@ -95,5 +95,14 @@ public class CommonSteps {
         pageObject.commonUtils().verifyAppName();
     }
 
+    @When("the user manipulates URL to navigate to $fid")
+    public void manipulateURL(String fid){
+        pageObject.commonUtils().manipulateURL(fid);
+    }
+
+    @Then("the user should see the inactive institution page with message \"No ownership information available\"")
+    public void verifyInactiveInstitutionPage(){
+        pageObject.commonUtils().verifyInactiveInstitutionPage();
+    }
 
 }
