@@ -15,10 +15,11 @@ JIRA ID - KYC-371 - Zoom on owners graph
 JIRA ID - KYC-372 - Zoom on subsidiaries graph
 JIRA ID - KYC-371 - Zoom on full graph
 JIRA ID - KYC-415 - User can see count of tiles that match a highlight
+JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
 
 Meta:@ubointeractions @ubo
 
-Scenario: KYC user login
+Scenario: UBO user login
 Meta: @id login
 Given the user is on the ubo login page
 When the user login as a ubo user
@@ -613,12 +614,25 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should not see UBO count displayed next to UBO checkbox label
+Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
 
 Examples:
 |fid|
 |LE-6|
 
-Scenario: KYC user logout
+Scenario: Grey out UBO highlight field label when the highlight is unavailable
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
+
+Examples:
+|fid|
+|LE-56|
+|211|
+
+Scenario: UBO user logout
 Meta: @id logout
 Given the user is on the ubo login page
 When the user logout
