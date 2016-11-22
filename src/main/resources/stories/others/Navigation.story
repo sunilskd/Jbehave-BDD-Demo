@@ -60,6 +60,10 @@ When the user clicks on the entity details tab
 And the user clicks on the ownership tab
 When the user selects a country <country> from the country highlight list in the group structure page
 Then the user should see the entities in the group structure that have the selected country of operations highlighted in the group structure page
+When the user clicks on the graph button
+Then the user should see the full graph
+When the user clicks on the entity details tab
+Then the user should see the summary with head office address (address line1 line2 line3 line 4, city, area, subarea, country) respecting the useInAddress flag for the selected institution in the entity details page
 
 Examples:
 |fid|country|
