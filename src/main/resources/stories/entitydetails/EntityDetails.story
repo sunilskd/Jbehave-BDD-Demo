@@ -109,13 +109,13 @@ And the user should see the identifiers with below leis, sorted alphabetically b
 
 And the user should see the below list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
 |STOCK EXCHANGES|
-|Börse Berlin AG|
-|Deutsche Börse AG|
+|Börse Berlin AG (Börse Berlin AG)|
+|Deutsche Börse AG (Deutsche Börse AG)|
 
 And the user should see the below list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
 |STOCK SYMBOL|
-|THJC|
-|KJHJ|
+|Börse Berlin AG: THJC|
+|Deutsche Börse AG: KJHJ|
 
 And the user should see regulators information, sorted alphabetically in the entity details page
 |REGULATORS|
