@@ -28,7 +28,9 @@ public class CommonUtils extends WebDriverUtils {
     //private By user_login_input_box_id = By.xpath("//*[@id='Username']");
     private By user_password_input_box_id = By.xpath("//*[@id='Password']");
     //private By login_button_xpath = By.xpath("//*[@id='Submit']");
-    private By view_enhanced_ubo_app__xpath =By.xpath("//*[@id='newUBOlink']");
+    private By view_enhanced_ubo_app__xpath = By.xpath("//*[@id='newUBOlink']");
+    private By inactive_institution_header_xpath = By.xpath("//*[h1='Inactive Institution']/h1");
+    private By no_ownership_information_available_txt_xpath = By.xpath("//*[@id='content-view']/div/p");
 
     public static String selectedCountryHighlight = "";
     private String userType="";
@@ -235,5 +237,14 @@ public class CommonUtils extends WebDriverUtils {
 
     public void verifyAppName(){
         assertEquals("Bankers Almanac Ownership Module", getTitle());
+    }
+
+    public void verifyInactiveInstitutionPage() {
+        assertEquals("Inactive Institution", getWebElementText(inactive_institution_header_xpath));
+        assertEquals("No ownership information available.", getWebElementText(no_ownership_information_available_txt_xpath));
+    }
+
+    public void manipulateURL(String fid) {
+        get(readProperties().getUrl() + "/#/legalEntity/" + fid);
     }
 }
