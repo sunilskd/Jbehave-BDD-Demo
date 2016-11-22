@@ -614,6 +614,7 @@ And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should not see UBO count displayed next to UBO checkbox label
+Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
 
 Examples:
 |fid|

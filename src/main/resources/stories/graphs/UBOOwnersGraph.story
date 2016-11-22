@@ -81,6 +81,7 @@ And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of owners in level 1, above the root entity, in the graphs
+
 When the user unchecks direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
