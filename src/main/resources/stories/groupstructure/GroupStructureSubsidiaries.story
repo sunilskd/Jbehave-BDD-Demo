@@ -10,6 +10,7 @@ The group structure allows an analyst to see "sibling" entities of the bank they
 
 Covers below features:
 JIRA ID - KYC-41 - KYC user can view group structure list
+JIRA ID - KYC-570 - Change name of group structure list to "Majority Ownership Group Structure"
 
 Meta:@groupstructuresubsidiaries @kyc @ubo
 

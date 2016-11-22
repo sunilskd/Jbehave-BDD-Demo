@@ -12,6 +12,7 @@ Covers below features:
 JIRA ID - KYC-41 - KYC user can view group structure list
 JIRA ID - KYC-107 - KYC user can highlight legal entities by country in group structure list
 JIRA ID - KYC-75 - KYC user can click link to another entity in group structure list
+JIRA ID - KYC-570 - Change name of group structure list to "Majority Ownership Group Structure"
 
 Meta:@groupstructure @kyc @ubo
 

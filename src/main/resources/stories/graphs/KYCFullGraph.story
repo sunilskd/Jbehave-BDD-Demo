@@ -28,6 +28,7 @@ JIRA ID - KYC-241 - Do not display the free text when the filters are applied.
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
+JIRA ID - KYC-559 - Change name of full graph to "Complete Ownership + Subsidiary Graph"
 
 Meta:@kycfullgraph @kyc
 
