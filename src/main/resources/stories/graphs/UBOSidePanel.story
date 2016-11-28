@@ -46,6 +46,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(951.5,387) scale(0.9910000000000001)
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
@@ -73,6 +74,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(951.5,387) scale(0.9910000000000001)
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
@@ -88,6 +90,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user clicks on direct relationship only filter checkbox in the graphs
+And the user resize graph to translate(1022.9216796875,392.1518898391724) scale(0.9910000000000001)
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
 Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
 
@@ -134,14 +137,15 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(951.5,362.39999396514895) scale(0.9910000000000001)
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <nodeTitle> user clicked in the graphs
 |UBO NAME|ENTITY|PERCENTAGE OWNERSHIP|
-|Japan Finance Corporation|Japan Bank For International Cooperation||
+|QA Test Person 2|QA Legal Entity 30||
 
 Examples:
 |fid|nodeTitle|
-|241440|Japan Bank For International Cooperation|
+|LE-7|QA Legal Entity 7|
 
 Scenario: display "No Known Entities" if there are no direct subsidiaries
 When the user opens legal entity <fid>
@@ -161,18 +165,20 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(702.8282562866211,316.0790002822876) scale(0.9910000000000001)
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
 
 Examples:
 |fid|nodeTitle|
-|211|Australia and New Zealand Banking Group Limited|
+|3528|National Bank of Yemen|
 
 Scenario: User clicks on another node, side panel should refresh with updated information
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(951.5,387) scale(0.9910000000000001)
 When the user enters percentage as 73 in ownership percentage filter text box in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
@@ -283,6 +289,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+And the user resize graph to translate(951.5,387) scale(0.9910000000000001)
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs

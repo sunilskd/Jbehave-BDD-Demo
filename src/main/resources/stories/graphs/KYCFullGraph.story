@@ -139,6 +139,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+And the user resize graph to translate(946.1673813093672,578.0779379814662) scale(0.23500000000000001)
 Then the user should not see any nodes in level 1, below the root entity, in the graphs
 And the user should see the list of owners in level 2, above the root entity, in the graphs
 
@@ -151,6 +152,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+And the user resize graph to translate(946.1673813093672,578.0779379814662) scale(0.23500000000000001)
 Then the user should not see any nodes in level 1, above the root entity, in the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 
@@ -385,36 +387,18 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the group structure tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 10 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 9 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 18 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 3 in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: Display the free text when the percent filters are applied
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 10, user is currently viewing, as the root and highlighted on the graphs
+Then the user should see the legal entity QA Legal Entity 15, user is currently viewing, as the root and highlighted on the graphs
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 10 in the graphs
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
 
 Examples:
 |fid|
-|LE-10|
+|LE-15|
 
 Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
 When the user opens legal entity <fid>

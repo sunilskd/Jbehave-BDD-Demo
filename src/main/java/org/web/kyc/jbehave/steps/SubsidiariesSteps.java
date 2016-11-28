@@ -6,13 +6,15 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
+import org.jbehave.web.selenium.WebDriverProvider;
 import org.web.kyc.jbehave.pages.PageObject;
 
 public class SubsidiariesSteps {
+
     private final PageObject pageObject;
 
-    public SubsidiariesSteps(PageObject pageObject) {
-        this.pageObject = pageObject;
+    public SubsidiariesSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @When("the user clicks on the subsidiaries tab")

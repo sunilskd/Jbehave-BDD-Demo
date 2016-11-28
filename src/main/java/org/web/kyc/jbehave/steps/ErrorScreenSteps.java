@@ -2,13 +2,15 @@ package org.web.kyc.jbehave.steps;
 
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.jbehave.web.selenium.WebDriverProvider;
 import org.web.kyc.jbehave.pages.PageObject;
 
 public class ErrorScreenSteps {
+
     private final PageObject pageObject;
 
-    public ErrorScreenSteps(PageObject pageObject) {
-        this.pageObject = pageObject;
+    public ErrorScreenSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @When("the application is down due to any reason")

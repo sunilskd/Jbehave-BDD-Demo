@@ -55,6 +55,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the full graph
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
 And the user should see the list of owners in level 2, above the root entity, in the graphs
@@ -236,6 +237,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the full graph
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
 Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
@@ -345,6 +347,7 @@ When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 Then the user should see the full graph
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
@@ -398,24 +401,6 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the group structure tab
-And the user clicks on the graph button
-Then the user should see the full graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-Then the user should see the owners for the legal entity QA Legal Entity 11 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 15 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the subsidiaries for the legal entity QA Legal Entity 3 in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -447,23 +432,16 @@ And the user should see the list of below unique country of operations for each 
 |Singapore (1)|
 |USA (3)|
 
+When the user resize graph to translate(1427.2441095903441,474.9631934419525) scale(0.5950000000000001)
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Canada (2)|
-|Cayman Islands (12)|
-|China (2)|
-|Italy (1)|
-|Japan (10)|
-|Netherlands (5)|
-|South Africa (3)|
-|UK (1)|
-|USA (132)|
+|Japan (29)|
 
 Examples:
 |fid|nodeTitle|
-|30087|Morgan Stanley & Co LLC|
+|30087|The Howa Bank Ltd|
 
 Scenario: Verify graph truncation notification message
 Given the user is on the ubo login page

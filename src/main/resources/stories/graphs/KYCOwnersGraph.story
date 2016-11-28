@@ -243,41 +243,6 @@ Examples:
 |fid|
 |LE-61|
 
-Scenario: Verify tool tip displays legal title in graphss
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the owners graph
-
-Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
-|LEGAL TITLE|
-|QA Legal Entity 6|
-|QA Legal Entity 9|
-|QA Legal Entity 10|
-|QA Legal Entity 16|
-|QA Legal Entity 18|
-|QA Legal Entity 11|
-|Treasury shares, 3.8; Trade Union Federations of SGB (where no federation owns 3 or more), 4.8; Others, 23.4|
-|QA Legal Entity 14|
-|QA Legal Entity 12|
-|QA Legal Entity 17|
-|QA Legal Entity 19|
-|Other shareholders owning less than 2, 71.315|
-|QA Legal Entity 15|
-|QA Legal Entity 13|
-|QA Legal Entity 61|
-|QA Legal Entity 61|
-|Top 20 shareholders, 57.67; Others, 42.33. There were no persons with a substantial shareholding in the Bank|
-|QA Legal Entity 61|
-|Top shareholders owning less than 2, 71.315|
-|Top shareholders owning less than 2, 71.315|
-|Top shareholders owning less than 2, 71.315|
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: Covers below scenarios
 a. 0. "No country highlight" is default selection in country highlight drop-down
    1. List country of operations for legal entities that appear on the graphs in highlight drop-down, each unique country appearing once, sort countries alphabetically by country name
@@ -508,24 +473,6 @@ Then the user should see the ultimate beneficial owners filter checkbox and the 
 Examples:
 |fid|
 |LE-A|
-
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the owners graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-Then the user should see the owners for the legal entity QA Legal Entity 6 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 10 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 9 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 18 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
-
-Examples:
-|fid|
-|LE-6|
 
 Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
 When the user opens legal entity <fid>

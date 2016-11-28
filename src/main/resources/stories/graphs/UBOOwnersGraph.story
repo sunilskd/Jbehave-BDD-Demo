@@ -78,6 +78,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of owners in level 1, above the root entity, in the graphs
@@ -392,43 +393,6 @@ Examples:
 |fid|
 |LE-61|
 
-Scenario: Verify tool tip displays legal title in graphs
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-Then the user should see the legal title displayed in the nodes when the user hovers over it in the graphs
-|LEGAL TITLE|
-|QA Legal Entity 6|
-|QA Legal Entity 9|
-|QA Legal Entity 10|
-|QA Legal Entity 16|
-|QA Legal Entity 18|
-|QA Legal Entity 11|
-|QA Legal Entity 14|
-|QA Legal Entity 12|
-|QA Legal Entity 17|
-|QA Legal Entity 19|
-|Others|
-|QA Legal Entity 15|
-|QA Legal Entity 13|
-|QA Legal Entity 61|
-|QA Legal Entity 61|
-|QA Legal Entity 61|
-|QA Test Person 1|
-|QA Test Person 1|
-|QA Test Person 2|
-|Local Government, Legal Entity 61 owned by Local Government|
-|Local Government, Legal Entity 61 owned by Local Government|
-|Free float, Legal Entity 15 owned by Free float|
-|QA Test Person 1|
-|Local Government, Legal Entity 61 owned by Local Government|
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: Covers below scenarios
 a. 0. Root node appears in multiple times in the same path
    1. Visual indicator count doesnt change even filter is applied
@@ -453,6 +417,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
@@ -472,6 +437,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user clicks on <legalEntity> node which appears more than once in the graphs
@@ -549,21 +515,6 @@ Examples:
 |fid|
 |LE-60|
 
-Scenario: Verify parent child relationship
-When the user opens legal entity <fid>
-When the user clicks on the ownership tab
-And the user clicks on the owners tab
-And the user clicks on the graph button
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-Then the user should see the owners for the legal entity QA Legal Entity 11 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 15 in the graphs
-Then the user should see the owners for the legal entity QA Legal Entity 61 in the graphs
-
-Examples:
-|fid|
-|LE-6|
-
 Scenario: Verify in product message is not displaying for the users with UBO access
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -597,7 +548,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 When the user enters percentage as 5 in ownership percentage filter text box in the graphs
-Then the user should see the owners for the legal entity Caisse d'épargne et de prévoyance Ile de France in the graphs
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
 
 Examples:
 |fid|

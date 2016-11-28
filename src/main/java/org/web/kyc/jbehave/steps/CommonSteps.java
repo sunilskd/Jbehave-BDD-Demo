@@ -1,13 +1,15 @@
 package org.web.kyc.jbehave.steps;
 
 import org.jbehave.core.annotations.*;
+import org.jbehave.web.selenium.WebDriverProvider;
 import org.web.kyc.jbehave.pages.PageObject;
 
 public class CommonSteps {
+
     private final PageObject pageObject;
 
-    public CommonSteps(PageObject pageObject) {
-        this.pageObject = pageObject;
+    public CommonSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @Given("the user is on the ubo login page")

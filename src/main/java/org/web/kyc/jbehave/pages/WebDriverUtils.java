@@ -75,8 +75,13 @@ public class WebDriverUtils extends WebDriverPage {
 
     /* Returns true if element is present */
     public Boolean isWebElementDisplayed(By by) {
-        manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         return findElements(by).size() != 0;
+    }
+
+    public Boolean isWebElementDisplayed(List<WebElement> webElements) {
+        manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        return webElements.size() != 0;
     }
 
     public List<String> getWebElementsAttributeValue(By by, String attribute) {
@@ -111,6 +116,7 @@ public class WebDriverUtils extends WebDriverPage {
         }
         return webElementsText;
     }
+
 
     public void waitForPageToLoad(Long seconds) {
         manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
@@ -151,5 +157,84 @@ public class WebDriverUtils extends WebDriverPage {
     public void refreshCurrentPage(){
         navigate().refresh();
     }
+
+    public List<String> getWebElementsTextJS(String xpath){
+
+        String script = "function getText()" +
+                "{" +
+                "var iterator = window.document.evaluate(\"" + xpath + "\", document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);\n" +
+                "var list = [];\n" +
+                "try {\n" +
+                "  var thisNode = iterator.iterateNext();\n" +
+                "  \n" +
+                "  while (thisNode) {\n" +
+                "    //alert( thisNode.textContent );\n" +
+                "    list.push(thisNode.textContent);\n" +
+                "    thisNode = iterator.iterateNext();\n" +
+                "  }            \n" +
+                "}\n" +
+                "catch (e) {\n" +
+                "  dump( 'Error: Document tree modified during iteration ' + e );\n" +
+                "}" +
+                "return list" +
+                "};" +
+                "return getText()";
+
+        return (List<String>) executeScript(script);
+
+    }
+
+    public String getWebElementTextJS(String xpath){
+
+        String script = "function getText()" +
+                "{" +
+                "var iterator = window.document.evaluate(\"" + xpath + "\", document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);\n" +
+                "var list = [];\n" +
+                "try {\n" +
+                "  var thisNode = iterator.iterateNext();\n" +
+                "  \n" +
+                "  while (thisNode) {\n" +
+                "    //alert( thisNode.textContent );\n" +
+                "    list.push(thisNode.textContent);\n" +
+                "    thisNode = iterator.iterateNext();\n" +
+                "  }            \n" +
+                "}\n" +
+                "catch (e) {\n" +
+                "  dump( 'Error: Document tree modified during iteration ' + e );\n" +
+                "}" +
+                "return list[0]" +
+                "};" +
+                "return getText()";
+
+        return (String) executeScript(script);
+
+    }
+
+    public List<WebElement> getWebElementsJS(String xpath){
+
+        String script = "function getText()" +
+                "{" +
+                "var iterator = window.document.evaluate(\"" + xpath + "\", document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null);\n" +
+                "var list = [];\n" +
+                "try {\n" +
+                "  var thisNode = iterator.iterateNext();\n" +
+                "  \n" +
+                "  while (thisNode) {\n" +
+                "    //alert( thisNode.textContent );\n" +
+                "    list.push(thisNode);\n" +
+                "    thisNode = iterator.iterateNext();\n" +
+                "  }            \n" +
+                "}\n" +
+                "catch (e) {\n" +
+                "  dump( 'Error: Document tree modified during iteration ' + e );\n" +
+                "}" +
+                "return list" +
+                "};" +
+                "return getText()";
+
+        return (List<WebElement>) executeScript(script);
+
+    }
+
 
 }

@@ -5,14 +5,15 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.model.ExamplesTable;
+import org.jbehave.web.selenium.WebDriverProvider;
 import org.web.kyc.jbehave.pages.PageObject;
 
 public class SidePanelSteps {
 
     private final PageObject pageObject;
 
-    public SidePanelSteps(PageObject pageObject) {
-        this.pageObject = pageObject;
+    public SidePanelSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @Then("the user should see below free text in the side panel in the graphs $freeTextExampleTable")

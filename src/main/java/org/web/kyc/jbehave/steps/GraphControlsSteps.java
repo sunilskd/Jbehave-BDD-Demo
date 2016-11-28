@@ -2,14 +2,15 @@ package org.web.kyc.jbehave.steps;
 
 import org.jbehave.core.annotations.*;
 import org.jbehave.core.model.ExamplesTable;
+import org.jbehave.web.selenium.WebDriverProvider;
 import org.web.kyc.jbehave.pages.PageObject;
 
 public class GraphControlsSteps {
 
     private final PageObject pageObject;
 
-    public GraphControlsSteps(PageObject pageObject) {
-        this.pageObject = pageObject;
+    public GraphControlsSteps(WebDriverProvider webDriverProvider) {
+        pageObject = new PageObject(webDriverProvider);
     }
 
     @Then("the user should see no country highlight selected by default in country highlight drop-down in the graphs")
