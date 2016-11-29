@@ -178,7 +178,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-And the user resize graph to translate(951.5,387) scale(0.9910000000000001)
+And the user resize graph to translate(952.820475589077,491.2693776010915) scale(0.9730000000000001)
 When the user enters percentage as 73 in ownership percentage filter text box in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs
@@ -289,7 +289,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-And the user resize graph to translate(951.5,387) scale(0.9910000000000001)
+And the user resize graph to translate(886.5,58) scale(0.9910000000000001)
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see message displayed in side panel in place of list explaining there are no ultimate beneficial owners in the graphs

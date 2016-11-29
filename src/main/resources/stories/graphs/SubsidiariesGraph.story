@@ -42,6 +42,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+And the user resize graph to translate(931.3562335170792,10.77241310223718) scale(0.5860000000000001)
 Then the user should see the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
@@ -67,6 +68,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+And the user resize graph to translate(921.8419502154605,29.18138443089842) scale(0.5950000000000001)
 Then the user should see the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 55, user is currently viewing, as the root and highlighted on the graphs
 
@@ -92,6 +94,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+And the user resize graph to translate(855.0785709203886,49.94023916021638) scale(0.9730000000000001)
 Then the user should see the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 52, user is currently viewing, as the root and highlighted on the graphs
 
@@ -130,6 +133,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+And the user resize graph to translate(931.3562335170792,10.77241310223718) scale(0.5860000000000001)
 Then the user should see the subsidiaries graph
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
 And the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
@@ -190,6 +194,7 @@ When the user opens legal entity <fid>
 And the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+And the user resize graph to translate(931.3562335170792,10.77241310223718) scale(0.5860000000000001)
 Then the user should see the subsidiaries graph
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
@@ -218,6 +223,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+And the user resize graph to translate(931.3562335170792,10.77241310223718) scale(0.5860000000000001)
 Then the user should see the subsidiaries graph
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
@@ -280,6 +286,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
+And the user resize graph to translate(854.5,7) scale(0.9910000000000001)
 Then the user should see the subsidiaries graph
 Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted on the graphs
 

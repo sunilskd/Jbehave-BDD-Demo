@@ -118,6 +118,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+And the user resize graph to translate(947.9222564487161,280.52821774515945) scale(0.4870000000000001)
 Then the user should see the full graph
 Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted on the graphs
 
@@ -282,7 +283,6 @@ Then the user should see the legal entity QA Legal Entity A, user is currently v
 And the user should see the list of owners in level 2, above the root entity, in the graphs
 And the user should see the list of owners in level 3, above the root entity, in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
-Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
 Then the user should not see any nodes in level 2, below the root entity, in the graphs
 
@@ -432,7 +432,7 @@ And the user should see the list of below unique country of operations for each 
 |Singapore (1)|
 |USA (3)|
 
-When the user resize graph to translate(1427.2441095903441,474.9631934419525) scale(0.5950000000000001)
+When the user resize graph to translate(2217.5878508300784,495.00963528442384) scale(0.9910000000000001)
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|

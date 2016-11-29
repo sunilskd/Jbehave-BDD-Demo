@@ -547,6 +547,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(931.806135683109,446.8279376623767) scale(0.23884139500759627)
 When the user enters percentage as 5 in ownership percentage filter text box in the graphs
 Then the user should see the list of owners in level 1, above the root entity, in the graphs
 

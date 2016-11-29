@@ -41,7 +41,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
-When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
+When the user resize graph to translate(872.7376636360216,611.0342423094769) scale(0.361)
 When the user enters percentage as 45 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of owners in level 1, above the root entity, in the graphs
@@ -123,7 +123,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-When the user resize graph to translate(921.3865131745112,568.70196664657) scale(0.33400000000000013)
+When the user resize graph to translate(943.7599518592522,0.8350461632838062) scale(0.5950000000000001)
 When the user enters percentage as 25 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
 
@@ -412,6 +412,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+And the user resize graph to translate(988.0611927929924,218.22508114079133) scale(0.3340000000000001)
 When the user selects a country Switzerland from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|

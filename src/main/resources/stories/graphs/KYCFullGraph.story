@@ -111,6 +111,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
+And the user resize graph to translate(1038.8235691657414,265.5627384381437) scale(0.352)
 Then the user should see the legal entity QA Legal Entity 51, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of owners in level 2, above the root entity, in the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
