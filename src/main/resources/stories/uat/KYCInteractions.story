@@ -5,6 +5,7 @@ This story is to cover the expected functionality when user applies multiple hig
 Covers below features:
 JIRA ID - KYC-266 - Interaction between percent filter and direct/indirect filter on all graphs
 JIRA ID - KYC 265 - Interaction between filters and highlights on all graphs
+JIRA ID - KYC 571 - Grey out UBO highlight field label when the highlight is unavailable
 
 Meta:@kycinteractionsLive @kyclive
 
@@ -46,7 +47,8 @@ And the user should see the list of owners in level 3, above the root entity, in
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
-Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
+Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
+
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs

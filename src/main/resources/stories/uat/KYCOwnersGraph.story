@@ -28,6 +28,7 @@ JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-455 - new truncation logic owners graph
 JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@kycownersgraphsLive @live
 

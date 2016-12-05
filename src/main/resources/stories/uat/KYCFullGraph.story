@@ -23,6 +23,7 @@ JIRA ID - KYC-241 - Do not display the free text when the filters are applied.
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@kycfullgraphLive @live
 

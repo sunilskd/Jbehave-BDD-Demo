@@ -26,6 +26,7 @@ JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-586 - Root node is displayed even when its "No know Entity" fid on a full graph.
 JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@ubofullgraphLive @live
 
@@ -127,7 +128,6 @@ Then the user should see the inactive institution page with message "No ownershi
 Examples:
 |fid|
 |1038|
-
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

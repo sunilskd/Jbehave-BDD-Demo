@@ -18,6 +18,7 @@ JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@subsidiariesgraphLive @live
 

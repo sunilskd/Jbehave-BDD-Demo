@@ -29,6 +29,7 @@ JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears mul
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@uboownersgraphLive @live
 

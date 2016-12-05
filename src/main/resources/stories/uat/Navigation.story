@@ -68,3 +68,7 @@ Then the user should see the summary with head office address (address line1 lin
 Examples:
 |fid|country|
 |211|New Zealand|
+
+Scenario: UBO user logout
+Given the user is on bankers almanac page
+When the user logout from banker almanac page
