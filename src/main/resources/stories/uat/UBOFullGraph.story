@@ -24,6 +24,8 @@ JIRA ID - KYC-156 - User will see in product message on full graph if they do no
 JIRA ID - KYC-392 - filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA-ID - KYC-397 - Truncate large full graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-586 - Root node is displayed even when its "No know Entity" fid on a full graph.
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@ubofullgraphLive @live
 
@@ -101,6 +103,31 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|countValue|legalEntity|nodeTitle|
 |732|Appears: 2|MSL Inc|FMR LLC|
+
+Scenario: Entity user is viewing does not have owners or subsidiaries, display message "No known entities." and no nodes are displayed.
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+Then the user should see the full graph
+Then the user should see message displayed in place of graph explaining there are no entities in the graphs
+
+Examples:
+|fid|
+|13129|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
+
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

@@ -17,6 +17,7 @@ JIRA ID - KYC-318 - Country highlights is not working for the root node.
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-392 - Percent filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@subsidiariesgraphLive @live
 
@@ -102,6 +103,18 @@ And the user should see the list of subsidiaries in level 4, below the root enti
 Examples:
 |fid|
 |98585|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

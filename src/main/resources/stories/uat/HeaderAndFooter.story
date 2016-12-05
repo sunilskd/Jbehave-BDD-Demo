@@ -11,6 +11,7 @@ Covers below features:
 JIRA ID - KYC-160 - KYC user can view footer information
 JIRA ID - KYC-414 - User can click link to print help
 JIRA ID - KYC-424 - Rebranding
+JIRA ID - KYC-436 - change name of app on browser tab to "Bankers Almanac Ownership Module"
 
 Meta:@headerandfooterLive @live
 Scenario: UBO user login
@@ -19,6 +20,7 @@ When the user login as a ubo user to bankers almanac page
 
 Scenario: UBO user can view footer and can navigate to respective links from group structure summary page
 When the user opens legal entity <fid>
+Then the user should see name of the app on browser tab as Bankers Almanac Ownership Module
 When the user clicks on the ownership tab
 Then the user should see the bankers almanac logo in top left corner
 And the user should see the ownership module next to bankers almanac logo in top left corner

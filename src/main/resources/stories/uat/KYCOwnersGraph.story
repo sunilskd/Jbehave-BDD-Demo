@@ -27,6 +27,7 @@ JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in produc
 JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-455 - new truncation logic owners graph
+JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
 
 Meta:@kycownersgraphsLive @live
 
@@ -63,7 +64,7 @@ Then the user should see the list of owners in level 2, above the root entity, i
 And the user should see the list of owners in level 3, above the root entity, in the graphs
 And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
-Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
+Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs

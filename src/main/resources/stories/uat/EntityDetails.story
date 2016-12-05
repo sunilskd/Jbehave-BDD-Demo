@@ -3,6 +3,8 @@
 image:.uat.EntityDetails.stats.png
 ----
 
+JIRA ID - KYC-484 - Display zip code for addresses in entity details
+
 Meta:@entityDetailsLive @live
 
 Scenario: UBO user login
@@ -43,6 +45,16 @@ Examples:
 |58285|
 |4236|
 |15586|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+And the user clicks on the entity details tab
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page
