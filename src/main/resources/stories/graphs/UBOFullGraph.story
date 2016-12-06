@@ -432,16 +432,19 @@ And the user should see the list of below unique country of operations for each 
 |Singapore (1)|
 |USA (3)|
 
-When the user resize graph to translate(2217.5878508300784,495.00963528442384) scale(0.9910000000000001)
+When the user resize graph to translate(-892.9171422119143,1270.0646228027344) scale(0.9910000000000001)
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Japan (29)|
+|Austria (1)|
+|France (84)|
+|Japan (2)|
+|UK (2)|
 
 Examples:
 |fid|nodeTitle|
-|30087|The Howa Bank Ltd|
+|30087|Amundi Group SA|
 
 Scenario: Verify graph truncation notification message
 Given the user is on the ubo login page
