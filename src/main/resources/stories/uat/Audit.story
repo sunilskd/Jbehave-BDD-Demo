@@ -38,9 +38,8 @@ Scenario: Verify no audit information available
 a. 0. If no ownership review data exists for legal entity user is viewing, then display message "No audit information available."
    1. By default audit section is collapsed
    2. User clicks "Hide Audit Information", audit section collapses
-b. If no actions of type "attempt" exist at all then display message "No audit information available."
-c. If "Attempt" actions that exist have date equals to the most recent "Supplied" "Verified" or "Denied" date then do not display any actions in audit trail. Display message "No audit information available."
-d. If "Attempt" actions that exist all have a date earlier than the most recent "Supplied" "Verified" or "Denied" date then do not display any actions in audit trail. Display message "No audit information available."
+   3. If no actions of type "attempt" exist at all then display message "No audit information available."
+b. If "Attempt" actions that exist all have a date earlier than the most recent "Supplied" "Verified" or "Denied" date then do not display any actions in audit trail. Display message "No audit information available."
 Meta:@audit @dynamic
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -52,9 +51,7 @@ Then the audit section should collapse and Owners list should be moved to top se
 
 Examples:
 |fid|
-|4|
 |5|
-|11|
 |6|
 
 Scenario: UBO user logout

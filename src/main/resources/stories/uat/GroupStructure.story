@@ -57,7 +57,7 @@ Then the user should see the majority owners for the institution Recovery Ltd in
 
 Then the user should see the majority owners for the institution Lux Gest Asset Management SA in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|99.207|
+|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|99.5675|
 
 Then the user should see the majority owners for the institution Infogroup ScpA in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
@@ -98,7 +98,7 @@ Then the user should see the legal entity Eurizon Capital SA, user is currently 
 
 Then the user should see the majority owners for the institution Lux Gest Asset Management SA in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
-|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|99.207|
+|Intesa Sanpaolo Bank Luxembourg SA|Luxembourg|99.5675|
 
 Then the user should see the majority owners for the institution Auriga Sistemi-Finanza Quantitativa Srl in the group structure page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|
