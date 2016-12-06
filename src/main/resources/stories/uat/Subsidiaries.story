@@ -58,8 +58,8 @@ Then the user should see the list of direct subsidiaries ordered by percentage o
 When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|VALIDATED DATE|
-|Acceptance Alliance LLC|USA|||
-|Banc of America Merchant Services LLC|USA|||
+|Acceptance Alliance LLC|USA||19 Sep 2016|
+|Banc of America Merchant Services LLC|USA||19 Sep 2016|
 
 Examples:
 |fid|percentFilter|

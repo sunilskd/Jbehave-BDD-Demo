@@ -87,7 +87,10 @@ When the user enters percentage as 68 in ownership percentage filter text box in
 Then the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Brazil (9)|
+|Brazil (11)|
+|Japan (1)|
+|Uruguay (1)|
+|USA (18)|
 
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
 Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
