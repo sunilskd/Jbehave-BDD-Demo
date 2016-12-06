@@ -480,7 +480,7 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user enters percentage as 35 in ownership percentage filter text box in the graphs
-And the user resize graph to translate(858.3435068817788,1096.5485766439203) scale(0.649)
+And the user resize graph to translate(732.544085875352,1487.1981299312283) scale(0.9730000000000001)
 And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 

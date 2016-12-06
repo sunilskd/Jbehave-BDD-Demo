@@ -127,6 +127,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(951.5,363.39999396514895) scale(0.9910000000000001)
 When the user enters percentage as 73 in ownership percentage filter text box in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should not see the ultimate beneficial owners section in the side panel in the graphs
@@ -230,7 +231,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
-When the user resize graph to translate(951.5,382.36124972639607) scale(0.397)
+When the user resize graph to translate(919.2785065590313,147.64742678614368) scale(1)
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
 When the user clicks on the tile of the another legal entity <switchNode> (including the entity of interest) in the graphs
