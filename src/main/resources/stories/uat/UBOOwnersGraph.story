@@ -56,16 +56,15 @@ When the user clicks on direct relationship only filter checkbox in the graphs
 When the user resize graph to  translate(900.4094412838654,547.8049067378745) scale(0.29800000000000004)
 Then the user should see the list of owners in level 1, above the root entity, in the graphs
 When the user unchecks direct relationship only filter checkbox in the graphs
-Then the user should see the legal entity Maybank Offshore Corporate Services (Labuan) Sdn Bhd, user is currently viewing, as the root and highlighted on the graphs
-
-And the user should see the list of owners in level 1, above the root entity, in the graphs
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
 And the user should see the list of owners in level 2, above the root entity, in the graphs
 
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Malaysia (27)|
+|Ireland (1)|
+|Malaysia (30)|
 
 Examples:
 |fid|
@@ -101,7 +100,6 @@ Then the user should see no country highlight selected by default in country hig
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 2 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity Intesa Sanpaolo SpA, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of owners in level 1, above the root entity, in the graphs
 When the user selects a country Norway from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
@@ -110,7 +108,6 @@ Then the user should see the below entities that have the selected country of op
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the graphs
 Then the user should not see the entities highlighted in the graphs
 When the user enters percentage as 0 in ownership percentage filter text box in the graphs
-Then the user should see the list of owners in level 1, above the root entity, in the graphs
 When the user resize graph to translate(946.9235,516.7025) scale(0.9910000000000001)
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>

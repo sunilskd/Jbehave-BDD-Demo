@@ -85,7 +85,6 @@ Then the user should not see the entities highlighted in the graphs
 When the user uses the slider to changes the percent ownership in increments of whole numbers, ranging from 0 to 100, to 0 in the graph
 When the user enters percentage as 0 in ownership percentage filter text box in the graphs
 Then the user should see the list of owners in level 2, above the root entity, in the graphs
-Then the user should see the list of owners in level 3, above the root entity, in the graphs
 Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 And the user should see the multiple appearance bar for <legalEntity> indicating the number of times, <countValue> ,it appears in the graphs
 When the user enters percentage as 17 in ownership percentage filter text box in the graphs

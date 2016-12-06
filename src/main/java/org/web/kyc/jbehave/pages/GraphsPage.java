@@ -75,11 +75,16 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyRootNodeInTheGraphs(String rootEntity) {
+        //String eRootEntity = "";
         waitForWebElementToAppear(By.xpath(graph_root_node));
         assertTrue(isWebElementDisplayed(By.xpath(graph_root_node + graph_root_node_highlight_xpath)));
+        //for(int i=0; i<getWebElements(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='tspan']")).size(); i++){
+          //  eRootEntity = eRootEntity.concat(getWebElements(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='tspan']")).get(i).getText() + " ");
+        //}
         assertEquals(rootEntity, getWebElementText(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='tspan']")));
+        //assertEquals(rootEntity, eRootEntity);
         assertFalse(isWebElementDisplayed(By.xpath(graph_root_node + graph_percent_xpath)));
-        //assertEquals("", getWebElementText(By.xpath(graph_root_node + graph_percent_xpath)));
+        assertEquals("", getWebElementText(By.xpath(graph_root_node + graph_percent_xpath)));
     }
 
     public void verifySubsGraphHeader() {
@@ -188,9 +193,9 @@ public class GraphsPage extends WebDriverUtils {
                 aLegalTitle.add(String.valueOf(executeScript("return arguments[0].getElementsByTagName(\"title\")[0].textContent;", nodes.get(i))));
             } catch (WebDriverException e) {
                 for (int j = 0; j < nodes.get(i).findElements(By.xpath(".//*[local-name()=\"tspan\"]/*[local-name()=\"tspan\"][@x='40']")).size(); j++) {
-                    legalTitle = legalTitle.concat(nodes.get(i).findElements(By.xpath(".//*[local-name()=\"tspan\"]/*[local-name()=\"tspan\"][@x='40']")).get(j).getText());
+                    legalTitle = legalTitle.concat(nodes.get(i).findElements(By.xpath(".//*[local-name()=\"tspan\"]/*[local-name()=\"tspan\"][@x='40']")).get(j).getText() + " ");
                 }
-                aLegalTitle.add(legalTitle);
+                aLegalTitle.add(legalTitle.trim());
             }
 
             try {

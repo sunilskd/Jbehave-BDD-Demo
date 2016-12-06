@@ -45,7 +45,6 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the subsidiaries graph
-Then the user should see the legal entity Meiji Yasuda Life Insurance Company, user is currently viewing, as the root and highlighted on the graphs
 When the user resize graph to translate(911.3523338409951,261.07685334650387) scale(0.11800000000000001)
 Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
@@ -64,7 +63,7 @@ When the user de-selects the selected country by selecting No country highlight 
 Then the user should not see the entities highlighted in the graphs
 Then the user should see the direct relationship only filter checkbox unchecked by default in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
-Then the user should see the legal entity Meiji Yasuda Life Insurance Company, user is currently viewing, as the root and highlighted on the graphs
+Then the user should see the legal entity Meiji Yasuda LifeInsurance Company, user is currently viewing, as the root and highlighted on the graphs
 And the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should not see any nodes in level 2, below the root entity, in the graphs
 When the user unchecks direct relationship only filter checkbox in the graphs
@@ -94,7 +93,6 @@ When the user clicks on the ownership tab
 And the user clicks on the subsidiaries tab
 And the user clicks on the graph button
 Then the user should see the subsidiaries graph
-Then the user should see the legal entity Heathrow LLC, user is currently viewing, as the root and highlighted on the graphs
 When the user resize graph to translate(920.6980212892895,14.733231612468046) scale(0.5490778136885829)
 Then the user should see the list of subsidiaries in level 1, below the root entity, in the graphs
 And the user should see the list of subsidiaries in level 2, below the root entity, in the graphs

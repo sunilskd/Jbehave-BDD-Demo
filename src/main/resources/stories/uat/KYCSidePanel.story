@@ -61,7 +61,7 @@ Then the user should see the legal entity <legalEntity>, user is currently viewi
 
 Examples:
 |fid|nodeTitle|legalEntity|
-|182119|Bank of America National Association|Bank of America National Association|
+|182119|Bank of AmericaNational Association|Bank of America National Association|
 
 Scenario: View side panel for legal entity on subsidiary graph
 a. 0. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity
@@ -93,7 +93,7 @@ Then the user should see complete head office address, regulators , stock exchan
 
 Examples:
 |fid|nodeTitle|switchNode|
-|1038|Bank of America National Association|LIHTC Fund 2010-6 LLC|
+|1038|Bank of America National Association|Galway Holdings Trust|
 
 Scenario: KYC user logout
 Given the user is on bankers almanac page
