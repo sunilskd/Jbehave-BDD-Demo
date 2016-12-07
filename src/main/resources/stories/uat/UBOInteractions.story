@@ -37,8 +37,7 @@ And the user clicks on the group structure tab
 And the user clicks on the graph button
 When the user resize graph to translate(898.3741874779042,259.4939128665061) scale(0.19757611705949005)
 When the user enters percentage as 90 in ownership percentage filter text box in the graphs
-Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
-And the user should not see any nodes in level 1, above the root entity, in the graphs
+Then the user should not see any nodes in level 1, above the root entity, in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
@@ -48,7 +47,7 @@ And the user should see the list of below unique country of operations for each 
 |Croatia (5)|
 |France (2)|
 |Ireland (4)|
-|Italy (24)|
+|Italy (39)|
 |Luxembourg (23)|
 |Romania (2)|
 |Slovakia (4)|
@@ -58,7 +57,7 @@ And the user should see the list of below unique country of operations for each 
 |Ukraine (1)|
 |USA (3)|
 
-When the user selects a country Franec from the country highlight list in the graphs
+When the user selects a country France from the country highlight list in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see, percent filter is reset to 0 for both input box and slider, in the graphs
 Then the user should not see the entities highlighted in the graphs
@@ -73,7 +72,7 @@ And the user should see the list of below unique country of operations for each 
 |France (1)|
 |Hungary (1)|
 |Ireland (1)|
-|Italy (79)|
+|Italy (90)|
 |Luxembourg (7)|
 |Norway (1)|
 |Romania (1)|

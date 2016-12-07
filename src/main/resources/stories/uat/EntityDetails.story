@@ -40,6 +40,22 @@ Examples:
 |58285|
 |4236|
 
+Scenario: Verify Registered Office.
+When the user opens legal entity <fid>
+When the user clicks on the entity details tab
+Then the user should see the headers with institution legal title and bankers almanac id in entity details page
+Then the user should see the summary with head office address (address line1 line2 line3 line 4, city, area, subarea, country) respecting the useInAddress flag for the selected institution in the entity details page
+And the user should see the identifiers with giin, lei, sorted alphabetically by issuer name, and fatca status for the selected institution in the entity details page
+And the user should see the list of swift bics sorted first by length (short to long) then by alpha-numerically in the entity details page
+And the user should see the list of stock exchanges first by primary,then alphabetically by stock exchange name in the entity details page
+And the user should see the list of stock symbols with ticker symbols, first by primary then alphabetically by stock exchange name in the entity details page
+And the user should see regulators information, sorted by alphabetically in the entity details page
+And the user should see website information in the summary section of entity details page
+
+Examples:
+|fid|
+|62579|
+
 Scenario: Covers below scenarios
 a. 0. With FATCA status value (display in identifiers section)
    1. If inactive SWIFT BIC has assigned institution that is the entity user is viewing, then do not display

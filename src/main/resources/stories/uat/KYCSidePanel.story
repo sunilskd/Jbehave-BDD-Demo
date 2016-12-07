@@ -53,6 +53,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(950.4056508577196,387.54046412216786) scale(1)
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
@@ -61,7 +62,7 @@ Then the user should see the legal entity <legalEntity>, user is currently viewi
 
 Examples:
 |fid|nodeTitle|legalEntity|
-|182119|Bank of AmericaNational Association|Bank of America National Association|
+|182119|Bank of America National Association|Bank of America National Association|
 
 Scenario: View side panel for legal entity on subsidiary graph
 a. 0. User clicks title of legal entity on node (could be owner on graph or root node), side panel opens with more details about the entity

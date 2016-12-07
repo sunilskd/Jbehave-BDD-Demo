@@ -69,8 +69,7 @@ When the user resize graph to translate(874.7809172019674,402.21141296230286) sc
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 2 in ownership percentage filter text box in the graphs
-Then the user should see the legal entity Banco Indusval SA, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of owners in level 2, above the root entity, in the graphs
+Then the user should see the list of owners in level 2, above the root entity, in the graphs
 Then the user should see the list of subsidiaries in level 2, below the root entity, in the graphs
 When the user enters percentage as 100 in ownership percentage filter text box in the graphs
 When the user selects a country Brazil from the country highlight list in the graphs
@@ -79,6 +78,8 @@ Then the user should see the below entities that have the selected country of op
 |Banco Indusval SA|
 |Banco Indusval SA|
 |BI&P Comércio de Cereais Ltda|
+|MORGAN STANLEY PARTICIPACOES LTDA|
+|Morgan Stanley Participacoes Ltda|
 
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the graphs
 Then the user should not see the entities highlighted in the graphs
@@ -92,7 +93,7 @@ Then the user should see the ultimate beneficial owners filter checkbox unchecke
 When the user clicks on the ultimate beneficial owners filter checkbox in the graph
 Then the user should see the ultimate beneficial owners highlighted in the graph
 |NODES|
-|Manoel Felix Cintra|
+|Manoel Felix CintraNeto|
 |Luiz Masagão Ribeiro|
 
 When the user enters percentage as 0 in ownership percentage filter text box in the graphs
