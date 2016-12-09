@@ -31,6 +31,7 @@ JIRA ID - KYC-271 - When only extended source is present the source is not displ
 JIRA ID - KYC-90 - UBO user can view list of UBOs
 JIRA ID - KYC-52 - User will see in product message on owners list if they do not have access to UBO data
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@live @kycownersLive
 
@@ -150,6 +151,16 @@ Examples:
 |fid|country|changeCountry|
 |173|Jordan|Lebanon|
 
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 
 Scenario: KYC user logout

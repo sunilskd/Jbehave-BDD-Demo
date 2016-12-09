@@ -30,6 +30,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(950.5237134207871,385.9592330424504) scale(1)
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see complete head office address, regulators , stock exchanges and website in details section of side panel for the node user clicked in the graphs
@@ -51,6 +52,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(951.5,387) scale(0.9910000000000001)
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of direct subsidiaries with entity title, country and percentage ownership in directly owns section of side panel for the node user clicked in the graphs
@@ -72,20 +74,25 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(825.8139934692383,346.96109588623045) scale(0.9910000000000001)
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 Then the user should see list of ubos with name, entity and percentage ownership in ubo section of side panel for the node <nodeTitle> user clicked in the graphs
 |UBO NAME|ENTITY|PERCENTAGE OWNERSHIP|
-|Fernando Bedoya Ballivan|Corporacion de Inversiones B&S SA|67.6|
-|Eugenia Saenz de Bedoya|Corporacion de Inversiones B&S SA|13.45|
-|Milton Careaga Alurraide|Banco Nacional de Bolivia SA|4.83|
-|Robert Meyer Agnew|Banco Nacional de Bolivia SA|3.59|
-|Celso Alvarado Amez|Banco Nacional de Bolivia SA|1.75|
-|Roberto Rojas|Banco Union SA|1.4071|
-|Agnew Meyer|Banco BISA SA|1.24|
-|Jose Luis Aranguren Aguirre|Banco BISA SA|0.88|
-|Jorge Eduardo Rengel Sillerico|Banco BISA SA|0.68|
-|Tomás Barrios Santivañez|Banco BISA SA|0.23|
-|Jorge Guillermo Valdez|Banco Union SA|0.023|
+|Anthony G Buzbee|HomeTown Bank National Association|3.75|
+|G William Rider|HomeTown Bank National Association|3.41|
+|T A Waterman Jr|HomeTown Bank National Association|2.34|
+|Jimmy Rasmussen|HomeTown Bank National Association|1.84|
+|Stacy Dienst|HomeTown Bank National Association|1.02|
+|Maurice Estlinbaum|HomeTown Bank National Association|0.76|
+|Robert L Moody Jr|HomeTown Bank National Association|0.52|
+|Greg S Garison|HomeTown Bank National Association|0.43|
+|Sidney C Farmer III|HomeTown Bank National Association|0.34|
+|Dorothea Matthews Balentine|HomeTown Bank National Association|0.31|
+|Joe Saladino|HomeTown Bank National Association|0.3|
+|Kent Ballard|HomeTown Bank National Association|0.29|
+|Michael J Gaido Jr|HomeTown Bank National Association|0.26|
+|E Vince Matthews III|HomeTown Bank National Association|0.26|
+|Bob Pagan|HomeTown Bank National Association|0.26|10 Mar 2016|
 
 Then the user should see message displayed in side panel in place of list explaining there are no directly owned entities in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
@@ -95,8 +102,7 @@ Then the user should see the side panel closed and should be able to continue in
 
 Examples:
 |fid|nodeTitle|
-|104464|SAFI Union SA|
-
+|12538|HomeTown Bank National Association|
 
 Scenario: User clicks on another node, side panel should refresh with updated information
 When the user opens legal entity <fid>

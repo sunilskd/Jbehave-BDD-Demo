@@ -53,6 +53,7 @@ When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
+And the user resize graph to translate(950.4056508577196,387.54046412216786) scale(1)
 When the user clicks on direct relationship only filter checkbox in the graphs
 And the user clicks on the tile of the legal entity <nodeTitle> (including the entity of interest) in the graphs
 And the user clicks on the legal entity title <nodeTitle> on the side panel in the graphs
@@ -93,7 +94,7 @@ Then the user should see complete head office address, regulators , stock exchan
 
 Examples:
 |fid|nodeTitle|switchNode|
-|1038|Bank of America National Association|LIHTC Fund 2010-6 LLC|
+|1038|Bank of America National Association|Galway Holdings Trust|
 
 Scenario: KYC user logout
 Given the user is on bankers almanac page

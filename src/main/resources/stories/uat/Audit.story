@@ -18,11 +18,11 @@ When the user login as a ubo user to bankers almanac page
 
 Scenario: KYC user can view audit trail
 a. 0. User clicks "Display Audit Information", audit section expands with legal title of legal entity user is viewing in the header of the table, button user clicked is renamed to "Hide Audit Information"
-   1. If there is one action of type "Supplied", display the date for whichever action is the most recent and display the label "Last updated on" for the action
-   2. If there is an action of type "Attempt" or "Denied" that is more recent than the "Supplied" or "Verified" date, display the dates for those actions and display the label "Update attempted on" for the actions
-   3. Sort list of actions by date, listing the most recent at the top
-   4. If action date has accuracy attribute of day, then display day, month, and year
-   5  If there is only a "Supplied" date, display that as the "Last updated on" date
+      2. If action date has accuracy attribute of day, then display day, month, and year
+      3. If action date has accuracy attribute of month, then display only month and year
+      4. If action date has accuracy attribute of year, then display only year
+      5. List dates for any action of type "Attempt" that has a date after the most recent "Supplied", Verified", or "Denied" date in the database
+b. If no actions of type "Supplied," "Verified" or "Denied" exist and "Attempt" actions exist then display all "Attempt" actions in the audit trail.
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -31,14 +31,16 @@ Then the user should see audit information with legal title of legal entity user
 
 Examples:
 |fid|
-|1991|
+|3|
+|211|
 
-Scenario: Verify Audit information
+Scenario: Verify no audit information available
 a. 0. If no ownership review data exists for legal entity user is viewing, then display message "No audit information available."
    1. By default audit section is collapsed
    2. User clicks "Hide Audit Information", audit section collapses
-b. If there is no action of type "Supplied" or "Verified", do not display any actions or dates even if other action types exist for the legal entity user is viewing and display message "No audit information available."
-Meta:@dynamic
+   3. If no actions of type "attempt" exist at all then display message "No audit information available."
+b. If "Attempt" actions that exist all have a date earlier than the most recent "Supplied" "Verified" or "Denied" date then do not display any actions in audit trail. Display message "No audit information available."
+Meta:@audit @dynamic
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
@@ -49,7 +51,8 @@ Then the audit section should collapse and Owners list should be moved to top se
 
 Examples:
 |fid|
-|4521|
+|5|
+|6|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

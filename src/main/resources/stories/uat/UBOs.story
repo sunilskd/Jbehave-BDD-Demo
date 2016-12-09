@@ -51,23 +51,35 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
 |UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|Fernando Bedoya Ballivan|Corporacion de Inversiones B&S SA|67.6|08 Jun 2016|Banco Nacional de Bolivia SA, direct from institution|
-|Eugenia Saenz de Bedoya|Corporacion de Inversiones B&S SA|13.45|08 Jun 2016|Banco Nacional de Bolivia SA, direct from institution|
-|Milton Careaga Alurraide|Banco Nacional de Bolivia SA|4.83|||
-|Robert Meyer Agnew|Banco Nacional de Bolivia SA|3.59|||
-|Celso Alvarado Amez|Banco Nacional de Bolivia SA|1.75|||
 |Roberto Rojas|Banco Union SA|1.4071|||
 |Agnew Meyer|Banco BISA SA|1.24|||
 |Jose Luis Aranguren Aguirre|Banco BISA SA|0.88|||
 |Jorge Eduardo Rengel Sillerico|Banco BISA SA|0.68|||
 |Tomás Barrios Santivañez|Banco BISA SA|0.23|||
 |Jorge Guillermo Valdez|Banco Union SA|0.023|||
-
-When the user selects the percent filter option <percentFilter> in the owners page
-Then the ubo user should see the below list of UBOs (person or persons)ordered by percentage ownership then alphabetically by personSortKey for the selected institution in the owners page
-|UBO NAME|UBO ENITY|PERCENTAGE OWNED|LAST VALIDATED DATE|SOURCE|
-|Fernando Bedoya Ballivan|Corporacion de Inversiones B&S SA|67.6|08 Jun 2016|Banco Nacional de Bolivia SA, direct from institution|
-|Eugenia Saenz de Bedoya|Corporacion de Inversiones B&S SA|13.45|08 Jun 2016|Banco Nacional de Bolivia SA, direct from institution|
+|Ronald Justiniano Landivar|Banco Union SA|0.0043|11 Nov 2016|Banco Union SA, direct from institution|
+|Juan Guillen Caballero|Banco Union SA|0.0028|11 Nov 2016|Banco Union SA, direct from institution|
+|Osvaldo Gutirrrez Jimenez|Banco Union SA|0.0028|11 Nov 2016|Banco Union SA, direct from institution|
+|Robin Gabriel Barragan Ibarguen|Banco Union SA|0.0027|11 Nov 2016|Banco Union SA, direct from institution|
+|Edgar Pena Gutierrez|Banco Union SA|0.0027|11 Nov 2016|Banco Union SA, direct from institution|
+|Jose Carlos Garrett Zamora|Banco Union SA|0.0021|11 Nov 2016|Banco Union SA, direct from institution|
+|Roger Rivera lopez|Banco Union SA|0.0012|11 Nov 2016|Banco Union SA, direct from institution|
+|Hugo Spechar Gonzales|Banco Union SA|0.0011|11 Nov 2016|Banco Union SA, direct from institution|
+|Jorge Bendeck Telchi|Banco Union SA|0.0009|11 Nov 2016|Banco Union SA, direct from institution|
+|Miriam Zenteno|Banco Union SA|0.0009|11 Nov 2016|Banco Union SA, direct from institution|
+|Alvaro Rodrigo Pinilla Romero|Banco Union SA|0.0008|11 Nov 2016|Banco Union SA, direct from institution|
+|Mario Gil Sosa|Banco Union SA|0.0005|11 Nov 2016|Banco Union SA, direct from institution|
+|Pedro Antonio Yovhio Ferreira|Banco Union SA|0.0004|11 Nov 2016|Banco Union SA, direct from institution|
+|Fanny Zamora Garret|Banco Union SA|0.0003|11 Nov 2016|Banco Union SA, direct from institution|
+|Roberto Abrahan Telchi Asbun|Banco Union SA|0.0003|11 Nov 2016|Banco Union SA, direct from institution|
+|Felix Velasco Guaman|Banco Union SA|0.0002|11 Nov 2016|Banco Union SA, direct from institution|
+|Carlos Alberto Antelo Justiniano|Banco Union SA|0.0001|11 Nov 2016|Banco Union SA, direct from institution|
+|Marcelo Arduz Tomianovich|Banco Union SA|0.0001|11 Nov 2016|Banco Union SA, direct from institution|
+|Rene Valdivia Borda|Banco Union SA|0.0001|11 Nov 2016|Banco Union SA, direct from institution|
+|Ernesto Arduz Tomianovich|Banco Union SA|0|11 Nov 2016|Banco Union SA, direct from institution|
+|Ricardo Yamil Baddour Dabdoub|Banco Union SA|0|11 Nov 2016|Banco Union SA, direct from institution|
+|Javier Alfonso Santiago Gimenez Dominguez|Banco Union SA|0|11 Nov 2016|Banco Union SA, direct from institution|
+|Alfredo Tomelic Sanchez|Banco Union SA|0|11 Nov 2016|Banco Union SA, direct from institution|
 
 Examples:
 |fid|percentFilter|

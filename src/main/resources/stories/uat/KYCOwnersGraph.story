@@ -24,9 +24,11 @@ JIRA ID - KYC-229 - UBO user can highlight UBOs on graphs
 JIRA ID - KYC-330 - Remove links for person,non-entity or non-person in graphs
 JIRA ID - KYC-155 - User will see in product message on owners graph if they do not have access to UBO data
 JIRA ID - KYC-250 - User can click hyperlink "please subscribe" in UBO in product message
-JIRA ID - KYC-392 - % filter input box is not resetting to 100% when user enters more than 100% in % input box in graph page.
+JIRA ID - KYC-392 - filter input box is not resetting to 100 when user enters more than 100 in input box in graph page.
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
 JIRA ID - KYC-455 - new truncation logic owners graph
+JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@kycownersgraphsLive @live
 
@@ -50,7 +52,7 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    17. If user enters a number between 1-100 in input box, slider position automatically updates to match percent entered, only owners that are owned by equal to or greater than selected percent appear on the graph
    18. User selects "Direct Relationships Only", then graph updates to only show direct owners (level 1 of graph)
    19. By default UBO highlight checkbox is available on owners graph, but is disabled for KYC user and not selectable
-   20. Display the free text when the % filters are applied
+   20. Display the free text when the filters are applied
    21. Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -60,10 +62,9 @@ Then the user should see the legal entity Banco Indusval SA, user is currently v
 When the user resize graph to translate(1003.9459234383133,436.36120867136754) scale(0.27509397800157526)
 Then the user should see the list of owners in level 1, above the root entity, in the graphs
 Then the user should see the list of owners in level 2, above the root entity, in the graphs
-And the user should see the list of owners in level 3, above the root entity, in the graphs
 And the user should see the notification message that the graphs are truncated as it has more than 125 triples and ownership relationship exists with percent less than 5
 And the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
-Then the user should see the ultimate beneficial owners filter checkbox disabled in the graph
+Then the user should see the ultimate beneficial owners filter checkbox and the label disabled/grayed in the graph
 When the user clicks on <legalEntity> node which appears more than once in the graphs
 Then the user should see the nodes for <legalEntity> highlighted everywhere it appears in the graphs
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
@@ -85,14 +86,17 @@ When the user enters percentage as 68 in ownership percentage filter text box in
 Then the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Brazil (1)|
+|Brazil (3)|
+|Japan (1)|
+|Uruguay (1)|
+|USA (18)|
 
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
 Then the user should see the list of owners in level 1, above the root entity, in the graphs
 Then the user should not see any nodes in level 2, above the root entity, in the graphs
 When the user clicks on please subscribe link in the message displayed in the graph
-Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC%7CBRSK%7CBAFPU-2016-0810-GLOB-ba-ubo%7CLookBook&sfid=701D0000000dwwH on accuity.com
+Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC7CBRSK7CBAFPU-2016-0810-GLOB-ba-ubo7CLookBook&sfid=701D0000000dwwH on accuity.com
 
 Examples:
 |fid|legalEntity|

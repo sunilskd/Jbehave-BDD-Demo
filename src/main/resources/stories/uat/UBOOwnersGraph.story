@@ -28,6 +28,8 @@ JIRA ID - KYC-114 - UBO user can view non-person, non-entity owners on owners gr
 JIRA ID - KYC-33 - KYC user can see visual indicator for entity that appears multiple times in the ownership graph
 JIRA ID - KYC-229 - UBO user can highlight UBOs on graph
 JIRA ID - KYC-386 - User can click "more" link from truncated graph to open another graph
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
+JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 
 Meta:@uboownersgraphLive @live
 
@@ -51,20 +53,18 @@ And the user clicks on the graph button
 Then the user should see the direct relationship only filter checkbox unchecked by default in the graphs
 Then the ubo user should not see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
 When the user clicks on direct relationship only filter checkbox in the graphs
-Then the user should see the legal entity Maybank Offshore Corporate Services (Labuan) Sdn Bhd, user is currently viewing, as the root and highlighted on the graphs
 When the user resize graph to  translate(900.4094412838654,547.8049067378745) scale(0.29800000000000004)
 Then the user should see the list of owners in level 1, above the root entity, in the graphs
 When the user unchecks direct relationship only filter checkbox in the graphs
-Then the user should see the legal entity Maybank Offshore Corporate Services (Labuan) Sdn Bhd, user is currently viewing, as the root and highlighted on the graphs
-
-And the user should see the list of owners in level 1, above the root entity, in the graphs
+Then the user should see the list of owners in level 1, above the root entity, in the graphs
 And the user should see the list of owners in level 2, above the root entity, in the graphs
 
 Then the user should see no country highlight selected by default in country highlight drop-down in the graphs
 And the user should see the list of below unique country of operations for each owners to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
-|Malaysia (27)|
+|Ireland (1)|
+|Malaysia (30)|
 
 Examples:
 |fid|
@@ -100,7 +100,6 @@ Then the user should see no country highlight selected by default in country hig
 Then the user should see, by default, percent filter set to 0 for both input box and slider, in the graphs
 When the user enters percentage as 2 in ownership percentage filter text box in the graphs
 Then the user should see the legal entity Intesa Sanpaolo SpA, user is currently viewing, as the root and highlighted on the graphs
-And the user should see the list of owners in level 1, above the root entity, in the graphs
 When the user selects a country Norway from the country highlight list in the graphs
 Then the user should see the below entities that have the selected country of operations highlighted in the graphs
 |NODES|
@@ -109,7 +108,6 @@ Then the user should see the below entities that have the selected country of op
 When the user de-selects the selected country by selecting No country highlight from the country highlight list in the graphs
 Then the user should not see the entities highlighted in the graphs
 When the user enters percentage as 0 in ownership percentage filter text box in the graphs
-Then the user should see the list of owners in level 1, above the root entity, in the graphs
 When the user resize graph to translate(946.9235,516.7025) scale(0.9910000000000001)
 When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
@@ -117,6 +115,18 @@ Then user is taken to the respective graph page of that legal entity <nodeTitle>
 Examples:
 |fid|nodeTitle|
 |444|Blackrock Inc|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: UBO user logout
 Given the user is on bankers almanac page

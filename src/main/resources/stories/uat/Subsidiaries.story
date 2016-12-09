@@ -12,6 +12,7 @@ JIRA ID - KYC-45 - KYC user can view direct subsidiaries
 JIRA-ID - KYC-102 - KYC user can filter subsidiaries list by percent ownership
 JIRA ID - KYC-133 - User can navigate through tabs on office page
 JIRA ID - KYC-188 - Display relationship validated date on subsidiary list
+JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 
 Meta:@subsidiariesLive @live
 
@@ -57,8 +58,8 @@ Then the user should see the list of direct subsidiaries ordered by percentage o
 When the user clicks and opens the legal title BAMS Solutions Inc in subsidiaries list in new window in the subsidiaries page
 Then the user should see the below list of direct subsidiaries ordered by percentage ownership then asc by legal title for the selected institution in the subsidiaries page
 |LEGAL TITLE|COUNTRY|PERCENTAGE OWNED|VALIDATED DATE|
-|Acceptance Alliance LLC|USA|||
-|Banc of America Merchant Services LLC|USA|||
+|Acceptance Alliance LLC|USA||19 Sep 2016|
+|Banc of America Merchant Services LLC|USA||19 Sep 2016|
 
 Examples:
 |fid|percentFilter|
@@ -75,6 +76,17 @@ Then the user should see message displayed in place of list explaining there are
 Examples:
 |fid|percentFilter|
 |269306|10|
+
+Scenario: When the user manipulates URL to navigate to an FID for an inactive legal entity. User should see inactive institution page with message "No ownership information available"
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+When the user manipulates URL to navigate to 286840
+Then the user should see the inactive institution page with message "No ownership information available"
+
+Examples:
+|fid|
+|1038|
 
 Scenario: KYC user logout
 Given the user is on bankers almanac page
