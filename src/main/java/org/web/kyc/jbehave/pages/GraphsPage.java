@@ -510,6 +510,7 @@ public class GraphsPage extends WebDriverUtils {
                     executeScript("return arguments[0].innerHTML;", highlightedUbos.get(i)).toString()
                             .replace("<tspan x=\"40\">","")
                             .replace("</tspan><tspan dy=\"14\" x=\"40\">","")
+                            .replace("<tspan x=\"40\" dy=\"14\">","")
                             .replace("</tspan><tspan class=\"ellipsis\">","")
                             .replace("</tspan>",""));
         }
