@@ -306,9 +306,9 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyFullGraphHeader();
     }
 
-    @When("the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs")
-    public void clickOnShowMoreLink(@Named("nodeTitle") String nodeTitle){
-        pageObject.graphsPage().clickOnShowMoreLink(nodeTitle);
+    @When("the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs")
+    public void clickOnExtendGraphLink(@Named("nodeTitle") String nodeTitle){
+        pageObject.graphsPage().clickOnExtendGraphLink(nodeTitle);
     }
 
     @Then("the user captures the expected snapshot for the subsidiaries page <nodeTitle>")

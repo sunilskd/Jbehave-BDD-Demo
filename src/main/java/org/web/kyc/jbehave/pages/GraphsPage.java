@@ -722,7 +722,7 @@ public class GraphsPage extends WebDriverUtils {
         takeSnapshot("./src/test/resources/expected/eZoomedIn" + nodeTitle.replace(" ","") + "FullGraph.png");
     }
 
-    public void clickOnShowMoreLink(String nodeTitle) {
+    public void clickOnExtendGraphLink(String nodeTitle) {
         try{
             List<WebElement> nodes = getWebElements(By.xpath(graph_nodes_xpath));
             for(int i=0; i<nodes.size(); i++){
@@ -750,7 +750,8 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyGraphsAreTruncatedBy5PerLogicMsg() {
-        assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
+        //assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph.",getWebElementText(graphs_truncated_notification_msg_xpath));
+        assertEquals("Please note: To make this graph viewable in your browser, where relationships repeat, only the first instance of that relationship has been displayed. In addition, no further relationships are displayed beyond any tile showing less than 5% ownership. To view these hidden segments, please click the \"Extend Graph\" links within the relevant tiles.",getWebElementText(graphs_truncated_notification_msg_xpath));
     }
 
     public void verifyGraphsAreTruncatedBy2500NodesLogicMsg(){
@@ -831,10 +832,12 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void verifyGraphsAreTruncatedBy2500NodesLogicAndPdfAsAListMsg() {
-        assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the \"show more\" link on tiles to view hidden segments in a new graph. When downloading this information, it will be presented as a list due to the size of the graph.",getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
+        //assertEquals("This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the \"show more\" link on tiles to view hidden segments in a new graph. When downloading this information, it will be presented as a list due to the size of the graph.",getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
+        assertEquals("Please note: To make this graph viewable in your browser, it has been limited to 2,500 entities. Where relationships repeat, only the first instance of that relationship has been displayed. In addition, no further relationships are displayed beyond any tile showing less than 5% ownership. To view these hidden segments, please click the \"Extend Graph\" links within the relevant tiles.  Due to its size, PDF download of this ownership structure is available in list format only.",getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
     }
 
     public void verifyGraphsAreTruncatedBy5PerLogicAndPdfAsAListMsg() {
-        assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph. When downloading this information, it will be presented as a list due to the size of the graph.", getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
+        //assertEquals("This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the \"show more\" link on tiles to view hidden segments in a new graph. When downloading this information, it will be presented as a list due to the size of the graph.", getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
+        assertEquals("Please note: To make this graph viewable in your browser, where relationships repeat, only the first instance of that relationship has been displayed. In addition, no further relationships are displayed beyond any tile showing less than 5% ownership. To view these hidden segments, please click the \"Extend Graph\" links within the relevant tiles.  Due to its size, PDF download of this ownership structure is available in list format only.", getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
     }
 }

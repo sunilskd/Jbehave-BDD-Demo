@@ -48,7 +48,7 @@ a. 0. An entity on the graph (could be entity user is viewing) has owner that is
    10. By default UBO checkbox is available but not checked
    11. If graph has UBOs (owners that are type person), checkbox is clickable
    12. User checks UBO highlight box, all person owners in the graph are highlighted
-   13. User clicks on show more link and user is navigated to the respective graph page of that entity
+   13. User clicks on extend graph link and user is navigated to the respective graph page of that entity
    14. Verify graph truncation notification message
    15. Entity on owners graph has non-institution, non-person entity type owner and the relationship is active, display that owner on the graph
    16. non-institution, non-person entity type owner has percent ownership, display on the owner's node
@@ -98,7 +98,7 @@ Then the user should see the ultimate beneficial owners highlighted in the graph
 
 When the user enters percentage as 0 in ownership percentage filter text box in the graphs
 When the user resize graph to translate(485.7233512315033,1346.7201520163487) scale(0.892)
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+When the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:

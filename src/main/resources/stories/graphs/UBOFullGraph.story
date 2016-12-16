@@ -27,6 +27,7 @@ JIRA ID - KYC-386 - User can click "more" link from truncated graph to open anot
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 JIRA ID - KYC-586 - Root node is displayed even when its "No know Entity" fid on a full graph.
 JIRA ID - KYC-559 - Change name of full graph to "Complete Ownership + Subsidiary Graph"
+JIRA ID - KYC-517 - New text for truncation notifications and "show more" links
 
 Meta:@ubofullgraph @ubo
 
@@ -401,14 +402,14 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Scenario: User clicks on extend graph link and user is navigated to the respective graph page of that entity
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 When the user resize graph to translate(1096.0998681640626,-181.31536080169678) scale(0.9910000000000001)
-And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+And the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:
@@ -433,7 +434,7 @@ And the user should see the list of below unique country of operations for each 
 |USA (3)|
 
 When the user resize graph to translate(-892.9171422119143,1270.0646228027344) scale(0.9910000000000001)
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+When the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
