@@ -48,6 +48,10 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_in_product_msg_text_xpath = By.xpath(".//div[@kyc-ubo-subscription-message=\"\"][@style='display: block;']");
     private By graphs_truncated_notification_msg_xpath = By.xpath("//p[@class='attention ng-scope']");
     private By graphs_truncated_notification_with_node_count_msg_xpath = By.xpath("//p[contains(@ng-if,'graphSize' )]");
+    private By graphs_help_page_link_xpath = By.xpath("//*[@id='content-view']/div[1] //span");
+    private By graphs_help_page_dialog_box_xpath = By.xpath("//*[contains(@class,'ngdialog-content')]");
+    private By graphs_help_page_dialog_image_xpath = By.xpath("//*[contains(@class,'ngdialog-content')] /div[2]/img [contains(@src,'img/graph-help.png')]");
+    private By graphs_help_page_dialog_box_close_button_xpath = By.xpath("//*[contains(@class,'ngdialog-content')] //button");
 
 
     public GraphsPage(WebDriverProvider driverProvider) {
