@@ -376,5 +376,10 @@ public class GraphsSteps {
         pageObject.graphsPage().verifySavedPDFSubsidiariesGraphAsListFile(fid);
     }
 
+    @When("the user clicks on graph help link in graph page")
+    public void userClicksGraphHelpLink(){
+        pageObject.graphsPage().userClicksGraphHelpLink();
+    }
+
 }
 

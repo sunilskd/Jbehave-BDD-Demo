@@ -17,17 +17,8 @@ When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 Then the user should see the owners graph
-Then the user should see the legal entity QA Legal Entity 6, user is currently viewing, as the root and highlighted on the graphs
-
-And the user should see the list of owners in level 1, above the root entity, in the graphs
-And the user should see the list of owners in level 2, above the root entity, in the graphs
-And the user should see the list of owners in level 3, above the root entity, in the graphs
-And the user should see the list of owners in level 4, above the root entity, in the graphs
-And the user should see the list of owners in level 5, above the root entity, in the graphs
-And the user should see the list of owners in level 6, above the root entity, in the graphs
-Then the kyc user should see message displayed there is ubo data available for this entity. you currently do not have access to this data, please subscribe in the graphs
-When the user clicks on please subscribe link in the message displayed in the graph
-Then the user is taken to subscription page URL http://accuity.lookbookhq.com/bankers-almanac-ubo/video?cmpid=ILC7CBRSK7CBAFPU-2016-0810-GLOB-ba-ubo7CLookBook&sfid=701D0000000dwwH on accuity.com
+When the user clicks on graph help link in graph page
+Then the user should see a model window with static help content for graph
 
 Examples:
 |fid|
