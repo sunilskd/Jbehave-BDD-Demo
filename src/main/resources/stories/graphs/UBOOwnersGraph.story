@@ -32,6 +32,7 @@ JIRA ID - KYC-455 - new truncation logic owners graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 JIRA ID - KYC-167 - Do not display ownership for inactive legal entity
 JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
+JIRA ID - KYC-517 - New text for truncation notifications and "show more" links
 
 Meta:@uboownersgraph @ubo
 
@@ -527,13 +528,13 @@ Examples:
 |fid|
 |LE-6|
 
-Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Scenario: User clicks on extend graph link and user is navigated to the respective graph page of that entity
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user enters percentage as 35 in ownership percentage filter text box in the graphs
-And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+And the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:
@@ -576,11 +577,11 @@ a. 0. When triples are >125, then nodes with less than 5 percent are displayed b
    1. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
    2. When triples are >125 & an entity appears more than once & first occurance has less than 5 percent ownership, then truncate the graph and display the path of second appearances
    3. Null percent ownership do NOT trigger truncation. They are treated like 100 percent in this case
-   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5 percent ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
+   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5 percent ownership. Click the “extend graph” link on tiles to view hidden segments in a new graph."
    5. UBO highlight is disabled for UBO and KYC user
    6. Country highlight drop-down only displays country of operations of LEs displayed after truncation
    7. "Appears count" on tiles only reflects appearances on the graph after truncation
-   8. click “show more” link on tiles to view hidden segments in a new graph.
+   8. click “extend graph” link on tiles to view hidden segments in a new graph.
 Given the user is on the ubo login page
 When the user login as a ubo user
 Given the user is on the ubo login page
@@ -605,7 +606,7 @@ Then the user should see the list of below unique country of operations for each
 |USA (33)|
 
 When the user resize graph to translate(1253.1793966674943,1695.3853983257395) scale(0.55)
-And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+And the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:

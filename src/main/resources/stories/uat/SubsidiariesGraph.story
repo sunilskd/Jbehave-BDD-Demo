@@ -72,7 +72,7 @@ Then the user should see the legal entity Meiji Yasuda Life Insurance Company, u
 Then the user should not see the ultimate beneficial owners filter checkbox in the subsidiaries graph
 When the user clicks on direct relationship only filter checkbox in the graphs
 When the user resize graph to translate(240.6847512127979,115.23007508485733) scale(0.9550000000000001)
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+When the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
