@@ -27,6 +27,7 @@ JIRA ID - KYC-386 - User can click "more" link from truncated graph to open anot
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 JIRA ID - KYC-586 - Root node is displayed even when its "No know Entity" fid on a full graph.
 JIRA ID - KYC-559 - Change name of full graph to "Complete Ownership + Subsidiary Graph"
+JIRA ID - KYC-600 - User can view "graph help" page
 
 Meta:@ubofullgraph @ubo
 
@@ -484,6 +485,23 @@ And the user should see the notification message that the graphs are truncated a
 Examples:
 |fid|
 |7127|
+
+Scenario: Covers below scenarios for KYC-600 User can view "graph help" page
+a. 0. Verify graph help link in graph page
+   1. Verify graph help model window and close button functionality
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the group structure tab
+And the user clicks on the graph button
+When the user clicks on graph help link in graph page
+Then the user should see a model window with static help content for graph
+When the user clicks close button in graph help model window
+Then the model window should be closed and user should see active graph page where the user was initially
+
+Examples:
+|fid|
+|211|
 
 Scenario: Not implemented, Data missing
 1. If legal entity in focus returns greater than 2500 nodes on both owners and subs side of full graph.

@@ -856,4 +856,10 @@ public class GraphsPage extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         clickOnWebElement(graphs_help_page_dialog_box_close_button_xpath);
     }
+
+    public void verifyGraphHelpWindowIsClosed(){
+        waitForInMilliSeconds(3000L);
+        // verify if graph page is active and help dialog is closed
+        assertTrue(isWebElementDisplayed(By.xpath("//html/body[@class='ng-scope']")));
+    }
 }

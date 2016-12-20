@@ -391,5 +391,10 @@ public class GraphsSteps {
         pageObject.graphsPage().clickCloseButtonInGraphHelp();
     }
 
+    @Then("the model window should be closed and user should see active graph page where the user was initially")
+    public void verifyGraphHelpWindowIsClosed(){
+        pageObject.graphsPage().verifyGraphHelpWindowIsClosed();
+    }
+
 }
 
