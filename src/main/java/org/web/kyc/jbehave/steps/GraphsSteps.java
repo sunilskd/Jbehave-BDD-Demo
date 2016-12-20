@@ -396,5 +396,10 @@ public class GraphsSteps {
         pageObject.graphsPage().verifyGraphHelpWindowIsClosed();
     }
 
+    @Then("the user should see tool tip for zoom, ownership percentage and country highlights")
+    public void verifyGraphFiltersToolTip(){
+        pageObject.graphsPage().verifyGraphFiltersToolTip();
+    }
+
 }
 

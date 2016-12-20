@@ -487,7 +487,7 @@ Examples:
 |7127|
 
 Scenario: Covers below scenarios for KYC-600 User can view "graph help" page
-a. 0. Verify graph help link in graph page
+a. 0. Verify graph help link and tool tip in graph page
    1. Verify graph help model window and close button functionality
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
@@ -498,6 +498,7 @@ When the user clicks on graph help link in graph page
 Then the user should see a model window with static help content for graph
 When the user clicks close button in graph help model window
 Then the model window should be closed and user should see active graph page where the user was initially
+Then the user should see tool tip for zoom, ownership percentage and country highlights
 
 Examples:
 |fid|

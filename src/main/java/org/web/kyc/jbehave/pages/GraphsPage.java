@@ -52,7 +52,10 @@ public class GraphsPage extends WebDriverUtils {
     private By graphs_help_page_dialog_box_xpath = By.xpath("//*[contains(@class,'ngdialog-content')]");
     private By graphs_help_page_dialog_image_xpath = By.xpath("//*[contains(@class,'ngdialog-content')] /div[2]/img [contains(@src,'img/graph-help.png')]");
     private By graphs_help_page_dialog_box_close_button_xpath = By.xpath("//*[contains(@class,'ngdialog-content')] //button");
-
+    private By graphs_help_tool_tip_path = By.xpath("//*[@id='content-view']/div[1] //span");
+    private By graphs_zoom_tool_tip_path = By.xpath("//*[@id='content-view']/div[3]/div[1]//span/p");
+    private By graphs_ownership_percentage_tool_tip_path = By.xpath("//*[@id='content-view']/div[3]/div[2]//span/p");
+    private By graphs_country_highlights_tool_tip_path = By.xpath("//*[@id='content-view']/div[3]/div[4]//span/p");
 
     public GraphsPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -844,6 +847,8 @@ public class GraphsPage extends WebDriverUtils {
 
     public void userClicksGraphHelpLink(){
         waitForInMilliSeconds(3000L);
+        //verify tool tip of Graph Help link
+        assertEquals("Learn more about graphs",findElement(graphs_help_tool_tip_path).getAttribute("title"));
         clickOnWebElement(graphs_help_page_link_xpath);
     }
 
@@ -861,5 +866,18 @@ public class GraphsPage extends WebDriverUtils {
         waitForInMilliSeconds(3000L);
         // verify if graph page is active and help dialog is closed
         assertTrue(isWebElementDisplayed(By.xpath("//html/body[@class='ng-scope']")));
+    }
+
+    public void verifyGraphFiltersToolTip(){
+        waitForInMilliSeconds(3000L);
+        moveMouseTo(By.xpath("//*[@id='content-view']/div[3]/div[1]//span"));
+        waitForInMilliSeconds(2000L);
+        assertEquals("Use your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move.",getWebElementText(graphs_zoom_tool_tip_path));
+        moveMouseTo(By.xpath("//*[@id='content-view']/div[3]/div[2]//span"));
+        waitForInMilliSeconds(2000L);
+        assertEquals("Display ownership greater than or equal to the value shown. Use slider or input to change the percentage.",getWebElementText(graphs_ownership_percentage_tool_tip_path));
+        moveMouseTo(By.xpath("//*[@id='content-view']/div[3]/div[4]//span"));
+        waitForInMilliSeconds(2000L);
+        assertEquals("Use these tools to highlight tiles within the graph. Counts (Total) reflect applied filters. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.",getWebElementText(graphs_country_highlights_tool_tip_path));
     }
 }

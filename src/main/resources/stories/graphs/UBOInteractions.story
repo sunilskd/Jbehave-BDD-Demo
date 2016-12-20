@@ -637,6 +637,17 @@ Examples:
 |LE-56|
 |211|
 
+Scenario: Verify graphs filter tool tips
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+Then the user should see tool tip for zoom, ownership percentage and country highlights
+
+Examples:
+|fid|
+|211|
+
 Scenario: UBO user logout
 Meta: @id logout
 Given the user is on the ubo login page

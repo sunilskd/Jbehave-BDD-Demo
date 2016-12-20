@@ -538,7 +538,7 @@ Examples:
 |250786|
 
 Scenario: Covers below scenarios for KYC-600 User can view "graph help" page
-a. 0. Verify graph help link in graph page
+a. 0. Verify graph help link and tool tip in graph page
    1. Verify graph help model window and close button functionality
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
