@@ -376,5 +376,30 @@ public class GraphsSteps {
         pageObject.graphsPage().verifySavedPDFSubsidiariesGraphAsListFile(fid);
     }
 
+    @When("the user clicks on graph help link in graph page")
+    public void userClicksGraphHelpLink(){
+        pageObject.graphsPage().userClicksGraphHelpLink();
+    }
+
+    @Then("the user should see a model window with static help content for graph")
+    public void verifyGraphHelpPage(){
+        pageObject.graphsPage().verifyGraphHelpPage();
+    }
+
+    @When("the user clicks close button in graph help model window")
+    public void clickCloseButtonInGraphHelp(){
+        pageObject.graphsPage().clickCloseButtonInGraphHelp();
+    }
+
+    @Then("the model window should be closed and user should see active graph page where the user was initially")
+    public void verifyGraphHelpWindowIsClosed(){
+        pageObject.graphsPage().verifyGraphHelpWindowIsClosed();
+    }
+
+    @Then("the user should see tool tip for zoom, ownership percentage and country highlights")
+    public void verifyGraphFiltersToolTip(){
+        pageObject.graphsPage().verifyGraphFiltersToolTip();
+    }
+
 }
 

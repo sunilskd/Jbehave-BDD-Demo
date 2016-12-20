@@ -48,7 +48,14 @@ public class GraphsPage extends WebDriverUtils {
     private By graph_in_product_msg_text_xpath = By.xpath(".//div[@kyc-ubo-subscription-message=\"\"][@style='display: block;']");
     private By graphs_truncated_notification_msg_xpath = By.xpath("//p[@class='attention ng-scope']");
     private By graphs_truncated_notification_with_node_count_msg_xpath = By.xpath("//p[contains(@ng-if,'graphSize' )]");
-
+    private By graphs_help_page_link_xpath = By.xpath("//*[@id='content-view']/div[1] //span");
+    private By graphs_help_page_dialog_box_xpath = By.xpath("//*[contains(@class,'ngdialog-content')]");
+    private By graphs_help_page_dialog_image_xpath = By.xpath("//*[contains(@class,'ngdialog-content')] /div[2]/img [contains(@src,'img/graph-help.png')]");
+    private By graphs_help_page_dialog_box_close_button_xpath = By.xpath("//*[contains(@class,'ngdialog-content')] //button");
+    private By graphs_help_tool_tip_path = By.xpath("//*[@id='content-view']/div[1] //span");
+    private By graphs_zoom_tool_tip_path = By.xpath("//*[@id='content-view']/div[3]/div[1]//span/p");
+    private By graphs_ownership_percentage_tool_tip_path = By.xpath("//*[@id='content-view']/div[3]/div[2]//span/p");
+    private By graphs_country_highlights_tool_tip_path = By.xpath("//*[@id='content-view']/div[3]/div[4]//span/p");
 
     public GraphsPage(WebDriverProvider driverProvider) {
         super(driverProvider);
@@ -836,5 +843,41 @@ public class GraphsPage extends WebDriverUtils {
 
     public void verifyGraphsAreTruncatedBy5PerLogicAndPdfAsAListMsg() {
         assertEquals("Please note: To make this graph viewable in your browser, where relationships repeat, only the first instance of that relationship has been displayed. In addition, no further relationships are displayed beyond any tile showing less than 5% ownership. To view these hidden segments, please click the \"Extend Graph\" links within the relevant tiles. Due to its size, PDF download of this ownership structure is available in list format only.", getWebElementText(graphs_truncated_notification_with_node_count_msg_xpath));
+    }
+
+    public void userClicksGraphHelpLink(){
+        waitForInMilliSeconds(3000L);
+        //verify tool tip of Graph Help link
+        assertEquals("Learn more about graphs",findElement(graphs_help_tool_tip_path).getAttribute("title"));
+        clickOnWebElement(graphs_help_page_link_xpath);
+    }
+
+    public void verifyGraphHelpPage(){
+        assertTrue(isWebElementDisplayed(graphs_help_page_dialog_box_xpath));
+        assertTrue(isWebElementDisplayed(graphs_help_page_dialog_image_xpath));
+    }
+
+    public void clickCloseButtonInGraphHelp(){
+        waitForInMilliSeconds(3000L);
+        clickOnWebElement(graphs_help_page_dialog_box_close_button_xpath);
+    }
+
+    public void verifyGraphHelpWindowIsClosed(){
+        waitForInMilliSeconds(3000L);
+        // verify if graph page is active and help dialog is closed
+        assertTrue(isWebElementDisplayed(By.xpath("//html/body[@class='ng-scope']")));
+    }
+
+    public void verifyGraphFiltersToolTip(){
+        waitForInMilliSeconds(3000L);
+        moveMouseTo(By.xpath("//*[@id='content-view']/div[3]/div[1]//span"));
+        waitForInMilliSeconds(2000L);
+        assertEquals("Use your mousewheel or zoom controls to resize the graph. Reset to fit graph within window. Click and drag graph with your cursor to move.",getWebElementText(graphs_zoom_tool_tip_path));
+        moveMouseTo(By.xpath("//*[@id='content-view']/div[3]/div[2]//span"));
+        waitForInMilliSeconds(2000L);
+        assertEquals("Display ownership greater than or equal to the value shown. Use slider or input to change the percentage.",getWebElementText(graphs_ownership_percentage_tool_tip_path));
+        moveMouseTo(By.xpath("//*[@id='content-view']/div[3]/div[4]//span"));
+        waitForInMilliSeconds(2000L);
+        assertEquals("Use these tools to highlight tiles within the graph. Counts (Total) reflect applied filters. Click directly on tiles to highlight multiple appearances, and click on entity names for additional information.",getWebElementText(graphs_country_highlights_tool_tip_path));
     }
 }
