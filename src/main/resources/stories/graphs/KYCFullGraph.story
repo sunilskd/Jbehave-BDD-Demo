@@ -401,13 +401,13 @@ Examples:
 |fid|
 |LE-15|
 
-Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Scenario: User clicks on extend graph link and user is navigated to the respective graph page of that entity
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the group structure tab
 And the user clicks on the graph button
 And the user resize graph to translate(952.9254483927203,194.0396342628783) scale(0.649)
-And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+And the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:
@@ -431,7 +431,7 @@ And the user should see the list of below unique country of operations for each 
 |Singapore (1)|
 |USA (3)|
 
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+When the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|

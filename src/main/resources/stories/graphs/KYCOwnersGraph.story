@@ -35,6 +35,7 @@ JIRA ID - KYC-455 - new truncation logic owners graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
 JIRA ID - KYC-600 - User can view "graph help" page
+JIRA ID - KYC-517 - New text for truncation notifications and "show more" links
 
 Meta:@kycownersgraphs @kyc
 
@@ -475,14 +476,14 @@ Examples:
 |fid|
 |LE-A|
 
-Scenario: User clicks on show more link and user is navigated to the respective graph page of that entity
+Scenario: User clicks on extend graph link and user is navigated to the respective graph page of that entity
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
 And the user clicks on the owners tab
 And the user clicks on the graph button
 And the user enters percentage as 35 in ownership percentage filter text box in the graphs
 And the user resize graph to translate(732.544085875352,1487.1981299312283) scale(0.9730000000000001)
-And the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+And the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:
@@ -491,7 +492,7 @@ Examples:
 
 Scenario: KYC-455 Covers below scenarios for truncated owners graph for KYC user.
 a. 0. Verify Country highlight drop-down only lists country of operations for legal entities displayed on the graph, not entities that were truncated and not displayed
-   1. click “show more” link on tiles to view hidden segments in a new graph.
+   1. click “extend graph” link on tiles to view hidden segments in a new graph.
 Given the user is on the ubo login page
 When the user opens legal entity <fid>
 When the user clicks on the ownership tab
@@ -505,7 +506,7 @@ And the user should see the list of below unique country of operations for each 
 |Belgium (1)|
 |Italy (12)|
 
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+When the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then the user should see the list of below unique country of operations for each subsidiaries to highlight, sorted alphabetically, in the graphs
 |COUNTRIES|
 |No country highlight|
@@ -555,7 +556,7 @@ Examples:
 |211|
 
 Scenario: Scenarios pending as Data missing
-1. If legal entity in focus returns greater than 125 triples for ownership and an ownership relationship has >2500 owner nodes, then the message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph" should be displayed.
+1. If Graph has been truncated because at least 2500 nodes were displayed and NOT a PDF , then the message " Please note: To make this graph viewable in your browser, it has been limited to 2,500 entities. Where relationships repeat, only the first instance of that relationship has been displayed. In addition, no further relationships are displayed beyond any tile showing less than 5% ownership. To view these hidden segments, please click the "Extend Graph" links within the relevant tiles." should be displayed.
 
 
 Scenario: KYC user logout

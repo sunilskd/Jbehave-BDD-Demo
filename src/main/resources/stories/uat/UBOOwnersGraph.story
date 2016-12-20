@@ -81,7 +81,7 @@ a. 0. By default, percent filter is set to 0 for both input box and slider, all 
    6. If graph has UBOs (owners that are type person), checkbox is clickable
    7. User checks UBO highlight box, all person owners in the graph are highlighted
    8. Verify in product message is not displaying for the users with UBO access
-   9. User clicks on show more link and user is navigated to the respective graph page of that entity
+   9. User clicks on extend graph link and user is navigated to the respective graph page of that entity
    10. Verify graph truncation notification message
    11. Entity on owners graph has non-institution, non-person entity type owner and the relationship is active, display that owner on the graph
    12. non-institution, non-person entity type owner has percent ownership, display on the owner's node
@@ -109,7 +109,7 @@ When the user de-selects the selected country by selecting No country highlight 
 Then the user should not see the entities highlighted in the graphs
 When the user enters percentage as 0 in ownership percentage filter text box in the graphs
 When the user resize graph to translate(946.9235,516.7025) scale(0.9910000000000001)
-When the user clicks on show more link which appears on the legal entity node <nodeTitle> in the graphs
+When the user clicks on extend graph link which appears on the legal entity node <nodeTitle> in the graphs
 Then user is taken to the respective graph page of that legal entity <nodeTitle>
 
 Examples:

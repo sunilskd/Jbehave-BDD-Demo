@@ -280,10 +280,10 @@ Examples:
 
 
 Scenario: KYC-456 Covers below scenarios:
- a. 0. If the legal entity in focus has triple >125, Notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
-    1. When triples are >125 & legal entity repeats itselfs in the path(Circular relationship), path is truncated at the second occurance and show more link is not displayed
+ a. 0. If the legal entity in focus has triple >125, Notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “extend graph” link on tiles to view hidden segments in a new graph."
+    1. When triples are >125 & legal entity repeats itselfs in the path(Circular relationship), path is truncated at the second occurance and extend graph link is not displayed
  b. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
- c. Verify if the legal entity in focus has triple count greater than 125 and node count is greater than 2500, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph." is displayed.
+ c. Verify if the legal entity in focus has triple count greater than 125 and node count is greater than 2500, Notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “extend graph” link on tiles to view hidden segments in a new graph." is displayed.
 Given the user is on the ubo login page
 When the user login as a kyc user
 When the user opens legal entity <fid>
@@ -307,7 +307,7 @@ a. 0. When triples are >125, then nodes with less than 5% are displayed but not 
    1. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
    2. When triples are >125 & an entity appears more than once & first occurance has less than 5% ownership, then truncate the graph and display the path of second appearances
    3. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case
-   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
+   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “extend graph” link on tiles to view hidden segments in a new graph."
    5. UBO highlight is disabled for UBO and KYC user
    6. "Appears count" on tiles only reflects appearances on the graph after truncation
    7. KYC user will see in-product UBO message (KYC-470 bug)
@@ -332,7 +332,7 @@ a. 0. When triples are >125, then nodes with less than 5% are displayed but not 
    1. When triples are >125 & an entity appears more than once, then only display path beyond the first left most occurance and do not display path beyond other appearances
    2. When triples are >125 & an entity appears more than once & first occurance has less than 5% ownership, then truncate the graph and display the path of second appearances
    3. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case
-   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “show more” link on tiles to view hidden segments in a new graph."
+   4. Display notification message "This graph is too large to display in full. To make this information viewable in your browser, we have removed relationships that appear multiple times or have less than 5% ownership. Click the “extend graph” link on tiles to view hidden segments in a new graph."
    5. UBO highlight is enabled for UBO user
    6. Verify circular relationship
 Given the user is on the ubo login page
@@ -354,7 +354,7 @@ Scenario: KYC-457 Covers below scenarios for truncated full graph for KYC user.
 a. 0. When triples are <125, and nodes are >2500 then nodes containg 2500th node level will be displayed and remainig will levels will be truncated.
    1. Verify graph truncation notification message when number of nodes are greater than 2500
    2. Null percent ownership do NOT trigger truncation. They are treated like 100% in this case
-   3. Display notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “show more” link on tiles to view hidden segments in a new graph."
+   3. Display notification message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “extend graph” link on tiles to view hidden segments in a new graph."
    4. "Appears count" on tiles only reflects appearances on the graph after truncation
 Given the user is on the ubo login page
 When the user login as a kyc user
