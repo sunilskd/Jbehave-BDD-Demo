@@ -843,6 +843,17 @@ public class GraphsPage extends WebDriverUtils {
     }
 
     public void userClicksGraphHelpLink(){
-        
+        waitForInMilliSeconds(3000L);
+        clickOnWebElement(graphs_help_page_link_xpath);
+    }
+
+    public void verifyGraphHelpPage(){
+        assertTrue(isWebElementDisplayed(graphs_help_page_dialog_box_xpath));
+        assertTrue(isWebElementDisplayed(graphs_help_page_dialog_image_xpath));
+    }
+
+    public void clickCloseButtonInGraphHelp(){
+        waitForInMilliSeconds(3000L);
+        clickOnWebElement(graphs_help_page_dialog_box_close_button_xpath);
     }
 }

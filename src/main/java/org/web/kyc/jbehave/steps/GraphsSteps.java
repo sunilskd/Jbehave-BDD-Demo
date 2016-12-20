@@ -381,5 +381,15 @@ public class GraphsSteps {
         pageObject.graphsPage().userClicksGraphHelpLink();
     }
 
+    @Then("the user should see a model window with static help content for graph")
+    public void verifyGraphHelpPage(){
+        pageObject.graphsPage().verifyGraphHelpPage();
+    }
+
+    @When("the user clicks close button in graph help model window")
+    public void clickCloseButtonInGraphHelp(){
+        pageObject.graphsPage().clickCloseButtonInGraphHelp();
+    }
+
 }
 

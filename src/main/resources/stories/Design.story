@@ -19,6 +19,8 @@ And the user clicks on the graph button
 Then the user should see the owners graph
 When the user clicks on graph help link in graph page
 Then the user should see a model window with static help content for graph
+When the user clicks close button in graph help model window
+Then the model window should be closed and user should see active graph page where the user was initially
 
 Examples:
 |fid|
