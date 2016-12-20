@@ -538,7 +538,7 @@ Examples:
 |250786|
 
 Scenario: Scenarios pending as Data missing
-1. If legal entity in focus returns greater than 125 triples for ownership and an ownership relationship has >2500 owner nodes, then the message "This graph is too large to display in full. We have removed some indirect owners to make this information viewable in your browser. Click the “extend graph” link on tiles to view hidden segments in a new graph" should be displayed.
+1. If Graph has been truncated because at least 2500 nodes were displayed and NOT a PDF , then the message " Please note: To make this graph viewable in your browser, it has been limited to 2,500 entities. Where relationships repeat, only the first instance of that relationship has been displayed. In addition, no further relationships are displayed beyond any tile showing less than 5% ownership. To view these hidden segments, please click the "Extend Graph" links within the relevant tiles." should be displayed.
 
 
 Scenario: KYC user logout
