@@ -34,6 +34,7 @@ JIRA ID - KYC-386 - User can click "more" link from truncated graph to open anot
 JIRA ID - KYC-455 - new truncation logic owners graph
 JIRA ID - KYC-480 - Percent filter should not filter out null percent relationships
 JIRA ID - KYC-571 - Grey out UBO highlight field label when the highlight is unavailable
+JIRA ID - KYC-600 - User can view "graph help" page
 JIRA ID - KYC-517 - New text for truncation notifications and "show more" links
 
 Meta:@kycownersgraphs @kyc
@@ -536,6 +537,23 @@ Then the user should see the list of owners in level 11, above the root entity, 
 Examples:
 |fid|
 |250786|
+
+Scenario: Covers below scenarios for KYC-600 User can view "graph help" page
+a. 0. Verify graph help link and tool tip in graph page
+   1. Verify graph help model window and close button functionality
+Given the user is on the ubo login page
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the owners tab
+And the user clicks on the graph button
+When the user clicks on graph help link in graph page
+Then the user should see a model window with static help content for graph
+When the user clicks close button in graph help model window
+Then the model window should be closed and user should see active graph page where the user was initially
+
+Examples:
+|fid|
+|211|
 
 Scenario: Scenarios pending as Data missing
 1. If Graph has been truncated because at least 2500 nodes were displayed and NOT a PDF , then the message " Please note: To make this graph viewable in your browser, it has been limited to 2,500 entities. Where relationships repeat, only the first instance of that relationship has been displayed. In addition, no further relationships are displayed beyond any tile showing less than 5% ownership. To view these hidden segments, please click the "Extend Graph" links within the relevant tiles." should be displayed.

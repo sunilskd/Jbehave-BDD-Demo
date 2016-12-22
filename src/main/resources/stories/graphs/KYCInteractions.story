@@ -390,6 +390,17 @@ Examples:
 |fid|legalEntity|
 |11262|Vontobel Holding AG|
 
+Scenario: Verify graphs filter tool tips
+When the user opens legal entity <fid>
+When the user clicks on the ownership tab
+And the user clicks on the subsidiaries tab
+And the user clicks on the graph button
+Then the user should see tool tip for zoom, ownership percentage and country highlights
+
+Examples:
+|fid|
+|211|
+
 Scenario: KYC user logout
 Meta: @id logout
 Given the user is on the ubo login page
