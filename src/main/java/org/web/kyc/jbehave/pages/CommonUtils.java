@@ -155,11 +155,11 @@ public class CommonUtils extends WebDriverUtils {
     }
 
     public void verifyURLOpensInNewWindow(String url){
-        waitForInMilliSeconds(2000L);
+        waitForInMilliSeconds(3000L);
         for (String Handle : getWindowHandles()) {
             switchTo().window(Handle);
         }
-        waitForInMilliSeconds(2000L);
+        waitForInMilliSeconds(3000L);
         assertEquals(url.replace("%",""), getCurrentUrl().replace("%",""));
         close();
         switchTo().window((String) getWindowHandles().toArray()[0]);

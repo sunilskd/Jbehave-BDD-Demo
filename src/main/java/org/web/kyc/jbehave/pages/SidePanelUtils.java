@@ -20,7 +20,7 @@ public class SidePanelUtils extends WebDriverUtils {
 
     private By graph_side_panel_free_text_xpath = By.xpath(".//div[@class=\"info\"][@data-ng-show='selectedEntity.type==\"Free-Text\"']");
     private By graph_side_panel_close_button_xpath = By.xpath("//button[@name='close'][@type='button']");
-    private By graph_side_panel_closed_xpath = By.xpath("//h3[@class='ng-hide']");
+    private By graph_side_panel_closed_xpath = By.xpath("//*[@id='content-view']/div[@class='graph-info-panel ng-isolate-scope'][@style=\"right: -550px;\"]");
     private By graph_header_text_xpath = By.xpath("//*[@id='content-view']/h1");
     private Document entityDetailsDocument;
     private By graph_side_panel_title_text_xpath= By.xpath("//h2[@data-ng-show='selectedEntity.type==\"Legal Entity\"']");
@@ -62,7 +62,7 @@ public class SidePanelUtils extends WebDriverUtils {
 
     public void verifySidePanelIsClosed(){
         assertTrue(isWebElementDisplayed(graph_side_panel_closed_xpath));
-        assertTrue(isWebElementDisplayed(graph_header_text_xpath));
+//        assertTrue(isWebElementDisplayed(graph_header_text_xpath));
     }
 
     public void dVerifyDetailsSectionInSidePanel(){

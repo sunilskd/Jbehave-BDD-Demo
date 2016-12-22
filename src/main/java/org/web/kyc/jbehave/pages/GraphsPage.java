@@ -78,11 +78,11 @@ public class GraphsPage extends WebDriverUtils {
         String eRootEntity = "";
         waitForWebElementToAppear(By.xpath(graph_root_node));
         assertTrue(isWebElementDisplayed(By.xpath(graph_root_node + graph_root_node_highlight_xpath)));
-        for(int i=0; i<getWebElements(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='tspan']/*[local-name()='tspan']")).size(); i++){
-            eRootEntity = eRootEntity.concat(getWebElements(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='tspan']/*[local-name()='tspan']")).get(i).getText() + " ");
-        }
-        //assertEquals(rootEntity, getWebElementText(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='tspan']")));
-        assertEquals(rootEntity, eRootEntity.trim());
+//        for(int i=0; i<getWebElements(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='tspan']/*[local-name()='tspan']")).size(); i++){
+//            eRootEntity = eRootEntity.concat(getWebElements(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='tspan']/*[local-name()='tspan']")).get(i).getText() + " ");
+//        }
+        assertEquals(rootEntity, getWebElementText(By.xpath(graph_root_node + "/*[local-name()='text']/*[local-name()='tspan']")));
+//        assertEquals(rootEntity, eRootEntity.trim());
         assertFalse(isWebElementDisplayed(By.xpath(graph_root_node + graph_percent_xpath)));
         //assertEquals("", getWebElementText(By.xpath(graph_root_node + graph_percent_xpath)));
     }
@@ -206,6 +206,7 @@ public class GraphsPage extends WebDriverUtils {
             }
 
             try {
+                //aCountry.add(nodes.get(i).findElement(By.cssSelector(".country")).getText());
                 aCountry.add(nodes.get(i).findElement(By.cssSelector("[text-anchor=\"middle\"]")).getText());
             } catch (NoSuchElementException e) {
                 aCountry.add("");
@@ -728,7 +729,7 @@ public class GraphsPage extends WebDriverUtils {
             for(int i=0; i<nodes.size(); i++){
                 if(nodes.get(i).getText().replace(" ","").contains(nodeTitle.replace(" ",""))){
                     waitForInMilliSeconds(3000L);
-                    assertEquals(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][@class='extend-graph']")).getText(),"Show MoreShow this hidden segment in a new tab/window");
+                    assertEquals(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][@class='extend-graph']")).getText(),"Extend GraphShow this hidden segment in a new tab/window");
                     getActions().click(findElement(By.xpath(graph_nodes_xpath + "[" + Integer.toString(i+1) + "]" + "/*[local-name()='text'][@class='extend-graph']"))).perform();
                     Thread.sleep(5000L);
                     break;
